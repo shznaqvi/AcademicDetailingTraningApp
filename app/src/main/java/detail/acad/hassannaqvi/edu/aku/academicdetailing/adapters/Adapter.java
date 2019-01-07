@@ -1,4 +1,4 @@
-package detail.acad.hassannaqvi.edu.aku.academicdetailing;
+package detail.acad.hassannaqvi.edu.aku.academicdetailing.adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 
 public class Adapter extends PagerAdapter {
 

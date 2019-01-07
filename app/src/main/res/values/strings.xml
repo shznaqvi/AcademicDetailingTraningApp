@@ -1,3 +1,34 @@
 <resources>
-    <string name="app_name">AcademicDetailing</string>
+    <string name="app_name">Academic Detailing</string>
+
+
+    <string name="True">True</string>
+    <string name="False">False</string>
+
+    <string name="gds02pre01">A classification in a Yellowrow (IMNCI chart) is a classification of very severe disease and needs urgent attention and referral.</string>
+    <string name="gds02pre02">Which of the following is NOT true, if a child has a general danger sign?</string>
+    <string name="gds02pre02a">	Complete assessment immediately - the child has a severe problem. </string>
+    <string name="gds02pre02b">	Provide urgent pre-referral treatment </string>
+    <string name="gds02pre02c">	Observe and reassess child after pre-referral treatment</string>
+    <string name="gds02pre02d">	Refer child to hospital</string>
+
+    <string name="gds02pre03">Which of the following is NOT true, if a child has a general danger sign?</string>
+    <string name="gds02pre03a">	Not able to drink or breastfeed</string>
+    <string name="gds02pre03b">	vomits everything</string>
+    <string name="gds02pre03c">	Lethargic</string>
+    <string name="gds02pre03d">	Unconscious </string>
+
+    <string name="gds02pre04">What is the dose of Diazepam required to Stop Convulsions?</string>
+    <string name="gds02pre04a">	0.5mg/kg diazepam injection solution per rectum</string>
+    <string name="gds02pre04b">	0.8mg/kg diazepam injection solution per rectum</string>
+    <string name="gds02pre04c">	1.0mg/kg diazepam injection solution per rectum</string>
+    <string name="gds02pre04d">	1.5mg/kg diazepam injection solution per rectum</string>
+
+    <string name="gds02pre05">To make sugar water: Dissolve 4 level teaspoons of sugar (20 grams) in a _______ cup of clean water. </string>
+    <string name="gds02pre05a">	100-ml  </string>
+    <string name="gds02pre05b">	150-ml</string>
+    <string name="gds02pre05c">	200-ml </string>
+    <string name="gds02pre05d">	250-ml </string>
+
+
 </resources>

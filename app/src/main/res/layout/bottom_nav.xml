@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimaryBeta">
+
+
+        <RelativeLayout
+            android:id="@+id/home"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            >
+            <ImageView
+                android:layout_marginTop="10dp"
+                android:id="@+id/ic_home"
+                android:layout_centerHorizontal="true"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/ic_home_white"/>
+            <TextView
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:layout_below="@id/ic_home"
+                android:layout_centerInParent="true"
+                android:text="Home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/learning"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            >
+            <ImageView
+                android:layout_marginTop="10dp"
+                android:id="@+id/ic_book"
+                android:layout_centerHorizontal="true"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/ic_book_white"/>
+
+            <TextView
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:layout_below="@id/ic_book"
+                android:layout_centerInParent="true"
+                android:text="My Learning"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/settings"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            >
+            <ImageView
+                android:layout_marginTop="10dp"
+                android:id="@+id/ic_setting"
+                android:layout_centerHorizontal="true"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/ic_settings_white"/>
+            <TextView
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:layout_below="@id/ic_setting"
+                android:layout_centerInParent="true"
+                android:text="Settings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+
+
+    </LinearLayout>
+
+</layout>

@@ -1,7 +1,11 @@
 package detail.acad.hassannaqvi.edu.aku.academicdetailing.ui;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Handler;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,19 +13,20 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.adapters.Adapter;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityMainBinding;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments.MainFragment;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Utils;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
 
     private static final String TAG = "MainActivity";
     ActivityMainBinding bi;
-    boolean isChildClicked = false;
-    boolean isMaternalClicked = false;
+
 
 
     @Override
@@ -30,92 +35,40 @@ public class MainActivity extends AppCompatActivity {
         bi = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
 
-        bi.childHealth.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                if (!isChildClicked) {
-                    showChildModule();
-                } else {
-                    bi.childModule.removeAllViews();
-
-                    isChildClicked = false;
-                }
-
-            }
-        });
-
-        bi.maternalHealth.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (!isMaternalClicked) {
-                    showMaternalModule();
-                } else {
-                    bi.maternalModule.removeAllViews();
-
-                    isMaternalClicked = false;
-                }
-
-            }
-        });
-
-        bi.newBornHealth.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                showNewBornModule();
-            }
-        });
-
-
+        loadHomeFragment();
+        bi.bottomNav.home.setOnClickListener(this);
+        bi.bottomNav.learning.setOnClickListener(this);
+        bi.bottomNav.settings.setOnClickListener(this);
     }
 
-    private void showNewBornModule() {
-    }
 
-    private void showMaternalModule() {
+    @Override
+    public void onClick(View v) {
 
-        for (int i = 0; i < Utils.maternalModule.length; i++) {
+        switch (v.getId()){
 
-            View v = LayoutInflater.from(this).inflate(R.layout.single_module_item, null);
-            TextView moduleName = v.findViewById(R.id.moduleName);
-            moduleName.setText(Utils.maternalModule[i]);
-            bi.maternalModule.addView(v);
+            case R.id.home:
 
+                loadHomeFragment();
 
-            v.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+                break;
 
 
-                }
-            });
         }
-        isMaternalClicked = true;
-
     }
 
-    private void showChildModule() {
+    private void loadHomeFragment() {
 
-        for (int i = 0; i < Utils.childModule.length; i++) {
+//        bi.bottomNav.icHome.setBackgroundResource(R.drawable.ic_home_white);
+//        bi.bottomNav.icBook.setBackgroundResource(R.drawable.ic_book_grey);
+//        bi.bottomNav.icSetting.setBackgroundResource(R.drawable.ic_setting_grey);
 
-            View v = LayoutInflater.from(this).inflate(R.layout.single_module_item, null);
-            TextView moduleName = v.findViewById(R.id.moduleName);
-            moduleName.setText(Utils.childModule[i]);
-            bi.childModule.addView(v);
-            v.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-
-                }
-            });
-        }
-        isChildClicked = true;
+        MainFragment fragment = new MainFragment();
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(bi.mainLayout.getId(),fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
 
     }
-
-
 }

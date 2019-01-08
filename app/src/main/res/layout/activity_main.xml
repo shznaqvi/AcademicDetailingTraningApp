@@ -4,76 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.MainActivity">
 
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <RelativeLayout
+            android:id="@+id/bottom_layout"
+            android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
+
+            <include layout="@layout/bottom_nav"
+                android:id="@+id/bottom_nav"/>
+
+        </RelativeLayout>
+
+        <FrameLayout
+            android:id="@+id/mainLayout"
+            android:layout_above="@id/bottom_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
 
-            <TextView
-                android:id="@+id/testing"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/ticker_red"
-                android:elevation="6dp"
-                android:gravity="center_horizontal"
-                android:keepScreenOn="true"
-                android:padding="4dp"
-                android:text="ONLY FOR TESTING"
-                android:textColor="@color/dullWhile"
-                android:textSize="20sp"
-                android:textStyle="bold" />
 
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_marginTop="100dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <Button
-                    android:id="@+id/childHealth"
-                    style="@style/main_button"
-                    android:text="Child Health" />
-                <LinearLayout
-                    android:animateLayoutChanges="true"
-                    android:id="@+id/childModule"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"></LinearLayout>
-
-                <Button
-                    android:id="@+id/maternalHealth"
-                    style="@style/main_button"
-                    android:text="Maternal Health" />
-                <LinearLayout
-                    android:animateLayoutChanges="true"
-                    android:id="@+id/maternalModule"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"></LinearLayout>
-
-                <Button
-                    android:id="@+id/newBornHealth"
-                    style="@style/main_button"
-                    android:text="New Born Health" />
-                <LinearLayout
-                    android:animateLayoutChanges="true"
-                    android:id="@+id/nbornModule"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"></LinearLayout>
+        </FrameLayout>
 
 
-            </LinearLayout>
-
-        </LinearLayout>
 
 
-    </ScrollView>
+    </RelativeLayout>
+
+
 
 
 

@@ -30,5 +30,8 @@
     <string name="gds02pre05c">	200-ml </string>
     <string name="gds02pre05d">	250-ml </string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 </resources>

@@ -19,7 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.GDSSession02_Pre_test" />
-        <activity android:name=".ui.ViewPagerActivity"></activity>
+        <activity android:name=".ui.ViewPagerActivity"
+            android:screenOrientation="landscape"></activity>
     </application>
 
 </manifest>

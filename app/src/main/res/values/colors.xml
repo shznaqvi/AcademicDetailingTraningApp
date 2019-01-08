@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#40FF81</color>
     <color name="black">#000</color>
     <color name="white">#fff</color>
 
-    <color name="colorPrimary">#AD2F44</color>
-    <color name="colorPrimaryDark">#8c0032</color>
-    <color name="colorPrimaryAlpha">#c9ff4c4c</color>
-    <color name="colorPrimaryBeta">#f50057</color>
+    <color name="colorPrimary">#2FAD44</color>
+    <color name="colorPrimaryDark">#008c32</color>
+    <color name="colorPrimaryAlpha">#c94cff4c</color>
+    <color name="colorPrimaryBeta">#00f557</color>
     <color name="gray">#757575</color>
 
-    <color name="ticker_red">#80ff0000</color>
+    <color name="ticker_red">#8000ff00</color>
     <color name="dullWhile">#d6d6d6</color>
 
 

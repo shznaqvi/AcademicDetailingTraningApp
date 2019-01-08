@@ -7,6 +7,10 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 public class Utils {
 
     public static final String[] childModule = new String[]{"General Danger Sign", "Cough & Difficult Breathing", "Diarrhoea", "PSBI"};
+    public static final String[] GDS = new String[]{"Assessment & Classification", "Management Counseling & Referral"};
+    public static final String[] CDB = new String[]{"Assessment & Classification", "Management Counseling & Referral"};
+    public static final String[] Diarrhea = new String[]{"Assessment & Classification", "Management Counseling & Referral"};
+    public static final String[] PSBI = new String[]{"Assessment & Classification", "Management Counseling & Referral", "Breast Feeding & Immunization"};
     public static final String[] maternalModule = new String[]{"Focused Antenatal Care", "Vaginal Bleeding in Pregnancy",
             "Partograph", "Pre Eclampsia & Eclampsia", " Postpartum Hemorrhage", "Assessment and management of Shock", " Puerperal Sepsis"};
 

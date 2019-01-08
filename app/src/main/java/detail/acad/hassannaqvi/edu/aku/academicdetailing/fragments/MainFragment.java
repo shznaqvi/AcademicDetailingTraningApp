@@ -60,6 +60,7 @@ public class MainFragment extends Fragment {
                 if (!isChildClicked) {
                     showChildModule();
 
+
                 } else {
                     bi.childModule.removeAllViews();
 

@@ -160,7 +160,6 @@ public class MainFragment extends Fragment {
                 public void onClick(View v) {
 
                     Toast.makeText(getActivity(), "Module is under development", Toast.LENGTH_SHORT).show();
-
                 }
             });
         }

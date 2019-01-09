@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.adapters.Adapter;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityMainBinding;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments.Fanc_PreTestFragment;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments.MainFragment;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Utils;
 
@@ -57,12 +59,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private void loadHomeFragment() {
-
-//        bi.bottomNav.icHome.setBackgroundResource(R.drawable.ic_home_white);
-//        bi.bottomNav.icBook.setBackgroundResource(R.drawable.ic_book_grey);
-//        bi.bottomNav.icSetting.setBackgroundResource(R.drawable.ic_setting_grey);
-
+    public void loadHomeFragment() {
         MainFragment fragment = new MainFragment();
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
@@ -70,5 +67,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         transaction.addToBackStack(null);
         transaction.commit();
 
+    }
+
+    public void loadFancPreTestFragment(){
+
+        Fanc_PreTestFragment fragment = new Fanc_PreTestFragment();
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(bi.mainLayout.getId(),fragment);
+        transaction.setTransition(Gravity.LEFT);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }

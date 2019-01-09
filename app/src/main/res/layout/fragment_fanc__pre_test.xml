@@ -8,7 +8,7 @@
 
         <variable
             name="callback"
-            type="detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.GDSSession02_Pre_test" />
+            type="detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments.Fanc_PreTestFragment" />
     </data>
 
 
@@ -326,15 +326,9 @@
                 <Button
                     android:id="@+id/btn_Continue"
                     style="@style/button1"
-                    android:onClick="@{() -> callback.BtnContinue()}"
                     android:text="Next Section" />
 
-                <Button
-                    android:id="@+id/btn_End"
-                    style="@style/button1"
-                    android:layout_marginRight="10dp"
-                    android:onClick="@{() -> callback.BtnEnd()}"
-                    android:text="End Section" />
+
 
                 <!--'onClick' for btn_End will NOT change and always call 'endInterview'-->
             </LinearLayout>

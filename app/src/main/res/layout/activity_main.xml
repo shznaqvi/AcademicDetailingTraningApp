@@ -20,6 +20,7 @@
         </RelativeLayout>
 
         <FrameLayout
+            android:background="@color/white"
             android:id="@+id/mainLayout"
             android:layout_above="@id/bottom_layout"
             android:layout_width="match_parent"

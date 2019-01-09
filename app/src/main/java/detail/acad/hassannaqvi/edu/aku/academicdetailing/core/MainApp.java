@@ -62,6 +62,10 @@ public class MainApp extends Application {
     private static final long DAYS_IN_2_YEAR = 365 * 2;
     public static final long MILLISECONDS_IN_2Years = MILLIS_IN_SECOND * SECONDS_IN_MINUTE * MINUTES_IN_HOUR * HOURS_IN_DAY * DAYS_IN_2_YEAR;
     public static String deviceId;
+    public static boolean isSlideEnd = false;
+    public static boolean isSlideStart = false;
+    public static int maternalIndex=0;
+    public static boolean isMaternal = false;
 
     public static final boolean isSession02Pre = false;
 

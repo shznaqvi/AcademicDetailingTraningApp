@@ -74,7 +74,7 @@
     </style>
 
     <style name="BackgroundStyle" parent="android:Widget.Material.Light.ScrollView">
-        <item name="android:background">#e4e4e4</item>
+        <item name="android:background">@color/white</item>
         <item name="android:padding">10dp</item>
     </style>
 
@@ -86,10 +86,18 @@
         <item name="android:paddingStart">8dp</item>
         <item name="android:paddingEnd">8dp</item>
         <item name="android:textColor">#ffffff</item>
-        <item name="android:textSize">20sp</item>
-        <item name="android:typeface">serif</item>
+        <item name="android:textSize">17sp</item>
         <item name="android:paddingTop">22dp</item>
         <item name="android:elevation">1dp</item>
+    </style>
+
+
+    <style name="textview" parent="android:Widget.Material.Light.TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <!--<item name="android:background">@drawable/background_grad</item>-->
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">10sp</item>
 
 
     </style>
@@ -130,6 +138,11 @@
         <item name="android:orientation">vertical</item>
         <item name="android:layout_margin">0dp</item>
         <item name="android:padding">0dp</item>
+    </style>
+
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/dialogue_slide_up</item>
+        <item name="android:windowExitAnimation">@anim/dialogue_slide_bottom</item>
     </style>
 
     <!--

@@ -23,10 +23,27 @@ public class GDSSession02_Pre_test extends AppCompatActivity {
 
         bi = DataBindingUtil.setContentView(this, R.layout.activity_gdssession02__pre_test);
         bi.setCallback(this);
+
+        if(MainApp.isSlideStart){
+            bi.btnContinue.setText("Start Training");
+        }else{
+            bi.btnContinue.setText("Finish Training");
+        }
     }
+
+
 
     public void BtnContinue() {
         if (formValidation()) {
+
+            if(MainApp.isSlideStart){
+                startActivity(new Intent(this,ViewPagerActivity.class).putExtra("slides",getIntent().getIntArrayExtra("slides")));
+                finish();
+            }else{
+                Toast.makeText(this, "Training Completed", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+
 //            try {
 //                SaveDraft();
 //                if (UpdateDB()) {

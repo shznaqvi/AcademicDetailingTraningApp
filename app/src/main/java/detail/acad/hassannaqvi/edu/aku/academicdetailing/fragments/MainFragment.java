@@ -17,7 +17,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.FragmentMainBinding;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.GDSSession02_Pre_test;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.MainActivity;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.ViewPagerActivity;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Utils;
 
@@ -61,6 +64,7 @@ public class MainFragment extends Fragment {
                     showChildModule();
 
                 } else {
+                    bi.childModule.animate().translationY(0);
                     bi.childModule.removeAllViews();
 
 
@@ -75,10 +79,11 @@ public class MainFragment extends Fragment {
             public void onClick(View v) {
 
                 if (!isMaternalClicked) {
+
                     showMaternalModule();
                 } else {
+                    bi.maternalModule.animate().translationY(0);
                     bi.maternalModule.removeAllViews();
-
                     isMaternalClicked = false;
                 }
 
@@ -95,49 +100,16 @@ public class MainFragment extends Fragment {
             TextView moduleName = v.findViewById(R.id.moduleName);
             moduleName.setText(Utils.maternalModule[i]);
             bi.maternalModule.addView(v);
+            v.animate().translationY(v.getHeight());
+
 
             final int finalI = i;
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
-                  switch (finalI){
-                      case 0:
-                          AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                          View view = LayoutInflater.from(getActivity()).inflate(R.layout.dialoge_layout,null);
-                          ImageView slide = view.findViewById(R.id.slideImage);
-                          Button proceed = view.findViewById(R.id.proceed);
-                          Button cancel = view.findViewById(R.id.cancel);
-                          slide.setImageResource(R.drawable.fanc_02);
-                          builder.setView(view);
-                          final AlertDialog dialog = builder.create();
-                          dialog.show();
-                          proceed.setOnClickListener(new View.OnClickListener() {
-                              @Override
-                              public void onClick(View v) {
-
-                                  if (Utils.getMaternalSessions(finalI) != null) {
-
-                                      startActivity(new Intent(getActivity(), ViewPagerActivity.class)
-                                              .putExtra("slides", Utils.getMaternalSessions(finalI)));
-                                      dialog.dismiss();
-                                  } else {
-                                      Toast.makeText(getActivity(), "Module is under development", Toast.LENGTH_SHORT).show();
-                                  }
-                              }
-                          });
-
-                          cancel.setOnClickListener(new View.OnClickListener() {
-                              @Override
-                              public void onClick(View v) {
-
-                                  dialog.dismiss();
-                              }
-                          });
-
-                  }
-
-
+                    Utils.showMaternalPreDialogue(getActivity(), finalI);
+                    MainApp.maternalIndex = finalI;
 
                 }
             });
@@ -154,6 +126,7 @@ public class MainFragment extends Fragment {
             TextView moduleName = v.findViewById(R.id.moduleName);
             moduleName.setText(Utils.childModule[i]);
             bi.childModule.addView(v);
+            v.animate().translationY(v.getHeight());
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -166,7 +139,6 @@ public class MainFragment extends Fragment {
         isChildClicked = true;
 
     }
-
 
 
 }

@@ -1,25 +1,16 @@
 package detail.acad.hassannaqvi.edu.aku.academicdetailing.util;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.Intent;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.Toast;
-
 import java.util.List;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.GDSSession02_Pre_test;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.ViewPagerActivity;
 
 public class Utils {
 
     public static final String[] childModule = new String[]{"General Danger Sign", "Cough & Difficult Breathing", "Diarrhoea", "PSBI"};
+    public static final String[] GDS = new String[]{"Assessment & Classification", "Management Counseling & Referral"};
+    public static final String[] CDB = new String[]{"Assessment & Classification", "Management Counseling & Referral"};
+    public static final String[] Diarrhea = new String[]{"Assessment & Classification", "Management Counseling & Referral"};
+    public static final String[] PSBI = new String[]{"Assessment & Classification", "Management Counseling & Referral", "Breast Feeding & Immunization"};
     public static final String[] maternalModule = new String[]{"Focused Antenatal Care", "Vaginal Bleeding in Pregnancy",
             "Partograph", "Pre Eclampsia & Eclampsia", " Postpartum Hemorrhage", "Assessment and management of Shock", " Puerperal Sepsis"};
 
@@ -60,6 +51,14 @@ public class Utils {
             R.drawable.fanc_56};
 
 
+    public static int[] gds1_imgs = new int[]{
+            R.drawable.gds001, R.drawable.gds002,
+            R.drawable.gds003, R.drawable.gds004,
+            R.drawable.gds005, R.drawable.gds006,
+            R.drawable.gds007, R.drawable.gds008,
+            R.drawable.gds009, };
+
+
     public static int[] getMaternalSessions(int i) {
 
         switch (i) {
@@ -70,8 +69,28 @@ public class Utils {
             case 1:
                 return vb_imgs;
 
+
+
                 default:
                     return null;
+        }
+
+    }
+
+
+    public static int[] getChildSessions(int i) {
+
+        switch (i) {
+
+            case 0:
+                return gds1_imgs;
+
+            case 1:
+                return gds1_imgs;
+
+
+            default:
+                return null;
         }
 
     }

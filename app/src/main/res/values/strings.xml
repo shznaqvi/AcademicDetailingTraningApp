@@ -34,4 +34,227 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
+    <string name="gdspretestq1">1- Children with _________________ on the IMNCI chart usually need urgent referral to hospital.</string>
+    <string name="gdspretestq1a1">Mild illness</string>
+    <string name="gdspretestq1a2">Pneumonia</string>
+    <string name="gdspretestq1a3">Dehydration</string>
+    <string name="gdspretestq1a4">Severe disease/classification</string>
+
+    <string name="gdspretestq2">2- _________________is the exception for severe classification or severe disease where referral to the hospital is needed but not urgent.</string>
+    <string name="gdspretestq2a1">Persistent diarrhea</string>
+    <string name="gdspretestq2a2">Severe dehydration</string>
+    <string name="gdspretestq2a3">Severe persistent diarrhea</string>
+    <string name="gdspretestq2a4">Severe pneumonia</string>
+
+    <string name="gdspretestq3">3- Presence of even __________ danger sign indicates that underlying disease is severe</string>
+    <string name="gdspretestq3a1">One</string>
+    <string name="gdspretestq3a2">Two</string>
+    <string name="gdspretestq3a3">Three</string>
+    <string name="gdspretestq3a4">None</string>
+
+    <string name="gdspretestq4">4- For assessing a general danger sign, a healthcare provider needs to ASK _____ questions and LOOK for ______ observations to observe the child\'s actions.</string>
+    <string name="gdspretestq4a1">One, Two</string>
+    <string name="gdspretestq4a2">Two, Two</string>
+    <string name="gdspretestq4a3">Three, Two</string>
+    <string name="gdspretestq4a4">Three, One</string>
+
+    <string name="gdspretestq5">5- Which of the following is NOT a danger sign?</string>
+    <string name="gdspretestq5a1">Child is not able to drink or breastfeed</string>
+    <string name="gdspretestq5a2">Child vomits everything</string>
+    <string name="gdspretestq5a3">Child has had more than one convulsion or prolonged convulsion, or is convulsing now.</string>
+    <string name="gdspretestq5a4">Child is shivering</string>
+
+    <string name="gdspretestq6">6- A classification in a <font color='yellow'><b>YELLOW ROW</b></font> (IMNCI chart) is a classification of very severe disease and needs urgent attention and referral.</string>
+    <string name="gdspretestq6a1">True</string>
+    <string name="gdspretestq6a2">False</string>
+
+    <string name="gdspretestq7">7- Which of the following is NOT true, if a child has a general danger sign?</string>
+    <string name="gdspretestq7a1">Complete assessment immediately - the child has a severe problem.</string>
+    <string name="gdspretestq7a2">Provide urgent pre-referral treatment</string>
+    <string name="gdspretestq7a3">Observe and reassess child after pre-referral treatment</string>
+    <string name="gdspretestq7a4">Refer child to hospital</string>
+
+    <string name="gdspretestq8">8- A child who is not able to hold anything down at all has the sign _______________</string>
+    <string name="gdspretestq8a1">Not able to drink or breastfeed</string>
+    <string name="gdspretestq8a2">Vomits everything</string>
+    <string name="gdspretestq8a3">Lethargic</string>
+    <string name="gdspretestq8a4">Unconscious</string>
+
+    <string name="gdspretestq9">9- What is the dose of Diazepam required to Stop Convulsions?</string>
+    <string name="gdspretestq9a1">0.5mg/kg diazepam injection solution per rectum</string>
+    <string name="gdspretestq9a2">0.8mg/kg diazepam injection solution per rectum</string>
+    <string name="gdspretestq9a3">1.0mg/kg diazepam injection solution per rectum</string>
+    <string name="gdspretestq9a4">1.5mg/kg diazepam injection solution per rectum</string>
+
+    <string name="gdspretestq10">10- To make sugar water: Dissolve 4 level teaspoons of sugar (20 grams) in a _______ cup of clean water.</string>
+    <string name="gdspretestq10a1">100-ml</string>
+    <string name="gdspretestq10a2">150-ml</string>
+    <string name="gdspretestq10a3">200-ml</string>
+    <string name="gdspretestq10a4">250-ml</string>
+
+
+    <string name="cdbtestq1">1- Cough or difficult breathing that lasts for more than 14 days may indicate ______________.</string>
+    <string name="cdbtestq1a1">Tuberculosis</string>
+    <string name="cdbtestq1a2">Asthma</string>
+    <string name="cdbtestq1a3">Whooping cough</string>
+    <string name="cdbtestq1a4">All of the above</string>
+
+    <string name="cdbtestq2">2- Talha is 6 months old. He has fast breathing if:</string>
+    <string name="cdbtestq2a1">30 or more breaths/minute</string>
+    <string name="cdbtestq2a2">40 or more breaths/minute</string>
+    <string name="cdbtestq2a3">50 or more breaths/minute</string>
+    <string name="cdbtestq2a4">60 or more breaths/minute</string>
+
+    <string name="cdbtestq3">3- Fast breathing or ____________ if present in a child between 2 months to 5 years of age are the clinical signs for Pneumonia.</string>
+    <string name="cdbtestq3a1">Wheeze</string>
+    <string name="cdbtestq3a2">Chest in-drawing</string>
+    <string name="cdbtestq3a3">Cough</string>
+    <string name="cdbtestq3a4">Fever</string>
+
+    <string name="cdbtestq4">4- The child has chest in drawing if the lower chest wall (lower ribs) goes ____ when the child breathes IN.</string>
+    <string name="cdbtestq4a1">IN</string>
+    <string name="cdbtestq4a2">OUT</string>
+
+
+    <string name="cdbtestq5">5- What is the dose of Amoxicillin DT (250 gm) for children aged 12 months up to 3 years?</string>
+    <string name="cdbtestq5a1">(&#189;) tablet twice a day</string>
+    <string name="cdbtestq5a2"> <b>1</b> tablet twice a day</string>
+    <string name="cdbtestq5a3"> <b>2</b> tablet twice a day</string>
+    <string name="cdbtestq5a4"> <b>2.5</b> tablet twice a day</string>
+
+
+    <string name="cdbtestq6">6- The dose for intramuscular antibiotics (urgent referral); Ampicillin _______mg/kg and Gentamicin ________mg/kg</string>
+    <string name="cdbtestq6a1"> 40 mg and 7 mg</string>
+    <string name="cdbtestq6a2"> 45 mg and 7.5 mg</string>
+    <string name="cdbtestq6a3"> 50 mg and 7.5 mg</string>
+    <string name="cdbtestq6a4"> 55 mg and 8 mg</string>
+
+    <string name="cdbtestq7">7- What is the minimum SpO2 saturation level for urgent referral to a health facility?</string>
+    <string name="cdbtestq7a1"> ≥90%</string>
+    <string name="cdbtestq7a2"> ≤90%</string>
+    <string name="cdbtestq7a3"> ≥80%</string>
+    <string name="cdbtestq7a4"> ≥70%</string>
+
+    <string name="cdbtestq8">8- Standard flow rates for oxygen through nasal prongs or nasal catheters are up to ____ L/min for infants, up to _____ L/min for older children</string>
+    <string name="cdbtestq8a1"><![CDATA[2 & 4]]></string>
+    <string name="cdbtestq8a2"><![CDATA[3 & 4]]></string>
+    <string name="cdbtestq8a3"><![CDATA[3.5 & 4.5]]></string>
+    <string name="cdbtestq8a4"><![CDATA[4 & 4.5]]></string>
+
+    <string name="cdbtestq9">9- Following of the vaccines prevent pneumonia infections, <b>EXCEPT:</b></string>
+    <string name="cdbtestq9a1">PCV</string>
+    <string name="cdbtestq9a2">Hib</string>
+    <string name="cdbtestq9a3">Pertussis</string>
+    <string name="cdbtestq9a4">Rotavirus</string>
+
+    <string name="cdbtestq10">10- What are the harmful home remedies for cough?</string>
+    <string name="cdbtestq10a1">Cough syrup containing codeine, antihistamines, alcohol, atropine and expectorants.</string>
+    <string name="cdbtestq10a2">Oral and nasal decongestants</string>
+    <string name="cdbtestq10a3">Opium or alcohol etc.</string>
+    <string name="cdbtestq10a4">All of the above</string>
+
+    <string name="diarrheatestq1">1- The death of a child with acute diarrhea is usually due to _____________.</string>
+    <string name="diarrheatestq1a1">Dehydration</string>
+    <string name="diarrheatestq1a2">Dysentery</string>
+    <string name="diarrheatestq1a3">Hydration</string>
+    <string name="diarrheatestq1a4">Malnutrition</string>
+
+    <string name="diarrheatestq2">2- A child with persistent diarrhea needs Zinc DT for _________ days.</string>
+    <string name="diarrheatestq2a1">10 days</string>
+    <string name="diarrheatestq2a2">12 days</string>
+    <string name="diarrheatestq2a3">14 days</string>
+    <string name="diarrheatestq2a4">16 days</string>
+
+    <string name="diarrheatestq3">3- The antibiotic prescribed for dysentery is __________ for 3 days.</string>
+    <string name="diarrheatestq3a1">Ciprofloxacin</string>
+    <string name="diarrheatestq3a2">Amoxicillin</string>
+    <string name="diarrheatestq3a3">Ampicillin</string>
+    <string name="diarrheatestq3a4">Diazepam</string>
+
+    <string name="diarrheatestq4">4- The common cause of dysentery is ______________ bacteria.</string>
+    <string name="diarrheatestq4a1">Brucella</string>
+    <string name="diarrheatestq4a2">Shigella</string>
+    <string name="diarrheatestq4a3">Bacillus</string>
+    <string name="diarrheatestq4a4">Salmonella</string>
+
+    <string name="diarrheatestq5">5- Which one of the following is a danger sign for severe dehydration?</string>
+    <string name="diarrheatestq5a1">Lethargic or unconscious</string>
+    <string name="diarrheatestq5a2">Not able to drink</string>
+    <string name="diarrheatestq5a3">Sunken eyes</string>
+    <string name="diarrheatestq5a4">All of the above</string>
+
+    <string name="diarrheatestq6">6- Shaista is restless, but drinks quickly when you give her water. How would you classify her dehydration?</string>
+    <string name="diarrheatestq6a1">Severe dehydration</string>
+    <string name="diarrheatestq6a2">Some dehydration</string>
+    <string name="diarrheatestq6a3">No dehydration</string>
+    <string name="diarrheatestq6a4">Persistent diarrhea</string>
+
+    <string name="diarrheatestq7">7- Children with diarrhea who come to a health worker with NO ____________ are put on plan A</string>
+    <string name="diarrheatestq7a1"> Dehydration</string>
+    <string name="diarrheatestq7a2"> Dysentery</string>
+    <string name="diarrheatestq7a3"> Hydration</string>
+    <string name="diarrheatestq7a4"> Pneumonia</string>
+
+    <string name="diarrheatestq8">8- Identify, which one of the following is NOT a rule for home treatment.</string>
+    <string name="diarrheatestq8a1"> Give extra fluids</string>
+    <string name="diarrheatestq8a2"> Give oral Amoxicillin</string>
+    <string name="diarrheatestq8a3"> Continue feeding</string>
+    <string name="diarrheatestq8a4"> When to return (follow-up visit)</string>
+
+    <string name="diarrheatestq9">9- What is the dose of Zinc DT for home treatment for a child 6 months or older_____________?</string>
+    <string name="diarrheatestq9a1"> <b>(&#189;)</b> tablet per day for 12 days</string>
+    <string name="diarrheatestq9a2"> <b>1</b> tablet per day for 10 days</string>
+    <string name="diarrheatestq9a3"> <b>1.5</b> tablets per day for 11 days</string>
+    <string name="diarrheatestq9a4"> <b>2</b> tablets per day for 10 days</string>
+
+    <string name="diarrheatestq10">10- <![CDATA[_____________vaccination is recommended for diarrhea by WHO for children  < 5 years.]]></string>
+    <string name="diarrheatestq10a1"> PCV</string>
+    <string name="diarrheatestq10a2"> Hib</string>
+    <string name="diarrheatestq10a3"> Pertussis</string>
+    <string name="diarrheatestq10a4"> Rotavirus</string>
+
+
+    <string name="psbitestq1">1- Skin pustules among young infants are the sign of ____________________.</string>
+    <string name="psbitestq1a1"> Jaundice</string>
+    <string name="psbitestq1a2"> Local Bacterial Infection</string>
+    <string name="psbitestq1a3"> Thrush</string>
+    <string name="psbitestq1a4"> Diarrhea</string>
+
+    <string name="psbitestq2">2- The follow-up time for sick young infants with diarrhea and pneumonia is ________ days.</string>
+    <string name="psbitestq2a1"> 2nd Day</string>
+    <string name="psbitestq2a2"> 3rd Day</string>
+    <string name="psbitestq2a3"> 4th Day</string>
+    <string name="psbitestq2a4"> 5th Day</string>
+
+    <string name="psbitestq3">3- Persistent vomiting is defined as vomiting following three attempts to feed the infant within ______ minutes, and the infant vomits after each attempt.</string>
+    <string name="psbitestq3a1"> 10 minutes</string>
+    <string name="psbitestq3a2"> 20 minutes</string>
+    <string name="psbitestq3a3"> 30 minutes</string>
+    <string name="psbitestq3a4"> 40 minutes</string>
+
+    <string name="psbitestq4">4- Which one of the following is NOT a danger sign for some dehydration in young infants</string>
+    <string name="psbitestq4a1">Movement only when stimulated or no movement at all</string>
+    <string name="psbitestq4a2">Sunken eyes</string>
+    <string name="psbitestq4a3">Skin pinch goes back very slowly.</string>
+    <string name="psbitestq4a4">Restless and irritable</string>
+
+    <string name="psbitestq5">5- Pre referral treatment for severe Pneumonia or very severe disease in young infant up to 2 months require first dose of an appropriate _________ antibiotic.</string>
+    <string name="psbitestq5a1">Oral</string>
+    <string name="psbitestq5a2">Intravenous</string>
+    <string name="psbitestq5a3">Intramuscular</string>
+    <string name="psbitestq5a4">None of the above</string>
+
+    <string name="psbitestq6">6- What is the correct dose to prepare sugar water?</string>
+    <string name="psbitestq6a1">3 level teaspoons of sugar in a 200-ml cup of clean water.</string>
+    <string name="psbitestq6a2">4 level teaspoons of sugar in a 200-ml cup of clean water.</string>
+    <string name="psbitestq6a3">2 level teaspoons of sugar in a 200-ml cup of clean water.</string>
+    <string name="psbitestq6a4">5 level teaspoons of sugar in a 250-ml cup of clean water.</string>
+
+    <string name="psbitestq7">7- What does APAC process mean?</string>
+    <string name="psbitestq7a1">Ask, Praise, Assess, Check</string>
+    <string name="psbitestq7a2">Assess, Praise, Ask, Counsel</string>
+    <string name="psbitestq7a3">Ask, Praise, Advice, Check</string>
+    <string name="psbitestq7a4">Assess, Prevent, Advice, Counsel</string>
+
+
 </resources>

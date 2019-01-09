@@ -18,9 +18,8 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.adapters.Adapter;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityViewPagerBinding;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Utils;
-import io.github.krtkush.lineartimer.LinearTimer;
 
-import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Utils.vb_imgs;
+
 
 public class ViewPagerActivity extends AppCompatActivity {
 
@@ -29,7 +28,7 @@ public class ViewPagerActivity extends AppCompatActivity {
     int lastItemPosition;
     boolean isClicked = false;
     int[] slides;
-    LinearTimer linearTimer;
+
 
 
     @Override
@@ -76,8 +75,10 @@ public class ViewPagerActivity extends AppCompatActivity {
                 if (lastItemPosition == slides.length - 1) {
 
                     if(MainApp.isMaternal){
-                        Utils.showMaternalPostDialoge(ViewPagerActivity.this,MainApp.maternalIndex);
+                        Utils.showPostDialoge(ViewPagerActivity.this,MainApp.maternalIndex);
 
+                    }else if(MainApp.isChild){
+                        Utils.showPostDialoge(ViewPagerActivity.this,MainApp.childlIndex);
                     }
 
 

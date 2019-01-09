@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.FragmentMainBinding;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.ViewPagerActivity;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Utils;
@@ -105,7 +106,9 @@ public class MainFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
 
-                    Utils.showMaternalPreDialogue(getActivity(), finalI);
+                    MainApp.isMaternal = true;
+                    MainApp.isChild = false;
+                    Utils.showPreDialogue(getActivity(), finalI);
                     MainApp.maternalIndex = finalI;
 
                 }
@@ -129,42 +132,10 @@ public class MainFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
 
-                    switch (finalI){
-                        case 0:
-                            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                            View view = LayoutInflater.from(getActivity()).inflate(R.layout.dialoge_layout,null);
-                            ImageView slide = view.findViewById(R.id.slideImage);
-                            Button proceed = view.findViewById(R.id.proceed);
-                            Button cancel = view.findViewById(R.id.cancel);
-                            slide.setImageResource(R.drawable.gdsoverview1);
-                            builder.setView(view);
-                            final AlertDialog dialog = builder.create();
-                            dialog.show();
-                            proceed.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-
-                                    if (Utils.getChildSessions(finalI) != null) {
-
-                                        startActivity(new Intent(getActivity(), ViewPagerActivity.class)
-                                                .putExtra("slides", Utils.getChildSessions(finalI)));
-                                        dialog.dismiss();
-                                    } else {
-                                        Toast.makeText(getActivity(), "Module is under development", Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            });
-
-                            cancel.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-
-                                    dialog.dismiss();
-                                }
-                            });
-
-                    }
-
+                    MainApp.isChild = true;
+                    MainApp.isMaternal = false;
+                    Utils.showPreDialogue(getActivity(), finalI);
+                    MainApp.childlIndex = finalI;
 
 
                 }
@@ -173,7 +144,6 @@ public class MainFragment extends Fragment {
         isChildClicked = true;
 
     }
-
 
 
 }

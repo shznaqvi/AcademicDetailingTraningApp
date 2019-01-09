@@ -1,8 +1,20 @@
 package detail.acad.hassannaqvi.edu.aku.academicdetailing.util;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Toast;
+
 import java.util.List;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.GDSSession02_Pre_test;
 
 public class Utils {
 
@@ -56,7 +68,7 @@ public class Utils {
             R.drawable.gds003, R.drawable.gds004,
             R.drawable.gds005, R.drawable.gds006,
             R.drawable.gds007, R.drawable.gds008,
-            R.drawable.gds009, };
+            R.drawable.gds009,};
 
 
     public static int[] getMaternalSessions(int i) {
@@ -70,9 +82,8 @@ public class Utils {
                 return vb_imgs;
 
 
-
-                default:
-                    return null;
+            default:
+                return null;
         }
 
     }
@@ -95,14 +106,18 @@ public class Utils {
 
     }
 
-    public static void showMaternalPreDialogue(final Context context, final int index){
+    public static void showPreDialogue(final Context context, final int index) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setCancelable(false);
         View view = LayoutInflater.from(context).inflate(R.layout.dialoge_layout, null);
         ImageView slide = view.findViewById(R.id.slideImage);
         Button proceed = view.findViewById(R.id.proceed);
         Button cancel = view.findViewById(R.id.cancel);
-        slide.setImageResource(getMaternalPreImages(index));
+        if (MainApp.isMaternal) {
+            slide.setImageResource(getPreImages(index, MainApp.isMaternal));
+        } else if (MainApp.isChild) {
+            slide.setImageResource(getPreImages(index, MainApp.isChild));
+        }
         builder.setView(view);
         final AlertDialog dialog = builder.create();
         dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
@@ -113,9 +128,9 @@ public class Utils {
 
                 if (Utils.getMaternalSessions(index) != null) {
                     MainApp.isSlideStart = true;
-                    MainApp.isMaternal = true;
                     context.startActivity(new Intent(context, GDSSession02_Pre_test.class)
-                            .putExtra("slides", Utils.getMaternalSessions(index)));
+                            .putExtra("slides", MainApp.isMaternal ? Utils.getMaternalSessions(index)
+                                    : MainApp.isChild ? Utils.getChildSessions(index) : null));
                     dialog.dismiss();
                 } else {
                     Toast.makeText(context, "Module is under development", Toast.LENGTH_SHORT).show();
@@ -132,7 +147,7 @@ public class Utils {
         });
     }
 
-    public static void showMaternalPostDialoge(final Context context,int index){
+    public static void showPostDialoge(final Context context, int index) {
 
         MainApp.isSlideStart = false;
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -147,7 +162,11 @@ public class Utils {
             proceed.setText("Proceed To Post Test");
         }
         Button cancel = view.findViewById(R.id.cancel);
-        slide.setImageResource(getMaternalPostImages(index));
+        if (MainApp.isMaternal) {
+            slide.setImageResource(getPostImages(index, MainApp.isMaternal));
+        } else if (MainApp.isChild) {
+            slide.setImageResource(getPostImages(index, MainApp.isChild));
+        }
         builder.setView(view);
         final AlertDialog dialog = builder.create();
         dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
@@ -158,7 +177,7 @@ public class Utils {
 
                 context.startActivity(new Intent(context, GDSSession02_Pre_test.class)
                 );
-                ((Activity)context).finish();
+                ((Activity) context).finish();
                 dialog.dismiss();
             }
         });
@@ -174,28 +193,55 @@ public class Utils {
     }
 
 
-    public static int getMaternalPostImages(int index){
+    public static int getPostImages(int index, boolean type) {
 
-        switch (index){
-            case 0:
-                return R.drawable.fanc_53;
-            case 1:
-                return R.drawable.vb_img_25;
-            default:
-                return R.drawable.fanc_02;
+        if (type == MainApp.isMaternal) {
+            switch (index) {
+                case 0:
+                    return R.drawable.fanc_53;
+                case 1:
+                    return R.drawable.vb_img_25;
+                default:
+                    return R.drawable.fanc_02;
+            }
+        } else if (type == MainApp.isChild) {
+            switch (index) {
+                case 0:
+                    return R.drawable.gdsoverview1;
+                case 1:
+                    return R.drawable.gdsoverview1;
+                default:
+                    return R.drawable.gdsoverview1;
+            }
         }
+        return 0;
+
     }
 
-    public static int getMaternalPreImages(int index){
+    public static int getPreImages(int index, boolean type) {
 
-        switch (index){
-            case 0:
-                return R.drawable.fanc_02;
-            case 1:
-                return R.drawable.vb_img_2;
-            default:
-                return R.drawable.fanc_02;
+        if (type == MainApp.isMaternal) {
+            switch (index) {
+                case 0:
+                    return R.drawable.fanc_02;
+                case 1:
+                    return R.drawable.vb_img_2;
+                default:
+                    return R.drawable.fanc_02;
+            }
+        } else if (type == MainApp.isChild) {
+            switch (index) {
+                case 0:
+                    return R.drawable.gdsoverview1;
+                case 1:
+                    return R.drawable.gdsoverview1;
+                default:
+                    return R.drawable.gdsoverview1;
+            }
         }
+
+        return 0;
+
     }
 
 }

@@ -74,7 +74,7 @@
     </style>
 
     <style name="BackgroundStyle" parent="android:Widget.Material.Light.ScrollView">
-        <item name="android:background">@color/white</item>
+        <item name="android:background">#e4e4e4</item>
         <item name="android:padding">10dp</item>
     </style>
 

@@ -65,7 +65,9 @@ public class MainApp extends Application {
     public static boolean isSlideEnd = false;
     public static boolean isSlideStart = false;
     public static int maternalIndex=0;
+    public static int childlIndex=0;
     public static boolean isMaternal = false;
+    public static boolean isChild = false;
 
     public static final boolean isSession02Pre = false;
 

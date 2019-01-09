@@ -155,11 +155,57 @@ public class MainFragment extends Fragment {
             TextView moduleName = v.findViewById(R.id.moduleName);
             moduleName.setText(Utils.childModule[i]);
             bi.childModule.addView(v);
-            v.setOnClickListener(new View.OnClickListener() {
+            /*v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
                     Toast.makeText(getActivity(), "Module is under development", Toast.LENGTH_SHORT).show();
+                }
+            });*/
+
+            final int finalI = i;
+            v.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    switch (finalI){
+                        case 0:
+                            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                            View view = LayoutInflater.from(getActivity()).inflate(R.layout.dialoge_layout,null);
+                            ImageView slide = view.findViewById(R.id.slideImage);
+                            Button proceed = view.findViewById(R.id.proceed);
+                            Button cancel = view.findViewById(R.id.cancel);
+                            slide.setImageResource(R.drawable.gdsoverview1);
+                            builder.setView(view);
+                            final AlertDialog dialog = builder.create();
+                            dialog.show();
+                            proceed.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+
+                                    if (Utils.getChildSessions(finalI) != null) {
+
+                                        startActivity(new Intent(getActivity(), ViewPagerActivity.class)
+                                                .putExtra("slides", Utils.getChildSessions(finalI)));
+                                        dialog.dismiss();
+                                    } else {
+                                        Toast.makeText(getActivity(), "Module is under development", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+
+                            cancel.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+
+                                    dialog.dismiss();
+                                }
+                            });
+
+                    }
+
+
+
                 }
             });
         }

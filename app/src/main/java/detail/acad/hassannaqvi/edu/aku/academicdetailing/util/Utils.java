@@ -52,6 +52,14 @@ public class Utils {
             R.drawable.fanc_55, R.drawable.fanc_56};
 
 
+    public static int[] gds1_imgs = new int[]{
+            R.drawable.gds001, R.drawable.gds002,
+            R.drawable.gds003, R.drawable.gds004,
+            R.drawable.gds005, R.drawable.gds006,
+            R.drawable.gds007, R.drawable.gds008,
+            R.drawable.gds009, };
+
+
     public static int[] getMaternalSessions(int i) {
 
         switch (i) {
@@ -66,6 +74,24 @@ public class Utils {
 
                 default:
                     return null;
+        }
+
+    }
+
+
+    public static int[] getChildSessions(int i) {
+
+        switch (i) {
+
+            case 0:
+                return gds1_imgs;
+
+            case 1:
+                return gds1_imgs;
+
+
+            default:
+                return null;
         }
 
     }

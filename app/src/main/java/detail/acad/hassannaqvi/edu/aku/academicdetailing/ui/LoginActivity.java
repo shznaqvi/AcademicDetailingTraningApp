@@ -150,23 +150,23 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
 
         }
 
-//
-//        bi.password.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-//            @Override
-//            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-//                if (id == EditorInfo.IME_ACTION_DONE || id == EditorInfo.IME_NULL) {
-//                    attemptLogin();
-//                    MainApp.loginMem[1] = bi.email.getText().toString();
-//
-//
-//                    return true;
-//
-//                }
-//                return false;
-//            }
-//        });
-//
-//
+
+        bi.password.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
+                if (id == EditorInfo.IME_ACTION_DONE || id == EditorInfo.IME_NULL) {
+                    attemptLogin();
+                    MainApp.loginMem[1] = bi.email.getText().toString();
+
+
+                    return true;
+
+                }
+                return false;
+            }
+        });
+
+
         Target viewTarget = new ViewTarget(R.id.syncData, this);
 
         new ShowcaseView.Builder(this)

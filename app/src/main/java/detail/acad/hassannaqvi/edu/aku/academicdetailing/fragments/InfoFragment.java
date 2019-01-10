@@ -10,21 +10,20 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.FragmentMainBinding;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.FragmentInfoBinding;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.interfaces.Callbacks;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class MainFragment extends Fragment {
+public class InfoFragment extends Fragment {
 
-    FragmentMainBinding bi;
+
+    FragmentInfoBinding bi;
     View view;
-    Callbacks Callbacks;
+    Callbacks callbacks;
 
 
-    public MainFragment() {
+
+    public InfoFragment() {
         // Required empty public constructor
     }
 
@@ -33,21 +32,21 @@ public class MainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        bi = DataBindingUtil.inflate(inflater,R.layout.fragment_main,container,false);
+        bi = DataBindingUtil.inflate(inflater,R.layout.fragment_info,container,false);
         view = bi.getRoot();
 
-        onClickListener(bi);
+        onCLickListener(bi);
         return view;
+
     }
 
-    private void onClickListener(FragmentMainBinding bi) {
+    private void onCLickListener(FragmentInfoBinding bi) {
 
-        bi.startTraining.setOnClickListener(new View.OnClickListener() {
+        bi.proceedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Callbacks.loadInfoFragment();
-
+                callbacks.loadModuleFragment();
             }
         });
 
@@ -57,6 +56,6 @@ public class MainFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
 
-        Callbacks = (Callbacks) context;
+        callbacks = (Callbacks) context;
     }
 }

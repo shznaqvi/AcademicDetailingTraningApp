@@ -5,10 +5,11 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragments.MainFragment"
-       >
+        tools:context=".fragments.ModuleFragment"
+        >
 
         <ScrollView
+            android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -31,43 +32,83 @@
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
+                <TextView
+                    android:id="@+id/lblMainMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/colorPrimary"
+                    android:padding="10dp"
+                    android:text="Main Menu"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
                 <LinearLayout
+                    android:layout_margin="50dp"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <include layout="@layout/child_health"
-                        android:id="@+id/childHealth"/>
 
                     <LinearLayout
-                        android:animateLayoutChanges="true"
-                        android:id="@+id/childModule"
-                        android:orientation="vertical"
+                        android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"></LinearLayout>
-
-                    <include layout="@layout/maternal_health"
-                        android:id="@+id/maternalHealth"/>
+                        android:layout_height="200dp">
 
 
-                    <LinearLayout
-                        android:animateLayoutChanges="true"
-                        android:id="@+id/maternalModule"
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"></LinearLayout>
+                        <android.support.v7.widget.CardView
+                            android:layout_margin="5dp"
+                            android:background="@drawable/tv_style"
+                            android:id="@+id/startTraining"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent">
 
-                    <include layout="@layout/new_born_health"
-                        android:id="@+id/newBornHealth"/>
-                    <LinearLayout
-                        android:animateLayoutChanges="true"
-                        android:id="@+id/nbornModule"
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"></LinearLayout>
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
 
+                                <ImageView
+                                    android:layout_centerInParent="true"
+                                    android:src="@drawable/presentation"
+                                    android:layout_width="80dp"
+                                    android:layout_height="80dp" />
+
+                                <TextView
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_marginStart="0dp"
+                                    android:layout_marginTop="16dp"
+                                    android:background="@color/colorPrimaryDark"
+                                    android:padding="10dp"
+                                    android:text="Start Training"
+                                    android:textAlignment="center"
+                                    android:textAllCaps="true"
+                                    android:textColor="@color/white"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+
+                            </RelativeLayout>
+
+                        </android.support.v7.widget.CardView>
+                        <android.support.v7.widget.CardView
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent">
+
+
+                        </android.support.v7.widget.CardView>
+                    </LinearLayout>
 
                 </LinearLayout>
+
 
             </LinearLayout>
 

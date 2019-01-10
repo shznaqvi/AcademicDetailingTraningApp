@@ -8,10 +8,20 @@
     <color name="colorPrimaryDark">#2e7d32</color>
     <color name="colorPrimaryAlpha">#64dd17</color>
     <color name="colorPrimaryBeta">#00e676</color>
-    <color name="gray">#F5F5F5</color>
+    <color name="gray">#e6e6e6</color>
 
     <color name="ticker_red">#64dd17</color>
     <color name="dullWhile">#d6d6d6</color>
+
+
+    <!--custom-->
+    <color name="red">#ffff0000</color>
+
+    <!--Coppied-->
+    <color name="black_overlay">#66000000</color>
+    <color name="selectedBlue">#2b3581</color>
+    <color name="green">#4caf50</color>
+    <color name="grayOverlay">#7f7f7f7f</color>
 
 
 </resources>

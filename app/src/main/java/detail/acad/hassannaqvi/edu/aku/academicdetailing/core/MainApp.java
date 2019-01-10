@@ -24,6 +24,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.FormsContract;
+
 
 public class MainApp extends Application {
 
@@ -68,7 +70,13 @@ public class MainApp extends Application {
     public static int childlIndex=0;
     public static boolean isMaternal = false;
     public static boolean isChild = false;
-
+    public static String[] loginMem;
+    public static String versionName;
+    public static int versionCode;
+    public static Boolean admin = false;
+    public static String userName = "0000";
+    public static FormsContract fc;
+    public static String IMEI;
     public static final boolean isSession02Pre = false;
 
     protected static LocationManager locationManager;

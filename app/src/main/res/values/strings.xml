@@ -13,6 +13,13 @@
     <string name="error_field_required">This field is required</string>
     <string name="error_incorrect_password">This password is incorrect</string>
 
+    <string name="district_name">District Name</string>
+    <string name="doc_name">Doctor Name</string>
+    <string name="hfac_name">Health Facility Name</string>
+
+
+    <string name="mainFragment">MainFragment</string>
+    <string name="moduleFragment">ModuleFragment</string>
     <string name="gds02pre01">A classification in a Yellowrow (IMNCI chart) is a classification of very severe disease and needs urgent attention and referral.</string>
     <string name="gds02pre02">Which of the following is NOT true, if a child has a general danger sign?</string>
     <string name="gds02pre02a">	Complete assessment immediately - the child has a severe problem. </string>

@@ -35,7 +35,7 @@ dependencies {
 
     implementation "com.yuyakaido.android:card-stack-view:2.2.1"
     implementation 'de.hdodenhof:circleimageview:3.0.0'
-    compile 'com.jsibbold:zoomage:1.2.0'
+    implementation 'com.jsibbold:zoomage:1.2.0'
     implementation 'com.google.guava:guava:15.0'
     implementation 'com.kaopiz:kprogresshud:1.2.0'
 }

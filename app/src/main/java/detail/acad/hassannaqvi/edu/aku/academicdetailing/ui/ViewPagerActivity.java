@@ -7,27 +7,35 @@ import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.adapters.Adapter;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.SessionContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityViewPagerBinding;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Utils;
 
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.LoginActivity.db;
 
 
 public class ViewPagerActivity extends AppCompatActivity {
 
+    private static final String TAG = "ViewPagerActivity";
     ActivityViewPagerBinding bi;
     Adapter adapter;
     int lastItemPosition;
     boolean isClicked = false;
     int[] slides;
+
 
 
 
@@ -84,6 +92,7 @@ public class ViewPagerActivity extends AppCompatActivity {
 
                 } else {
                     bi.viewPager.setCurrentItem(getItem(+1), true);
+                    saveDB();
 
 
                 }
@@ -91,6 +100,28 @@ public class ViewPagerActivity extends AppCompatActivity {
 
             }
         });
+
+        bi.backSlide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(lastItemPosition >=  0){
+                    bi.viewPager.setCurrentItem(getItem(-1), true);
+                    saveDB();
+                }
+            }
+        });
+    }
+
+    private void saveDB() {
+        String currentTime = new SimpleDateFormat("HH:mm:ss").format(new Date().getTime());
+
+        SessionContract sC = new SessionContract();
+        sC.setModule(MainApp.moduleName);
+        sC.setSession(MainApp.moduleSession);
+        sC.setSlideNumber(lastItemPosition);
+        sC.setSessionTime(currentTime);
+        db.addSessionData(sC);
     }
 
 

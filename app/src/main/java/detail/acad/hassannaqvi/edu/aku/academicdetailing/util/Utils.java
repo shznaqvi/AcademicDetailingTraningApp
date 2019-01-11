@@ -12,8 +12,14 @@ import android.widget.Toast;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.FANC_Post_test;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.FANC_Pre_test;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.GDSSession01_Post_test;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.GDSSession01_Pre_test;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.GDSSession02_Post_test;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.GDSSession02_Pre_test;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.VB_Post_test;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.VB_Pre_test;
 
 public class Utils {
 
@@ -109,7 +115,7 @@ public class Utils {
 
     }
 
-    public static void showPreDialogue(final Context context, final int index) {
+    public static void showPreDialogue(final Context context, final int index,String moduleName) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setCancelable(false);
         View view = LayoutInflater.from(context).inflate(R.layout.dialoge_layout, null);
@@ -131,7 +137,7 @@ public class Utils {
 
                 if (Utils.getMaternalSessions(index) != null) {
                     MainApp.isSlideStart = true;
-                    context.startActivity(new Intent(context, FANC_Pre_test.class)
+                    context.startActivity(new Intent(context, selectPreTest(index))
                             .putExtra("slides", MainApp.isMaternal ? Utils.getMaternalSessions(index)
                                     : MainApp.isChild ? Utils.getChildSessions(index) : null));
                     dialog.dismiss();
@@ -150,7 +156,7 @@ public class Utils {
         });
     }
 
-    public static void showPostDialoge(final Context context, int index) {
+    public static void showPostDialoge(final Context context, final int index) {
 
         MainApp.isSlideStart = false;
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -178,7 +184,7 @@ public class Utils {
             @Override
             public void onClick(View v) {
 
-                context.startActivity(new Intent(context, GDSSession01_Pre_test.class)
+                context.startActivity(new Intent(context, selectPostTest(index))
                 );
                 ((Activity) context).finish();
                 dialog.dismiss();
@@ -192,6 +198,56 @@ public class Utils {
                 dialog.dismiss();
             }
         });
+
+    }
+
+    public static Class<?> selectPreTest(int index){
+
+        if(MainApp.isMaternal){
+
+            switch (index){
+
+                case 0:
+                    return FANC_Pre_test.class;
+                case 1:
+                    return VB_Pre_test.class;
+            }
+        }else if(MainApp.isChild){
+
+            switch (index){
+
+                case 0:
+                    return GDSSession01_Pre_test.class;
+                case 1:
+                    return GDSSession02_Pre_test.class;
+            }
+        }
+        return null;
+
+    }
+
+    public static Class<?> selectPostTest(int index){
+
+        if(MainApp.isMaternal){
+
+            switch (index){
+
+                case 0:
+                    return FANC_Post_test.class;
+                case 1:
+                    return VB_Post_test.class;
+            }
+        }else if(MainApp.isChild){
+
+            switch (index){
+
+                case 0:
+                    return GDSSession01_Post_test.class;
+                case 1:
+                    return GDSSession02_Post_test.class;
+            }
+        }
+        return null;
 
     }
 
@@ -223,7 +279,7 @@ public class Utils {
 
     public static int getPreImages(int index, boolean type) {
 
-        if (type == MainApp.isMaternal) {
+        if (MainApp.isMaternal) {
             switch (index) {
                 case 0:
                     return R.drawable.fanc_02;
@@ -232,10 +288,10 @@ public class Utils {
                 default:
                     return R.drawable.fanc_02;
             }
-        } else if (type == MainApp.isChild) {
+        } else if (MainApp.isChild) {
             switch (index) {
                 case 0:
-                    return R.drawable.gdssummary;
+                    return R.drawable.gds1003;
                 case 1:
                     return R.drawable.gds1001;
                 default:

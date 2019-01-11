@@ -21,7 +21,7 @@ public class MainFragment extends Fragment {
 
     FragmentMainBinding bi;
     View view;
-    Callbacks Callbacks;
+    Callbacks callbacks;
 
 
     public MainFragment() {
@@ -46,8 +46,16 @@ public class MainFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Callbacks.loadInfoFragment();
+                callbacks.loadInfoFragment();
 
+            }
+        });
+
+        bi.openDB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                callbacks.loadDatabaseManager();
             }
         });
 
@@ -57,6 +65,6 @@ public class MainFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
 
-        Callbacks = (Callbacks) context;
+        callbacks = (Callbacks) context;
     }
 }

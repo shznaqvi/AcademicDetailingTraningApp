@@ -14,7 +14,8 @@
     <string name="error_incorrect_password">This password is incorrect</string>
 
     <string name="district_name">District Name</string>
-    <string name="doc_name">Doctor Name</string>
+    <string name="doc_name">Provider Name</string>
+    <string name="provider_id">Provider ID</string>
     <string name="hfac_name">Health Facility Name</string>
 
 

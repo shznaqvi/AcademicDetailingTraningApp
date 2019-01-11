@@ -24,6 +24,8 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.HealthFacCont
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.HealthFacContract.singleHF;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.LHWsContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.LHWsContract.singleLHWs;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.SessionContract;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.SessionContract.SessionTable;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.TehsilContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.TehsilContract.singleTehsil;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.UCsContract;
@@ -63,14 +65,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             FormsTable.COLUMN_DEVICETAGID + " TEXT," +
             FormsTable.COLUMN_SYNCED + " TEXT," +
             FormsTable.COLUMN_SYNCED_DATE + " TEXT," +
-            FormsTable.COLUMN_APPVERSION + " TEXT"
-            + " );";
+            FormsTable.COLUMN_APPVERSION + " TEXT," +
+            FormsTable.COLUMN_DIST_ID + " TEXT," +
+            FormsTable.COLUMN_HFACILITY_NAME + " TEXT," +
+            FormsTable.COLUMN_PROVIDER_NAME + " TEXT," +
+            FormsTable.COLUMN_PROVIDER_ID + " TEXT "
+            + " ); ";
+
+    private static final String SQL_CREATE_SESSION_TABLE = " CREATE TABLE " + SessionTable.TABLE_NAME
+            + " ( " + SessionTable.COLUMN_SLIDE_NUMBER + " INTEGER," +
+            SessionTable.COLUMN_MODULE + " TEXT," +  SessionTable.COLUMN_SESSION + " TEXT," + SessionTable.COLUMN_SESSION_TIME + " TEXT" + ");";
 
     private static final String SQL_DELETE_USERS =
             "DROP TABLE IF EXISTS " + UsersTable.TABLE_NAME;
     private static final String SQL_DELETE_FORMS =
             "DROP TABLE IF EXISTS " + FormsTable.TABLE_NAME;
 
+    private static final String SQL_DELETE_SESSION = "DROP TABLE IF EXISTS " + SessionTable.TABLE_NAME;
 
     private static final String SQL_DELETE_HEALTH_FACILITIES = "DROP TABLE IF EXISTS " + singleHF.TABLE_NAME;
     private static final String SQL_DELETE_TEHSILS = "DROP TABLE IF EXISTS " + singleTehsil.TABLE_NAME;
@@ -110,6 +121,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.execSQL(SQL_CREATE_USERS);
         db.execSQL(SQL_CREATE_FORMS);
+        db.execSQL(SQL_CREATE_SESSION_TABLE);
 
         db.execSQL(SQL_CREATE_HEALTH_FACTILITIES);
         /*db.execSQL(SQL_CREATE_TEHSILS);
@@ -123,6 +135,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_DELETE_USERS);
         db.execSQL(SQL_DELETE_FORMS);
         db.execSQL(SQL_DELETE_HEALTH_FACILITIES);
+        db.execSQL(SQL_DELETE_SESSION);
     }
 
     public List<HealthFacContract> getHFData(HealthFacContract.ColumnsClass... columnsClass) {
@@ -543,6 +556,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(FormsTable.COLUMN_SYNCED, fc.getSynced());
         values.put(FormsTable.COLUMN_SYNCED_DATE, fc.getSynced_date());
         values.put(FormsTable.COLUMN_APPVERSION, fc.getAppversion());
+        values.put(FormsTable.COLUMN_DIST_ID, fc.getDistrictID());
+        values.put(FormsTable.COLUMN_HFACILITY_NAME, fc.getHealthFacilityName());
+        values.put(FormsTable.COLUMN_PROVIDER_NAME, fc.getProviderName());
+        values.put(FormsTable.COLUMN_PROVIDER_ID, fc.getProviderID());
 
 
         // Insert the new row, returning the primary key value of the new row
@@ -784,5 +801,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 selection,
                 selectionArgs);
         return count;
+    }
+
+    public void addSessionData(SessionContract sc){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(SessionTable.COLUMN_MODULE,sc.getModule());
+        values.put(SessionTable.COLUMN_SESSION,sc.getSession());
+        values.put(SessionTable.COLUMN_SESSION_TIME,sc.getSessionTime());
+        values.put(SessionTable.COLUMN_SLIDE_NUMBER,sc.getSlideNumber());
+        Log.d(TAG, "addSessionData: " + sc.getModule());
+        Log.d(TAG, "addSessionData: " + sc.getSession());
+        Log.d(TAG, "addSessionData: " + sc.getSlideNumber());
+        Log.d(TAG, "addSessionData: " + sc.getSessionTime());
+        db.insert(SessionTable.TABLE_NAME,null,values);
     }
 }

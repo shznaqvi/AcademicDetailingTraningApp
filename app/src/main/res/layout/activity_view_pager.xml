@@ -29,14 +29,35 @@
 
 
 
-        <Button
+        <LinearLayout
             android:layout_alignParentBottom="true"
-            style="@style/button"
-            android:id="@+id/nextSlide"
+            android:layoutDirection="rtl"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Next"
-            />
+            android:layout_height="wrap_content">
+
+            <Button
+                android:layout_margin="1dp"
+                style="@style/button"
+                android:id="@+id/nextSlide"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Next"
+                />
+
+            <Button
+                android:layout_margin="1dp"
+                style="@style/button"
+                android:id="@+id/backSlide"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Back"
+                />
+
+        </LinearLayout>
+
 
     </RelativeLayout>
 

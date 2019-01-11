@@ -98,9 +98,11 @@ public class ModuleFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
 
-                    MainApp.isMaternal = true;
                     MainApp.isChild = false;
-                    Utils.showPreDialogue(getActivity(), finalI);
+                    MainApp.isMaternal = true;
+                    MainApp.moduleName = "maternalHealth";
+                    MainApp.moduleSession = Utils.maternalModule[finalI];
+                    Utils.showPreDialogue(getActivity(), finalI, MainApp.moduleName);
                     MainApp.maternalIndex = finalI;
 
                 }
@@ -124,9 +126,11 @@ public class ModuleFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
 
+                    MainApp.moduleName = "childHealth";
+                    MainApp.moduleSession = Utils.childModule[finalI];
                     MainApp.isChild = true;
                     MainApp.isMaternal = false;
-                    Utils.showPreDialogue(getActivity(), finalI);
+                    Utils.showPreDialogue(getActivity(), finalI, MainApp.moduleName);
                     MainApp.childlIndex = finalI;
 
 

@@ -12,7 +12,7 @@ import org.json.JSONObject;
 
 public class FormsContract {
 
-    private String projectName = "DR-Registration";
+    private String projectName = "Academic Detailing Training";
     private String surveyType = "BL";
     private String _ID = "";
     private String _UID = "";
@@ -21,6 +21,16 @@ public class FormsContract {
     private String istatus = ""; // Interview Status
     private String istatus88x = ""; // Interview Status
     private String sA = "";
+
+    public String getsInfo() {
+        return sInfo;
+    }
+
+    public void setsInfo(String sInfo) {
+        this.sInfo = sInfo;
+    }
+
+    private String sInfo = "";
     private String sno = "";
     private String endingdatetime = "";
     private String gpsLat = "";
@@ -33,6 +43,59 @@ public class FormsContract {
     private String synced = "";
     private String synced_date = "";
     private String appversion;
+    private String districtID= "";
+    private String healthFacilityName="";
+    private String providerName= "";
+
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
+    }
+
+    public void setSurveyType(String surveyType) {
+        this.surveyType = surveyType;
+    }
+
+    public String get_UID() {
+        return _UID;
+    }
+
+    public void set_UID(String _UID) {
+        this._UID = _UID;
+    }
+
+    public String getDistrictID() {
+        return districtID;
+    }
+
+    public void setDistrictID(String districtID) {
+        this.districtID = districtID;
+    }
+
+    public String getHealthFacilityName() {
+        return healthFacilityName;
+    }
+
+    public void setHealthFacilityName(String healthFacilityName) {
+        this.healthFacilityName = healthFacilityName;
+    }
+
+    public String getProviderName() {
+        return providerName;
+    }
+
+    public void setProviderName(String providerName) {
+        this.providerName = providerName;
+    }
+
+    public String getProviderID() {
+        return providerID;
+    }
+
+    public void setProviderID(String providerID) {
+        this.providerID = providerID;
+    }
+
+    private String providerID ="";
 
 
     public FormsContract() {
@@ -318,6 +381,11 @@ public class FormsContract {
         public static final String COLUMN_SYNCED = "synced";
         public static final String COLUMN_SYNCED_DATE = "synced_date";
         public static final String COLUMN_APPVERSION = "appversion";
+        public static final String COLUMN_DIST_ID = "dictrict_id";
+        public static final String COLUMN_PROVIDER_NAME= "provider_name";
+        public static final String COLUMN_PROVIDER_ID = "provider_id";
+        public static final String COLUMN_HFACILITY_NAME = "health_fac_name";
+
 
     }
 }

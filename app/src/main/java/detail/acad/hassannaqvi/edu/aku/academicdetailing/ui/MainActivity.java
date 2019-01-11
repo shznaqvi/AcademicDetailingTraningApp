@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.AndroidDatabaseManager;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityMainBinding;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments.InfoFragment;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments.MainFragment;
@@ -107,5 +108,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         transaction.replace(bi.mainLayout.getId(),fragment);
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    @Override
+    public void loadDatabaseManager() {
+
+        startActivity(new Intent(MainActivity.this,AndroidDatabaseManager.class));
+
     }
 }

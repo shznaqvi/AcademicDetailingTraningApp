@@ -4,6 +4,10 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.Spanned;
+import android.text.SpannedString;
+import android.util.Log;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -15,6 +19,7 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityGds
 public class GDSSession02_Pre_test extends AppCompatActivity {
 
     ActivityGdssession02PreTestBinding bi;
+    private static final String TAG = "GDSSession02_Pre_test";
 
 
     @Override
@@ -29,6 +34,9 @@ public class GDSSession02_Pre_test extends AppCompatActivity {
         }else{
             bi.btnContinue.setText("Finish Training");
         }
+
+
+
     }
 
 

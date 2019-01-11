@@ -25,6 +25,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.FormsContract;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.SessionContract;
 
 
 public class MainApp extends Application {
@@ -69,6 +70,8 @@ public class MainApp extends Application {
     public static int maternalIndex=0;
     public static int childlIndex=0;
     public static boolean isMaternal = false;
+    public static String moduleSession = "";
+    public static String moduleName="";
     public static boolean isChild = false;
     public static String[] loginMem;
     public static String versionName;
@@ -78,6 +81,7 @@ public class MainApp extends Application {
     public static FormsContract fc;
     public static String IMEI;
     public static final boolean isSession02Pre = false;
+    public static SessionContract sC;
 
     protected static LocationManager locationManager;
 

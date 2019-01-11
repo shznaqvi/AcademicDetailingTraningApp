@@ -10,11 +10,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import java.util.List;
-
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.GDSSession02_Pre_test;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.FANC_Pre_test;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.GDSSession01_Pre_test;
 
 public class Utils {
 
@@ -64,11 +63,16 @@ public class Utils {
 
 
     public static int[] gds1_imgs = new int[]{
-            R.drawable.gds001, R.drawable.gds002,
-            R.drawable.gds003, R.drawable.gds004,
-            R.drawable.gds005, R.drawable.gds006,
-            R.drawable.gds007, R.drawable.gds008,
-            R.drawable.gds009,};
+            R.drawable.gds1001, R.drawable.gds1002,
+            R.drawable.gds1003, R.drawable.gds1004,
+            R.drawable.gds1005, R.drawable.gds1006,
+            R.drawable.gds1007, R.drawable.gds1008,
+            R.drawable.gds1009, R.drawable.gds1010,
+            R.drawable.gds1011, R.drawable.gds1012,
+            R.drawable.gds1013, R.drawable.gds1014,
+            R.drawable.gds1015, R.drawable.gds1016,
+            R.drawable.gds1017, R.drawable.gds1018,
+            R.drawable.gds1019, R.drawable.gds1020,};
 
 
     public static int[] getMaternalSessions(int i) {
@@ -128,7 +132,7 @@ public class Utils {
 
                 if (Utils.getMaternalSessions(index) != null) {
                     MainApp.isSlideStart = true;
-                    context.startActivity(new Intent(context, GDSSession02_Pre_test.class)
+                    context.startActivity(new Intent(context, FANC_Pre_test.class)
                             .putExtra("slides", MainApp.isMaternal ? Utils.getMaternalSessions(index)
                                     : MainApp.isChild ? Utils.getChildSessions(index) : null));
                     dialog.dismiss();
@@ -175,7 +179,7 @@ public class Utils {
             @Override
             public void onClick(View v) {
 
-                context.startActivity(new Intent(context, GDSSession02_Pre_test.class)
+                context.startActivity(new Intent(context, GDSSession01_Pre_test.class)
                 );
                 ((Activity) context).finish();
                 dialog.dismiss();
@@ -207,11 +211,11 @@ public class Utils {
         } else if (type == MainApp.isChild) {
             switch (index) {
                 case 0:
-                    return R.drawable.gdsoverview1;
+                    return R.drawable.gdssummary;
                 case 1:
-                    return R.drawable.gdsoverview1;
+                    return R.drawable.gds1001;
                 default:
-                    return R.drawable.gdsoverview1;
+                    return R.drawable.gdssummary;
             }
         }
         return 0;
@@ -232,11 +236,11 @@ public class Utils {
         } else if (type == MainApp.isChild) {
             switch (index) {
                 case 0:
-                    return R.drawable.gdsoverview1;
+                    return R.drawable.gdssummary;
                 case 1:
-                    return R.drawable.gdsoverview1;
+                    return R.drawable.gds1001;
                 default:
-                    return R.drawable.gdsoverview1;
+                    return R.drawable.gdssummary;
             }
         }
 

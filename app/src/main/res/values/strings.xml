@@ -20,155 +20,153 @@
 
     <string name="mainFragment">MainFragment</string>
     <string name="moduleFragment">ModuleFragment</string>
-    <string name="gds02pre01">A classification in a Yellowrow (IMNCI chart) is a classification of very severe disease and needs urgent attention and referral.</string>
-    <string name="gds02pre02">Which of the following is NOT true, if a child has a general danger sign?</string>
-    <string name="gds02pre02a">	Complete assessment immediately - the child has a severe problem. </string>
-    <string name="gds02pre02b">	Provide urgent pre-referral treatment </string>
-    <string name="gds02pre02c">	Observe and reassess child after pre-referral treatment</string>
-    <string name="gds02pre02d">	Refer child to hospital</string>
-
-    <string name="gds02pre03">Which of the following is NOT true, if a child has a general danger sign?</string>
-    <string name="gds02pre03a">	Not able to drink or breastfeed</string>
-    <string name="gds02pre03b">	vomits everything</string>
-    <string name="gds02pre03c">	Lethargic</string>
-    <string name="gds02pre03d">	Unconscious </string>
-
-    <string name="gds02pre04">What is the dose of Diazepam required to Stop Convulsions?</string>
-    <string name="gds02pre04a">	0.5mg/kg diazepam injection solution per rectum</string>
-    <string name="gds02pre04b">	0.8mg/kg diazepam injection solution per rectum</string>
-    <string name="gds02pre04c">	1.0mg/kg diazepam injection solution per rectum</string>
-    <string name="gds02pre04d">	1.5mg/kg diazepam injection solution per rectum</string>
-
-    <string name="gds02pre05">To make sugar water: Dissolve 4 level teaspoons of sugar (20 grams) in a _______ cup of clean water. </string>
-    <string name="gds02pre05a">	100-ml  </string>
-    <string name="gds02pre05b">	150-ml</string>
-    <string name="gds02pre05c">	200-ml </string>
-    <string name="gds02pre05d">	250-ml </string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
-    <string name="gdspretestq1">1- Children with _________________ on the IMNCI chart usually need urgent referral to hospital.</string>
-    <string name="gdspretestq1a1">Mild illness</string>
-    <string name="gdspretestq1a2">Pneumonia</string>
-    <string name="gdspretestq1a3">Dehydration</string>
-    <string name="gdspretestq1a4">Severe disease/classification</string>
+    <!--GDS General Danger Sign 01-->
+    <!--GDS01_01-->
+    <string name="gds01_01">Children with _________________ on the IMNCI chart usually need urgent referral to hospital.</string>
+    <string name="gds01_01a">Mild illness</string>
+    <string name="gds01_01b">Pneumonia</string>
+    <string name="gds01_01c">Dehydration</string>
+    <string name="gds01_01d">Severe disease/classification</string>
 
-    <string name="gdspretestq2">2- _________________is the exception for severe classification or severe disease where referral to the hospital is needed but not urgent.</string>
-    <string name="gdspretestq2a1">Persistent diarrhea</string>
-    <string name="gdspretestq2a2">Severe dehydration</string>
-    <string name="gdspretestq2a3">Severe persistent diarrhea</string>
-    <string name="gdspretestq2a4">Severe pneumonia</string>
+    <!--GDS01_02-->
+    <string name="gds01_02">_________________is the exception for severe classification or severe disease where referral to the hospital is needed but not urgent.</string>
+    <string name="gds01_02a">Persistent diarrhea</string>
+    <string name="gds01_02b">Severe dehydration</string>
+    <string name="gds01_02c">Severe persistent diarrhea</string>
+    <string name="gds01_02d">Severe pneumonia</string>
 
-    <string name="gdspretestq3">3- Presence of even __________ danger sign indicates that underlying disease is severe</string>
-    <string name="gdspretestq3a1">One</string>
-    <string name="gdspretestq3a2">Two</string>
-    <string name="gdspretestq3a3">Three</string>
-    <string name="gdspretestq3a4">None</string>
+    <!--GDS01_03-->
+    <string name="gds01_03">Presence of even __________ danger sign indicates that underlying disease is severe</string>
+    <string name="gds01_03a">One</string>
+    <string name="gds01_03b">Two</string>
+    <string name="gds01_03c">Three</string>
+    <string name="gds01_03d">None</string>
 
-    <string name="gdspretestq4">4- For assessing a general danger sign, a healthcare provider needs to ASK _____ questions and LOOK for ______ observations to observe the child\'s actions.</string>
-    <string name="gdspretestq4a1">One, Two</string>
-    <string name="gdspretestq4a2">Two, Two</string>
-    <string name="gdspretestq4a3">Three, Two</string>
-    <string name="gdspretestq4a4">Three, One</string>
+    <!--GDS01_04-->
+    <string name="gds01_04">For assessing a general danger sign, a healthcare provider needs to ASK _____ questions and LOOK for ______ observations to observe the child\'s actions.</string>
+    <string name="gds01_04a">One, Two</string>
+    <string name="gds01_04b">Two, Two</string>
+    <string name="gds01_04c">Three, Two</string>
+    <string name="gds01_04d">Three, One</string>
 
-    <string name="gdspretestq5">5- Which of the following is NOT a danger sign?</string>
-    <string name="gdspretestq5a1">Child is not able to drink or breastfeed</string>
-    <string name="gdspretestq5a2">Child vomits everything</string>
-    <string name="gdspretestq5a3">Child has had more than one convulsion or prolonged convulsion, or is convulsing now.</string>
-    <string name="gdspretestq5a4">Child is shivering</string>
+    <!--GDS01_05-->
+    <string name="gds01_05">Which of the following is NOT a danger sign?</string>
+    <string name="gds01_05a">Child is not able to drink or breastfeed</string>
+    <string name="gds01_05b">Child vomits everything</string>
+    <string name="gds01_05c">Child has had more than one convulsion or prolonged convulsion, or is convulsing now.</string>
+    <string name="gds01_05d">Child is shivering</string>
 
-    <string name="gdspretestq6">6- A classification in a <font color='yellow'><b>YELLOW ROW</b></font> (IMNCI chart) is a classification of very severe disease and needs urgent attention and referral.</string>
-    <string name="gdspretestq6a1">True</string>
-    <string name="gdspretestq6a2">False</string>
+    <!--GDS General Danger Sign 02-->
+    <!--GDS02_01-->
+    <string name="gds02_01">A classification in a Yellow row (IMNCI chart) is a classification of very severe disease and needs urgent attention and referral.</string>
 
-    <string name="gdspretestq7">7- Which of the following is NOT true, if a child has a general danger sign?</string>
-    <string name="gdspretestq7a1">Complete assessment immediately - the child has a severe problem.</string>
-    <string name="gdspretestq7a2">Provide urgent pre-referral treatment</string>
-    <string name="gdspretestq7a3">Observe and reassess child after pre-referral treatment</string>
-    <string name="gdspretestq7a4">Refer child to hospital</string>
+    <!--GDS02_02-->
+    <string name="gds02_02">Which of the following is NOT true, if a child has a general danger sign?</string>
+    <string name="gds02_02a">	Complete assessment immediately - the child has a severe problem. </string>
+    <string name="gds02_02b">	Provide urgent pre-referral treatment </string>
+    <string name="gds02_02c">	Observe and reassess child after pre-referral treatment</string>
+    <string name="gds02_02d">	Refer child to hospital</string>
 
-    <string name="gdspretestq8">8- A child who is not able to hold anything down at all has the sign _______________</string>
-    <string name="gdspretestq8a1">Not able to drink or breastfeed</string>
-    <string name="gdspretestq8a2">Vomits everything</string>
-    <string name="gdspretestq8a3">Lethargic</string>
-    <string name="gdspretestq8a4">Unconscious</string>
+    <!--GDS02_03-->
+    <string name="gds02_03">Which of the following is NOT true, if a child has a general danger sign?</string>
+    <string name="gds02_03a">	Not able to drink or breastfeed</string>
+    <string name="gds02_03b">	vomits everything</string>
+    <string name="gds02_03c">	Lethargic</string>
+    <string name="gds02_03d">	Unconscious </string>
 
-    <string name="gdspretestq9">9- What is the dose of Diazepam required to Stop Convulsions?</string>
-    <string name="gdspretestq9a1">0.5mg/kg diazepam injection solution per rectum</string>
-    <string name="gdspretestq9a2">0.8mg/kg diazepam injection solution per rectum</string>
-    <string name="gdspretestq9a3">1.0mg/kg diazepam injection solution per rectum</string>
-    <string name="gdspretestq9a4">1.5mg/kg diazepam injection solution per rectum</string>
+    <!--GDS02_04-->
+    <string name="gds02_04">What is the dose of Diazepam required to Stop Convulsions?</string>
+    <string name="gds02_04a">	0.5mg/kg diazepam injection solution per rectum</string>
+    <string name="gds02_04b">	0.8mg/kg diazepam injection solution per rectum</string>
+    <string name="gds02_04c">	1.0mg/kg diazepam injection solution per rectum</string>
+    <string name="gds02_04d">	1.5mg/kg diazepam injection solution per rectum</string>
 
-    <string name="gdspretestq10">10- To make sugar water: Dissolve 4 level teaspoons of sugar (20 grams) in a _______ cup of clean water.</string>
-    <string name="gdspretestq10a1">100-ml</string>
-    <string name="gdspretestq10a2">150-ml</string>
-    <string name="gdspretestq10a3">200-ml</string>
-    <string name="gdspretestq10a4">250-ml</string>
+    <!--GDS02_05-->
+    <string name="gds02_05">To make sugar water: Dissolve 4 level teaspoons of sugar (20 grams) in a _______ cup of clean water. </string>
+    <string name="gds02_05a">	100-ml  </string>
+    <string name="gds02_05b">	150-ml</string>
+    <string name="gds02_05c">	200-ml </string>
+    <string name="gds02_05d">	250-ml </string>
+
+    <!--CDB Cough & Difficult Breathing 01-->
+    <!--CDB01_01-->
+    <string name="cdb01_01">Cough or difficult breathing that lasts for more than 14 days may indicate ______________.</string>
+    <string name="cdb01_01a">Tuberculosis</string>
+    <string name="cdb01_01b">Asthma</string>
+    <string name="cdb01_01c">Whooping cough</string>
+    <string name="cdb01_01d">All of the above</string>
+
+    <!--CDB01_02-->
+    <string name="cdb01_02">Talha is 6 months old. He has fast breathing if:</string>
+    <string name="cdb01_02a">30 or more breaths/minute</string>
+    <string name="cdb01_02b">40 or more breaths/minute</string>
+    <string name="cdb01_02c">50 or more breaths/minute</string>
+    <string name="cdb01_02d">60 or more breaths/minute</string>
+
+    <!--CDB01_03-->
+    <string name="cdb01_03">Fast breathing or ____________ if present in a child between 2 months to 5 years of age are the clinical signs for Pneumonia.</string>
+    <string name="cdb01_03a">Wheeze</string>
+    <string name="cdb01_03b">Chest in-drawing</string>
+    <string name="cdb01_03c">Cough</string>
+    <string name="cdb01_03d">Fever</string>
+
+    <!--CDB01_04-->
+    <string name="cdb01_04">The child has chest in drawing if the lower chest wall (lower ribs) goes ____ when the child breathes IN.</string>
+    <string name="cdb01_04a">IN</string>
+    <string name="cdb01_04b">OUT</string>
+
+    <!--CDB Cough & Difficult Breathing 02-->
+    <!--CDB02_01-->
+    <string name="cdb02_01">What is the dose of Amoxicillin DT (250 gm) for children aged 12 months up to 3 years?</string>
+    <string name="cdb02_01a">(&#189;) tablet twice a day</string>
+    <string name="cdb02_01b"> <b>1</b> tablet twice a day</string>
+    <string name="cdb02_01c"> <b>2</b> tablet twice a day</string>
+    <string name="cdb02_01d"> <b>2.5</b> tablet twice a day</string>
+
+    <!--CDB02_02-->
+    <string name="cdb02_02">The dose for intramuscular antibiotics (urgent referral); Ampicillin _______mg/kg and Gentamicin ________mg/kg</string>
+    <string name="cdb02_02a"> 40 mg and 7 mg</string>
+    <string name="cdb02_02b"> 45 mg and 7.5 mg</string>
+    <string name="cdb02_02c"> 50 mg and 7.5 mg</string>
+    <string name="cdb02_02d"> 55 mg and 8 mg</string>
+
+    <!--CDB02_03-->
+    <string name="cdb02_03">What is the minimum SpO2 saturation level for urgent referral to a health facility?</string>
+    <string name="cdb02_03a"> ≥90%</string>
+    <string name="cdb02_03b"> ≤90%</string>
+    <string name="cdb02_03c"> ≥80%</string>
+    <string name="cdb02_03d"> ≥70%</string>
+
+    <!--CDB02_04-->
+    <string name="cdb02_04">Standard flow rates for oxygen through nasal prongs or nasal catheters are up to ____ L/min for infants, up to _____ L/min for older children</string>
+    <string name="cdb02_04a"><![CDATA[2 & 4]]></string>
+    <string name="cdb02_04b"><![CDATA[3 & 4]]></string>
+    <string name="cdb02_04c"><![CDATA[3.5 & 4.5]]></string>
+    <string name="cdb02_04d"><![CDATA[4 & 4.5]]></string>
+
+    <!--CDB02_05-->
+    <string name="cdb02_05">Following of the vaccines prevent pneumonia infections, <b>EXCEPT:</b></string>
+    <string name="cdb02_05a">PCV</string>
+    <string name="cdb02_05b">Hib</string>
+    <string name="cdb02_05c">Pertussis</string>
+    <string name="cdb02_05d">Rotavirus</string>
+
+    <!--CDB02_06-->
+    <string name="cdb02_06">What are the harmful home remedies for cough?</string>
+    <string name="cdb02_06a">Cough syrup containing codeine, antihistamines, alcohol, atropine and expectorants.</string>
+    <string name="cdb02_06b">Oral and nasal decongestants</string>
+    <string name="cdb02_06c">Opium or alcohol etc.</string>
+    <string name="cdb02_06d">All of the above</string>
 
 
-    <string name="cdbtestq1">1- Cough or difficult breathing that lasts for more than 14 days may indicate ______________.</string>
-    <string name="cdbtestq1a1">Tuberculosis</string>
-    <string name="cdbtestq1a2">Asthma</string>
-    <string name="cdbtestq1a3">Whooping cough</string>
-    <string name="cdbtestq1a4">All of the above</string>
-
-    <string name="cdbtestq2">2- Talha is 6 months old. He has fast breathing if:</string>
-    <string name="cdbtestq2a1">30 or more breaths/minute</string>
-    <string name="cdbtestq2a2">40 or more breaths/minute</string>
-    <string name="cdbtestq2a3">50 or more breaths/minute</string>
-    <string name="cdbtestq2a4">60 or more breaths/minute</string>
-
-    <string name="cdbtestq3">3- Fast breathing or ____________ if present in a child between 2 months to 5 years of age are the clinical signs for Pneumonia.</string>
-    <string name="cdbtestq3a1">Wheeze</string>
-    <string name="cdbtestq3a2">Chest in-drawing</string>
-    <string name="cdbtestq3a3">Cough</string>
-    <string name="cdbtestq3a4">Fever</string>
-
-    <string name="cdbtestq4">4- The child has chest in drawing if the lower chest wall (lower ribs) goes ____ when the child breathes IN.</string>
-    <string name="cdbtestq4a1">IN</string>
-    <string name="cdbtestq4a2">OUT</string>
-
-
-    <string name="cdbtestq5">5- What is the dose of Amoxicillin DT (250 gm) for children aged 12 months up to 3 years?</string>
-    <string name="cdbtestq5a1">(&#189;) tablet twice a day</string>
-    <string name="cdbtestq5a2"> <b>1</b> tablet twice a day</string>
-    <string name="cdbtestq5a3"> <b>2</b> tablet twice a day</string>
-    <string name="cdbtestq5a4"> <b>2.5</b> tablet twice a day</string>
-
-
-    <string name="cdbtestq6">6- The dose for intramuscular antibiotics (urgent referral); Ampicillin _______mg/kg and Gentamicin ________mg/kg</string>
-    <string name="cdbtestq6a1"> 40 mg and 7 mg</string>
-    <string name="cdbtestq6a2"> 45 mg and 7.5 mg</string>
-    <string name="cdbtestq6a3"> 50 mg and 7.5 mg</string>
-    <string name="cdbtestq6a4"> 55 mg and 8 mg</string>
-
-    <string name="cdbtestq7">7- What is the minimum SpO2 saturation level for urgent referral to a health facility?</string>
-    <string name="cdbtestq7a1"> ≥90%</string>
-    <string name="cdbtestq7a2"> ≤90%</string>
-    <string name="cdbtestq7a3"> ≥80%</string>
-    <string name="cdbtestq7a4"> ≥70%</string>
-
-    <string name="cdbtestq8">8- Standard flow rates for oxygen through nasal prongs or nasal catheters are up to ____ L/min for infants, up to _____ L/min for older children</string>
-    <string name="cdbtestq8a1"><![CDATA[2 & 4]]></string>
-    <string name="cdbtestq8a2"><![CDATA[3 & 4]]></string>
-    <string name="cdbtestq8a3"><![CDATA[3.5 & 4.5]]></string>
-    <string name="cdbtestq8a4"><![CDATA[4 & 4.5]]></string>
-
-    <string name="cdbtestq9">9- Following of the vaccines prevent pneumonia infections, <b>EXCEPT:</b></string>
-    <string name="cdbtestq9a1">PCV</string>
-    <string name="cdbtestq9a2">Hib</string>
-    <string name="cdbtestq9a3">Pertussis</string>
-    <string name="cdbtestq9a4">Rotavirus</string>
-
-    <string name="cdbtestq10">10- What are the harmful home remedies for cough?</string>
-    <string name="cdbtestq10a1">Cough syrup containing codeine, antihistamines, alcohol, atropine and expectorants.</string>
-    <string name="cdbtestq10a2">Oral and nasal decongestants</string>
-    <string name="cdbtestq10a3">Opium or alcohol etc.</string>
-    <string name="cdbtestq10a4">All of the above</string>
-
-    <string name="diarrheatestq1">1- The death of a child with acute diarrhea is usually due to _____________.</string>
+    <!--DIARRHEA 01-->
+    <!--Diarrhea01_01-->
+    <string name="diarrhea01_01">1- The death of a child with acute diarrhea is usually due to _____________.</string>
     <string name="diarrheatestq1a1">Dehydration</string>
     <string name="diarrheatestq1a2">Dysentery</string>
     <string name="diarrheatestq1a3">Hydration</string>
@@ -270,6 +268,95 @@
     <string name="psbitestq7a2">Assess, Praise, Ask, Counsel</string>
     <string name="psbitestq7a3">Ask, Praise, Advice, Check</string>
     <string name="psbitestq7a4">Assess, Prevent, Advice, Counsel</string>
+
+
+    <!--FANC-->
+    <!--Q01-->
+    <string name="fanc_01">WHO recommends?</string>
+    <string name="fanc_01a">One visit during every month of pregnancy</string>
+    <string name="fanc_01b">One visit per month during the first 28 weeks, then two visits per month between 28 weeks and birth</string>
+    <string name="fanc_01c">Four visits, with additional visits as needed</string>
+    <string name="fanc_01d">One visit per month up to 28 weeks, two visits per month between 28 and 36 weeks, and one visit per week between 36 and 40 weeks</string>
+
+    <!--Q02-->
+    <string name="fanc_02">Danger signs of pregnancy include all of the following except:</string>
+    <string name="fanc_02a">Vaginal bleeding</string>
+    <string name="fanc_02b">Respiratory difficulty</string>
+    <string name="fanc_02c">Fever</string>
+    <string name="fanc_02d">Backache</string>
+    <string name="fanc_02e">Convulsions</string>
+
+    <!--Q03-->
+    <string name="fanc_03">The position of the fetus should be confirmed:</string>
+    <string name="fanc_03a">At every visit</string>
+    <string name="fanc_03b">After 14 weeks</string>
+    <string name="fanc_03c">After 28 weeks</string>
+    <string name="fanc_03d">After 36 weeks</string>
+
+    <!--Q04-->
+    <string name="fanc_04">Components of FANC include all of the following except:</string>
+    <string name="fanc_04a">Identification of preexisting health conditions</string>
+    <string name="fanc_04b">Early detection of complications arising during the pregnancy</string>
+    <string name="fanc_04c">Magnesium sulfate injection</string>
+    <string name="fanc_04d">Birth preparedness and complication readiness planning</string>
+
+    <!--Q05-->
+    <string name="fanc_05">A mother with which of the following blood groups is a candidate for Anti-D immunoglobulin:</string>
+    <string name="fanc_05a">A+</string>
+    <string name="fanc_05b">O+</string>
+    <string name="fanc_05c">A-</string>
+    <string name="fanc_05d">AB+</string>
+
+    <!--Q06-->
+    <string name="fanc_06">From the following list, please indicate which conditions are danger signs of pregnancy:</string>
+    <string name="fanc_06a">Vaginal bleeding</string>
+    <string name="fanc_06b">Increased frequency of micturition</string>
+    <string name="fanc_06c">Respiratory difficulty</string>
+    <string name="fanc_06d">Fever</string>
+    <string name="fanc_06e">Backache</string>
+    <string name="fanc_06f">Edema of feet and ankles</string>
+    <string name="fanc_06g">Severe headache/blurred vision</string>
+    <string name="fanc_06h">Heart burn</string>
+    <string name="fanc_06i">Severe abdominal pain</string>
+    <string name="fanc_06j">Nausea/vomiting</string>
+    <string name="fanc_06k">Convulsions/loss of consciousness</string>
+
+
+    <!--VB Vaginal Bleeding-->
+    <!--Q01-->
+    <string name="vb_01">The presenting symptoms for threatened abortion include:</string>
+    <string name="vb_01a">Heavy vaginal bleeding, dilated cervix, and uterus larger than dates</string>
+    <string name="vb_01b">Light vaginal bleeding, closed cervix, and uterus that corresponds to dates</string>
+    <string name="vb_01c">Heavy vaginal bleeding, dilated cervix, and uterus that corresponds to dates</string>
+    <string name="vb_01d">Light vaginal bleeding, dilated cervix, and uterus smaller than dates</string>
+
+    <!--Q02-->
+    <string name="vb_02">Management of inevitable abortion when the pregnancy is greater than 16 weeks usually involves:</string>
+    <string name="vb_02a">Immediate evacuation of the uterus</string>
+    <string name="vb_02b">Administration of ergometrine or misoprostol</string>
+    <string name="vb_02c">Awaiting spontaneous expulsion of products of conception followed by evacuation of the uterus</string>
+    <string name="vb_02d">(a) and (b)</string>
+
+    <!--Q03-->
+    <string name="vb_03">Incomplete abortion can be diagnosed according to:</string>
+    <string name="vb_03a">Ultrasound only</string>
+    <string name="vb_03b">Light bleeding</string>
+    <string name="vb_03c">Uterus softer than normal</string>
+    <string name="vb_03d">Heavy bleeding, dilated cervix, and partial expulsion of products of conception</string>
+
+    <!--Q04-->
+    <string name="vb_04">The best way to determine uterine size is by:</string>
+    <string name="vb_04a">Looking at the cervix</string>
+    <string name="vb_04b">A history of amenorrhea based on last menstrual period</string>
+    <string name="vb_04c">Bimanual pelvic examination</string>
+    <string name="vb_04d">Abdominal examination</string>
+
+    <!--Q05-->
+    <string name="vb_05">Assessment of a woman who presents with vaginal bleeding after 28 weeks of pregnancy should:</string>
+    <string name="vb_05a">Include immediate vaginal examination</string>
+    <string name="vb_05b">Exclude immediate vaginal examination</string>
+    <string name="vb_05c">Be limited to abdominal examination</string>
+    <string name="vb_05d">None of the above</string>
 
 
 </resources>

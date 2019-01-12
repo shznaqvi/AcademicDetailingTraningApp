@@ -100,7 +100,7 @@ public class FANC_Pre_test extends AppCompatActivity {
         }
         if (!validatorClass.EmptyRadioButton(this, bi.fancpre05, bi.fancpre05a, getString(R.string.fanc_05))) {
             return false;
-        }if (!validatorClass.EmptyCardCheckBox(this, bi.fanc_06,bi.fancpre06a, getString(R.string.fanc_06))) {
+        }if (!validatorClass.EmptyCardCheckBox(this, bi.fanc06,bi.fancpre06a, getString(R.string.fanc_06))) {
             return false;
         }
         return true;

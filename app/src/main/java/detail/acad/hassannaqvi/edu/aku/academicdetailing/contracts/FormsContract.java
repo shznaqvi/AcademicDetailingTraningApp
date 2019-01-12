@@ -14,7 +14,7 @@ public class FormsContract {
 
     private String projectName = "Academic Detailing Training";
     private String surveyType = "BL";
-    private String _ID = "";
+    private long _ID;
     private String _UID = "";
     private String formDate = ""; // Date
     private String user = ""; // Interviewer 01
@@ -46,6 +46,90 @@ public class FormsContract {
     private String districtID= "";
     private String healthFacilityName="";
     private String providerName= "";
+    private String sessionStartTime="";
+    private String sessionEndTime="";
+    private String preTestStartTime="";
+    private String preTestEndTime="";
+    private String pre_test ="";
+
+    public String getPre_test() {
+        return pre_test;
+    }
+
+    public void setPre_test(String pre_test) {
+        this.pre_test = pre_test;
+    }
+
+    public String getPost_test() {
+        return post_test;
+    }
+
+    public void setPost_test(String post_test) {
+        this.post_test = post_test;
+    }
+
+    private String post_test ="";
+
+    public String getLogginTime() {
+        return logginTime;
+    }
+
+    public void setLogginTime(String logginTime) {
+        this.logginTime = logginTime;
+    }
+
+    private String logginTime ="";
+
+    public String getSessionStartTime() {
+        return sessionStartTime;
+    }
+
+    public void setSessionStartTime(String sessionStartTime) {
+        this.sessionStartTime = sessionStartTime;
+    }
+
+    public String getSessionEndTime() {
+        return sessionEndTime;
+    }
+
+    public void setSessionEndTime(String sessionEndTime) {
+        this.sessionEndTime = sessionEndTime;
+    }
+
+    public String getPreTestStartTime() {
+        return preTestStartTime;
+    }
+
+    public void setPreTestStartTime(String preTestStartTime) {
+        this.preTestStartTime = preTestStartTime;
+    }
+
+    public String getPreTestEndTime() {
+        return preTestEndTime;
+    }
+
+    public void setPreTestEndTime(String preTestEndTime) {
+        this.preTestEndTime = preTestEndTime;
+    }
+
+    public String getPostTestEndTime() {
+        return postTestEndTime;
+    }
+
+    public void setPostTestEndTime(String postTestEndTime) {
+        this.postTestEndTime = postTestEndTime;
+    }
+
+    public String getPostTestStartTime() {
+        return postTestStartTime;
+    }
+
+    public void setPostTestStartTime(String postTestStartTime) {
+        this.postTestStartTime = postTestStartTime;
+    }
+
+    private String postTestEndTime="";
+    private String postTestStartTime="";
 
     public void setProjectName(String projectName) {
         this.projectName = projectName;
@@ -109,7 +193,7 @@ public class FormsContract {
     public FormsContract Sync(JSONObject jsonObject) throws JSONException {
         this.projectName = jsonObject.getString(FormsTable.COLUMN_PROJECTNAME);
         this.surveyType = jsonObject.getString(FormsTable.COLUMN_SURVEYTYPE);
-        this._ID = jsonObject.getString(FormsTable.COLUMN_ID);
+        this._ID = jsonObject.getLong(FormsTable.COLUMN_ID);
         this._UID = jsonObject.getString(FormsTable.COLUMN_UID);
         this.formDate = jsonObject.getString(FormsTable.COLUMN_FORMDATE);
         this.user = jsonObject.getString(FormsTable.COLUMN_USER);
@@ -137,7 +221,7 @@ public class FormsContract {
     public FormsContract Hydrate(Cursor cursor) {
         this.projectName = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_PROJECTNAME));
         this.surveyType = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SURVEYTYPE));
-        this._ID = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_ID));
+        this._ID = cursor.getLong(cursor.getColumnIndex(FormsTable.COLUMN_ID));
         this._UID = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_UID));
         this.formDate = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_FORMDATE));
         this.user = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_USER));
@@ -169,7 +253,7 @@ public class FormsContract {
 
         json.put(FormsTable.COLUMN_PROJECTNAME, this.projectName == null ? JSONObject.NULL : this.projectName);
         json.put(FormsTable.COLUMN_SURVEYTYPE, this.surveyType == null ? JSONObject.NULL : this.surveyType);
-        json.put(FormsTable.COLUMN_ID, this._ID == null ? JSONObject.NULL : this._ID);
+//        json.put(FormsTable.COLUMN_ID, this._ID == null ? JSONObject.NULL : this._ID);
         json.put(FormsTable.COLUMN_UID, this._UID == null ? JSONObject.NULL : this._UID);
         json.put(FormsTable.COLUMN_FORMDATE, this.formDate == null ? JSONObject.NULL : this.formDate);
         json.put(FormsTable.COLUMN_USER, this.user == null ? JSONObject.NULL : this.user);
@@ -228,11 +312,11 @@ public class FormsContract {
         return surveyType;
     }
 
-    public String get_ID() {
+    public long get_ID() {
         return _ID;
     }
 
-    public void set_ID(String _ID) {
+    public void set_ID(long _ID) {
         this._ID = _ID;
     }
 
@@ -385,6 +469,15 @@ public class FormsContract {
         public static final String COLUMN_PROVIDER_NAME= "provider_name";
         public static final String COLUMN_PROVIDER_ID = "provider_id";
         public static final String COLUMN_HFACILITY_NAME = "health_fac_name";
+        public static final String COLUMN_PRETEST_START_TIME = "pre_test_start_time";
+        public static final String COLUMN_PRETEST_END_TIME = "pre_test_end_time";
+        public static final String COLUMN_POSTTEST_END_TIME = "post_test_end_time";
+        public static final String COLUMN_POSTTEST_START_TIME = "post_test_start_time";
+        public static final String COLUMN_SESSION_START_TIME = "session_start_time";
+        public static final String COLUMN_SESSION_END_TIME = "session_end_time";
+        public static final String COLUMN_loggin_TIME = "login_time";
+        public static final String COLUMN_PRE_TEST = "pre_test";
+        public static final String COLUMN_POST_TEST = "post_test";
 
 
     }

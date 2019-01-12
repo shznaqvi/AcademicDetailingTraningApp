@@ -69,12 +69,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             FormsTable.COLUMN_DIST_ID + " TEXT," +
             FormsTable.COLUMN_HFACILITY_NAME + " TEXT," +
             FormsTable.COLUMN_PROVIDER_NAME + " TEXT," +
-            FormsTable.COLUMN_PROVIDER_ID + " TEXT "
+            FormsTable.COLUMN_PROVIDER_ID + " TEXT ," +
+            FormsTable.COLUMN_PRETEST_START_TIME + " TEXT ," +
+            FormsTable.COLUMN_PRETEST_END_TIME + " TEXT ," +
+            FormsTable.COLUMN_POSTTEST_START_TIME + " TEXT ," +
+            FormsTable.COLUMN_POSTTEST_END_TIME + " TEXT ," +
+            FormsTable.COLUMN_SESSION_START_TIME + " TEXT ," +
+            FormsTable.COLUMN_SESSION_END_TIME + " TEXT, " +
+            FormsTable.COLUMN_loggin_TIME + " TEXT, " +
+            FormsTable.COLUMN_PRE_TEST + " TEXT ," +
+            FormsTable.COLUMN_POST_TEST + " TEXT "
             + " ); ";
 
     private static final String SQL_CREATE_SESSION_TABLE = " CREATE TABLE " + SessionTable.TABLE_NAME
             + " ( " + SessionTable.COLUMN_SLIDE_NUMBER + " INTEGER," +
-            SessionTable.COLUMN_MODULE + " TEXT," +  SessionTable.COLUMN_SESSION + " TEXT," + SessionTable.COLUMN_SESSION_TIME + " TEXT" + ");";
+            SessionTable.COLUMN_MODULE + " TEXT," + SessionTable.COLUMN_SESSION + " TEXT," + SessionTable.COLUMN_SESSION_TIME + " TEXT" + ");";
 
     private static final String SQL_DELETE_USERS =
             "DROP TABLE IF EXISTS " + UsersTable.TABLE_NAME;
@@ -560,6 +569,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(FormsTable.COLUMN_HFACILITY_NAME, fc.getHealthFacilityName());
         values.put(FormsTable.COLUMN_PROVIDER_NAME, fc.getProviderName());
         values.put(FormsTable.COLUMN_PROVIDER_ID, fc.getProviderID());
+        values.put(FormsTable.COLUMN_PRETEST_START_TIME, fc.getPreTestStartTime());
+        values.put(FormsTable.COLUMN_PRETEST_END_TIME, fc.getPreTestEndTime());
+        values.put(FormsTable.COLUMN_POSTTEST_START_TIME, fc.getPostTestEndTime());
 
 
         // Insert the new row, returning the primary key value of the new row
@@ -701,7 +713,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             );
             while (c.moveToNext()) {
                 FormsContract fc = new FormsContract();
-                fc.set_ID(c.getString(c.getColumnIndex(FormsTable._ID)));
+                fc.set_ID(c.getLong(c.getColumnIndex(FormsTable._ID)));
                 fc.setFormDate(c.getString(c.getColumnIndex(FormsTable.COLUMN_FORMDATE)));
                 fc.setIstatus(c.getString(c.getColumnIndex(FormsTable.COLUMN_ISTATUS)));
                 fc.setSynced(c.getString(c.getColumnIndex(FormsTable.COLUMN_SYNCED)));
@@ -803,19 +815,61 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return count;
     }
 
-    public void addSessionData(SessionContract sc){
+    public int updatePreTest() {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+// New value for one column
+        ContentValues values = new ContentValues();
+        values.put(FormsTable.COLUMN_PRETEST_START_TIME, MainApp.fc.getPreTestStartTime());
+        values.put(FormsTable.COLUMN_PRETEST_END_TIME, MainApp.fc.getPreTestEndTime());
+        values.put(FormsTable.COLUMN_PRE_TEST, MainApp.fc.getPre_test());
+
+
+
+// Which row to update, based on the ID
+        String selection = FormsTable._ID + " =? ";
+        String[] selectionArgs = {String.valueOf(MainApp.fc.get_ID())};
+
+        int count = db.update(FormsTable.TABLE_NAME,
+                values,
+                selection,
+                selectionArgs);
+        return count;
+    }
+
+    public int updatePostTest() {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+// New value for one column
+        ContentValues values = new ContentValues();
+        values.put(FormsTable.COLUMN_POSTTEST_START_TIME, MainApp.fc.getPostTestStartTime());
+        values.put(FormsTable.COLUMN_POSTTEST_END_TIME, MainApp.fc.getPostTestEndTime());
+        values.put(FormsTable.COLUMN_POST_TEST, MainApp.fc.getPost_test());
+
+// Which row to update, based on the ID
+        String selection = FormsTable._ID + " =? ";
+        String[] selectionArgs = {String.valueOf(MainApp.fc.get_ID())};
+
+        int count = db.update(FormsTable.TABLE_NAME,
+                values,
+                selection,
+                selectionArgs);
+        return count;
+    }
+
+    public void addSessionData(SessionContract sc) {
 
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(SessionTable.COLUMN_MODULE,sc.getModule());
-        values.put(SessionTable.COLUMN_SESSION,sc.getSession());
-        values.put(SessionTable.COLUMN_SESSION_TIME,sc.getSessionTime());
-        values.put(SessionTable.COLUMN_SLIDE_NUMBER,sc.getSlideNumber());
+        values.put(SessionTable.COLUMN_MODULE, sc.getModule());
+        values.put(SessionTable.COLUMN_SESSION, sc.getSession());
+        values.put(SessionTable.COLUMN_SESSION_TIME, sc.getSessionTime());
+        values.put(SessionTable.COLUMN_SLIDE_NUMBER, sc.getSlideNumber());
         Log.d(TAG, "addSessionData: " + sc.getModule());
         Log.d(TAG, "addSessionData: " + sc.getSession());
         Log.d(TAG, "addSessionData: " + sc.getSlideNumber());
         Log.d(TAG, "addSessionData: " + sc.getSessionTime());
-        db.insert(SessionTable.TABLE_NAME,null,values);
+        db.insert(SessionTable.TABLE_NAME, null, values);
     }
 }

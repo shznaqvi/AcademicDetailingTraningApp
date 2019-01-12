@@ -6,13 +6,23 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.JSON.GeneratorClass;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityVbPostTestBinding;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.validation.validatorClass;
 
 public class VB_Post_test extends AppCompatActivity {
 
     ActivityVbPostTestBinding bi;
+    String currentDateTime = new SimpleDateFormat(" dd/MM/yyyy HH:mm:ss").format(new Date().getTime());
 
 
     @Override
@@ -21,6 +31,8 @@ public class VB_Post_test extends AppCompatActivity {
 
         bi = DataBindingUtil.setContentView(this, R.layout.activity_vb__post_test);
         bi.setCallback(this);
+
+        MainApp.fc.setPostTestStartTime(currentDateTime);
 
         if (MainApp.isSlideStart) {
             bi.btnContinue.setText("Start Training");
@@ -32,37 +44,51 @@ public class VB_Post_test extends AppCompatActivity {
 
     public void BtnContinue() {
         if (formValidation()) {
-
-            if (MainApp.isSlideStart) {
-                startActivity(new Intent(this, ViewPagerActivity.class).putExtra("slides", getIntent().getIntArrayExtra("slides")));
-                finish();
-            } else {
-                Toast.makeText(this, "Training Completed", Toast.LENGTH_SHORT).show();
-                finish();
+            try {
+                SaveDraft();
+                if (UpdateDB()) {
+                    if (MainApp.isSlideStart) {
+                        startActivity(new Intent(this, ViewPagerActivity.class).putExtra("slides", getIntent().getIntArrayExtra("slides")));
+                        finish();
+                    } else {
+                        Toast.makeText(this, "Training Completed", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                } else {
+                    Toast.makeText(this, "Error in updating db!!", Toast.LENGTH_SHORT).show();
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-
-//            try {
-//                SaveDraft();
-//                if (UpdateDB()) {
-//                    startActivity(new Intent(getApplicationContext(), Form02HHPart_1.class));
-//                } else {
-//                    Toast.makeText(this, "Error in updating db!!", Toast.LENGTH_SHORT).show();
-//                }
-//            } catch (JSONException e) {
-//                e.printStackTrace();
-//            }
         }
     }
 
     private boolean UpdateDB() {
 
-        return true;
+        DatabaseHelper db = new DatabaseHelper(this);
+        int count = db.updatePostTest();
+        if(count == 1){
+            return true;
+        }else {
+            Toast.makeText(this, "Error in update DB", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+
     }
 
     private void SaveDraft() {
+        String currentDateTime = new SimpleDateFormat(" dd/MM/yyyy HH:mm:ss").format(new Date().getTime());
+        MainApp.fc.setPostTestEndTime(currentDateTime);
+        JSONObject sVb = GeneratorClass.getContainerJSON(bi.fldGrpVbpost,true);
+        MainApp.fc.setPost_test(String.valueOf(sVb));
     }
 
     private boolean formValidation() {
+
+        if(!validatorClass.EmptyCheckingContainer(this,bi.fldGrpVbpost)){
+            return false;
+        }
         return true;
     }
 

@@ -14,7 +14,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.FormsContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.FragmentInfoBinding;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.interfaces.Callbacks;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.validation.validatorClass;
@@ -76,12 +78,21 @@ public class InfoFragment extends Fragment {
 
         DatabaseHelper db = new DatabaseHelper(getActivity());
 
+        long rowId = db.addForm(MainApp.fc);
+        MainApp.fc.set_ID(rowId);
+
         return true;
     }
 
     private void saveDraft() throws JSONException  {
 
-        JSONObject sInfo = new JSONObject();
+        MainApp.fc = new FormsContract();
+        MainApp.fc.setProviderID(bi.providerId.getText().toString());
+        MainApp.fc.setProviderName(bi.providerNam.getText().toString());
+        MainApp.fc.setHealthFacilityName(bi.info2.getText().toString());
+        MainApp.fc.setDistrictID(bi.info1.getText().toString());
+        MainApp.fc.setAppversion(MainApp.versionName);
+        MainApp.fc.setLogginTime(MainApp.logginTime);
     }
 
     private boolean formValidation() {

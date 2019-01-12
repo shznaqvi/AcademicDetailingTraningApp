@@ -80,6 +80,9 @@ public class MainApp extends Application {
     public static String userName = "0000";
     public static FormsContract fc;
     public static String IMEI;
+    public static String logginTime;
+    public static String sessionStartTime;
+    public static String sessionEndTime;
     public static final boolean isSession02Pre = false;
     public static SessionContract sC;
 

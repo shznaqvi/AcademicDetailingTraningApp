@@ -75,7 +75,7 @@ public class FANC_Pre_test extends AppCompatActivity {
 
     }
 
-    private void SaveDraft() throws JSONException {
+    private void SaveDraft() {
 
         MainApp.fc.setPreTestEndTime(MainApp.getCurrentTime());
         JSONObject sVb = GeneratorClass.getContainerJSON(bi.fldGrpPreFanc, true);
@@ -98,10 +98,8 @@ public class FANC_Pre_test extends AppCompatActivity {
         }
         if (!validatorClass.EmptyRadioButton(this, bi.fancpre05, bi.fancpre05a, getString(R.string.fanc_05))) {
             return false;
-        }if (!validatorClass.EmptyCardCheckBox(this, bi.fanc06,bi.fancpre06a, getString(R.string.fanc_06))) {
-            return false;
         }
-        return true;
+        return validatorClass.EmptyCardCheckBox(this, bi.fanc06, bi.fancpre06a, getString(R.string.fanc_06));
     }
 
     public void BtnEnd() {

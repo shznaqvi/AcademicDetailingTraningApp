@@ -24,12 +24,10 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.VB_Pre_test;
 public class Utils {
 
     public static final String[] childModule = new String[]{"General Danger Sign", "Cough & Difficult Breathing", "Diarrhoea", "PSBI"};
-    public static final String[] GDS = new String[]{"General Danger Signs (Assessment and Classification)", "General Danger Signs (Management, Counseling and Referral)"};
-    public static final String[] CDB = new String[]{"COUGH OR DIFFICULT BREATHING (ASSESSMENT AND CLASSIFICATION)", "COUGH OR DIFFICULT BREATHING (MANAGEMENT & COUNSELLING)"};
-    public static final String[] Diarrhea = new String[]{"DIARRHEA (ASSESSMENT & CLASSIFICATION)", "DIARRHEA (MANAGEMENT & COUNSELLING)"};
-    public static final String[] PSBI = new String[]{"POSSIBLE SERIOUS BACTERIAL INFECTIONS IN YOUNG INFANTS (ASSESSMENT & CLASSIFICATION)",
-            "MANAGEMENT OF POSSIBLE SERIOUS BACTERIAL INFECTIONS IN SICK YOUNG INFANTS",
-            "MANAGEMENT OF POSSIBLE SERIOUS BACTERIAL INFECTIONS IN SICK YOUNG INFANTS (BREAST FEEDING & IMMUNIZATION)"};
+    public static final String[] GDS = new String[]{"GDS(Assessment and Classification)", "GDS(Management, Counseling and Referral)"};
+    public static final String[] CDB = new String[]{"CDB(Assessment and Classification)", "CDB(Management, Counseling and Referral)"};
+    public static final String[] Diarrhea = new String[]{"Dia(Assessment and Classification)", "Dia(Management, Counseling and Referral)"};
+    public static final String[] PSBI = new String[]{"PSBI(Assessment and Classification)", "PSBI(Management, Counseling and Referral)", "PSBI(Breast Feeding & Immunization)"};
     public static final String[] maternalModule = new String[]{"Focused Antenatal Care", "Vaginal Bleeding in Pregnancy",
             "Partograph", "Pre Eclampsia & Eclampsia", " Postpartum Hemorrhage", "Assessment and management of Shock", " Puerperal Sepsis"};
 
@@ -288,9 +286,9 @@ public class Utils {
         } else if (type == MainApp.isChild) {
             switch (index) {
                 case 0:
-                    return R.drawable.gdssummary;
-                case 1:
                     return R.drawable.gds1001;
+                case 1:
+                    return R.drawable.gds2001;
                 default:
                     return R.drawable.gdssummary;
             }

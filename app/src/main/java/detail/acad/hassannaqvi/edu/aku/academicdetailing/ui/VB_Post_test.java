@@ -32,7 +32,7 @@ public class VB_Post_test extends AppCompatActivity {
         bi = DataBindingUtil.setContentView(this, R.layout.activity_vb__post_test);
         bi.setCallback(this);
 
-        MainApp.fc.setPostTestStartTime(currentDateTime);
+        MainApp.fc.setPostTestStartTime(MainApp.getCurrentTime());
 
         if (MainApp.isSlideStart) {
             bi.btnContinue.setText("Start Training");
@@ -47,13 +47,8 @@ public class VB_Post_test extends AppCompatActivity {
             try {
                 SaveDraft();
                 if (UpdateDB()) {
-                    if (MainApp.isSlideStart) {
-                        startActivity(new Intent(this, ViewPagerActivity.class).putExtra("slides", getIntent().getIntArrayExtra("slides")));
-                        finish();
-                    } else {
-                        Toast.makeText(this, "Training Completed", Toast.LENGTH_SHORT).show();
-                        finish();
-                    }
+                    MainApp.endActivity(this,"Are You Sure You want to Continue?",true);
+
                 } else {
                     Toast.makeText(this, "Error in updating db!!", Toast.LENGTH_SHORT).show();
                 }
@@ -77,9 +72,9 @@ public class VB_Post_test extends AppCompatActivity {
 
     }
 
-    private void SaveDraft() {
-        String currentDateTime = new SimpleDateFormat(" dd/MM/yyyy HH:mm:ss").format(new Date().getTime());
-        MainApp.fc.setPostTestEndTime(currentDateTime);
+    private void SaveDraft() throws JSONException{
+
+        MainApp.fc.setPostTestEndTime(MainApp.getCurrentTime());
         JSONObject sVb = GeneratorClass.getContainerJSON(bi.fldGrpVbpost,true);
         MainApp.fc.setPost_test(String.valueOf(sVb));
     }

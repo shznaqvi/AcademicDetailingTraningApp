@@ -26,6 +26,7 @@ import java.util.Date;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.FormsContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.SessionContract;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.EndingActivity;
 
 
 public class MainApp extends Application {
@@ -67,11 +68,11 @@ public class MainApp extends Application {
     public static String deviceId;
     public static boolean isSlideEnd = false;
     public static boolean isSlideStart = false;
-    public static int maternalIndex=0;
-    public static int childlIndex=0;
+    public static int maternalIndex = 0;
+    public static int childlIndex = 0;
     public static boolean isMaternal = false;
     public static String moduleSession = "";
-    public static String moduleName="";
+    public static String moduleName = "";
     public static boolean isChild = false;
     public static String[] loginMem;
     public static String versionName;
@@ -146,9 +147,6 @@ public class MainApp extends Application {
     }
 
 
-
-
-
     protected boolean isBetterLocation(Location location, Location currentBestLocation) {
         if (currentBestLocation == null) {
             // A new location is always better than no location
@@ -199,19 +197,27 @@ public class MainApp extends Application {
         return provider1.equals(provider2);
     }
 
-    public static void endActivity(final Context context, final Activity activity, final Class EndActivityClass) {
+
+    public static String getCurrentTime(){
+        String currentTime = new SimpleDateFormat("HH:mm:ss").format(new Date().getTime());
+        return currentTime;
+    }
+
+    public static void endActivity(final Context context, String message, final boolean status) {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                 context);
         alertDialogBuilder
-                .setMessage("Do you want to Exit??")
+                .setMessage(message)
                 .setCancelable(false)
                 .setPositiveButton("Yes",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog,
                                                 int id) {
-                                activity.finish();
-                                Intent end_intent = new Intent(context, EndActivityClass);
+
+                                Intent end_intent = new Intent(context, EndingActivity.class);
+                                end_intent.putExtra("complete", status);
                                 context.startActivity(end_intent);
+                                ((Activity) context).finish();
                             }
                         });
         alertDialogBuilder.setNegativeButton("No",
@@ -223,7 +229,6 @@ public class MainApp extends Application {
         AlertDialog alert = alertDialogBuilder.create();
         alert.show();
     }
-
 
 
 }

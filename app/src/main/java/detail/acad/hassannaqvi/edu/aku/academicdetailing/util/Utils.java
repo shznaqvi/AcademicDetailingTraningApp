@@ -24,10 +24,12 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.VB_Pre_test;
 public class Utils {
 
     public static final String[] childModule = new String[]{"General Danger Sign", "Cough & Difficult Breathing", "Diarrhoea", "PSBI"};
-    public static final String[] GDS = new String[]{"Assessment & Classification", "Management Counseling & Referral"};
-    public static final String[] CDB = new String[]{"Assessment & Classification", "Management Counseling & Referral"};
-    public static final String[] Diarrhea = new String[]{"Assessment & Classification", "Management Counseling & Referral"};
-    public static final String[] PSBI = new String[]{"Assessment & Classification", "Management Counseling & Referral", "Breast Feeding & Immunization"};
+    public static final String[] GDS = new String[]{"General Danger Signs (Assessment and Classification)", "General Danger Signs (Management, Counseling and Referral)"};
+    public static final String[] CDB = new String[]{"COUGH OR DIFFICULT BREATHING (ASSESSMENT AND CLASSIFICATION)", "COUGH OR DIFFICULT BREATHING (MANAGEMENT & COUNSELLING)"};
+    public static final String[] Diarrhea = new String[]{"DIARRHEA (ASSESSMENT & CLASSIFICATION)", "DIARRHEA (MANAGEMENT & COUNSELLING)"};
+    public static final String[] PSBI = new String[]{"POSSIBLE SERIOUS BACTERIAL INFECTIONS IN YOUNG INFANTS (ASSESSMENT & CLASSIFICATION)",
+            "MANAGEMENT OF POSSIBLE SERIOUS BACTERIAL INFECTIONS IN SICK YOUNG INFANTS",
+            "MANAGEMENT OF POSSIBLE SERIOUS BACTERIAL INFECTIONS IN SICK YOUNG INFANTS (BREAST FEEDING & IMMUNIZATION)"};
     public static final String[] maternalModule = new String[]{"Focused Antenatal Care", "Vaginal Bleeding in Pregnancy",
             "Partograph", "Pre Eclampsia & Eclampsia", " Postpartum Hemorrhage", "Assessment and management of Shock", " Puerperal Sepsis"};
 
@@ -52,28 +54,28 @@ public class Utils {
 
 
     public static int[] gds1_imgs = new int[]{
-            R.drawable.gds1001, R.drawable.gds1002, R.drawable.gds1003, R.drawable.gds1004, R.drawable.gds1005, R.drawable.gds1006,
+            R.drawable.gds1003, R.drawable.gds1004, R.drawable.gds1005, R.drawable.gds1006,
             R.drawable.gds1007, R.drawable.gds1008, R.drawable.gds1009, R.drawable.gds1010, R.drawable.gds1011, R.drawable.gds1012,
             R.drawable.gds1013, R.drawable.gds1014, R.drawable.gds1015, R.drawable.gds1016, R.drawable.gds1017, R.drawable.gds1018,
             R.drawable.gds1019, R.drawable.gds1020,};
 
 
     public static int[] gds2_imgs = new int[]{
-            R.drawable.gds2001, R.drawable.gds2002, R.drawable.gds2003, R.drawable.gds2004, R.drawable.gds2005, R.drawable.gds2006,
+            R.drawable.gds2003, R.drawable.gds2004, R.drawable.gds2005, R.drawable.gds2006,
             R.drawable.gds2007, R.drawable.gds2008, R.drawable.gds2009, R.drawable.gds2010, R.drawable.gds2011, R.drawable.gds2012,
             R.drawable.gds2013, R.drawable.gds2014, R.drawable.gds2015, R.drawable.gds2016, R.drawable.gds2017, R.drawable.gds2018,
             R.drawable.gds2019, R.drawable.gds2020, R.drawable.gds2021, R.drawable.gds2022,};
 
 
     public static int[] cdb1_imgs = new int[]{
-            R.drawable.cdb1001, R.drawable.cdb1002, R.drawable.cdb1003, R.drawable.cdb1004, R.drawable.cdb1005, R.drawable.cdb1006,
+            R.drawable.cdb1003, R.drawable.cdb1004, R.drawable.cdb1005, R.drawable.cdb1006,
             R.drawable.cdb1007, R.drawable.cdb1008, R.drawable.cdb1009, R.drawable.cdb1010, R.drawable.cdb1011, R.drawable.cdb1012,
             R.drawable.cdb1013, R.drawable.cdb1014, R.drawable.cdb1015, R.drawable.cdb1016, R.drawable.cdb1017, R.drawable.cdb1018,
             R.drawable.cdb1019, R.drawable.cdb1020, R.drawable.cdb1021, R.drawable.cdb1022, R.drawable.cdb1023, R.drawable.cdb1024,};
 
 
     public static int[] cdb2_imgs = new int[]{
-            R.drawable.cdb2001, R.drawable.cdb2002, R.drawable.cdb2003, R.drawable.cdb2004, R.drawable.cdb2005, R.drawable.cdb2006,
+            R.drawable.cdb2003, R.drawable.cdb2004, R.drawable.cdb2005, R.drawable.cdb2006,
             R.drawable.cdb2007, R.drawable.cdb2008, R.drawable.cdb2009, R.drawable.cdb2010, R.drawable.cdb2011, R.drawable.cdb2012,
             R.drawable.cdb2013, R.drawable.cdb2014, R.drawable.cdb2015, R.drawable.cdb2016, R.drawable.cdb2017, R.drawable.cdb2018,
             R.drawable.cdb2019, R.drawable.cdb2020, R.drawable.cdb2021, R.drawable.cdb2022, R.drawable.cdb2023, R.drawable.cdb2024,
@@ -98,24 +100,43 @@ public class Utils {
     }
 
 
-    public static int[] getChildSessions(int i) {
+    public static int[] getChildSessions(int i, String moduleName) {
 
-        switch (i) {
+        if (moduleName.equals("gds")) {
+            switch (i) {
+                case 0:
+                    return gds1_imgs;
 
-            case 0:
-                return gds1_imgs;
-
-            case 1:
-                return cdb1_imgs;
+                case 1:
+                    return gds2_imgs;
 
 
-            default:
-                return null;
+                default:
+                    return null;
+            }
+
+        } else if (moduleName.equals("cdb")) {
+            switch (i) {
+                case 0:
+                    return cdb1_imgs;
+
+                case 1:
+                    return cdb2_imgs;
+
+                default:
+                    return null;
+            }
+
+        } else if (moduleName.equals("dia")) {
+
+        } else if (moduleName.equals("psbi")) {
+
         }
+        return null;
 
     }
 
-    public static void showPreDialogue(final Context context, final int index,String moduleName) {
+    public static void showPreDialogue(final Context context, final int index, final String moduleName) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setCancelable(false);
         View view = LayoutInflater.from(context).inflate(R.layout.dialoge_layout, null);
@@ -123,9 +144,9 @@ public class Utils {
         Button proceed = view.findViewById(R.id.proceed);
         Button cancel = view.findViewById(R.id.cancel);
         if (MainApp.isMaternal) {
-            slide.setImageResource(getPreImages(index, MainApp.isMaternal));
+            slide.setImageResource(getPreImages(index, moduleName));
         } else if (MainApp.isChild) {
-            slide.setImageResource(getPreImages(index, MainApp.isChild));
+            slide.setImageResource(getPreImages(index, moduleName));
         }
         builder.setView(view);
         final AlertDialog dialog = builder.create();
@@ -139,7 +160,8 @@ public class Utils {
                     MainApp.isSlideStart = true;
                     context.startActivity(new Intent(context, selectPreTest(index))
                             .putExtra("slides", MainApp.isMaternal ? Utils.getMaternalSessions(index)
-                                    : MainApp.isChild ? Utils.getChildSessions(index) : null));
+                                    : MainApp.isChild ? Utils.getChildSessions(index, moduleName) : null));
+                    MainApp.fc.setSessionStartTime(MainApp.getCurrentTime());
                     dialog.dismiss();
                 } else {
                     Toast.makeText(context, "Module is under development", Toast.LENGTH_SHORT).show();
@@ -201,20 +223,20 @@ public class Utils {
 
     }
 
-    public static Class<?> selectPreTest(int index){
+    public static Class<?> selectPreTest(int index) {
 
-        if(MainApp.isMaternal){
+        if (MainApp.isMaternal) {
 
-            switch (index){
+            switch (index) {
 
                 case 0:
                     return FANC_Pre_test.class;
                 case 1:
                     return VB_Pre_test.class;
             }
-        }else if(MainApp.isChild){
+        } else if (MainApp.isChild) {
 
-            switch (index){
+            switch (index) {
 
                 case 0:
                     return GDSSession01_Pre_test.class;
@@ -226,20 +248,20 @@ public class Utils {
 
     }
 
-    public static Class<?> selectPostTest(int index){
+    public static Class<?> selectPostTest(int index) {
 
-        if(MainApp.isMaternal){
+        if (MainApp.isMaternal) {
 
-            switch (index){
+            switch (index) {
 
                 case 0:
                     return FANC_Post_test.class;
                 case 1:
                     return VB_Post_test.class;
             }
-        }else if(MainApp.isChild){
+        } else if (MainApp.isChild) {
 
-            switch (index){
+            switch (index) {
 
                 case 0:
                     return GDSSession01_Post_test.class;
@@ -277,7 +299,7 @@ public class Utils {
 
     }
 
-    public static int getPreImages(int index, boolean type) {
+    public static int getPreImages(int index, String moduleName) {
 
         if (MainApp.isMaternal) {
             switch (index) {
@@ -289,14 +311,32 @@ public class Utils {
                     return R.drawable.fanc_02;
             }
         } else if (MainApp.isChild) {
-            switch (index) {
-                case 0:
-                    return R.drawable.gds1003;
-                case 1:
-                    return R.drawable.gds1001;
-                default:
-                    return R.drawable.gdssummary;
+            if (moduleName.equals("gds")) {
+                switch (index) {
+                    case 0:
+                        return R.drawable.gds1002;
+                    case 1:
+                        return R.drawable.gds2002;
+                    default:
+                        return 0;
+                }
+
+            } else if (moduleName.equals("cdb")) {
+                switch (index) {
+                    case 0:
+                        return R.drawable.cdb1002;
+                    case 1:
+                        return R.drawable.cdb2002;
+                    default:
+                        return 0;
+                }
+
+            } else if (moduleName.equals("cdb")) {
+
+            } else if (moduleName.equals("psbi")) {
+
             }
+
         }
 
         return 0;

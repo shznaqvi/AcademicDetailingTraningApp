@@ -32,7 +32,7 @@ public class VB_Pre_test extends AppCompatActivity {
         bi = DataBindingUtil.setContentView(this, R.layout.activity_vb__pre_test);
         bi.setCallback(this);
 
-        MainApp.fc.setPreTestStartTime(currentDateTime);
+        MainApp.fc.setPreTestStartTime(MainApp.getCurrentTime());
         if (MainApp.isSlideStart) {
             bi.btnContinue.setText("Start Training");
         } else {
@@ -76,8 +76,8 @@ public class VB_Pre_test extends AppCompatActivity {
 
     private void SaveDraft() throws JSONException {
 
-        String currentDateTime = new SimpleDateFormat(" dd/MM/yyyy HH:mm:ss").format(new Date().getTime());
-        MainApp.fc.setPreTestEndTime(currentDateTime);
+
+        MainApp.fc.setPreTestEndTime(MainApp.getCurrentTime());
         JSONObject sVb = GeneratorClass.getContainerJSON(bi.fldGrpVbPre, true);
         MainApp.fc.setPre_test(String.valueOf(sVb));
 

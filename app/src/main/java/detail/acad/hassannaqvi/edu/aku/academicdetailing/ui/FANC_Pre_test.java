@@ -32,14 +32,13 @@ public class FANC_Pre_test extends AppCompatActivity {
         bi = DataBindingUtil.setContentView(this, R.layout.activity_fanc__pre_test);
         bi.setCallback(this);
 
-        MainApp.fc.setPreTestStartTime(currentDateTime);
+        MainApp.fc.setPreTestStartTime(MainApp.getCurrentTime());
         if (MainApp.isSlideStart) {
             bi.btnContinue.setText("Start Training");
         } else {
             bi.btnContinue.setText("Finish Training");
         }
     }
-
 
     public void BtnContinue() {
         if (formValidation()) {
@@ -78,8 +77,7 @@ public class FANC_Pre_test extends AppCompatActivity {
 
     private void SaveDraft() throws JSONException {
 
-        String currentDateTime = new SimpleDateFormat(" dd/MM/yyyy HH:mm:ss").format(new Date().getTime());
-        MainApp.fc.setPreTestEndTime(currentDateTime);
+        MainApp.fc.setPreTestEndTime(MainApp.getCurrentTime());
         JSONObject sVb = GeneratorClass.getContainerJSON(bi.fldGrpPreFanc, true);
         MainApp.fc.setPre_test(String.valueOf(sVb));
     }

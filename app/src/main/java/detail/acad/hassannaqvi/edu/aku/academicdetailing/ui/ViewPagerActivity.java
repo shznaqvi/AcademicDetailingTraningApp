@@ -37,8 +37,6 @@ public class ViewPagerActivity extends AppCompatActivity {
     int[] slides;
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,11 +80,11 @@ public class ViewPagerActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (lastItemPosition == slides.length - 1) {
 
-                    if(MainApp.isMaternal){
-                        Utils.showPostDialoge(ViewPagerActivity.this,MainApp.maternalIndex);
+                    if (MainApp.isMaternal) {
+                        Utils.showPostDialoge(ViewPagerActivity.this, MainApp.maternalIndex);
 
-                    }else if(MainApp.isChild){
-                        Utils.showPostDialoge(ViewPagerActivity.this,MainApp.childlIndex);
+                    } else if (MainApp.isChild) {
+                        Utils.showPostDialoge(ViewPagerActivity.this, MainApp.childlIndex);
                     }
 
 
@@ -105,22 +103,38 @@ public class ViewPagerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(lastItemPosition >=  0){
+                if (lastItemPosition >= 0) {
                     bi.viewPager.setCurrentItem(getItem(-1), true);
-                    saveDB();
+
+                    new Handler().post(new Runnable() {
+                        @Override
+                        public void run() {
+                            saveDB();
+                        }
+                    });
+
+
                 }
+            }
+        });
+
+        bi.exitSlide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                MainApp.endActivity(ViewPagerActivity.this, "Do You Want To Exit?", false);
+
             }
         });
     }
 
     private void saveDB() {
-        String currentTime = new SimpleDateFormat("HH:mm:ss").format(new Date().getTime());
 
         SessionContract sC = new SessionContract();
         sC.setModule(MainApp.moduleName);
         sC.setSession(MainApp.moduleSession);
         sC.setSlideNumber(lastItemPosition);
-        sC.setSessionTime(currentTime);
+        sC.setSessionTime(MainApp.getCurrentTime());
         db.addSessionData(sC);
     }
 

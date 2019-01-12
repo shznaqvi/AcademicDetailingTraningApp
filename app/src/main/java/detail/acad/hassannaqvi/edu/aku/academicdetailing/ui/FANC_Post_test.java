@@ -14,6 +14,7 @@ import java.util.Date;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.JSON.GeneratorClass;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityFancPostTestBinding;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.validation.validatorClass;
@@ -31,7 +32,7 @@ public class FANC_Post_test extends AppCompatActivity {
         bi = DataBindingUtil.setContentView(this, R.layout.activity_fanc__post_test);
         bi.setCallback(this);
 
-        MainApp.fc.setPostTestStartTime(currentDateTime);
+        MainApp.fc.setPostTestStartTime(MainApp.getCurrentTime());
         if (MainApp.isSlideStart) {
             bi.btnContinue.setText("Start Training");
         } else {
@@ -45,13 +46,7 @@ public class FANC_Post_test extends AppCompatActivity {
             try {
                 SaveDraft();
                 if (UpdateDB()) {
-                    if (MainApp.isSlideStart) {
-                        startActivity(new Intent(this, ViewPagerActivity.class).putExtra("slides", getIntent().getIntArrayExtra("slides")));
-                        finish();
-                    } else {
-                        Toast.makeText(this, "Training Completed", Toast.LENGTH_SHORT).show();
-                        finish();
-                    }
+                    MainApp.endActivity(this,"Are You Sure You want to Continue?",true);
 
                 } else {
                     Toast.makeText(this, "Error in updating db!!", Toast.LENGTH_SHORT).show();
@@ -64,13 +59,20 @@ public class FANC_Post_test extends AppCompatActivity {
 
     private boolean UpdateDB() {
 
-        return true;
+        DatabaseHelper db = new DatabaseHelper(this);
+        int count = db.updatePostTest();
+        if(count == 1){
+            return true;
+        }else {
+            Toast.makeText(this, "Error in update DB", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
     }
 
     private void SaveDraft() throws JSONException {
 
-        String currentDateTime = new SimpleDateFormat(" dd/MM/yyyy HH:mm:ss").format(new Date().getTime());
-        MainApp.fc.setPostTestEndTime(currentDateTime);
+        MainApp.fc.setPostTestEndTime(MainApp.getCurrentTime());
         JSONObject sVb = GeneratorClass.getContainerJSON(bi.fldGrpPostFanc, true);
         MainApp.fc.setPost_test(String.valueOf(sVb));
     }
@@ -91,7 +93,7 @@ public class FANC_Post_test extends AppCompatActivity {
         }
         if (!validatorClass.EmptyRadioButton(this, bi.fancpost05, bi.fancpost05a, getString(R.string.fanc_05))) {
             return false;
-        }if (!validatorClass.EmptyCardCheckBox(this, bi.fanc_06,bi.fancpost06, getString(R.string.fanc_06))) {
+        }if (!validatorClass.EmptyCheckBox(this, bi.fancPost06,bi.fancpost06a, getString(R.string.fanc_06))) {
             return false;
         }
         return true;

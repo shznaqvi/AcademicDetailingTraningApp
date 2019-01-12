@@ -802,6 +802,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(FormsTable.COLUMN_ISTATUS, MainApp.fc.getIstatus());
         values.put(FormsTable.COLUMN_ISTATUS88X, MainApp.fc.getIstatus88x());
         values.put(FormsTable.COLUMN_ENDINGDATETIME, MainApp.fc.getEndingdatetime());
+        values.put(FormsTable.COLUMN_SESSION_START_TIME, MainApp.fc.getSessionStartTime());
+        values.put(FormsTable.COLUMN_SESSION_END_TIME, MainApp.fc.getSessionEndTime());
 
 
 // Which row to update, based on the ID
@@ -866,10 +868,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(SessionTable.COLUMN_SESSION, sc.getSession());
         values.put(SessionTable.COLUMN_SESSION_TIME, sc.getSessionTime());
         values.put(SessionTable.COLUMN_SLIDE_NUMBER, sc.getSlideNumber());
-        Log.d(TAG, "addSessionData: " + sc.getModule());
-        Log.d(TAG, "addSessionData: " + sc.getSession());
-        Log.d(TAG, "addSessionData: " + sc.getSlideNumber());
-        Log.d(TAG, "addSessionData: " + sc.getSessionTime());
         db.insert(SessionTable.TABLE_NAME, null, values);
     }
 }

@@ -360,4 +360,13 @@
     <string name="vb_05d">None of the above</string>
 
 
+    <!--End-->
+    <string name="status">Status</string>
+    <string name="refuse">Refuse</string>
+    <string name="complete">Complete</string>
+    <string name="reschedule">Reschedule</string>
+    <string name="not_interested">Not Interested</string>
+    <string name="other">Other (Please Specify)</string>
+
+
 </resources>

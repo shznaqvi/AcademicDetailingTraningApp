@@ -3,10 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="detail.acad.hassannaqvi.edu.aku.academicdetailing">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
     <application
         android:name=".core.MainApp"
         android:allowBackup="true"
@@ -34,63 +35,56 @@
         <activity
             android:name=".ui.ViewPagerActivity"
             android:screenOrientation="landscape" />
-
         <activity
             android:name=".ui.GDSSession02_Post_test"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1" />
-
         <activity
             android:name=".ui.GDSSession01_Pre_test"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1" />
-
         <activity
             android:name=".ui.GDSSession01_Post_test"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1" />
-
         <activity
             android:name=".ui.CDBSession01_Pre_test"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1" />
-
         <activity
             android:name=".ui.CDBSession01_Post_test"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1" />
-
         <activity
             android:name=".ui.CDBSession02_Pre_test"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1" />
-
         <activity
             android:name=".ui.CDBSession02_Post_test"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1" />
-
         <activity
             android:name=".ui.FANC_Pre_test"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1" />
-
         <activity
             android:name=".ui.FANC_Post_test"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1" />
-
         <activity
             android:name=".ui.VB_Pre_test"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1" />
-
         <activity
             android:name=".ui.VB_Post_test"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1" />
-        <activity android:name=".core.AndroidDatabaseManager"
-            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".core.AndroidDatabaseManager"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ui.EndingActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme1"></activity>
     </application>
 
 </manifest>

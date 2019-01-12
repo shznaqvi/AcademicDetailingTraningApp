@@ -45,8 +45,8 @@
                 android:layout_height="wrap_content"
                 android:text="Next"
                 />
-
             <Button
+                android:background="@color/colorPrimaryBeta"
                 android:layout_margin="1dp"
                 style="@style/button"
                 android:id="@+id/backSlide"
@@ -55,6 +55,21 @@
                 android:layout_height="wrap_content"
                 android:text="Back"
                 />
+            <Button
+                android:background="@color/red"
+                android:layout_margin="1dp"
+                style="@style/button"
+                android:id="@+id/exitSlide"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Exit"/>
+
+
+
+
+
+
 
         </LinearLayout>
 

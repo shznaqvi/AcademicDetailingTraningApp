@@ -46,6 +46,7 @@
                         android:layout_height="wrap_content">
 
                         <RadioButton
+                            style="@style/radiobutton"
                             android:id="@+id/fancpre01a"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
@@ -21,6 +22,8 @@ public class ModuleFragment extends Fragment {
     FragmentModuleBinding bi;
     boolean isChildClicked = false;
     boolean isMaternalClicked = false;
+    boolean isChildSubClicked = false;
+    String subModuleName;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -118,6 +121,7 @@ public class ModuleFragment extends Fragment {
 
             View v = LayoutInflater.from(getContext()).inflate(R.layout.single_module_item, null);
             TextView moduleName = v.findViewById(R.id.moduleName);
+            final LinearLayout subModule = v.findViewById(R.id.childSubModule);
             moduleName.setText(Utils.childModule[i]);
             bi.childModule.addView(v);
             final int finalI = i;
@@ -126,12 +130,33 @@ public class ModuleFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
 
-                    MainApp.moduleName = "childHealth";
-                    MainApp.moduleSession = Utils.childModule[finalI];
-                    MainApp.isChild = true;
-                    MainApp.isMaternal = false;
-                    Utils.showPreDialogue(getActivity(), finalI, MainApp.moduleName);
-                    MainApp.childlIndex = finalI;
+                    if (!isChildSubClicked) {
+                        for (int i = 0; i < selectSubModule(finalI).length; i++) {
+                            View vi = LayoutInflater.from(getContext()).inflate(R.layout.single_sub_module_item, null);
+                            TextView moduleName = vi.findViewById(R.id.subModuleName);
+                            moduleName.setText(selectSubModule(finalI)[i]);
+                            subModule.addView(vi);
+
+
+                            final int finalI1 = i;
+                            vi.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    MainApp.moduleName = "childHealth";
+                                    MainApp.moduleSession = selectSubModule(finalI)[finalI1];
+                                    MainApp.isChild = true;
+                                    MainApp.isMaternal = false;
+                                    Utils.showPreDialogue(getActivity(), finalI, subModuleName);
+                                    MainApp.childlIndex = finalI1;
+                                }
+                            });
+
+                        }
+                        isChildSubClicked = true;
+                    } else {
+                        subModule.removeAllViews();
+                        isChildSubClicked = false;
+                    }
 
 
                 }
@@ -139,6 +164,22 @@ public class ModuleFragment extends Fragment {
         }
         isChildClicked = true;
 
+    }
+
+    public String[] selectSubModule(int finalI) {
+        if (finalI == 0) {
+            subModuleName = "gds";
+            return Utils.GDS;
+        } else if (finalI == 1) {
+            subModuleName = "cdb";
+            return Utils.CDB;
+        } else if (finalI == 2) {
+            subModuleName = "dia";
+            return Utils.Diarrhea;
+        } else {
+            subModuleName = "psbi";
+            return Utils.PSBI;
+        }
     }
 
 

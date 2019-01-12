@@ -96,7 +96,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String SQL_DELETE_TEHSILS = "DROP TABLE IF EXISTS " + singleTehsil.TABLE_NAME;
     private static final String SQL_DELETE_UCS = "DROP TABLE IF EXISTS " + singleUCs.TABLE_NAME;
     private static final String SQL_DELETE_LHWs = "DROP TABLE IF EXISTS " + singleLHWs.TABLE_NAME;
-    final String SQL_CREATE_HEALTH_FACTILITIES = "CREATE TABLE " + singleHF.TABLE_NAME + "("
+    final String SQL_CREATE_HEALTH_FACILITIES = "CREATE TABLE " + singleHF.TABLE_NAME + "("
             + singleHF.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + singleHF.COLUMN_HF_NAME + " TEXT,"
             + singleHF.COLUMN_HF_TYPE + " TEXT,"
@@ -132,7 +132,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_FORMS);
         db.execSQL(SQL_CREATE_SESSION_TABLE);
 
-        db.execSQL(SQL_CREATE_HEALTH_FACTILITIES);
+        db.execSQL(SQL_CREATE_HEALTH_FACILITIES);
         /*db.execSQL(SQL_CREATE_TEHSILS);
         db.execSQL(SQL_CREATE_UCS);
         db.execSQL(SQL_CREATE_LHWS);*/

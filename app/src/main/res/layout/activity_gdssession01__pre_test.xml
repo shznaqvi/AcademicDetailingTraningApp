@@ -33,6 +33,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tv_gds01pre01"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -51,14 +52,28 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
-                            android:text="@string/True" />
+                            android:text="@string/gds01_01a" />
 
                         <RadioButton
                             android:id="@+id/gds01pre01b"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
-                            android:text="@string/False" />
+                            android:text="@string/gds01_01b" />
+
+                        <RadioButton
+                            android:id="@+id/gds01pre01c"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="1dp"
+                            android:text="@string/gds01_01c" />
+
+                        <RadioButton
+                            android:id="@+id/gds01pre01d"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="1dp"
+                            android:text="@string/gds01_01d" />
 
 
                     </RadioGroup>
@@ -77,6 +92,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tv_gds01pre02"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -135,6 +151,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tv_gds01pre03"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -193,6 +210,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tv_gds01pre04"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"

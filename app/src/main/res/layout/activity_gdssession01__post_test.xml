@@ -32,6 +32,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tvgds01post01"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -50,14 +51,28 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
-                            android:text="@string/True" />
+                            android:text="@string/gds01_01a" />
 
                         <RadioButton
                             android:id="@+id/gds01post01b"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
-                            android:text="@string/False" />
+                            android:text="@string/gds01_01b" />
+
+                        <RadioButton
+                            android:id="@+id/gds01post01c"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="1dp"
+                            android:text="@string/gds01_01c" />
+
+                        <RadioButton
+                            android:id="@+id/gds01post01d"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="1dp"
+                            android:text="@string/gds01_01d" />
 
 
                     </RadioGroup>
@@ -76,6 +91,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tvgds01post02"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -134,6 +150,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tvgds01post03"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -192,6 +209,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tvgds01post04"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -250,6 +268,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tvgds01post05"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"

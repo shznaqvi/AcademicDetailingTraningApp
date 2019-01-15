@@ -68,31 +68,31 @@
 
     <!--GDS02_02-->
     <string name="gds02_02">Which of the following is NOT true, if a child has a general danger sign?</string>
-    <string name="gds02_02a">	Complete assessment immediately - the child has a severe problem. </string>
-    <string name="gds02_02b">	Provide urgent pre-referral treatment </string>
-    <string name="gds02_02c">	Observe and reassess child after pre-referral treatment</string>
-    <string name="gds02_02d">	Refer child to hospital</string>
+    <string name="gds02_02a">Complete assessment immediately - the child has a severe problem. </string>
+    <string name="gds02_02b">Provide urgent pre-referral treatment </string>
+    <string name="gds02_02c">Observe and reassess child after pre-referral treatment</string>
+    <string name="gds02_02d">Refer child to hospital</string>
 
     <!--GDS02_03-->
-    <string name="gds02_03">Which of the following is NOT true, if a child has a general danger sign?</string>
-    <string name="gds02_03a">	Not able to drink or breastfeed</string>
-    <string name="gds02_03b">	vomits everything</string>
-    <string name="gds02_03c">	Lethargic</string>
-    <string name="gds02_03d">	Unconscious </string>
+    <string name="gds02_03">A child who is not able to hold anything down at all has the sign _______________</string>
+    <string name="gds02_03a">Not able to drink or breastfeed</string>
+    <string name="gds02_03b">vomits everything</string>
+    <string name="gds02_03c">Lethargic</string>
+    <string name="gds02_03d">Unconscious </string>
 
     <!--GDS02_04-->
     <string name="gds02_04">What is the dose of Diazepam required to Stop Convulsions?</string>
-    <string name="gds02_04a">	0.5mg/kg diazepam injection solution per rectum</string>
-    <string name="gds02_04b">	0.8mg/kg diazepam injection solution per rectum</string>
-    <string name="gds02_04c">	1.0mg/kg diazepam injection solution per rectum</string>
-    <string name="gds02_04d">	1.5mg/kg diazepam injection solution per rectum</string>
+    <string name="gds02_04a">0.5mg/kg diazepam injection solution per rectum</string>
+    <string name="gds02_04b">0.8mg/kg diazepam injection solution per rectum</string>
+    <string name="gds02_04c">1.0mg/kg diazepam injection solution per rectum</string>
+    <string name="gds02_04d">1.5mg/kg diazepam injection solution per rectum</string>
 
     <!--GDS02_05-->
     <string name="gds02_05">To make sugar water: Dissolve 4 level teaspoons of sugar (20 grams) in a _______ cup of clean water. </string>
-    <string name="gds02_05a">	100-ml  </string>
-    <string name="gds02_05b">	150-ml</string>
-    <string name="gds02_05c">	200-ml </string>
-    <string name="gds02_05d">	250-ml </string>
+    <string name="gds02_05a">100-ml</string>
+    <string name="gds02_05b">150-ml</string>
+    <string name="gds02_05c">200-ml</string>
+    <string name="gds02_05d">250-ml</string>
 
     <!--CDB Cough & Difficult Breathing 01-->
     <!--CDB01_01-->

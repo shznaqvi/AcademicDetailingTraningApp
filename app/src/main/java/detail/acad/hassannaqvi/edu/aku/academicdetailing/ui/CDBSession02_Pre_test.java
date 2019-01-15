@@ -4,6 +4,10 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
+import android.widget.CompoundButton;
+import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONObject;
@@ -15,7 +19,7 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityCdbsession02PreTestBinding;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.validation.validatorClass;
 
-public class CDBSession02_Pre_test extends AppCompatActivity {
+public class CDBSession02_Pre_test extends AppCompatActivity implements RadioButton.OnCheckedChangeListener {
 
     ActivityCdbsession02PreTestBinding bi;
 
@@ -26,6 +30,8 @@ public class CDBSession02_Pre_test extends AppCompatActivity {
 
         bi = DataBindingUtil.setContentView(this, R.layout.activity_cdbsession02__pre_test);
         bi.setCallback(this);
+
+        events_call();
 
         MainApp.fc.setPreTestStartTime(MainApp.getCurrentTime());
         if (MainApp.isSlideStart) {
@@ -111,5 +117,74 @@ public class CDBSession02_Pre_test extends AppCompatActivity {
 //            e.printStackTrace();
 //        }
 
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+        //CDB02-Q2
+        if (compoundButton.getId() == R.id.cdb02pre02a
+                || compoundButton.getId() == R.id.cdb02pre02b
+                || compoundButton.getId() == R.id.cdb02pre02c
+                || compoundButton.getId() == R.id.cdb02pre02d) {
+
+            if (bi.cdb02pre02a.isChecked()) {
+                bi.tvcdb02pre02.clearComposingText();
+                String styledText = "The dose for intramuscular antibiotics (urgent referral); Ampicillin <font color='yellow'><b><i>40</i></b></font>mg/kg and Gentamicin <font color='yellow'><b><i>7</i></b></font>mg/kg.";
+                bi.tvcdb02pre02.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+            } else if (bi.cdb02pre02b.isChecked()) {
+                bi.tvcdb02pre02.clearComposingText();
+                String styledText = "The dose for intramuscular antibiotics (urgent referral); Ampicillin <font color='yellow'><b><i>45</i></b></font>mg/kg and Gentamicin <font color='yellow'><b><i>7.5</i></b></font>mg/kg.";
+                bi.tvcdb02pre02.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+            } else if (bi.cdb02pre02c.isChecked()) {
+                bi.tvcdb02pre02.clearComposingText();
+                String styledText = "The dose for intramuscular antibiotics (urgent referral); Ampicillin <font color='yellow'><b><i>50</i></b></font>mg/kg and Gentamicin <font color='yellow'><b><i>7.5</i></b></font>mg/kg.";
+                bi.tvcdb02pre02.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+            } else if (bi.cdb02pre02d.isChecked()) {
+                bi.tvcdb02pre02.clearComposingText();
+                String styledText = "The dose for intramuscular antibiotics (urgent referral); Ampicillin <font color='yellow'><b><i>55</i></b></font>mg/kg and Gentamicin <font color='yellow'><b><i>8</i></b></font>mg/kg.";
+                bi.tvcdb02pre02.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+            }
+        }
+
+
+        //CDB02-Q4
+        if (compoundButton.getId() == R.id.cdb02pre04a
+                || compoundButton.getId() == R.id.cdb02pre02b
+                || compoundButton.getId() == R.id.cdb02pre02c
+                || compoundButton.getId() == R.id.cdb02pre02d) {
+
+            if (bi.cdb02pre04a.isChecked()) {
+                bi.tvcdb02pre04.clearComposingText();
+                String styledText = "Standard flow rates for oxygen through nasal prongs or nasal catheters are up to <font color='yellow'><b><i>2</i></b></font> L/min for infants, up to <font color='yellow'><b><i>4</i></b></font> L/min for older children.";
+                bi.tvcdb02pre04.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+            } else if (bi.cdb02pre04b.isChecked()) {
+                bi.tvcdb02pre04.clearComposingText();
+                String styledText = "Standard flow rates for oxygen through nasal prongs or nasal catheters are up to <font color='yellow'><b><i>3</i></b></font> L/min for infants, up to <font color='yellow'><b><i>4</i></b></font> L/min for older children.";
+                bi.tvcdb02pre04.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+            } else if (bi.cdb02pre04c.isChecked()) {
+                bi.tvcdb02pre04.clearComposingText();
+                String styledText = "Standard flow rates for oxygen through nasal prongs or nasal catheters are up to <font color='yellow'><b><i>3.5</i></b></font> L/min for infants, up to <font color='yellow'><b><i>4.5</i></b></font> L/min for older children.";
+                bi.tvcdb02pre04.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+            } else if (bi.cdb02pre04d.isChecked()) {
+                bi.tvcdb02pre04.clearComposingText();
+                String styledText = "Standard flow rates for oxygen through nasal prongs or nasal catheters are up to <font color='yellow'><b><i>4</i></b></font> L/min for infants, up to <font color='yellow'><b><i>4.5</i></b></font> L/min for older children.";
+                bi.tvcdb02pre04.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+            }
+        }
+
+    }
+
+    void events_call() {
+
+        bi.cdb02pre02a.setOnCheckedChangeListener(this);
+        bi.cdb02pre02b.setOnCheckedChangeListener(this);
+        bi.cdb02pre02c.setOnCheckedChangeListener(this);
+        bi.cdb02pre02d.setOnCheckedChangeListener(this);
+
+        bi.cdb02pre04a.setOnCheckedChangeListener(this);
+        bi.cdb02pre04b.setOnCheckedChangeListener(this);
+        bi.cdb02pre04c.setOnCheckedChangeListener(this);
+        bi.cdb02pre04d.setOnCheckedChangeListener(this);
     }
 }

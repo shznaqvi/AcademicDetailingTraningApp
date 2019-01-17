@@ -258,41 +258,6 @@ public class Utils {
 
     }
 
-    public static Class<?> selectPostTest(int index, String moduleName) {
-
-        if (MainApp.isMaternal) {
-
-            switch (index) {
-
-                case 0:
-                    return FANC_Post_test.class;
-                case 1:
-                    return VB_Post_test.class;
-            }
-        } else if (MainApp.isChild) {
-
-            if (moduleName.equals("gds")) {
-                switch (index) {
-                    case 0:
-                        return GDSSession01_Post_test.class;
-                    case 1:
-                        return GDSSession02_Post_test.class;
-                }
-            } else if (moduleName.equals("cdb")) {
-                switch (index) {
-                    case 0:
-                        return CDBSession01_Post_test.class;
-                    case 1:
-                        return CDBSession02_Post_test.class;
-                }
-
-            }
-
-
-        }
-        return null;
-
-    }
 
 
     public static int getPostImages(int index, boolean type) {

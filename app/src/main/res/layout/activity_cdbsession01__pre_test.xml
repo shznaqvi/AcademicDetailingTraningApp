@@ -32,7 +32,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tvcdb01pre01"
+                        android:id="@+id/tvcdba01"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -42,33 +42,33 @@
                         android:textSize="20sp" />
 
                     <RadioGroup
-                        android:id="@+id/cdb01pre01"
+                        android:id="@+id/cdba01"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <RadioButton
-                            android:id="@+id/cdb01pre01a"
+                            android:id="@+id/cdba01a"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
                             android:text="@string/cdb01_01a" />
 
                         <RadioButton
-                            android:id="@+id/cdb01pre01b"
+                            android:id="@+id/cdba01b"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
                             android:text="@string/cdb01_01b" />
 
                         <RadioButton
-                            android:id="@+id/cdb01pre01c"
+                            android:id="@+id/cdba01c"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
                             android:text="@string/cdb01_01c" />
 
                         <RadioButton
-                            android:id="@+id/cdb01pre01d"
+                            android:id="@+id/cdba01d"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
@@ -91,7 +91,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tvcdb01pre02"
+                        android:id="@+id/tvcdba02"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -101,33 +101,33 @@
                         android:textSize="20sp" />
 
                     <RadioGroup
-                        android:id="@+id/cdb01pre02"
+                        android:id="@+id/cdba02"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <RadioButton
-                            android:id="@+id/cdb01pre02a"
+                            android:id="@+id/cdba02a"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
                             android:text="@string/cdb01_02a" />
 
                         <RadioButton
-                            android:id="@+id/cdb01pre02b"
+                            android:id="@+id/cdba02b"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
                             android:text="@string/cdb01_02b" />
 
                         <RadioButton
-                            android:id="@+id/cdb01pre02c"
+                            android:id="@+id/cdba02c"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
                             android:text="@string/cdb01_02c" />
 
                         <RadioButton
-                            android:id="@+id/cdb01pre02d"
+                            android:id="@+id/cdba02d"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
@@ -150,7 +150,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tvcdb01pre03"
+                        android:id="@+id/tvcdba03"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -160,33 +160,33 @@
                         android:textSize="20sp" />
 
                     <RadioGroup
-                        android:id="@+id/cdb01pre03"
+                        android:id="@+id/cdba03"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <RadioButton
-                            android:id="@+id/cdb01pre03a"
+                            android:id="@+id/cdba03a"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
                             android:text="@string/cdb01_03a" />
 
                         <RadioButton
-                            android:id="@+id/cdb01pre03b"
+                            android:id="@+id/cdba03b"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
                             android:text="@string/cdb01_03b" />
 
                         <RadioButton
-                            android:id="@+id/cdb01pre03c"
+                            android:id="@+id/cdba03c"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
                             android:text="@string/cdb01_03c" />
 
                         <RadioButton
-                            android:id="@+id/cdb01pre03d"
+                            android:id="@+id/cdba03d"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
@@ -209,7 +209,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tvcdb01pre04"
+                        android:id="@+id/tvcdba04"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -219,19 +219,19 @@
                         android:textSize="20sp" />
 
                     <RadioGroup
-                        android:id="@+id/cdb01pre04"
+                        android:id="@+id/cdba04"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <RadioButton
-                            android:id="@+id/cdb01pre04a"
+                            android:id="@+id/cdba04a"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
                             android:text="@string/cdb01_04a" />
 
                         <RadioButton
-                            android:id="@+id/cdb01pre04b"
+                            android:id="@+id/cdba04b"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"

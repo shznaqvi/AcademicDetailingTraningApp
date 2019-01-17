@@ -32,7 +32,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tvfancpre01"
+                        android:id="@+id/tvfanc01"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -42,34 +42,34 @@
                         android:textSize="20sp" />
 
                     <RadioGroup
-                        android:id="@+id/fancpre01"
+                        android:id="@+id/fanc01"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <RadioButton
                             style="@style/radiobutton"
-                            android:id="@+id/fancpre01a"
+                            android:id="@+id/fanc01a"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
                             android:text="@string/fanc_01a" />
 
                         <RadioButton
-                            android:id="@+id/fancpre01b"
+                            android:id="@+id/fanc01b"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
                             android:text="@string/fanc_01b" />
 
                         <RadioButton
-                            android:id="@+id/fancpre01c"
+                            android:id="@+id/fanc01c"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
                             android:text="@string/fanc_01c" />
 
                         <RadioButton
-                            android:id="@+id/fancpre01d"
+                            android:id="@+id/fanc01d"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
@@ -92,7 +92,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tvfancpre02"
+                        android:id="@+id/tvfanc02"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -102,33 +102,33 @@
                         android:textSize="20sp" />
 
                     <RadioGroup
-                        android:id="@+id/fancpre02"
+                        android:id="@+id/fanc02"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <RadioButton
-                            android:id="@+id/fancpre02a"
+                            android:id="@+id/fanc02a"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
                             android:text="@string/fanc_02a" />
 
                         <RadioButton
-                            android:id="@+id/fancpre02b"
+                            android:id="@+id/fanc02b"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
                             android:text="@string/fanc_02b" />
 
                         <RadioButton
-                            android:id="@+id/fancpre02c"
+                            android:id="@+id/fanc02c"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
                             android:text="@string/fanc_02c" />
 
                         <RadioButton
-                            android:id="@+id/fancpre02d"
+                            android:id="@+id/fanc02d"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
@@ -151,7 +151,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tvfancpre03"
+                        android:id="@+id/tvfanc03"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -161,33 +161,33 @@
                         android:textSize="20sp" />
 
                     <RadioGroup
-                        android:id="@+id/fancpre03"
+                        android:id="@+id/fanc03"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <RadioButton
-                            android:id="@+id/fancpre03a"
+                            android:id="@+id/fanc03a"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
                             android:text="@string/fanc_03a" />
 
                         <RadioButton
-                            android:id="@+id/fancpre03b"
+                            android:id="@+id/fanc03b"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
                             android:text="@string/fanc_03b" />
 
                         <RadioButton
-                            android:id="@+id/fancpre03c"
+                            android:id="@+id/fanc03c"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
                             android:text="@string/fanc_03c" />
 
                         <RadioButton
-                            android:id="@+id/fancpre03d"
+                            android:id="@+id/fanc03d"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
@@ -210,7 +210,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tvfancpre04"
+                        android:id="@+id/tvfanc04"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -220,33 +220,33 @@
                         android:textSize="20sp" />
 
                     <RadioGroup
-                        android:id="@+id/fancpre04"
+                        android:id="@+id/fanc04"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <RadioButton
-                            android:id="@+id/fancpre04a"
+                            android:id="@+id/fanc04a"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
                             android:text="@string/fanc_04a" />
 
                         <RadioButton
-                            android:id="@+id/fancpre04b"
+                            android:id="@+id/fanc04b"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
                             android:text="@string/fanc_04b" />
 
                         <RadioButton
-                            android:id="@+id/fancpre04c"
+                            android:id="@+id/fanc04c"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
                             android:text="@string/fanc_04c" />
 
                         <RadioButton
-                            android:id="@+id/fancpre04d"
+                            android:id="@+id/fanc04d"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
@@ -270,7 +270,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tvfancpre05"
+                        android:id="@+id/tvfanc05"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -280,33 +280,33 @@
                         android:textSize="20sp" />
 
                     <RadioGroup
-                        android:id="@+id/fancpre05"
+                        android:id="@+id/fanc05"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <RadioButton
-                            android:id="@+id/fancpre05a"
+                            android:id="@+id/fanc05a"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
                             android:text="@string/fanc_05a" />
 
                         <RadioButton
-                            android:id="@+id/fancpre05b"
+                            android:id="@+id/fanc05b"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
                             android:text="@string/fanc_05b" />
 
                         <RadioButton
-                            android:id="@+id/fancpre05c"
+                            android:id="@+id/fanc05c"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
                             android:text="@string/fanc_05c" />
 
                         <RadioButton
-                            android:id="@+id/fancpre05d"
+                            android:id="@+id/fanc05d"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
@@ -332,7 +332,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tvfancpre06"
+                        android:id="@+id/tvfanc06"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -342,77 +342,77 @@
                         android:textSize="20sp" />
 
                     <CheckBox
-                        android:id="@+id/fancpre06a"
+                        android:id="@+id/fanc06a"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="1dp"
                         android:text="@string/fanc_06a" />
 
                     <CheckBox
-                        android:id="@+id/fancpre06b"
+                        android:id="@+id/fanc06b"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="1dp"
                         android:text="@string/fanc_06b" />
 
                     <CheckBox
-                        android:id="@+id/fancpre06c"
+                        android:id="@+id/fanc06c"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="1dp"
                         android:text="@string/fanc_06c" />
 
                     <CheckBox
-                        android:id="@+id/fancpre06d"
+                        android:id="@+id/fanc06d"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="1dp"
                         android:text="@string/fanc_06d" />
 
                     <CheckBox
-                        android:id="@+id/fancpre06e"
+                        android:id="@+id/fanc06e"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="1dp"
                         android:text="@string/fanc_06e" />
 
                     <CheckBox
-                        android:id="@+id/fancpre06f"
+                        android:id="@+id/fanc06f"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="1dp"
                         android:text="@string/fanc_06f" />
 
                     <CheckBox
-                        android:id="@+id/fancpre06g"
+                        android:id="@+id/fanc06g"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="1dp"
                         android:text="@string/fanc_06g" />
 
                     <CheckBox
-                        android:id="@+id/fancpre06h"
+                        android:id="@+id/fanc06h"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="1dp"
                         android:text="@string/fanc_06h" />
 
                     <CheckBox
-                        android:id="@+id/fancpre06i"
+                        android:id="@+id/fanc06i"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="1dp"
                         android:text="@string/fanc_06i" />
 
                     <CheckBox
-                        android:id="@+id/fancpre06j"
+                        android:id="@+id/fanc06j"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="1dp"
                         android:text="@string/fanc_06j" />
 
                     <CheckBox
-                        android:id="@+id/fancpre06k"
+                        android:id="@+id/fanc06k"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="1dp"

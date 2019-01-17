@@ -34,7 +34,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tvgds02pre01"
+                        android:id="@+id/tvgdsb01"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -44,19 +44,19 @@
                         android:textSize="20sp" />
 
                     <RadioGroup
-                        android:id="@+id/gds02pre01"
+                        android:id="@+id/gdsb01"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <RadioButton
-                            android:id="@+id/gds02pre01a"
+                            android:id="@+id/gdsb01a"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
                             android:text="@string/True" />
 
                         <RadioButton
-                            android:id="@+id/gds02pre01b"
+                            android:id="@+id/gdsb01b"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
@@ -82,7 +82,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tvgds02pre02"
+                        android:id="@+id/tvgdsb02"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -92,33 +92,33 @@
                         android:textSize="20sp" />
 
                     <RadioGroup
-                        android:id="@+id/gds02pre02"
+                        android:id="@+id/gdsb02"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <RadioButton
-                            android:id="@+id/gds02pre02a"
+                            android:id="@+id/gdsb02a"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
                             android:text="@string/gds02_02a" />
 
                         <RadioButton
-                            android:id="@+id/gds02pre02b"
+                            android:id="@+id/gdsb02b"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
                             android:text="@string/gds02_02b" />
 
                         <RadioButton
-                            android:id="@+id/gds02pre02c"
+                            android:id="@+id/gdsb02c"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
                             android:text="@string/gds02_02c" />
 
                         <RadioButton
-                            android:id="@+id/gds02pre02d"
+                            android:id="@+id/gdsb02d"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
@@ -144,7 +144,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tvgds02pre03"
+                        android:id="@+id/tvgdsb03"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -154,33 +154,33 @@
                         android:textSize="20sp" />
 
                     <RadioGroup
-                        android:id="@+id/gds02pre03"
+                        android:id="@+id/gdsb03"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <RadioButton
-                            android:id="@+id/gds02pre03a"
+                            android:id="@+id/gdsb03a"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
                             android:text="@string/gds02_03a" />
 
                         <RadioButton
-                            android:id="@+id/gds02pre03b"
+                            android:id="@+id/gdsb03b"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
                             android:text="@string/gds02_03b" />
 
                         <RadioButton
-                            android:id="@+id/gds02pre03c"
+                            android:id="@+id/gdsb03c"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
                             android:text="@string/gds02_03c" />
 
                         <RadioButton
-                            android:id="@+id/gds02pre03d"
+                            android:id="@+id/gdsb03d"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
@@ -206,7 +206,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tvgds02pre04"
+                        android:id="@+id/tvgdsb04"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -216,33 +216,33 @@
                         android:textSize="20sp" />
 
                     <RadioGroup
-                        android:id="@+id/gds02pre04"
+                        android:id="@+id/gdsb04"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <RadioButton
-                            android:id="@+id/gds02pre04a"
+                            android:id="@+id/gdsb04a"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
                             android:text="@string/gds02_04a" />
 
                         <RadioButton
-                            android:id="@+id/gds02pre04b"
+                            android:id="@+id/gdsb04b"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
                             android:text="@string/gds02_04b" />
 
                         <RadioButton
-                            android:id="@+id/gds02pre04c"
+                            android:id="@+id/gdsb04c"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
                             android:text="@string/gds02_04c" />
 
                         <RadioButton
-                            android:id="@+id/gds02pre04d"
+                            android:id="@+id/gdsb04d"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
@@ -268,7 +268,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tvgds02pre05"
+                        android:id="@+id/tvgdsb05"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -278,33 +278,33 @@
                         android:textSize="20sp" />
 
                     <RadioGroup
-                        android:id="@+id/gds02pre05"
+                        android:id="@+id/gdsb05"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <RadioButton
-                            android:id="@+id/gds02pre05a"
+                            android:id="@+id/gdsb05a"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
                             android:text="@string/gds02_05a" />
 
                         <RadioButton
-                            android:id="@+id/gds02pre05b"
+                            android:id="@+id/gdsb05b"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
                             android:text="@string/gds02_05b" />
 
                         <RadioButton
-                            android:id="@+id/gds02pre05c"
+                            android:id="@+id/gdsb05c"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
                             android:text="@string/gds02_05c" />
 
                         <RadioButton
-                            android:id="@+id/gds02pre05d"
+                            android:id="@+id/gdsb05d"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"

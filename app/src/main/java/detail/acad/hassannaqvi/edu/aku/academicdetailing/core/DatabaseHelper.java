@@ -24,6 +24,7 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.HealthFacCont
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.HealthFacContract.singleHF;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.LHWsContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.LHWsContract.singleLHWs;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.NextMeetingContract.NMCTable;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.SessionContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.SessionContract.SessionTable;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.TehsilContract;
@@ -47,20 +48,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + FormsTable.TABLE_NAME + "("
             + FormsTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
             FormsTable.COLUMN_PROJECTNAME + " TEXT," +
+            FormsTable.COLUMN_loggin_TIME + " TEXT, " +
             FormsTable.COLUMN_SURVEYTYPE + " TEXT," +
+            FormsTable.COLUMN_MODULE + " TEXT, " +
+            FormsTable.COLUMN_SESSION + " TEXT, " +
             FormsTable.COLUMN_UID + " TEXT," +
             FormsTable.COLUMN_FORMDATE + " TEXT," +
             FormsTable.COLUMN_USER + " TEXT," +
             FormsTable.COLUMN_ISTATUS + " TEXT," +
             FormsTable.COLUMN_ISTATUS88X + " TEXT," +
-            FormsTable.COLUMN_SA + " TEXT," +
-            FormsTable.COLUMN_SNO + " TEXT," +
             FormsTable.COLUMN_ENDINGDATETIME + " TEXT," +
             FormsTable.COLUMN_GPSLAT + " TEXT," +
             FormsTable.COLUMN_GPSLNG + " TEXT," +
             FormsTable.COLUMN_GPSDT + " TEXT," +
             FormsTable.COLUMN_GPSACC + " TEXT," +
             FormsTable.COLUMN_GPSELEV + " TEXT," +
+            FormsTable.COLUMN_GPSTIME + " TEXT," +
             FormsTable.COLUMN_DEVICEID + " TEXT," +
             FormsTable.COLUMN_DEVICETAGID + " TEXT," +
             FormsTable.COLUMN_SYNCED + " TEXT," +
@@ -76,9 +79,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             FormsTable.COLUMN_POSTTEST_END_TIME + " TEXT ," +
             FormsTable.COLUMN_SESSION_START_TIME + " TEXT ," +
             FormsTable.COLUMN_SESSION_END_TIME + " TEXT, " +
-            FormsTable.COLUMN_loggin_TIME + " TEXT, " +
             FormsTable.COLUMN_PRE_TEST + " TEXT ," +
-            FormsTable.COLUMN_POST_TEST + " TEXT "
+            FormsTable.COLUMN_POST_TEST + " TEXT"
             + " ); ";
 
     private static final String SQL_CREATE_SESSION_TABLE = " CREATE TABLE " + SessionTable.TABLE_NAME
@@ -90,7 +92,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String SQL_DELETE_FORMS =
             "DROP TABLE IF EXISTS " + FormsTable.TABLE_NAME;
 
+
+    private static final String SQL_CREATE_NMS = "CREATE TABLE " + NMCTable.TABLE_NAME +
+            "( " + NMCTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + NMCTable.COLUMN_DEVICEID + " TEXT, " + NMCTable.COLUMN_LAT + " TEXT, "
+            + NMCTable.COLUMN_LNG + " TEXT, " + NMCTable.COLUMN_GPSTIME + " TEXT, " + NMCTable.COLUMN_BTYPE + " TEXT, "
+            + NMCTable.COLUMN_BOOK_DATE + " TEXT, " + NMCTable.COLUMN_BOOKBY + " TEXT, "
+            + NMCTable.COLUMN_DOCTOR_NAME + " TEXT, " + NMCTable.COLUMN_DATE
+
+            + " TEXT, " + NMCTable.COLUMN_TIME + " TEXT, "
+            + NMCTable.COLUMN_MOD + " TEXT, " + NMCTable.COLUMN_SUBMOD + " TEXT, " + NMCTable.COLUMN_SESSION + " TEXT " + ");";
+
     private static final String SQL_DELETE_SESSION = "DROP TABLE IF EXISTS " + SessionTable.TABLE_NAME;
+    private static final String SQL_DELETE_NMS= "DROP TABLE IF EXISTS " + NMCTable.TABLE_NAME;
 
     private static final String SQL_DELETE_HEALTH_FACILITIES = "DROP TABLE IF EXISTS " + singleHF.TABLE_NAME;
     private static final String SQL_DELETE_TEHSILS = "DROP TABLE IF EXISTS " + singleTehsil.TABLE_NAME;
@@ -133,6 +146,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_SESSION_TABLE);
 
         db.execSQL(SQL_CREATE_HEALTH_FACILITIES);
+        db.execSQL(SQL_CREATE_NMS);
         /*db.execSQL(SQL_CREATE_TEHSILS);
         db.execSQL(SQL_CREATE_UCS);
         db.execSQL(SQL_CREATE_LHWS);*/
@@ -145,6 +159,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_DELETE_FORMS);
         db.execSQL(SQL_DELETE_HEALTH_FACILITIES);
         db.execSQL(SQL_DELETE_SESSION);
+        db.execSQL(SQL_DELETE_NMS);
     }
 
     public List<HealthFacContract> getHFData(HealthFacContract.ColumnsClass... columnsClass) {
@@ -553,7 +568,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(FormsTable.COLUMN_USER, fc.getUser());
         values.put(FormsTable.COLUMN_ISTATUS, fc.getIstatus());
         values.put(FormsTable.COLUMN_ISTATUS88X, fc.getIstatus88x());
-        values.put(FormsTable.COLUMN_SA, fc.getsA());
+//        values.put(FormsTable.COLUMN_SA, fc.getsA());
         values.put(FormsTable.COLUMN_ENDINGDATETIME, fc.getEndingdatetime());
         values.put(FormsTable.COLUMN_GPSLAT, fc.getGpsLat());
         values.put(FormsTable.COLUMN_GPSLNG, fc.getGpsLng());
@@ -561,6 +576,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(FormsTable.COLUMN_GPSACC, fc.getGpsAcc());
         values.put(FormsTable.COLUMN_GPSELEV, fc.getGpsElev());
         values.put(FormsTable.COLUMN_DEVICEID, fc.getDeviceID());
+        values.put(FormsTable.COLUMN_GPSTIME, fc.getGpsTime());
         values.put(FormsTable.COLUMN_DEVICETAGID, fc.getDevicetagID());
         values.put(FormsTable.COLUMN_SYNCED, fc.getSynced());
         values.put(FormsTable.COLUMN_SYNCED_DATE, fc.getSynced_date());
@@ -632,8 +648,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 FormsTable.COLUMN_USER,
                 FormsTable.COLUMN_ISTATUS,
                 FormsTable.COLUMN_ISTATUS88X,
-                FormsTable.COLUMN_SA,
-                FormsTable.COLUMN_SNO,
                 FormsTable.COLUMN_ENDINGDATETIME,
                 FormsTable.COLUMN_GPSLAT,
                 FormsTable.COLUMN_GPSLNG,
@@ -776,24 +790,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public int updatesA() {
-        SQLiteDatabase db = this.getReadableDatabase();
-
-// New value for one column
-        ContentValues values = new ContentValues();
-        values.put(FormsTable.COLUMN_SA, MainApp.fc.getsA());
-
-// Which row to update, based on the ID
-        String selection = FormsTable._ID + " = ?";
-        String[] selectionArgs = {String.valueOf(MainApp.fc.get_ID())};
-
-        int count = db.update(FormsTable.TABLE_NAME,
-                values,
-                selection,
-                selectionArgs);
-        return count;
-    }
-
     public int updateEnding() {
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -804,6 +800,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(FormsTable.COLUMN_ENDINGDATETIME, MainApp.fc.getEndingdatetime());
         values.put(FormsTable.COLUMN_SESSION_START_TIME, MainApp.fc.getSessionStartTime());
         values.put(FormsTable.COLUMN_SESSION_END_TIME, MainApp.fc.getSessionEndTime());
+        values.put(FormsTable.COLUMN_SESSION, MainApp.fc.getSession());
+        values.put(FormsTable.COLUMN_MODULE, MainApp.fc.getModule());
 
 
 // Which row to update, based on the ID
@@ -869,5 +867,49 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(SessionTable.COLUMN_SESSION_TIME, sc.getSessionTime());
         values.put(SessionTable.COLUMN_SLIDE_NUMBER, sc.getSlideNumber());
         db.insert(SessionTable.TABLE_NAME, null, values);
+    }
+    public String getProviderName(){
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String providerName;
+        Cursor cursor = db.query(FormsTable.TABLE_NAME,new String[]{FormsTable.COLUMN_PROVIDER_NAME},
+                FormsTable._ID + "=?",new String[]{String.valueOf(MainApp.fc.get_ID())},
+                null,null,null);
+        cursor.moveToFirst();
+        do{
+             providerName = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_PROVIDER_NAME));
+        }while (cursor.moveToNext());
+
+
+        return providerName;
+
+    }
+
+    public void  updateNMS() {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+// New value for one column
+        ContentValues values = new ContentValues();
+        values.put(NMCTable.COLUMN_DOCTOR_NAME, MainApp.nmc.getDoctorName());
+        values.put(NMCTable.COLUMN_DATE, MainApp.nmc.getDate());
+        values.put(NMCTable.COLUMN_TIME, MainApp.nmc.getTime());
+        values.put(NMCTable.COLUMN_MOD, MainApp.nmc.getModule());
+        values.put(NMCTable.COLUMN_SUBMOD, MainApp.nmc.getSubModule());
+        values.put(NMCTable.COLUMN_SESSION, MainApp.nmc.getSession());
+        values.put(NMCTable.COLUMN_BOOK_DATE, MainApp.nmc.getDoBooking());
+        values.put(NMCTable.COLUMN_BOOKBY, MainApp.nmc.getBookBy());
+        values.put(NMCTable.COLUMN_DEVICEID, MainApp.deviceId);
+        values.put(NMCTable.COLUMN_LAT, MainApp.nmc.getLat());
+        values.put(NMCTable.COLUMN_LNG, MainApp.nmc.getLng());
+        values.put(NMCTable.COLUMN_BTYPE, MainApp.nmc.getBookingtype());
+        values.put(NMCTable.COLUMN_GPSTIME, MainApp.nmc.getGpsTime());
+        db.insert(NMCTable.TABLE_NAME,null,values);
+
+    }
+
+    public interface DBConnection{
+        String DB_NAME = "acad_detail";
     }
 }

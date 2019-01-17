@@ -23,7 +23,7 @@ public class GDSSession02_Pre_test extends AppCompatActivity implements RadioBut
 
     ActivityGdssession02PreTestBinding bi;
     private static final String TAG = "GDSSession02_Pre_test";
-
+    String type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +32,16 @@ public class GDSSession02_Pre_test extends AppCompatActivity implements RadioBut
         bi = DataBindingUtil.setContentView(this, R.layout.activity_gdssession02__pre_test);
         bi.setCallback(this);
 
+        type = getIntent().getStringExtra("type");
+
         events_call();
 
-        MainApp.fc.setPreTestStartTime(MainApp.getCurrentTime());
+        if(type.equals("pre")){
+            MainApp.fc.setPreTestStartTime(MainApp.getCurrentTime());
+        }else{
+            MainApp.fc.setPostTestStartTime(MainApp.getCurrentTime());
+        }
+
         if(MainApp.isSlideStart){
             bi.btnContinue.setText("Start Training");
         }else{
@@ -50,12 +57,16 @@ public class GDSSession02_Pre_test extends AppCompatActivity implements RadioBut
             try {
                 SaveDraft();
                 if (UpdateDB()) {
-                    if (MainApp.isSlideStart) {
-                        startActivity(new Intent(this, ViewPagerActivity.class).putExtra("slides", getIntent().getIntArrayExtra("slides")));
-                        finish();
-                    } else {
-                        Toast.makeText(this, "Training Completed", Toast.LENGTH_SHORT).show();
-                        finish();
+                    if(type.equals("pre")){
+                        if (MainApp.isSlideStart) {
+                            startActivity(new Intent(this, ViewPagerActivity.class).putExtra("slides", getIntent().getIntArrayExtra("slides")));
+                            finish();
+                        } else {
+                            Toast.makeText(this, "Training Completed", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+                    }else{
+                        MainApp.endActivity(this, "Are You Sure You want to Continue?", true);
                     }
                 } else {
                     Toast.makeText(this, "Error in updating db!!", Toast.LENGTH_SHORT).show();
@@ -69,7 +80,12 @@ public class GDSSession02_Pre_test extends AppCompatActivity implements RadioBut
     private boolean UpdateDB() {
 
         DatabaseHelper db = new DatabaseHelper(this);
-        int count = db.updatePreTest();
+        int count;
+        if(type.equals("pre")){
+            count = db.updatePreTest();
+        }else{
+            count = db.updatePostTest();
+        }
         if (count == 1) {
             return true;
         } else {
@@ -81,9 +97,15 @@ public class GDSSession02_Pre_test extends AppCompatActivity implements RadioBut
 
     private void SaveDraft() {
 
-        MainApp.fc.setPreTestEndTime(MainApp.getCurrentTime());
-        JSONObject sCdb01pre = GeneratorClass.getContainerJSON(bi.fldGrpPreGds02, true);
-        MainApp.fc.setPre_test(String.valueOf(sCdb01pre));
+        if(type.equals("pre")){
+            MainApp.fc.setPreTestEndTime(MainApp.getCurrentTime());
+            JSONObject json = GeneratorClass.getContainerJSON(bi.fldGrpPreGds02, true,type);
+            MainApp.fc.setPre_test(String.valueOf(json));
+        }else{
+            MainApp.fc.setPostTestEndTime(MainApp.getCurrentTime());
+            JSONObject json = GeneratorClass.getContainerJSON(bi.fldGrpPreGds02, true,type);
+            MainApp.fc.setPost_test(String.valueOf(json));
+        }
     }
 
     private boolean formValidation() {

@@ -8,21 +8,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.CDBSession01_Pre_test;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.CDBSession02_Pre_test;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.FANC_Post_test;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.FANC_Pre_test;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.GDSSession01_Post_test;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.GDSSession01_Pre_test;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.GDSSession02_Post_test;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.GDSSession02_Pre_test;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.VB_Post_test;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.VB_Pre_test;
 
 public class Utils {
 
+    public static final String[] modules = new String[]{"Child Health","Maternal Health","New Born Health"};
     public static final String[] childModule = new String[]{"General Danger Sign", "Cough & Difficult Breathing", "Diarrhoea", "PSBI"};
     public static final String[] GDS = new String[]{"GDS(Assessment and Classification)", "GDS(Management, Counseling and Referral)"};
     public static final String[] CDB = new String[]{"CDB(Assessment and Classification)", "CDB(Management, Counseling and Referral)"};
@@ -156,16 +155,13 @@ public class Utils {
             @Override
             public void onClick(View v) {
 
-                if (Utils.getMaternalSessions(index) != null) {
-                    MainApp.isSlideStart = true;
-                    context.startActivity(new Intent(context, selectPreTest(index))
-                            .putExtra("slides", MainApp.isMaternal ? Utils.getMaternalSessions(index)
-                                    : MainApp.isChild ? Utils.getChildSessions(index, moduleName) : null));
-                    MainApp.fc.setSessionStartTime(MainApp.getCurrentTime());
-                    dialog.dismiss();
-                } else {
-                    Toast.makeText(context, "Module is under development", Toast.LENGTH_SHORT).show();
-                }
+                MainApp.isSlideStart = true;
+                context.startActivity(new Intent(context, selectTest(index, moduleName))
+                        .putExtra("slides", MainApp.isMaternal ? Utils.getMaternalSessions(index)
+                                : MainApp.isChild ? Utils.getChildSessions(index, moduleName) : null).putExtra("type","pre"));
+                MainApp.fc.setSessionStartTime(MainApp.getCurrentTime());
+                dialog.dismiss();
+
             }
         });
 
@@ -178,7 +174,7 @@ public class Utils {
         });
     }
 
-    public static void showPostDialoge(final Context context, final int index) {
+    public static void showPostDialoge(final Context context, final int index, final String moduleName) {
 
         MainApp.isSlideStart = false;
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -206,8 +202,9 @@ public class Utils {
             @Override
             public void onClick(View v) {
 
-                context.startActivity(new Intent(context, selectPostTest(index))
-                );
+                context.startActivity(new Intent(context, selectTest(index, moduleName))
+                        .putExtra("slides", MainApp.isMaternal ? Utils.getMaternalSessions(index)
+                                : MainApp.isChild ? Utils.getChildSessions(index, moduleName) : null).putExtra("type","post"));
                 ((Activity) context).finish();
                 dialog.dismiss();
             }
@@ -223,7 +220,7 @@ public class Utils {
 
     }
 
-    public static Class<?> selectPreTest(int index) {
+    public static Class<?> selectTest(int index, String moduleName) {
 
         if (MainApp.isMaternal) {
 
@@ -236,19 +233,32 @@ public class Utils {
             }
         } else if (MainApp.isChild) {
 
-            switch (index) {
+            if (moduleName.equals("gds")) {
 
-                case 0:
-                    return GDSSession01_Pre_test.class;
-                case 1:
-                    return GDSSession02_Pre_test.class;
+                switch (index) {
+                    case 0:
+                        return GDSSession01_Pre_test.class;
+                    case 1:
+                        return GDSSession02_Pre_test.class;
+                }
+
+            } else if (moduleName.equals("cdb")) {
+                switch (index) {
+                    case 0:
+                        return CDBSession01_Pre_test.class;
+                    case 1:
+                        return CDBSession02_Pre_test.class;
+                }
+
             }
+
+
         }
         return null;
 
     }
 
-    public static Class<?> selectPostTest(int index) {
+    public static Class<?> selectPostTest(int index, String moduleName) {
 
         if (MainApp.isMaternal) {
 
@@ -261,13 +271,24 @@ public class Utils {
             }
         } else if (MainApp.isChild) {
 
-            switch (index) {
+            if (moduleName.equals("gds")) {
+                switch (index) {
+                    case 0:
+                        return GDSSession01_Post_test.class;
+                    case 1:
+                        return GDSSession02_Post_test.class;
+                }
+            } else if (moduleName.equals("cdb")) {
+                switch (index) {
+                    case 0:
+                        return CDBSession01_Post_test.class;
+                    case 1:
+                        return CDBSession02_Post_test.class;
+                }
 
-                case 0:
-                    return GDSSession01_Post_test.class;
-                case 1:
-                    return GDSSession02_Post_test.class;
             }
+
+
         }
         return null;
 
@@ -334,6 +355,8 @@ public class Utils {
             } else if (moduleName.equals("cdb")) {
 
             } else if (moduleName.equals("psbi")) {
+
+            }else if(moduleName.equals("dia")){
 
             }
 

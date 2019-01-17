@@ -51,7 +51,7 @@ public class FANC_Post_test extends AppCompatActivity {
                 } else {
                     Toast.makeText(this, "Error in updating db!!", Toast.LENGTH_SHORT).show();
                 }
-            } catch (JSONException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -70,7 +70,7 @@ public class FANC_Post_test extends AppCompatActivity {
 
     }
 
-    private void SaveDraft() throws JSONException {
+    private void SaveDraft() {
 
         MainApp.fc.setPostTestEndTime(MainApp.getCurrentTime());
         JSONObject sVb = GeneratorClass.getContainerJSON(bi.fldGrpPostFanc, true);
@@ -93,10 +93,8 @@ public class FANC_Post_test extends AppCompatActivity {
         }
         if (!validatorClass.EmptyRadioButton(this, bi.fancpost05, bi.fancpost05a, getString(R.string.fanc_05))) {
             return false;
-        }if (!validatorClass.EmptyCheckBox(this, bi.fancPost06,bi.fancpost06a, getString(R.string.fanc_06))) {
-            return false;
         }
-        return true;
+        return validatorClass.EmptyCheckBox(this, bi.fancPost06, bi.fancpost06a, getString(R.string.fanc_06));
     }
 
     public void BtnEnd() {

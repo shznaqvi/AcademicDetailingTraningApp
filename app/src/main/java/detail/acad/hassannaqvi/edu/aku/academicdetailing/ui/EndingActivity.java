@@ -2,6 +2,8 @@ package detail.acad.hassannaqvi.edu.aku.academicdetailing.ui;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +18,9 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityEndingBinding;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments.InfoFragment;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments.ScheduleFragment;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.interfaces.Callbacks;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.validation.validatorClass;
 
 public class EndingActivity extends AppCompatActivity {
@@ -23,12 +28,14 @@ public class EndingActivity extends AppCompatActivity {
 
     ActivityEndingBinding bi;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         bi = DataBindingUtil.setContentView(this, R.layout.activity_ending);
         bi.setCallback(this);
+
 
 
         if (getIntent().getBooleanExtra("complete", false)) {
@@ -54,8 +61,8 @@ public class EndingActivity extends AppCompatActivity {
                 if (formValidation()) {
                     SaveDraft();
                     if (UpdateDB()) {
-                        startActivity(new Intent(EndingActivity.this, MainActivity.class));
-                        finish();
+//                        startActivity(new Intent(EndingActivity.this, MainActivity.class));
+                        loadScheduleFragment();
                     } else {
                         Toast.makeText(EndingActivity.this, "Error in updating db!!", Toast.LENGTH_SHORT).show();
                     }
@@ -85,6 +92,8 @@ public class EndingActivity extends AppCompatActivity {
         MainApp.fc.setIstatus88x(bi.status96x.getText().toString());
         MainApp.fc.setEndingdatetime(MainApp.getCurrentTime());
         MainApp.fc.setSessionEndTime(MainApp.getCurrentTime());
+        MainApp.fc.setSession(MainApp.moduleSession);
+        MainApp.fc.setModule(MainApp.moduleName);
     }
 
     private boolean formValidation() {
@@ -93,11 +102,19 @@ public class EndingActivity extends AppCompatActivity {
             return false;
         }
         if (bi.status96.isChecked()) {
-            if (!validatorClass.EmptyTextBox(this, bi.status96x, getString(R.string.status))) {
-                return false;
-            }
+            return validatorClass.EmptyTextBox(this, bi.status96x, getString(R.string.status));
         }
 
         return true;
+    }
+
+    public void loadScheduleFragment(){
+        ScheduleFragment fragment = new ScheduleFragment();
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.setCustomAnimations(R.anim.slide_in,R.anim.slide_out);
+        transaction.replace(bi.fragmentLayout.getId(),fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }

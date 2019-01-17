@@ -24,6 +24,7 @@ public class VB_Pre_test extends AppCompatActivity {
     ActivityVbPreTestBinding bi;
 
     String currentDateTime = new SimpleDateFormat(" dd/MM/yyyy HH:mm:ss").format(new Date().getTime());
+    String type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +33,14 @@ public class VB_Pre_test extends AppCompatActivity {
         bi = DataBindingUtil.setContentView(this, R.layout.activity_vb__pre_test);
         bi.setCallback(this);
 
-        MainApp.fc.setPreTestStartTime(MainApp.getCurrentTime());
+        type = getIntent().getStringExtra("type");
+
+        if(type.equals("pre")){
+            MainApp.fc.setPreTestStartTime(MainApp.getCurrentTime());
+        }else{
+            MainApp.fc.setPostTestStartTime(MainApp.getCurrentTime());
+        }
+
         if (MainApp.isSlideStart) {
             bi.btnContinue.setText("Start Training");
         } else {
@@ -45,17 +53,21 @@ public class VB_Pre_test extends AppCompatActivity {
             try {
                 SaveDraft();
                 if (UpdateDB()) {
-                    if (MainApp.isSlideStart) {
-                        startActivity(new Intent(this, ViewPagerActivity.class).putExtra("slides", getIntent().getIntArrayExtra("slides")));
-                        finish();
-                    } else {
-                        Toast.makeText(this, "Training Completed", Toast.LENGTH_SHORT).show();
-                        finish();
+                    if(type.equals("pre")){
+                        if (MainApp.isSlideStart) {
+                            startActivity(new Intent(this, ViewPagerActivity.class).putExtra("slides", getIntent().getIntArrayExtra("slides")));
+                            finish();
+                        } else {
+                            Toast.makeText(this, "Training Completed", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+                    }else{
+                        MainApp.endActivity(this, "Are You Sure You want to Continue?", true);
                     }
                 } else {
                     Toast.makeText(this, "Error in updating db!!", Toast.LENGTH_SHORT).show();
                 }
-            } catch (JSONException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -64,7 +76,12 @@ public class VB_Pre_test extends AppCompatActivity {
     private boolean UpdateDB() {
 
         DatabaseHelper db = new DatabaseHelper(this);
-        int count = db.updatePreTest();
+        int count;
+        if(type.equals("pre")){
+             count = db.updatePreTest();
+        }else{
+             count = db.updatePostTest();
+        }
         if (count == 1) {
             return true;
         } else {
@@ -74,21 +91,23 @@ public class VB_Pre_test extends AppCompatActivity {
 
     }
 
-    private void SaveDraft() throws JSONException {
+    private void SaveDraft() {
 
-
-        MainApp.fc.setPreTestEndTime(MainApp.getCurrentTime());
-        JSONObject sVb = GeneratorClass.getContainerJSON(bi.fldGrpVbPre, true);
-        MainApp.fc.setPre_test(String.valueOf(sVb));
+        if(type.equals("pre")){
+            MainApp.fc.setPreTestEndTime(MainApp.getCurrentTime());
+            JSONObject json = GeneratorClass.getContainerJSON(bi.fldGrpVbPre, true,type);
+            MainApp.fc.setPre_test(String.valueOf(json));
+        }else{
+            MainApp.fc.setPostTestEndTime(MainApp.getCurrentTime());
+            JSONObject json = GeneratorClass.getContainerJSON(bi.fldGrpVbPre, true,type);
+            MainApp.fc.setPost_test(String.valueOf(json));
+        }
 
     }
 
     private boolean formValidation() {
 
-       if(!validatorClass.EmptyCheckingContainer(this,bi.fldGrpVbPre)){
-           return false;
-       }
-        return true;
+        return validatorClass.EmptyCheckingContainer(this, bi.fldGrpVbPre);
     }
 
     public void BtnEnd() {

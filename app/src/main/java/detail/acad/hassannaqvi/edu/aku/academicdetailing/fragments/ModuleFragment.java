@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
@@ -23,7 +24,7 @@ public class ModuleFragment extends Fragment {
     boolean isChildClicked = false;
     boolean isMaternalClicked = false;
     boolean isChildSubClicked = false;
-    String subModuleName;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,13 +40,15 @@ public class ModuleFragment extends Fragment {
         bi = DataBindingUtil.inflate(inflater, R.layout.fragment_module, container, false);
         view = bi.getRoot();
 
+        MainApp.hideKeyboard(getActivity());
 
-        setOnClickListener(bi);
+
+        setOnClickListener();
 
         return view;
     }
 
-    private void setOnClickListener(final FragmentModuleBinding bi) {
+    private void setOnClickListener() {
 
 
         bi.childHealth.setOnClickListener(new View.OnClickListener() {
@@ -100,13 +103,17 @@ public class ModuleFragment extends Fragment {
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    MainApp.moduleName = "maternalHealth";
                     MainApp.isChild = false;
                     MainApp.isMaternal = true;
-                    MainApp.moduleName = "maternalHealth";
                     MainApp.moduleSession = Utils.maternalModule[finalI];
-                    Utils.showPreDialogue(getActivity(), finalI, MainApp.moduleName);
-                    MainApp.maternalIndex = finalI;
+                    if(Utils.selectTest(finalI,MainApp.moduleName) != null){
+                        Utils.showPreDialogue(getActivity(), finalI, MainApp.moduleName);
+                        MainApp.maternalIndex = finalI;
+                    }else{
+                        Toast.makeText(getActivity(), "Module is under Development", Toast.LENGTH_SHORT).show();
+                    }
+
 
                 }
             });
@@ -142,12 +149,18 @@ public class ModuleFragment extends Fragment {
                             vi.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
+
                                     MainApp.moduleName = "childHealth";
                                     MainApp.moduleSession = selectSubModule(finalI)[finalI1];
                                     MainApp.isChild = true;
                                     MainApp.isMaternal = false;
-                                    Utils.showPreDialogue(getActivity(), finalI, subModuleName);
-                                    MainApp.childlIndex = finalI1;
+                                    if(Utils.selectTest(finalI1,MainApp.subModuleName) != null){
+                                        Utils.showPreDialogue(getActivity(), finalI1,  MainApp.subModuleName);
+                                        MainApp.childlIndex = finalI1;
+                                    }else{
+                                        Toast.makeText(getActivity(), "Module is under Development", Toast.LENGTH_SHORT).show();
+                                    }
+
                                 }
                             });
 
@@ -168,16 +181,16 @@ public class ModuleFragment extends Fragment {
 
     public String[] selectSubModule(int finalI) {
         if (finalI == 0) {
-            subModuleName = "gds";
+            MainApp.subModuleName = "gds";
             return Utils.GDS;
         } else if (finalI == 1) {
-            subModuleName = "cdb";
+            MainApp.subModuleName = "cdb";
             return Utils.CDB;
         } else if (finalI == 2) {
-            subModuleName = "dia";
+            MainApp.subModuleName = "dia";
             return Utils.Diarrhea;
         } else {
-            subModuleName = "psbi";
+            MainApp.subModuleName = "psbi";
             return Utils.PSBI;
         }
     }

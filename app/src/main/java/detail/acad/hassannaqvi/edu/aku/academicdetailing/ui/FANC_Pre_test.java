@@ -22,6 +22,7 @@ public class FANC_Pre_test extends AppCompatActivity {
 
     ActivityFancPreTestBinding bi;
     String currentDateTime = new SimpleDateFormat(" dd/MM/yyyy HH:mm:ss").format(new Date().getTime());
+    String type;
 
 
     @Override
@@ -31,7 +32,14 @@ public class FANC_Pre_test extends AppCompatActivity {
         bi = DataBindingUtil.setContentView(this, R.layout.activity_fanc__pre_test);
         bi.setCallback(this);
 
-        MainApp.fc.setPreTestStartTime(MainApp.getCurrentTime());
+        type = getIntent().getStringExtra("type");
+
+        if(type.equals("pre")){
+            MainApp.fc.setPreTestStartTime(MainApp.getCurrentTime());
+        }else{
+            MainApp.fc.setPostTestStartTime(MainApp.getCurrentTime());
+        }
+
         if (MainApp.isSlideStart) {
             bi.btnContinue.setText("Start Training");
         } else {
@@ -44,13 +52,18 @@ public class FANC_Pre_test extends AppCompatActivity {
             try {
                 SaveDraft();
                 if (UpdateDB()) {
-                    if (MainApp.isSlideStart) {
-                        startActivity(new Intent(this, ViewPagerActivity.class).putExtra("slides", getIntent().getIntArrayExtra("slides")));
-                        finish();
-                    } else {
-                        Toast.makeText(this, "Training Completed", Toast.LENGTH_SHORT).show();
-                        finish();
+                    if(type.equals("pre")){
+                        if (MainApp.isSlideStart) {
+                            startActivity(new Intent(this, ViewPagerActivity.class).putExtra("slides", getIntent().getIntArrayExtra("slides")));
+                            finish();
+                        } else {
+                            Toast.makeText(this, "Training Completed", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+                    }else{
+                        MainApp.endActivity(this, "Are You Sure You want to Continue?", true);
                     }
+
                 } else {
                     Toast.makeText(this, "Error in updating db!!", Toast.LENGTH_SHORT).show();
                 }
@@ -63,7 +76,12 @@ public class FANC_Pre_test extends AppCompatActivity {
     private boolean UpdateDB() {
 
         DatabaseHelper db = new DatabaseHelper(this);
-        int count = db.updatePreTest();
+        int count;
+        if(type.equals("pre")){
+            count = db.updatePreTest();
+        }else{
+            count = db.updatePostTest();
+        }
         if (count == 1) {
             return true;
         } else {
@@ -76,9 +94,15 @@ public class FANC_Pre_test extends AppCompatActivity {
 
     private void SaveDraft() {
 
-        MainApp.fc.setPreTestEndTime(MainApp.getCurrentTime());
-        JSONObject sVb = GeneratorClass.getContainerJSON(bi.fldGrpPreFanc, true);
-        MainApp.fc.setPre_test(String.valueOf(sVb));
+        if(type.equals("pre")){
+            MainApp.fc.setPreTestEndTime(MainApp.getCurrentTime());
+            JSONObject json = GeneratorClass.getContainerJSON(bi.fldGrpPreFanc, true,type);
+            MainApp.fc.setPre_test(String.valueOf(json));
+        }else{
+            MainApp.fc.setPostTestEndTime(MainApp.getCurrentTime());
+            JSONObject json = GeneratorClass.getContainerJSON(bi.fldGrpPreFanc, true,type);
+            MainApp.fc.setPost_test(String.valueOf(json));
+        }
     }
 
     private boolean formValidation() {

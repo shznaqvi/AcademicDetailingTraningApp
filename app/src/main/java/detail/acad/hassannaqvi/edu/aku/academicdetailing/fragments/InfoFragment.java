@@ -2,9 +2,12 @@ package detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments;
 
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +32,8 @@ public class InfoFragment extends Fragment {
     View view;
     Callbacks callbacks;
 
+    private static final String TAG = "InfoFragment";
+
 
 
     public InfoFragment() {
@@ -43,12 +48,12 @@ public class InfoFragment extends Fragment {
         bi = DataBindingUtil.inflate(inflater,R.layout.fragment_info,container,false);
         view = bi.getRoot();
 
-        onCLickListener(bi);
+        onCLickListener();
         return view;
 
     }
 
-    private void onCLickListener(FragmentInfoBinding bi) {
+    private void onCLickListener() {
 
         bi.proceedButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,7 +89,7 @@ public class InfoFragment extends Fragment {
         return true;
     }
 
-    private void saveDraft() throws JSONException  {
+    private void saveDraft() {
 
         MainApp.fc = new FormsContract();
         MainApp.fc.setProviderID(bi.providerId.getText().toString());
@@ -93,14 +98,41 @@ public class InfoFragment extends Fragment {
         MainApp.fc.setDistrictID(bi.info1.getText().toString());
         MainApp.fc.setAppversion(MainApp.versionName);
         MainApp.fc.setLogginTime(MainApp.logginTime);
+        MainApp.fc.setDeviceID(MainApp.deviceId);
+        setGPS();
     }
 
     private boolean formValidation() {
 
-        if(!validatorClass.EmptyCheckingContainer(getActivity(),bi.fldGrpInfo)){
-            return false;
+        return validatorClass.EmptyCheckingContainer(getActivity(), bi.fldGrpInfo);
+    }
+
+    public void setGPS() {
+        SharedPreferences GPSPref = getActivity().getSharedPreferences("GPSCoordinates", Context.MODE_PRIVATE);
+
+        try {
+            String lat = GPSPref.getString("Latitude", "0");
+            String lang = GPSPref.getString("Longitude", "0");
+            String acc = GPSPref.getString("Accuracy", "0");
+            String dt = GPSPref.getString("Time", "0");
+
+            if (lat.equals("0") && lang.equals("0")) {
+                Toast.makeText(getActivity(), "Could not obtained GPS points", Toast.LENGTH_SHORT).show();
+            }
+
+            String date = DateFormat.format("dd-MM-yyyy HH:mm", Long.parseLong(dt)).toString();
+
+            MainApp.fc.setGpsLat(lat);
+            MainApp.fc.setGpsLng(lang);
+            MainApp.fc.setGpsAcc(acc);
+            MainApp.fc.setGpsTime(date); // Timestamp is converted to date above
+
+            Toast.makeText(getActivity(), "GPS set", Toast.LENGTH_SHORT).show();
+
+        } catch (Exception e) {
+            Log.e(TAG, "setGPS: " + e.getMessage());
         }
-        return true;
+
     }
 
     @Override

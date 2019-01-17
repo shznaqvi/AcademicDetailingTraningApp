@@ -42,7 +42,6 @@ public class ViewPagerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         bi = DataBindingUtil.setContentView(this, R.layout.activity_view_pager);
 
-
         slides = getIntent().getIntArrayExtra("slides");
 
         settingupViewPager();
@@ -81,10 +80,10 @@ public class ViewPagerActivity extends AppCompatActivity {
                 if (lastItemPosition == slides.length - 1) {
 
                     if (MainApp.isMaternal) {
-                        Utils.showPostDialoge(ViewPagerActivity.this, MainApp.maternalIndex);
+                        Utils.showPostDialoge(ViewPagerActivity.this, MainApp.maternalIndex,MainApp.subModuleName);
 
                     } else if (MainApp.isChild) {
-                        Utils.showPostDialoge(ViewPagerActivity.this, MainApp.childlIndex);
+                        Utils.showPostDialoge(ViewPagerActivity.this, MainApp.childlIndex,MainApp.subModuleName);
                     }
 
 

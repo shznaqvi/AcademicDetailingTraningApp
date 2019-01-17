@@ -51,6 +51,33 @@ public class FormsContract {
     private String preTestStartTime="";
     private String preTestEndTime="";
     private String pre_test ="";
+    private String module ="";
+    private String gpsTime = "";
+    private String session ="";
+
+    public String getGpsTime() {
+        return gpsTime;
+    }
+
+    public void setGpsTime(String gpsTime) {
+        this.gpsTime = gpsTime;
+    }
+
+    public String getModule() {
+        return module;
+    }
+
+    public void setModule(String module) {
+        this.module = module;
+    }
+
+    public String getSession() {
+        return session;
+    }
+
+    public void setSession(String session) {
+        this.session = session;
+    }
 
     public String getPre_test() {
         return pre_test;
@@ -199,8 +226,6 @@ public class FormsContract {
         this.user = jsonObject.getString(FormsTable.COLUMN_USER);
         this.istatus = jsonObject.getString(FormsTable.COLUMN_ISTATUS);
         this.istatus88x = jsonObject.getString(FormsTable.COLUMN_ISTATUS88X);
-        this.sA= jsonObject.getString(FormsTable.COLUMN_SA);
-        this.sno = jsonObject.getString(FormsTable.COLUMN_SNO);
         this.endingdatetime = jsonObject.getString(FormsTable.COLUMN_ENDINGDATETIME);
         this.gpsLat = jsonObject.getString(FormsTable.COLUMN_GPSLAT);
         this.gpsLng = jsonObject.getString(FormsTable.COLUMN_GPSLNG);
@@ -227,8 +252,6 @@ public class FormsContract {
         this.user = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_USER));
         this.istatus = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_ISTATUS));
         this.istatus88x = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_ISTATUS88X));
-        this.sA = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SA));
-        this.sno = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SNO));
         this.endingdatetime = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_ENDINGDATETIME));
         this.gpsLat = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_GPSLAT));
         this.gpsLng = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_GPSLNG));
@@ -259,12 +282,7 @@ public class FormsContract {
         json.put(FormsTable.COLUMN_USER, this.user == null ? JSONObject.NULL : this.user);
         json.put(FormsTable.COLUMN_ISTATUS, this.istatus == null ? JSONObject.NULL : this.istatus);
         json.put(FormsTable.COLUMN_ISTATUS88X, this.istatus88x == null ? JSONObject.NULL : this.istatus88x);
-        json.put(FormsTable.COLUMN_SNO, this.sno == null ? JSONObject.NULL : this.sno);
         json.put(FormsTable.COLUMN_ENDINGDATETIME, this.endingdatetime == null ? JSONObject.NULL : this.endingdatetime);
-
-        if (!this.sA.equals("")) {
-            json.put(FormsTable.COLUMN_SA, this.sA.equals("") ? JSONObject.NULL : new JSONObject(this.sA));
-        }
 
         json.put(FormsTable.COLUMN_GPSLAT, this.gpsLat == null ? JSONObject.NULL : this.gpsLat);
         json.put(FormsTable.COLUMN_GPSLNG, this.gpsLng == null ? JSONObject.NULL : this.gpsLng);
@@ -452,13 +470,12 @@ public class FormsContract {
         public static final String COLUMN_USER = "user";
         public static final String COLUMN_ISTATUS = "istatus";
         public static final String COLUMN_ISTATUS88X = "istatus88x";
-        public static final String COLUMN_SA = "sa";
-        public static final String COLUMN_SNO = "sno";
         public static final String COLUMN_ENDINGDATETIME = "endingdatetime";
         public static final String COLUMN_GPSLAT = "gpslat";
         public static final String COLUMN_GPSLNG = "gpslng";
         public static final String COLUMN_GPSDT = "gpsdt";
         public static final String COLUMN_GPSACC = "gpsacc";
+        public static final String COLUMN_GPSTIME = "gps_time";
         public static final String COLUMN_GPSELEV = "gpselev";
         public static final String COLUMN_DEVICEID = "deviceid";
         public static final String COLUMN_DEVICETAGID = "devicetagid";
@@ -478,6 +495,8 @@ public class FormsContract {
         public static final String COLUMN_loggin_TIME = "login_time";
         public static final String COLUMN_PRE_TEST = "pre_test";
         public static final String COLUMN_POST_TEST = "post_test";
+        public static final String COLUMN_MODULE = "module";
+        public static final String COLUMN_SESSION= "session";
 
 
     }

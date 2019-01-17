@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         FragmentTransaction transaction = manager.beginTransaction();
 //        transaction.setCustomAnimations(R.anim.slide_in,R.anim.slide_out);
         transaction.replace(bi.mainLayout.getId(),fragment);
-        transaction.addToBackStack(getString(R.string.mainFragment));
+        transaction.addToBackStack(null);
         transaction.commit();
 
     }
@@ -120,6 +120,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void loadDatabaseManager() {
 
         startActivity(new Intent(MainActivity.this,AndroidDatabaseManager.class));
+
+    }
+
+    @Override
+    public void loadScheduleFragment() {
 
     }
 }

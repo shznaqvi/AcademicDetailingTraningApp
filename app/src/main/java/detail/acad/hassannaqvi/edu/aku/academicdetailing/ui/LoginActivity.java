@@ -53,6 +53,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.nio.channels.FileChannel;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -88,7 +89,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
     String DirectoryName;
     KProgressHUD hud;
 
-//
+    //
     private StringBuffer jsonString_output;
     private JSONArray json;
     ActivityLoginBinding bi;
@@ -189,15 +190,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
 //        ucList = db.getAllUC();*/
 //
 //
-////        DB backup
-//        dbBackup();
+//        DB backup
+        dbBackup();
 //
 ////        Room DB instantiate
 //        db = AppDatabase.getDatabase(getApplicationContext());
 //
 //        Testing visibility
         if (Integer.valueOf(MainApp.versionName.split("\\.")[0]) > 0) {
-            bi.testing.setVisibility(View.GONE);
+            bi.testing.setVisibility(View.VISIBLE);
         } else {
             bi.testing.setVisibility(View.VISIBLE);
         }
@@ -217,7 +218,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
             doPermissionGrantedStuffs();
         }
     }
-//
+
+    //
     private void requestReadPhoneStatePermission() {
         if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                 Manifest.permission.READ_PHONE_STATE)) {
@@ -243,7 +245,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
                     MY_PERMISSIONS_REQUEST_READ_PHONE_STATE);
         }
     }
-//
+
+    //
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
@@ -268,7 +271,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
 
                 }
             } else if (permissions[i].equals(Manifest.permission.ACCESS_FINE_LOCATION)) {
-                if(grantResults[i] == PackageManager.PERMISSION_GRANTED) {
+                if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
                     locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
                     if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                         // TODO: Consider calling
@@ -299,9 +302,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
             }
         }
     }
-//
+
+    //
     protected void showCurrentLocation() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                        != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
             // here to request the missing permissions, and then overriding
@@ -363,7 +371,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
             return true;
         } else return isNewer && !isSignificantlyLessAccurate && isFromSameProvider;
     }
-//
+
+    //
     private boolean isSameProvider(String provider1, String provider2) {
         if (provider1 == null) {
             return provider2 == null;
@@ -432,7 +441,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
 
         }
     }
-//
+
+    //
     private void doPermissionGrantedStuffs() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
@@ -448,82 +458,81 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
 
     }
 
-//    public void dbBackup() {
-//
-//        sharedPref = getSharedPreferences("leapsScaleUp", MODE_PRIVATE);
-//        editor = sharedPref.edit();
-//
+    public void dbBackup() {
+
+        sharedPref = getSharedPreferences("academicDetailing", MODE_PRIVATE);
+        editor = sharedPref.edit();
+
 //        if (sharedPref.getBoolean("flag", true)) {
-//
-//            String dt = sharedPref.getString("dt", new SimpleDateFormat("dd-MM-yy").format(new Date()));
-//
-//            if (dt != new SimpleDateFormat("dd-MM-yy").format(new Date())) {
-//                editor.putString("dt", new SimpleDateFormat("dd-MM-yy").format(new Date()));
-//
-//                editor.commit();
-//            }
-//
-//            File folder = new File(Environment.getExternalStorageDirectory() + File.separator + "DMU-LEAPSSUP");
-//            boolean success = true;
-//            if (!folder.exists()) {
-//                success = folder.mkdirs();
-//            }
-//            if (success) {
-//
-//                DirectoryName = folder.getPath() + File.separator + sharedPref.getString("dt", "");
-//                folder = new File(DirectoryName);
-//                if (!folder.exists()) {
-//                    success = folder.mkdirs();
-//                }
-//                if (success) {
-//
-//                    try {
-//                        /*File dbFile = new File(this.getDatabasePath(AppDatabase.Sub_DBConnection.DATABASE_NAME).getAbsolutePath());
-//                        FileInputStream fis = new FileInputStream(dbFile);
-//
-//                        String outFileName = DirectoryName + File.separator +
-//                                AppDatabase.Sub_DBConnection.DATABASE_NAME + ".db";
-//
-//                        // Open the empty db as the output stream
-//                        OutputStream output = new FileOutputStream(outFileName);
-//
-//                        // Transfer bytes from the inputfile to the outputfile
-//                        byte[] buffer = new byte[1024];
-//                        int length;
-//                        while ((length = fis.read(buffer)) > 0) {
-//                            output.write(buffer, 0, length);
-//                        }
-//                        // Close the streams
-//                        output.flush();
-//                        output.close();
-//                        fis.close();*/
-//
-//                        String dbFileName = this.getDatabasePath(AppDatabase.Sub_DBConnection.DATABASE_NAME).getAbsolutePath();
-//                        String outFileName = DirectoryName + File.separator + AppDatabase.Sub_DBConnection.DATABASE_NAME + ".db";
-//
-//                        File currentDB = new File(dbFileName);
-//                        File backupDB = new File(outFileName);
-//
-//                        FileChannel src = new FileInputStream(currentDB).getChannel();
-//                        FileChannel dst = new FileOutputStream(backupDB).getChannel();
-//                        dst.transferFrom(src, 0, src.size());
-//                        src.close();
-//                        dst.close();
-//
-//
-//                    } catch (IOException e) {
-//                        Log.e("dbBackup:", e.getMessage());
-//                    }
-//
-//                }
-//
-//            } else {
-//                Toast.makeText(this, "Not create folder", Toast.LENGTH_SHORT).show();
-//            }
+
+            String dt = sharedPref.getString("dt", new SimpleDateFormat("dd-MM-yy").format(new Date()));
+
+            if (dt != new SimpleDateFormat("dd-MM-yy").format(new Date())) {
+                editor.putString("dt", new SimpleDateFormat("dd-MM-yy").format(new Date()));
+
+                editor.commit();
+            }
+
+            File folder = new File(Environment.getExternalStorageDirectory() + File.separator + "DMU-ACADDETAIL");
+            boolean success = true;
+            if (!folder.exists()) {
+                success = folder.mkdirs();
+            }
+            if (success) {
+
+                DirectoryName = folder.getPath() + File.separator + sharedPref.getString("dt", "");
+                folder = new File(DirectoryName);
+                if (!folder.exists()) {
+                    success = folder.mkdirs();
+                }
+                if (success) {
+
+                    try {
+                        File dbFile = new File(this.getDatabasePath(DatabaseHelper.DBConnection.DB_NAME).getAbsolutePath());
+                        FileInputStream fis = new FileInputStream(dbFile);
+
+                        String outFileName = DirectoryName + File.separator +
+                                DatabaseHelper.DBConnection.DB_NAME + ".db";
+
+                        // Open the empty db as the output stream
+                        OutputStream output = new FileOutputStream(outFileName);
+
+                        // Transfer bytes from the inputfile to the outputfile
+                        byte[] buffer = new byte[1024];
+                        int length;
+                        while ((length = fis.read(buffer)) > 0) {
+                            output.write(buffer, 0, length);
+                        }
+                        // Close the streams
+                        output.flush();
+                        output.close();
+                        fis.close();
+
+                        String dbFileName = this.getDatabasePath(DatabaseHelper.DBConnection.DB_NAME).getAbsolutePath();
+                        outFileName = DirectoryName + File.separator + DatabaseHelper.DBConnection.DB_NAME + ".db";
+
+                        File currentDB = new File(dbFileName);
+                        File backupDB = new File(outFileName);
+
+                        FileChannel src = new FileInputStream(currentDB).getChannel();
+                        FileChannel dst = new FileOutputStream(backupDB).getChannel();
+                        dst.transferFrom(src, 0, src.size());
+                        src.close();
+                        dst.close();
+
+
+                    } catch (IOException e) {
+                        Log.e("dbBackup:", e.getMessage());
+                    }
+
+                }
+
+            } else {
+                Toast.makeText(this, "Not create folder", Toast.LENGTH_SHORT).show();
+            }
 //        }
-//
-//    }
-//
+
+    }
 //    public void onSyncDataClick() {
 //        //TODO implement
 //
@@ -553,7 +562,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
 
         }
     }
-//
+
+    //
     private boolean checkAndRequestPermissions() {
         int permissionContact = ContextCompat.checkSelfPermission(this,
                 Manifest.permission.READ_CONTACTS);
@@ -599,7 +609,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
 
         return true;
     }
-//
+
+    //
 //    /**
 //     * Attempts to sign in or register the account specified by the login form.
 //     * If there are form errors (invalid email, missing fields, etc.), the
@@ -650,17 +661,20 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
 
         }
     }
-//
+
+    //
     private boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
         return email.contains("@");
     }
-//
+
+    //
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
         return password.length() >= 7;
     }
-//
+
+    //
 //    /**
 //     * Shows the progress UI and hides the login form.
 //     */
@@ -740,7 +754,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
             bi.password.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_lock_open, 0, 0, 0);
         }
     }
-//
+
+    //
 //    public void gotoMain(View v) {
 //
 //        finish();
@@ -807,16 +822,16 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
 
             if (mlocManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
                 if ((mEmail.equals("dmu@aku") && mPassword.equals("aku?dmu")) ||
-                        (db.Login(mEmail,mPassword)) ||
+                        (db.Login(mEmail, mPassword)) ||
                         (mEmail.equals("test1234") && mPassword.equals("test1234"))
                         || (mEmail.equals("test12345") && mPassword.equals("test12345"))) {
                     MainApp.userName = mEmail;
                     MainApp.admin = mEmail.contains("@");
 
-                    finish();
-
                     Intent iLogin = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(iLogin);
+                    finish();
+
 
                 } else {
                     bi.password.setError(getString(R.string.error_incorrect_password));

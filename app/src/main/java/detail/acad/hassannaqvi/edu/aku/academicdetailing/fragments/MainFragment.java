@@ -36,11 +36,11 @@ public class MainFragment extends Fragment {
         bi = DataBindingUtil.inflate(inflater,R.layout.fragment_main,container,false);
         view = bi.getRoot();
 
-        onClickListener(bi);
+        onClickListener();
         return view;
     }
 
-    private void onClickListener(FragmentMainBinding bi) {
+    private void onClickListener() {
 
         bi.startTraining.setOnClickListener(new View.OnClickListener() {
             @Override

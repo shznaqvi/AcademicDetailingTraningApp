@@ -12,13 +12,9 @@
         android:scaleType="fitCenter"
         android:src="@drawable/vb_img_1" />
 
-    <!--<TextView-->
-        <!--android:id="@+id/text"-->
-        <!--android:textStyle="bold"-->
-        <!--android:textSize="30sp"-->
-        <!--android:textColor="#fff"-->
-        <!--android:layout_centerInParent="true"-->
-        <!--android:text="Item"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content" />-->
+    <!--<VideoView-->
+        <!--android:id="@+id/videoPlayer"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent" />-->
+
 </RelativeLayout>

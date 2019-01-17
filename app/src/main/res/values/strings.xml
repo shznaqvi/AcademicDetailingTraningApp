@@ -18,6 +18,9 @@
     <string name="provider_id">Provider ID</string>
     <string name="hfac_name">Health Facility Name</string>
 
+    <string name="date">Date</string>
+    <string name="time">Time</string>
+    <string name="schedule">Next Meeting Schedule</string>
 
     <string name="mainFragment">MainFragment</string>
     <string name="moduleFragment">ModuleFragment</string>

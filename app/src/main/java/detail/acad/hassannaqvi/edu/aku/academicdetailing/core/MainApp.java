@@ -17,6 +17,8 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.text.format.DateFormat;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import java.io.Serializable;
 import java.text.ParseException;
@@ -25,6 +27,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.FormsContract;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.NextMeetingContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.SessionContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.EndingActivity;
 
@@ -82,10 +85,8 @@ public class MainApp extends Application {
     public static FormsContract fc;
     public static String IMEI;
     public static String logginTime;
-    public static String sessionStartTime;
-    public static String sessionEndTime;
-    public static final boolean isSession02Pre = false;
-    public static SessionContract sC;
+    public static String subModuleName;
+    public static NextMeetingContract nmc;
 
     protected static LocationManager locationManager;
 
@@ -120,6 +121,21 @@ public class MainApp extends Application {
         return ageInYears;
     }
 
+    public static String getCurrentTime(){
+        String currentTime = new SimpleDateFormat(" dd/MM/yyyy HH:mm:ss").format(new Date().getTime());
+        return currentTime;
+    }
+
+    public static void hideKeyboard(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        //Find the currently focused view, so we can grab the correct window token from it.
+        View view = activity.getCurrentFocus();
+        //If no view currently has focus, create a new one, just so we can grab a window token from it
+        if (view == null) {
+            view = new View(activity);
+        }
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
 
     @Override
     public void onCreate() {
@@ -131,20 +147,41 @@ public class MainApp extends Application {
                 Settings.Secure.ANDROID_ID);
 
 
-        // Requires Permission for GPS -- android.permission.ACCESS_FINE_LOCATION
-        // Requires Additional permission for 5.0 -- android.hardware.location.gps
-//        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//                // requestPermission();
-//            } else {
-//                requestLocationUpdate();
-//            }
-//        } else {
-//            requestLocationUpdate();
-//        }
+//         Requires Permission for GPS -- android.permission.ACCESS_FINE_LOCATION
+//         Requires Additional permission for 5.0 -- android.hardware.location.gps
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                    != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//                 requestPermission();
+            } else {
+                requestLocationUpdate();
+            }
+        } else {
+            requestLocationUpdate();
+        }
 
     }
+
+    public void requestLocationUpdate() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        locationManager.requestLocationUpdates(
+                LocationManager.GPS_PROVIDER,
+                MINIMUM_TIME_BETWEEN_UPDATES,
+                MINIMUM_DISTANCE_CHANGE_FOR_UPDATES,
+                new GPSLocationListener() // Implement this class from code
+        );
+    }
+
 
 
     protected boolean isBetterLocation(Location location, Location currentBestLocation) {
@@ -197,10 +234,29 @@ public class MainApp extends Application {
         return provider1.equals(provider2);
     }
 
+    protected void showCurrentLocation() {
 
-    public static String getCurrentTime(){
-        String currentTime = new SimpleDateFormat("HH:mm:ss").format(new Date().getTime());
-        return currentTime;
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+        if (location != null) {
+            String message = String.format(
+                    "Current Location \n Longitude: %1$s \n Latitude: %2$s",
+                    location.getLongitude(), location.getLatitude()
+            );
+        }
+
     }
 
     public static void endActivity(final Context context, String message, final boolean status) {
@@ -230,5 +286,43 @@ public class MainApp extends Application {
         alert.show();
     }
 
+    public class GPSLocationListener implements LocationListener {
+        public void onLocationChanged(Location location) {
+
+            SharedPreferences sharedPref = getSharedPreferences("GPSCoordinates", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPref.edit();
+
+            String dt = DateFormat.format("dd-MM-yyyy HH:mm", Long.parseLong(sharedPref.getString("Time", "0"))).toString();
+
+            Location bestLocation = new Location("storedProvider");
+            bestLocation.setAccuracy(Float.parseFloat(sharedPref.getString("Accuracy", "0")));
+            bestLocation.setTime(Long.parseLong(sharedPref.getString(dt, "0")));
+            bestLocation.setLatitude(Float.parseFloat(sharedPref.getString("Latitude", "0")));
+            bestLocation.setLongitude(Float.parseFloat(sharedPref.getString("Longitude", "0")));
+
+            if (isBetterLocation(location, bestLocation)) {
+                editor.putString("Longitude", String.valueOf(location.getLongitude()));
+                editor.putString("Latitude", String.valueOf(location.getLatitude()));
+                editor.putString("Accuracy", String.valueOf(location.getAccuracy()));
+                editor.putString("Time", String.valueOf(location.getTime()));
+                editor.putString("Elevation", String.valueOf(location.getAltitude()));
+                String date = DateFormat.format("dd-MM-yyyy HH:mm", Long.parseLong(String.valueOf(location.getTime()))).toString();
+                editor.apply();
+            }
+        }
+
+
+        public void onStatusChanged(String s, int i, Bundle b) {
+            showCurrentLocation();
+        }
+
+        public void onProviderDisabled(String s) {
+
+        }
+
+        public void onProviderEnabled(String s) {
+
+        }
+    }
 
 }

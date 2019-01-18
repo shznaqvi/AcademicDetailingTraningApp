@@ -8,7 +8,6 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.format.DateFormat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,8 +24,15 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.FragmentScheduleBinding;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.MainActivity;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Utils;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.validation.validatorClass;
+
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.CDB;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.Diarrhea;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.GDS;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.PSBI;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.childModule;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.maternalModule;
 
 public class ScheduleFragment extends Fragment {
 
@@ -168,7 +174,7 @@ public class ScheduleFragment extends Fragment {
     private void populateSpinner() {
 
         bi.bookingType.setAdapter(new ArrayAdapter<>(getActivity(),android.R.layout.simple_spinner_dropdown_item,bookingType));
-        modules.addAll(Arrays.asList(Utils.modules));
+        modules.addAll(Arrays.asList(Data.modules));
         bi.modules.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, modules));
         bi.modules.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -190,7 +196,7 @@ public class ScheduleFragment extends Fragment {
 
             case 1:
                 bi.fldGrpSubModule.setVisibility(View.VISIBLE);
-                subModules.addAll(Arrays.asList(Utils.childModule));
+                subModules.addAll(Arrays.asList(childModule));
                 bi.subModules.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, subModules));
                 bi.subModules.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
@@ -211,7 +217,7 @@ public class ScheduleFragment extends Fragment {
             case 2:
                 bi.subModules.setSelection(0);
                 bi.fldGrpSubModule.setVisibility(View.GONE);
-                bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, Utils.maternalModule));
+                bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, maternalModule));
                 break;
 
             case 3:
@@ -230,22 +236,22 @@ public class ScheduleFragment extends Fragment {
         switch (position) {
 
             case 0:
-                sessions.addAll(Arrays.asList(Utils.GDS));
+                sessions.addAll(Arrays.asList(GDS));
                 bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, sessions));
                 break;
 
             case 1:
-                sessions.addAll(Arrays.asList(Utils.CDB));
+                sessions.addAll(Arrays.asList(CDB));
                 bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, sessions));
                 break;
 
             case 2:
-                sessions.addAll(Arrays.asList(Utils.Diarrhea));
+                sessions.addAll(Arrays.asList(Diarrhea));
                 bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, sessions));
                 break;
 
             case 3:
-                sessions.addAll(Arrays.asList(Utils.PSBI));
+                sessions.addAll(Arrays.asList(PSBI));
                 bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, sessions));
                 break;
         }

@@ -107,22 +107,22 @@ public class FANC_Pre_test extends AppCompatActivity {
 
     private boolean formValidation() {
 
-        if (!validatorClass.EmptyRadioButton(this, bi.fancpre01, bi.fancpre01a, getString(R.string.fanc_01))) {
+        if (!validatorClass.EmptyRadioButton(this, bi.fanc01, bi.fanc01a, getString(R.string.fanc_01))) {
             return false;
         }
-        if (!validatorClass.EmptyRadioButton(this, bi.fancpre02, bi.fancpre02a, getString(R.string.fanc_02))) {
+        if (!validatorClass.EmptyRadioButton(this, bi.fanc02, bi.fanc02a, getString(R.string.fanc_02))) {
             return false;
         }
-        if (!validatorClass.EmptyRadioButton(this, bi.fancpre03, bi.fancpre03a, getString(R.string.fanc_03))) {
+        if (!validatorClass.EmptyRadioButton(this, bi.fanc03, bi.fanc03a, getString(R.string.fanc_03))) {
             return false;
         }
-        if (!validatorClass.EmptyRadioButton(this, bi.fancpre04, bi.fancpre04a, getString(R.string.fanc_04))) {
+        if (!validatorClass.EmptyRadioButton(this, bi.fanc04, bi.fanc04a, getString(R.string.fanc_04))) {
             return false;
         }
-        if (!validatorClass.EmptyRadioButton(this, bi.fancpre05, bi.fancpre05a, getString(R.string.fanc_05))) {
+        if (!validatorClass.EmptyRadioButton(this, bi.fanc05, bi.fanc05a, getString(R.string.fanc_05))) {
             return false;
         }
-        return validatorClass.EmptyCardCheckBox(this, bi.fanc06, bi.fancpre06a, getString(R.string.fanc_06));
+        return validatorClass.EmptyCardCheckBox(this, bi.fanc06, bi.fanc06a, getString(R.string.fanc_06));
     }
 
     public void BtnEnd() {

@@ -33,7 +33,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tv_gdsa01"
+                        android:id="@+id/tvgdsa01"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -92,7 +92,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tv_gdsa02"
+                        android:id="@+id/tvgdsa02"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -151,7 +151,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tv_gdsa03"
+                        android:id="@+id/tvgdsa03"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -210,7 +210,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tv_gdsa04"
+                        android:id="@+id/tvgdsa04"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -269,6 +269,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tvgdsa05"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"

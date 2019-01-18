@@ -12,9 +12,15 @@ import android.widget.Toast;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.FragmentMainBinding;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.FragmentModuleBinding;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Utils;
+
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.CDB;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.Diarrhea;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.GDS;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.PSBI;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.childModule;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.maternalModule;
 
 
 public class ModuleFragment extends Fragment {
@@ -90,11 +96,11 @@ public class ModuleFragment extends Fragment {
 
     private void showMaternalModule() {
 
-        for (int i = 0; i < Utils.maternalModule.length; i++) {
+        for (int i = 0; i < maternalModule.length; i++) {
 
             View v = LayoutInflater.from(getContext()).inflate(R.layout.single_module_item, null);
             TextView moduleName = v.findViewById(R.id.moduleName);
-            moduleName.setText(Utils.maternalModule[i]);
+            moduleName.setText(maternalModule[i]);
             bi.maternalModule.addView(v);
             v.animate().translationY(v.getHeight());
 
@@ -106,7 +112,7 @@ public class ModuleFragment extends Fragment {
                     MainApp.moduleName = "maternalHealth";
                     MainApp.isChild = false;
                     MainApp.isMaternal = true;
-                    MainApp.moduleSession = Utils.maternalModule[finalI];
+                    MainApp.moduleSession = maternalModule[finalI];
                     if(Utils.selectTest(finalI,MainApp.moduleName) != null){
                         Utils.showPreDialogue(getActivity(), finalI, MainApp.moduleName);
                         MainApp.maternalIndex = finalI;
@@ -124,12 +130,12 @@ public class ModuleFragment extends Fragment {
 
     private void showChildModule() {
 
-        for (int i = 0; i < Utils.childModule.length; i++) {
+        for (int i = 0; i < childModule.length; i++) {
 
             View v = LayoutInflater.from(getContext()).inflate(R.layout.single_module_item, null);
             TextView moduleName = v.findViewById(R.id.moduleName);
             final LinearLayout subModule = v.findViewById(R.id.childSubModule);
-            moduleName.setText(Utils.childModule[i]);
+            moduleName.setText(childModule[i]);
             bi.childModule.addView(v);
             final int finalI = i;
             v.animate().translationY(v.getHeight());
@@ -182,16 +188,16 @@ public class ModuleFragment extends Fragment {
     public String[] selectSubModule(int finalI) {
         if (finalI == 0) {
             MainApp.subModuleName = "gds";
-            return Utils.GDS;
+            return GDS;
         } else if (finalI == 1) {
             MainApp.subModuleName = "cdb";
-            return Utils.CDB;
+            return CDB;
         } else if (finalI == 2) {
             MainApp.subModuleName = "dia";
-            return Utils.Diarrhea;
+            return Diarrhea;
         } else {
             MainApp.subModuleName = "psbi";
-            return Utils.PSBI;
+            return PSBI;
         }
     }
 

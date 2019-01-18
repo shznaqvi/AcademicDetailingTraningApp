@@ -109,16 +109,16 @@ public class CDBSession01_Pre_test extends AppCompatActivity implements RadioBut
 
     private boolean formValidation() {
 
-        if (!validatorClass.EmptyRadioButton(this, bi.cdb01pre01, bi.cdb01pre01a, getString(R.string.cdb01_01))) {
+        if (!validatorClass.EmptyRadioButton(this, bi.cdba01, bi.cdba01a, getString(R.string.cdb01_01))) {
             return false;
         }
-        if (!validatorClass.EmptyRadioButton(this, bi.cdb01pre02, bi.cdb01pre02a, getString(R.string.cdb01_02))) {
+        if (!validatorClass.EmptyRadioButton(this, bi.cdba02, bi.cdba02a, getString(R.string.cdb01_02))) {
             return false;
         }
-        if (!validatorClass.EmptyRadioButton(this, bi.cdb01pre03, bi.cdb01pre03a, getString(R.string.cdb01_03))) {
+        if (!validatorClass.EmptyRadioButton(this, bi.cdba03, bi.cdba03a, getString(R.string.cdb01_03))) {
             return false;
         }
-        return validatorClass.EmptyRadioButton(this, bi.cdb01pre04, bi.cdb01pre04a, getString(R.string.cdb01_04));
+        return validatorClass.EmptyRadioButton(this, bi.cdba04, bi.cdba04a, getString(R.string.cdb01_04));
     }
 
     public void BtnEnd() {
@@ -142,69 +142,69 @@ public class CDBSession01_Pre_test extends AppCompatActivity implements RadioBut
 
 
         //CDB-Q1  
-        if (compoundButton.getId() == R.id.cdb01pre01a
-                || compoundButton.getId() == R.id.cdb01pre01b
-                || compoundButton.getId() == R.id.cdb01pre01c
-                || compoundButton.getId() == R.id.cdb01pre01d) {
+        if (compoundButton.getId() == R.id.cdba01a
+                || compoundButton.getId() == R.id.cdba01b
+                || compoundButton.getId() == R.id.cdba01c
+                || compoundButton.getId() == R.id.cdba01d) {
 
-            if (bi.cdb01pre01a.isChecked()) {
-                bi.tvcdb01pre01.clearComposingText();
+            if (bi.cdba01a.isChecked()) {
+                bi.tvcdba01.clearComposingText();
                 String styledText = "Cough or difficult breathing that lasts for more than 14 days may indicate <font color='yellow'><b><i>Tuberculosis</i></b></font>.";
-                bi.tvcdb01pre01.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
-            } else if (bi.cdb01pre01b.isChecked()) {
-                bi.tvcdb01pre01.clearComposingText();
+                bi.tvcdba01.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+            } else if (bi.cdba01b.isChecked()) {
+                bi.tvcdba01.clearComposingText();
                 String styledText = "Cough or difficult breathing that lasts for more than 14 days may indicate <font color='yellow'><b><i>Asthma</i></b></font>.";
-                bi.tvcdb01pre01.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
-            } else if (bi.cdb01pre01c.isChecked()) {
-                bi.tvcdb01pre01.clearComposingText();
+                bi.tvcdba01.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+            } else if (bi.cdba01c.isChecked()) {
+                bi.tvcdba01.clearComposingText();
                 String styledText = "Cough or difficult breathing that lasts for more than 14 days may indicate <font color='yellow'><b><i>Whooping cough</i></b></font>.";
-                bi.tvcdb01pre01.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
-            } else if (bi.cdb01pre01d.isChecked()) {
-                bi.tvcdb01pre01.clearComposingText();
+                bi.tvcdba01.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+            } else if (bi.cdba01d.isChecked()) {
+                bi.tvcdba01.clearComposingText();
                 String styledText = "Cough or difficult breathing that lasts for more than 14 days may indicate <font color='yellow'><b><i>All of the below</i></b></font>.";
-                bi.tvcdb01pre01.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+                bi.tvcdba01.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             }
         }
 
 
         //CDB-Q3  
-        if (compoundButton.getId() == R.id.cdb01pre03a
-                || compoundButton.getId() == R.id.cdb01pre03b
-                || compoundButton.getId() == R.id.cdb01pre03c
-                || compoundButton.getId() == R.id.cdb01pre03d) {
+        if (compoundButton.getId() == R.id.cdba03a
+                || compoundButton.getId() == R.id.cdba03b
+                || compoundButton.getId() == R.id.cdba03c
+                || compoundButton.getId() == R.id.cdba03d) {
 
-            if (bi.cdb01pre03a.isChecked()) {
-                bi.tvcdb01pre03.clearComposingText();
+            if (bi.cdba03a.isChecked()) {
+                bi.tvcdba03.clearComposingText();
                 String styledText = "Fast breathing or <font color='yellow'><b><i>Wheeze</i></b></font> if post sent in a child between 2 months to 5 years of age are the clinical signs for Pneumonia.";
-                bi.tvcdb01pre03.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
-            } else if (bi.cdb01pre03b.isChecked()) {
-                bi.tvcdb01pre03.clearComposingText();
+                bi.tvcdba03.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+            } else if (bi.cdba03b.isChecked()) {
+                bi.tvcdba03.clearComposingText();
                 String styledText = "Fast breathing or <font color='yellow'><b><i>Chest in-drawing</i></b></font> if post sent in a child between 2 months to 5 years of age are the clinical signs for Pneumonia.";
-                bi.tvcdb01pre03.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
-            } else if (bi.cdb01pre03c.isChecked()) {
-                bi.tvcdb01pre03.clearComposingText();
+                bi.tvcdba03.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+            } else if (bi.cdba03c.isChecked()) {
+                bi.tvcdba03.clearComposingText();
                 String styledText = "Fast breathing or <font color='yellow'><b><i>Cough</i></b></font> if post sent in a child between 2 months to 5 years of age are the clinical signs for Pneumonia.";
-                bi.tvcdb01pre03.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
-            } else if (bi.cdb01pre03d.isChecked()) {
-                bi.tvcdb01pre03.clearComposingText();
+                bi.tvcdba03.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+            } else if (bi.cdba03d.isChecked()) {
+                bi.tvcdba03.clearComposingText();
                 String styledText = "Fast breathing or <font color='yellow'><b><i>Fever</i></b></font> if post sent in a child between 2 months to 5 years of age are the clinical signs for Pneumonia.";
-                bi.tvcdb01pre03.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+                bi.tvcdba03.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             }
         }
 
 
         //CDB-Q4   
-        if (compoundButton.getId() == R.id.cdb01pre04a
-                || compoundButton.getId() == R.id.cdb01pre04b) {
+        if (compoundButton.getId() == R.id.cdba04a
+                || compoundButton.getId() == R.id.cdba04b) {
 
-            if (bi.cdb01pre04a.isChecked()) {
-                bi.tvcdb01pre04.clearComposingText();
+            if (bi.cdba04a.isChecked()) {
+                bi.tvcdba04.clearComposingText();
                 String styledText = "The child has chest in drawing if the lower chest wall (lower ribs) goes <font color='yellow'><b><i>IN</i></b></font> when the child breathes IN.";
-                bi.tvcdb01pre04.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
-            } else if (bi.cdb01pre04b.isChecked()) {
-                bi.tvcdb01pre04.clearComposingText();
+                bi.tvcdba04.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+            } else if (bi.cdba04b.isChecked()) {
+                bi.tvcdba04.clearComposingText();
                 String styledText = "The child has chest in drawing if the lower chest wall (lower ribs) goes <font color='yellow'><b><i>OUT</i></b></font> when the child breathes IN.";
-                bi.tvcdb01pre04.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+                bi.tvcdba04.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             }
         }
 
@@ -212,17 +212,17 @@ public class CDBSession01_Pre_test extends AppCompatActivity implements RadioBut
 
     void events_call() {
 
-        bi.cdb01pre01a.setOnCheckedChangeListener(this);
-        bi.cdb01pre01a.setOnCheckedChangeListener(this);
-        bi.cdb01pre01a.setOnCheckedChangeListener(this);
-        bi.cdb01pre01a.setOnCheckedChangeListener(this);
+        bi.cdba01a.setOnCheckedChangeListener(this);
+        bi.cdba01a.setOnCheckedChangeListener(this);
+        bi.cdba01a.setOnCheckedChangeListener(this);
+        bi.cdba01a.setOnCheckedChangeListener(this);
 
-        bi.cdb01pre03a.setOnCheckedChangeListener(this);
-        bi.cdb01pre03a.setOnCheckedChangeListener(this);
-        bi.cdb01pre03a.setOnCheckedChangeListener(this);
-        bi.cdb01pre03a.setOnCheckedChangeListener(this);
+        bi.cdba03a.setOnCheckedChangeListener(this);
+        bi.cdba03a.setOnCheckedChangeListener(this);
+        bi.cdba03a.setOnCheckedChangeListener(this);
+        bi.cdba03a.setOnCheckedChangeListener(this);
 
-        bi.cdb01pre04a.setOnCheckedChangeListener(this);
-        bi.cdb01pre04b.setOnCheckedChangeListener(this);
+        bi.cdba04a.setOnCheckedChangeListener(this);
+        bi.cdba04b.setOnCheckedChangeListener(this);
     }
 }

@@ -107,19 +107,19 @@ public class GDSSession01_Pre_test extends AppCompatActivity implements RadioBut
 
     private boolean formValidation() {
 
-        if (!validatorClass.EmptyRadioButton(this, bi.gds01pre01, bi.gds01pre01a, getString(R.string.gds01_01))) {
+        if (!validatorClass.EmptyRadioButton(this, bi.gdsa01, bi.gdsa01a, getString(R.string.gds01_01))) {
             return false;
         }
-        if (!validatorClass.EmptyRadioButton(this, bi.gds01pre02, bi.gds01pre02a, getString(R.string.gds01_02))) {
+        if (!validatorClass.EmptyRadioButton(this, bi.gdsa02, bi.gdsa02a, getString(R.string.gds01_02))) {
             return false;
         }
-        if (!validatorClass.EmptyRadioButton(this, bi.gds01pre03, bi.gds01pre03a, getString(R.string.gds01_03))) {
+        if (!validatorClass.EmptyRadioButton(this, bi.gdsa03, bi.gdsa03a, getString(R.string.gds01_03))) {
             return false;
         }
-        if (!validatorClass.EmptyRadioButton(this, bi.gds01pre04, bi.gds01pre04a, getString(R.string.gds01_04))) {
+        if (!validatorClass.EmptyRadioButton(this, bi.gdsa04, bi.gdsa04a, getString(R.string.gds01_04))) {
             return false;
         }
-        return validatorClass.EmptyRadioButton(this, bi.gds01pre05, bi.gds01pre05a, getString(R.string.gds01_05));
+        return validatorClass.EmptyRadioButton(this, bi.gdsa05, bi.gdsa05a, getString(R.string.gds01_05));
     }
 
     public void BtnEnd() {
@@ -142,15 +142,15 @@ public class GDSSession01_Pre_test extends AppCompatActivity implements RadioBut
     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
 
         //GDS-Q1
-        if (compoundButton.getId() == R.id.gds01pre01a
-                || compoundButton.getId() == R.id.gds01pre01b
-                || compoundButton.getId() == R.id.gds01pre01c
-                || compoundButton.getId() == R.id.gds01pre01d) {
+        if (compoundButton.getId() == R.id.gdsa01a
+                || compoundButton.getId() == R.id.gdsa01b
+                || compoundButton.getId() == R.id.gdsa01c
+                || compoundButton.getId() == R.id.gdsa01d) {
 
-            if (bi.gds01pre01a.isChecked()) {
-                bi.tvGds01pre01.clearComposingText();
+            if (bi.gdsa01a.isChecked()) {
+                bi.tvgdsa01.clearComposingText();
                 String styledText = "Children with <font color='yellow'><b><i>Mild illness</i></b></font> on the IMNCI chart usually need urgent referral to hospital.";
-                bi.tvGds01pre01.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+                bi.tvgdsa01.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
 
 
                 /*Entity entity;
@@ -159,96 +159,96 @@ public class GDSSession01_Pre_test extends AppCompatActivity implements RadioBut
 
                 /*txt_gdspretestq1.setText(getString(R.string.gdspretestq1));*/
 
-            } else if (bi.gds01pre01b.isChecked()) {
-                bi.tvGds01pre01.clearComposingText();
+            } else if (bi.gdsa01b.isChecked()) {
+                bi.tvgdsa01.clearComposingText();
                 String styledText = "Children with <font color='yellow'><b><i>Pneumonia</i></b></font> on the IMNCI chart usually need urgent referral to hospital.";
-                bi.tvGds01pre01.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
-            } else if (bi.gds01pre01c.isChecked()) {
-                bi.tvGds01pre01.clearComposingText();
+                bi.tvgdsa01.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+            } else if (bi.gdsa01c.isChecked()) {
+                bi.tvgdsa01.clearComposingText();
                 String styledText = "Children with <font color='yellow'><b><i>Dehydration</i></b></font> on the IMNCI chart usually need urgent referral to hospital.";
-                bi.tvGds01pre01.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
-            } else if (bi.gds01pre01d.isChecked()) {
-                bi.tvGds01pre01.clearComposingText();
+                bi.tvgdsa01.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+            } else if (bi.gdsa01d.isChecked()) {
+                bi.tvgdsa01.clearComposingText();
                 String styledText = "Children with <font color='yellow'><b><i>Severe disease/classification</i></b></font> on the IMNCI chart usually need urgent referral to hospital.";
-                bi.tvGds01pre01.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+                bi.tvgdsa01.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             }
         }
 
 
         //GDS-Q2
-        if (compoundButton.getId() == R.id.gds01pre02a
-                || compoundButton.getId() == R.id.gds01pre02b
-                || compoundButton.getId() == R.id.gds01pre02c
-                || compoundButton.getId() == R.id.gds01pre02d) {
+        if (compoundButton.getId() == R.id.gdsa02a
+                || compoundButton.getId() == R.id.gdsa02b
+                || compoundButton.getId() == R.id.gdsa02c
+                || compoundButton.getId() == R.id.gdsa02d) {
 
-            if (bi.gds01pre02a.isChecked()) {
-                bi.tvGds01pre02.clearComposingText();
+            if (bi.gdsa02a.isChecked()) {
+                bi.tvgdsa02.clearComposingText();
                 String styledText = "<font color='yellow'><b><i>Persistent diarrhea</i></b></font> is the exception for severe classification or severe disease where referral to the hospital is needed but not urgent.";
-                bi.tvGds01pre02.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
-            } else if (bi.gds01pre02b.isChecked()) {
-                bi.tvGds01pre02.clearComposingText();
+                bi.tvgdsa02.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+            } else if (bi.gdsa02b.isChecked()) {
+                bi.tvgdsa02.clearComposingText();
                 String styledText = "<font color='yellow'><b><i>Severe dehydration</i></b></font> is the exception for severe classification or severe disease where referral to the hospital is needed but not urgent.";
-                bi.tvGds01pre02.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
-            } else if (bi.gds01pre02c.isChecked()) {
-                bi.tvGds01pre02.clearComposingText();
+                bi.tvgdsa02.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+            } else if (bi.gdsa02c.isChecked()) {
+                bi.tvgdsa02.clearComposingText();
                 String styledText = "<font color='yellow'><b><i>Severe persistent diarrhea</i></b></font> is the exception for severe classification or severe disease where referral to the hospital is needed but not urgent.";
-                bi.tvGds01pre02.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
-            } else if (bi.gds01pre02d.isChecked()) {
-                bi.tvGds01pre02.clearComposingText();
+                bi.tvgdsa02.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+            } else if (bi.gdsa02d.isChecked()) {
+                bi.tvgdsa02.clearComposingText();
                 String styledText = "<font color='yellow'><b><i>Severe pneumonia</i></b></font> is the exception for severe classification or severe disease where referral to the hospital is needed but not urgent.";
-                bi.tvGds01pre02.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+                bi.tvgdsa02.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             }
         }
 
 
         //GDS-Q3
-        if (compoundButton.getId() == R.id.gds01pre03a
-                || compoundButton.getId() == R.id.gds01pre03b
-                || compoundButton.getId() == R.id.gds01pre03c
-                || compoundButton.getId() == R.id.gds01pre03d) {
+        if (compoundButton.getId() == R.id.gdsa03a
+                || compoundButton.getId() == R.id.gdsa03b
+                || compoundButton.getId() == R.id.gdsa03c
+                || compoundButton.getId() == R.id.gdsa03d) {
 
-            if (bi.gds01pre03a.isChecked()) {
-                bi.tvGds01pre03.clearComposingText();
+            if (bi.gdsa03a.isChecked()) {
+                bi.tvgdsa03.clearComposingText();
                 String styledText = "Presence of even <font color='yellow'><b><i>One</i></b></font> danger sign indicates that underlying disease is severe.";
-                bi.tvGds01pre03.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
-            } else if (bi.gds01pre03b.isChecked()) {
-                bi.tvGds01pre03.clearComposingText();
+                bi.tvgdsa03.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+            } else if (bi.gdsa03b.isChecked()) {
+                bi.tvgdsa03.clearComposingText();
                 String styledText = "Presence of even <font color='yellow'><b><i>Two</i></b></font> danger sign indicates that underlying disease is severe.";
-                bi.tvGds01pre03.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
-            } else if (bi.gds01pre03c.isChecked()) {
-                bi.tvGds01pre03.clearComposingText();
+                bi.tvgdsa03.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+            } else if (bi.gdsa03c.isChecked()) {
+                bi.tvgdsa03.clearComposingText();
                 String styledText = "Presence of even <font color='yellow'><b><i>Three</i></b></font> danger sign indicates that underlying disease is severe.";
-                bi.tvGds01pre03.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
-            } else if (bi.gds01pre03d.isChecked()) {
-                bi.tvGds01pre03.clearComposingText();
+                bi.tvgdsa03.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+            } else if (bi.gdsa03d.isChecked()) {
+                bi.tvgdsa03.clearComposingText();
                 String styledText = "Presence of even <font color='yellow'><b><i>None</i></b></font> danger sign indicates that underlying disease is severe.";
-                bi.tvGds01pre03.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+                bi.tvgdsa03.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             }
         }
 
 
         //GDS-Q4
-        if (compoundButton.getId() == R.id.gds01pre04a
-                || compoundButton.getId() == R.id.gds01pre04b
-                || compoundButton.getId() == R.id.gds01pre04c
-                || compoundButton.getId() == R.id.gds01pre04d) {
+        if (compoundButton.getId() == R.id.gdsa04a
+                || compoundButton.getId() == R.id.gdsa04b
+                || compoundButton.getId() == R.id.gdsa04c
+                || compoundButton.getId() == R.id.gdsa04d) {
 
-            if (bi.gds01pre04a.isChecked()) {
-                bi.tvGds01pre04.clearComposingText();
+            if (bi.gdsa04a.isChecked()) {
+                bi.tvgdsa04.clearComposingText();
                 String styledText = "For assessing a general danger sign, a healthcare provider needs to ASK <font color='yellow'><b><i>One</i></b></font> questions and LOOK for <font color='yellow'><b><i>Two</i></b></font> observations to observe the child's actions.";
-                bi.tvGds01pre04.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
-            } else if (bi.gds01pre04b.isChecked()) {
-                bi.tvGds01pre04.clearComposingText();
+                bi.tvgdsa04.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+            } else if (bi.gdsa04b.isChecked()) {
+                bi.tvgdsa04.clearComposingText();
                 String styledText = "For assessing a general danger sign, a healthcare provider needs to ASK <font color='yellow'><b><i>Two</i></b></font> questions and LOOK for <font color='yellow'><b><i>Two</i></b></font> observations to observe the child's actions.";
-                bi.tvGds01pre04.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
-            } else if (bi.gds01pre04c.isChecked()) {
-                bi.tvGds01pre04.clearComposingText();
+                bi.tvgdsa04.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+            } else if (bi.gdsa04c.isChecked()) {
+                bi.tvgdsa04.clearComposingText();
                 String styledText = "For assessing a general danger sign, a healthcare provider needs to ASK <font color='yellow'><b><i>Three</i></b></font> questions and LOOK for <font color='yellow'><b><i>Two</i></b></font> observations to observe the child's actions.";
-                bi.tvGds01pre04.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
-            } else if (bi.gds01pre04d.isChecked()) {
-                bi.tvGds01pre04.clearComposingText();
+                bi.tvgdsa04.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+            } else if (bi.gdsa04d.isChecked()) {
+                bi.tvgdsa04.clearComposingText();
                 String styledText = "For assessing a general danger sign, a healthcare provider needs to ASK <font color='yellow'><b><i>Three</i></b></font> questions and LOOK for <font color='yellow'><b><i>One</i></b></font> observations to observe the child's actions.";
-                bi.tvGds01pre04.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+                bi.tvgdsa04.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             }
         }
 
@@ -256,24 +256,24 @@ public class GDSSession01_Pre_test extends AppCompatActivity implements RadioBut
 
     void events_call() {
 
-        bi.gds01pre01a.setOnCheckedChangeListener(this);
-        bi.gds01pre01b.setOnCheckedChangeListener(this);
-        bi.gds01pre01c.setOnCheckedChangeListener(this);
-        bi.gds01pre01d.setOnCheckedChangeListener(this);
+        bi.gdsa01a.setOnCheckedChangeListener(this);
+        bi.gdsa01b.setOnCheckedChangeListener(this);
+        bi.gdsa01c.setOnCheckedChangeListener(this);
+        bi.gdsa01d.setOnCheckedChangeListener(this);
 
-        bi.gds01pre02a.setOnCheckedChangeListener(this);
-        bi.gds01pre02b.setOnCheckedChangeListener(this);
-        bi.gds01pre02c.setOnCheckedChangeListener(this);
-        bi.gds01pre02d.setOnCheckedChangeListener(this);
+        bi.gdsa02a.setOnCheckedChangeListener(this);
+        bi.gdsa02b.setOnCheckedChangeListener(this);
+        bi.gdsa02c.setOnCheckedChangeListener(this);
+        bi.gdsa02d.setOnCheckedChangeListener(this);
 
-        bi.gds01pre03a.setOnCheckedChangeListener(this);
-        bi.gds01pre03b.setOnCheckedChangeListener(this);
-        bi.gds01pre03c.setOnCheckedChangeListener(this);
-        bi.gds01pre03d.setOnCheckedChangeListener(this);
+        bi.gdsa03a.setOnCheckedChangeListener(this);
+        bi.gdsa03b.setOnCheckedChangeListener(this);
+        bi.gdsa03c.setOnCheckedChangeListener(this);
+        bi.gdsa03d.setOnCheckedChangeListener(this);
 
-        bi.gds01pre04a.setOnCheckedChangeListener(this);
-        bi.gds01pre04b.setOnCheckedChangeListener(this);
-        bi.gds01pre04c.setOnCheckedChangeListener(this);
-        bi.gds01pre04d.setOnCheckedChangeListener(this);
+        bi.gdsa04a.setOnCheckedChangeListener(this);
+        bi.gdsa04b.setOnCheckedChangeListener(this);
+        bi.gdsa04c.setOnCheckedChangeListener(this);
+        bi.gdsa04d.setOnCheckedChangeListener(this);
     }
 }

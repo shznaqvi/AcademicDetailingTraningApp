@@ -110,19 +110,19 @@ public class GDSSession02_Pre_test extends AppCompatActivity implements RadioBut
 
     private boolean formValidation() {
 
-        if (!validatorClass.EmptyRadioButton(this, bi.gds02pre01, bi.gds02pre01a, getString(R.string.gds02_01))) {
+        if (!validatorClass.EmptyRadioButton(this, bi.gdsb01, bi.gdsb01a, getString(R.string.gds02_01))) {
             return false;
         }
-        if (!validatorClass.EmptyRadioButton(this, bi.gds02pre02, bi.gds02pre02a, getString(R.string.gds02_02))) {
+        if (!validatorClass.EmptyRadioButton(this, bi.gdsb02, bi.gdsb02a, getString(R.string.gds02_02))) {
             return false;
         }
-        if (!validatorClass.EmptyRadioButton(this, bi.gds02pre03, bi.gds02pre03a, getString(R.string.gds02_03))) {
+        if (!validatorClass.EmptyRadioButton(this, bi.gdsb03, bi.gdsb03a, getString(R.string.gds02_03))) {
             return false;
         }
-        if (!validatorClass.EmptyRadioButton(this, bi.gds02pre04, bi.gds02pre04a, getString(R.string.gds02_04))) {
+        if (!validatorClass.EmptyRadioButton(this, bi.gdsb04, bi.gdsb04a, getString(R.string.gds02_04))) {
             return false;
         }
-        return validatorClass.EmptyRadioButton(this, bi.gds02pre05, bi.gds02pre05a, getString(R.string.gds02_05));
+        return validatorClass.EmptyRadioButton(this, bi.gdsb05, bi.gdsb05a, getString(R.string.gds02_05));
     }
 
     public void BtnEnd() {
@@ -145,67 +145,67 @@ public class GDSSession02_Pre_test extends AppCompatActivity implements RadioBut
     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
 
         //GDS02-Q03
-        if (compoundButton.getId() == R.id.gds02pre03a
-                || compoundButton.getId() == R.id.gds02pre03b
-                || compoundButton.getId() == R.id.gds02pre03c
-                || compoundButton.getId() == R.id.gds02pre03d) {
+        if (compoundButton.getId() == R.id.gdsb03a
+                || compoundButton.getId() == R.id.gdsb03b
+                || compoundButton.getId() == R.id.gdsb03c
+                || compoundButton.getId() == R.id.gdsb03d) {
 
-            if (bi.gds02pre03a.isChecked()) {
-                bi.tvgds02pre03.clearComposingText();
+            if (bi.gdsb03a.isChecked()) {
+                bi.tvgdsb03.clearComposingText();
                 String styledText = "A child who is not able to hold anything down at all has the sign <font color='yellow'><b><i>Not able to drink or breastfeed</i></b></font>.";
-                bi.tvgds02pre03.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
-            } else if (bi.gds02pre03b.isChecked()) {
-                bi.tvgds02pre03.clearComposingText();
+                bi.tvgdsb03.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+            } else if (bi.gdsb03b.isChecked()) {
+                bi.tvgdsb03.clearComposingText();
                 String styledText = "A child who is not able to hold anything down at all has the sign <font color='yellow'><b><i>Vomits everything</i></b></font>.";
-                bi.tvgds02pre03.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
-            } else if (bi.gds02pre03c.isChecked()) {
-                bi.tvgds02pre03.clearComposingText();
+                bi.tvgdsb03.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+            } else if (bi.gdsb03c.isChecked()) {
+                bi.tvgdsb03.clearComposingText();
                 String styledText = "A child who is not able to hold anything down at all has the sign <font color='yellow'><b><i>Lethargic</i></b></font>.";
-                bi.tvgds02pre03.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
-            } else if (bi.gds02pre03d.isChecked()) {
-                bi.tvgds02pre03.clearComposingText();
+                bi.tvgdsb03.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+            } else if (bi.gdsb03d.isChecked()) {
+                bi.tvgdsb03.clearComposingText();
                 String styledText = "A child who is not able to hold anything down at all has the sign <font color='yellow'><b><i>Unconscious</i></b></font>.";
-                bi.tvgds02pre03.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+                bi.tvgdsb03.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             }
         }
 
 
         //GDS02-Q05
-        if (compoundButton.getId() == R.id.gds02pre05a
-                || compoundButton.getId() == R.id.gds02pre05b
-                || compoundButton.getId() == R.id.gds02pre05c
-                || compoundButton.getId() == R.id.gds02pre05d) {
+        if (compoundButton.getId() == R.id.gdsb05a
+                || compoundButton.getId() == R.id.gdsb05b
+                || compoundButton.getId() == R.id.gdsb05c
+                || compoundButton.getId() == R.id.gdsb05d) {
 
-            if (bi.gds02pre05a.isChecked()) {
-                bi.tvgds02pre05.clearComposingText();
+            if (bi.gdsb05a.isChecked()) {
+                bi.tvgdsb05.clearComposingText();
                 String styledText = "To make sugar water: Dissolve 4 level teaspoons of sugar (20 grams) in a <font color='yellow'><b><i>100-ml</i></b></font> cup of clean water.";
-                bi.tvgds02pre05.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
-            } else if (bi.gds02pre05b.isChecked()) {
-                bi.tvgds02pre05.clearComposingText();
+                bi.tvgdsb05.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+            } else if (bi.gdsb05b.isChecked()) {
+                bi.tvgdsb05.clearComposingText();
                 String styledText = "To make sugar water: Dissolve 4 level teaspoons of sugar (20 grams) in a <font color='yellow'><b><i>150-ml</i></b></font> cup of clean water.";
-                bi.tvgds02pre05.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
-            } else if (bi.gds02pre05c.isChecked()) {
-                bi.tvgds02pre05.clearComposingText();
+                bi.tvgdsb05.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+            } else if (bi.gdsb05c.isChecked()) {
+                bi.tvgdsb05.clearComposingText();
                 String styledText = "To make sugar water: Dissolve 4 level teaspoons of sugar (20 grams) in a <font color='yellow'><b><i>200-ml</i></b></font> cup of clean water.";
-                bi.tvgds02pre05.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
-            } else if (bi.gds02pre05d.isChecked()) {
-                bi.tvgds02pre05.clearComposingText();
+                bi.tvgdsb05.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+            } else if (bi.gdsb05d.isChecked()) {
+                bi.tvgdsb05.clearComposingText();
                 String styledText = "To make sugar water: Dissolve 4 level teaspoons of sugar (20 grams) in a <font color='yellow'><b><i>250-ml</i></b></font> cup of clean water.";
-                bi.tvgds02pre05.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+                bi.tvgdsb05.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             }
         }
     }
 
     void events_call() {
 
-        bi.gds02pre03a.setOnCheckedChangeListener(this);
-        bi.gds02pre03b.setOnCheckedChangeListener(this);
-        bi.gds02pre03c.setOnCheckedChangeListener(this);
-        bi.gds02pre03d.setOnCheckedChangeListener(this);
+        bi.gdsb03a.setOnCheckedChangeListener(this);
+        bi.gdsb03b.setOnCheckedChangeListener(this);
+        bi.gdsb03c.setOnCheckedChangeListener(this);
+        bi.gdsb03d.setOnCheckedChangeListener(this);
 
-        bi.gds02pre05a.setOnCheckedChangeListener(this);
-        bi.gds02pre05b.setOnCheckedChangeListener(this);
-        bi.gds02pre05c.setOnCheckedChangeListener(this);
-        bi.gds02pre05d.setOnCheckedChangeListener(this);
+        bi.gdsb05a.setOnCheckedChangeListener(this);
+        bi.gdsb05b.setOnCheckedChangeListener(this);
+        bi.gdsb05c.setOnCheckedChangeListener(this);
+        bi.gdsb05d.setOnCheckedChangeListener(this);
     }
 }

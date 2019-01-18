@@ -108,22 +108,22 @@ public class CDBSession02_Pre_test extends AppCompatActivity implements RadioBut
 
     private boolean formValidation() {
 
-        if (!validatorClass.EmptyRadioButton(this, bi.cdb02pre01, bi.cdb02pre01a, getString(R.string.cdb02_01))) {
+        if (!validatorClass.EmptyRadioButton(this, bi.cdbb01, bi.cdbb01a, getString(R.string.cdb02_01))) {
             return false;
         }
-        if (!validatorClass.EmptyRadioButton(this, bi.cdb02pre02, bi.cdb02pre02a, getString(R.string.cdb02_02))) {
+        if (!validatorClass.EmptyRadioButton(this, bi.cdbb02, bi.cdbb02a, getString(R.string.cdb02_02))) {
             return false;
         }
-        if (!validatorClass.EmptyRadioButton(this, bi.cdb02pre03, bi.cdb02pre03a, getString(R.string.cdb02_03))) {
+        if (!validatorClass.EmptyRadioButton(this, bi.cdbb03, bi.cdbb03a, getString(R.string.cdb02_03))) {
             return false;
         }
-        if (!validatorClass.EmptyRadioButton(this, bi.cdb02pre04, bi.cdb02pre04a, getString(R.string.cdb02_04))) {
+        if (!validatorClass.EmptyRadioButton(this, bi.cdbb04, bi.cdbb04a, getString(R.string.cdb02_04))) {
             return false;
         }
-        if (!validatorClass.EmptyRadioButton(this, bi.cdb02pre05, bi.cdb02pre05a, getString(R.string.cdb02_05))) {
+        if (!validatorClass.EmptyRadioButton(this, bi.cdbb05, bi.cdbb05a, getString(R.string.cdb02_05))) {
             return false;
         }
-        return validatorClass.EmptyRadioButton(this, bi.cdb02pre06, bi.cdb02pre06a, getString(R.string.cdb02_06));
+        return validatorClass.EmptyRadioButton(this, bi.cdbb06, bi.cdbb06a, getString(R.string.cdb02_06));
     }
 
     public void BtnEnd() {
@@ -146,53 +146,53 @@ public class CDBSession02_Pre_test extends AppCompatActivity implements RadioBut
     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
 
         //CDB02-Q2
-        if (compoundButton.getId() == R.id.cdb02pre02a
-                || compoundButton.getId() == R.id.cdb02pre02b
-                || compoundButton.getId() == R.id.cdb02pre02c
-                || compoundButton.getId() == R.id.cdb02pre02d) {
+        if (compoundButton.getId() == R.id.cdbb02a
+                || compoundButton.getId() == R.id.cdbb02b
+                || compoundButton.getId() == R.id.cdbb02c
+                || compoundButton.getId() == R.id.cdbb02d) {
 
-            if (bi.cdb02pre02a.isChecked()) {
-                bi.tvcdb02pre02.clearComposingText();
+            if (bi.cdbb02a.isChecked()) {
+                bi.tvcdbb02.clearComposingText();
                 String styledText = "The dose for intramuscular antibiotics (urgent referral); Ampicillin <font color='yellow'><b><i>40</i></b></font>mg/kg and Gentamicin <font color='yellow'><b><i>7</i></b></font>mg/kg.";
-                bi.tvcdb02pre02.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
-            } else if (bi.cdb02pre02b.isChecked()) {
-                bi.tvcdb02pre02.clearComposingText();
+                bi.tvcdbb02.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+            } else if (bi.cdbb02b.isChecked()) {
+                bi.tvcdbb02.clearComposingText();
                 String styledText = "The dose for intramuscular antibiotics (urgent referral); Ampicillin <font color='yellow'><b><i>45</i></b></font>mg/kg and Gentamicin <font color='yellow'><b><i>7.5</i></b></font>mg/kg.";
-                bi.tvcdb02pre02.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
-            } else if (bi.cdb02pre02c.isChecked()) {
-                bi.tvcdb02pre02.clearComposingText();
+                bi.tvcdbb02.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+            } else if (bi.cdbb02c.isChecked()) {
+                bi.tvcdbb02.clearComposingText();
                 String styledText = "The dose for intramuscular antibiotics (urgent referral); Ampicillin <font color='yellow'><b><i>50</i></b></font>mg/kg and Gentamicin <font color='yellow'><b><i>7.5</i></b></font>mg/kg.";
-                bi.tvcdb02pre02.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
-            } else if (bi.cdb02pre02d.isChecked()) {
-                bi.tvcdb02pre02.clearComposingText();
+                bi.tvcdbb02.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+            } else if (bi.cdbb02d.isChecked()) {
+                bi.tvcdbb02.clearComposingText();
                 String styledText = "The dose for intramuscular antibiotics (urgent referral); Ampicillin <font color='yellow'><b><i>55</i></b></font>mg/kg and Gentamicin <font color='yellow'><b><i>8</i></b></font>mg/kg.";
-                bi.tvcdb02pre02.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+                bi.tvcdbb02.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             }
         }
 
 
         //CDB02-Q4
-        if (compoundButton.getId() == R.id.cdb02pre04a
-                || compoundButton.getId() == R.id.cdb02pre02b
-                || compoundButton.getId() == R.id.cdb02pre02c
-                || compoundButton.getId() == R.id.cdb02pre02d) {
+        if (compoundButton.getId() == R.id.cdbb04a
+                || compoundButton.getId() == R.id.cdbb02b
+                || compoundButton.getId() == R.id.cdbb02c
+                || compoundButton.getId() == R.id.cdbb02d) {
 
-            if (bi.cdb02pre04a.isChecked()) {
-                bi.tvcdb02pre04.clearComposingText();
+            if (bi.cdbb04a.isChecked()) {
+                bi.tvcdbb04.clearComposingText();
                 String styledText = "Standard flow rates for oxygen through nasal prongs or nasal catheters are up to <font color='yellow'><b><i>2</i></b></font> L/min for infants, up to <font color='yellow'><b><i>4</i></b></font> L/min for older children.";
-                bi.tvcdb02pre04.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
-            } else if (bi.cdb02pre04b.isChecked()) {
-                bi.tvcdb02pre04.clearComposingText();
+                bi.tvcdbb04.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+            } else if (bi.cdbb04b.isChecked()) {
+                bi.tvcdbb04.clearComposingText();
                 String styledText = "Standard flow rates for oxygen through nasal prongs or nasal catheters are up to <font color='yellow'><b><i>3</i></b></font> L/min for infants, up to <font color='yellow'><b><i>4</i></b></font> L/min for older children.";
-                bi.tvcdb02pre04.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
-            } else if (bi.cdb02pre04c.isChecked()) {
-                bi.tvcdb02pre04.clearComposingText();
+                bi.tvcdbb04.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+            } else if (bi.cdbb04c.isChecked()) {
+                bi.tvcdbb04.clearComposingText();
                 String styledText = "Standard flow rates for oxygen through nasal prongs or nasal catheters are up to <font color='yellow'><b><i>3.5</i></b></font> L/min for infants, up to <font color='yellow'><b><i>4.5</i></b></font> L/min for older children.";
-                bi.tvcdb02pre04.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
-            } else if (bi.cdb02pre04d.isChecked()) {
-                bi.tvcdb02pre04.clearComposingText();
+                bi.tvcdbb04.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+            } else if (bi.cdbb04d.isChecked()) {
+                bi.tvcdbb04.clearComposingText();
                 String styledText = "Standard flow rates for oxygen through nasal prongs or nasal catheters are up to <font color='yellow'><b><i>4</i></b></font> L/min for infants, up to <font color='yellow'><b><i>4.5</i></b></font> L/min for older children.";
-                bi.tvcdb02pre04.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
+                bi.tvcdbb04.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             }
         }
 
@@ -200,14 +200,14 @@ public class CDBSession02_Pre_test extends AppCompatActivity implements RadioBut
 
     void events_call() {
 
-        bi.cdb02pre02a.setOnCheckedChangeListener(this);
-        bi.cdb02pre02b.setOnCheckedChangeListener(this);
-        bi.cdb02pre02c.setOnCheckedChangeListener(this);
-        bi.cdb02pre02d.setOnCheckedChangeListener(this);
+        bi.cdbb02a.setOnCheckedChangeListener(this);
+        bi.cdbb02b.setOnCheckedChangeListener(this);
+        bi.cdbb02c.setOnCheckedChangeListener(this);
+        bi.cdbb02d.setOnCheckedChangeListener(this);
 
-        bi.cdb02pre04a.setOnCheckedChangeListener(this);
-        bi.cdb02pre04b.setOnCheckedChangeListener(this);
-        bi.cdb02pre04c.setOnCheckedChangeListener(this);
-        bi.cdb02pre04d.setOnCheckedChangeListener(this);
+        bi.cdbb04a.setOnCheckedChangeListener(this);
+        bi.cdbb04b.setOnCheckedChangeListener(this);
+        bi.cdbb04c.setOnCheckedChangeListener(this);
+        bi.cdbb04d.setOnCheckedChangeListener(this);
     }
 }

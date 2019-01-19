@@ -1,7 +1,10 @@
 package detail.acad.hassannaqvi.edu.aku.academicdetailing.JSON;
 
+import android.app.Activity;
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -13,13 +16,18 @@ import android.widget.Spinner;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.validation.validatorClass;
 import io.blackbox_vision.datetimepickeredittext.view.DatePickerInputEditText;
 
 public abstract class GeneratorClass {
 
     private static JSONObject formJSON;
+    private static ArrayList<String> answers;
+    private static int incr = 0;
 
     public static JSONObject getContainerJSON(LinearLayout lv, boolean flag, String... convention) {
 
@@ -94,13 +102,112 @@ public abstract class GeneratorClass {
         return formJSON;
     }
 
+    public static void comparingResult(LinearLayout lv) {
+
+        try {
+            for (int i = 0; i < lv.getChildCount(); i++) {
+                View view = lv.getChildAt(i);
+
+                if (view instanceof CardView) {
+                    for (int j = 0; j < ((CardView) view).getChildCount(); j++) {
+                        View view1 = ((CardView) view).getChildAt(j);
+                        if (view1 instanceof LinearLayout) {
+                            comparingResult((LinearLayout) view1);
+                        }
+                    }
+                } else if (view instanceof RadioGroup) {
+
+                    RadioGroup rdg = (RadioGroup) view;
+                    String tag1 = Data.fanc_cans.get(incr);
+                    String tag2 = Data.fanc_ans.get(incr);
+                    for (int j = 0; j < ((RadioGroup) view).getChildCount(); j++) {
+                        ((RadioGroup)view).getChildAt(j).setEnabled(false);
+                        if(String.valueOf(rdg.getChildAt(j).getTag()).equals(tag2)){
+                            RadioButton rdb = rdg.findViewById(((RadioGroup) view).getChildAt(j).getId());
+//                            rdb.setCompoundDrawablesWithIntrinsicBounds(null,null, ContextCompat.getDrawable(rdg.getContext(),R.drawable.cancel),null);
+                            rdb.setButtonDrawable(R.drawable.cancel);
+                            rdb.setChecked(true);
+
+                        }
+                        if (String.valueOf(rdg.getChildAt(j).getTag()).equals(tag1) ) {
+                            RadioButton rdb = rdg.findViewById(((RadioGroup) view).getChildAt(j).getId());
+//                            rdb.setCompoundDrawablesWithIntrinsicBounds(null,null,ContextCompat.getDrawable(rdg.getContext(),R.drawable.tick),null);
+                            rdb.setButtonDrawable(R.drawable.tick);
+                            rdb.setChecked(true);
+                        }
+
+                    }
+
+
+                }
+
+
+            }
+
+
+            incr++;
+
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
+
+    }
+
+    public static ArrayList<String> getAnswers(LinearLayout lv, boolean flag) {
+
+
+        if (flag)
+            answers = new ArrayList<>();
+
+        try {
+            for (int i = 0; i < lv.getChildCount(); i++) {
+                View view = lv.getChildAt(i);
+
+                if (view instanceof CardView) {
+                    for (int j = 0; j < ((CardView) view).getChildCount(); j++) {
+                        View view1 = ((CardView) view).getChildAt(j);
+                        if (view1 instanceof LinearLayout) {
+                            getAnswers((LinearLayout) view1, false);
+                        }
+                    }
+                } else if (view instanceof RadioGroup) {
+
+                    RadioGroup rdg = (RadioGroup) view;
+                    int selectedId = rdg.getCheckedRadioButtonId();
+                    if (selectedId != -1) {
+                        for (int j = 0; j < ((RadioGroup) view).getChildCount(); j++) {
+                            if (selectedId == ((RadioGroup) view).getChildAt(j).getId()) {
+                                RadioButton rdb = rdg.findViewById(((RadioGroup) view).getChildAt(j).getId());
+                                String tag = (String) rdb.getTag();
+                                answers.add(tag);
+                                break;
+                            }
+
+                        }
+                    }
+
+
+                }
+            }
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
+
+
+        return answers;
+
+    }
+
 
     private static String getValues(String nameconv) {
 
         if (nameconv.length() > 0) {
 
             String str = nameconv.substring(nameconv.length() - (nameconv.length() >= 2 ? 2 : 1)
-                    , nameconv.length());
+            );
 
             char[] str_str = str.toLowerCase().toCharArray();
 

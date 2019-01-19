@@ -1,5 +1,8 @@
 package detail.acad.hassannaqvi.edu.aku.academicdetailing.util;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 
 public class Data {
@@ -12,6 +15,8 @@ public class Data {
     public static final String[] maternalModule = new String[]{"Focused Antenatal Care", "Vaginal Bleeding in Pregnancy",
             "Partograph", "Pre Eclampsia & Eclampsia", " Postpartum Hemorrhage", "Assessment and management of Shock", " Puerperal Sepsis"};
 
+    public static ArrayList<String>fanc_cans = new ArrayList<String>(Arrays.asList("3","4","4","3","3"));
+    public static ArrayList<String>fanc_ans = new ArrayList<>();
 
     public static int[] vb_imgs = new int[]{
             R.drawable.vb_img_1, R.drawable.vb_img_5, R.drawable.vb_img_6, R.drawable.vb_img_7, R.drawable.vb_img_8,

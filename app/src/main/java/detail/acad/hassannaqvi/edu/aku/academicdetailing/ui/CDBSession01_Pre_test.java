@@ -19,11 +19,11 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityCdbsession01PreTestBinding;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.validation.validatorClass;
 
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.type;
+
 public class CDBSession01_Pre_test extends AppCompatActivity implements RadioButton.OnCheckedChangeListener {
 
     ActivityCdbsession01PreTestBinding bi;
-
-    String type;
 
 
     @Override

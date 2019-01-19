@@ -87,6 +87,9 @@ public class MainApp extends Application {
     public static String logginTime;
     public static String subModuleName;
     public static NextMeetingContract nmc;
+    public static boolean isComplete = false;
+    public static String type = "";
+    public static int[] slides;
 
     protected static LocationManager locationManager;
 

@@ -19,11 +19,12 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityGdssession02PreTestBinding;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.validation.validatorClass;
 
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.type;
+
 public class GDSSession02_Pre_test extends AppCompatActivity implements RadioButton.OnCheckedChangeListener {
 
     ActivityGdssession02PreTestBinding bi;
     private static final String TAG = "GDSSession02_Pre_test";
-    String type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

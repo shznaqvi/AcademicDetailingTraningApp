@@ -19,12 +19,14 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityVbPreTestBinding;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.validation.validatorClass;
 
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.slides;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.type;
+
 public class VB_Pre_test extends AppCompatActivity {
 
     ActivityVbPreTestBinding bi;
 
     String currentDateTime = new SimpleDateFormat(" dd/MM/yyyy HH:mm:ss").format(new Date().getTime());
-    String type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,7 @@ public class VB_Pre_test extends AppCompatActivity {
         bi.setCallback(this);
 
         type = getIntent().getStringExtra("type");
+        slides = getIntent().getIntArrayExtra("slides");
 
         if(type.equals("pre")){
             MainApp.fc.setPreTestStartTime(MainApp.getCurrentTime());
@@ -55,7 +58,7 @@ public class VB_Pre_test extends AppCompatActivity {
                 if (UpdateDB()) {
                     if(type.equals("pre")){
                         if (MainApp.isSlideStart) {
-                            startActivity(new Intent(this, ViewPagerActivity.class).putExtra("slides", getIntent().getIntArrayExtra("slides")));
+                            startActivity(new Intent(this, ViewPagerActivity.class).putExtra("slides",slides));
                             finish();
                         } else {
                             Toast.makeText(this, "Training Completed", Toast.LENGTH_SHORT).show();

@@ -114,6 +114,7 @@
                             android:orientation="vertical">
 
                             <EditText
+                                android:text="dmu@aku"
                                 android:layout_margin="0dp"
                                 android:id="@+id/email"
                                 style="@style/textInput"
@@ -144,6 +145,7 @@
 
 
                                 <EditText
+                                    android:text="aku?dmu"
                                     android:layout_margin="0dp"
                                     android:id="@+id/password"
                                     style="@style/textInput"

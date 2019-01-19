@@ -4,11 +4,16 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.JSON.GeneratorClass;
@@ -16,14 +21,19 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityFancPreTestBinding;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.validation.validatorClass;
+
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.isComplete;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.slides;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.type;
 
 public class FANC_Pre_test extends AppCompatActivity {
 
     ActivityFancPreTestBinding bi;
     String currentDateTime = new SimpleDateFormat(" dd/MM/yyyy HH:mm:ss").format(new Date().getTime());
-    String type;
-
+    private static final String TAG = "FANC_Pre_test";
+    String[] ans = new String[]{};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +42,22 @@ public class FANC_Pre_test extends AppCompatActivity {
         bi = DataBindingUtil.setContentView(this, R.layout.activity_fanc__pre_test);
         bi.setCallback(this);
 
-        type = getIntent().getStringExtra("type");
+        if (!isComplete) {
+            type = getIntent().getStringExtra("type");
+            slides = getIntent().getIntArrayExtra("slides");
+            if (type.equals("pre")) {
+                MainApp.fc.setPreTestStartTime(MainApp.getCurrentTime());
+            } else {
+                MainApp.fc.setPostTestStartTime(MainApp.getCurrentTime());
+            }
+            bi.btnOk.setVisibility(View.GONE);
+            bi.btnContinue.setVisibility(View.VISIBLE);
 
-        if(type.equals("pre")){
-            MainApp.fc.setPreTestStartTime(MainApp.getCurrentTime());
-        }else{
-            MainApp.fc.setPostTestStartTime(MainApp.getCurrentTime());
+        } else {
+            GeneratorClass.comparingResult(bi.fldGrpPreFanc);
+            bi.btnOk.setVisibility(View.VISIBLE);
+            bi.btnContinue.setVisibility(View.GONE);
+
         }
 
         if (MainApp.isSlideStart) {
@@ -52,15 +72,16 @@ public class FANC_Pre_test extends AppCompatActivity {
             try {
                 SaveDraft();
                 if (UpdateDB()) {
-                    if(type.equals("pre")){
+                    if (type.equals("pre")) {
                         if (MainApp.isSlideStart) {
-                            startActivity(new Intent(this, ViewPagerActivity.class).putExtra("slides", getIntent().getIntArrayExtra("slides")));
+                            startActivity(new Intent(this, FANC_Pre_test.class));
+                            isComplete = true;
                             finish();
                         } else {
                             Toast.makeText(this, "Training Completed", Toast.LENGTH_SHORT).show();
                             finish();
                         }
-                    }else{
+                    } else {
                         MainApp.endActivity(this, "Are You Sure You want to Continue?", true);
                     }
 
@@ -73,13 +94,27 @@ public class FANC_Pre_test extends AppCompatActivity {
         }
     }
 
+    public void BtnOk() {
+        if (type.equals("pre")) {
+            if (MainApp.isSlideStart) {
+                startActivity(new Intent(this, ViewPagerActivity.class).putExtra("slides", slides));
+                finish();
+            } else {
+                Toast.makeText(this, "Training Completed", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        } else {
+            MainApp.endActivity(this, "Are You Sure You want to Continue?", true);
+        }
+    }
+
     private boolean UpdateDB() {
 
         DatabaseHelper db = new DatabaseHelper(this);
         int count;
-        if(type.equals("pre")){
+        if (type.equals("pre")) {
             count = db.updatePreTest();
-        }else{
+        } else {
             count = db.updatePostTest();
         }
         if (count == 1) {
@@ -94,13 +129,16 @@ public class FANC_Pre_test extends AppCompatActivity {
 
     private void SaveDraft() {
 
-        if(type.equals("pre")){
+        if (type.equals("pre")) {
             MainApp.fc.setPreTestEndTime(MainApp.getCurrentTime());
-            JSONObject json = GeneratorClass.getContainerJSON(bi.fldGrpPreFanc, true,type);
+            JSONObject json = GeneratorClass.getContainerJSON(bi.fldGrpPreFanc, true, type);
             MainApp.fc.setPre_test(String.valueOf(json));
-        }else{
+            Data.fanc_ans = GeneratorClass.getAnswers(bi.fldGrpPreFanc, true);
+
+
+        } else {
             MainApp.fc.setPostTestEndTime(MainApp.getCurrentTime());
-            JSONObject json = GeneratorClass.getContainerJSON(bi.fldGrpPreFanc, true,type);
+            JSONObject json = GeneratorClass.getContainerJSON(bi.fldGrpPreFanc, true, type);
             MainApp.fc.setPost_test(String.valueOf(json));
         }
     }

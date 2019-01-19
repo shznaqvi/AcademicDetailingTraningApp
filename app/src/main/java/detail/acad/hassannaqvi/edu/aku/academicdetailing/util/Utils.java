@@ -4,10 +4,18 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.support.design.widget.Snackbar;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
@@ -20,9 +28,15 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.VB_Pre_test;
 
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.cdb1_imgs;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.cdb2_imgs;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.cdba_cans;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.cdbb_cans;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.fanc_cans;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.fanc_imgs;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.gds1_imgs;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.gds2_imgs;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.gdsa_cans;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.gdsb_cans;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.vb_cans;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.vb_imgs;
 
 public class Utils {
@@ -105,7 +119,9 @@ public class Utils {
                 MainApp.isSlideStart = true;
                 context.startActivity(new Intent(context, selectTest(index, moduleName))
                         .putExtra("slides", MainApp.isMaternal ? Utils.getMaternalSessions(index)
-                                : MainApp.isChild ? Utils.getChildSessions(index, moduleName) : null).putExtra("type", "pre"));
+                                : MainApp.isChild ? Utils.getChildSessions(index, moduleName) : null)
+                        .putExtra("type", "pre")
+                        .putExtra("ans", selectAnswers(index, moduleName)));
                 MainApp.fc.setSessionStartTime(MainApp.getCurrentTime());
                 dialog.dismiss();
 
@@ -205,6 +221,44 @@ public class Utils {
 
     }
 
+    public static ArrayList<String> selectAnswers(int index, String moduleName) {
+
+        if (MainApp.isMaternal) {
+
+            switch (index) {
+
+                case 0:
+                    return fanc_cans;
+                case 1:
+                    return vb_cans;
+            }
+        } else if (MainApp.isChild) {
+
+            if (moduleName.equals("gds")) {
+
+                switch (index) {
+                    case 0:
+                        return gdsa_cans;
+                    case 1:
+                        return gdsb_cans;
+                }
+
+            } else if (moduleName.equals("cdb")) {
+                switch (index) {
+                    case 0:
+                        return cdba_cans;
+                    case 1:
+                        return cdbb_cans;
+                }
+
+            }
+
+
+        }
+        return null;
+
+    }
+
 
     public static int getPostImages(int index, boolean type) {
 
@@ -274,5 +328,7 @@ public class Utils {
         return 0;
 
     }
+
+
 
 }

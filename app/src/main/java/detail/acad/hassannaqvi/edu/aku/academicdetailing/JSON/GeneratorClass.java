@@ -17,6 +17,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
@@ -27,6 +28,7 @@ public abstract class GeneratorClass {
 
     private static JSONObject formJSON;
     private static ArrayList<String> answers;
+    private static ArrayList<String> testAnswers;
     private static int incr = 0;
 
     public static JSONObject getContainerJSON(LinearLayout lv, boolean flag, String... convention) {
@@ -102,7 +104,13 @@ public abstract class GeneratorClass {
         return formJSON;
     }
 
-    public static void comparingResult(LinearLayout lv) {
+    public static void comparingResult(LinearLayout lv, boolean flag, ArrayList<String>... answers) {
+
+        if (flag)
+            if (answers.length != 0) {
+                testAnswers = answers[0];
+
+            }
 
         try {
             for (int i = 0; i < lv.getChildCount(); i++) {
@@ -112,24 +120,24 @@ public abstract class GeneratorClass {
                     for (int j = 0; j < ((CardView) view).getChildCount(); j++) {
                         View view1 = ((CardView) view).getChildAt(j);
                         if (view1 instanceof LinearLayout) {
-                            comparingResult((LinearLayout) view1);
+                            comparingResult((LinearLayout) view1, false);
                         }
                     }
                 } else if (view instanceof RadioGroup) {
 
                     RadioGroup rdg = (RadioGroup) view;
-                    String tag1 = Data.fanc_cans.get(incr);
-                    String tag2 = Data.fanc_ans.get(incr);
+                    String tag1 = testAnswers.get(incr);
+                    String tag2 = Data.testAnswers.get(incr);
                     for (int j = 0; j < ((RadioGroup) view).getChildCount(); j++) {
-                        ((RadioGroup)view).getChildAt(j).setEnabled(false);
-                        if(String.valueOf(rdg.getChildAt(j).getTag()).equals(tag2)){
+                        ((RadioGroup) view).getChildAt(j).setEnabled(false);
+                        if (String.valueOf(rdg.getChildAt(j).getTag()).equals(tag2)) {
                             RadioButton rdb = rdg.findViewById(((RadioGroup) view).getChildAt(j).getId());
 //                            rdb.setCompoundDrawablesWithIntrinsicBounds(null,null, ContextCompat.getDrawable(rdg.getContext(),R.drawable.cancel),null);
                             rdb.setButtonDrawable(R.drawable.cancel);
                             rdb.setChecked(true);
 
                         }
-                        if (String.valueOf(rdg.getChildAt(j).getTag()).equals(tag1) ) {
+                        if (String.valueOf(rdg.getChildAt(j).getTag()).equals(tag1)) {
                             RadioButton rdb = rdg.findViewById(((RadioGroup) view).getChildAt(j).getId());
 //                            rdb.setCompoundDrawablesWithIntrinsicBounds(null,null,ContextCompat.getDrawable(rdg.getContext(),R.drawable.tick),null);
                             rdb.setButtonDrawable(R.drawable.tick);
@@ -143,8 +151,6 @@ public abstract class GeneratorClass {
 
 
             }
-
-
             incr++;
 
 

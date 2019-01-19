@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.FragmentMainBinding;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.interfaces.Callbacks;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Utils;
 
 
 /**
@@ -35,6 +36,7 @@ public class MainFragment extends Fragment {
         // Inflate the layout for this fragment
         bi = DataBindingUtil.inflate(inflater,R.layout.fragment_main,container,false);
         view = bi.getRoot();
+
 
         onClickListener();
         return view;

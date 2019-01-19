@@ -5,6 +5,7 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
+import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -17,8 +18,11 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityGdssession02PreTestBinding;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.validation.validatorClass;
 
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.isComplete;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.slides;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.type;
 
 public class GDSSession02_Pre_test extends AppCompatActivity implements RadioButton.OnCheckedChangeListener {
@@ -37,18 +41,44 @@ public class GDSSession02_Pre_test extends AppCompatActivity implements RadioBut
 
         events_call();
 
-        if(type.equals("pre")){
-            MainApp.fc.setPreTestStartTime(MainApp.getCurrentTime());
-        }else{
-            MainApp.fc.setPostTestStartTime(MainApp.getCurrentTime());
-        }
+        if (!isComplete) {
+            type = getIntent().getStringExtra("type");
+            slides = getIntent().getIntArrayExtra("slides");
+            Data.correctAnswers = getIntent().getStringArrayListExtra("ans");
+            if (type.equals("pre")) {
+                MainApp.fc.setPreTestStartTime(MainApp.getCurrentTime());
+            } else {
+                MainApp.fc.setPostTestStartTime(MainApp.getCurrentTime());
+            }
+            bi.btnOk.setVisibility(View.GONE);
+            bi.btnContinue.setVisibility(View.VISIBLE);
 
+        } else {
+            GeneratorClass.comparingResult(bi.fldGrpPreGds02,true,Data.correctAnswers);
+            bi.btnOk.setVisibility(View.VISIBLE);
+            bi.btnContinue.setVisibility(View.GONE);
+
+        }
         if(MainApp.isSlideStart){
             bi.btnContinue.setText("Start Training");
         }else{
             bi.btnContinue.setText("Finish Training");
         }
 
+    }
+
+    public void BtnOk() {
+        if (type.equals("pre")) {
+            if (MainApp.isSlideStart) {
+                startActivity(new Intent(this, ViewPagerActivity.class).putExtra("slides", slides));
+                finish();
+            } else {
+                Toast.makeText(this, "Training Completed", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        } else {
+            MainApp.endActivity(this, "Are You Sure You want to Continue?", true);
+        }
     }
 
 
@@ -60,7 +90,8 @@ public class GDSSession02_Pre_test extends AppCompatActivity implements RadioBut
                 if (UpdateDB()) {
                     if(type.equals("pre")){
                         if (MainApp.isSlideStart) {
-                            startActivity(new Intent(this, ViewPagerActivity.class).putExtra("slides", getIntent().getIntArrayExtra("slides")));
+                            startActivity(new Intent(this, GDSSession02_Pre_test.class));
+                            isComplete = true;
                             finish();
                         } else {
                             Toast.makeText(this, "Training Completed", Toast.LENGTH_SHORT).show();
@@ -102,6 +133,7 @@ public class GDSSession02_Pre_test extends AppCompatActivity implements RadioBut
             MainApp.fc.setPreTestEndTime(MainApp.getCurrentTime());
             JSONObject json = GeneratorClass.getContainerJSON(bi.fldGrpPreGds02, true,type);
             MainApp.fc.setPre_test(String.valueOf(json));
+            Data.testAnswers = GeneratorClass.getAnswers(bi.fldGrpPreGds02, true);
         }else{
             MainApp.fc.setPostTestEndTime(MainApp.getCurrentTime());
             JSONObject json = GeneratorClass.getContainerJSON(bi.fldGrpPreGds02, true,type);
@@ -126,21 +158,6 @@ public class GDSSession02_Pre_test extends AppCompatActivity implements RadioBut
         return validatorClass.EmptyRadioButton(this, bi.gdsb05, bi.gdsb05a, getString(R.string.gds02_05));
     }
 
-    public void BtnEnd() {
-
-
-//        try {
-//            SaveDraft();
-//            if (UpdateDB()) {
-////                MainApp.endActivity(this, this, EndingActivity.class, false, fc_4_5);
-//            } else {
-//                Toast.makeText(this, "Error in updating db!!", Toast.LENGTH_SHORT).show();
-//            }
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-
-    }
 
     @Override
     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -208,5 +225,10 @@ public class GDSSession02_Pre_test extends AppCompatActivity implements RadioBut
         bi.gdsb05b.setOnCheckedChangeListener(this);
         bi.gdsb05c.setOnCheckedChangeListener(this);
         bi.gdsb05d.setOnCheckedChangeListener(this);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(this, "You can't go back", Toast.LENGTH_SHORT).show();
     }
 }

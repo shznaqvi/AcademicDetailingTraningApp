@@ -31,9 +31,7 @@ import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.typ
 public class FANC_Pre_test extends AppCompatActivity {
 
     ActivityFancPreTestBinding bi;
-    String currentDateTime = new SimpleDateFormat(" dd/MM/yyyy HH:mm:ss").format(new Date().getTime());
     private static final String TAG = "FANC_Pre_test";
-    String[] ans = new String[]{};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +43,7 @@ public class FANC_Pre_test extends AppCompatActivity {
         if (!isComplete) {
             type = getIntent().getStringExtra("type");
             slides = getIntent().getIntArrayExtra("slides");
+            Data.correctAnswers = getIntent().getStringArrayListExtra("ans");
             if (type.equals("pre")) {
                 MainApp.fc.setPreTestStartTime(MainApp.getCurrentTime());
             } else {
@@ -54,7 +53,7 @@ public class FANC_Pre_test extends AppCompatActivity {
             bi.btnContinue.setVisibility(View.VISIBLE);
 
         } else {
-            GeneratorClass.comparingResult(bi.fldGrpPreFanc);
+            GeneratorClass.comparingResult(bi.fldGrpPreFanc,true,Data.correctAnswers);
             bi.btnOk.setVisibility(View.VISIBLE);
             bi.btnContinue.setVisibility(View.GONE);
 
@@ -133,7 +132,7 @@ public class FANC_Pre_test extends AppCompatActivity {
             MainApp.fc.setPreTestEndTime(MainApp.getCurrentTime());
             JSONObject json = GeneratorClass.getContainerJSON(bi.fldGrpPreFanc, true, type);
             MainApp.fc.setPre_test(String.valueOf(json));
-            Data.fanc_ans = GeneratorClass.getAnswers(bi.fldGrpPreFanc, true);
+            Data.testAnswers = GeneratorClass.getAnswers(bi.fldGrpPreFanc, true);
 
 
         } else {
@@ -163,19 +162,10 @@ public class FANC_Pre_test extends AppCompatActivity {
         return validatorClass.EmptyCardCheckBox(this, bi.fanc06, bi.fanc06a, getString(R.string.fanc_06));
     }
 
-    public void BtnEnd() {
-
-
-//        try {
-//            SaveDraft();
-//            if (UpdateDB()) {
-////                MainApp.endActivity(this, this, EndingActivity.class, false, fc_4_5);
-//            } else {
-//                Toast.makeText(this, "Error in updating db!!", Toast.LENGTH_SHORT).show();
-//            }
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(this, "You can't go back", Toast.LENGTH_SHORT).show();
     }
+
+
 }

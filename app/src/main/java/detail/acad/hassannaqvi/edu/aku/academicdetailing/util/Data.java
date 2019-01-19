@@ -15,8 +15,9 @@ public class Data {
     public static final String[] maternalModule = new String[]{"Focused Antenatal Care", "Vaginal Bleeding in Pregnancy",
             "Partograph", "Pre Eclampsia & Eclampsia", " Postpartum Hemorrhage", "Assessment and management of Shock", " Puerperal Sepsis"};
 
-    public static ArrayList<String>fanc_cans = new ArrayList<String>(Arrays.asList("3","4","4","3","3"));
-    public static ArrayList<String>fanc_ans = new ArrayList<>();
+    public static ArrayList<String> fanc_cans = new ArrayList<String>(Arrays.asList("3","4","4","3","3"));
+    public static ArrayList<String> testAnswers = new ArrayList<>();
+    public static ArrayList<String> correctAnswers = new ArrayList<>();
 
     public static ArrayList<String> vb_cans = new ArrayList<String>(Arrays.asList("2", "3", "4", "3", "2"));
 

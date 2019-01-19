@@ -47,6 +47,7 @@
                         android:layout_height="wrap_content">
 
                         <RadioButton
+                            android:tag="1"
                             android:id="@+id/vb01a"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -54,6 +55,7 @@
                             android:text="@string/vb_01a" />
 
                         <RadioButton
+                            android:tag="2"
                             android:id="@+id/vb01b"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -61,6 +63,7 @@
                             android:text="@string/vb_01b" />
 
                         <RadioButton
+                            android:tag="3"
                             android:id="@+id/vb01c"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -68,6 +71,7 @@
                             android:text="@string/vb_01c" />
 
                         <RadioButton
+                            android:tag="4"
                             android:id="@+id/vb01d"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -106,6 +110,7 @@
                         android:layout_height="wrap_content">
 
                         <RadioButton
+                            android:tag="1"
                             android:id="@+id/vb02a"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -113,6 +118,7 @@
                             android:text="@string/vb_02a" />
 
                         <RadioButton
+                            android:tag="2"
                             android:id="@+id/vb02b"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -120,6 +126,7 @@
                             android:text="@string/vb_02b" />
 
                         <RadioButton
+                            android:tag="3"
                             android:id="@+id/vb02c"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -127,6 +134,7 @@
                             android:text="@string/vb_02c" />
 
                         <RadioButton
+                            android:tag="4"
                             android:id="@+id/vb02d"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -165,6 +173,7 @@
                         android:layout_height="wrap_content">
 
                         <RadioButton
+                            android:tag="1"
                             android:id="@+id/vb03a"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -172,6 +181,7 @@
                             android:text="@string/vb_03a" />
 
                         <RadioButton
+                            android:tag="2"
                             android:id="@+id/vb03b"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -179,6 +189,7 @@
                             android:text="@string/vb_03b" />
 
                         <RadioButton
+                            android:tag="3"
                             android:id="@+id/vb03c"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -186,6 +197,7 @@
                             android:text="@string/vb_03c" />
 
                         <RadioButton
+                            android:tag="4"
                             android:id="@+id/vb03d"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -224,6 +236,7 @@
                         android:layout_height="wrap_content">
 
                         <RadioButton
+                            android:tag="1"
                             android:id="@+id/vb04a"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -231,6 +244,7 @@
                             android:text="@string/vb_04a" />
 
                         <RadioButton
+                            android:tag="2"
                             android:id="@+id/vb04b"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -238,6 +252,7 @@
                             android:text="@string/vb_04b" />
 
                         <RadioButton
+                            android:tag="3"
                             android:id="@+id/vb04c"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -245,6 +260,7 @@
                             android:text="@string/vb_04c" />
 
                         <RadioButton
+                            android:tag="4"
                             android:id="@+id/vb04d"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -284,6 +300,7 @@
                         android:layout_height="wrap_content">
 
                         <RadioButton
+                            android:tag="1"
                             android:id="@+id/vb05a"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -291,6 +308,7 @@
                             android:text="@string/vb_05a" />
 
                         <RadioButton
+                            android:tag="2"
                             android:id="@+id/vb05b"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -298,6 +316,7 @@
                             android:text="@string/vb_05b" />
 
                         <RadioButton
+                            android:tag="3"
                             android:id="@+id/vb05c"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -305,6 +324,7 @@
                             android:text="@string/vb_05c" />
 
                         <RadioButton
+                            android:tag="4"
                             android:id="@+id/vb05d"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -335,6 +355,13 @@
                     android:onClick="@{() -> callback.BtnContinue()}"
                     android:text="Start Training"
                     android:textSize="16sp" />
+                <Button
+                    android:id="@+id/btnOk"
+                    style="@style/button1"
+                    android:onClick="@{() -> callback.BtnOk()}"
+                    android:text="Ok"
+                    android:textSize="16sp"
+                    android:visibility="gone" />
 
 
                 <!--'onClick' for btn_End will NOT change and always call 'endInterview'-->

@@ -23,6 +23,8 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments.ScheduleFragm
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.interfaces.Callbacks;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.validation.validatorClass;
 
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.isComplete;
+
 public class EndingActivity extends AppCompatActivity {
 
 
@@ -63,6 +65,7 @@ public class EndingActivity extends AppCompatActivity {
                     if (UpdateDB()) {
 //                        startActivity(new Intent(EndingActivity.this, MainActivity.class));
                         loadScheduleFragment();
+                        isComplete = false;
                     } else {
                         Toast.makeText(EndingActivity.this, "Error in updating db!!", Toast.LENGTH_SHORT).show();
                     }

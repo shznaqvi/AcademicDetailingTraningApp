@@ -21,7 +21,6 @@
     </style>
 
     <style name="checkbox" parent="android:Widget.Material.Light.CompoundButton.CheckBox">
-        <item name="android:layout_gravity">right</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:button">@null</item>
@@ -63,7 +62,7 @@
         <item name="android:textViewStyle">@style/labels</item>
         <item name="android:editTextStyle">@style/textInput</item>
         <item name="android:buttonStyle">@style/buttons</item>
-        <item name="android:checkboxStyle">@style/checkbox</item>
+        <!--<item name="android:checkboxStyle">@style/checkbox</item>-->
         <item name="android:radioButtonStyle">@style/radiobutton</item>
         <item name="spinnerStyle">@style/spinner</item>
         <item name="toolbarStyle">@style/ActionBar</item>

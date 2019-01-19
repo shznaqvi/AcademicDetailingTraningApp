@@ -5,6 +5,7 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
+import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -17,8 +18,11 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityCdbsession01PreTestBinding;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.validation.validatorClass;
 
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.isComplete;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.slides;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.type;
 
 public class CDBSession01_Pre_test extends AppCompatActivity implements RadioButton.OnCheckedChangeListener {
@@ -33,13 +37,26 @@ public class CDBSession01_Pre_test extends AppCompatActivity implements RadioBut
         bi = DataBindingUtil.setContentView(this, R.layout.activity_cdbsession01__pre_test);
         bi.setCallback(this);
 
-        type = getIntent().getStringExtra("type");
+//        type = getIntent().getStringExtra("type");
         events_call();
 
-        if(type.equals("pre")){
-            MainApp.fc.setPreTestStartTime(MainApp.getCurrentTime());
-        }else{
-            MainApp.fc.setPostTestStartTime(MainApp.getCurrentTime());
+        if (!isComplete) {
+            type = getIntent().getStringExtra("type");
+            slides = getIntent().getIntArrayExtra("slides");
+            Data.correctAnswers = getIntent().getStringArrayListExtra("ans");
+            if (type.equals("pre")) {
+                MainApp.fc.setPreTestStartTime(MainApp.getCurrentTime());
+            } else {
+                MainApp.fc.setPostTestStartTime(MainApp.getCurrentTime());
+            }
+            bi.btnOk.setVisibility(View.GONE);
+            bi.btnContinue.setVisibility(View.VISIBLE);
+
+        } else {
+            GeneratorClass.comparingResult(bi.fldGrpPreCdb01,true,Data.correctAnswers);
+            bi.btnOk.setVisibility(View.VISIBLE);
+            bi.btnContinue.setVisibility(View.GONE);
+
         }
 
         if (MainApp.isSlideStart) {
@@ -49,6 +66,19 @@ public class CDBSession01_Pre_test extends AppCompatActivity implements RadioBut
         }
     }
 
+    public void BtnOk() {
+        if (type.equals("pre")) {
+            if (MainApp.isSlideStart) {
+                startActivity(new Intent(this, ViewPagerActivity.class).putExtra("slides", slides));
+                finish();
+            } else {
+                Toast.makeText(this, "Training Completed", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        } else {
+            MainApp.endActivity(this, "Are You Sure You want to Continue?", true);
+        }
+    }
 
     public void BtnContinue() {
         if (formValidation()) {
@@ -57,7 +87,8 @@ public class CDBSession01_Pre_test extends AppCompatActivity implements RadioBut
                 if (UpdateDB()) {
                     if(type.equals("pre")){
                         if (MainApp.isSlideStart) {
-                            startActivity(new Intent(this, ViewPagerActivity.class).putExtra("slides", getIntent().getIntArrayExtra("slides")));
+                            startActivity(new Intent(this, CDBSession01_Pre_test.class));
+                            isComplete = true;
                             finish();
                         } else {
                             Toast.makeText(this, "Training Completed", Toast.LENGTH_SHORT).show();
@@ -99,6 +130,7 @@ public class CDBSession01_Pre_test extends AppCompatActivity implements RadioBut
             MainApp.fc.setPreTestEndTime(MainApp.getCurrentTime());
             JSONObject json = GeneratorClass.getContainerJSON(bi.fldGrpPreCdb01, true,type);
             MainApp.fc.setPre_test(String.valueOf(json));
+            Data.testAnswers = GeneratorClass.getAnswers(bi.fldGrpPreCdb01, true);
         }else{
             MainApp.fc.setPostTestEndTime(MainApp.getCurrentTime());
             JSONObject json = GeneratorClass.getContainerJSON(bi.fldGrpPreCdb01, true,type);
@@ -121,21 +153,6 @@ public class CDBSession01_Pre_test extends AppCompatActivity implements RadioBut
         return validatorClass.EmptyRadioButton(this, bi.cdba04, bi.cdba04a, getString(R.string.cdb01_04));
     }
 
-    public void BtnEnd() {
-
-
-//        try {
-//            SaveDraft();
-//            if (UpdateDB()) {
-////                MainApp.endActivity(this, this, EndingActivity.class, false, fc_4_5);
-//            } else {
-//                Toast.makeText(this, "Error in updating db!!", Toast.LENGTH_SHORT).show();
-//            }
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-
-    }
 
     @Override
     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -224,5 +241,10 @@ public class CDBSession01_Pre_test extends AppCompatActivity implements RadioBut
 
         bi.cdba04a.setOnCheckedChangeListener(this);
         bi.cdba04b.setOnCheckedChangeListener(this);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(this, "You can't go back", Toast.LENGTH_SHORT).show();
     }
 }

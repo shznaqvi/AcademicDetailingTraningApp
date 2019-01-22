@@ -126,7 +126,7 @@ public class ViewPagerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                MainApp.endActivity(ViewPagerActivity.this, "Do You Want To Exit?", false);
+                MainApp.showDialog(ViewPagerActivity.this, "Do You Want To Exit?", "end", false);
 
             }
         });

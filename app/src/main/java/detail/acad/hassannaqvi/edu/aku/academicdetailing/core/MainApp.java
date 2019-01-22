@@ -21,6 +21,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.io.Serializable;
 import java.text.ParseException;
@@ -129,7 +130,7 @@ public class MainApp extends Application {
         return ageInYears;
     }
 
-    public static String getCurrentTime(){
+    public static String getCurrentTime() {
         String currentTime = new SimpleDateFormat(" dd/MM/yyyy HH:mm:ss").format(new Date().getTime());
         return currentTime;
     }
@@ -189,7 +190,6 @@ public class MainApp extends Application {
                 new GPSLocationListener() // Implement this class from code
         );
     }
-
 
 
     protected boolean isBetterLocation(Location location, Location currentBestLocation) {
@@ -333,10 +333,13 @@ public class MainApp extends Application {
         }
     }
 
-    public static void showDialog(final Context context){
-        View view = LayoutInflater.from(context).inflate(R.layout.dialog_ready_for_training,null);
+    public static void showDialog(final Context context, String message, final String type, final boolean status) {
+
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_ready_for_training, null);
         Button yes = view.findViewById(R.id.yes);
         Button no = view.findViewById(R.id.no);
+        TextView text = view.findViewById(R.id.text);
+        text.setText(message);
         android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context);
         builder.setView(view);
         final android.support.v7.app.AlertDialog dialog = builder.create();
@@ -344,9 +347,17 @@ public class MainApp extends Application {
         yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context, ViewPagerActivity.class).putExtra("slides", slides));
-                dialog.dismiss();
-                ((Activity)context).finish();
+                if (type.equals("pre")) {
+                    context.startActivity(new Intent(context, ViewPagerActivity.class).putExtra("slides", slides));
+                    dialog.dismiss();
+                    ((Activity) context).finish();
+                } else {
+                    Intent end_intent = new Intent(context, EndingActivity.class);
+                    end_intent.putExtra("complete", status);
+                    context.startActivity(end_intent);
+                    ((Activity) context).finish();
+                }
+
 
             }
         });

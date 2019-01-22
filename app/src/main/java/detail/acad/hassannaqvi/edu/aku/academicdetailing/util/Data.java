@@ -21,13 +21,9 @@ public class Data {
     public static ArrayList<String> correctAnswers = new ArrayList<>();
 
     public static ArrayList<String> vb_cans = new ArrayList<String>(Arrays.asList("2", "3", "4", "3", "2"));
-
     public static ArrayList<String> gdsa_cans = new ArrayList<String>(Arrays.asList("4", "1", "1", "3", "4"));
-
     public static ArrayList<String> gdsb_cans = new ArrayList<String>(Arrays.asList("2", "3", "3", "1", "3"));
-
     public static ArrayList<String> cdba_cans = new ArrayList<String>(Arrays.asList("1", "3", "2", "2"));
-
     public static ArrayList<String> cdbb_cans = new ArrayList<String>(Arrays.asList("3", "3", "2", "1", "4", "4"));
 
     public static int[] vb_imgs = new int[]{

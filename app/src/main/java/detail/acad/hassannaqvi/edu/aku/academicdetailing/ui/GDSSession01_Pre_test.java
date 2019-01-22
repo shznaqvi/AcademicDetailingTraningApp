@@ -70,16 +70,15 @@ public class GDSSession01_Pre_test extends AppCompatActivity implements RadioBut
     public void BtnOk() {
         if (type.equals("pre")) {
             if (MainApp.isSlideStart) {
-                MainApp.showDialog(this);
+                MainApp.showDialog(this, getString(R.string.readyForTrain), "pre", false);
             } else {
                 Toast.makeText(this, "Training Completed", Toast.LENGTH_SHORT).show();
                 finish();
             }
         } else {
-            MainApp.endActivity(this, "Are You Sure You want to Continue?", true);
+            MainApp.showDialog(this, getString(R.string.areYouSure), "end", true);
         }
     }
-
 
     public void BtnContinue() {
         if (formValidation()) {
@@ -139,6 +138,7 @@ public class GDSSession01_Pre_test extends AppCompatActivity implements RadioBut
             MainApp.fc.setPostTestEndTime(MainApp.getCurrentTime());
             JSONObject json = GeneratorClass.getContainerJSON(bi.fldGrpPreGds01, true,type);
             MainApp.fc.setPost_test(String.valueOf(json));
+            Data.posttestAnswers = GeneratorClass.getAnswers(bi.fldGrpPreGds01, true);
         }
     }
 

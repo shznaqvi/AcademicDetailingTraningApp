@@ -311,6 +311,8 @@
     <string name="fanc_05c">A-</string>
     <string name="fanc_05d">AB+</string>
 
+    <string name="readyForTrain">Are You Ready For Trainning?</string>
+    <string name="areYouSure">Are You Sure You Want To Continue?</string>
     <!--Q06-->
     <string name="fanc_06">From the following list, please indicate which conditions are danger signs of pregnancy:</string>
     <string name="fanc_06a">Vaginal bleeding</string>

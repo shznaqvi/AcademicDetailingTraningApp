@@ -31,8 +31,8 @@
         android:orientation="horizontal">
 
         <Button
+            android:padding="20dp"
             android:id="@+id/no"
-            style="@style/button1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="1dp"
@@ -42,8 +42,9 @@
             android:textColor="@color/white"
             android:textSize="16sp" />
         <Button
+            android:backgroundTint="@color/colorPrimary"
+            android:padding="20dp"
             android:id="@+id/yes"
-            style="@style/button1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="1dp"

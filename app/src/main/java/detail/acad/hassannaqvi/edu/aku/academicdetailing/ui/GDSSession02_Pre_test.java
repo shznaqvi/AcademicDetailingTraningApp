@@ -72,13 +72,13 @@ public class GDSSession02_Pre_test extends AppCompatActivity implements RadioBut
     public void BtnOk() {
         if (type.equals("pre")) {
             if (MainApp.isSlideStart) {
-                MainApp.showDialog(this);
+                MainApp.showDialog(this, getString(R.string.readyForTrain), "pre", false);
             } else {
                 Toast.makeText(this, "Training Completed", Toast.LENGTH_SHORT).show();
                 finish();
             }
         } else {
-            MainApp.endActivity(this, "Are You Sure You want to Continue?", true);
+            MainApp.showDialog(this, getString(R.string.areYouSure), "end", true);
         }
     }
 

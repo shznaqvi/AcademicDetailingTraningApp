@@ -25,6 +25,7 @@ public class Adapter extends PagerAdapter {
     Context context;
     int[] list;
     String path;
+    View view;
 
     public Adapter(Context context, int[] mList) {
 
@@ -42,38 +43,10 @@ public class Adapter extends PagerAdapter {
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
 
-        View view = LayoutInflater.from(context).inflate(R.layout.item, null);
+        view = LayoutInflater.from(context).inflate(R.layout.item, null);
         ImageView img = view.findViewById(R.id.image);
-//        final VideoView videoView = view.findViewById(R.id.videoPlayer);
         container.addView(view, 0);
         img.setImageResource(list[position]);
-//        try {
-//            if (list[position] == 0) {
-//                videoView.setVisibility(View.VISIBLE);
-//                path = "android:resource://" + context.getPackageName() +  "/raw/" + "gds01.mp4";
-//                Uri uri = Uri.parse(path);
-//                videoView.setVideoURI(uri);
-//                videoView.requestFocus();
-//                videoView.setMediaController(new MediaController(context));
-//                videoView.start();
-//            } else if (list[position] == 1) {
-//                videoView.setVisibility(View.VISIBLE);
-//                path = "android:resource://" + context.getPackageName() + "/" + R.raw.gds02;
-//                Uri uri = Uri.parse(path);
-//                videoView.setVideoURI(uri);
-//                videoView.requestFocus();
-//                videoView.setMediaController(new MediaController(context));
-//                videoView.start();
-//
-//            }else{
-//                videoView.setVisibility(View.GONE);
-//
-//            }
-//
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
 
 
         return view;

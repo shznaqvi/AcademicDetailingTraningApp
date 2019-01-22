@@ -2,6 +2,8 @@ package detail.acad.hassannaqvi.edu.aku.academicdetailing.JSON;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.view.Gravity;
@@ -12,6 +14,8 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+
+import com.amulyakhare.textdrawable.TextDrawable;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -105,7 +109,7 @@ public abstract class GeneratorClass {
         return formJSON;
     }
 
-    public static void comparingResult(LinearLayout lv, boolean flag, ArrayList<String>... answers) {
+    public  static void comparingResult(LinearLayout lv, boolean flag, ArrayList<String>... answers) {
 
         if (flag)
             if (answers.length != 0) {
@@ -132,23 +136,27 @@ public abstract class GeneratorClass {
 
                     for (int j = 0; j < ((RadioGroup) view).getChildCount(); j++) {
                         ((RadioGroup) view).getChildAt(j).setEnabled(false);
+                        if (String.valueOf(rdg.getChildAt(j).getTag()).equals(tag2)) {
+                            RadioButton rdb = rdg.findViewById(((RadioGroup) view).getChildAt(j).getId());
+                            rdb.setButtonDrawable(R.drawable.cancel);
+                            rdb.setCompoundDrawablesWithIntrinsicBounds(null, null, ContextCompat.getDrawable(rdg.getContext(), R.drawable.pretest), null);
+                            rdb.setChecked(true);
+                        }
                         if (String.valueOf(rdg.getChildAt(j).getTag()).equals(tag1)) {
                             RadioButton rdb = rdg.findViewById(((RadioGroup) view).getChildAt(j).getId());
-//                            rdb.setCompoundDrawablesWithIntrinsicBounds(null,null, ContextCompat.getDrawable(rdg.getContext(),R.drawable.cancel),null);
+                            rdb.setCompoundDrawablesWithIntrinsicBounds(null, null, ContextCompat.getDrawable(rdg.getContext(), R.drawable.correct), null);
                             rdb.setButtonDrawable(R.drawable.tick);
                             rdb.setChecked(true);
                         }
-                        if (String.valueOf(rdg.getChildAt(j).getTag()).equals(tag2)) {
-                            RadioButton rdb = rdg.findViewById(((RadioGroup) view).getChildAt(j).getId());
-//                            rdb.setCompoundDrawablesWithIntrinsicBounds(null,null,ContextCompat.getDrawable(rdg.getContext(),R.drawable.tick),null);
-                            rdb.setButtonDrawable(R.drawable.cancel);
-                            rdb.setChecked(true);
-                        }
+
 
 
                     }
 
 
+                }else if(view instanceof CheckBox){
+                    CheckBox chb = (CheckBox) view;
+                    chb.setEnabled(false);
                 }
 
             }
@@ -192,17 +200,19 @@ public abstract class GeneratorClass {
                         if (String.valueOf(rdg.getChildAt(j).getTag()).equals(tag2)) {
                             RadioButton rdb = rdg.findViewById(((RadioGroup) view).getChildAt(j).getId());
                             rdb.setButtonDrawable(R.drawable.cancel);
+                            rdb.setCompoundDrawablesWithIntrinsicBounds(null, null, ContextCompat.getDrawable(rdg.getContext(), R.drawable.posttest), null);
                             rdb.setChecked(true);
                         }
                         if (String.valueOf(rdg.getChildAt(j).getTag()).equals(tag1)) {
                             RadioButton rdb = rdg.findViewById(((RadioGroup) view).getChildAt(j).getId());
                             rdb.setButtonDrawable(R.drawable.cancel);
+                            rdb.setCompoundDrawablesWithIntrinsicBounds(null, null, ContextCompat.getDrawable(rdg.getContext(), R.drawable.pretest), null);
                             rdb.setChecked(true);
                         }
                         if (String.valueOf(rdg.getChildAt(j).getTag()).equals(tag3)) {
                             RadioButton rdb = rdg.findViewById(((RadioGroup) view).getChildAt(j).getId());
-//                            rdb.setCompoundDrawablesWithIntrinsicBounds(null,null,ContextCompat.getDrawable(rdg.getContext(),R.drawable.tick),null);
                             rdb.setButtonDrawable(R.drawable.tick);
+                            rdb.setCompoundDrawablesWithIntrinsicBounds(null, null, ContextCompat.getDrawable(rdg.getContext(), R.drawable.correct), null);
                             rdb.setChecked(true);
                         }
 
@@ -210,6 +220,9 @@ public abstract class GeneratorClass {
                     }
 
 
+                }else if(view instanceof CheckBox){
+                    CheckBox chb = (CheckBox) view;
+                    chb.setEnabled(false);
                 }
 
 

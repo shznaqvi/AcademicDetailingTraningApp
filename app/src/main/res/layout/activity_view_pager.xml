@@ -39,8 +39,9 @@
             android:layout_height="wrap_content">
 
             <Button
-                android:layout_margin="1dp"
-                style="@style/button"
+                android:backgroundTint="@color/colorPrimary"
+                android:padding="20dp"
+                android:textColor="@color/white"
                 android:id="@+id/nextSlide"
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -48,9 +49,9 @@
                 android:text="Next"
                 />
             <Button
-                android:background="@color/colorPrimaryBeta"
-                android:layout_margin="1dp"
-                style="@style/button"
+                android:backgroundTint="@color/colorPrimaryBeta"
+                android:padding="20dp"
+                android:textColor="@color/white"
                 android:id="@+id/backSlide"
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -58,9 +59,9 @@
                 android:text="Back"
                 />
             <Button
-                android:background="@color/red"
-                android:layout_margin="1dp"
-                style="@style/button"
+                android:backgroundTint="@color/red"
+                android:padding="20dp"
+                android:textColor="@color/white"
                 android:id="@+id/exitSlide"
                 android:layout_width="0dp"
                 android:layout_weight="1"

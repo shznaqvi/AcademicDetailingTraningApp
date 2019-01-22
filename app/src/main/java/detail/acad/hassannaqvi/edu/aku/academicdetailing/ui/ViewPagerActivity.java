@@ -1,23 +1,13 @@
 package detail.acad.hassannaqvi.edu.aku.academicdetailing.ui;
 
-import android.app.AlertDialog;
-import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Toast;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.JSON.GeneratorClass;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.adapters.Adapter;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.SessionContract;

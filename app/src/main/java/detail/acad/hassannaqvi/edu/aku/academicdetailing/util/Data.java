@@ -26,6 +26,8 @@ public class Data {
     public static ArrayList<String> cdba_cans = new ArrayList<String>(Arrays.asList("1", "3", "2", "2"));
     public static ArrayList<String> cdbb_cans = new ArrayList<String>(Arrays.asList("3", "3", "2", "1", "4", "4"));
 
+    public static ArrayList<String> fanc_cb = new ArrayList<String>(Arrays.asList("1", "3", "4", "7", "9", "11"));
+
     public static int[] vb_imgs = new int[]{
             R.drawable.vb_img_1, R.drawable.vb_img_5, R.drawable.vb_img_6, R.drawable.vb_img_7, R.drawable.vb_img_8,
             R.drawable.vb_img_9, R.drawable.vb_img_10, R.drawable.vb_img_11, R.drawable.vb_img_12, R.drawable.vb_img_13,

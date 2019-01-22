@@ -17,8 +17,10 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.text.format.DateFormat;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 
 import java.io.Serializable;
 import java.text.ParseException;
@@ -26,10 +28,13 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.FormsContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.NextMeetingContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.SessionContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.EndingActivity;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.FANC_Pre_test;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.ViewPagerActivity;
 
 
 public class MainApp extends Application {
@@ -326,6 +331,32 @@ public class MainApp extends Application {
         public void onProviderEnabled(String s) {
 
         }
+    }
+
+    public static void showDialog(final Context context){
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_ready_for_training,null);
+        Button yes = view.findViewById(R.id.yes);
+        Button no = view.findViewById(R.id.no);
+        android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context);
+        builder.setView(view);
+        final android.support.v7.app.AlertDialog dialog = builder.create();
+        dialog.show();
+        yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context, ViewPagerActivity.class).putExtra("slides", slides));
+                dialog.dismiss();
+                ((Activity)context).finish();
+
+            }
+        });
+
+        no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
     }
 
 }

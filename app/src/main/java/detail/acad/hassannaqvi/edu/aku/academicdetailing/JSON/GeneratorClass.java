@@ -29,7 +29,8 @@ public abstract class GeneratorClass {
     private static JSONObject formJSON;
     private static ArrayList<String> answers;
     private static ArrayList<String> testAnswers;
-    private static int incr = 0;
+    public static int incr = 0;
+    private static ArrayList<String> correctAnswers;
 
     public static JSONObject getContainerJSON(LinearLayout lv, boolean flag, String... convention) {
 
@@ -127,22 +128,84 @@ public abstract class GeneratorClass {
 
                     RadioGroup rdg = (RadioGroup) view;
                     String tag1 = testAnswers.get(incr);
-                    String tag2 = Data.testAnswers.get(incr);
+                    String tag2 = Data.pretestAnswers.get(incr);
+
+                    for (int j = 0; j < ((RadioGroup) view).getChildCount(); j++) {
+                        ((RadioGroup) view).getChildAt(j).setEnabled(false);
+                        if (String.valueOf(rdg.getChildAt(j).getTag()).equals(tag1)) {
+                            RadioButton rdb = rdg.findViewById(((RadioGroup) view).getChildAt(j).getId());
+//                            rdb.setCompoundDrawablesWithIntrinsicBounds(null,null, ContextCompat.getDrawable(rdg.getContext(),R.drawable.cancel),null);
+                            rdb.setButtonDrawable(R.drawable.tick);
+                            rdb.setChecked(true);
+                        }
+                        if (String.valueOf(rdg.getChildAt(j).getTag()).equals(tag2)) {
+                            RadioButton rdb = rdg.findViewById(((RadioGroup) view).getChildAt(j).getId());
+//                            rdb.setCompoundDrawablesWithIntrinsicBounds(null,null,ContextCompat.getDrawable(rdg.getContext(),R.drawable.tick),null);
+                            rdb.setButtonDrawable(R.drawable.cancel);
+                            rdb.setChecked(true);
+                        }
+
+
+                    }
+
+
+                }
+
+            }
+            incr++;
+
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void comparingPostTestAndPretestResult(LinearLayout lv, boolean flag, ArrayList<String>... answers) {
+
+        if (flag)
+            if (answers.length != 0) {
+                correctAnswers = answers[0];
+
+            }
+
+        try {
+            for (int i = 0; i < lv.getChildCount(); i++) {
+                View view = lv.getChildAt(i);
+
+                if (view instanceof CardView) {
+                    for (int j = 0; j < ((CardView) view).getChildCount(); j++) {
+                        View view1 = ((CardView) view).getChildAt(j);
+                        if (view1 instanceof LinearLayout) {
+                            comparingPostTestAndPretestResult((LinearLayout) view1, false);
+                        }
+                    }
+                } else if (view instanceof RadioGroup) {
+
+                    RadioGroup rdg = (RadioGroup) view;
+                    String tag1 = Data.pretestAnswers.get(incr);
+                    String tag2 = Data.posttestAnswers.get(incr);
+                    String tag3 = correctAnswers.get(incr);
                     for (int j = 0; j < ((RadioGroup) view).getChildCount(); j++) {
                         ((RadioGroup) view).getChildAt(j).setEnabled(false);
                         if (String.valueOf(rdg.getChildAt(j).getTag()).equals(tag2)) {
                             RadioButton rdb = rdg.findViewById(((RadioGroup) view).getChildAt(j).getId());
-//                            rdb.setCompoundDrawablesWithIntrinsicBounds(null,null, ContextCompat.getDrawable(rdg.getContext(),R.drawable.cancel),null);
                             rdb.setButtonDrawable(R.drawable.cancel);
                             rdb.setChecked(true);
-
                         }
                         if (String.valueOf(rdg.getChildAt(j).getTag()).equals(tag1)) {
+                            RadioButton rdb = rdg.findViewById(((RadioGroup) view).getChildAt(j).getId());
+                            rdb.setButtonDrawable(R.drawable.cancel);
+                            rdb.setChecked(true);
+                        }
+                        if (String.valueOf(rdg.getChildAt(j).getTag()).equals(tag3)) {
                             RadioButton rdb = rdg.findViewById(((RadioGroup) view).getChildAt(j).getId());
 //                            rdb.setCompoundDrawablesWithIntrinsicBounds(null,null,ContextCompat.getDrawable(rdg.getContext(),R.drawable.tick),null);
                             rdb.setButtonDrawable(R.drawable.tick);
                             rdb.setChecked(true);
                         }
+
 
                     }
 

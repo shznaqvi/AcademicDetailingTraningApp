@@ -16,7 +16,8 @@ public class Data {
             "Partograph", "Pre Eclampsia & Eclampsia", " Postpartum Hemorrhage", "Assessment and management of Shock", " Puerperal Sepsis"};
 
     public static ArrayList<String> fanc_cans = new ArrayList<String>(Arrays.asList("3","4","4","3","3"));
-    public static ArrayList<String> testAnswers = new ArrayList<>();
+    public static ArrayList<String> pretestAnswers = new ArrayList<>();
+    public static ArrayList<String> posttestAnswers = new ArrayList<>();
     public static ArrayList<String> correctAnswers = new ArrayList<>();
 
     public static ArrayList<String> vb_cans = new ArrayList<String>(Arrays.asList("2", "3", "4", "3", "2"));
@@ -53,7 +54,7 @@ public class Data {
             R.drawable.gds1003, R.drawable.gds1004, R.drawable.gds1005, R.drawable.gds1006, R.drawable.gds1007,
             R.drawable.gds1008, R.drawable.gds1009, R.drawable.gds1010, R.drawable.gds1011, R.drawable.gds1012,
             R.drawable.gds1013, R.drawable.gds1014, R.drawable.gds1015, R.drawable.gds1016, R.drawable.gds1017,
-            R.drawable.gds1018, R.drawable.gds1019, R.drawable.gds1020,};
+            R.drawable.gds1018, R.drawable.gds1019, R.drawable.gds1020,1,0};
 
 
     public static int[] gds2_imgs = new int[]{

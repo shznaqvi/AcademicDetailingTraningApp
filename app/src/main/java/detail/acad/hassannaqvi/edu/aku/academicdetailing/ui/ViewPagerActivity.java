@@ -17,6 +17,7 @@ import android.widget.Toast;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.JSON.GeneratorClass;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.adapters.Adapter;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.SessionContract;
@@ -24,6 +25,7 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityViewPagerBinding;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Utils;
 
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.isComplete;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.LoginActivity.db;
 
 
@@ -81,9 +83,12 @@ public class ViewPagerActivity extends AppCompatActivity {
 
                     if (MainApp.isMaternal) {
                         Utils.showPostDialoge(ViewPagerActivity.this, MainApp.maternalIndex,MainApp.subModuleName);
+                        isComplete = false;
+
 
                     } else if (MainApp.isChild) {
                         Utils.showPostDialoge(ViewPagerActivity.this, MainApp.childlIndex,MainApp.subModuleName);
+                        isComplete = false;
                     }
 
 

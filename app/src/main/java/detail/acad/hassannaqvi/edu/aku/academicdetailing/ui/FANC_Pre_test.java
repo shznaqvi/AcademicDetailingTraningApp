@@ -1,11 +1,15 @@
 package detail.acad.hassannaqvi.edu.aku.academicdetailing.ui;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -40,23 +44,26 @@ public class FANC_Pre_test extends AppCompatActivity {
         bi = DataBindingUtil.setContentView(this, R.layout.activity_fanc__pre_test);
         bi.setCallback(this);
 
-        if (!isComplete) {
-            type = getIntent().getStringExtra("type");
+        type = getIntent().getStringExtra("type");
+        if (type.equals("pre") && !isComplete) {
             slides = getIntent().getIntArrayExtra("slides");
             Data.correctAnswers = getIntent().getStringArrayListExtra("ans");
-            if (type.equals("pre")) {
-                MainApp.fc.setPreTestStartTime(MainApp.getCurrentTime());
-            } else {
-                MainApp.fc.setPostTestStartTime(MainApp.getCurrentTime());
-            }
+            MainApp.fc.setPreTestStartTime(MainApp.getCurrentTime());
+            bi.btnOk.setVisibility(View.GONE);
+            bi.btnContinue.setVisibility(View.VISIBLE);
+        } else if (type.equals("pre") && isComplete) {
+            GeneratorClass.comparingResult(bi.fldGrpPreFanc, true, Data.correctAnswers);
+            bi.btnOk.setVisibility(View.VISIBLE);
+            bi.btnContinue.setVisibility(View.GONE);
+        } else if (type.equals("post") && !isComplete) {
+            MainApp.fc.setPostTestStartTime(MainApp.getCurrentTime());
             bi.btnOk.setVisibility(View.GONE);
             bi.btnContinue.setVisibility(View.VISIBLE);
 
-        } else {
-            GeneratorClass.comparingResult(bi.fldGrpPreFanc,true,Data.correctAnswers);
+        } else if (type.equals("post") && isComplete) {
+            GeneratorClass.comparingPostTestAndPretestResult(bi.fldGrpPreFanc,true,Data.correctAnswers);
             bi.btnOk.setVisibility(View.VISIBLE);
             bi.btnContinue.setVisibility(View.GONE);
-
         }
 
         if (MainApp.isSlideStart) {
@@ -73,15 +80,19 @@ public class FANC_Pre_test extends AppCompatActivity {
                 if (UpdateDB()) {
                     if (type.equals("pre")) {
                         if (MainApp.isSlideStart) {
-                            startActivity(new Intent(this, FANC_Pre_test.class));
+                            startActivity(new Intent(this, FANC_Pre_test.class).putExtra("type", type));
                             isComplete = true;
                             finish();
                         } else {
                             Toast.makeText(this, "Training Completed", Toast.LENGTH_SHORT).show();
                             finish();
                         }
-                    } else {
-                        MainApp.endActivity(this, "Are You Sure You want to Continue?", true);
+                    } else if(type.equals("post")) {
+                        startActivity(new Intent(this, FANC_Pre_test.class).putExtra("type", type));
+                        isComplete = true;
+                        GeneratorClass.incr = 0;
+                        finish();
+
                     }
 
                 } else {
@@ -96,8 +107,7 @@ public class FANC_Pre_test extends AppCompatActivity {
     public void BtnOk() {
         if (type.equals("pre")) {
             if (MainApp.isSlideStart) {
-                startActivity(new Intent(this, ViewPagerActivity.class).putExtra("slides", slides));
-                finish();
+                MainApp.showDialog(this);
             } else {
                 Toast.makeText(this, "Training Completed", Toast.LENGTH_SHORT).show();
                 finish();
@@ -132,13 +142,14 @@ public class FANC_Pre_test extends AppCompatActivity {
             MainApp.fc.setPreTestEndTime(MainApp.getCurrentTime());
             JSONObject json = GeneratorClass.getContainerJSON(bi.fldGrpPreFanc, true, type);
             MainApp.fc.setPre_test(String.valueOf(json));
-            Data.testAnswers = GeneratorClass.getAnswers(bi.fldGrpPreFanc, true);
+            Data.pretestAnswers = GeneratorClass.getAnswers(bi.fldGrpPreFanc, true);
 
 
         } else {
             MainApp.fc.setPostTestEndTime(MainApp.getCurrentTime());
             JSONObject json = GeneratorClass.getContainerJSON(bi.fldGrpPreFanc, true, type);
             MainApp.fc.setPost_test(String.valueOf(json));
+            Data.posttestAnswers = GeneratorClass.getAnswers(bi.fldGrpPreFanc, true);
         }
     }
 
@@ -166,6 +177,8 @@ public class FANC_Pre_test extends AppCompatActivity {
     public void onBackPressed() {
         Toast.makeText(this, "You can't go back", Toast.LENGTH_SHORT).show();
     }
+
+
 
 
 }

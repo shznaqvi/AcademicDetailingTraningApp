@@ -38,23 +38,26 @@ public class GDSSession01_Pre_test extends AppCompatActivity implements RadioBut
         bi.setCallback(this);
         events_call();
 
-        if (!isComplete) {
-            type = getIntent().getStringExtra("type");
+        type = getIntent().getStringExtra("type");
+        if (type.equals("pre") && !isComplete) {
             slides = getIntent().getIntArrayExtra("slides");
             Data.correctAnswers = getIntent().getStringArrayListExtra("ans");
-            if (type.equals("pre")) {
-                MainApp.fc.setPreTestStartTime(MainApp.getCurrentTime());
-            } else {
-                MainApp.fc.setPostTestStartTime(MainApp.getCurrentTime());
-            }
+            MainApp.fc.setPreTestStartTime(MainApp.getCurrentTime());
+            bi.btnOk.setVisibility(View.GONE);
+            bi.btnContinue.setVisibility(View.VISIBLE);
+        } else if (type.equals("pre") && isComplete) {
+            GeneratorClass.comparingResult(bi.fldGrpPreGds01, true, Data.correctAnswers);
+            bi.btnOk.setVisibility(View.VISIBLE);
+            bi.btnContinue.setVisibility(View.GONE);
+        } else if (type.equals("post") && !isComplete) {
+            MainApp.fc.setPostTestStartTime(MainApp.getCurrentTime());
             bi.btnOk.setVisibility(View.GONE);
             bi.btnContinue.setVisibility(View.VISIBLE);
 
-        } else {
-            GeneratorClass.comparingResult(bi.fldGrpPreGds01,true,Data.correctAnswers);
+        } else if (type.equals("post") && isComplete) {
+            GeneratorClass.comparingPostTestAndPretestResult(bi.fldGrpPreGds01,true,Data.correctAnswers);
             bi.btnOk.setVisibility(View.VISIBLE);
             bi.btnContinue.setVisibility(View.GONE);
-
         }
         if (MainApp.isSlideStart) {
             bi.btnContinue.setText("Start Training");
@@ -67,8 +70,7 @@ public class GDSSession01_Pre_test extends AppCompatActivity implements RadioBut
     public void BtnOk() {
         if (type.equals("pre")) {
             if (MainApp.isSlideStart) {
-                startActivity(new Intent(this, ViewPagerActivity.class).putExtra("slides", slides));
-                finish();
+                MainApp.showDialog(this);
             } else {
                 Toast.makeText(this, "Training Completed", Toast.LENGTH_SHORT).show();
                 finish();
@@ -86,15 +88,19 @@ public class GDSSession01_Pre_test extends AppCompatActivity implements RadioBut
                 if (UpdateDB()) {
                     if(type.equals("pre")){
                         if (MainApp.isSlideStart) {
-                            startActivity(new Intent(this, GDSSession01_Pre_test.class));
+                            startActivity(new Intent(this, GDSSession01_Pre_test.class).putExtra("type", type));
                             isComplete = true;
                             finish();
                         } else {
                             Toast.makeText(this, "Training Completed", Toast.LENGTH_SHORT).show();
                             finish();
                         }
-                    }else{
-                        MainApp.endActivity(this, "Are You Sure You want to Continue?", true);
+                    }else if(type.equals("post")) {
+                        startActivity(new Intent(this, GDSSession01_Pre_test.class).putExtra("type", type));
+                        isComplete = true;
+                        GeneratorClass.incr = 0;
+                        finish();
+
                     }
                 } else {
                     Toast.makeText(this, "Error in updating db!!", Toast.LENGTH_SHORT).show();
@@ -128,7 +134,7 @@ public class GDSSession01_Pre_test extends AppCompatActivity implements RadioBut
             MainApp.fc.setPreTestEndTime(MainApp.getCurrentTime());
             JSONObject json = GeneratorClass.getContainerJSON(bi.fldGrpPreGds01, true,type);
             MainApp.fc.setPre_test(String.valueOf(json));
-            Data.testAnswers = GeneratorClass.getAnswers(bi.fldGrpPreGds01, true);
+            Data.pretestAnswers = GeneratorClass.getAnswers(bi.fldGrpPreGds01, true);
         }else{
             MainApp.fc.setPostTestEndTime(MainApp.getCurrentTime());
             JSONObject json = GeneratorClass.getContainerJSON(bi.fldGrpPreGds01, true,type);

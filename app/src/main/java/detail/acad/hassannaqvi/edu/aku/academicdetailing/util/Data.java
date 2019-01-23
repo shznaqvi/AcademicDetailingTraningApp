@@ -15,6 +15,10 @@ public class Data {
     public static final String[] maternalModule = new String[]{"Focused Antenatal Care", "Vaginal Bleeding in Pregnancy",
             "Partograph", "Pre Eclampsia & Eclampsia", " Postpartum Hemorrhage", "Assessment and management of Shock", " Puerperal Sepsis"};
 
+    public static final String[] newBornModule = new String[]{"Essential Care for Every Baby", "Essential Care for Small Babies", "Helping Babies Breathe"};
+    public static final String[] ECEB = new String[]{"ECEB(Session One)", "ECEB(Session Two)"};
+    public static final String[] ECSB = new String[]{"ECSB(Session One)", "ECSB(Session Two)"};
+
     public static ArrayList<String> fanc_cans = new ArrayList<String>(Arrays.asList("3","4","4","3","3"));
     public static ArrayList<String> pretestAnswers = new ArrayList<>();
     public static ArrayList<String> posttestAnswers = new ArrayList<>();

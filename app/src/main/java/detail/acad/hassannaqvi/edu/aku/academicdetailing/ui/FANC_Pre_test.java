@@ -91,6 +91,7 @@ public class FANC_Pre_test extends AppCompatActivity {
                         startActivity(new Intent(this, FANC_Pre_test.class).putExtra("type", type));
                         isComplete = true;
                         GeneratorClass.incr = 0;
+                        GeneratorClass.chkbxincr = 0;
                         finish();
 
                     }
@@ -143,6 +144,7 @@ public class FANC_Pre_test extends AppCompatActivity {
             JSONObject json = GeneratorClass.getContainerJSON(bi.fldGrpPreFanc, true, type);
             MainApp.fc.setPre_test(String.valueOf(json));
             Data.pretestAnswers = GeneratorClass.getAnswers(bi.fldGrpPreFanc, true);
+            Data.checkboxPreAnswers = GeneratorClass.getChkboxAnswers(bi.fldGrpPreFanc, true);
 
 
         } else {
@@ -150,6 +152,7 @@ public class FANC_Pre_test extends AppCompatActivity {
             JSONObject json = GeneratorClass.getContainerJSON(bi.fldGrpPreFanc, true, type);
             MainApp.fc.setPost_test(String.valueOf(json));
             Data.posttestAnswers = GeneratorClass.getAnswers(bi.fldGrpPreFanc, true);
+            Data.checkboxPostAnswers = GeneratorClass.getChkboxAnswers(bi.fldGrpPreFanc, true);
         }
     }
 

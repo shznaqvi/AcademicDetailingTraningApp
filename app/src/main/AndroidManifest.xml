@@ -3,15 +3,12 @@
     package="detail.acad.hassannaqvi.edu.aku.academicdetailing">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <!-- Needed only if your app targets Android 5.0 (API level 21) or higher. -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- Needed only if your app targets Android 5.0 (API level 21) or higher. -->
     <uses-feature android:name="android.hardware.location.gps" />
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.hardware.location.gps" />
-
-    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.hardware.location.gps" /> <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
@@ -22,12 +19,13 @@
         android:name=".core.MainApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.PlayerActivity"></activity>
         <activity
-            android:name=".ui.LoginActivity"
+            android:name=".ui.SplashScreenActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -67,17 +65,31 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1" />
         <activity
+            android:name=".ui.LoginActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
             android:name=".core.AndroidDatabaseManager"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.EndingActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1" />
-        <activity android:name=".ui.EcEbTest01" />
-        <activity android:name=".ui.EcEbTest02" />
-        <activity android:name=".ui.EcSbTest01" />
-        <activity android:name=".ui.EcSbTest02" />
-        <activity android:name=".ui.Hbb"></activity>
+        <activity android:name=".ui.EcEbTest01"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme1" />
+        <activity android:name=".ui.EcEbTest02"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme1" />
+        <activity android:name=".ui.EcSbTest01"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme1" />
+        <activity android:name=".ui.EcSbTest02"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme1" />
+        <activity android:name=".ui.Hbb"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme1" ></activity>
     </application>
 
 </manifest>

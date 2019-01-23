@@ -80,6 +80,7 @@ public class MainApp extends Application {
     public static int maternalIndex = 0;
     public static int childlIndex = 0;
     public static boolean isMaternal = false;
+    public static boolean isNBorn = false;
     public static String moduleSession = "";
     public static String moduleName = "";
     public static boolean isChild = false;

@@ -6,7 +6,7 @@ import java.util.Arrays;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 
 public class Data {
-    public static final String[] modules = new String[]{"Child Health","Maternal Health","New Born Health"};
+    public static final String[] modules = new String[]{"Child Health", "Maternal Health", "New Born Health"};
     public static final String[] childModule = new String[]{"General Danger Sign", "Cough & Difficult Breathing", "Diarrhoea", "PSBI"};
     public static final String[] GDS = new String[]{"GDS(Assessment and Classification)", "GDS(Management, Counseling and Referral)"};
     public static final String[] CDB = new String[]{"CDB(Assessment and Classification)", "CDB(Management, Counseling and Referral)"};
@@ -18,9 +18,15 @@ public class Data {
     public static final String[] newBornModule = new String[]{"Essential Care for Every Baby", "Essential Care for Small Babies", "Helping Babies Breathe"};
     public static final String[] ECEB = new String[]{"ECEB(Session One)", "ECEB(Session Two)"};
     public static final String[] ECSB = new String[]{"ECSB(Session One)", "ECSB(Session Two)"};
+    public static final String[] HBB = new String[]{"Helping Babies Breathe"};
 
-    public static ArrayList<String> fanc_cans = new ArrayList<String>(Arrays.asList("3","4","4","3","3"));
+
+    public static ArrayList<String> fanc_cans = new ArrayList<String>(Arrays.asList("3", "4", "4", "3", "3"));
+    public static ArrayList<String> eceb01_cans = new ArrayList<String>(Arrays.asList("1", "3", "1", "4", "2","3","1","2","1","3","2","3"));
+    public static ArrayList<String> eceb02_cans = new ArrayList<String>(Arrays.asList("4", "1", "3", "3", "1","2","2","2","4","1","2","4","2"));
     public static ArrayList<String> pretestAnswers = new ArrayList<>();
+    public static ArrayList<String> checkboxPreAnswers = new ArrayList<>();
+    public static ArrayList<String> checkboxPostAnswers = new ArrayList<>();
     public static ArrayList<String> posttestAnswers = new ArrayList<>();
     public static ArrayList<String> correctAnswers = new ArrayList<>();
 
@@ -30,7 +36,7 @@ public class Data {
     public static ArrayList<String> cdba_cans = new ArrayList<String>(Arrays.asList("1", "3", "2", "2"));
     public static ArrayList<String> cdbb_cans = new ArrayList<String>(Arrays.asList("3", "3", "2", "1", "4", "4"));
 
-    public static ArrayList<String> fanc_cb = new ArrayList<String>(Arrays.asList("1", "3", "4", "7", "9", "11"));
+    public static ArrayList<String> fanc_cb = new ArrayList<String>(Arrays.asList("1", "0","3", "4","0","0" ,"7","0" ,"9", "0","11"));
 
     public static int[] vb_imgs = new int[]{
             R.drawable.vb_img_1, R.drawable.vb_img_5, R.drawable.vb_img_6, R.drawable.vb_img_7, R.drawable.vb_img_8,
@@ -56,7 +62,7 @@ public class Data {
             R.drawable.gds1003, R.drawable.gds1004, R.drawable.gds1005, R.drawable.gds1006, R.drawable.gds1007,
             R.drawable.gds1008, R.drawable.gds1009, R.drawable.gds1010, R.drawable.gds1011, R.drawable.gds1012,
             R.drawable.gds1013, R.drawable.gds1014, R.drawable.gds1015, R.drawable.gds1016, R.drawable.gds1017,
-            R.drawable.gds1018, R.drawable.gds1019, R.drawable.gds1020,1,0};
+            R.drawable.gds1018, R.drawable.gds1019, R.drawable.gds1020, 1, 0};
 
 
     public static int[] gds2_imgs = new int[]{
@@ -82,7 +88,7 @@ public class Data {
             R.drawable.cdb2023, R.drawable.cdb2024, R.drawable.cdb2025, R.drawable.cdb2026,};
 
     public static int[] eceb1_imgs = new int[]{
-            R.drawable.eceb1001, R.drawable.eceb1002, R.drawable.eceb1003, R.drawable.eceb1004, R.drawable.eceb1005,
+            R.drawable.eceb1002, R.drawable.action_plan, R.drawable.eceb1003, R.drawable.eceb1004, R.drawable.eceb1005,
             R.drawable.eceb1006, R.drawable.eceb1007, R.drawable.eceb1008, R.drawable.eceb1009, R.drawable.eceb1010,
             R.drawable.eceb1011, R.drawable.eceb1012, R.drawable.eceb1013, R.drawable.eceb1014, R.drawable.eceb1015,
             R.drawable.eceb1016, R.drawable.eceb1017, R.drawable.eceb1018, R.drawable.eceb1019, R.drawable.eceb1020,

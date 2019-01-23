@@ -27,7 +27,7 @@
 
     <LinearLayout
         android:animateLayoutChanges="true"
-        android:id="@+id/childSubModule"
+        android:id="@+id/subModule"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

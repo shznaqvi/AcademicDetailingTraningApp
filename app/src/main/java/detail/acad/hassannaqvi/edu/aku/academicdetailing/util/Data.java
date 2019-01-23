@@ -80,4 +80,59 @@ public class Data {
             R.drawable.cdb2013, R.drawable.cdb2014, R.drawable.cdb2015, R.drawable.cdb2016, R.drawable.cdb2017,
             R.drawable.cdb2018, R.drawable.cdb2019, R.drawable.cdb2020, R.drawable.cdb2021, R.drawable.cdb2022,
             R.drawable.cdb2023, R.drawable.cdb2024, R.drawable.cdb2025, R.drawable.cdb2026,};
+
+    public static int[] eceb1_imgs = new int[]{
+            R.drawable.eceb1001, R.drawable.eceb1002, R.drawable.eceb1003, R.drawable.eceb1004, R.drawable.eceb1005,
+            R.drawable.eceb1006, R.drawable.eceb1007, R.drawable.eceb1008, R.drawable.eceb1009, R.drawable.eceb1010,
+            R.drawable.eceb1011, R.drawable.eceb1012, R.drawable.eceb1013, R.drawable.eceb1014, R.drawable.eceb1015,
+            R.drawable.eceb1016, R.drawable.eceb1017, R.drawable.eceb1018, R.drawable.eceb1019, R.drawable.eceb1020,
+            R.drawable.eceb1021, R.drawable.eceb1022, R.drawable.eceb1023, R.drawable.eceb1024, R.drawable.eceb1025,
+            R.drawable.eceb1026, R.drawable.eceb1027, R.drawable.eceb1028, R.drawable.eceb1029, R.drawable.eceb1030,
+            R.drawable.eceb1031, R.drawable.eceb1032, R.drawable.eceb1033, R.drawable.eceb1034, R.drawable.eceb1035,
+            R.drawable.eceb1036, R.drawable.eceb1037, R.drawable.eceb1038, R.drawable.eceb1039, R.drawable.eceb1040,
+            R.drawable.eceb1041, R.drawable.eceb1042,};
+
+    public static int[] eceb2_imgs = new int[]{
+            R.drawable.eceb1001, R.drawable.eceb1002, R.drawable.eceb1003, R.drawable.eceb1004, R.drawable.eceb1005,
+            R.drawable.eceb1006, R.drawable.eceb1007, R.drawable.eceb1008, R.drawable.eceb1009, R.drawable.eceb1010,
+            R.drawable.eceb1011, R.drawable.eceb1012, R.drawable.eceb1013, R.drawable.eceb1014, R.drawable.eceb1015,
+            R.drawable.eceb1016, R.drawable.eceb1017, R.drawable.eceb1018, R.drawable.eceb1019, R.drawable.eceb1020,
+            R.drawable.eceb1021, R.drawable.eceb1022, R.drawable.eceb1023, R.drawable.eceb1024, R.drawable.eceb1025,
+            R.drawable.eceb1026, R.drawable.eceb1027, R.drawable.eceb1028, R.drawable.eceb1029, R.drawable.eceb1030,
+            R.drawable.eceb1031, R.drawable.eceb1032, R.drawable.eceb1033, R.drawable.eceb1034, R.drawable.eceb1035,
+            R.drawable.eceb1036, R.drawable.eceb1037, R.drawable.eceb1038, R.drawable.eceb1039, R.drawable.eceb1040,
+            R.drawable.eceb1041, R.drawable.eceb1042,};
+
+    public static int[] ecsb1_imgs = new int[]{
+            R.drawable.eceb1001, R.drawable.eceb1002, R.drawable.eceb1003, R.drawable.eceb1004, R.drawable.eceb1005,
+            R.drawable.eceb1006, R.drawable.eceb1007, R.drawable.eceb1008, R.drawable.eceb1009, R.drawable.eceb1010,
+            R.drawable.eceb1011, R.drawable.eceb1012, R.drawable.eceb1013, R.drawable.eceb1014, R.drawable.eceb1015,
+            R.drawable.eceb1016, R.drawable.eceb1017, R.drawable.eceb1018, R.drawable.eceb1019, R.drawable.eceb1020,
+            R.drawable.eceb1021, R.drawable.eceb1022, R.drawable.eceb1023, R.drawable.eceb1024, R.drawable.eceb1025,
+            R.drawable.eceb1026, R.drawable.eceb1027, R.drawable.eceb1028, R.drawable.eceb1029, R.drawable.eceb1030,
+            R.drawable.eceb1031, R.drawable.eceb1032, R.drawable.eceb1033, R.drawable.eceb1034, R.drawable.eceb1035,
+            R.drawable.eceb1036, R.drawable.eceb1037, R.drawable.eceb1038, R.drawable.eceb1039, R.drawable.eceb1040,
+            R.drawable.eceb1041, R.drawable.eceb1042,};
+
+    public static int[] ecsb2_imgs = new int[]{
+            R.drawable.eceb1001, R.drawable.eceb1002, R.drawable.eceb1003, R.drawable.eceb1004, R.drawable.eceb1005,
+            R.drawable.eceb1006, R.drawable.eceb1007, R.drawable.eceb1008, R.drawable.eceb1009, R.drawable.eceb1010,
+            R.drawable.eceb1011, R.drawable.eceb1012, R.drawable.eceb1013, R.drawable.eceb1014, R.drawable.eceb1015,
+            R.drawable.eceb1016, R.drawable.eceb1017, R.drawable.eceb1018, R.drawable.eceb1019, R.drawable.eceb1020,
+            R.drawable.eceb1021, R.drawable.eceb1022, R.drawable.eceb1023, R.drawable.eceb1024, R.drawable.eceb1025,
+            R.drawable.eceb1026, R.drawable.eceb1027, R.drawable.eceb1028, R.drawable.eceb1029, R.drawable.eceb1030,
+            R.drawable.eceb1031, R.drawable.eceb1032, R.drawable.eceb1033, R.drawable.eceb1034, R.drawable.eceb1035,
+            R.drawable.eceb1036, R.drawable.eceb1037, R.drawable.eceb1038, R.drawable.eceb1039, R.drawable.eceb1040,
+            R.drawable.eceb1041, R.drawable.eceb1042,};
+
+    public static int[] hbb_imgs = new int[]{
+            R.drawable.eceb1001, R.drawable.eceb1002, R.drawable.eceb1003, R.drawable.eceb1004, R.drawable.eceb1005,
+            R.drawable.eceb1006, R.drawable.eceb1007, R.drawable.eceb1008, R.drawable.eceb1009, R.drawable.eceb1010,
+            R.drawable.eceb1011, R.drawable.eceb1012, R.drawable.eceb1013, R.drawable.eceb1014, R.drawable.eceb1015,
+            R.drawable.eceb1016, R.drawable.eceb1017, R.drawable.eceb1018, R.drawable.eceb1019, R.drawable.eceb1020,
+            R.drawable.eceb1021, R.drawable.eceb1022, R.drawable.eceb1023, R.drawable.eceb1024, R.drawable.eceb1025,
+            R.drawable.eceb1026, R.drawable.eceb1027, R.drawable.eceb1028, R.drawable.eceb1029, R.drawable.eceb1030,
+            R.drawable.eceb1031, R.drawable.eceb1032, R.drawable.eceb1033, R.drawable.eceb1034, R.drawable.eceb1035,
+            R.drawable.eceb1036, R.drawable.eceb1037, R.drawable.eceb1038, R.drawable.eceb1039, R.drawable.eceb1040,
+            R.drawable.eceb1041, R.drawable.eceb1042,};
 }

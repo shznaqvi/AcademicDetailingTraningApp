@@ -372,6 +372,12 @@
     <string name="reschedule">Reschedule</string>
     <string name="not_interested">Not Interested</string>
     <string name="other">Other (Please Specify)</string>
+    <string name="eceb02_01">What is a sign of good attachment at the breast?</string>
+    <string name="eceb02_01a">The baby’s nose is pressed against the breast</string>
+    <string name="eceb02_01b">The baby bites down and pulls on the nipple.</string>
+    <string name="eceb02_01c">Only the tip of breast is in the baby’s mouth.</string>
+    <string name="eceb02_01d">The baby’s mouth is wide open on the breast.</string>
+    <string name="eceb02_02">What should mothers do if they have breast engorgement?</string>
 
 
 </resources>

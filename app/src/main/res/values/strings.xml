@@ -373,18 +373,22 @@
     <string name="not_interested">Not Interested</string>
     <string name="other">Other (Please Specify)</string>
 
+
+    <!--ECEB B01-->
     <string name="ecebB01">What is a sign of good attachment at the breast?</string>
     <string name="ecebB01a">The baby’s nose is pressed against the breast</string>
     <string name="ecebB01b">The baby bites down and pulls on the nipple.</string>
     <string name="ecebB01c">Only the tip of breast is in the baby’s mouth.</string>
     <string name="ecebB01d">The baby’s mouth is wide open on the breast.</string>
 
+    <!--ECEB B02-->
     <string name="ecebB02">What should mothers do if they have breast engorgement?</string>
     <string name="ecebB02a">Feed more often or express milk</string>
     <string name="ecebB02b">Stop breastfeeding for one day</string>
     <string name="ecebB02c">Take antibiotics</string>
     <string name="ecebB02d">Apply herbs to the breasts</string>
 
+    <!--ECEB B03-->
     <string name="ecebB03">At  90 minutes after birth, a 2700 gram baby is skin-to-skin with the mother and has a temperature of 36.0 °C. What should you do next?</string>
     <string name="ecebB03a">Give antibiotics and seek advanced care.</string>
     <string name="ecebB03b">This temperature is normal and no special care is needed</string>
@@ -450,6 +454,230 @@
     <string name="ecebB13b">0.5 mL</string>
     <string name="ecebB13c">1.0 mL</string>
     <string name="ecebB13d">0.35 mL</string>
+
+
+    <string name="ecebA01">How long should initial skin-to-skin care be provided by healthy mothers of well babies?</string>
+    <string name="ecebA01a">At least one hour</string>
+    <string name="ecebA01b">As long as it is convenient for the mother</string>
+    <string name="ecebA01c">Only until the baby’s temperature is normal</string>
+    <string name="ecebA01d">At least 24 hours</string>
+
+    <string name="ecebA02">During the first hour after birth, how often should babies be observed for breathing problems?</string>
+    <string name="ecebA02a">Once during the hour</string>
+    <string name="ecebA02b">Every 30 minutes</string>
+    <string name="ecebA02c">Every 15 minutes</string>
+    <string name="ecebA02d">Every 5 minutes</string>
+
+    <string name="ecebA03">Why is it important to begin breastfeeding within the first hour after birth?</string>
+    <string name="ecebA03a">It helps babies breastfeed more successfully</string>
+    <string name="ecebA03b">It keeps the baby from crying</string>
+    <string name="ecebA03c">It keeps babies alert soon after birth</string>
+    <string name="ecebA03d">It helps babies breathe more easily</string>
+
+    <string name="ecebA04">When should a baby be given liquids other than breast milk?</string>
+    <string name="ecebA04a">When the baby does not feed at the breast within the first hour after birth</string>
+    <string name="ecebA04b">When the mother has engorged breasts</string>
+    <string name="ecebA04c">When the baby cries between feedings</string>
+    <string name="ecebA04d">Never</string>
+
+    <string name="ecebA05">What is an early sign that a baby is ready to breast feed?</string>
+    <string name="ecebA05a">Crying for a long period of time</string>
+    <string name="ecebA05b">Opening the mouth and licking</string>
+    <string name="ecebA05c">Eyes closed and hands open</string>
+    <string name="ecebA05d">Breathing rapidly with the mouth open</string>
+    <string name="ecebA06">How fast should a normal baby breathe?</string>
+    <string name="ecebA06a">At least 65 times per minute</string>
+    <string name="ecebA06b">At any rate as long as there is no chest in-drawing</string>
+    <string name="ecebA06c">40&#8211;60 times per minute</string>
+    <string name="ecebA06d">25 times per minute</string>
+
+    <string name="ecebA07">What is the most important reason for weighing all babies soon after birth?</string>
+    <string name="ecebA07a">Birth weight may identify babies who need special care</string>
+    <string name="ecebA07b">Mother and family members often want to know the birth weight</string>
+    <string name="ecebA07c">Birth weight will determine how long a baby will breast feed at each feeding</string>
+    <string name="ecebA07d">Birth weight will identify babies who need vitamin K</string>
+
+    <string name="ecebA08">In what part of the eye should medicine to prevent eye infections be given?</string>
+    <string name="ecebA08a">Inside the upper eyelid</string>
+    <string name="ecebA08b">Inside the lower eyelid</string>
+    <string name="ecebA08c">In the corner of the eye only</string>
+    <string name="ecebA08d">On the outside of the eye lid</string>
+
+    <string name="ecebA09">What is the normal temperature range for a healthy baby?</string>
+    <string name="ecebA09a">36.5°C - 37.5°C</string>
+    <string name="ecebA09b">34.0°C – 35.5°C</string>
+    <string name="ecebA09c">35.5°C - 36.5°C</string>
+    <string name="ecebA09d">37.5°C - 38.5°C</string>
+
+    <string name="ecebA10">Which babies should be given vitamin K after birth?</string>
+    <string name="ecebA10a">Only babies with bleeding</string>
+    <string name="ecebA10b">Only babies with birth weight >2500 grams</string>
+    <string name="ecebA10c">All babies</string>
+    <string name="ecebA10d">Only sick babies</string>
+
+    <string name="ecebA11">How should a baby be kept warm after skin-to-skin care?</string>
+    <string name="ecebA11a">Bathing in warm water</string>
+    <string name="ecebA11b">Wrapping in a clean, dry blanket or cloth</string>
+    <string name="ecebA11c">Placing near warm stones</string>
+    <string name="ecebA11d">Exposing to sunshine</string>
+
+    <string name="ecebA12">How soon after birth can a healthy baby be bathed?</string>
+    <string name="ecebA12a">As soon as the baby has a normal temperature</string>
+    <string name="ecebA12b">As soon as normal breathing has been established</string>
+    <string name="ecebA12c">At least six hours following birth</string>
+    <string name="ecebA12d">Immediately after the first breastfeeding</string>
+
+
+    <string name="ecsbA01">Which of the following statements correctly describes a well small baby? E</string>
+    <string name="ecsbA01a">Feed by  cup, stays warm with skin-to-skin care, has convulsions</string>
+    <string name="ecsbA01b">Feeds by cup, stays warm with skin-to-skin care, weighs 1600 grams</string>
+    <string name="ecsbA01c">Breastfeeds poorly, breathes at 100 times per minute, maintains temperature in an incubator</string>
+    <string name="ecsbA01d">Feeds by cup, weighs 1200 grams, maintains temperature in an incubator</string>
+
+    <string name="ecsbA02">Which of the following is an important step in the care of a small baby?</string>
+    <string name="ecsbA02a">Teaching the mother to give a bath</string>
+    <string name="ecsbA02b">Giving the small baby lots of time in the sunlight</string>
+    <string name="ecsbA02c">Preventing infection by washing hands before touching the baby</string>
+    <string name="ecsbA02d">Weighing the small baby five times a day</string>
+
+    <string name="ecsbA03">Which of the following statements describes preparation for the birth of a small baby?</string>
+    <string name="ecsbA03a">Identify a skilled helper, provide extra warmth in the area for Delivery, anticipate need to help the baby breathe at birth.</string>
+    <string name="ecsbA03b">Prepare an area for the baby’s bath, check equipment, review emergency plan.</string>
+    <string name="ecsbA03c">Wash hands, prepare herbs for babies first feeding.</string>
+    <string name="ecsbA03d">Anticipate need to help baby breathe at birth, identify a skilled helper, prepare an area for the baby’s bath.</string>
+
+    <string name="ecsbA04">A 1700 gram baby has been placed skin-to-skin with the mother after birth. What other care should be provided in the first 90 minutes after birth?</string>
+    <string name="ecsbA04a">Showing the baby to the extended family</string>
+    <string name="ecsbA04b">Feeding the baby with a nasogastric tube</string>
+    <string name="ecsbA04c">Monitoring breathing and measuring temperature</string>
+    <string name="ecsbA04d">Bathing the baby</string>
+
+    <string name="ecsbA05">At 90 minutes after birth, an 1800 gram baby is placed skin-to-skin with the mother and has a temperature of 36.7˚ C. What should you do to help maintain the baby’s temperature?</string>
+    <string name="ecsbA05a">Bathe the baby in warm water.</string>
+    <string name="ecsbA05b">Place in direct sunlight.</string>
+    <string name="ecsbA05c">Assist mother with continuous skin-to-skin care.</string>
+    <string name="ecsbA05d">Place the baby on an open warmer set for high heat output.</string>
+
+    <string name="ecsbA06">Shortly after birth, a small baby is classified based on the temperature, weight, and physical exam. The baby is 1400 grams, is breathing at 90 breaths per minute, and has a temperature of 35˚C. What should you do?</string>
+    <string name="ecsbA06a">Put the baby to the breast to assess breastfeeding.</string>
+    <string name="ecsbA06b">Continue to watch for improvement.</string>
+    <string name="ecsbA06c">Place a nasogastric tube to administer a feeding.</string>
+    <string name="ecsbA06d">Arrange a transfer for advanced care.</string>
+
+    <string name="ecsbA07">How many feedings should a small baby receive in a day?</string>
+    <string name="ecsbA07a">Two to four</string>
+    <string name="ecsbA07b">Five to six</string>
+    <string name="ecsbA07c">Eight to twelve</string>
+    <string name="ecsbA07d">Twenty-four</string>
+
+    <string name="ecsbA08">Which of the following techniques can help a mother to support or improve a small baby’s latch?</string>
+    <string name="ecsbA08a">Wrapping the breasts in tight clothing between feedings</string>
+    <string name="ecsbA08b">Supporting the head of the baby so he is positioned to take the nipple and surrounding area into an open mouth</string>
+    <string name="ecsbA08c">Putting oils on the breast</string>
+    <string name="ecsbA08d">Feeding first with a bottle until sucking is strong</string>
+
+    <string name="ecsbA09">What is the skin temperature of a well small baby? </string>
+    <string name="ecsbA09a">35.0&#8211;35.5˚C</string>
+    <string name="ecsbA09b">35.5&#8211;36.5˚C</string>
+    <string name="ecsbA09c">36.5&#8211;37.5˚C</string>
+    <string name="ecsbA09d">37.0&#8211;38.0˚C</string>
+
+    <string name="ecsbA10">Shortly after birth, the temperature of an 1800 gram baby is 36˚C. After placing the baby skin-to-skin, the baby’s temperature remains the same. Which of the following actions should be taken?</string>
+    <string name="ecsbA10a">Place the baby in direct sunlight.</string>
+    <string name="ecsbA10b">Place warm stones around the baby.</string>
+    <string name="ecsbA10c">Bathe the baby in warm water.</string>
+    <string name="ecsbA10d">Remove wet diaper and cover the mother and the baby with a blanket.</string>
+
+    <string name="ecsbA11">A 1600 gram baby has been maintaining temperature with continuous skin-to-skin care. The babies will not breastfeed or cup feed and requires nasogastric feeding. What do you advise the mother about skin-to- skin care?</string>
+    <string name="ecsbA11a">The mother can continue skin-to-skin care even while the baby is receiving nasogastric feedings.</string>
+    <string name="ecsbA11b">The baby will need to be in an incubator while receiving nasogastric feeding.</string>
+    <string name="ecsbA11c">The baby will need to be on a radiant warmer while receiving nasogastric feeding.</string>
+    <string name="ecsbA11d">The mother must stop skin-to-skin care during nasogastric feeding.</string>
+
+    <string name="ecsbA12">When a baby cannot feed directly from the breast after support is provided, what should you advise a mother to do next?</string>
+    <string name="ecsbA12a">Give the baby formula.</string>
+    <string name="ecsbA12b">Keep trying to breastfeed the baby.</string>
+    <string name="ecsbA12c">Express her breast milk to feed to the baby by a safe, alternate feeding method.</string>
+    <string name="ecsbA12d">Wait until the baby can feed directly from the breast.</string>
+
+
+    <string name="ecsbB01">When a mother expresses her breast milk, how can it be stored safely?</string>
+    <string name="ecsbB01a">In a covered container in a cool place for up to 6 hours</string>
+    <string name="ecsbB01b">In an open container in a shaded area</string>
+    <string name="ecsbB01c">In an open container in direct sunlight</string>
+    <string name="ecsbB01d">In a covered container heated in warm water until used</string>
+
+    <string name="ecsbB02">When breastfeeding is not effective, which of the following are safe and recommended alternate feeding methods for a small baby? </string>
+    <string name="ecsbB02a">Attempt a cup  feedings and if not successful, insert a nasogastric tube.</string>
+    <string name="ecsbB02b">Use a syringe to pour milk directly into the baby’s mouth.</string>
+    <string name="ecsbB02c">Dip finger or tongue depressor into milk and allow the baby to lick the milk.</string>
+    <string name="ecsbB02d">Give bottle feedings and insert a nasogastric tube.</string>
+
+    <string name="ecsbB03">Which of the following best describes a 3-day-old 1800 gram baby who needs nasogastric tube feeding?</string>
+    <string name="ecsbB03a">The baby is breastfeeding 8&#8211;12 times per day.</string>
+    <string name="ecsbB03b">The baby is gaining 15 grams/kilogram per day.</string>
+    <string name="ecsbB03c">The baby shows feeding readiness cues every 2&#8211;4 hours.</string>
+    <string name="ecsbB03d">The baby takes 5&#8211;10 mL by cup per feeding for 4 feedings.</string>
+
+    <string name="ecsbB04">What is the proper length for nasogastric tube insertion?</string>
+    <string name="ecsbB04a">From the tip of the nose to earlobe to half way between the tip of the breast bone and the umbilicus</string>
+    <string name="ecsbB04b">From the mouth opening to the nipple to the umbilicus</string>
+    <string name="ecsbB04c">From the earlobe to the umbilicus</string>
+    <string name="ecsbB04d">From the earlobe to the umbilicus</string>
+
+    <string name="ecsbB05">Just inserted a nasogastric tube into a small baby who cannot breastfeed or receive cup feedings. Which of the following best describes a method for confirming proper placement of the nasogastric tube?</string>
+    <string name="ecsbB05a">Measure the tube outside the nose.</string>
+    <string name="ecsbB05b">Inject 2 mL of air while listening with a stethoscope for the sound of air entering the stomach.</string>
+    <string name="ecsbB05c">Administer 5 mL of a feeding and then withdraw it back to see if it is mixed with gastric contents.</string>
+    <string name="ecsbB05d">Evaluate the baby’s breathing.</string>
+
+    <string name="ecsbB06">What should a mother be taught to do before administering a nasogastric feeding?</string>
+    <string name="ecsbB06a">Wash her hands and reinsert the nasogastric tube.</string>
+    <string name="ecsbB06b">Wash her hands and confirm placement of the nasogastric tube by checking that the mark on the tube is at the edge of the nose.</string>
+    <string name="ecsbB06c">Wash her hands and confirm placement of the nasogastric tube by checking that the mark on the tube is at the sternum.</string>
+    <string name="ecsbB06d">Wash her hands and inject 10 mL of air into the tube.</string>
+
+    <string name="ecsbB07">After initial weight loss, how much weight should a small baby gain each day?</string>
+    <string name="ecsbB07a">5 grams per kilogram per day on average</string>
+    <string name="ecsbB07b">15 grams per kilogram per day on average</string>
+    <string name="ecsbB07c">25 grams per kilogram per day on average</string>
+    <string name="ecsbB07d">30 grams per day on average</string>
+
+    <string name="ecsbB08">On the day after birth, a 1600 gram baby cannot breastfeed or cup feed, and will be fed every three hours by a nasogastric tube. What volume should be administered for the baby’s first feeding?</string>
+    <string name="ecsbB08a">1ml</string>
+    <string name="ecsbB08b">5ml</string>
+    <string name="ecsbB08c">12ml</string>
+    <string name="ecsbB08d">25ml</string>
+
+    <string name="ecsbB09">A 1600 gram baby is fed by a nasogastric tube. After the initial day of feedings, what is the daily increase in the volume of each feeding?</string>
+    <string name="ecsbB09a">4ml</string>
+    <string name="ecsbB09b">5ml</string>
+    <string name="ecsbB09c">10ml</string>
+    <string name="ecsbB09d">15ml</string>
+
+    <string name="ecsbB10">Which of the following indicates feeding intolerance and the need for advanced care?</string>
+    <string name="ecsbB10a">Spitting up small amounts</string>
+    <string name="ecsbB10b">Tense abdominal distension</string>
+    <string name="ecsbB10c">Stooling 6-8 times per day</string>
+    <string name="ecsbB10d">Crying before each feeding</string>
+
+    <string name="ecsbB11">In a small baby being fed by an alternative method, how often should breastfeeding readiness be assessed?</string>
+    <string name="ecsbB11a">At least once per day</string>
+    <string name="ecsbB11b">At least once per week</string>
+    <string name="ecsbB11c">At least once every two weeks</string>
+    <string name="ecsbB11d">At least once per month</string>
+
+    <string name="ecsbB12">A small baby is now 10 days old and has been fed by nasogastric tube e  birtshin.c    During the first attempt to breast feed, he sucks actively, and swallowing sounds are heard. What should be done next to make the transition to breastfeeding?</string>
+    <string name="ecsbB12a">top nasogastric feeding immediately, pull out the nasogastric tube, and breastfeed only.</string>
+    <string name="ecsbB12b">ontinue with nasogastric feeding, while gradually increasing the number of breastfeeding attempts per day.</string>
+    <string name="ecsbB12c">top nasogastric feeding immediately and breastfeed only throughout the daytime.</string>
+    <string name="ecsbB12d">ontinue with nasogastric feeding, wait two days, and try breastfeeding again.</string>
+
+    <string name="ecsbB13">A 1600 gram baby has been receiving nasogastric feeding for 10 days and now has started to feed at the breast. Which of the following is an indication that the baby is ready to receive all the feedings by breast?</string>
+    <string name="ecsbB13a">Waking and crying in between feedings.</string>
+    <string name="ecsbB13b">Choking during occasional feedings</string>
+    <string name="ecsbB13c">Sucking and swallowing audibly for 10 minutes during each feeding</string>
+    <string name="ecsbB13d">Weight gain of 5 grams per day when no nasogastric feedings are provided</string>
 
 
 </resources>

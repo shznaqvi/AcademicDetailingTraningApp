@@ -23,14 +23,14 @@ public class PlayerActivity extends AppCompatActivity {
 
         bi = DataBindingUtil.setContentView(this, R.layout.activity_player);
 
-        String fileName = "gds01";
-        String filePlace = "android.resource://" + getPackageName() + "/raw/" + fileName;
-        bi.videoPlayer.setVideoURI(Uri.parse(filePlace));
-        bi.videoPlayer.requestFocus();
-        MediaController mediaController = new MediaController(this);
-        bi.videoPlayer.setMediaController(mediaController);
-        mediaController.setAnchorView(bi.videoPlayer);
-        bi.videoPlayer.start();
+//        String fileName = "gds01";
+//        String filePlace = "android.resource://" + getPackageName() + "/raw/" + fileName;
+//        bi.videoPlayer.setVideoURI(Uri.parse(filePlace));
+//        bi.videoPlayer.requestFocus();
+//        MediaController mediaController = new MediaController(this);
+//        bi.videoPlayer.setMediaController(mediaController);
+//        mediaController.setAnchorView(bi.videoPlayer);
+//        bi.videoPlayer.start();
 
 
     }

@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
 //        transaction.setCustomAnimations(R.anim.slide_in,R.anim.slide_out);
-        transaction.replace(bi.mainLayout.getId(),fragment);
+        transaction.add(bi.mainLayout.getId(),fragment);
         transaction.addToBackStack(null);
         transaction.commit();
 

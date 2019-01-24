@@ -96,7 +96,9 @@ public class MainApp extends Application {
     public static NextMeetingContract nmc;
     public static boolean isComplete = false;
     public static String type = "";
+    public static String testName = "";
     public static int[] slides;
+
 
     protected static LocationManager locationManager;
 

@@ -42,21 +42,25 @@ public class EcEbTest01 extends AppCompatActivity implements RadioButton.OnCheck
 
         type = getIntent().getStringExtra("type");
         if (type.equals("pre") && !isComplete) {
+            bi.heading.setText("PRETEST");
             slides = getIntent().getIntArrayExtra("slides");
             Data.correctAnswers = getIntent().getStringArrayListExtra("ans");
             MainApp.fc.setPreTestStartTime(MainApp.getCurrentTime());
             bi.btnOk.setVisibility(View.GONE);
             bi.btnContinue.setVisibility(View.VISIBLE);
         } else if (type.equals("pre") && isComplete) {
+            bi.heading.setText("PRETEST RESULT");
             GeneratorClass.comparingResult(bi.llecebA, true, Data.correctAnswers);
             bi.btnOk.setVisibility(View.VISIBLE);
             bi.btnContinue.setVisibility(View.GONE);
         } else if (type.equals("post") && !isComplete) {
+            bi.heading.setText("POST TEST");
             MainApp.fc.setPostTestStartTime(MainApp.getCurrentTime());
             bi.btnOk.setVisibility(View.GONE);
             bi.btnContinue.setVisibility(View.VISIBLE);
 
         } else if (type.equals("post") && isComplete) {
+            bi.heading.setText(" POST TEST & PRETEST RESULT");
             GeneratorClass.comparingPostTestAndPretestResult(bi.llecebA, true, Data.correctAnswers);
             bi.btnOk.setVisibility(View.VISIBLE);
             bi.btnContinue.setVisibility(View.GONE);

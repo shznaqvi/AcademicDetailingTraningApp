@@ -24,8 +24,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".ui.PlayerActivity"/>
-
         <activity
             android:name=".ui.SplashScreenActivity"
             android:screenOrientation="portrait">
@@ -46,6 +44,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1" />
         <activity
+            android:theme="@style/AppTheme2"
             android:name=".ui.ViewPagerActivity"
             android:screenOrientation="landscape" />
 
@@ -133,8 +132,10 @@
 
         <activity android:name=".ui.Hbb"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme1"/>
-
+            android:theme="@style/AppTheme1" ></activity>
+        <activity android:name=".ui.PlayerActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme1"></activity>
     </application>
 
 </manifest>

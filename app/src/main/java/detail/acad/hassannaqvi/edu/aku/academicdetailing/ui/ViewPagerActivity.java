@@ -33,7 +33,7 @@ public class ViewPagerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         bi = DataBindingUtil.setContentView(this, R.layout.activity_view_pager);
-
+        this.setTitle(MainApp.moduleSession);
         slides = getIntent().getIntArrayExtra("slides");
 
         settingupViewPager();

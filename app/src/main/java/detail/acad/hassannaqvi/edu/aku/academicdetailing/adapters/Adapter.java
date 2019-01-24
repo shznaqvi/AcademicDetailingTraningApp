@@ -52,14 +52,16 @@ public class Adapter extends PagerAdapter {
         final VideoView vv = view.findViewById(R.id.videoPlayer);
         ImageView img = view.findViewById(R.id.image);
         container.addView(view,0);
-        if (list[position] == 0) {
-            context.startActivity(new Intent(context, PlayerActivity.class));
-        } else if (list[position] == 1) {
+        img.setBackgroundResource(list[position]);
+//        if (list[position] == 0) {
+//            context.startActivity(new Intent(context, PlayerActivity.class));
+//        } else if (list[position] == 1) {
+//
+//        } else {
+//            fl.setVisibility(View.GONE);
+//
+//        }
 
-        } else {
-            fl.setVisibility(View.GONE);
-            img.setBackgroundResource(list[position]);
-        }
 
 
 

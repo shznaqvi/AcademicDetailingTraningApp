@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -11,506 +12,540 @@
             type="detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.FANC_Pre_test" />
     </data>
 
-
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#e4e4e4"
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/fldGrpPreFanc"
+        <android.support.v7.widget.CardView
+            style="@style/cardView"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/heading"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimaryDark"
+                    android:gravity="center"
+                    android:text="PRETEST"
+                    android:textColor="@android:color/white"
+                    android:textSize="25sp" />
+
+            </RelativeLayout>
+
+
+        </android.support.v7.widget.CardView>
+
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:animateLayoutChanges="true"
-            android:orientation="vertical">
-
-            <!--Q01-->
-            <android.support.v7.widget.CardView style="@style/cardView">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tvfanc01"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:background="@color/colorPrimary"
-                        android:text="@string/fanc_01"
-                        android:textColor="@android:color/white"
-                        android:textSize="20sp" />
-
-                    <RadioGroup
-                        android:id="@+id/fanc01"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <RadioButton
-                            android:tag="1"
-                            style="@style/radiobutton"
-                            android:id="@+id/fanc01a"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:text="@string/fanc_01a" />
-
-                        <RadioButton
-                            android:tag="2"
-                            android:id="@+id/fanc01b"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:text="@string/fanc_01b" />
-
-                        <RadioButton
-                            android:tag="3"
-                            android:id="@+id/fanc01c"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:text="@string/fanc_01c" />
-
-                        <RadioButton
-                            android:tag="4"
-                            android:id="@+id/fanc01d"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:text="@string/fanc_01d" />
-
-
-                    </RadioGroup>
-
-                </LinearLayout>
-
-
-            </android.support.v7.widget.CardView>
-
-            <!--Q02-->
-            <android.support.v7.widget.CardView style="@style/cardView">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tvfanc02"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:background="@color/colorPrimary"
-                        android:text="@string/fanc_02"
-                        android:textColor="@android:color/white"
-                        android:textSize="20sp" />
-
-                    <RadioGroup
-                        android:id="@+id/fanc02"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <RadioButton
-                            android:tag="1"
-                            android:id="@+id/fanc02a"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:text="@string/fanc_02a" />
-
-                        <RadioButton
-                            android:tag="2"
-                            android:id="@+id/fanc02b"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:text="@string/fanc_02b" />
-
-                        <RadioButton
-                            android:tag="3"
-                            android:id="@+id/fanc02c"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:text="@string/fanc_02c" />
-
-                        <RadioButton
-                            android:tag="4"
-                            android:id="@+id/fanc02d"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:text="@string/fanc_02d" />
-
-
-                    </RadioGroup>
-
-                </LinearLayout>
-
-
-            </android.support.v7.widget.CardView>
-
-            <!--Q03-->
-            <android.support.v7.widget.CardView style="@style/cardView">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tvfanc03"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:background="@color/colorPrimary"
-                        android:text="@string/fanc_03"
-                        android:textColor="@android:color/white"
-                        android:textSize="20sp" />
-
-                    <RadioGroup
-                        android:id="@+id/fanc03"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <RadioButton
-                            android:tag="1"
-                            android:id="@+id/fanc03a"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:text="@string/fanc_03a" />
-
-                        <RadioButton
-                            android:tag="2"
-                            android:id="@+id/fanc03b"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:text="@string/fanc_03b" />
-
-                        <RadioButton
-                            android:tag="3"
-                            android:id="@+id/fanc03c"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:text="@string/fanc_03c" />
-
-                        <RadioButton
-                            android:tag="4"
-                            android:id="@+id/fanc03d"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:text="@string/fanc_03d" />
-
-
-                    </RadioGroup>
-
-                </LinearLayout>
-
-
-            </android.support.v7.widget.CardView>
-
-            <!--Q04-->
-            <android.support.v7.widget.CardView style="@style/cardView">
-
-                <LinearLayout
-
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tvfanc04"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:background="@color/colorPrimary"
-                        android:text="@string/fanc_04"
-                        android:textColor="@android:color/white"
-                        android:textSize="20sp" />
-
-                    <RadioGroup
-                        android:id="@+id/fanc04"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <RadioButton
-                            android:tag="1"
-                            android:id="@+id/fanc04a"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:text="@string/fanc_04a" />
-
-                        <RadioButton
-                            android:tag="2"
-                            android:id="@+id/fanc04b"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:text="@string/fanc_04b" />
-
-                        <RadioButton
-                            android:tag="3"
-                            android:id="@+id/fanc04c"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:text="@string/fanc_04c" />
-
-                        <RadioButton
-                            android:tag="4"
-                            android:id="@+id/fanc04d"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:text="@string/fanc_04d" />
-
-
-                    </RadioGroup>
-
-                </LinearLayout>
-
-
-            </android.support.v7.widget.CardView>
-
-
-            <!--Q05-->
-            <android.support.v7.widget.CardView style="@style/cardView">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tvfanc05"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:background="@color/colorPrimary"
-                        android:text="@string/fanc_05"
-                        android:textColor="@android:color/white"
-                        android:textSize="20sp" />
-
-                    <RadioGroup
-                        android:id="@+id/fanc05"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <RadioButton
-                            android:tag="1"
-                            android:id="@+id/fanc05a"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:text="@string/fanc_05a" />
-
-                        <RadioButton
-                            android:tag="2"
-                            android:id="@+id/fanc05b"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:text="@string/fanc_05b" />
-
-                        <RadioButton
-                            android:tag="3"
-                            android:id="@+id/fanc05c"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:text="@string/fanc_05c" />
-
-                        <RadioButton
-                            android:tag="4"
-                            android:id="@+id/fanc05d"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:text="@string/fanc_05d" />
-
-
-                    </RadioGroup>
-
-                </LinearLayout>
-
-
-            </android.support.v7.widget.CardView>
-
-
-            <!--Q06-->
-            <android.support.v7.widget.CardView
-                android:id="@+id/fanc_06"
-                style="@style/cardView">
-
-                <LinearLayout
-                    android:layoutDirection="ltr"
-                    android:textDirection="ltr"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tvfanc06"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:background="@color/colorPrimary"
-                        android:text="@string/fanc_06"
-                        android:textColor="@android:color/white"
-                        android:textSize="20sp" />
-
-                    <CheckBox
-                        android:tag="1"
-                        android:padding="4dp"
-                        android:textSize="24sp"
-                        android:id="@+id/fanc06a"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="1dp"
-                        android:text="@string/fanc_06a" />
-
-                    <CheckBox
-                        android:tag="2"
-                        android:padding="4dp"
-                        android:textSize="24sp"
-                        android:id="@+id/fanc06b"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="1dp"
-                        android:text="@string/fanc_06b" />
-
-                    <CheckBox
-                        android:tag="3"
-                        android:textSize="24sp"
-                        android:id="@+id/fanc06c"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="1dp"
-                        android:text="@string/fanc_06c" />
-
-                    <CheckBox
-                        android:tag="4"
-                        android:padding="4dp"
-                        android:textSize="24sp"
-                        android:id="@+id/fanc06d"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="1dp"
-                        android:text="@string/fanc_06d" />
-
-                    <CheckBox
-                        android:tag="5"
-                        android:padding="4dp"
-                        android:textSize="24sp"
-                        android:id="@+id/fanc06e"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="1dp"
-                        android:text="@string/fanc_06e" />
-
-                    <CheckBox
-                        android:tag="6"
-                        android:padding="4dp"
-                        android:textSize="24sp"
-                        android:id="@+id/fanc06f"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="1dp"
-                        android:text="@string/fanc_06f" />
-
-                    <CheckBox
-                        android:tag="7"
-                        android:padding="4dp"
-                        android:textSize="24sp"
-                        android:id="@+id/fanc06g"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="1dp"
-                        android:text="@string/fanc_06g" />
-
-                    <CheckBox
-                        android:tag="8"
-                        android:textSize="24sp"
-                        android:id="@+id/fanc06h"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="1dp"
-                        android:text="@string/fanc_06h" />
-
-                    <CheckBox
-                        android:tag="9"
-                        android:padding="4dp"
-                        android:textSize="24sp"
-                        android:id="@+id/fanc06i"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="1dp"
-                        android:text="@string/fanc_06i" />
-
-                    <CheckBox
-                        android:tag="10"
-                        android:padding="4dp"
-                        android:textSize="24sp"
-                        android:id="@+id/fanc06j"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="1dp"
-                        android:text="@string/fanc_06j" />
-
-                    <CheckBox
-                        android:tag="11"
-                        android:padding="4dp"
-                        android:textSize="24sp"
-                        android:id="@+id/fanc06k"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="1dp"
-                        android:text="@string/fanc_06k" />
-
-
-                </LinearLayout>
-
-
-            </android.support.v7.widget.CardView>
-
-
-            <!--  = = = = =  END OF FORM FIELDS  = = = = = -->
+            android:layout_height="match_parent">
 
             <LinearLayout
+                android:id="@+id/fldGrpPreFanc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:orientation="horizontal">
+                android:animateLayoutChanges="true"
+                android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/btn_Continue"
-                    style="@style/button1"
-                    android:onClick="@{() -> callback.BtnContinue()}"
-                    android:text="Start Training"
-                    android:textSize="16sp" />
+                <!--Q01-->
+                <android.support.v7.widget.CardView style="@style/cardView">
 
-                <Button
-                    android:id="@+id/btn_ok"
-                    style="@style/button1"
-                    android:onClick="@{() -> callback.BtnOk()}"
-                    android:text="Ok"
-                    android:textSize="16sp"
-                    android:visibility="gone" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvfanc01"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@color/colorPrimary"
+                            android:text="@string/fanc_01"
+                            android:textColor="@android:color/white"
+                            android:textSize="20sp" />
+
+                        <RadioGroup
+                            android:id="@+id/fanc01"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RadioButton
+                                android:id="@+id/fanc01a"
+                                style="@style/radiobutton"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="1"
+                                android:text="@string/fanc_01a" />
+
+                            <RadioButton
+                                android:id="@+id/fanc01b"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="2"
+                                android:text="@string/fanc_01b" />
+
+                            <RadioButton
+                                android:id="@+id/fanc01c"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="3"
+                                android:text="@string/fanc_01c" />
+
+                            <RadioButton
+                                android:id="@+id/fanc01d"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="4"
+                                android:text="@string/fanc_01d" />
 
 
-                <!--'onClick' for btn_End will NOT change and always call 'endInterview'-->
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
+
+                <!--Q02-->
+                <android.support.v7.widget.CardView style="@style/cardView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvfanc02"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@color/colorPrimary"
+                            android:text="@string/fanc_02"
+                            android:textColor="@android:color/white"
+                            android:textSize="20sp" />
+
+                        <RadioGroup
+                            android:id="@+id/fanc02"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RadioButton
+                                android:id="@+id/fanc02a"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="1"
+                                android:text="@string/fanc_02a" />
+
+                            <RadioButton
+                                android:id="@+id/fanc02b"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="2"
+                                android:text="@string/fanc_02b" />
+
+                            <RadioButton
+                                android:id="@+id/fanc02c"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="3"
+                                android:text="@string/fanc_02c" />
+
+                            <RadioButton
+                                android:id="@+id/fanc02d"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="4"
+                                android:text="@string/fanc_02d" />
+
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
+
+                <!--Q03-->
+                <android.support.v7.widget.CardView style="@style/cardView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvfanc03"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@color/colorPrimary"
+                            android:text="@string/fanc_03"
+                            android:textColor="@android:color/white"
+                            android:textSize="20sp" />
+
+                        <RadioGroup
+                            android:id="@+id/fanc03"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RadioButton
+                                android:id="@+id/fanc03a"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="1"
+                                android:text="@string/fanc_03a" />
+
+                            <RadioButton
+                                android:id="@+id/fanc03b"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="2"
+                                android:text="@string/fanc_03b" />
+
+                            <RadioButton
+                                android:id="@+id/fanc03c"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="3"
+                                android:text="@string/fanc_03c" />
+
+                            <RadioButton
+                                android:id="@+id/fanc03d"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="4"
+                                android:text="@string/fanc_03d" />
+
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
+
+                <!--Q04-->
+                <android.support.v7.widget.CardView style="@style/cardView">
+
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvfanc04"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@color/colorPrimary"
+                            android:text="@string/fanc_04"
+                            android:textColor="@android:color/white"
+                            android:textSize="20sp" />
+
+                        <RadioGroup
+                            android:id="@+id/fanc04"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RadioButton
+                                android:id="@+id/fanc04a"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="1"
+                                android:text="@string/fanc_04a" />
+
+                            <RadioButton
+                                android:id="@+id/fanc04b"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="2"
+                                android:text="@string/fanc_04b" />
+
+                            <RadioButton
+                                android:id="@+id/fanc04c"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="3"
+                                android:text="@string/fanc_04c" />
+
+                            <RadioButton
+                                android:id="@+id/fanc04d"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="4"
+                                android:text="@string/fanc_04d" />
+
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
+
+
+                <!--Q05-->
+                <android.support.v7.widget.CardView style="@style/cardView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvfanc05"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@color/colorPrimary"
+                            android:text="@string/fanc_05"
+                            android:textColor="@android:color/white"
+                            android:textSize="20sp" />
+
+                        <RadioGroup
+                            android:id="@+id/fanc05"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RadioButton
+                                android:id="@+id/fanc05a"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="1"
+                                android:text="@string/fanc_05a" />
+
+                            <RadioButton
+                                android:id="@+id/fanc05b"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="2"
+                                android:text="@string/fanc_05b" />
+
+                            <RadioButton
+                                android:id="@+id/fanc05c"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="3"
+                                android:text="@string/fanc_05c" />
+
+                            <RadioButton
+                                android:id="@+id/fanc05d"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="4"
+                                android:text="@string/fanc_05d" />
+
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
+
+
+                <!--Q06-->
+                <android.support.v7.widget.CardView
+                    android:id="@+id/fanc_06"
+                    style="@style/cardView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layoutDirection="ltr"
+                        android:orientation="vertical"
+                        android:textDirection="ltr">
+
+                        <TextView
+                            android:id="@+id/tvfanc06"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@color/colorPrimary"
+                            android:text="@string/fanc_06"
+                            android:textColor="@android:color/white"
+                            android:textSize="20sp" />
+
+                        <CheckBox
+                            android:id="@+id/fanc06a"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="1dp"
+                            android:padding="4dp"
+                            android:tag="1"
+                            android:text="@string/fanc_06a"
+                            android:textSize="24sp" />
+
+                        <CheckBox
+                            android:id="@+id/fanc06b"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="1dp"
+                            android:padding="4dp"
+                            android:tag="2"
+                            android:text="@string/fanc_06b"
+                            android:textSize="24sp" />
+
+                        <CheckBox
+                            android:id="@+id/fanc06c"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="1dp"
+                            android:tag="3"
+                            android:text="@string/fanc_06c"
+                            android:textSize="24sp" />
+
+                        <CheckBox
+                            android:id="@+id/fanc06d"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="1dp"
+                            android:padding="4dp"
+                            android:tag="4"
+                            android:text="@string/fanc_06d"
+                            android:textSize="24sp" />
+
+                        <CheckBox
+                            android:id="@+id/fanc06e"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="1dp"
+                            android:padding="4dp"
+                            android:tag="5"
+                            android:text="@string/fanc_06e"
+                            android:textSize="24sp" />
+
+                        <CheckBox
+                            android:id="@+id/fanc06f"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="1dp"
+                            android:padding="4dp"
+                            android:tag="6"
+                            android:text="@string/fanc_06f"
+                            android:textSize="24sp" />
+
+                        <CheckBox
+                            android:id="@+id/fanc06g"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="1dp"
+                            android:padding="4dp"
+                            android:tag="7"
+                            android:text="@string/fanc_06g"
+                            android:textSize="24sp" />
+
+                        <CheckBox
+                            android:id="@+id/fanc06h"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="1dp"
+                            android:tag="8"
+                            android:text="@string/fanc_06h"
+                            android:textSize="24sp" />
+
+                        <CheckBox
+                            android:id="@+id/fanc06i"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="1dp"
+                            android:padding="4dp"
+                            android:tag="9"
+                            android:text="@string/fanc_06i"
+                            android:textSize="24sp" />
+
+                        <CheckBox
+                            android:id="@+id/fanc06j"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="1dp"
+                            android:padding="4dp"
+                            android:tag="10"
+                            android:text="@string/fanc_06j"
+                            android:textSize="24sp" />
+
+                        <CheckBox
+                            android:id="@+id/fanc06k"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="1dp"
+                            android:padding="4dp"
+                            android:tag="11"
+                            android:text="@string/fanc_06k"
+                            android:textSize="24sp" />
+
+
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
+
+
+                <!--  = = = = =  END OF FORM FIELDS  = = = = = -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btn_Continue"
+                        style="@style/button1"
+                        android:onClick="@{() -> callback.BtnContinue()}"
+                        android:text="Start Training"
+                        android:textSize="16sp" />
+
+                    <Button
+                        android:id="@+id/btn_ok"
+                        style="@style/button1"
+                        android:onClick="@{() -> callback.BtnOk()}"
+                        android:text="Ok"
+                        android:textSize="16sp"
+                        android:visibility="gone" />
+
+
+                    <!--'onClick' for btn_End will NOT change and always call 'endInterview'-->
+                </LinearLayout>
+
+
             </LinearLayout>
 
 
-        </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
 
 
-    </ScrollView>
 
 
 </layout>

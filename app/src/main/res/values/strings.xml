@@ -25,6 +25,10 @@
     <string name="mainFragment">MainFragment</string>
     <string name="moduleFragment">ModuleFragment</string>
 
+    <string name="splashText">Supporting Women and Girls in Pakistan Scaling Up\n
+    Empowerment and Care  Strategies  to Address Health and Survival\n
+    Centre of Excellence Women &amp; Child Health\n
+    Aga Khan University, Karachi, Pakistan</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
@@ -311,7 +315,7 @@
     <string name="fanc_05c">A-</string>
     <string name="fanc_05d">AB+</string>
 
-    <string name="readyForTrain">Are You Ready For Trainning?</string>
+    <string name="readyForTrain">Are You Ready For Training?</string>
     <string name="areYouSure">Are You Sure You Want To Continue?</string>
     <!--Q06-->
     <string name="fanc_06">From the following list, please indicate which conditions are danger signs of pregnancy:</string>

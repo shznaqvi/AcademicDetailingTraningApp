@@ -13,7 +13,6 @@ public class EcSbTest01 extends AppCompatActivity implements RadioButton.OnCheck
 
     ActivityEcSbTest01Binding bi;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

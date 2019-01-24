@@ -79,6 +79,9 @@ public class ViewPagerActivity extends AppCompatActivity {
                     } else if (MainApp.isChild) {
                         Utils.showPostDialoge(ViewPagerActivity.this, MainApp.childlIndex,MainApp.subModuleName);
                         isComplete = false;
+                    }else if(MainApp.isNBorn){
+                        Utils.showPostDialoge(ViewPagerActivity.this, MainApp.childlIndex,MainApp.subModuleName);
+                        isComplete = false;
                     }
 
 

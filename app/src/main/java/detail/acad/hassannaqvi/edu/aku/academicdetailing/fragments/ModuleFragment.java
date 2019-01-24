@@ -17,10 +17,14 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Utils;
 
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.CDB;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.Diarrhea;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.ECEB;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.ECSB;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.GDS;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.HBB;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.PSBI;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.childModule;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.maternalModule;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.newBornModule;
 
 
 public class ModuleFragment extends Fragment {
@@ -30,6 +34,7 @@ public class ModuleFragment extends Fragment {
     boolean isChildClicked = false;
     boolean isMaternalClicked = false;
     boolean isChildSubClicked = false;
+    boolean isNewBornClicked = false;
 
 
     @Override
@@ -91,6 +96,79 @@ public class ModuleFragment extends Fragment {
 
             }
         });
+
+        bi.newBornHealth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!isNewBornClicked) {
+
+                    showNewBornModule();
+                } else {
+                    bi.nbornModule.animate().translationY(0);
+                    bi.nbornModule.removeAllViews();
+                    isNewBornClicked = false;
+                }
+
+            }
+        });
+    }
+
+    private void showNewBornModule() {
+
+        for (int i = 0; i < newBornModule.length; i++) {
+
+            View v = LayoutInflater.from(getContext()).inflate(R.layout.single_module_item, null);
+            TextView moduleName = v.findViewById(R.id.moduleName);
+            final LinearLayout subModule = v.findViewById(R.id.subModule);
+            moduleName.setText(newBornModule[i]);
+            bi.nbornModule.addView(v);
+            final int finalI = i;
+            v.animate().translationY(v.getHeight());
+            v.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    if (!isNewBornClicked) {
+                        subModule.removeAllViews();
+                        for (int i = 0; i < selectNBSubModule(finalI).length; i++) {
+                            View vi = LayoutInflater.from(getContext()).inflate(R.layout.single_sub_module_item, null);
+                            TextView moduleName = vi.findViewById(R.id.subModuleName);
+                            moduleName.setText(selectNBSubModule(finalI)[i]);
+                            subModule.addView(vi);
+
+                            final int finalI1 = i;
+                            vi.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    MainApp.moduleName = "nBornHealth";
+                                    MainApp.moduleSession = selectNBSubModule(finalI)[finalI1];
+                                    MainApp.isChild = false;
+                                    MainApp.isMaternal = false;
+                                    MainApp.isNBorn = true;
+                                    if (Utils.selectTest(finalI1, MainApp.subModuleName) != null) {
+                                        Utils.showPreDialogue(getActivity(), finalI1, MainApp.subModuleName);
+                                        MainApp.childlIndex = finalI1;
+                                    } else {
+                                        Toast.makeText(getActivity(), "Module is under Development", Toast.LENGTH_SHORT).show();
+                                    }
+
+                                }
+                            });
+
+                        }
+                        isNewBornClicked = true;
+                    } else {
+                        subModule.removeAllViews();
+                        isNewBornClicked = false;
+                    }
+
+
+                }
+            });
+        }
+        isNewBornClicked = true;
+
+
     }
 
 
@@ -112,11 +190,12 @@ public class ModuleFragment extends Fragment {
                     MainApp.moduleName = "maternalHealth";
                     MainApp.isChild = false;
                     MainApp.isMaternal = true;
+                    MainApp.isNBorn = false;
                     MainApp.moduleSession = maternalModule[finalI];
-                    if(Utils.selectTest(finalI,MainApp.moduleName) != null){
+                    if (Utils.selectTest(finalI, MainApp.moduleName) != null) {
                         Utils.showPreDialogue(getActivity(), finalI, MainApp.moduleName);
                         MainApp.maternalIndex = finalI;
-                    }else{
+                    } else {
                         Toast.makeText(getActivity(), "Module is under Development", Toast.LENGTH_SHORT).show();
                     }
 
@@ -134,7 +213,7 @@ public class ModuleFragment extends Fragment {
 
             View v = LayoutInflater.from(getContext()).inflate(R.layout.single_module_item, null);
             TextView moduleName = v.findViewById(R.id.moduleName);
-            final LinearLayout subModule = v.findViewById(R.id.childSubModule);
+            final LinearLayout subModule = v.findViewById(R.id.subModule);
             moduleName.setText(childModule[i]);
             bi.childModule.addView(v);
             final int finalI = i;
@@ -144,6 +223,7 @@ public class ModuleFragment extends Fragment {
                 public void onClick(View v) {
 
                     if (!isChildSubClicked) {
+                        subModule.removeAllViews();
                         for (int i = 0; i < selectSubModule(finalI).length; i++) {
                             View vi = LayoutInflater.from(getContext()).inflate(R.layout.single_sub_module_item, null);
                             TextView moduleName = vi.findViewById(R.id.subModuleName);
@@ -160,10 +240,11 @@ public class ModuleFragment extends Fragment {
                                     MainApp.moduleSession = selectSubModule(finalI)[finalI1];
                                     MainApp.isChild = true;
                                     MainApp.isMaternal = false;
-                                    if(Utils.selectTest(finalI1,MainApp.subModuleName) != null){
-                                        Utils.showPreDialogue(getActivity(), finalI1,  MainApp.subModuleName);
+                                    MainApp.isNBorn = false;
+                                    if (Utils.selectTest(finalI1, MainApp.subModuleName) != null) {
+                                        Utils.showPreDialogue(getActivity(), finalI1, MainApp.subModuleName);
                                         MainApp.childlIndex = finalI1;
-                                    }else{
+                                    } else {
                                         Toast.makeText(getActivity(), "Module is under Development", Toast.LENGTH_SHORT).show();
                                     }
 
@@ -198,6 +279,19 @@ public class ModuleFragment extends Fragment {
         } else {
             MainApp.subModuleName = "psbi";
             return PSBI;
+        }
+    }
+
+    public String[] selectNBSubModule(int finalI) {
+        if (finalI == 0) {
+            MainApp.subModuleName = "eceb";
+            return ECEB;
+        } else if (finalI == 1) {
+            MainApp.subModuleName = "ecsb";
+            return ECSB;
+        } else {
+            MainApp.subModuleName = "hbb";
+            return HBB;
         }
     }
 

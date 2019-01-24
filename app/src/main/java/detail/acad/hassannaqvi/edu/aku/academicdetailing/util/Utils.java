@@ -21,21 +21,33 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.CDBSession01_Pre_test;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.CDBSession02_Pre_test;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.EcEbTest01;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.EcEbTest02;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.EcSbTest01;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.EcSbTest02;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.FANC_Pre_test;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.GDSSession01_Pre_test;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.GDSSession02_Pre_test;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.Hbb;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.VB_Pre_test;
 
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.cdb1_imgs;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.cdb2_imgs;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.cdba_cans;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.cdbb_cans;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.eceb01_cans;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.eceb02_cans;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.eceb1_imgs;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.eceb2_imgs;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.ecsb1_imgs;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.ecsb2_imgs;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.fanc_cans;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.fanc_imgs;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.gds1_imgs;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.gds2_imgs;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.gdsa_cans;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.gdsb_cans;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.hbb_imgs;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.vb_cans;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.vb_imgs;
 
@@ -96,6 +108,39 @@ public class Utils {
 
     }
 
+    public static int[] getNBSessions(int i, String moduleName) {
+
+        if (moduleName.equals("eceb")) {
+            switch (i) {
+                case 0:
+                    return eceb1_imgs;
+
+                case 1:
+                    return eceb2_imgs;
+
+                default:
+                    return null;
+            }
+
+        } else if (moduleName.equals("ecsb")) {
+            switch (i) {
+                case 0:
+                    return ecsb1_imgs;
+
+                case 1:
+                    return ecsb2_imgs;
+
+                default:
+                    return null;
+            }
+
+        } else {
+            return hbb_imgs;
+        }
+
+
+    }
+
     public static void showPreDialogue(final Context context, final int index, final String moduleName) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setCancelable(false);
@@ -106,6 +151,8 @@ public class Utils {
         if (MainApp.isMaternal) {
             slide.setImageResource(getPreImages(index, moduleName));
         } else if (MainApp.isChild) {
+            slide.setImageResource(getPreImages(index, moduleName));
+        }else if (MainApp.isNBorn){
             slide.setImageResource(getPreImages(index, moduleName));
         }
         builder.setView(view);
@@ -119,7 +166,8 @@ public class Utils {
                 MainApp.isSlideStart = true;
                 context.startActivity(new Intent(context, selectTest(index, moduleName))
                         .putExtra("slides", MainApp.isMaternal ? Utils.getMaternalSessions(index)
-                                : MainApp.isChild ? Utils.getChildSessions(index, moduleName) : null)
+                                : MainApp.isChild ? Utils.getChildSessions(index, moduleName)
+                                : MainApp.isNBorn ? Utils.getNBSessions(index, moduleName) : null)
                         .putExtra("type", "pre")
                         .putExtra("ans", selectAnswers(index, moduleName)));
                 MainApp.fc.setSessionStartTime(MainApp.getCurrentTime());
@@ -167,7 +215,8 @@ public class Utils {
 
                 context.startActivity(new Intent(context, selectTest(index, moduleName))
                         .putExtra("slides", MainApp.isMaternal ? Utils.getMaternalSessions(index)
-                                : MainApp.isChild ? Utils.getChildSessions(index, moduleName) : null).putExtra("type", "post"));
+                                : MainApp.isChild ? Utils.getChildSessions(index, moduleName)
+                                : MainApp.isNBorn ? Utils.getChildSessions(index, moduleName) : null).putExtra("type", "post"));
                 ((Activity) context).finish();
                 dialog.dismiss();
             }
@@ -216,6 +265,27 @@ public class Utils {
             }
 
 
+        } else if (MainApp.isNBorn) {
+            if (moduleName.equals("eceb")) {
+                switch (index) {
+                    case 0:
+                        return EcEbTest01.class;
+                    case 1:
+                        return EcEbTest02.class;
+
+                }
+            }
+//            else if (moduleName.equals("ecsb")) {
+//                switch (index) {
+//                    case 0:
+//                        return EcSbTest01.class;
+//                    case 1:
+//                        return EcSbTest02.class;
+//
+//                }
+//            } else {
+//                return Hbb.class;
+//            }
         }
         return null;
 
@@ -254,6 +324,17 @@ public class Utils {
             }
 
 
+        }else if(MainApp.isNBorn){
+            if (moduleName.equals("eceb")) {
+
+                switch (index) {
+                    case 0:
+                        return eceb01_cans;
+                    case 1:
+                        return eceb02_cans;
+                }
+
+            }
         }
         return null;
 
@@ -322,13 +403,23 @@ public class Utils {
             } else if (moduleName.equals("dia")) {
 
             }
+        } else if (MainApp.isNBorn) {
+            if (moduleName.equals("eceb")) {
+                switch (index) {
+                    case 0:
+                        return R.drawable.eceb1001;
+                    case 1:
+                        return R.drawable.eceb1001;
+                    default:
+                        return 0;
+                }
 
+            }
         }
 
         return 0;
 
     }
-
 
 
 }

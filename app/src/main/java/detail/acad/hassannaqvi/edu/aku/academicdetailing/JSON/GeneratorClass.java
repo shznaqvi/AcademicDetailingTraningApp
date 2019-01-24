@@ -15,8 +15,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 
-import com.amulyakhare.textdrawable.TextDrawable;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -32,8 +30,10 @@ public abstract class GeneratorClass {
 
     private static JSONObject formJSON;
     private static ArrayList<String> answers;
+    public static int chkbxincr = 0;
     private static ArrayList<String> testAnswers;
     public static int incr = 0;
+    private static ArrayList<String> chkboxAnswers;
     private static ArrayList<String> correctAnswers;
 
     public static JSONObject getContainerJSON(LinearLayout lv, boolean flag, String... convention) {
@@ -109,7 +109,7 @@ public abstract class GeneratorClass {
         return formJSON;
     }
 
-    public  static void comparingResult(LinearLayout lv, boolean flag, ArrayList<String>... answers) {
+    public static void comparingResult(LinearLayout lv, boolean flag, ArrayList<String>... answers) {
 
         if (flag)
             if (answers.length != 0) {
@@ -150,13 +150,29 @@ public abstract class GeneratorClass {
                         }
 
 
-
                     }
 
 
-                }else if(view instanceof CheckBox){
-                    CheckBox chb = (CheckBox) view;
-                    chb.setEnabled(false);
+                } else if (view instanceof CheckBox) {
+
+                    view.setEnabled(false);
+                    String tag1 = Data.fanc_cb.get(chkbxincr);
+                    String tag2 = Data.checkboxPreAnswers.get(chkbxincr);
+                    if (String.valueOf(view.getTag()).equals(tag2)) {
+//                        CheckBox rdb = chb.findViewById(chb.getId());
+                        ((CheckBox) view).setButtonDrawable(R.drawable.cancel);
+                        ((CheckBox) view).setCompoundDrawablesWithIntrinsicBounds(null, null, ContextCompat.getDrawable(view.getContext(), R.drawable.pretest), null);
+                        ((CheckBox) view).setChecked(true);
+                    }
+                    if (String.valueOf(view.getTag()).equals(tag1)) {
+//                        CheckBox rdb = chb.findViewById(chb.getId());
+                        ((CheckBox) view).setCompoundDrawablesWithIntrinsicBounds(null, null, ContextCompat.getDrawable(view.getContext(), R.drawable.correct), null);
+                        ((CheckBox) view).setButtonDrawable(R.drawable.tick);
+                        ((CheckBox) view).setChecked(true);
+                    }
+                    chkbxincr++;
+
+
                 }
 
             }
@@ -220,9 +236,30 @@ public abstract class GeneratorClass {
                     }
 
 
-                }else if(view instanceof CheckBox){
-                    CheckBox chb = (CheckBox) view;
-                    chb.setEnabled(false);
+                } else if (view instanceof CheckBox) {
+                    view.setEnabled(false);
+                    String tag1 = Data.fanc_cb.get(chkbxincr);
+                    String tag2 = Data.checkboxPreAnswers.get(chkbxincr);
+                    String tag3 = Data.checkboxPostAnswers.get(chkbxincr);
+                    if (String.valueOf(view.getTag()).equals(tag2)) {
+//                        CheckBox rdb = chb.findViewById(chb.getId());
+                        ((CheckBox) view).setButtonDrawable(R.drawable.cancel);
+                        ((CheckBox) view).setCompoundDrawablesWithIntrinsicBounds(null, null, ContextCompat.getDrawable(view.getContext(), R.drawable.pretest), null);
+                        ((CheckBox) view).setChecked(true);
+                    }
+                    if (String.valueOf(view.getTag()).equals(tag1)) {
+//                        CheckBox rdb = chb.findViewById(chb.getId());
+                        ((CheckBox) view).setCompoundDrawablesWithIntrinsicBounds(null, null, ContextCompat.getDrawable(view.getContext(), R.drawable.correct), null);
+                        ((CheckBox) view).setButtonDrawable(R.drawable.tick);
+                        ((CheckBox) view).setChecked(true);
+                    }
+                    if (String.valueOf(view.getTag()).equals(tag3)) {
+//                        CheckBox rdb = chb.findViewById(chb.getId());
+                        ((CheckBox) view).setCompoundDrawablesWithIntrinsicBounds(null, null, ContextCompat.getDrawable(view.getContext(), R.drawable.posttest), null);
+                        ((CheckBox) view).setButtonDrawable(R.drawable.cancel);
+                        ((CheckBox) view).setChecked(true);
+                    }
+                    chkbxincr++;
                 }
 
 
@@ -242,6 +279,7 @@ public abstract class GeneratorClass {
 
         if (flag)
             answers = new ArrayList<>();
+
 
         try {
             for (int i = 0; i < lv.getChildCount(); i++) {
@@ -281,6 +319,43 @@ public abstract class GeneratorClass {
 
         return answers;
 
+    }
+
+    public static ArrayList<String> getChkboxAnswers(LinearLayout lv, boolean flag) {
+
+        if (flag)
+            chkboxAnswers = new ArrayList<>();
+        try {
+            for (int i = 0; i < lv.getChildCount(); i++) {
+                View view = lv.getChildAt(i);
+
+                if (view instanceof CardView) {
+                    for (int j = 0; j < ((CardView) view).getChildCount(); j++) {
+                        View view1 = ((CardView) view).getChildAt(j);
+                        if (view1 instanceof LinearLayout) {
+                            getChkboxAnswers((LinearLayout) view1, false);
+                        }
+                    }
+                } else if (view instanceof CheckBox) {
+
+                    if (((CheckBox) view).isChecked()) {
+//                        CheckBox chkbox = ((CheckBox)view).findViewById(view.getId());
+                        String tag = (String) view.getTag();
+                        chkboxAnswers.add(tag);
+
+                    }else{
+                        chkboxAnswers.add("0");
+                    }
+
+
+                }
+            }
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
+
+        return chkboxAnswers;
     }
 
 

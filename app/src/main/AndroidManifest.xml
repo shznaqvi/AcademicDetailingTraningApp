@@ -77,7 +77,13 @@
         <activity android:name=".ui.EcEbTest02" />
         <activity android:name=".ui.EcSbTest01" />
         <activity android:name=".ui.EcSbTest02" />
-        <activity android:name=".ui.Hbb"></activity>
+        <activity android:name=".ui.Hbb" />
+        <activity android:name=".ui.HbbTest" />
+        <activity android:name=".ui.DiaTest01" />
+        <activity android:name=".ui.DiaTest02" />
+        <activity android:name=".ui.PsbiTest01" />
+        <activity android:name=".ui.PsbiTest02" />
+        <activity android:name=".ui.PsbiTest03"></activity>
     </application>
 
 </manifest>

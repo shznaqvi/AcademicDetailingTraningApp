@@ -658,7 +658,7 @@
     <string name="ecsbB10">Which of the following indicates feeding intolerance and the need for advanced care?</string>
     <string name="ecsbB10a">Spitting up small amounts</string>
     <string name="ecsbB10b">Tense abdominal distension</string>
-    <string name="ecsbB10c">Stooling 6-8 times per day</string>
+    <string name="ecsbB10c">Stooling 6&#8211;8 times per day</string>
     <string name="ecsbB10d">Crying before each feeding</string>
 
     <string name="ecsbB11">In a small baby being fed by an alternative method, how often should breastfeeding readiness be assessed?</string>
@@ -679,5 +679,138 @@
     <string name="ecsbB13c">Sucking and swallowing audibly for 10 minutes during each feeding</string>
     <string name="ecsbB13d">Weight gain of 5 grams per day when no nasogastric feedings are provided</string>
 
+
+    <!--Helping Babies Breathe Test-->
+    <string name="HbbTest01">In the first minute after birth, you should</string>
+    <string name="HbbTest01a">Bathe the baby</string>
+    <string name="HbbTest01b">Help the baby breathe</string>
+    <string name="HbbTest01c">Feed the baby</string>
+    <string name="HbbTest01d">Not touch the baby</string>
+
+    <string name="HbbTest02">To prepare for a birth</string>
+    <string name="HbbTest02a">You identify a helper and review the emergency plan</string>
+    <string name="HbbTest02b">You ask everyone but the mother to leave the area</string>
+    <string name="HbbTest02c">You prepare equipment only when you need it</string>
+    <string name="HbbTest02d">You do not need a helper</string>
+
+    <string name="HbbTest03">To prepare the area for delivery</string>
+    <string name="HbbTest03a">Open all the doors and windows to get fresh air</string>
+    <string name="HbbTest03b">A clean space for the baby will not be required</string>
+    <string name="HbbTest03c">Make sure the area is clean, warm, and well-lighted</string>
+    <string name="HbbTest03d">Keep the room temperature cold</string>
+
+    <string name="HbbTest04">Which baby can receive routine care after birth?</string>
+    <string name="HbbTest04a">A baby who is not breathing</string>
+    <string name="HbbTest04b">A baby who is gasping</string>
+    <string name="HbbTest04c">A baby who is crying and/or breathing well</string>
+    <string name="HbbTest04d">A baby who is limp</string>
+
+    <string name="HbbTest05">Routine care for a healthy baby at birth includes</string>
+    <string name="HbbTest05a">Drying, removing the wet cloth, and bathing the baby</string>
+    <string name="HbbTest05b">Drying, removing the wet cloth, and positioning the baby skin-to-skin</string>
+    <string name="HbbTest05c">Bathing and putting clean clothes on the baby</string>
+    <string name="HbbTest05d">Drying and wrapping the baby in the wet cloth</string>
+
+    <string name="HbbTest06">When should the umbilical cord be clamped or tied and cut during routine care?</string>
+    <string name="HbbTest06a">After the placenta is delivered</string>
+    <string name="HbbTest06b">Around 1&#8211;3 minutes after birth</string>
+    <string name="HbbTest06c">Immediately after the baby is born</string>
+    <string name="HbbTest06d">Before a baby has cried</string>
+
+    <string name="HbbTest07">A baby is quiet, limp and not breathing at birth. What should you do?</string>
+    <string name="HbbTest07a">Dry the baby thoroughly</string>
+    <string name="HbbTest07b">Shake the baby</string>
+    <string name="HbbTest07c">Throw cold water on the face</string>
+    <string name="HbbTest07d">Hold the baby upside down</string>
+
+    <string name="HbbTest08">A baby is born through meconium-stained amniotic fluid. Which statement is TRUE?</string>
+    <string name="HbbTest08a">Stimulate the baby and then clear the airway</string>
+    <string name="HbbTest08b">Meconium cannot be inhaled into the lungs</string>
+    <string name="HbbTest08c">Clear the airway before drying the baby</string>
+    <string name="HbbTest08d">All babies born through meconium-stained amniotic fluid can receive routine care</string>
+
+    <string name="HbbTest09">What should you do in The Golden Minute SM?</string>
+    <string name="HbbTest09a">Bathe the baby</string>
+    <string name="HbbTest09b">Deliver the placenta</string>
+    <string name="HbbTest09c">Evaluate the heart rate</string>
+    <string name="HbbTest09d">Help a baby breathe if necessary</string>
+
+    <string name="HbbTest10">A newborn baby is quiet, limp and not crying. The baby does not respond to steps to stimulate breathing. What should you do next?</string>
+    <string name="HbbTest10a">Slap the baby\'s back</string>
+    <string name="HbbTest10b">Hold the baby upside down</string>
+    <string name="HbbTest10c">Squeeze the baby\'s ribs</string>
+    <string name="HbbTest10d">Begin ventilation</string>
+
+    <string name="HbbTest11">Which of the following statements about ventilation with bag and mask isTRUE? </string>
+    <string name="HbbTest11a">The mask should cover the eyes</string>
+    <string name="HbbTest11b">bAir should escape between the mask and face</string>
+    <string name="HbbTest11c">cSqueeze the bag to produce gentle movement of the chest</string>
+    <string name="HbbTest11d">dSqueeze the bag to give 80 to 100 breaths per minute</string>
+
+    <string name="HbbTest12">Which of the following signs MUST be monitored in a baby during the first few hours after birth?</string>
+    <string name="HbbTest12a">Length</string>
+    <string name="HbbTest12b">Breathing</string>
+    <string name="HbbTest12c">Smile</string>
+    <string name="HbbTest12d">Urine output</string>
+
+    <string name="HbbTest13">A baby\'s chest is not moving with bag and mask ventilation. What should you do?</string>
+    <string name="HbbTest13a">Stop ventilation</string>
+    <string name="HbbTest13b">Reapply the mask to get a better seal</string>
+    <string name="HbbTest13c">Slap the baby\'s back</string>
+    <string name="HbbTest13d">Give medicine to the baby</string>
+
+    <string name="HbbTest14">You can stop ventilation if</string>
+    <string name="HbbTest14a">Baby is blue and limp</string>
+    <string name="HbbTest14b">Baby\'s heart rate is 80 per minute</string>
+    <string name="HbbTest14c">Baby\'s heart rate is 120 per minute and the chest is not moving</string>
+    <string name="HbbTest14d">Baby\'s heart rate is 120 per minute and the baby is breathing or crying</string>
+
+    <string name="HbbTest15">What should you do to keep the baby warm?</string>
+    <string name="HbbTest15a">Open all the windows to allow warm air to circulate</string>
+    <string name="HbbTest15b">Give the baby a bath after birth</string>
+    <string name="HbbTest15c">Place hot water bottles next to the baby\'s skin</string>
+    <string name="HbbTest15d">Place the baby skin-to-skin with mother</string>
+
+    <string name="HbbTest16">What should you do to keep the baby clean?</string>
+    <string name="HbbTest16a">Wash your hands before touching the baby and help mother wash her hands</string>
+    <string name="HbbTest16b">before breast feeding</string>
+    <string name="HbbTest16c">Reuse the suction device before cleaning</string>
+    <string name="HbbTest16d">Keep the umbilical cord tightly covered</string>
+
+    <string name="HbbTest17">A newborn baby\'s heart rate should be:</string>
+    <string name="HbbTest17a">Faster than your heart rate</string>
+    <string name="HbbTest17b">Slower than your heart rate</string>
+
+
+    <!--CHILD HEALTH DIARRHEA-->
+    <string name="DiaTestA01">The death of a child with acute diarrhea is usually due to _____________.</string>
+    <string name="DiaTestA01a">Dehydration</string>
+    <string name="DiaTestA01b">Dysentery</string>
+    <string name="DiaTestA01c">Hydration</string>
+    <string name="DiaTestA01d">Malnutrition</string>
+
+    <string name="DiaTestA02">The common cause of dysentery is ______________ bacteria</string>
+    <string name="DiaTestA02a">Brucella</string>
+    <string name="DiaTestA02b">Shigella</string>
+    <string name="DiaTestA02c">Bacillus</string>
+    <string name="DiaTestA02d">Salmonella</string>
+
+    <string name="DiaTestA03">Which one of the following is a danger sign for severe dehydration?</string>
+    <string name="DiaTestA03a">Lethargic or unconscious</string>
+    <string name="DiaTestA03b">Not able to drink</string>
+    <string name="DiaTestA03c">Sunken eyes</string>
+    <string name="DiaTestA03d">All of the above</string>
+
+    <string name="DiaTestA04">Shaista is restless, but drinks quickly when you give her water. How would you classify her dehydration?</string>
+    <string name="DiaTestA04a">Severe dehydration</string>
+    <string name="DiaTestA04b">Some dehydration</string>
+    <string name="DiaTestA04c">No dehydration</string>
+    <string name="DiaTestA04d">Persistent diarrhea</string>
+
+    <string name="DiaTestA05">_____________vaccination is recommended for diarrhea by WHO for children less than 5 years</string>
+    <string name="DiaTestA05a">PCV</string>
+    <string name="DiaTestA05b">Hib</string>
+    <string name="DiaTestA05c">Pertussis</string>
+    <string name="DiaTestA05d">Rotavirus</string>
 
 </resources>

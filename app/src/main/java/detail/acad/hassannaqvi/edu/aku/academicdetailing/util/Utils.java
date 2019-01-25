@@ -4,16 +4,10 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.support.design.widget.Snackbar;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -23,12 +17,9 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.CDBSession01_Pre_tes
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.CDBSession02_Pre_test;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.EcEbTest01;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.EcEbTest02;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.EcSbTest01;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.EcSbTest02;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.FANC_Pre_test;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.GDSSession01_Pre_test;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.GDSSession02_Pre_test;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.Hbb;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.VB_Pre_test;
 
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.cdb1_imgs;

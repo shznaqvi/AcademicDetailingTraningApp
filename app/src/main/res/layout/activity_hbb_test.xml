@@ -11,1107 +11,1136 @@
             type="detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.EcEbTest02" />
     </data>
 
-
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/llHbbTest"
+        <android.support.v7.widget.CardView
+            style="@style/cardView"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/heading"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimaryDark"
+                    android:gravity="center"
+                    android:text="PRETEST"
+                    android:textColor="@android:color/white"
+                    android:textSize="25sp" />
+
+            </RelativeLayout>
+
+
+        </android.support.v7.widget.CardView>
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:animateLayoutChanges="true"
-            android:orientation="vertical">
-
-            <!--QB01-->
-            <android.support.v7.widget.CardView style="@style/cardView">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tvHbbTest01"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:background="@color/colorPrimary"
-                        android:text="@string/HbbTest01"
-                        android:textColor="@android:color/white"
-                        android:textSize="20sp" />
-
-                    <RadioGroup
-                        android:id="@+id/rgHbbTest01"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <RadioButton
-                            android:id="@+id/HbbTest01a"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="1"
-                            android:text="@string/HbbTest01a" />
-
-                        <RadioButton
-                            android:id="@+id/HbbTest01b"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="2"
-                            android:text="@string/HbbTest01b" />
-
-                        <RadioButton
-                            android:id="@+id/HbbTest01c"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="3"
-                            android:text="@string/HbbTest01c" />
-
-                        <RadioButton
-                            android:id="@+id/HbbTest01d"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="4"
-                            android:text="@string/HbbTest01d" />
-
-
-                    </RadioGroup>
-
-                </LinearLayout>
-
-
-            </android.support.v7.widget.CardView>
-
-            <!--QB02-->
-            <android.support.v7.widget.CardView style="@style/cardView">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tvHbbTest02"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:background="@color/colorPrimary"
-                        android:text="@string/HbbTest02"
-                        android:textColor="@android:color/white"
-                        android:textSize="20sp" />
-
-                    <RadioGroup
-                        android:id="@+id/rgHbbTest02"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <RadioButton
-                            android:id="@+id/HbbTest02a"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="1"
-                            android:text="@string/HbbTest02a" />
-
-                        <RadioButton
-                            android:id="@+id/HbbTest02b"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="2"
-                            android:text="@string/HbbTest02b" />
-
-                        <RadioButton
-                            android:id="@+id/HbbTest02c"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="3"
-                            android:text="@string/HbbTest02c" />
-
-                        <RadioButton
-                            android:id="@+id/HbbTest02d"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="4"
-                            android:text="@string/HbbTest02d" />
-
-
-                    </RadioGroup>
-
-                </LinearLayout>
-
-
-            </android.support.v7.widget.CardView>
-
-            <!--QB03-->
-            <android.support.v7.widget.CardView style="@style/cardView">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tvHbbTest03"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:background="@color/colorPrimary"
-                        android:text="@string/HbbTest03"
-                        android:textColor="@android:color/white"
-                        android:textSize="20sp" />
-
-                    <RadioGroup
-                        android:id="@+id/rgHbbTest03"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <RadioButton
-                            android:id="@+id/HbbTest03a"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="1"
-                            android:text="@string/HbbTest03a" />
-
-                        <RadioButton
-                            android:id="@+id/HbbTest03b"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="2"
-                            android:text="@string/HbbTest03b" />
-
-                        <RadioButton
-                            android:id="@+id/HbbTest03c"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="3"
-                            android:text="@string/HbbTest03c" />
-
-                        <RadioButton
-                            android:id="@+id/HbbTest03d"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="4"
-                            android:text="@string/HbbTest03d" />
-
-
-                    </RadioGroup>
-
-                </LinearLayout>
-
-
-            </android.support.v7.widget.CardView>
-
-            <!--QB04-->
-            <android.support.v7.widget.CardView style="@style/cardView">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tvHbbTest04"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:background="@color/colorPrimary"
-                        android:text="@string/HbbTest04"
-                        android:textColor="@android:color/white"
-                        android:textSize="20sp" />
-
-                    <RadioGroup
-                        android:id="@+id/rgHbbTest04"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <RadioButton
-                            android:id="@+id/HbbTest04a"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="1"
-                            android:text="@string/HbbTest04a" />
-
-                        <RadioButton
-                            android:id="@+id/HbbTest04b"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="2"
-                            android:text="@string/HbbTest04b" />
-
-                        <RadioButton
-                            android:id="@+id/HbbTest04c"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="3"
-                            android:text="@string/HbbTest04c" />
-
-                        <RadioButton
-                            android:id="@+id/HbbTest04d"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="4"
-                            android:text="@string/HbbTest04d" />
-
-
-                    </RadioGroup>
-
-                </LinearLayout>
-
-
-            </android.support.v7.widget.CardView>
-
-            <!--QB05-->
-            <android.support.v7.widget.CardView style="@style/cardView">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tvHbbTest05"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:background="@color/colorPrimary"
-                        android:text="@string/HbbTest05"
-                        android:textColor="@android:color/white"
-                        android:textSize="20sp" />
-
-                    <RadioGroup
-                        android:id="@+id/rgHbbTest05"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <RadioButton
-                            android:id="@+id/HbbTest05a"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="1"
-                            android:text="@string/HbbTest05a" />
-
-                        <RadioButton
-                            android:id="@+id/HbbTest05b"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="2"
-                            android:text="@string/HbbTest05b" />
-
-                        <RadioButton
-                            android:id="@+id/HbbTest05c"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="3"
-                            android:text="@string/HbbTest05c" />
-
-                        <RadioButton
-                            android:id="@+id/HbbTest05d"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="4"
-                            android:text="@string/HbbTest05d" />
-
-
-                    </RadioGroup>
-
-                </LinearLayout>
-
-
-            </android.support.v7.widget.CardView>
-
-            <!--QB06-->
-            <android.support.v7.widget.CardView style="@style/cardView">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tvHbbTest06"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:background="@color/colorPrimary"
-                        android:text="@string/HbbTest06"
-                        android:textColor="@android:color/white"
-                        android:textSize="20sp" />
-
-                    <RadioGroup
-                        android:id="@+id/rgHbbTest06"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <RadioButton
-                            android:id="@+id/HbbTest06a"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="1"
-                            android:text="@string/HbbTest06a" />
-
-                        <RadioButton
-                            android:id="@+id/HbbTest06b"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="2"
-                            android:text="@string/HbbTest06b" />
-
-                        <RadioButton
-                            android:id="@+id/HbbTest06c"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="3"
-                            android:text="@string/HbbTest06c" />
-
-                        <RadioButton
-                            android:id="@+id/HbbTest06d"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="4"
-                            android:text="@string/HbbTest06d" />
-
-
-                    </RadioGroup>
-
-                </LinearLayout>
-
-
-            </android.support.v7.widget.CardView>
-
-            <!--QB07-->
-            <android.support.v7.widget.CardView style="@style/cardView">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tvHbbTest07"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:background="@color/colorPrimary"
-                        android:text="@string/HbbTest07"
-                        android:textColor="@android:color/white"
-                        android:textSize="20sp" />
-
-                    <RadioGroup
-                        android:id="@+id/rgHbbTest07"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <RadioButton
-                            android:id="@+id/HbbTest07a"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="1"
-                            android:text="@string/HbbTest07a" />
-
-                        <RadioButton
-                            android:id="@+id/HbbTest07b"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="2"
-                            android:text="@string/HbbTest07b" />
-
-                        <RadioButton
-                            android:id="@+id/HbbTest07c"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="3"
-                            android:text="@string/HbbTest07c" />
-
-                        <RadioButton
-                            android:id="@+id/HbbTest07d"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="4"
-                            android:text="@string/HbbTest07d" />
-
-
-                    </RadioGroup>
-
-                </LinearLayout>
-
-
-            </android.support.v7.widget.CardView>
-
-            <!--QB08-->
-            <android.support.v7.widget.CardView style="@style/cardView">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tvHbbTest08"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:background="@color/colorPrimary"
-                        android:text="@string/HbbTest08"
-                        android:textColor="@android:color/white"
-                        android:textSize="20sp" />
-
-                    <RadioGroup
-                        android:id="@+id/rgHbbTest08"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <RadioButton
-                            android:id="@+id/HbbTest08a"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="1"
-                            android:text="@string/HbbTest08a" />
-
-                        <RadioButton
-                            android:id="@+id/HbbTest08b"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="2"
-                            android:text="@string/HbbTest08b" />
-
-                        <RadioButton
-                            android:id="@+id/HbbTest08c"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="3"
-                            android:text="@string/HbbTest08c" />
-
-                        <RadioButton
-                            android:id="@+id/HbbTest08d"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="4"
-                            android:text="@string/HbbTest08d" />
-
-
-                    </RadioGroup>
-
-                </LinearLayout>
-
-
-            </android.support.v7.widget.CardView>
-
-            <!--QB09-->
-            <android.support.v7.widget.CardView style="@style/cardView">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tvHbbTest09"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:background="@color/colorPrimary"
-                        android:text="@string/HbbTest09"
-                        android:textColor="@android:color/white"
-                        android:textSize="20sp" />
-
-                    <RadioGroup
-                        android:id="@+id/rgHbbTest09"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <RadioButton
-                            android:id="@+id/HbbTest09a"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="1"
-                            android:text="@string/HbbTest09a" />
-
-                        <RadioButton
-                            android:id="@+id/HbbTest09b"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="2"
-                            android:text="@string/HbbTest09b" />
-
-                        <RadioButton
-                            android:id="@+id/HbbTest09c"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="3"
-                            android:text="@string/HbbTest09c" />
-
-                        <RadioButton
-                            android:id="@+id/HbbTest09d"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="4"
-                            android:text="@string/HbbTest09d" />
-
-
-                    </RadioGroup>
-
-                </LinearLayout>
-
-
-            </android.support.v7.widget.CardView>
-
-            <!--QB10-->
-            <android.support.v7.widget.CardView style="@style/cardView">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tvHbbTest10"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:background="@color/colorPrimary"
-                        android:text="@string/HbbTest10"
-                        android:textColor="@android:color/white"
-                        android:textSize="20sp" />
-
-                    <RadioGroup
-                        android:id="@+id/rgHbbTest10"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <RadioButton
-                            android:id="@+id/HbbTest10a"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="1"
-                            android:text="@string/HbbTest10a" />
-
-                        <RadioButton
-                            android:id="@+id/HbbTest10b"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="2"
-                            android:text="@string/HbbTest10b" />
-
-                        <RadioButton
-                            android:id="@+id/HbbTest10c"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="3"
-                            android:text="@string/HbbTest10c" />
-
-                        <RadioButton
-                            android:id="@+id/HbbTest10d"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="4"
-                            android:text="@string/HbbTest10d" />
-
-
-                    </RadioGroup>
-
-                </LinearLayout>
-
-
-            </android.support.v7.widget.CardView>
-
-            <!--QB11-->
-            <android.support.v7.widget.CardView style="@style/cardView">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tvHbbTest11"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:background="@color/colorPrimary"
-                        android:text="@string/HbbTest11"
-                        android:textColor="@android:color/white"
-                        android:textSize="20sp" />
-
-                    <RadioGroup
-                        android:id="@+id/rgHbbTest11"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <RadioButton
-                            android:id="@+id/HbbTest11a"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="1"
-                            android:text="@string/HbbTest11a" />
-
-                        <RadioButton
-                            android:id="@+id/HbbTest11b"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="2"
-                            android:text="@string/HbbTest11b" />
-
-                        <RadioButton
-                            android:id="@+id/HbbTest11c"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="3"
-                            android:text="@string/HbbTest11c" />
-
-                        <RadioButton
-                            android:id="@+id/HbbTest11d"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="4"
-                            android:text="@string/HbbTest11d" />
-
-
-                    </RadioGroup>
-
-                </LinearLayout>
-
-
-            </android.support.v7.widget.CardView>
-
-            <!--QB12-->
-            <android.support.v7.widget.CardView style="@style/cardView">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tvHbbTest12"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:background="@color/colorPrimary"
-                        android:text="@string/HbbTest12"
-                        android:textColor="@android:color/white"
-                        android:textSize="20sp" />
-
-                    <RadioGroup
-                        android:id="@+id/rgHbbTest12"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <RadioButton
-                            android:id="@+id/HbbTest12a"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="1"
-                            android:text="@string/HbbTest12a" />
-
-                        <RadioButton
-                            android:id="@+id/HbbTest12b"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="2"
-                            android:text="@string/HbbTest12b" />
-
-                        <RadioButton
-                            android:id="@+id/HbbTest12c"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="3"
-                            android:text="@string/HbbTest12c" />
-
-                        <RadioButton
-                            android:id="@+id/HbbTest12d"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="4"
-                            android:text="@string/HbbTest12d" />
-
-
-                    </RadioGroup>
-
-                </LinearLayout>
-
-
-            </android.support.v7.widget.CardView>
-
-            <!--QB13-->
-            <android.support.v7.widget.CardView style="@style/cardView">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tvHbbTest13"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:background="@color/colorPrimary"
-                        android:text="@string/HbbTest13"
-                        android:textColor="@android:color/white"
-                        android:textSize="20sp" />
-
-                    <RadioGroup
-                        android:id="@+id/rgHbbTest13"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <RadioButton
-                            android:id="@+id/HbbTest13a"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="1"
-                            android:text="@string/HbbTest13a" />
-
-                        <RadioButton
-                            android:id="@+id/HbbTest13b"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="2"
-                            android:text="@string/HbbTest13b" />
-
-                        <RadioButton
-                            android:id="@+id/HbbTest13c"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="3"
-                            android:text="@string/HbbTest13c" />
-
-                        <RadioButton
-                            android:id="@+id/HbbTest13d"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="4"
-                            android:text="@string/HbbTest13d" />
-
-
-                    </RadioGroup>
-
-                </LinearLayout>
-
-
-            </android.support.v7.widget.CardView>
-
-            <!--QB14-->
-            <android.support.v7.widget.CardView style="@style/cardView">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tvHbbTest14"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:background="@color/colorPrimary"
-                        android:text="@string/HbbTest14"
-                        android:textColor="@android:color/white"
-                        android:textSize="20sp" />
-
-                    <RadioGroup
-                        android:id="@+id/rgHbbTest14"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <RadioButton
-                            android:id="@+id/HbbTest14a"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="1"
-                            android:text="@string/HbbTest14a" />
-
-                        <RadioButton
-                            android:id="@+id/HbbTest14b"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="2"
-                            android:text="@string/HbbTest14b" />
-
-                        <RadioButton
-                            android:id="@+id/HbbTest14c"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="3"
-                            android:text="@string/HbbTest14c" />
-
-                        <RadioButton
-                            android:id="@+id/HbbTest14d"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="4"
-                            android:text="@string/HbbTest14d" />
-
-
-                    </RadioGroup>
-
-                </LinearLayout>
-
-
-            </android.support.v7.widget.CardView>
-
-            <!--QB15-->
-            <android.support.v7.widget.CardView style="@style/cardView">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tvHbbTest15"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:background="@color/colorPrimary"
-                        android:text="@string/HbbTest15"
-                        android:textColor="@android:color/white"
-                        android:textSize="20sp" />
-
-                    <RadioGroup
-                        android:id="@+id/rgHbbTest15"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <RadioButton
-                            android:id="@+id/HbbTest15a"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="1"
-                            android:text="@string/HbbTest15a" />
-
-                        <RadioButton
-                            android:id="@+id/HbbTest15b"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="2"
-                            android:text="@string/HbbTest15b" />
-
-                        <RadioButton
-                            android:id="@+id/HbbTest15c"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="3"
-                            android:text="@string/HbbTest15c" />
-
-                        <RadioButton
-                            android:id="@+id/HbbTest15d"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="4"
-                            android:text="@string/HbbTest15d" />
-
-
-                    </RadioGroup>
-
-                </LinearLayout>
-
-
-            </android.support.v7.widget.CardView>
-
-            <!--QB16-->
-            <android.support.v7.widget.CardView style="@style/cardView">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tvHbbTest16"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:background="@color/colorPrimary"
-                        android:text="@string/HbbTest16"
-                        android:textColor="@android:color/white"
-                        android:textSize="20sp" />
-
-                    <RadioGroup
-                        android:id="@+id/rgHbbTest16"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <RadioButton
-                            android:id="@+id/HbbTest16a"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="1"
-                            android:text="@string/HbbTest16a" />
-
-                        <RadioButton
-                            android:id="@+id/HbbTest16b"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="2"
-                            android:text="@string/HbbTest16b" />
-
-                        <RadioButton
-                            android:id="@+id/HbbTest16c"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="3"
-                            android:text="@string/HbbTest16c" />
-
-                        <RadioButton
-                            android:id="@+id/HbbTest16d"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="4"
-                            android:text="@string/HbbTest16d" />
-
-
-                    </RadioGroup>
-
-                </LinearLayout>
-
-
-            </android.support.v7.widget.CardView>
-
-            <!--QB17-->
-            <android.support.v7.widget.CardView style="@style/cardView">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tvHbbTest17"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:background="@color/colorPrimary"
-                        android:text="@string/HbbTest17"
-                        android:textColor="@android:color/white"
-                        android:textSize="20sp" />
-
-                    <RadioGroup
-                        android:id="@+id/rgHbbTest17"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <RadioButton
-                            android:id="@+id/HbbTest17a"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="1"
-                            android:text="@string/HbbTest17a" />
-
-                        <RadioButton
-                            android:id="@+id/HbbTest17b"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:tag="2"
-                            android:text="@string/HbbTest17b" />
-
-
-                    </RadioGroup>
-
-                </LinearLayout>
-
-
-            </android.support.v7.widget.CardView>
-
-
-            <!--  = = = = =  END OF FORM FIELDS  = = = = = -->
+            android:layout_height="match_parent">
 
             <LinearLayout
+                android:id="@+id/llHbbTest"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layoutDirection="rtl"
-                android:orientation="horizontal">
+                android:animateLayoutChanges="true"
+                android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/btn_Continue"
-                    style="@style/button1"
-                    android:onClick="@{() -> callback.BtnContinue()}"
-                    android:text="Start Training"
-                    android:textSize="16sp" />
+                <!--QB01-->
+                <android.support.v7.widget.CardView style="@style/cardView">
 
-                <Button
-                    android:id="@+id/btnOk"
-                    style="@style/button1"
-                    android:onClick="@{() -> callback.BtnOk()}"
-                    android:text="Ok"
-                    android:textSize="16sp"
-                    android:visibility="gone" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvHbbTest01"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@color/colorPrimary"
+                            android:text="@string/HbbTest01"
+                            android:textColor="@android:color/white"
+                            android:textSize="20sp" />
+
+                        <RadioGroup
+                            android:id="@+id/rgHbbTest01"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RadioButton
+                                android:id="@+id/HbbTest01a"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="1"
+                                android:text="@string/HbbTest01a" />
+
+                            <RadioButton
+                                android:id="@+id/HbbTest01b"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="2"
+                                android:text="@string/HbbTest01b" />
+
+                            <RadioButton
+                                android:id="@+id/HbbTest01c"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="3"
+                                android:text="@string/HbbTest01c" />
+
+                            <RadioButton
+                                android:id="@+id/HbbTest01d"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="4"
+                                android:text="@string/HbbTest01d" />
 
 
-                <!--'onClick' for btn_End will NOT change and always call 'endInterview'-->
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
+
+                <!--QB02-->
+                <android.support.v7.widget.CardView style="@style/cardView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvHbbTest02"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@color/colorPrimary"
+                            android:text="@string/HbbTest02"
+                            android:textColor="@android:color/white"
+                            android:textSize="20sp" />
+
+                        <RadioGroup
+                            android:id="@+id/rgHbbTest02"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RadioButton
+                                android:id="@+id/HbbTest02a"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="1"
+                                android:text="@string/HbbTest02a" />
+
+                            <RadioButton
+                                android:id="@+id/HbbTest02b"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="2"
+                                android:text="@string/HbbTest02b" />
+
+                            <RadioButton
+                                android:id="@+id/HbbTest02c"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="3"
+                                android:text="@string/HbbTest02c" />
+
+                            <RadioButton
+                                android:id="@+id/HbbTest02d"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="4"
+                                android:text="@string/HbbTest02d" />
+
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
+
+                <!--QB03-->
+                <android.support.v7.widget.CardView style="@style/cardView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvHbbTest03"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@color/colorPrimary"
+                            android:text="@string/HbbTest03"
+                            android:textColor="@android:color/white"
+                            android:textSize="20sp" />
+
+                        <RadioGroup
+                            android:id="@+id/rgHbbTest03"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RadioButton
+                                android:id="@+id/HbbTest03a"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="1"
+                                android:text="@string/HbbTest03a" />
+
+                            <RadioButton
+                                android:id="@+id/HbbTest03b"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="2"
+                                android:text="@string/HbbTest03b" />
+
+                            <RadioButton
+                                android:id="@+id/HbbTest03c"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="3"
+                                android:text="@string/HbbTest03c" />
+
+                            <RadioButton
+                                android:id="@+id/HbbTest03d"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="4"
+                                android:text="@string/HbbTest03d" />
+
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
+
+                <!--QB04-->
+                <android.support.v7.widget.CardView style="@style/cardView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvHbbTest04"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@color/colorPrimary"
+                            android:text="@string/HbbTest04"
+                            android:textColor="@android:color/white"
+                            android:textSize="20sp" />
+
+                        <RadioGroup
+                            android:id="@+id/rgHbbTest04"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RadioButton
+                                android:id="@+id/HbbTest04a"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="1"
+                                android:text="@string/HbbTest04a" />
+
+                            <RadioButton
+                                android:id="@+id/HbbTest04b"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="2"
+                                android:text="@string/HbbTest04b" />
+
+                            <RadioButton
+                                android:id="@+id/HbbTest04c"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="3"
+                                android:text="@string/HbbTest04c" />
+
+                            <RadioButton
+                                android:id="@+id/HbbTest04d"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="4"
+                                android:text="@string/HbbTest04d" />
+
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
+
+                <!--QB05-->
+                <android.support.v7.widget.CardView style="@style/cardView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvHbbTest05"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@color/colorPrimary"
+                            android:text="@string/HbbTest05"
+                            android:textColor="@android:color/white"
+                            android:textSize="20sp" />
+
+                        <RadioGroup
+                            android:id="@+id/rgHbbTest05"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RadioButton
+                                android:id="@+id/HbbTest05a"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="1"
+                                android:text="@string/HbbTest05a" />
+
+                            <RadioButton
+                                android:id="@+id/HbbTest05b"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="2"
+                                android:text="@string/HbbTest05b" />
+
+                            <RadioButton
+                                android:id="@+id/HbbTest05c"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="3"
+                                android:text="@string/HbbTest05c" />
+
+                            <RadioButton
+                                android:id="@+id/HbbTest05d"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="4"
+                                android:text="@string/HbbTest05d" />
+
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
+
+                <!--QB06-->
+                <android.support.v7.widget.CardView style="@style/cardView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvHbbTest06"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@color/colorPrimary"
+                            android:text="@string/HbbTest06"
+                            android:textColor="@android:color/white"
+                            android:textSize="20sp" />
+
+                        <RadioGroup
+                            android:id="@+id/rgHbbTest06"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RadioButton
+                                android:id="@+id/HbbTest06a"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="1"
+                                android:text="@string/HbbTest06a" />
+
+                            <RadioButton
+                                android:id="@+id/HbbTest06b"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="2"
+                                android:text="@string/HbbTest06b" />
+
+                            <RadioButton
+                                android:id="@+id/HbbTest06c"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="3"
+                                android:text="@string/HbbTest06c" />
+
+                            <RadioButton
+                                android:id="@+id/HbbTest06d"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="4"
+                                android:text="@string/HbbTest06d" />
+
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
+
+                <!--QB07-->
+                <android.support.v7.widget.CardView style="@style/cardView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvHbbTest07"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@color/colorPrimary"
+                            android:text="@string/HbbTest07"
+                            android:textColor="@android:color/white"
+                            android:textSize="20sp" />
+
+                        <RadioGroup
+                            android:id="@+id/rgHbbTest07"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RadioButton
+                                android:id="@+id/HbbTest07a"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="1"
+                                android:text="@string/HbbTest07a" />
+
+                            <RadioButton
+                                android:id="@+id/HbbTest07b"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="2"
+                                android:text="@string/HbbTest07b" />
+
+                            <RadioButton
+                                android:id="@+id/HbbTest07c"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="3"
+                                android:text="@string/HbbTest07c" />
+
+                            <RadioButton
+                                android:id="@+id/HbbTest07d"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="4"
+                                android:text="@string/HbbTest07d" />
+
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
+
+                <!--QB08-->
+                <android.support.v7.widget.CardView style="@style/cardView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvHbbTest08"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@color/colorPrimary"
+                            android:text="@string/HbbTest08"
+                            android:textColor="@android:color/white"
+                            android:textSize="20sp" />
+
+                        <RadioGroup
+                            android:id="@+id/rgHbbTest08"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RadioButton
+                                android:id="@+id/HbbTest08a"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="1"
+                                android:text="@string/HbbTest08a" />
+
+                            <RadioButton
+                                android:id="@+id/HbbTest08b"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="2"
+                                android:text="@string/HbbTest08b" />
+
+                            <RadioButton
+                                android:id="@+id/HbbTest08c"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="3"
+                                android:text="@string/HbbTest08c" />
+
+                            <RadioButton
+                                android:id="@+id/HbbTest08d"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="4"
+                                android:text="@string/HbbTest08d" />
+
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
+
+                <!--QB09-->
+                <android.support.v7.widget.CardView style="@style/cardView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvHbbTest09"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@color/colorPrimary"
+                            android:text="@string/HbbTest09"
+                            android:textColor="@android:color/white"
+                            android:textSize="20sp" />
+
+                        <RadioGroup
+                            android:id="@+id/rgHbbTest09"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RadioButton
+                                android:id="@+id/HbbTest09a"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="1"
+                                android:text="@string/HbbTest09a" />
+
+                            <RadioButton
+                                android:id="@+id/HbbTest09b"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="2"
+                                android:text="@string/HbbTest09b" />
+
+                            <RadioButton
+                                android:id="@+id/HbbTest09c"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="3"
+                                android:text="@string/HbbTest09c" />
+
+                            <RadioButton
+                                android:id="@+id/HbbTest09d"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="4"
+                                android:text="@string/HbbTest09d" />
+
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
+
+                <!--QB10-->
+                <android.support.v7.widget.CardView style="@style/cardView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvHbbTest10"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@color/colorPrimary"
+                            android:text="@string/HbbTest10"
+                            android:textColor="@android:color/white"
+                            android:textSize="20sp" />
+
+                        <RadioGroup
+                            android:id="@+id/rgHbbTest10"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RadioButton
+                                android:id="@+id/HbbTest10a"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="1"
+                                android:text="@string/HbbTest10a" />
+
+                            <RadioButton
+                                android:id="@+id/HbbTest10b"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="2"
+                                android:text="@string/HbbTest10b" />
+
+                            <RadioButton
+                                android:id="@+id/HbbTest10c"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="3"
+                                android:text="@string/HbbTest10c" />
+
+                            <RadioButton
+                                android:id="@+id/HbbTest10d"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="4"
+                                android:text="@string/HbbTest10d" />
+
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
+
+                <!--QB11-->
+                <android.support.v7.widget.CardView style="@style/cardView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvHbbTest11"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@color/colorPrimary"
+                            android:text="@string/HbbTest11"
+                            android:textColor="@android:color/white"
+                            android:textSize="20sp" />
+
+                        <RadioGroup
+                            android:id="@+id/rgHbbTest11"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RadioButton
+                                android:id="@+id/HbbTest11a"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="1"
+                                android:text="@string/HbbTest11a" />
+
+                            <RadioButton
+                                android:id="@+id/HbbTest11b"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="2"
+                                android:text="@string/HbbTest11b" />
+
+                            <RadioButton
+                                android:id="@+id/HbbTest11c"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="3"
+                                android:text="@string/HbbTest11c" />
+
+                            <RadioButton
+                                android:id="@+id/HbbTest11d"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="4"
+                                android:text="@string/HbbTest11d" />
+
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
+
+                <!--QB12-->
+                <android.support.v7.widget.CardView style="@style/cardView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvHbbTest12"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@color/colorPrimary"
+                            android:text="@string/HbbTest12"
+                            android:textColor="@android:color/white"
+                            android:textSize="20sp" />
+
+                        <RadioGroup
+                            android:id="@+id/rgHbbTest12"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RadioButton
+                                android:id="@+id/HbbTest12a"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="1"
+                                android:text="@string/HbbTest12a" />
+
+                            <RadioButton
+                                android:id="@+id/HbbTest12b"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="2"
+                                android:text="@string/HbbTest12b" />
+
+                            <RadioButton
+                                android:id="@+id/HbbTest12c"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="3"
+                                android:text="@string/HbbTest12c" />
+
+                            <RadioButton
+                                android:id="@+id/HbbTest12d"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="4"
+                                android:text="@string/HbbTest12d" />
+
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
+
+                <!--QB13-->
+                <android.support.v7.widget.CardView style="@style/cardView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvHbbTest13"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@color/colorPrimary"
+                            android:text="@string/HbbTest13"
+                            android:textColor="@android:color/white"
+                            android:textSize="20sp" />
+
+                        <RadioGroup
+                            android:id="@+id/rgHbbTest13"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RadioButton
+                                android:id="@+id/HbbTest13a"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="1"
+                                android:text="@string/HbbTest13a" />
+
+                            <RadioButton
+                                android:id="@+id/HbbTest13b"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="2"
+                                android:text="@string/HbbTest13b" />
+
+                            <RadioButton
+                                android:id="@+id/HbbTest13c"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="3"
+                                android:text="@string/HbbTest13c" />
+
+                            <RadioButton
+                                android:id="@+id/HbbTest13d"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="4"
+                                android:text="@string/HbbTest13d" />
+
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
+
+                <!--QB14-->
+                <android.support.v7.widget.CardView style="@style/cardView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvHbbTest14"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@color/colorPrimary"
+                            android:text="@string/HbbTest14"
+                            android:textColor="@android:color/white"
+                            android:textSize="20sp" />
+
+                        <RadioGroup
+                            android:id="@+id/rgHbbTest14"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RadioButton
+                                android:id="@+id/HbbTest14a"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="1"
+                                android:text="@string/HbbTest14a" />
+
+                            <RadioButton
+                                android:id="@+id/HbbTest14b"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="2"
+                                android:text="@string/HbbTest14b" />
+
+                            <RadioButton
+                                android:id="@+id/HbbTest14c"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="3"
+                                android:text="@string/HbbTest14c" />
+
+                            <RadioButton
+                                android:id="@+id/HbbTest14d"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="4"
+                                android:text="@string/HbbTest14d" />
+
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
+
+                <!--QB15-->
+                <android.support.v7.widget.CardView style="@style/cardView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvHbbTest15"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@color/colorPrimary"
+                            android:text="@string/HbbTest15"
+                            android:textColor="@android:color/white"
+                            android:textSize="20sp" />
+
+                        <RadioGroup
+                            android:id="@+id/rgHbbTest15"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RadioButton
+                                android:id="@+id/HbbTest15a"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="1"
+                                android:text="@string/HbbTest15a" />
+
+                            <RadioButton
+                                android:id="@+id/HbbTest15b"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="2"
+                                android:text="@string/HbbTest15b" />
+
+                            <RadioButton
+                                android:id="@+id/HbbTest15c"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="3"
+                                android:text="@string/HbbTest15c" />
+
+                            <RadioButton
+                                android:id="@+id/HbbTest15d"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="4"
+                                android:text="@string/HbbTest15d" />
+
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
+
+                <!--QB16-->
+                <android.support.v7.widget.CardView style="@style/cardView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvHbbTest16"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@color/colorPrimary"
+                            android:text="@string/HbbTest16"
+                            android:textColor="@android:color/white"
+                            android:textSize="20sp" />
+
+                        <RadioGroup
+                            android:id="@+id/rgHbbTest16"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RadioButton
+                                android:id="@+id/HbbTest16a"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="1"
+                                android:text="@string/HbbTest16a" />
+
+                            <RadioButton
+                                android:id="@+id/HbbTest16b"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="2"
+                                android:text="@string/HbbTest16b" />
+
+                            <RadioButton
+                                android:id="@+id/HbbTest16c"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="3"
+                                android:text="@string/HbbTest16c" />
+
+                            <RadioButton
+                                android:id="@+id/HbbTest16d"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="4"
+                                android:text="@string/HbbTest16d" />
+
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
+
+                <!--QB17-->
+                <android.support.v7.widget.CardView style="@style/cardView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvHbbTest17"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@color/colorPrimary"
+                            android:text="@string/HbbTest17"
+                            android:textColor="@android:color/white"
+                            android:textSize="20sp" />
+
+                        <RadioGroup
+                            android:id="@+id/rgHbbTest17"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RadioButton
+                                android:id="@+id/HbbTest17a"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="1"
+                                android:text="@string/HbbTest17a" />
+
+                            <RadioButton
+                                android:id="@+id/HbbTest17b"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="2"
+                                android:text="@string/HbbTest17b" />
+
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
+
+
+                <!--  = = = = =  END OF FORM FIELDS  = = = = = -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layoutDirection="rtl"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btn_Continue"
+                        style="@style/button1"
+                        android:onClick="@{() -> callback.BtnContinue()}"
+                        android:text="Start Training"
+                        android:textSize="16sp" />
+
+                    <Button
+                        android:id="@+id/btnOk"
+                        style="@style/button1"
+                        android:onClick="@{() -> callback.BtnOk()}"
+                        android:text="Ok"
+                        android:textSize="16sp"
+                        android:visibility="gone" />
+
+
+                    <!--'onClick' for btn_End will NOT change and always call 'endInterview'-->
+                </LinearLayout>
+
+
             </LinearLayout>
 
 
-        </LinearLayout>
+        </ScrollView>
 
-
-    </ScrollView>
-
+    </LinearLayout>
 
 </layout>

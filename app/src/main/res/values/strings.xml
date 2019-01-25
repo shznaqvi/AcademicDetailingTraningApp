@@ -817,4 +817,81 @@
     <string name="DiaTestA05c">Pertussis</string>
     <string name="DiaTestA05d">Rotavirus</string>
 
+
+    <string name="DiaTestB01">A child with persistent diarrhea needs Zinc DT for _________ days.</string>
+    <string name="DiaTestB01a">10 days</string>
+    <string name="DiaTestB01b">12 days</string>
+    <string name="DiaTestB01c">14 days</string>
+    <string name="DiaTestB01d">16 days</string>
+
+    <string name="DiaTestB02">The antibiotic prescribed for dysentery is __________ for 3 days.</string>
+    <string name="DiaTestB02a">Ciprofloxacin</string>
+    <string name="DiaTestB02b">Amoxicillin</string>
+    <string name="DiaTestB02c">Ampicillin</string>
+    <string name="DiaTestB02d">Diazepam</string>
+
+    <string name="DiaTestB03">Children with diarrhea who come to a health worker with NO ____________ are put on plan A</string>
+    <string name="DiaTestB03a">Dehydration</string>
+    <string name="DiaTestB03b">Dysentery</string>
+    <string name="DiaTestB03c">Hydration</string>
+    <string name="DiaTestB03d">Pneumonia</string>
+
+    <string name="DiaTestB04">Identify, which one of the following is NOT a rule for home treatment.</string>
+    <string name="DiaTestB04a">Give extra fluids</string>
+    <string name="DiaTestB04b">Give oral Amoxicillin</string>
+    <string name="DiaTestB04c">Continue feeding</string>
+    <string name="DiaTestB04d">When to return (follow-up visit)</string>
+
+    <string name="DiaTestB05">What is the dose of Zinc DT for home treatment for a child 6 months or older_____________?</string>
+    <string name="DiaTestB05a">½ tablet per day for 12 days</string>
+    <string name="DiaTestB05b">1 tablet per day for 10 days</string>
+    <string name="DiaTestB05c">1.5 tablets per day for 11 days</string>
+    <string name="DiaTestB05d">2 tablets per day for 10 days</string>
+
+
+    <!--CHILD HEALTH PSBI-->
+    <!--A-->
+    <string name="PsbiTestA01">Skin pustules among young infants are the sign of ____________________.</string>
+    <string name="PsbiTestA01a">Jaundice</string>
+    <string name="PsbiTestA01b">Local Bacterial Infection</string>
+    <string name="PsbiTestA01c">Thrush</string>
+    <string name="PsbiTestA01d">Diarrhea</string>
+
+    <string name="PsbiTestA02">Which one of the following is NOT a danger sign for some dehydration in young infants</string>
+    <string name="PsbiTestA02a">Movement only when stimulated or no movement at all</string>
+    <string name="PsbiTestA02b">Sunken eyes</string>
+    <string name="PsbiTestA02c">Skin pinch goes back very slowly</string>
+    <string name="PsbiTestA02d">Restless and irritable</string>
+
+    <!--B-->
+    <string name="PsbiTestB01">The follow-up time for sick young infants with diarrhea and pneumonia is ________ days.</string>
+    <string name="PsbiTestB01a">2nd day</string>
+    <string name="PsbiTestB01b">3rd day</string>
+    <string name="PsbiTestB01c">4th day</string>
+    <string name="PsbiTestB01d">5th day</string>
+
+    <string name="PsbiTestB02">Persistent vomiting is defined as vomiting following three attempts to feed the infant within ______ minutes, and the infant vomits after each attempt.</string>
+    <string name="PsbiTestB02a">10 minutes</string>
+    <string name="PsbiTestB02b">20 minutes</string>
+    <string name="PsbiTestB02c">30 minutes</string>
+    <string name="PsbiTestB02d">40 minutes</string>
+
+    <string name="PsbiTestB03">Pre referral treatment for severe Pneumonia or very severe disease in young infant up to 2 months require first dose of an appropriate _________ antibiotic</string>
+    <string name="PsbiTestB03a">Oral</string>
+    <string name="PsbiTestB03b">Intravenous</string>
+    <string name="PsbiTestB03c">Intramuscular</string>
+    <string name="PsbiTestB03d">None of the above</string>
+
+    <string name="PsbiTestB04">What is the correct dose to prepare sugar water?</string>
+    <string name="PsbiTestB04a">3 level teaspoons of sugar in a 200-ml cup of clean water.</string>
+    <string name="PsbiTestB04b">4 level teaspoons of sugar in a 200-ml cup of clean water.</string>
+    <string name="PsbiTestB04c">2 level teaspoons of sugar in a 200-ml cup of clean water.</string>
+    <string name="PsbiTestB04d">5 level teaspoons of sugar in a 250-ml cup of clean water.</string>
+
+    <string name="PsbiTestB05">What does APAC process mean?</string>
+    <string name="PsbiTestB05a">Ask, Praise, Assess, Check</string>
+    <string name="PsbiTestB05b">Assess, Praise, Ask, Counsel</string>
+    <string name="PsbiTestB05c">Ask, Praise, Advice, Check</string>
+    <string name="PsbiTestB05d">Assess, Prevent, Advice, Counsel</string>
+
 </resources>

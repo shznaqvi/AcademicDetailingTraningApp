@@ -6,13 +6,12 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.CompoundButton;
-import android.widget.RadioButton;
 import android.widget.Toast;
 
 import org.json.JSONObject;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.JSON.GeneratorClass;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityEcEbTest02Binding;
@@ -20,9 +19,11 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.validation.validatorClass;
 
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.isComplete;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.slides;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.type;
 
 
-public class EcEbTest02 extends AppCompatActivity implements RadioButton.OnCheckedChangeListener {
+public class EcEbTest02 extends AppCompatActivity {
 
     ActivityEcEbTest02Binding bi;
 
@@ -32,11 +33,6 @@ public class EcEbTest02 extends AppCompatActivity implements RadioButton.OnCheck
 
         bi = DataBindingUtil.setContentView(this, R.layout.activity_ec_eb_test02);
         bi.setCallback(this);
-
-    }
-
-    @Override
-    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
 
         type = getIntent().getStringExtra("type");
         if (type.equals("pre") && !isComplete) {

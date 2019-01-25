@@ -110,10 +110,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1" />
 
-        <activity android:name=".ui.PsbiTest03"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme1" />
-
         <activity android:name=".ui.EcEbTest01"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1" />
@@ -130,12 +126,9 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1" />
 
-        <activity android:name=".ui.Hbb"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme1" ></activity>
         <activity android:name=".ui.PlayerActivity"
             android:screenOrientation="landscape"
-            android:theme="@style/AppTheme1"></activity>
+            android:theme="@style/AppTheme1" />
     </application>
 
 </manifest>

@@ -6,13 +6,12 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.CompoundButton;
-import android.widget.RadioButton;
 import android.widget.Toast;
 
 import org.json.JSONObject;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.JSON.GeneratorClass;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityEcEbTest01Binding;
@@ -20,9 +19,11 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.validation.validatorClass;
 
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.isComplete;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.slides;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.type;
 
 
-public class EcEbTest01 extends AppCompatActivity implements RadioButton.OnCheckedChangeListener {
+public class EcEbTest01 extends AppCompatActivity {
 
     ActivityEcEbTest01Binding bi;
 
@@ -31,13 +32,6 @@ public class EcEbTest01 extends AppCompatActivity implements RadioButton.OnCheck
         super.onCreate(savedInstanceState);
 
         bi = DataBindingUtil.setContentView(this, R.layout.activity_ec_eb_test01);
-        bi.setCallback(this);
-    }
-
-    @Override
-    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-
-        bi = DataBindingUtil.setContentView(this,R.layout.activity_ec_eb_test01);
         bi.setCallback(this);
 
         type = getIntent().getStringExtra("type");
@@ -159,5 +153,6 @@ public class EcEbTest01 extends AppCompatActivity implements RadioButton.OnCheck
     public void onBackPressed() {
         Toast.makeText(this, "You can't go back", Toast.LENGTH_SHORT).show();
     }
+
 
 }

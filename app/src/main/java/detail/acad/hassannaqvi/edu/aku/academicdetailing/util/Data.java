@@ -75,7 +75,7 @@ public class Data {
             R.drawable.gds1003, R.drawable.gds1004, R.drawable.gds1005, R.drawable.gds1006, R.drawable.gds1007,
             R.drawable.gds1008, R.drawable.gds1009, R.drawable.gds1010, R.drawable.gds1011, R.drawable.gds1012,
             R.drawable.gds1013, R.drawable.gds1014, R.drawable.gds1015, R.drawable.gds1016, R.drawable.gds1017,
-            R.drawable.gds1018, R.drawable.gds1019, R.drawable.gds1020, 1, 0};
+            R.drawable.gds1018, R.drawable.gds1019, R.drawable.gds1020};
 
 
     public static int[] gds2_imgs = new int[]{

@@ -36,6 +36,13 @@ public class VB_Pre_test extends AppCompatActivity {
         bi = DataBindingUtil.setContentView(this, R.layout.activity_vb__pre_test);
         bi.setCallback(this);
 
+        setupViews();
+
+
+
+    }
+
+    private void setupViews() {
 
         type = getIntent().getStringExtra("type");
         if (type.equals("pre") && !isComplete) {

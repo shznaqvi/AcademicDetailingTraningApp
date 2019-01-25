@@ -34,6 +34,11 @@ public class EcEbTest02 extends AppCompatActivity {
         bi = DataBindingUtil.setContentView(this, R.layout.activity_ec_eb_test02);
         bi.setCallback(this);
 
+        setupViews();
+
+    }
+
+    private void setupViews() {
         type = getIntent().getStringExtra("type");
         if (type.equals("pre") && !isComplete) {
             bi.heading.setText("PRETEST");
@@ -65,6 +70,7 @@ public class EcEbTest02 extends AppCompatActivity {
         } else {
             bi.btnContinue.setText("Finish Training");
         }
+
     }
 
     public void BtnOk() {

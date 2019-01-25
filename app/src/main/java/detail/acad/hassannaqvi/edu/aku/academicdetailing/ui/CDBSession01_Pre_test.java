@@ -38,6 +38,13 @@ public class CDBSession01_Pre_test extends AppCompatActivity implements RadioBut
         bi.setCallback(this);
         events_call();
 
+
+        setupViews();
+
+    }
+
+    private void setupViews() {
+
         type = getIntent().getStringExtra("type");
         if (type.equals("pre") && !isComplete) {
             bi.heading.setText("PRETEST");

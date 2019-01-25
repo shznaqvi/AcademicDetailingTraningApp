@@ -45,6 +45,12 @@ public class FANC_Pre_test extends AppCompatActivity {
         bi.setCallback(this);
 
 
+        setupViews();
+
+    }
+
+    private void setupViews() {
+
         type = getIntent().getStringExtra("type");
         if (type.equals("pre") && !isComplete) {
             bi.heading.setText("PRETEST");

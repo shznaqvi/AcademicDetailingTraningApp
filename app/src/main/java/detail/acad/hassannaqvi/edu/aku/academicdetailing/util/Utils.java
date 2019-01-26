@@ -15,30 +15,49 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.CDBSession01_Pre_test;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.CDBSession02_Pre_test;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.DiaTest01;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.DiaTest02;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.EcEbTest01;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.EcEbTest02;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.EcSbTest01;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.EcSbTest02;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.FANC_Pre_test;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.GDSSession01_Pre_test;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.GDSSession02_Pre_test;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.HbbTest;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.PsbiTest01;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.PsbiTest02;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.VB_Pre_test;
 
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.cdb1_imgs;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.cdb2_imgs;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.cdba_cans;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.cdbb_cans;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.dia1_imgs;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.dia2_imgs;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.diaa_cans;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.diab_cans;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.eceb01_cans;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.eceb02_cans;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.eceb1_imgs;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.eceb2_imgs;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.ecsb1_imgs;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.ecsb2_imgs;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.ecsbA_cans;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.ecsbB_cans;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.fanc_cans;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.fanc_imgs;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.gds1_imgs;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.gds2_imgs;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.gdsa_cans;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.gdsb_cans;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.hbb_cans;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.hbb_imgs;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.psbi1_imgs;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.psbi2_imgs;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.psbi3_imgs;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.psbia_cans;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.psbib_cans;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.vb_cans;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.vb_imgs;
 
@@ -91,8 +110,31 @@ public class Utils {
             }
 
         } else if (moduleName.equals("dia")) {
+            switch (i) {
+                case 0:
+                    return dia1_imgs;
+
+                case 1:
+                    return dia2_imgs;
+
+                default:
+                    return null;
+            }
 
         } else if (moduleName.equals("psbi")) {
+            switch (i) {
+                case 0:
+                    return psbi1_imgs;
+
+                case 1:
+                    return psbi2_imgs;
+
+                case 2:
+                    return psbi3_imgs;
+
+                default:
+                    return null;
+            }
 
         }
         return null;
@@ -253,6 +295,22 @@ public class Utils {
                         return CDBSession02_Pre_test.class;
                 }
 
+            } else if (moduleName.equals("dia")) {
+                switch (index) {
+                    case 0:
+                        return DiaTest01.class;
+                    case 1:
+                        return DiaTest02.class;
+                }
+
+            } else if (moduleName.equals("psbi")) {
+                switch (index) {
+                    case 0:
+                        return PsbiTest01.class;
+                    case 1:
+                        return PsbiTest02.class;
+                }
+
             }
 
 
@@ -265,18 +323,17 @@ public class Utils {
                         return EcEbTest02.class;
 
                 }
+            } else if (moduleName.equals("ecsb")) {
+                switch (index) {
+                    case 0:
+                        return EcSbTest01.class;
+                    case 1:
+                        return EcSbTest02.class;
+
+                }
+            } else {
+                return HbbTest.class;
             }
-//            else if (moduleName.equals("ecsb")) {
-//                switch (index) {
-//                    case 0:
-//                        return EcSbTest01.class;
-//                    case 1:
-//                        return EcSbTest02.class;
-//
-//                }
-//            } else {
-//                return Hbb.class;
-//            }
         }
         return null;
 
@@ -312,6 +369,22 @@ public class Utils {
                         return cdbb_cans;
                 }
 
+            } else if (moduleName.equals("dia")) {
+                switch (index) {
+                    case 0:
+                        return diaa_cans;
+                    case 1:
+                        return diab_cans;
+                }
+
+            } else if (moduleName.equals("psbi")) {
+                switch (index) {
+                    case 0:
+                        return psbia_cans;
+                    case 1:
+                        return psbib_cans;
+                }
+
             }
 
 
@@ -325,7 +398,16 @@ public class Utils {
                         return eceb02_cans;
                 }
 
-            }
+            } else if (moduleName.equals("ecsb")) {
+                switch (index) {
+                    case 0:
+                        return ecsbA_cans;
+                    case 1:
+                        return ecsbB_cans;
+                }
+
+            } else
+                return hbb_cans;
         }
         return null;
 

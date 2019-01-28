@@ -29,6 +29,7 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.PsbiTest01;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.PsbiTest02;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.VB_Pre_test;
 
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.moduleName;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.cdb1_imgs;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.cdb2_imgs;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.cdba_cans;
@@ -426,13 +427,41 @@ public class Utils {
                     return R.drawable.fanc_02;
             }
         } else if (type == MainApp.isChild) {
-            switch (index) {
-                case 0:
-                    return R.drawable.gds1001;
-                case 1:
-                    return R.drawable.gds2001;
-                default:
-                    return R.drawable.gdssummary;
+            if (moduleName.equals("gds")) {
+
+                switch (index) {
+                    case 0:
+                        return R.drawable.gds1020;
+                    case 1:
+                        return R.drawable.gds2020;
+                }
+
+            } else if (moduleName.equals("cdb")) {
+                switch (index) {
+                    case 0:
+                        return R.drawable.cdb1024;
+                    case 1:
+                        return R.drawable.cdb2026;
+                }
+
+            } else if (moduleName.equals("dia")) {
+                switch (index) {
+                    case 0:
+                        return R.drawable.dia1027;
+                    case 1:
+                        return R.drawable.dia2036;
+                }
+
+            } else if (moduleName.equals("psbi")) {
+                switch (index) {
+                    case 0:
+                        return R.drawable.psbi1022;
+                    case 1:
+                        return R.drawable.psbi2031;
+                    case 2:
+                        return R.drawable.psbi3016;
+                }
+
             }
         }
         return 0;
@@ -454,9 +483,9 @@ public class Utils {
             if (moduleName.equals("gds")) {
                 switch (index) {
                     case 0:
-                        return R.drawable.gds1002;
+                        return R.drawable.gds1001;
                     case 1:
-                        return R.drawable.gds2002;
+                        return R.drawable.gds2001;
                     default:
                         return 0;
                 }
@@ -464,16 +493,34 @@ public class Utils {
             } else if (moduleName.equals("cdb")) {
                 switch (index) {
                     case 0:
-                        return R.drawable.cdb1002;
+                        return R.drawable.cdb1001;
                     case 1:
-                        return R.drawable.cdb2002;
+                        return R.drawable.cdb2001;
+                    default:
+                        return 0;
+                }
+
+            } else if (moduleName.equals("dia")) {
+                switch (index) {
+                    case 0:
+                        return R.drawable.dia1001;
+                    case 1:
+                        return R.drawable.cdb2001;
                     default:
                         return 0;
                 }
 
             } else if (moduleName.equals("psbi")) {
-
-            } else if (moduleName.equals("dia")) {
+                switch (index) {
+                    case 0:
+                        return R.drawable.psbi1001;
+                    case 1:
+                        return R.drawable.psbi2001;
+                    case 2:
+                        return R.drawable.psbi3001;
+                    default:
+                        return 0;
+                }
 
             }
         } else if (MainApp.isNBorn) {
@@ -482,7 +529,17 @@ public class Utils {
                     case 0:
                         return R.drawable.eceb1001;
                     case 1:
-                        return R.drawable.eceb1001;
+                        return R.drawable.eceb2001;
+                    default:
+                        return 0;
+                }
+
+            } else if (moduleName.equals("ecsb")) {
+                switch (index) {
+                    case 0:
+                        return R.drawable.ecsb1001;
+                    case 1:
+                        return R.drawable.ecsb2001;
                     default:
                         return 0;
                 }
@@ -490,7 +547,7 @@ public class Utils {
             }
         }
 
-        return 0;
+        return R.drawable.hbb1001;
 
     }
 

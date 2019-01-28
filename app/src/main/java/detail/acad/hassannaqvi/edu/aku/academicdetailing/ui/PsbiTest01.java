@@ -38,6 +38,12 @@ public class PsbiTest01 extends AppCompatActivity implements RadioButton.OnCheck
         bi.setCallback(this);
 
         events_call();
+        setupViews();
+
+    }
+
+
+    private void setupViews() {
 
         type = getIntent().getStringExtra("type");
         if (type.equals("pre") && !isComplete) {

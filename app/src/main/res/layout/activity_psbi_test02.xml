@@ -8,7 +8,7 @@
 
         <variable
             name="callback"
-            type="detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.PsbiTest01" />
+            type="detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.PsbiTest02" />
     </data>
 
     <LinearLayout

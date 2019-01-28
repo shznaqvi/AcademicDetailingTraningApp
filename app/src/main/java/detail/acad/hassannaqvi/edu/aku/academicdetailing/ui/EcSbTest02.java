@@ -33,6 +33,12 @@ public class EcSbTest02 extends AppCompatActivity {
         bi = DataBindingUtil.setContentView(this, R.layout.activity_ec_sb_test02);
         bi.setCallback(this);
 
+        setupViews();
+    }
+
+
+    private void setupViews() {
+
         type = getIntent().getStringExtra("type");
         if (type.equals("pre") && !isComplete) {
             bi.heading.setText("PRETEST");

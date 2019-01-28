@@ -30,8 +30,14 @@ public class HbbTest extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         bi = DataBindingUtil.setContentView(this, R.layout.activity_hbb_test);
-        bi.getCallback();
+        bi.setCallback(this);
 
+        setupViews();
+
+    }
+
+
+    private void setupViews() {
 
         type = getIntent().getStringExtra("type");
         if (type.equals("pre") && !isComplete) {

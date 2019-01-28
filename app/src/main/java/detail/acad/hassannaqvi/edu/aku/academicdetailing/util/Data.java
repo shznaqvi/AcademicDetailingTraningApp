@@ -3,6 +3,8 @@ package detail.acad.hassannaqvi.edu.aku.academicdetailing.util;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
+
 
 public class Data {
     public static final String[] modules = new String[]{"Child Health", "Maternal Health", "New Born Health"};

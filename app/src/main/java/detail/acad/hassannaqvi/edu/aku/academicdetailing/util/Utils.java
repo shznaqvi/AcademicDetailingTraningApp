@@ -21,6 +21,7 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.EcEbTest01;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.EcEbTest02;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.EcSbTest01;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.EcSbTest02;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.EclamTest;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.FANC_Pre_test;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.GDSSession01_Pre_test;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.GDSSession02_Pre_test;
@@ -43,6 +44,8 @@ import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.eceb01
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.eceb02_cans;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.eceb1_imgs;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.eceb2_imgs;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.eclam_cans;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.eclam_imgs;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.ecsb1_imgs;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.ecsb2_imgs;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.ecsbA_cans;
@@ -140,6 +143,9 @@ public class Utils {
 
             case 2:
                 return parto_imgs;
+
+            case 3:
+                return eclam_imgs;
 
 
             default:
@@ -285,6 +291,8 @@ public class Utils {
                     return VB_Pre_test.class;
                 case 2:
                     return PartoTest.class;
+                case 3:
+                    return EclamTest.class;
             }
         } else if (MainApp.isChild) {
 
@@ -361,6 +369,8 @@ public class Utils {
                     return vb_cans;
                 case 2:
                     return parto_cans;
+                case 3:
+                    return eclam_cans;
             }
         } else if (MainApp.isChild) {
 
@@ -436,6 +446,8 @@ public class Utils {
                     return R.drawable.vb_img_25;
                 case 2:
                     return R.drawable.partosummary;
+                case 3:
+                    return R.drawable.eclam1051;
                 default:
                     return R.drawable.fanc_02;
             }
@@ -491,6 +503,8 @@ public class Utils {
                     return R.drawable.vb_img_2;
                 case 2:
                     return R.drawable.parto1001;
+                case 3:
+                    return R.drawable.eclam1001;
                 default:
                     return R.drawable.fanc_02;
             }

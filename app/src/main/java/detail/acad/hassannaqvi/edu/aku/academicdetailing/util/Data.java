@@ -43,6 +43,11 @@ public class Data {
     public static ArrayList<String> fanc_cans = new ArrayList<String>(Arrays.asList("3", "4", "4", "3", "3"));
     public static ArrayList<String> vb_cans = new ArrayList<String>(Arrays.asList("2", "3", "4", "3", "2"));
     public static ArrayList<String> parto_cans = new ArrayList<String>(Arrays.asList("1", "3", "2", "2", "2"));
+    public static ArrayList<String> eclam_cans = new ArrayList<String>(Arrays.asList("3", "2", "2", "4", "1"));
+    public static ArrayList<String> hemotest01_cans = new ArrayList<String>(Arrays.asList("2", "2", "4", "3", "4"));
+    public static ArrayList<String> hemotest02_cans = new ArrayList<String>(Arrays.asList("2", "3", "4", "4", "4"));
+    public static ArrayList<String> shocktest_cans = new ArrayList<String>(Arrays.asList("2", "3", "1", "4", "4"));
+    public static ArrayList<String> sepsistest_cans = new ArrayList<String>(Arrays.asList("3", "4", "2", "2", "2"));
 
     public static ArrayList<String> eceb01_cans = new ArrayList<String>(Arrays.asList("1", "3", "1", "4", "2", "3", "1", "2", "1", "3", "2", "3"));
     public static ArrayList<String> eceb02_cans = new ArrayList<String>(Arrays.asList("4", "1", "3", "3", "1", "2", "2", "2", "4", "1", "2", "4", "2"));
@@ -151,6 +156,19 @@ public class Data {
             R.drawable.parto1022, R.drawable.parto1023, R.drawable.parto1024, R.drawable.parto1025, R.drawable.parto1026,
             R.drawable.parto1027, R.drawable.parto1028, R.drawable.parto1029, R.drawable.parto1030, R.drawable.parto1031,
             R.drawable.parto1032, R.drawable.parto1033, R.drawable.parto1034, R.drawable.parto1035, R.drawable.parto1036,};
+
+
+    public static int[] eclam_imgs = new int[]{
+            R.drawable.eclam1002, R.drawable.eclam1003, R.drawable.eclam1004, R.drawable.eclam1005, R.drawable.eclam1006,
+            R.drawable.eclam1007, R.drawable.eclam1008, R.drawable.eclam1009, R.drawable.eclam1010, R.drawable.eclam1011,
+            R.drawable.eclam1012, R.drawable.eclam1013, R.drawable.eclam1014, R.drawable.eclam1015, R.drawable.eclam1016,
+            R.drawable.eclam1017, R.drawable.eclam1018, R.drawable.eclam1019, R.drawable.eclam1020, R.drawable.eclam1021,
+            R.drawable.eclam1022, R.drawable.eclam1023, R.drawable.eclam1024, R.drawable.eclam1025, R.drawable.eclam1026,
+            R.drawable.eclam1027, R.drawable.eclam1028, R.drawable.eclam1029, R.drawable.eclam1030, R.drawable.eclam1031,
+            R.drawable.eclam1032, R.drawable.eclam1033, R.drawable.eclam1034, R.drawable.eclam1035, R.drawable.eclam1036,
+            R.drawable.eclam1037, R.drawable.eclam1038, R.drawable.eclam1039, R.drawable.eclam1040, R.drawable.eclam1041,
+            R.drawable.eclam1042, R.drawable.eclam1043, R.drawable.eclam1044, R.drawable.eclam1045, R.drawable.eclam1046,
+            R.drawable.eclam1047, R.drawable.eclam1048, R.drawable.eclam1049, R.drawable.eclam1050, R.drawable.eclam1051,};
 
 
 

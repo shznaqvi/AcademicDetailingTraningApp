@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Academic Detailing</string>
 
@@ -404,6 +405,191 @@
     <string name="PartoTest05b">Between the alert line and the action line</string>
     <string name="PartoTest05c">Parallel to the action line</string>
     <string name="PartoTest05d">None of the above</string>
+
+
+    <!--EclamTest -->
+    <!--Q01-->
+    <string name="EclamTest01">Which of the following is not observed in Pre-Eclampsia?</string>
+    <string name="EclamTest01a">Diastolic blood pressure > 110 mm Hg</string>
+    <string name="EclamTest01b">Proteinuria</string>
+    <string name="EclamTest01c">Convulsions</string>
+    <string name="EclamTest01d">Gestational age of more than 20 weeks</string>
+
+    <!--Q02-->
+    <string name="EclamTest02">The drug of choice for preventing convulsions in severe Pre-Eclampsia and Eclampsia is:</string>
+    <string name="EclamTest02a">Diazepam</string>
+    <string name="EclamTest02b">Magnesium sulfate</string>
+    <string name="EclamTest02c">Ergometrine</string>
+    <string name="EclamTest02d">Hydralazine</string>
+
+    <!--Q03-->
+    <string name="EclamTest03">When you assess and take the history of a woman with severe Pre-Eclampsia, what is the most important information you should know about her:</string>
+    <string name="EclamTest03a">If she has a family history of pre-eclampsia/eclampsia</string>
+    <string name="EclamTest03b">If she has a severe headache and decreased urine output </string>
+    <string name="EclamTest03c">Her dietary intake of salt</string>
+    <string name="EclamTest03d">If she is diabetic</string>
+
+    <!--Q04-->
+    <string name="EclamTest04">The recommended dose of calcium for the prevention of pre-eclampsia in all women is:</string>
+    <string name="EclamTest04a">2.5 – 3.5 g elemental calcium/day</string>
+    <string name="EclamTest04b">1.5 – 2.0 g elemental calcium/day</string>
+    <string name="EclamTest04c">0.5 – 2.0 g elemental calcium/day</string>
+    <string name="EclamTest04d">3.0 – 3.5 g elemental calcium/day</string>
+
+    <!--Q05-->
+    <string name="EclamTest05">The loading dose of magnesium sulfate is given via:</string>
+    <string name="EclamTest05a">IV over 20 minutes, followed by deep IM injection into each buttock</string>
+    <string name="EclamTest05b">IV over 5 minutes, followed by deep IM injection into one buttock</string>
+    <string name="EclamTest05c">Simultaneous IV and IM injections</string>
+    <string name="EclamTest05d">IV bolus, followed by deep IM injection into each buttock</string>
+
+
+    <!--HemoTestA -->
+    <!--Q01-->
+    <string name="HemoTestA01">The most common cause of PPH is:</string>
+    <string name="HemoTestA01a">Retained placenta</string>
+    <string name="HemoTestA01b">Uterine atony</string>
+    <string name="HemoTestA01c">Vaginal tears</string>
+    <string name="HemoTestA01d">None of the above</string>
+
+    <!--Q02-->
+    <string name="HemoTestA02">Primary PPH is defined as:</string>
+    <string name="HemoTestA02a">Bleeding occurring after 24 hours of childbirth</string>
+    <string name="HemoTestA02b">Bleeding occurring within 24 hours of childbirth</string>
+    <string name="HemoTestA02c">Bleeding occurring within 48 hours of childbirth</string>
+    <string name="HemoTestA02d">All of the above</string>
+
+    <!--Q03-->
+    <string name="HemoTestA03">Postpartum hemorrhage is defined as:</string>
+    <string name="HemoTestA03a">Vaginal bleeding of any amount after childbirth</string>
+    <string name="HemoTestA03b">Sudden bleeding after childbirth</string>
+    <string name="HemoTestA03c">Vaginal bleeding in excess of 300mL after childbirth</string>
+    <string name="HemoTestA03d">Vaginal bleeding in excess of 500mL after childbirth</string>
+
+    <!--Q04-->
+    <string name="HemoTestA04">The proper starting dose of oxytocin for management of PPH in uterine atony is:</string>
+    <string name="HemoTestA04a">10 IU in 1,000 mL of saline at the rate of 60 drops/minute</string>
+    <string name="HemoTestA04b">5 IU in 1,000 mL of Ringer’s lactate at the rate of 60 drops/minute</string>
+    <string name="HemoTestA04c">10 IU stat + 20 IU in 1,000 mL of saline at the rate of 60 drops/minute</string>
+    <string name="HemoTestA04d">All of the above</string>
+
+    <!--Q05-->
+    <string name="HemoTestA05">Hypovolemic shock due to excessive vaginal bleeding is characterized by</string>
+    <string name="HemoTestA05a">BP &gt; 90 mm Hg</string>
+    <string name="HemoTestA05b">Pulse &lt; 110 beats/minute</string>
+    <string name="HemoTestA05c">Cold, clammy skin</string>
+    <string name="HemoTestA05d">All of the above</string>
+
+
+    <!--HemoTestB -->
+    <!--Q01-->
+    <string name="HemoTestB01">Bimanual compression of the uterus for treatment of PPH due to uterine atony after vaginal birth is recommended as:</string>
+    <string name="HemoTestB01a">The only treatment</string>
+    <string name="HemoTestB01b">A temporary treatment</string>
+    <string name="HemoTestB01c">Should not be performed</string>
+    <string name="HemoTestB01d">None of the above</string>
+
+    <!--Q02-->
+    <string name="HemoTestB02">The placenta is considered retained if it is not delivered within:</string>
+    <string name="HemoTestB02a">40 minutes</string>
+    <string name="HemoTestB02b">20 minutes</string>
+    <string name="HemoTestB02c">30 minutes</string>
+    <string name="HemoTestB02d">60 minutes</string>
+
+    <!--Q03-->
+    <string name="HemoTestB03">Retained placenta may be caused by:</string>
+    <string name="HemoTestB03a">Uterine atony</string>
+    <string name="HemoTestB03b">Placenta accreta</string>
+    <string name="HemoTestB03c">Full bladder</string>
+    <string name="HemoTestB03d">All of the above</string>
+
+    <!--Q04-->
+    <string name="HemoTestB04">Wearing sterile gloves is necessary for:</string>
+    <string name="HemoTestB04a">Manual removal of placenta </string>
+    <string name="HemoTestB04b">Bimanual compression of the uterus</string>
+    <string name="HemoTestB04c">Vaginal examination</string>
+    <string name="HemoTestB04d">All of the above </string>
+
+    <!--Q05-->
+    <string name="HemoTestB05">After manual removal of the placenta, monitoring the woman’s vital signs is mandatory for:</string>
+    <string name="HemoTestB05a">2 hours</string>
+    <string name="HemoTestB05b">10 minutes</string>
+    <string name="HemoTestB05c">40 minutes</string>
+    <string name="HemoTestB05d">30 minutes</string>
+
+
+    <!--ShockTest -->
+    <!--Q01-->
+    <string name="ShockTest01">Which of the following is not a sign of shock?</string>
+    <string name="ShockTest01a">Pulse greater than 110 beats per minute</string>
+    <string name="ShockTest01b">Slurring of speech</string>
+    <string name="ShockTest01c">Systolic blood pressure less than 90 mm Hg</string>
+    <string name="ShockTest01d">Pallor, confusion, and unconsciousness</string>
+
+    <!--Q02-->
+    <string name="ShockTest02">Rapid initial assessment for hypovolemic shock does not include:</string>
+    <string name="ShockTest02a">Shout for help</string>
+    <string name="ShockTest02b">Pulse</string>
+    <string name="ShockTest02c">Abdominal examination </string>
+    <string name="ShockTest02d">Blood pressure and breathing</string>
+
+    <!--Q03-->
+    <string name="ShockTest03">If a patient is in shock, start rapid infusion as follows:</string>
+    <string name="ShockTest03a">1 liter in 15–20 minutes</string>
+    <string name="ShockTest03b">1 liter in 30–40 minutes</string>
+    <string name="ShockTest03c">1 liter in 60–70 minutes</string>
+    <string name="ShockTest03d">1 liter in 5–10 minutes</string>
+
+    <!--Q04-->
+    <string name="ShockTest04">Management of a patient with shock is the responsibility of:</string>
+    <string name="ShockTest04a">Doctor</string>
+    <string name="ShockTest04b">Nurse</string>
+    <string name="ShockTest04c">Theatre technician</string>
+    <string name="ShockTest04d">All team members</string>
+
+    <!--Q05-->
+    <string name="ShockTest05">A patient is said to be stabilized after initial rapid management if:</string>
+    <string name="ShockTest05a">Blood pressure is ≥ 100 mm Hg</string>
+    <string name="ShockTest05b">Pulse is 90 beats/minute or less</string>
+    <string name="ShockTest05c">Urine output is ≥ 30 mL/minute</string>
+    <string name="ShockTest05d">All of the above</string>
+
+
+    <!--SepsisTest -->
+    <!--Q01-->
+    <string name="SepsisTest01">Puerperal sepsis is an infection of the genital tract:</string>
+    <string name="SepsisTest01a">At any time before the 42nd day after birth</string>
+    <string name="SepsisTest01b">At any time after the 42nd day after birth</string>
+    <string name="SepsisTest01c">At any time between the rupture of membranes or onset of labor and the 42nd day after birth</string>
+    <string name="SepsisTest01d">At any time after the 40th day after birth</string>
+
+    <!--Q02-->
+    <string name="SepsisTest02">Chorioamnionitis can occur due to:</string>
+    <string name="SepsisTest02a">Premature rupture of the membranes</string>
+    <string name="SepsisTest02b">Prolonged labor of more than 24 hours</string>
+    <string name="SepsisTest02c">More than three vaginal exams during labor</string>
+    <string name="SepsisTest02d">All of the above</string>
+
+    <!--Q03-->
+    <string name="SepsisTest03">A reddened, wedge-shaped area on the breast is a typical sign of:</string>
+    <string name="SepsisTest03a">Breast abscess</string>
+    <string name="SepsisTest03b">Mastitis</string>
+    <string name="SepsisTest03c">Breast engorgement</string>
+    <string name="SepsisTest03d">Breast cancer</string>
+
+    <!--Q04-->
+    <string name="SepsisTest04">Lower abdominal pain and uterine tenderness, together with foul-smelling lochia, are characteristics of:</string>
+    <string name="SepsisTest04a">Pelvic abscess</string>
+    <string name="SepsisTest04b">Metritis</string>
+    <string name="SepsisTest04c">Peritonitis</string>
+    <string name="SepsisTest04d">Appendicitis</string>
+
+    <!--Q05-->
+    <string name="SepsisTest05">The treatment of Metritis should include:</string>
+    <string name="SepsisTest05a">IV ampicillin, IV gentamicin, or IV metronidazole</string>
+    <string name="SepsisTest05b">IV ampicillin, IV gentamicin, and IV metronidazole</string>
+    <string name="SepsisTest05c">A combination of oral antibiotics</string>
+    <string name="SepsisTest05d">A broad spectrum oral antibiotic</string>
 
 
     <!--End-->

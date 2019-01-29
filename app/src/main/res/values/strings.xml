@@ -369,6 +369,43 @@
     <string name="vb_05d">None of the above</string>
 
 
+    <!--Partograph -->
+    <!--Q01-->
+    <string name="PartoTest01">Which of the following is correct description of a Partograph?</string>
+    <string name="PartoTest01a">It is a graphic representation of labor progress and the condition of the mother and fetus.</string>
+    <string name="PartoTest01b">It is a tool to document cervical dilation during labor.</string>
+    <string name="PartoTest01c">It is a tool to document fetal heart sounds during labor.</string>
+    <string name="PartoTest01d">Both b and c</string>
+
+    <!--Q02-->
+    <string name="PartoTest02">Plotting of the Partograph should start when cervix is:</string>
+    <string name="PartoTest02a">2cm dilated</string>
+    <string name="PartoTest02b">3cm dilated</string>
+    <string name="PartoTest02c">4cm dilated</string>
+    <string name="PartoTest02d">7cm dilated</string>
+
+    <!--Q03-->
+    <string name="PartoTest03">Recording and plotting of fetal heart sounds is mandatory in the first stage of labor at the following interval:</string>
+    <string name="PartoTest03a">Every half-hour</string>
+    <string name="PartoTest03b">Every hour</string>
+    <string name="PartoTest03c">Every 15 minutes</string>
+    <string name="PartoTest03d">Not important</string>
+
+    <!--Q04-->
+    <string name="PartoTest04">Contractions during labor should be charted for:</string>
+    <string name="PartoTest04a">Five minutes every half-hour</string>
+    <string name="PartoTest04b">10 minutes every hour</string>
+    <string name="PartoTest04c">10 minutes every half-hour</string>
+    <string name="PartoTest04d">One minute every four hours</string>
+
+    <!--Q05-->
+    <string name="PartoTest05">Decision-making is important when plotting of cervical dilation is:</string>
+    <string name="PartoTest05a">On the alert line</string>
+    <string name="PartoTest05b">Between the alert line and the action line</string>
+    <string name="PartoTest05c">Parallel to the action line</string>
+    <string name="PartoTest05d">None of the above</string>
+
+
     <!--End-->
     <string name="status">Status</string>
     <string name="refuse">Refuse</string>

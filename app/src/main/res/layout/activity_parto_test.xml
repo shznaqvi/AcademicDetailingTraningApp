@@ -8,7 +8,7 @@
 
         <variable
             name="callback"
-            type="detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.DiaTest01" />
+            type="detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.PartoTest" />
     </data>
 
     <LinearLayout
@@ -18,8 +18,8 @@
 
         <android.support.v7.widget.CardView
             style="@style/cardView"
-            android:layout_marginEnd="10dp"
-            android:layout_marginStart="10dp">
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -46,7 +46,7 @@
             android:layout_height="match_parent">
 
             <LinearLayout
-                android:id="@+id/llDiaTestA"
+                android:id="@+id/llPartoTest"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:animateLayoutChanges="true"
@@ -61,51 +61,51 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/tvDiaTestA01"
+                            android:id="@+id/tvPartoTest01"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:background="@color/colorPrimary"
-                            android:text="@string/DiaTestA01"
+                            android:text="@string/PartoTest01"
                             android:textColor="@android:color/white"
                             android:textSize="20sp" />
 
                         <RadioGroup
-                            android:id="@+id/rgDiaTestA01"
+                            android:id="@+id/rgPartoTest01"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
 
                             <RadioButton
-                                android:id="@+id/DiaTestA01a"
+                                android:id="@+id/PartoTest01a"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="1dp"
                                 android:tag="1"
-                                android:text="@string/DiaTestA01a" />
+                                android:text="@string/PartoTest01a" />
 
                             <RadioButton
-                                android:id="@+id/DiaTestA01b"
+                                android:id="@+id/PartoTest01b"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="1dp"
                                 android:tag="2"
-                                android:text="@string/DiaTestA01b" />
+                                android:text="@string/PartoTest01b" />
 
                             <RadioButton
-                                android:id="@+id/DiaTestA01c"
+                                android:id="@+id/PartoTest01c"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="1dp"
                                 android:tag="3"
-                                android:text="@string/DiaTestA01c" />
+                                android:text="@string/PartoTest01c" />
 
                             <RadioButton
-                                android:id="@+id/DiaTestA01d"
+                                android:id="@+id/PartoTest01d"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="1dp"
                                 android:tag="4"
-                                android:text="@string/DiaTestA01d" />
+                                android:text="@string/PartoTest01d" />
 
 
                         </RadioGroup>
@@ -124,51 +124,51 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/tvDiaTestA02"
+                            android:id="@+id/tvPartoTest02"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:background="@color/colorPrimary"
-                            android:text="@string/DiaTestA02"
+                            android:text="@string/PartoTest02"
                             android:textColor="@android:color/white"
                             android:textSize="20sp" />
 
                         <RadioGroup
-                            android:id="@+id/rgDiaTestA02"
+                            android:id="@+id/rgPartoTest02"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
 
                             <RadioButton
-                                android:id="@+id/DiaTestA02a"
+                                android:id="@+id/PartoTest02a"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="1dp"
                                 android:tag="1"
-                                android:text="@string/DiaTestA02a" />
+                                android:text="@string/PartoTest02a" />
 
                             <RadioButton
-                                android:id="@+id/DiaTestA02b"
+                                android:id="@+id/PartoTest02b"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="1dp"
                                 android:tag="2"
-                                android:text="@string/DiaTestA02b" />
+                                android:text="@string/PartoTest02b" />
 
                             <RadioButton
-                                android:id="@+id/DiaTestA02c"
+                                android:id="@+id/PartoTest02c"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="1dp"
                                 android:tag="3"
-                                android:text="@string/DiaTestA02c" />
+                                android:text="@string/PartoTest02c" />
 
                             <RadioButton
-                                android:id="@+id/DiaTestA02d"
+                                android:id="@+id/PartoTest02d"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="1dp"
                                 android:tag="4"
-                                android:text="@string/DiaTestA02d" />
+                                android:text="@string/PartoTest02d" />
 
 
                         </RadioGroup>
@@ -187,51 +187,51 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/tvDiaTestA03"
+                            android:id="@+id/tvPartoTest03"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:background="@color/colorPrimary"
-                            android:text="@string/DiaTestA03"
+                            android:text="@string/PartoTest03"
                             android:textColor="@android:color/white"
                             android:textSize="20sp" />
 
                         <RadioGroup
-                            android:id="@+id/rgDiaTestA03"
+                            android:id="@+id/rgPartoTest03"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
 
                             <RadioButton
-                                android:id="@+id/DiaTestA03a"
+                                android:id="@+id/PartoTest03a"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="1dp"
                                 android:tag="1"
-                                android:text="@string/DiaTestA03a" />
+                                android:text="@string/PartoTest03a" />
 
                             <RadioButton
-                                android:id="@+id/DiaTestA03b"
+                                android:id="@+id/PartoTest03b"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="1dp"
                                 android:tag="2"
-                                android:text="@string/DiaTestA03b" />
+                                android:text="@string/PartoTest03b" />
 
                             <RadioButton
-                                android:id="@+id/DiaTestA03c"
+                                android:id="@+id/PartoTest03c"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="1dp"
                                 android:tag="3"
-                                android:text="@string/DiaTestA03c" />
+                                android:text="@string/PartoTest03c" />
 
                             <RadioButton
-                                android:id="@+id/DiaTestA03d"
+                                android:id="@+id/PartoTest03d"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="1dp"
                                 android:tag="4"
-                                android:text="@string/DiaTestA03d" />
+                                android:text="@string/PartoTest03d" />
 
 
                         </RadioGroup>
@@ -250,51 +250,51 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/tvDiaTestA04"
+                            android:id="@+id/tvPartoTest04"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:background="@color/colorPrimary"
-                            android:text="@string/DiaTestA04"
+                            android:text="@string/PartoTest04"
                             android:textColor="@android:color/white"
                             android:textSize="20sp" />
 
                         <RadioGroup
-                            android:id="@+id/rgDiaTestA04"
+                            android:id="@+id/rgPartoTest04"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
 
                             <RadioButton
-                                android:id="@+id/DiaTestA04a"
+                                android:id="@+id/PartoTest04a"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="1dp"
                                 android:tag="1"
-                                android:text="@string/DiaTestA04a" />
+                                android:text="@string/PartoTest04a" />
 
                             <RadioButton
-                                android:id="@+id/DiaTestA04b"
+                                android:id="@+id/PartoTest04b"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="1dp"
                                 android:tag="2"
-                                android:text="@string/DiaTestA04b" />
+                                android:text="@string/PartoTest04b" />
 
                             <RadioButton
-                                android:id="@+id/DiaTestA04c"
+                                android:id="@+id/PartoTest04c"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="1dp"
                                 android:tag="3"
-                                android:text="@string/DiaTestA04c" />
+                                android:text="@string/PartoTest04c" />
 
                             <RadioButton
-                                android:id="@+id/DiaTestA04d"
+                                android:id="@+id/PartoTest04d"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="1dp"
                                 android:tag="4"
-                                android:text="@string/DiaTestA04d" />
+                                android:text="@string/PartoTest04d" />
 
 
                         </RadioGroup>
@@ -313,51 +313,51 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/tvDiaTestA05"
+                            android:id="@+id/tvPartoTest05"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:background="@color/colorPrimary"
-                            android:text="@string/DiaTestA05"
+                            android:text="@string/PartoTest05"
                             android:textColor="@android:color/white"
                             android:textSize="20sp" />
 
                         <RadioGroup
-                            android:id="@+id/rgDiaTestA05"
+                            android:id="@+id/rgPartoTest05"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
 
                             <RadioButton
-                                android:id="@+id/DiaTestA05a"
+                                android:id="@+id/PartoTest05a"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="1dp"
                                 android:tag="1"
-                                android:text="@string/DiaTestA05a" />
+                                android:text="@string/PartoTest05a" />
 
                             <RadioButton
-                                android:id="@+id/DiaTestA05b"
+                                android:id="@+id/PartoTest05b"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="1dp"
                                 android:tag="2"
-                                android:text="@string/DiaTestA05b" />
+                                android:text="@string/PartoTest05b" />
 
                             <RadioButton
-                                android:id="@+id/DiaTestA05c"
+                                android:id="@+id/PartoTest05c"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="1dp"
                                 android:tag="3"
-                                android:text="@string/DiaTestA05c" />
+                                android:text="@string/PartoTest05c" />
 
                             <RadioButton
-                                android:id="@+id/DiaTestA05d"
+                                android:id="@+id/PartoTest05d"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="1dp"
                                 android:tag="4"
-                                android:text="@string/DiaTestA05d" />
+                                android:text="@string/PartoTest05d" />
 
 
                         </RadioGroup>

@@ -25,6 +25,7 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.FANC_Pre_test;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.GDSSession01_Pre_test;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.GDSSession02_Pre_test;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.HbbTest;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.PartoTest;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.PsbiTest01;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.PsbiTest02;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.VB_Pre_test;
@@ -54,6 +55,8 @@ import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.gdsa_c
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.gdsb_cans;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.hbb_cans;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.hbb_imgs;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.parto_cans;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.parto_imgs;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.psbi1_imgs;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.psbi2_imgs;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.psbi3_imgs;
@@ -63,24 +66,6 @@ import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.vb_can
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.vb_imgs;
 
 public class Utils {
-
-
-    public static int[] getMaternalSessions(int i) {
-
-        switch (i) {
-
-            case 0:
-                return fanc_imgs;
-
-            case 1:
-                return vb_imgs;
-
-
-            default:
-                return null;
-        }
-
-    }
 
 
     public static int[] getChildSessions(int i, String moduleName) {
@@ -141,6 +126,28 @@ public class Utils {
         return null;
 
     }
+
+
+    public static int[] getMaternalSessions(int i) {
+
+        switch (i) {
+
+            case 0:
+                return fanc_imgs;
+
+            case 1:
+                return vb_imgs;
+
+            case 2:
+                return parto_imgs;
+
+
+            default:
+                return null;
+        }
+
+    }
+
 
     public static int[] getNBSessions(int i, String moduleName) {
 
@@ -276,6 +283,8 @@ public class Utils {
                     return FANC_Pre_test.class;
                 case 1:
                     return VB_Pre_test.class;
+                case 2:
+                    return PartoTest.class;
             }
         } else if (MainApp.isChild) {
 
@@ -350,6 +359,8 @@ public class Utils {
                     return fanc_cans;
                 case 1:
                     return vb_cans;
+                case 2:
+                    return parto_cans;
             }
         } else if (MainApp.isChild) {
 
@@ -423,6 +434,8 @@ public class Utils {
                     return R.drawable.fanc_53;
                 case 1:
                     return R.drawable.vb_img_25;
+                case 2:
+                    return R.drawable.partosummary;
                 default:
                     return R.drawable.fanc_02;
             }
@@ -476,6 +489,8 @@ public class Utils {
                     return R.drawable.fanc_02;
                 case 1:
                     return R.drawable.vb_img_2;
+                case 2:
+                    return R.drawable.parto1001;
                 default:
                     return R.drawable.fanc_02;
             }

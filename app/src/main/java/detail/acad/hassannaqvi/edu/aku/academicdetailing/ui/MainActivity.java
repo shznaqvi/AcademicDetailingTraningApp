@@ -20,6 +20,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.net.MalformedURLException;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
@@ -162,6 +163,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 e.printStackTrace();
             }
         }
+        array.toString().replace("\uFEFF", "");
 
         Call<ResponseBody> call = RetrofitClient.service.syncForms(array);
         call.enqueue(new Callback<ResponseBody>() {

@@ -310,8 +310,13 @@ public class FormsContract {
         json.put(FormsTable.COLUMN_POSTTEST_END_TIME,this.postTestEndTime == null ? JSONObject.NULL : this.postTestEndTime);
         json.put(FormsTable.COLUMN_SESSION_START_TIME,this.sessionStartTime == null ? JSONObject.NULL : this.sessionStartTime);
         json.put(FormsTable.COLUMN_SESSION_END_TIME,this.sessionEndTime == null ? JSONObject.NULL : this.sessionEndTime);
-        json.put(FormsTable.COLUMN_PRE_TEST,this.pre_test == null ? JSONObject.NULL : this.pre_test);
-        json.put(FormsTable.COLUMN_POST_TEST,this.post_test == null ? JSONObject.NULL : this.post_test);
+        if (!this.pre_test.equals("")) {
+            json.put(FormsTable.COLUMN_PRE_TEST, this.pre_test.equals("") ? JSONObject.NULL : new JSONObject(this.pre_test));
+        }
+        if (!this.post_test.equals("")) {
+            json.put(FormsTable.COLUMN_PRE_TEST, this.post_test.equals("") ? JSONObject.NULL : new JSONObject(this.post_test));
+        }
+
         json.put(FormsTable.COLUMN_SYNCED,this.synced == null ? JSONObject.NULL : this.synced);
         json.put(FormsTable.COLUMN_SYNCED_DATE,this.synced_date == null ? JSONObject.NULL : this.synced_date);
         json.put(FormsTable.COLUMN_loggin_TIME,this.logginTime == null ? JSONObject.NULL : this.logginTime);

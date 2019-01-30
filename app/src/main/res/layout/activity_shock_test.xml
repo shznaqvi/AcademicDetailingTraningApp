@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="callback"
+            type="detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.ShockTest" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.CardView
+            style="@style/cardView"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/heading"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimaryDark"
+                    android:gravity="center"
+                    android:text="PRETEST"
+                    android:textColor="@android:color/white"
+                    android:textSize="25sp" />
+
+            </RelativeLayout>
+
+
+        </android.support.v7.widget.CardView>
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/llShockTest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:animateLayoutChanges="true"
+                android:orientation="vertical">
+
+                <!--QA01-->
+                <android.support.v7.widget.CardView style="@style/cardView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvShockTest01"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@color/colorPrimary"
+                            android:text="@string/ShockTest01"
+                            android:textColor="@android:color/white"
+                            android:textSize="20sp" />
+
+                        <RadioGroup
+                            android:id="@+id/rgShockTest01"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RadioButton
+                                android:id="@+id/ShockTest01a"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="1"
+                                android:text="@string/ShockTest01a" />
+
+                            <RadioButton
+                                android:id="@+id/ShockTest01b"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="2"
+                                android:text="@string/ShockTest01b" />
+
+                            <RadioButton
+                                android:id="@+id/ShockTest01c"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="3"
+                                android:text="@string/ShockTest01c" />
+
+                            <RadioButton
+                                android:id="@+id/ShockTest01d"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="4"
+                                android:text="@string/ShockTest01d" />
+
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
+
+                <!--QA02-->
+                <android.support.v7.widget.CardView style="@style/cardView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvShockTest02"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@color/colorPrimary"
+                            android:text="@string/ShockTest02"
+                            android:textColor="@android:color/white"
+                            android:textSize="20sp" />
+
+                        <RadioGroup
+                            android:id="@+id/rgShockTest02"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RadioButton
+                                android:id="@+id/ShockTest02a"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="1"
+                                android:text="@string/ShockTest02a" />
+
+                            <RadioButton
+                                android:id="@+id/ShockTest02b"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="2"
+                                android:text="@string/ShockTest02b" />
+
+                            <RadioButton
+                                android:id="@+id/ShockTest02c"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="3"
+                                android:text="@string/ShockTest02c" />
+
+                            <RadioButton
+                                android:id="@+id/ShockTest02d"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="4"
+                                android:text="@string/ShockTest02d" />
+
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
+
+                <!--QA03-->
+                <android.support.v7.widget.CardView style="@style/cardView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvShockTest03"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@color/colorPrimary"
+                            android:text="@string/ShockTest03"
+                            android:textColor="@android:color/white"
+                            android:textSize="20sp" />
+
+                        <RadioGroup
+                            android:id="@+id/rgShockTest03"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RadioButton
+                                android:id="@+id/ShockTest03a"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="1"
+                                android:text="@string/ShockTest03a" />
+
+                            <RadioButton
+                                android:id="@+id/ShockTest03b"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="2"
+                                android:text="@string/ShockTest03b" />
+
+                            <RadioButton
+                                android:id="@+id/ShockTest03c"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="3"
+                                android:text="@string/ShockTest03c" />
+
+                            <RadioButton
+                                android:id="@+id/ShockTest03d"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="4"
+                                android:text="@string/ShockTest03d" />
+
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
+
+                <!--QA04-->
+                <android.support.v7.widget.CardView style="@style/cardView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvShockTest04"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@color/colorPrimary"
+                            android:text="@string/ShockTest04"
+                            android:textColor="@android:color/white"
+                            android:textSize="20sp" />
+
+                        <RadioGroup
+                            android:id="@+id/rgShockTest04"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RadioButton
+                                android:id="@+id/ShockTest04a"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="1"
+                                android:text="@string/ShockTest04a" />
+
+                            <RadioButton
+                                android:id="@+id/ShockTest04b"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="2"
+                                android:text="@string/ShockTest04b" />
+
+                            <RadioButton
+                                android:id="@+id/ShockTest04c"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="3"
+                                android:text="@string/ShockTest04c" />
+
+                            <RadioButton
+                                android:id="@+id/ShockTest04d"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="4"
+                                android:text="@string/ShockTest04d" />
+
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
+
+                <!--QA05-->
+                <android.support.v7.widget.CardView style="@style/cardView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvShockTest05"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@color/colorPrimary"
+                            android:text="@string/ShockTest05"
+                            android:textColor="@android:color/white"
+                            android:textSize="20sp" />
+
+                        <RadioGroup
+                            android:id="@+id/rgShockTest05"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RadioButton
+                                android:id="@+id/ShockTest05a"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="1"
+                                android:text="@string/ShockTest05a" />
+
+                            <RadioButton
+                                android:id="@+id/ShockTest05b"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="2"
+                                android:text="@string/ShockTest05b" />
+
+                            <RadioButton
+                                android:id="@+id/ShockTest05c"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="3"
+                                android:text="@string/ShockTest05c" />
+
+                            <RadioButton
+                                android:id="@+id/ShockTest05d"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="4"
+                                android:text="@string/ShockTest05d" />
+
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
+
+
+                <!--  = = = = =  END OF FORM FIELDS  = = = = = -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layoutDirection="rtl"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btn_Continue"
+                        style="@style/button1"
+                        android:onClick="@{() -> callback.BtnContinue()}"
+                        android:text="Start Training"
+                        android:textSize="16sp" />
+
+                    <Button
+                        android:id="@+id/btnOk"
+                        style="@style/button1"
+                        android:onClick="@{() -> callback.BtnOk()}"
+                        android:text="Ok"
+                        android:textSize="16sp"
+                        android:visibility="gone" />
+
+
+                    <!--'onClick' for btn_End will NOT change and always call 'endInterview'-->
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+
+</layout>

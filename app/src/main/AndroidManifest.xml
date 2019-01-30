@@ -33,42 +33,34 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ui.GDSSession02_Pre_test"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1" />
-
         <activity
             android:name=".ui.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1" />
-
         <activity
             android:name=".ui.ViewPagerActivity"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme2" />
-
         <activity
             android:name=".ui.GDSSession01_Pre_test"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1" />
-
         <activity
             android:name=".ui.CDBSession01_Pre_test"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1" />
-
         <activity
             android:name=".ui.CDBSession02_Pre_test"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1" />
-
         <activity
             android:name=".ui.FANC_Pre_test"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1" />
-
         <activity
             android:name=".ui.VB_Pre_test"
             android:screenOrientation="portrait"
@@ -80,69 +72,81 @@
             android:theme="@style/AppTheme1" />
 
         <activity
+            android:name=".ui.EclamTest"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme1" />
+
+        <activity
+            android:name=".ui.HemoTest01"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme1" />
+
+        <activity
+            android:name=".ui.HemoTest02"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme1" />
+
+        <activity
+            android:name=".ui.ShockTest"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme1" />
+
+        <activity
+            android:name=".ui.PerpuralSepsisTest"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme1" />
+
+        <activity
             android:name=".ui.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-
         <activity
             android:name=".core.AndroidDatabaseManager"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.EndingActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1" />
-
         <activity
             android:name=".ui.HbbTest"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1" />
-
         <activity
             android:name=".ui.DiaTest01"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1" />
-
         <activity
             android:name=".ui.DiaTest02"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1" />
-
         <activity
             android:name=".ui.PsbiTest01"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1" />
-
         <activity
             android:name=".ui.PsbiTest02"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1" />
-
         <activity
             android:name=".ui.EcEbTest01"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1" />
-
         <activity
             android:name=".ui.EcEbTest02"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1" />
-
         <activity
             android:name=".ui.EcSbTest01"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1" />
-
         <activity
             android:name=".ui.EcSbTest02"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1" />
-
         <activity
             android:name=".ui.PlayerActivity"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme1" />
-
     </application>
 
 </manifest>

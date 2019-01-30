@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="callback"
+            type="detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.HemoTest01" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.CardView
+            style="@style/cardView"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/heading"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimaryDark"
+                    android:gravity="center"
+                    android:text="PRETEST"
+                    android:textColor="@android:color/white"
+                    android:textSize="25sp" />
+
+            </RelativeLayout>
+
+
+        </android.support.v7.widget.CardView>
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/llHemoTestA"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:animateLayoutChanges="true"
+                android:orientation="vertical">
+
+                <!--QA01-->
+                <android.support.v7.widget.CardView style="@style/cardView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvHemoTestA01"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@color/colorPrimary"
+                            android:text="@string/HemoTestA01"
+                            android:textColor="@android:color/white"
+                            android:textSize="20sp" />
+
+                        <RadioGroup
+                            android:id="@+id/rgHemoTestA01"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RadioButton
+                                android:id="@+id/HemoTestA01a"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="1"
+                                android:text="@string/HemoTestA01a" />
+
+                            <RadioButton
+                                android:id="@+id/HemoTestA01b"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="2"
+                                android:text="@string/HemoTestA01b" />
+
+                            <RadioButton
+                                android:id="@+id/HemoTestA01c"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="3"
+                                android:text="@string/HemoTestA01c" />
+
+                            <RadioButton
+                                android:id="@+id/HemoTestA01d"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="4"
+                                android:text="@string/HemoTestA01d" />
+
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
+
+                <!--QA02-->
+                <android.support.v7.widget.CardView style="@style/cardView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvHemoTestA02"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@color/colorPrimary"
+                            android:text="@string/HemoTestA02"
+                            android:textColor="@android:color/white"
+                            android:textSize="20sp" />
+
+                        <RadioGroup
+                            android:id="@+id/rgHemoTestA02"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RadioButton
+                                android:id="@+id/HemoTestA02a"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="1"
+                                android:text="@string/HemoTestA02a" />
+
+                            <RadioButton
+                                android:id="@+id/HemoTestA02b"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="2"
+                                android:text="@string/HemoTestA02b" />
+
+                            <RadioButton
+                                android:id="@+id/HemoTestA02c"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="3"
+                                android:text="@string/HemoTestA02c" />
+
+                            <RadioButton
+                                android:id="@+id/HemoTestA02d"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="4"
+                                android:text="@string/HemoTestA02d" />
+
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
+
+                <!--QA03-->
+                <android.support.v7.widget.CardView style="@style/cardView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvHemoTestA03"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@color/colorPrimary"
+                            android:text="@string/HemoTestA03"
+                            android:textColor="@android:color/white"
+                            android:textSize="20sp" />
+
+                        <RadioGroup
+                            android:id="@+id/rgHemoTestA03"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RadioButton
+                                android:id="@+id/HemoTestA03a"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="1"
+                                android:text="@string/HemoTestA03a" />
+
+                            <RadioButton
+                                android:id="@+id/HemoTestA03b"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="2"
+                                android:text="@string/HemoTestA03b" />
+
+                            <RadioButton
+                                android:id="@+id/HemoTestA03c"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="3"
+                                android:text="@string/HemoTestA03c" />
+
+                            <RadioButton
+                                android:id="@+id/HemoTestA03d"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="4"
+                                android:text="@string/HemoTestA03d" />
+
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
+
+                <!--QA04-->
+                <android.support.v7.widget.CardView style="@style/cardView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvHemoTestA04"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@color/colorPrimary"
+                            android:text="@string/HemoTestA04"
+                            android:textColor="@android:color/white"
+                            android:textSize="20sp" />
+
+                        <RadioGroup
+                            android:id="@+id/rgHemoTestA04"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RadioButton
+                                android:id="@+id/HemoTestA04a"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="1"
+                                android:text="@string/HemoTestA04a" />
+
+                            <RadioButton
+                                android:id="@+id/HemoTestA04b"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="2"
+                                android:text="@string/HemoTestA04b" />
+
+                            <RadioButton
+                                android:id="@+id/HemoTestA04c"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="3"
+                                android:text="@string/HemoTestA04c" />
+
+                            <RadioButton
+                                android:id="@+id/HemoTestA04d"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="4"
+                                android:text="@string/HemoTestA04d" />
+
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
+
+                <!--QA05-->
+                <android.support.v7.widget.CardView style="@style/cardView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvHemoTestA05"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@color/colorPrimary"
+                            android:text="@string/HemoTestA05"
+                            android:textColor="@android:color/white"
+                            android:textSize="20sp" />
+
+                        <RadioGroup
+                            android:id="@+id/rgHemoTestA05"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RadioButton
+                                android:id="@+id/HemoTestA05a"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="1"
+                                android:text="@string/HemoTestA05a" />
+
+                            <RadioButton
+                                android:id="@+id/HemoTestA05b"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="2"
+                                android:text="@string/HemoTestA05b" />
+
+                            <RadioButton
+                                android:id="@+id/HemoTestA05c"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="3"
+                                android:text="@string/HemoTestA05c" />
+
+                            <RadioButton
+                                android:id="@+id/HemoTestA05d"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="1dp"
+                                android:tag="4"
+                                android:text="@string/HemoTestA05d" />
+
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
+
+
+                <!--  = = = = =  END OF FORM FIELDS  = = = = = -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layoutDirection="rtl"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btn_Continue"
+                        style="@style/button1"
+                        android:onClick="@{() -> callback.BtnContinue()}"
+                        android:text="Start Training"
+                        android:textSize="16sp" />
+
+                    <Button
+                        android:id="@+id/btnOk"
+                        style="@style/button1"
+                        android:onClick="@{() -> callback.BtnOk()}"
+                        android:text="Ok"
+                        android:textSize="16sp"
+                        android:visibility="gone" />
+
+
+                    <!--'onClick' for btn_End will NOT change and always call 'endInterview'-->
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+
+</layout>

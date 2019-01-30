@@ -13,6 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.FormsContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
@@ -81,7 +84,7 @@ public class InfoFragment extends Fragment {
         DatabaseHelper db = new DatabaseHelper(getActivity());
 
         long rowId = db.addForm(MainApp.fc);
-        MainApp.fc.set_ID(rowId);
+        MainApp.fc.set_ID(String.valueOf(rowId));
 
         return true;
     }
@@ -96,6 +99,7 @@ public class InfoFragment extends Fragment {
         MainApp.fc.setAppversion(MainApp.versionName);
         MainApp.fc.setLogginTime(MainApp.logginTime);
         MainApp.fc.setDeviceID(MainApp.deviceId);
+        MainApp.fc.setFormDate(new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime()));
         setGPS();
     }
 

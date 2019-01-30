@@ -61,6 +61,14 @@ public class MainFragment extends Fragment {
             }
         });
 
+        bi.uploadData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                callbacks.uploadDataToServer();
+            }
+        });
+
     }
 
     @Override

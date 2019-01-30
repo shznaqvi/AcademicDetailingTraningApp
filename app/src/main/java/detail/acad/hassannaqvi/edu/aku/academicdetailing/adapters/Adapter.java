@@ -28,7 +28,6 @@ public class Adapter extends PagerAdapter {
 
     Context context;
     int[] list;
-    String path;
     View view;
 
     public Adapter(Context context, int[] mList) {
@@ -51,18 +50,8 @@ public class Adapter extends PagerAdapter {
         FrameLayout fl = view.findViewById(R.id.frameLayout);
         final VideoView vv = view.findViewById(R.id.videoPlayer);
         ImageView img = view.findViewById(R.id.image);
-        container.addView(view,0);
+        container.addView(view, 0);
         img.setBackgroundResource(list[position]);
-//        if (list[position] == 0) {
-//            context.startActivity(new Intent(context, PlayerActivity.class));
-//        } else if (list[position] == 1) {
-//
-//        } else {
-//            fl.setVisibility(View.GONE);
-//
-//        }
-
-
 
 
         return view;

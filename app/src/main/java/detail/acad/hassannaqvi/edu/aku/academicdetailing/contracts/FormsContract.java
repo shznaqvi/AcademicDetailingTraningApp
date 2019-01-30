@@ -1,4 +1,4 @@
-package detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts;
+ package detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts;
 
 import android.database.Cursor;
 import android.provider.BaseColumns;
@@ -14,9 +14,9 @@ public class FormsContract {
 
     private String projectName = "Academic Detailing Training";
     private String surveyType = "BL";
-    private long _ID;
+    private String _id = "";
     private String _UID = "";
-    private String formDate = ""; // Date
+    private String formdate = ""; // Date
     private String user = ""; // Interviewer 01
     private String istatus = ""; // Interview Status
     private String istatus88x = ""; // Interview Status
@@ -38,7 +38,7 @@ public class FormsContract {
     private String gpsDT = "";
     private String gpsAcc = "";
     private String gpsElev = "";
-    private String deviceID = "";
+    private String deviceid = "";
     private String devicetagID = "";
     private String synced = "";
     private String synced_date = "";
@@ -54,6 +54,7 @@ public class FormsContract {
     private String module ="";
     private String gpsTime = "";
     private String session ="";
+
 
     public String getGpsTime() {
         return gpsTime;
@@ -220,9 +221,9 @@ public class FormsContract {
     public FormsContract Sync(JSONObject jsonObject) throws JSONException {
         this.projectName = jsonObject.getString(FormsTable.COLUMN_PROJECTNAME);
         this.surveyType = jsonObject.getString(FormsTable.COLUMN_SURVEYTYPE);
-        this._ID = jsonObject.getLong(FormsTable.COLUMN_ID);
+        this._id = jsonObject.getString(FormsTable.COLUMN_ID);
         this._UID = jsonObject.getString(FormsTable.COLUMN_UID);
-        this.formDate = jsonObject.getString(FormsTable.COLUMN_FORMDATE);
+        this.formdate = jsonObject.getString(FormsTable.COLUMN_FORMDATE);
         this.user = jsonObject.getString(FormsTable.COLUMN_USER);
         this.istatus = jsonObject.getString(FormsTable.COLUMN_ISTATUS);
         this.istatus88x = jsonObject.getString(FormsTable.COLUMN_ISTATUS88X);
@@ -232,11 +233,14 @@ public class FormsContract {
         this.gpsDT = jsonObject.getString(FormsTable.COLUMN_GPSDT);
         this.gpsAcc = jsonObject.getString(FormsTable.COLUMN_GPSACC);
         this.gpsElev = jsonObject.getString(FormsTable.COLUMN_GPSELEV);
-        this.deviceID = jsonObject.getString(FormsTable.COLUMN_DEVICEID);
+        this.deviceid = jsonObject.getString(FormsTable.COLUMN_DEVICEID);
         this.devicetagID = jsonObject.getString(FormsTable.COLUMN_DEVICETAGID);
         this.synced = jsonObject.getString(FormsTable.COLUMN_SYNCED);
         this.synced_date = jsonObject.getString(FormsTable.COLUMN_SYNCED_DATE);
         this.appversion = jsonObject.getString(FormsTable.COLUMN_APPVERSION);
+        this.synced = jsonObject.getString(FormsTable.COLUMN_SYNCED);
+        this.synced_date = jsonObject.getString(FormsTable.COLUMN_SYNCED_DATE);
+        this.logginTime = jsonObject.getString(FormsTable.COLUMN_loggin_TIME);
 
 
         return this;
@@ -244,26 +248,36 @@ public class FormsContract {
     }
 
     public FormsContract Hydrate(Cursor cursor) {
+
         this.projectName = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_PROJECTNAME));
-        this.surveyType = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SURVEYTYPE));
-        this._ID = cursor.getLong(cursor.getColumnIndex(FormsTable.COLUMN_ID));
-        this._UID = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_UID));
-        this.formDate = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_FORMDATE));
-        this.user = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_USER));
+        this._id = cursor.getString(cursor.getColumnIndex(FormsTable._ID));
+        this.module = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MODULE));
+        this.session = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SESSION));
         this.istatus = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_ISTATUS));
         this.istatus88x = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_ISTATUS88X));
         this.endingdatetime = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_ENDINGDATETIME));
         this.gpsLat = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_GPSLAT));
         this.gpsLng = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_GPSLNG));
-        this.gpsDT = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_GPSDT));
         this.gpsAcc = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_GPSACC));
-        this.gpsElev = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_GPSELEV));
-        this.deviceID = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_DEVICEID));
-        this.devicetagID = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_DEVICETAGID));
+        this.gpsTime = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_GPSTIME));
+        this.deviceid = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_DEVICEID));
+        this.appversion = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_APPVERSION));
+        this.districtID = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_DIST_ID));
+        this.healthFacilityName = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_HFACILITY_NAME));
+        this.providerName = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_PROVIDER_NAME));
+        this.providerID = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_PROVIDER_ID));
+        this.preTestStartTime = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_PRETEST_START_TIME));
+        this.preTestEndTime = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_PRETEST_END_TIME));
+        this.postTestStartTime = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_POSTTEST_START_TIME));
+        this.postTestEndTime = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_POSTTEST_END_TIME));
+        this.sessionStartTime = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SESSION_START_TIME));
+        this.sessionEndTime = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SESSION_END_TIME));
+        this.pre_test = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_PRE_TEST));
+        this.post_test = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_POST_TEST));
         this.synced = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SYNCED));
         this.synced_date = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SYNCED_DATE));
-        this.appversion = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_APPVERSION));
-
+        this.logginTime = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_loggin_TIME));
+        this.formdate = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_FORMDATE));
 
         return this;
 
@@ -275,26 +289,34 @@ public class FormsContract {
         JSONObject json = new JSONObject();
 
         json.put(FormsTable.COLUMN_PROJECTNAME, this.projectName == null ? JSONObject.NULL : this.projectName);
-        json.put(FormsTable.COLUMN_SURVEYTYPE, this.surveyType == null ? JSONObject.NULL : this.surveyType);
-//        json.put(FormsTable.COLUMN_ID, this._ID == null ? JSONObject.NULL : this._ID);
-        json.put(FormsTable.COLUMN_UID, this._UID == null ? JSONObject.NULL : this._UID);
-        json.put(FormsTable.COLUMN_FORMDATE, this.formDate == null ? JSONObject.NULL : this.formDate);
-        json.put(FormsTable.COLUMN_USER, this.user == null ? JSONObject.NULL : this.user);
-        json.put(FormsTable.COLUMN_ISTATUS, this.istatus == null ? JSONObject.NULL : this.istatus);
-        json.put(FormsTable.COLUMN_ISTATUS88X, this.istatus88x == null ? JSONObject.NULL : this.istatus88x);
-        json.put(FormsTable.COLUMN_ENDINGDATETIME, this.endingdatetime == null ? JSONObject.NULL : this.endingdatetime);
-
-        json.put(FormsTable.COLUMN_GPSLAT, this.gpsLat == null ? JSONObject.NULL : this.gpsLat);
-        json.put(FormsTable.COLUMN_GPSLNG, this.gpsLng == null ? JSONObject.NULL : this.gpsLng);
-        json.put(FormsTable.COLUMN_GPSDT, this.gpsDT == null ? JSONObject.NULL : this.gpsDT);
-        json.put(FormsTable.COLUMN_GPSACC, this.gpsAcc == null ? JSONObject.NULL : this.gpsAcc);
-        json.put(FormsTable.COLUMN_GPSELEV, this.gpsElev == null ? JSONObject.NULL : this.gpsElev);
-        json.put(FormsTable.COLUMN_DEVICEID, this.deviceID == null ? JSONObject.NULL : this.deviceID);
-        json.put(FormsTable.COLUMN_DEVICETAGID, this.devicetagID == null ? JSONObject.NULL : this.devicetagID);
-        json.put(FormsTable.COLUMN_SYNCED, this.synced == null ? JSONObject.NULL : this.synced);
-        json.put(FormsTable.COLUMN_SYNCED_DATE, this.synced_date == null ? JSONObject.NULL : this.synced_date);
-        json.put(FormsTable.COLUMN_APPVERSION, this.appversion == null ? JSONObject.NULL : this.appversion);
-
+        json.put(FormsTable.COLUMN_MODULE,this.module == null ? JSONObject.NULL : this.module);
+        json.put(FormsTable.COLUMN_SESSION,this.session == null ? JSONObject.NULL : this.session);
+        json.put(FormsTable.COLUMN_ISTATUS,this.istatus == null ? JSONObject.NULL : this.istatus);
+        json.put(FormsTable.COLUMN_ISTATUS88X,this.istatus88x == null ? JSONObject.NULL : this.istatus88x);
+        json.put(FormsTable.COLUMN_ENDINGDATETIME,this.endingdatetime == null ? JSONObject.NULL : this.endingdatetime);
+        json.put(FormsTable.COLUMN_GPSLAT,this.gpsLat == null ? JSONObject.NULL : this.gpsLat);
+        json.put(FormsTable.COLUMN_GPSLNG,this.gpsLng == null ? JSONObject.NULL : this.gpsLng);
+        json.put(FormsTable.COLUMN_GPSACC,this.gpsAcc == null ? JSONObject.NULL : this.gpsAcc);
+        json.put(FormsTable.COLUMN_GPSTIME,this.gpsTime == null ? JSONObject.NULL : this.gpsTime);
+        json.put(FormsTable.COLUMN_DEVICEID,this.deviceid == null ? JSONObject.NULL : this.deviceid);
+        json.put(FormsTable.COLUMN_APPVERSION,this.appversion == null ? JSONObject.NULL : this.appversion);
+        json.put(FormsTable.COLUMN_DIST_ID,this.districtID == null ? JSONObject.NULL : this.districtID);
+        json.put(FormsTable.COLUMN_HFACILITY_NAME,this.healthFacilityName == null ? JSONObject.NULL : this.healthFacilityName);
+        json.put(FormsTable.COLUMN_PROVIDER_NAME,this.providerName == null ? JSONObject.NULL : this.providerName);
+        json.put(FormsTable.COLUMN_PROVIDER_ID,this.providerID == null ? JSONObject.NULL : this.providerID);
+        json.put(FormsTable.COLUMN_PRETEST_START_TIME,this.preTestStartTime == null ? JSONObject.NULL : this.preTestStartTime);
+        json.put(FormsTable.COLUMN_PRETEST_END_TIME,this.preTestEndTime == null ? JSONObject.NULL : this.preTestEndTime);
+        json.put(FormsTable.COLUMN_POSTTEST_START_TIME,this.postTestStartTime == null ? JSONObject.NULL : this.postTestStartTime);
+        json.put(FormsTable.COLUMN_POSTTEST_END_TIME,this.postTestEndTime == null ? JSONObject.NULL : this.postTestEndTime);
+        json.put(FormsTable.COLUMN_SESSION_START_TIME,this.sessionStartTime == null ? JSONObject.NULL : this.sessionStartTime);
+        json.put(FormsTable.COLUMN_SESSION_END_TIME,this.sessionEndTime == null ? JSONObject.NULL : this.sessionEndTime);
+        json.put(FormsTable.COLUMN_PRE_TEST,this.pre_test == null ? JSONObject.NULL : this.pre_test);
+        json.put(FormsTable.COLUMN_POST_TEST,this.post_test == null ? JSONObject.NULL : this.post_test);
+        json.put(FormsTable.COLUMN_SYNCED,this.synced == null ? JSONObject.NULL : this.synced);
+        json.put(FormsTable.COLUMN_SYNCED_DATE,this.synced_date == null ? JSONObject.NULL : this.synced_date);
+        json.put(FormsTable.COLUMN_loggin_TIME,this.logginTime == null ? JSONObject.NULL : this.logginTime);
+        json.put(FormsTable._ID,this._id == null ? JSONObject.NULL : this._id);
+        json.put(FormsTable.COLUMN_FORMDATE,this.formdate == null ? JSONObject.NULL : this.formdate);
         return json;
     }
 
@@ -330,12 +352,12 @@ public class FormsContract {
         return surveyType;
     }
 
-    public long get_ID() {
-        return _ID;
+    public String get_ID() {
+        return _id;
     }
 
-    public void set_ID(long _ID) {
-        this._ID = _ID;
+    public void set_ID(String _ID) {
+        this._id = _ID;
     }
 
     public String getUID() {
@@ -347,11 +369,11 @@ public class FormsContract {
     }
 
     public String getFormDate() {
-        return formDate;
+        return formdate;
     }
 
     public void setFormDate(String formDate) {
-        this.formDate = formDate;
+        this.formdate = formDate;
     }
 
     public String getIstatus() {
@@ -419,11 +441,11 @@ public class FormsContract {
     }
 
     public String getDeviceID() {
-        return deviceID;
+        return deviceid;
     }
 
     public void setDeviceID(String deviceID) {
-        this.deviceID = deviceID;
+        this.deviceid = deviceID;
     }
 
     public String getDevicetagID() {

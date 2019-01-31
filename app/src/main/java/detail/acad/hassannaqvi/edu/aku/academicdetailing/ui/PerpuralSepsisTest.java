@@ -31,6 +31,7 @@ public class PerpuralSepsisTest extends AppCompatActivity {
 
         bi = DataBindingUtil.setContentView(this, R.layout.activity_perpural_sepsis_test);
         bi.setCallback(this);
+        this.setTitle(MainApp.moduleSession);
 
         setupViews();
 
@@ -65,11 +66,7 @@ public class PerpuralSepsisTest extends AppCompatActivity {
             bi.btnContinue.setVisibility(View.GONE);
         }
 
-        if (MainApp.isSlideStart) {
-            bi.btnContinue.setText("Start Training");
-        } else {
-            bi.btnContinue.setText("Finish Training");
-        }
+
     }
 
     public void BtnContinue() {

@@ -31,10 +31,14 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.validation.validatorCla
 
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.CDB;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.Diarrhea;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.ECEB;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.ECSB;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.GDS;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.HBB;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.PSBI;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.childModule;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.maternalModule;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.newBornModule;
 
 public class ScheduleFragment extends Fragment {
 
@@ -176,12 +180,16 @@ public class ScheduleFragment extends Fragment {
     private void populateSpinner() {
 
         bi.bookingType.setAdapter(new ArrayAdapter<>(getActivity(),android.R.layout.simple_spinner_dropdown_item,bookingType));
+        bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(),android.R.layout.simple_spinner_dropdown_item,sessions));
         modules.addAll(Arrays.asList(Data.modules));
         bi.modules.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, modules));
         bi.modules.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectModule(position);
+                if(position !=0){
+                    selectModule(position);
+                }
+
             }
 
             @Override
@@ -195,8 +203,9 @@ public class ScheduleFragment extends Fragment {
     private void selectModule(int position) {
 
         switch (position) {
-
             case 1:
+                subModules.clear();
+                subModules.add("....");
                 bi.fldGrpSubModule.setVisibility(View.VISIBLE);
                 subModules.addAll(Arrays.asList(childModule));
                 bi.subModules.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, subModules));
@@ -204,7 +213,7 @@ public class ScheduleFragment extends Fragment {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         if(position != 0){
-                            selectSubModule(position);
+                            selectSubModule(position,"child");
                         }
 
                     }
@@ -217,14 +226,32 @@ public class ScheduleFragment extends Fragment {
 
                 break;
             case 2:
+
                 bi.subModules.setSelection(0);
                 bi.fldGrpSubModule.setVisibility(View.GONE);
                 bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, maternalModule));
                 break;
 
             case 3:
-                bi.subModules.setSelection(0);
-                bi.fldGrpSubModule.setVisibility(View.GONE);
+                subModules.clear();
+                subModules.add("....");
+                bi.fldGrpSubModule.setVisibility(View.VISIBLE);
+                subModules.addAll(Arrays.asList(newBornModule));
+                bi.subModules.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, subModules));
+                bi.subModules.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        if(position != 0){
+                            selectSubModule(position,"newBorn");
+                        }
+
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
 
                 break;
 
@@ -233,30 +260,57 @@ public class ScheduleFragment extends Fragment {
 
     }
 
-    private void selectSubModule(int position) {
+    private void selectSubModule(int position,String type) {
 
-        switch (position) {
+        if(type.equals("child")){
+            switch (position) {
+                case 0:
 
-            case 0:
-                sessions.addAll(Arrays.asList(GDS));
-                bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, sessions));
-                break;
+                    sessions.addAll(Arrays.asList(GDS));
+                    bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, sessions));
+                    break;
 
-            case 1:
-                sessions.addAll(Arrays.asList(CDB));
-                bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, sessions));
-                break;
+                case 1:
 
-            case 2:
-                sessions.addAll(Arrays.asList(Diarrhea));
-                bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, sessions));
-                break;
+                    sessions.addAll(Arrays.asList(CDB));
+                    bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, sessions));
+                    break;
 
-            case 3:
-                sessions.addAll(Arrays.asList(PSBI));
-                bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, sessions));
-                break;
+                case 2:
+
+                    sessions.addAll(Arrays.asList(Diarrhea));
+                    bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, sessions));
+                    break;
+
+                case 3:
+
+                    sessions.addAll(Arrays.asList(PSBI));
+                    bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, sessions));
+                    break;
+            }
+        }else if(type.equals("newBorn")){
+            switch (position) {
+                case 0:
+
+                    sessions.addAll(Arrays.asList(ECEB));
+                    bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, sessions));
+                    break;
+
+                case 1:
+
+                    sessions.addAll(Arrays.asList(ECSB));
+                    bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, sessions));
+                    break;
+
+                case 2:
+
+                    sessions.addAll(Arrays.asList(HBB));
+                    bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, sessions));
+                    break;
+
+            }
         }
+
 
     }
 

@@ -270,11 +270,12 @@ public class Utils {
             proceed.setText("Proceed To Post Test");
         }
         Button cancel = view.findViewById(R.id.cancel);
-        if (MainApp.isMaternal) {
-            slide.setImageResource(getPostImages(index, MainApp.isMaternal));
-        } else if (MainApp.isChild) {
-            slide.setImageResource(getPostImages(index, MainApp.isChild));
-        }
+        slide.setImageResource(R.drawable.eclam1051);
+//        if (MainApp.isMaternal) {
+//
+//        } else if (MainApp.isChild) {
+//            slide.setImageResource(getPostImages(index, MainApp.isChild));
+//        }
         builder.setView(view);
         final AlertDialog dialog = builder.create();
         dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
@@ -475,69 +476,9 @@ public class Utils {
     }
 
 
-    public static int getPostImages(int index, boolean type) {
+    public static int getPostImages() {
 
-        if (type == MainApp.isMaternal) {
-            switch (index) {
-                case 0:
-                    return R.drawable.fanc_56;
-                case 1:
-                    return R.drawable.cdb1024;
-                case 2:
-                    return R.drawable.parto1036;
-                case 3:
-                    return R.drawable.eclam1051;
-                case 4:
-                    return R.drawable.hemo1020;
-                case 5:
-                    return R.drawable.hemo2021;
-                case 6:
-                    return R.drawable.shock1026;
-                case 7:
-                    return R.drawable.sepsis1030;
-                default:
-                    return R.drawable.fanc_02;
-            }
-        } else if (type == MainApp.isChild) {
-            if (moduleName.equals("gds")) {
-
-                switch (index) {
-                    case 0:
-                        return R.drawable.gds1019;
-                    case 1:
-                        return R.drawable.gds2021;
-                }
-
-            } else if (moduleName.equals("cdb")) {
-                switch (index) {
-                    case 0:
-                        return R.drawable.cdb1024;
-                    case 1:
-                        return R.drawable.cdb2023;
-                }
-
-            } else if (moduleName.equals("dia")) {
-                switch (index) {
-                    case 0:
-                        return R.drawable.dia1027;
-                    case 1:
-                        return R.drawable.dia2036;
-                }
-
-            } else if (moduleName.equals("psbi")) {
-                switch (index) {
-                    case 0:
-                        return R.drawable.psbi1022;
-                    case 1:
-                        return R.drawable.psbi2031;
-                    case 2:
-                        return R.drawable.psbi3016;
-                }
-
-            }
-        }
-        return 0;
-
+        return R.drawable.eclam1051;
     }
 
     public static int getPreImages(int index, String moduleName) {

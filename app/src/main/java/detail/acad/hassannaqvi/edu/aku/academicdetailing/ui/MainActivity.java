@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
@@ -46,12 +47,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private static final String TAG = "MainActivity";
     ActivityMainBinding bi;
-
-    String currentDateTime = new SimpleDateFormat(" dd/MM/yyyy HH:mm:ss").format(new Date().getTime());
     boolean exit = false;
     DatabaseHelper db;
     Collection<FormsContract> dbData;
     KProgressHUD hud;
+    public static ArrayList<String> pretestAnswers = new ArrayList<>();
+    public static ArrayList<String> checkboxPreAnswers = new ArrayList<>();
+    public static ArrayList<String> checkboxPostAnswers = new ArrayList<>();
+    public static ArrayList<String> posttestAnswers = new ArrayList<>();
+    public static ArrayList<String> correctAnswers = new ArrayList<>();
+    public static int[] slides;
 
 
 
@@ -60,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         bi = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
-        MainApp.logginTime = currentDateTime;
+        MainApp.logginTime = MainApp.getCurrentTime();
         hud = KProgressHUD.create(this).setCancellable(false).setStyle(KProgressHUD.Style.SPIN_INDETERMINATE);
 
         db = new DatabaseHelper(this);
@@ -151,9 +156,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void uploadDataToServer() {
 
-        GsonBuilder builder = new GsonBuilder();
-        Gson gson = builder.create();
-        hud.show();
         JSONArray array = new JSONArray();
         dbData = db.getUnsyncedForms();
         for (FormsContract fc : dbData){
@@ -163,8 +165,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 e.printStackTrace();
             }
         }
-        array.toString().replace("\uFEFF", "");
 
+        array.toString().replace("\uFEFF", "");
+        hud.setDetailsLabel("Syncing " + array.length() + "Forms");
+        hud.show();
         Call<ResponseBody> call = RetrofitClient.service.syncForms(array);
         call.enqueue(new Callback<ResponseBody>() {
             @Override

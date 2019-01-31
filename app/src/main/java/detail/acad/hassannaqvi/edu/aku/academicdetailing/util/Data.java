@@ -39,7 +39,7 @@ public class Data {
     public static ArrayList<String> psbib_cans = new ArrayList<String>(Arrays.asList("2", "3", "3", "2", "3"));
     public static ArrayList<String> psbic_cans = new ArrayList<String>(Arrays.asList("1", "3", "2", "2"));
 
-    public static ArrayList<String> fanc_cb = new ArrayList<String>(Arrays.asList("1", "0","3", "4","0","0" ,"7","0" ,"9", "0","11"));
+    public static ArrayList<String> fanc_cb = new ArrayList<String>(Arrays.asList("1", "0", "3", "4", "0", "0", "7", "0", "9", "0", "11"));
     public static ArrayList<String> fanc_cans = new ArrayList<String>(Arrays.asList("3", "4", "4", "3", "3"));
     public static ArrayList<String> vb_cans = new ArrayList<String>(Arrays.asList("2", "3", "4", "3", "2"));
     public static ArrayList<String> parto_cans = new ArrayList<String>(Arrays.asList("1", "3", "2", "2", "2"));
@@ -60,13 +60,11 @@ public class Data {
     public static ArrayList<String> hbb_cans = new ArrayList<String>(Arrays.asList("2", "1", "3", "3", "2", "2", "1", "3", "4", "4", "3", "2", "2", "4", "4", "1", "1"));
 
 
-
-
     public static int[] gds1_imgs = new int[]{
             R.drawable.gds1002, R.drawable.gds1003, R.drawable.gds1004, R.drawable.gds1005, R.drawable.gds1006,
             R.drawable.gds1007, R.drawable.gds1008, R.drawable.gds1009, R.drawable.gds1010, R.drawable.gds1011,
             R.drawable.gds1012, R.drawable.gds1013, R.drawable.gds1014, R.drawable.gds1015, R.drawable.gds1016,
-            R.drawable.gds1017, R.drawable.gds1018, R.drawable.gds01sum,};
+            R.drawable.gds1017, R.drawable.gds1018};
 
     public static int[] gds2_imgs = new int[]{
             R.drawable.gds2002, R.drawable.gds2003, R.drawable.gds2004, R.drawable.gds2005, R.drawable.gds2006,
@@ -94,7 +92,7 @@ public class Data {
             R.drawable.dia1011, R.drawable.dia1012, R.drawable.dia1013, R.drawable.dia1014, R.drawable.dia1015,
             R.drawable.dia1016, R.drawable.dia1017, R.drawable.dia1018, R.drawable.dia1019, R.drawable.dia1020,
             R.drawable.dia1021, R.drawable.dia1022, R.drawable.dia1023, R.drawable.dia1024, R.drawable.dia1025,
-            R.drawable.dia1026, R.drawable.dia1027,};
+            R.drawable.dia1026,};
 
     public static int[] dia2_imgs = new int[]{
             R.drawable.dia2001, R.drawable.dia2002, R.drawable.dia2003, R.drawable.dia2004, R.drawable.dia2005,
@@ -104,14 +102,14 @@ public class Data {
             R.drawable.dia2021, R.drawable.dia2022, R.drawable.dia2023, R.drawable.dia2024, R.drawable.dia2025,
             R.drawable.dia2026, R.drawable.dia2027, R.drawable.dia2028, R.drawable.dia2029, R.drawable.dia2030,
             R.drawable.dia2031, R.drawable.dia2032, R.drawable.dia2033, R.drawable.dia2034, R.drawable.dia2035,
-            R.drawable.dia2036,};
+    };
 
     public static int[] psbi1_imgs = new int[]{
             R.drawable.psbi1001, R.drawable.psbi1002, R.drawable.psbi1003, R.drawable.psbi1004, R.drawable.psbi1005,
             R.drawable.psbi1006, R.drawable.psbi1007, R.drawable.psbi1008, R.drawable.psbi1009, R.drawable.psbi1010,
             R.drawable.psbi1011, R.drawable.psbi1012, R.drawable.psbi1013, R.drawable.psbi1014, R.drawable.psbi1015,
             R.drawable.psbi1016, R.drawable.psbi1017, R.drawable.psbi1018, R.drawable.psbi1019, R.drawable.psbi1020,
-            R.drawable.psbi1021, R.drawable.psbi1022,};
+            R.drawable.psbi1021,};
 
     public static int[] psbi2_imgs = new int[]{
             R.drawable.psbi2001, R.drawable.psbi2002, R.drawable.psbi2003, R.drawable.psbi2004, R.drawable.psbi2005,
@@ -120,13 +118,12 @@ public class Data {
             R.drawable.psbi2016, R.drawable.psbi2017, R.drawable.psbi2018, R.drawable.psbi2019, R.drawable.psbi2020,
             R.drawable.psbi2021, R.drawable.psbi2022, R.drawable.psbi2023, R.drawable.psbi2024, R.drawable.psbi2025,
             R.drawable.psbi2026, R.drawable.psbi2027, R.drawable.psbi2028, R.drawable.psbi2029, R.drawable.psbi2030,
-            R.drawable.psbi2031,};
+    };
 
     public static int[] psbi3_imgs = new int[]{
             R.drawable.psbi3001, R.drawable.psbi3002, R.drawable.psbi3003, R.drawable.psbi3004, R.drawable.psbi3005,
             R.drawable.psbi3006, R.drawable.psbi3007, R.drawable.psbi3008, R.drawable.psbi3009, R.drawable.psbi3010,
-            R.drawable.psbi3011, R.drawable.psbi3012, R.drawable.psbi3013, R.drawable.psbi3014, R.drawable.psbi3015,
-            R.drawable.psbi3016,};
+            R.drawable.psbi3011, R.drawable.psbi3012, R.drawable.psbi3013, R.drawable.psbi3014, R.drawable.psbi3015,};
 
 
     public static int[] fanc_imgs = new int[]{
@@ -139,14 +136,14 @@ public class Data {
             R.drawable.fanc_35, R.drawable.fanc_36, R.drawable.fanc_37, R.drawable.fanc_38, R.drawable.fanc_39,
             R.drawable.fanc_40, R.drawable.fanc_41, R.drawable.fanc_42, R.drawable.fanc_43, R.drawable.fanc_44,
             R.drawable.fanc_45, R.drawable.fanc_46, R.drawable.fanc_47, R.drawable.fanc_48, R.drawable.fanc_49,
-            R.drawable.fanc_50, R.drawable.fanc_51, R.drawable.fanc_52, R.drawable.fanc_53};
+            R.drawable.fanc_50, R.drawable.fanc_51, R.drawable.fanc_52};
 
     public static int[] vb_imgs = new int[]{
             R.drawable.vb_img_1, R.drawable.vb_img_5, R.drawable.vb_img_6, R.drawable.vb_img_7, R.drawable.vb_img_8,
             R.drawable.vb_img_9, R.drawable.vb_img_10, R.drawable.vb_img_11, R.drawable.vb_img_12, R.drawable.vb_img_13,
             R.drawable.vb_img_14, R.drawable.vb_img_15, R.drawable.vb_img_16, R.drawable.vb_img_17, R.drawable.vb_img_18,
             R.drawable.vb_img_19, R.drawable.vb_img_20, R.drawable.vb_img_21, R.drawable.vb_img_22, R.drawable.vb_img_23,
-            R.drawable.vb_img_24, R.drawable.vb_img_25,};
+            R.drawable.vb_img_24};
 
     public static int[] parto_imgs = new int[]{
             R.drawable.parto1002, R.drawable.parto1003, R.drawable.parto1004, R.drawable.parto1005, R.drawable.parto1006,
@@ -155,7 +152,7 @@ public class Data {
             R.drawable.parto1017, R.drawable.parto1018, R.drawable.parto1019, R.drawable.parto1020, R.drawable.parto1021,
             R.drawable.parto1022, R.drawable.parto1023, R.drawable.parto1024, R.drawable.parto1025, R.drawable.parto1026,
             R.drawable.parto1027, R.drawable.parto1028, R.drawable.parto1029, R.drawable.parto1030, R.drawable.parto1031,
-            R.drawable.parto1032, R.drawable.parto1033, R.drawable.parto1034, R.drawable.parto1035, R.drawable.partosummary,};
+            R.drawable.parto1032, R.drawable.parto1033, R.drawable.parto1034, R.drawable.parto1035,};
 
 
     public static int[] eclam_imgs = new int[]{
@@ -168,14 +165,14 @@ public class Data {
             R.drawable.eclam1032, R.drawable.eclam1033, R.drawable.eclam1034, R.drawable.eclam1035, R.drawable.eclam1036,
             R.drawable.eclam1037, R.drawable.eclam1038, R.drawable.eclam1039, R.drawable.eclam1040, R.drawable.eclam1041,
             R.drawable.eclam1042, R.drawable.eclam1043, R.drawable.eclam1044, R.drawable.eclam1045, R.drawable.eclam1046,
-            R.drawable.eclam1047, R.drawable.eclam1048, R.drawable.eclam1049, R.drawable.eclam1050, R.drawable.eclam1051,};
+            R.drawable.eclam1047, R.drawable.eclam1048, R.drawable.eclam1049, R.drawable.eclam1050,};
 
 
     public static int[] hemo1_imgs = new int[]{
             R.drawable.hemo1002, R.drawable.hemo1003, R.drawable.hemo1004, R.drawable.hemo1005, R.drawable.hemo1006,
             R.drawable.hemo1007, R.drawable.hemo1008, R.drawable.hemo1009, R.drawable.hemo1010, R.drawable.hemo1011,
             R.drawable.hemo1012, R.drawable.hemo1013, R.drawable.hemo1014, R.drawable.hemo1015, R.drawable.hemo1016,
-            R.drawable.hemo1017, R.drawable.hemo1018, R.drawable.hemo1019, R.drawable.hemo1020,};
+            R.drawable.hemo1017, R.drawable.hemo1018, R.drawable.hemo1019,};
 
 
     public static int[] hemo2_imgs = new int[]{
@@ -202,7 +199,6 @@ public class Data {
             R.drawable.sepsis1027, R.drawable.sepsis1028, R.drawable.sepsis1029,};
 
 
-
     public static int[] eceb1_imgs = new int[]{
             R.drawable.eceb1002, R.drawable.action_plan, R.drawable.eceb1003, R.drawable.eceb1004, R.drawable.eceb1005,
             R.drawable.eceb1006, R.drawable.eceb1007, R.drawable.eceb1008, R.drawable.eceb1009, R.drawable.eceb1010,
@@ -212,7 +208,7 @@ public class Data {
             R.drawable.eceb1026, R.drawable.eceb1027, R.drawable.eceb1028, R.drawable.eceb1029, R.drawable.eceb1030,
             R.drawable.eceb1031, R.drawable.eceb1032, R.drawable.eceb1033, R.drawable.eceb1034, R.drawable.eceb1035,
             R.drawable.eceb1036, R.drawable.eceb1037, R.drawable.eceb1038, R.drawable.eceb1039, R.drawable.eceb1040,
-            R.drawable.eceb1041, R.drawable.eceb1042,};
+            R.drawable.eceb1041,};
 
     public static int[] eceb2_imgs = new int[]{
             R.drawable.eceb2001, R.drawable.eceb2002, R.drawable.eceb2003, R.drawable.eceb2004, R.drawable.eceb2005,
@@ -220,7 +216,7 @@ public class Data {
             R.drawable.eceb2011, R.drawable.eceb2012, R.drawable.eceb2013, R.drawable.eceb2014, R.drawable.eceb2015,
             R.drawable.eceb2016, R.drawable.eceb2017, R.drawable.eceb2018, R.drawable.eceb2019, R.drawable.eceb2020,
             R.drawable.eceb2021, R.drawable.eceb2022, R.drawable.eceb2023, R.drawable.eceb2024, R.drawable.eceb2025,
-            R.drawable.eceb2026, R.drawable.eceb2027,};
+            R.drawable.eceb2026,};
 
     public static int[] ecsb1_imgs = new int[]{
             R.drawable.ecsb1001, R.drawable.ecsb1002, R.drawable.ecsb1003, R.drawable.ecsb1004, R.drawable.ecsb1005,
@@ -232,11 +228,11 @@ public class Data {
             R.drawable.ecsb1031, R.drawable.ecsb1032, R.drawable.ecsb1033, R.drawable.ecsb1034, R.drawable.ecsb1035,
             R.drawable.ecsb1036, R.drawable.ecsb1037, R.drawable.ecsb1038, R.drawable.ecsb1039, R.drawable.ecsb1040,
             R.drawable.ecsb1041, R.drawable.ecsb1042, R.drawable.ecsb1043, R.drawable.ecsb1044, R.drawable.ecsb1045,
-            R.drawable.ecsb1046, R.drawable.ecsb1047, R.drawable.ecsb1048, R.drawable.ecsb1049,};
+            R.drawable.ecsb1046, R.drawable.ecsb1047, R.drawable.ecsb1048,};
 
     public static int[] ecsb2_imgs = new int[]{
             R.drawable.ecsb2001, R.drawable.ecsb2002, R.drawable.ecsb2003, R.drawable.ecsb2004, R.drawable.ecsb2005,
-            R.drawable.ecsb2006, R.drawable.ecsb2007, R.drawable.ecsb2008, R.drawable.ecsb2009,};
+            R.drawable.ecsb2006, R.drawable.ecsb2007, R.drawable.ecsb2008,};
 
     public static int[] hbb_imgs = new int[]{
             R.drawable.hbb1001, R.drawable.hbb1002, R.drawable.hbb1003, R.drawable.hbb1004, R.drawable.hbb1005,
@@ -248,5 +244,5 @@ public class Data {
             R.drawable.hbb1031, R.drawable.hbb1032, R.drawable.hbb1033, R.drawable.hbb1034, R.drawable.hbb1035,
             R.drawable.hbb1036, R.drawable.hbb1037, R.drawable.hbb1038, R.drawable.hbb1039, R.drawable.hbb1040,
             R.drawable.hbb1041, R.drawable.hbb1042, R.drawable.hbb1043, R.drawable.hbb1044, R.drawable.hbb1045,
-            R.drawable.hbb1046, R.drawable.hbb1047,};
+            R.drawable.hbb1046};
 }

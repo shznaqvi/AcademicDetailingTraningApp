@@ -314,7 +314,7 @@ public class FormsContract {
             json.put(FormsTable.COLUMN_PRE_TEST, this.pre_test.equals("") ? JSONObject.NULL : new JSONObject(this.pre_test));
         }
         if (!this.post_test.equals("")) {
-            json.put(FormsTable.COLUMN_PRE_TEST, this.post_test.equals("") ? JSONObject.NULL : new JSONObject(this.post_test));
+            json.put(FormsTable.COLUMN_POST_TEST, this.post_test.equals("") ? JSONObject.NULL : new JSONObject(this.post_test));
         }
 
         json.put(FormsTable.COLUMN_SYNCED,this.synced == null ? JSONObject.NULL : this.synced);

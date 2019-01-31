@@ -32,6 +32,7 @@ public class PartoTest extends AppCompatActivity {
         bi = DataBindingUtil.setContentView(this, R.layout.activity_parto_test);
         bi.setCallback(this);
 
+        this.setTitle(MainApp.moduleSession);
         setupViews();
 
 
@@ -65,11 +66,7 @@ public class PartoTest extends AppCompatActivity {
             bi.btnContinue.setVisibility(View.GONE);
         }
 
-        if (MainApp.isSlideStart) {
-            bi.btnContinue.setText("Start Training");
-        } else {
-            bi.btnContinue.setText("Finish Training");
-        }
+
     }
 
     public void BtnContinue() {

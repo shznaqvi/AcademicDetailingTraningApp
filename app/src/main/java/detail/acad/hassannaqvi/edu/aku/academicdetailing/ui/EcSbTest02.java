@@ -33,6 +33,7 @@ public class EcSbTest02 extends AppCompatActivity {
         bi = DataBindingUtil.setContentView(this, R.layout.activity_ec_sb_test02);
         bi.setCallback(this);
 
+        this.setTitle(MainApp.moduleSession);
         setupViews();
     }
 
@@ -51,6 +52,7 @@ public class EcSbTest02 extends AppCompatActivity {
             bi.heading.setText("PRETEST RESULT");
             GeneratorClass.comparingResult(bi.llecsbB, true, Data.correctAnswers);
             bi.btnOk.setVisibility(View.VISIBLE);
+            bi.btnOk.setText("Start Training");
             bi.btnContinue.setVisibility(View.GONE);
         } else if (type.equals("post") && !isComplete) {
             bi.heading.setText("POST TEST");
@@ -62,6 +64,7 @@ public class EcSbTest02 extends AppCompatActivity {
             bi.heading.setText(" POST TEST & PRETEST RESULT");
             GeneratorClass.comparingPostTestAndPretestResult(bi.llecsbB, true, Data.correctAnswers);
             bi.btnOk.setVisibility(View.VISIBLE);
+            bi.btnOk.setText("Finish Training");
             bi.btnContinue.setVisibility(View.GONE);
         }
 

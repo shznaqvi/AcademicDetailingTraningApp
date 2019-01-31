@@ -36,6 +36,7 @@ public class GDSSession01_Pre_test extends AppCompatActivity implements RadioBut
 
         bi = DataBindingUtil.setContentView(this, R.layout.activity_gdssession01__pre_test);
         bi.setCallback(this);
+        this.setTitle(MainApp.moduleSession);
         events_call();
         setupViews();
 
@@ -56,6 +57,7 @@ public class GDSSession01_Pre_test extends AppCompatActivity implements RadioBut
             bi.heading.setText("PRETEST RESULT");
             GeneratorClass.comparingResult(bi.fldGrpPreGds01, true, Data.correctAnswers);
             bi.btnOk.setVisibility(View.VISIBLE);
+            bi.btnOk.setText("Start Training");
             bi.btnContinue.setVisibility(View.GONE);
         } else if (type.equals("post") && !isComplete) {
             bi.heading.setText("POST TEST");
@@ -67,13 +69,10 @@ public class GDSSession01_Pre_test extends AppCompatActivity implements RadioBut
             bi.heading.setText(" POST TEST & PRETEST RESULT");
             GeneratorClass.comparingPostTestAndPretestResult(bi.fldGrpPreGds01,true,Data.correctAnswers);
             bi.btnOk.setVisibility(View.VISIBLE);
+            bi.btnOk.setText("Finish Training");
             bi.btnContinue.setVisibility(View.GONE);
         }
-        if (MainApp.isSlideStart) {
-            bi.btnContinue.setText("Start Training");
-        } else {
-            bi.btnContinue.setText("Finish Training");
-        }
+
     }
 
     public void BtnOk() {

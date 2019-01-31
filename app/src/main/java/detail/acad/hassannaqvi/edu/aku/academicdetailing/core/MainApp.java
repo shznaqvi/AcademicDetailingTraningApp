@@ -134,7 +134,7 @@ public class MainApp extends Application {
     }
 
     public static String getCurrentTime() {
-        String currentTime = new SimpleDateFormat(" dd/MM/yyyy HH:mm:ss").format(new Date().getTime());
+        String currentTime = new SimpleDateFormat(" dd-MM-yyyy HH:mm:ss").format(new Date().getTime());
         return currentTime;
     }
 

@@ -381,18 +381,16 @@
                         android:id="@+id/btn_Continue"
                         style="@style/button1"
                         android:onClick="@{() -> callback.BtnContinue()}"
-                        android:text="Start Training"
+                        android:text="Proceed"
                         android:textSize="16sp" />
 
                     <Button
                         android:id="@+id/btnOk"
                         style="@style/button1"
                         android:onClick="@{() -> callback.BtnOk()}"
-                        android:text="Ok"
+                        android:text="Start Training"
                         android:textSize="16sp"
                         android:visibility="gone" />
-
-
                     <!--'onClick' for btn_End will NOT change and always call 'endInterview'-->
                 </LinearLayout>
 

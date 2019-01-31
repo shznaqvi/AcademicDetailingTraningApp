@@ -24,6 +24,7 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.HealthFacCont
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.HealthFacContract.singleHF;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.LHWsContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.LHWsContract.singleLHWs;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.NextMeetingContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.NextMeetingContract.NMCTable;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.SessionContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.SessionContract.SessionTable;
@@ -84,8 +85,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + " ); ";
 
     private static final String SQL_CREATE_SESSION_TABLE = " CREATE TABLE " + SessionTable.TABLE_NAME
-            + " ( " + SessionTable.COLUMN_SLIDE_NUMBER + " INTEGER," +
-            SessionTable.COLUMN_MODULE + " TEXT," + SessionTable.COLUMN_SESSION + " TEXT," + SessionTable.COLUMN_SESSION_TIME + " TEXT" + ");";
+            + " ( " +  SessionTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"+ SessionTable.COLUMN_SLIDE_NUMBER + " INTEGER," +
+            SessionTable.COLUMN_MODULE + " TEXT," + SessionTable.COLUMN_SESSION
+            + " TEXT,"
+            + SessionTable.COLUMN_SESSION_TIME + " TEXT,"
+            + SessionTable.COLUMN_SYNCED + " TEXT,"
+            + SessionTable.COLUMN_SYNCED_DATE + " TEXT"  +");";
 
     private static final String SQL_DELETE_USERS =
             "DROP TABLE IF EXISTS " + UsersTable.TABLE_NAME;
@@ -98,9 +103,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + NMCTable.COLUMN_LNG + " TEXT, " + NMCTable.COLUMN_GPSTIME + " TEXT, " + NMCTable.COLUMN_BTYPE + " TEXT, "
             + NMCTable.COLUMN_BOOK_DATE + " TEXT, " + NMCTable.COLUMN_BOOKBY + " TEXT, "
             + NMCTable.COLUMN_DOCTOR_NAME + " TEXT, " + NMCTable.COLUMN_DATE
-
             + " TEXT, " + NMCTable.COLUMN_TIME + " TEXT, "
-            + NMCTable.COLUMN_MOD + " TEXT, " + NMCTable.COLUMN_SUBMOD + " TEXT, " + NMCTable.COLUMN_SESSION + " TEXT " + ");";
+            + NMCTable.COLUMN_MOD + " TEXT, " + NMCTable.COLUMN_SUBMOD + " TEXT, "
+            + NMCTable.COLUMN_SESSION + " TEXT, "
+            + NMCTable.COLUMN_SYNCED + " TEXT, "
+            + NMCTable.COLUMN_SYNCED_DATE + " TEXT " + ");";
 
     private static final String SQL_DELETE_SESSION = "DROP TABLE IF EXISTS " + SessionTable.TABLE_NAME;
     private static final String SQL_DELETE_NMS = "DROP TABLE IF EXISTS " + NMCTable.TABLE_NAME;
@@ -453,6 +460,115 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return allFC;
     }
 
+    public Collection<SessionContract> getUnsyncedSessions() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = null;
+        String[] columns = {
+                SessionTable.COLUMN_SESSION,
+                SessionTable._ID,
+                SessionTable.COLUMN_MODULE,
+                SessionTable.COLUMN_SESSION_TIME,
+                SessionTable.COLUMN_SLIDE_NUMBER,
+                SessionTable.COLUMN_SYNCED,
+                SessionTable.COLUMN_SYNCED_DATE
+
+        };
+        String whereClause = SessionTable.COLUMN_SYNCED + " is null OR " + SessionTable.COLUMN_SYNCED + " = '' ";
+        String[] whereArgs = null;
+        String groupBy = null;
+        String having = null;
+
+        String orderBy =
+                SessionTable._ID + " ASC";
+
+        Collection<SessionContract> allSc = new ArrayList<SessionContract>();
+        try {
+            c = db.query(
+                    SessionTable.TABLE_NAME,  // The table to query
+                    columns,                   // The columns to return
+                    whereClause,               // The columns for the WHERE clause
+                    whereArgs,                 // The values for the WHERE clause
+                    groupBy,                   // don't group the rows
+                    having,                    // don't filter by row groups
+                    orderBy                    // The sort order
+            );
+
+            if (c.moveToFirst())
+                do {
+                    SessionContract sC = new SessionContract();
+                    allSc.add(sC.Hydrate(c));
+                }while (c.moveToNext());
+
+
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+            if (db != null) {
+                db.close();
+            }
+        }
+        return allSc;
+    }
+    public Collection<NextMeetingContract> getUnsyncedNextMeetingForm() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = null;
+        String[] columns = {
+                NMCTable.COLUMN_DOCTOR_NAME,
+                NMCTable.COLUMN_DATE,
+                NMCTable.COLUMN_TIME,
+                NMCTable.COLUMN_MOD,
+                NMCTable.COLUMN_SUBMOD,
+                NMCTable.COLUMN_SESSION,
+                NMCTable.COLUMN_LAT,
+                NMCTable.COLUMN_LNG,
+                NMCTable.COLUMN_BOOK_DATE,
+                NMCTable.COLUMN_BOOKBY,
+                NMCTable.COLUMN_GPSTIME,
+                NMCTable.COLUMN_BTYPE,
+                NMCTable._ID,
+                NMCTable.COLUMN_SYNCED,
+                NMCTable.COLUMN_SYNCED_DATE,
+
+        };
+        String whereClause = NMCTable.COLUMN_SYNCED + " is null OR " + NMCTable.COLUMN_SYNCED + " = '' ";
+        String[] whereArgs = null;
+        String groupBy = null;
+        String having = null;
+
+        String orderBy =
+                NMCTable._ID + " ASC";
+
+        Collection<NextMeetingContract> allSc = new ArrayList<NextMeetingContract>();
+        try {
+            c = db.query(
+                    NMCTable.TABLE_NAME,  // The table to query
+                    columns,                   // The columns to return
+                    whereClause,               // The columns for the WHERE clause
+                    whereArgs,                 // The values for the WHERE clause
+                    groupBy,                   // don't group the rows
+                    having,                    // don't filter by row groups
+                    orderBy                    // The sort order
+            );
+
+            if (c.moveToFirst())
+                do {
+                    NextMeetingContract nC = new NextMeetingContract();
+                    allSc.add(nC.Hydrate(c));
+                }while (c.moveToNext());
+
+
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+            if (db != null) {
+                db.close();
+            }
+        }
+        return allSc;
+    }
+
     public void syncUsers(JSONArray userlist) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(UsersTable.TABLE_NAME, null, null);
@@ -522,7 +638,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 values.put(singleHF.COLUMN_HF_PROVINCE_NAME, Vc.getHf_prv_name());
                 values.put(singleHF.COLUMN_HF_UC_NAME, Vc.getHf_uc_name());
                 values.put(singleHF.COLUMN_HF_UEN_CODE, Vc.getHf_uen_code());
-
                 db.insert(singleHF.TABLE_NAME, null, values);
             }
         } catch (Exception e) {

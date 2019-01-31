@@ -36,6 +36,7 @@ public class PsbiTest02 extends AppCompatActivity implements RadioButton.OnCheck
 
         bi = DataBindingUtil.setContentView(this, R.layout.activity_psbi_test02);
         bi.setCallback(this);
+        this.setTitle(MainApp.moduleSession);
 
         events_call();
         setupViews();
@@ -57,6 +58,7 @@ public class PsbiTest02 extends AppCompatActivity implements RadioButton.OnCheck
             bi.heading.setText("PRETEST RESULT");
             GeneratorClass.comparingResult(bi.llPsbiTestB, true, Data.correctAnswers);
             bi.btnOk.setVisibility(View.VISIBLE);
+            bi.btnOk.setText("Start Training");
             bi.btnContinue.setVisibility(View.GONE);
         } else if (type.equals("post") && !isComplete) {
             bi.heading.setText("POST TEST");
@@ -68,14 +70,11 @@ public class PsbiTest02 extends AppCompatActivity implements RadioButton.OnCheck
             bi.heading.setText(" POST TEST & PRETEST RESULT");
             GeneratorClass.comparingPostTestAndPretestResult(bi.llPsbiTestB, true, Data.correctAnswers);
             bi.btnOk.setVisibility(View.VISIBLE);
+            bi.btnOk.setText("Finish Training");
             bi.btnContinue.setVisibility(View.GONE);
         }
 
-        if (MainApp.isSlideStart) {
-            bi.btnContinue.setText("Start Training");
-        } else {
-            bi.btnContinue.setText("Finish Training");
-        }
+
     }
 
     @Override

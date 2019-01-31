@@ -26,6 +26,7 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.FANC_Pre_test;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.GDSSession01_Pre_test;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.GDSSession02_Pre_test;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.HbbTest;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.HemoTest01;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.PartoTest;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.PsbiTest01;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.PsbiTest02;
@@ -58,6 +59,8 @@ import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.gdsa_c
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.gdsb_cans;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.hbb_cans;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.hbb_imgs;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.hemo1_imgs;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.hemotest01_cans;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.parto_cans;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.parto_imgs;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.psbi1_imgs;
@@ -146,6 +149,9 @@ public class Utils {
 
             case 3:
                 return eclam_imgs;
+
+            case 4:
+                return hemo1_imgs;
 
 
             default:
@@ -293,6 +299,8 @@ public class Utils {
                     return PartoTest.class;
                 case 3:
                     return EclamTest.class;
+                case 4:
+                    return HemoTest01.class;
             }
         } else if (MainApp.isChild) {
 
@@ -371,6 +379,8 @@ public class Utils {
                     return parto_cans;
                 case 3:
                     return eclam_cans;
+                case 4:
+                    return hemotest01_cans;
             }
         } else if (MainApp.isChild) {
 
@@ -448,6 +458,8 @@ public class Utils {
                     return R.drawable.partosummary;
                 case 3:
                     return R.drawable.eclam1051;
+                case 4:
+                    return R.drawable.hemo1020;
                 default:
                     return R.drawable.fanc_02;
             }
@@ -456,9 +468,9 @@ public class Utils {
 
                 switch (index) {
                     case 0:
-                        return R.drawable.gds1020;
+                        return R.drawable.gds01sum;
                     case 1:
-                        return R.drawable.gds2020;
+                        return R.drawable.gds01sum;
                 }
 
             } else if (moduleName.equals("cdb")) {
@@ -466,7 +478,7 @@ public class Utils {
                     case 0:
                         return R.drawable.cdb1024;
                     case 1:
-                        return R.drawable.cdb2026;
+                        return R.drawable.cdb2023;
                 }
 
             } else if (moduleName.equals("dia")) {
@@ -505,6 +517,8 @@ public class Utils {
                     return R.drawable.parto1001;
                 case 3:
                     return R.drawable.eclam1001;
+                case 4:
+                    return R.drawable.hemo1001;
                 default:
                     return R.drawable.fanc_02;
             }

@@ -246,14 +246,14 @@ public class CDBSession01_Pre_test extends AppCompatActivity implements RadioBut
     void events_call() {
 
         bi.cdba01a.setOnCheckedChangeListener(this);
-        bi.cdba01a.setOnCheckedChangeListener(this);
-        bi.cdba01a.setOnCheckedChangeListener(this);
-        bi.cdba01a.setOnCheckedChangeListener(this);
+        bi.cdba01b.setOnCheckedChangeListener(this);
+        bi.cdba01c.setOnCheckedChangeListener(this);
+        bi.cdba01d.setOnCheckedChangeListener(this);
 
         bi.cdba03a.setOnCheckedChangeListener(this);
-        bi.cdba03a.setOnCheckedChangeListener(this);
-        bi.cdba03a.setOnCheckedChangeListener(this);
-        bi.cdba03a.setOnCheckedChangeListener(this);
+        bi.cdba03b.setOnCheckedChangeListener(this);
+        bi.cdba03c.setOnCheckedChangeListener(this);
+        bi.cdba03d.setOnCheckedChangeListener(this);
 
         bi.cdba04a.setOnCheckedChangeListener(this);
         bi.cdba04b.setOnCheckedChangeListener(this);

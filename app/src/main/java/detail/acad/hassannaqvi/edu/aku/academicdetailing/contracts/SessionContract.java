@@ -43,7 +43,7 @@ public class SessionContract {
 
     public abstract class SessionTable implements BaseColumns{
 
-        public static final String TABLE_NAME = "sessionsTable";
+        public static final String TABLE_NAME = "sessions_table";
         public static final String COLUMN_SESSION = "session";
         public static final String COLUMN_MODULE = "module";
         public static final String COLUMN_SESSION_TIME = "session_time";

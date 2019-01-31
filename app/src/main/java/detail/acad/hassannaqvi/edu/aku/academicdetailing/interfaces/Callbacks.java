@@ -6,5 +6,5 @@ public interface Callbacks {
     void loadInfoFragment();
     void loadModuleFragment();
     void loadDatabaseManager();
-    void loadScheduleFragment();
+    void uploadDataToServer();
 }

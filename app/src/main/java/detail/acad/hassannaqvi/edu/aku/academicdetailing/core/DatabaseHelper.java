@@ -103,7 +103,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + NMCTable.COLUMN_MOD + " TEXT, " + NMCTable.COLUMN_SUBMOD + " TEXT, " + NMCTable.COLUMN_SESSION + " TEXT " + ");";
 
     private static final String SQL_DELETE_SESSION = "DROP TABLE IF EXISTS " + SessionTable.TABLE_NAME;
-    private static final String SQL_DELETE_NMS= "DROP TABLE IF EXISTS " + NMCTable.TABLE_NAME;
+    private static final String SQL_DELETE_NMS = "DROP TABLE IF EXISTS " + NMCTable.TABLE_NAME;
 
     private static final String SQL_DELETE_HEALTH_FACILITIES = "DROP TABLE IF EXISTS " + singleHF.TABLE_NAME;
     private static final String SQL_DELETE_TEHSILS = "DROP TABLE IF EXISTS " + singleTehsil.TABLE_NAME;
@@ -380,6 +380,79 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return userList;
     }
 
+    public Collection<FormsContract> getUnsyncedForms() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = null;
+        String[] columns = {
+                FormsTable.COLUMN_PROJECTNAME,
+                FormsTable.COLUMN_MODULE,
+                FormsTable._ID,
+                FormsTable.COLUMN_FORMDATE,
+                FormsTable.COLUMN_SESSION,
+                FormsTable.COLUMN_ISTATUS,
+                FormsTable.COLUMN_ISTATUS88X,
+                FormsTable.COLUMN_ENDINGDATETIME,
+                FormsTable.COLUMN_GPSLAT,
+                FormsTable.COLUMN_GPSLNG,
+                FormsTable.COLUMN_GPSTIME,
+                FormsTable.COLUMN_GPSACC,
+                FormsTable.COLUMN_DEVICEID,
+                FormsTable.COLUMN_APPVERSION,
+                FormsTable.COLUMN_DIST_ID,
+                FormsTable.COLUMN_loggin_TIME,
+                FormsTable.COLUMN_HFACILITY_NAME,
+                FormsTable.COLUMN_PROVIDER_NAME,
+                FormsTable.COLUMN_PROVIDER_ID,
+                FormsTable.COLUMN_PRETEST_START_TIME,
+                FormsTable.COLUMN_PRETEST_END_TIME,
+                FormsTable.COLUMN_POSTTEST_START_TIME,
+                FormsTable.COLUMN_POSTTEST_END_TIME,
+                FormsTable.COLUMN_SESSION_START_TIME,
+                FormsTable.COLUMN_SESSION_END_TIME,
+                FormsTable.COLUMN_PRE_TEST,
+                FormsTable.COLUMN_POST_TEST,
+                FormsTable.COLUMN_SYNCED,
+                FormsTable.COLUMN_SYNCED_DATE
+
+        };
+        String whereClause = FormsTable.COLUMN_SYNCED + " is null OR " + FormsTable.COLUMN_SYNCED + " = '' ";
+        String[] whereArgs = null;
+        String groupBy = null;
+        String having = null;
+
+        String orderBy =
+                FormsTable._ID + " ASC";
+
+        Collection<FormsContract> allFC = new ArrayList<FormsContract>();
+        try {
+            c = db.query(
+                    FormsTable.TABLE_NAME,  // The table to query
+                    columns,                   // The columns to return
+                    whereClause,               // The columns for the WHERE clause
+                    whereArgs,                 // The values for the WHERE clause
+                    groupBy,                   // don't group the rows
+                    having,                    // don't filter by row groups
+                    orderBy                    // The sort order
+            );
+
+            if (c.moveToFirst())
+                do {
+                    FormsContract fc = new FormsContract();
+                    allFC.add(fc.Hydrate(c));
+                }while (c.moveToNext());
+
+
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+            if (db != null) {
+                db.close();
+            }
+        }
+        return allFC;
+    }
+
     public void syncUsers(JSONArray userlist) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(UsersTable.TABLE_NAME, null, null);
@@ -546,6 +619,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (c.moveToFirst()) {
             do {
                 FormsContract fc = new FormsContract();
+                fc.set_ID(c.getString(c.getColumnIndex(FormsTable._ID)));
+                fc.setFormDate(c.getString(c.getColumnIndex(FormsTable.COLUMN_FORMDATE)));
                 formList.add(fc.Hydrate(c));
             } while (c.moveToNext());
         }
@@ -564,6 +639,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(FormsTable.COLUMN_PROJECTNAME, fc.getProjectName());
         values.put(FormsTable.COLUMN_SURVEYTYPE, fc.getSurveyType());
         values.put(FormsTable.COLUMN_UID, fc.getUID());
+//        values.put(FormsTable._ID, fc.get_ID());
         values.put(FormsTable.COLUMN_FORMDATE, fc.getFormDate());
         values.put(FormsTable.COLUMN_USER, fc.getUser());
         values.put(FormsTable.COLUMN_ISTATUS, fc.getIstatus());
@@ -582,6 +658,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(FormsTable.COLUMN_SYNCED_DATE, fc.getSynced_date());
         values.put(FormsTable.COLUMN_APPVERSION, fc.getAppversion());
         values.put(FormsTable.COLUMN_DIST_ID, fc.getDistrictID());
+        values.put(FormsTable.COLUMN_loggin_TIME, fc.getLogginTime());
         values.put(FormsTable.COLUMN_HFACILITY_NAME, fc.getHealthFacilityName());
         values.put(FormsTable.COLUMN_PROVIDER_NAME, fc.getProviderName());
         values.put(FormsTable.COLUMN_PROVIDER_ID, fc.getProviderID());
@@ -636,64 +713,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return count;
     }
 
-    public Collection<FormsContract> getUnsyncedForms() {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c = null;
-        String[] columns = {
-                FormsTable.COLUMN_PROJECTNAME,
-                FormsTable.COLUMN_SURVEYTYPE,
-                FormsTable.COLUMN_ID,
-                FormsTable.COLUMN_UID,
-                FormsTable.COLUMN_FORMDATE,
-                FormsTable.COLUMN_USER,
-                FormsTable.COLUMN_ISTATUS,
-                FormsTable.COLUMN_ISTATUS88X,
-                FormsTable.COLUMN_ENDINGDATETIME,
-                FormsTable.COLUMN_GPSLAT,
-                FormsTable.COLUMN_GPSLNG,
-                FormsTable.COLUMN_GPSDT,
-                FormsTable.COLUMN_GPSACC,
-                FormsTable.COLUMN_GPSELEV,
-                FormsTable.COLUMN_DEVICEID,
-                FormsTable.COLUMN_DEVICETAGID,
-                FormsTable.COLUMN_SYNCED,
-                FormsTable.COLUMN_SYNCED_DATE,
-                FormsTable.COLUMN_APPVERSION
-
-        };
-        String whereClause = FormsTable.COLUMN_SYNCED + " is null OR " + FormsTable.COLUMN_SYNCED + " = '' ";
-        String[] whereArgs = null;
-        String groupBy = null;
-        String having = null;
-
-        String orderBy =
-                FormsTable._ID + " ASC";
-
-        Collection<FormsContract> allFC = new ArrayList<FormsContract>();
-        try {
-            c = db.query(
-                    FormsTable.TABLE_NAME,  // The table to query
-                    columns,                   // The columns to return
-                    whereClause,               // The columns for the WHERE clause
-                    whereArgs,                 // The values for the WHERE clause
-                    groupBy,                   // don't group the rows
-                    having,                    // don't filter by row groups
-                    orderBy                    // The sort order
-            );
-            while (c.moveToNext()) {
-                FormsContract fc = new FormsContract();
-                allFC.add(fc.Hydrate(c));
-            }
-        } finally {
-            if (c != null) {
-                c.close();
-            }
-            if (db != null) {
-                db.close();
-            }
-        }
-        return allFC;
-    }
 
     public Collection<FormsContract> getTodayForms() {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -727,7 +746,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             );
             while (c.moveToNext()) {
                 FormsContract fc = new FormsContract();
-                fc.set_ID(c.getLong(c.getColumnIndex(FormsTable._ID)));
+                fc.set_ID(c.getString(c.getColumnIndex(FormsTable._ID)));
                 fc.setFormDate(c.getString(c.getColumnIndex(FormsTable.COLUMN_FORMDATE)));
                 fc.setIstatus(c.getString(c.getColumnIndex(FormsTable.COLUMN_ISTATUS)));
                 fc.setSynced(c.getString(c.getColumnIndex(FormsTable.COLUMN_SYNCED)));
@@ -825,7 +844,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(FormsTable.COLUMN_PRE_TEST, MainApp.fc.getPre_test());
 
 
-
 // Which row to update, based on the ID
         String selection = FormsTable._ID + " =? ";
         String[] selectionArgs = {String.valueOf(MainApp.fc.get_ID())};
@@ -868,25 +886,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(SessionTable.COLUMN_SLIDE_NUMBER, sc.getSlideNumber());
         db.insert(SessionTable.TABLE_NAME, null, values);
     }
-    public String getProviderName(){
+
+    public String getProviderName() {
 
         SQLiteDatabase db = this.getReadableDatabase();
 
         String providerName;
-        Cursor cursor = db.query(FormsTable.TABLE_NAME,new String[]{FormsTable.COLUMN_PROVIDER_NAME},
-                FormsTable._ID + "=?",new String[]{String.valueOf(MainApp.fc.get_ID())},
-                null,null,null);
+        Cursor cursor = db.query(FormsTable.TABLE_NAME, new String[]{FormsTable.COLUMN_PROVIDER_NAME},
+                FormsTable._ID + "=?", new String[]{String.valueOf(MainApp.fc.get_ID())},
+                null, null, null);
         cursor.moveToFirst();
-        do{
-             providerName = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_PROVIDER_NAME));
-        }while (cursor.moveToNext());
+        do {
+            providerName = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_PROVIDER_NAME));
+        } while (cursor.moveToNext());
 
 
         return providerName;
 
     }
 
-    public void  updateNMS() {
+    public void updateNMS() {
 
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -905,11 +924,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(NMCTable.COLUMN_LNG, MainApp.nmc.getLng());
         values.put(NMCTable.COLUMN_BTYPE, MainApp.nmc.getBookingtype());
         values.put(NMCTable.COLUMN_GPSTIME, MainApp.nmc.getGpsTime());
-        db.insert(NMCTable.TABLE_NAME,null,values);
+        db.insert(NMCTable.TABLE_NAME, null, values);
 
     }
 
-    public interface DBConnection{
+    public interface DBConnection {
         String DB_NAME = "acad_detail";
     }
 }

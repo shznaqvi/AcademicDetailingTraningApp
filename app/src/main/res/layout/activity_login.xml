@@ -114,6 +114,7 @@
                             android:orientation="vertical">
 
                             <EditText
+                                android:gravity="center"
                                 android:text="dmu@aku"
                                 android:layout_margin="0dp"
                                 android:id="@+id/email"
@@ -145,6 +146,7 @@
 
 
                                 <EditText
+                                    android:gravity="center"
                                     android:text="aku?dmu"
                                     android:layout_margin="0dp"
                                     android:id="@+id/password"
@@ -239,8 +241,32 @@
                         android:visibility="gone" />
 
 
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="50dp"
+                        android:orientation="vertical">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_marginTop="5dp"
+                            android:background="@color/white" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:gravity="center"
+                            android:onClick="showCredits"
+                            android:text="This application has been developed by the Software Development Team of the Data Management Unit, Department of Paediatrics and Child Health, Aga Khan University. All rights reserved. Copyright Aga Khan University 2018. For questions/comments, please email us at dmu@aku.edu "
+                            android:textColor="@color/white"
+                            android:textSize="12sp" />
+                    </LinearLayout>
 
                 </LinearLayout>
+
+
             </ScrollView>
 
         </LinearLayout>

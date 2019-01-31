@@ -89,6 +89,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
     String DirectoryName;
     KProgressHUD hud;
 
+    private int clicks;
     //
     private StringBuffer jsonString_output;
     private JSONArray json;
@@ -916,4 +917,19 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
 //            }, 1200);
 //        }
 //    }
+
+    public void showCredits(View view) {
+        if (clicks < 7) {
+            clicks++;
+            Toast.makeText(this, String.valueOf(clicks), Toast.LENGTH_SHORT).show();
+        } else {
+            clicks = 0;
+            Toast.makeText(this, "TEAM CREDITS: " +
+                            "\r\nHassan Naqvi, " +
+                            "Sajid Latif, " +
+                            "Mustufa Ansari ",
+                    Toast.LENGTH_LONG)
+                    .show();
+        }
+    }
 }

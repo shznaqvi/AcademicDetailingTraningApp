@@ -14,7 +14,7 @@ public class Data {
     public static final String[] Diarrhea = new String[]{"Dia(Assessment and Classification)", "Dia(Management, Counseling and Referral)"};
     public static final String[] PSBI = new String[]{"PSBI(Assessment and Classification)", "PSBI(Management, Counseling and Referral)", "PSBI(Breast Feeding & Immunization)"};
     public static final String[] maternalModule = new String[]{"Focused Antenatal Care", "Vaginal Bleeding in Pregnancy",
-            "Partograph", "Pre Eclampsia & Eclampsia", " Postpartum Hemorrhage", "Assessment and management of Shock", " Puerperal Sepsis"};
+            "Partograph", "Pre Eclampsia & Eclampsia", "Postpartum Hemorrhage - 1", "Postpartum Hemorrhage - 2", "Assessment and management of Shock", " Puerperal Sepsis"};
 
     public static final String[] newBornModule = new String[]{"Essential Care for Every Baby", "Essential Care for Small Babies", "Helping Babies Breathe"};
     public static final String[] ECEB = new String[]{"ECEB(Session One)", "ECEB(Session Two)"};
@@ -66,27 +66,27 @@ public class Data {
             R.drawable.gds1002, R.drawable.gds1003, R.drawable.gds1004, R.drawable.gds1005, R.drawable.gds1006,
             R.drawable.gds1007, R.drawable.gds1008, R.drawable.gds1009, R.drawable.gds1010, R.drawable.gds1011,
             R.drawable.gds1012, R.drawable.gds1013, R.drawable.gds1014, R.drawable.gds1015, R.drawable.gds1016,
-            R.drawable.gds1017, R.drawable.gds1018, R.drawable.gds1019,};
+            R.drawable.gds1017, R.drawable.gds1018, R.drawable.gds01sum,};
 
     public static int[] gds2_imgs = new int[]{
             R.drawable.gds2002, R.drawable.gds2003, R.drawable.gds2004, R.drawable.gds2005, R.drawable.gds2006,
             R.drawable.gds2007, R.drawable.gds2008, R.drawable.gds2009, R.drawable.gds2010, R.drawable.gds2011,
             R.drawable.gds2012, R.drawable.gds2013, R.drawable.gds2014, R.drawable.gds2015, R.drawable.gds2016,
-            R.drawable.gds2017, R.drawable.gds2018, R.drawable.gds2019, R.drawable.gds2020, R.drawable.gds2021,};
+            R.drawable.gds2017, R.drawable.gds2018, R.drawable.gds2019, R.drawable.gds2020,};
 
     public static int[] cdb1_imgs = new int[]{
             R.drawable.cdb1002, R.drawable.cdb1003, R.drawable.cdb1004, R.drawable.cdb1005, R.drawable.cdb1006,
             R.drawable.cdb1007, R.drawable.cdb1008, R.drawable.cdb1009, R.drawable.cdb1010, R.drawable.cdb1011,
             R.drawable.cdb1012, R.drawable.cdb1013, R.drawable.cdb1014, R.drawable.cdb1015, R.drawable.cdb1016,
             R.drawable.cdb1017, R.drawable.cdb1018, R.drawable.cdb1019, R.drawable.cdb1020, R.drawable.cdb1021,
-            R.drawable.cdb1022, R.drawable.cdb1023, R.drawable.cdb1024,};
+            R.drawable.cdb1022, R.drawable.cdb1023,};
 
     public static int[] cdb2_imgs = new int[]{
             R.drawable.cdb2002, R.drawable.cdb2003, R.drawable.cdb2004, R.drawable.cdb2005, R.drawable.cdb2006,
             R.drawable.cdb2007, R.drawable.cdb2008, R.drawable.cdb2009, R.drawable.cdb2010, R.drawable.cdb2011,
             R.drawable.cdb2012, R.drawable.cdb2013, R.drawable.cdb2014, R.drawable.cdb2015, R.drawable.cdb2016,
             R.drawable.cdb2017, R.drawable.cdb2018, R.drawable.cdb2019, R.drawable.cdb2020, R.drawable.cdb2021,
-            R.drawable.cdb2022, R.drawable.cdb2023,};
+            R.drawable.cdb2022,};
 
     public static int[] dia1_imgs = new int[]{
             R.drawable.dia1001, R.drawable.dia1002, R.drawable.dia1003, R.drawable.dia1004, R.drawable.dia1005,
@@ -139,14 +139,14 @@ public class Data {
             R.drawable.fanc_35, R.drawable.fanc_36, R.drawable.fanc_37, R.drawable.fanc_38, R.drawable.fanc_39,
             R.drawable.fanc_40, R.drawable.fanc_41, R.drawable.fanc_42, R.drawable.fanc_43, R.drawable.fanc_44,
             R.drawable.fanc_45, R.drawable.fanc_46, R.drawable.fanc_47, R.drawable.fanc_48, R.drawable.fanc_49,
-            R.drawable.fanc_50, R.drawable.fanc_51, R.drawable.fanc_52, R.drawable.fanc_56};
+            R.drawable.fanc_50, R.drawable.fanc_51, R.drawable.fanc_52, R.drawable.fanc_53};
 
     public static int[] vb_imgs = new int[]{
             R.drawable.vb_img_1, R.drawable.vb_img_5, R.drawable.vb_img_6, R.drawable.vb_img_7, R.drawable.vb_img_8,
             R.drawable.vb_img_9, R.drawable.vb_img_10, R.drawable.vb_img_11, R.drawable.vb_img_12, R.drawable.vb_img_13,
             R.drawable.vb_img_14, R.drawable.vb_img_15, R.drawable.vb_img_16, R.drawable.vb_img_17, R.drawable.vb_img_18,
             R.drawable.vb_img_19, R.drawable.vb_img_20, R.drawable.vb_img_21, R.drawable.vb_img_22, R.drawable.vb_img_23,
-            R.drawable.vb_img_24};
+            R.drawable.vb_img_24, R.drawable.vb_img_25,};
 
     public static int[] parto_imgs = new int[]{
             R.drawable.parto1002, R.drawable.parto1003, R.drawable.parto1004, R.drawable.parto1005, R.drawable.parto1006,
@@ -155,7 +155,7 @@ public class Data {
             R.drawable.parto1017, R.drawable.parto1018, R.drawable.parto1019, R.drawable.parto1020, R.drawable.parto1021,
             R.drawable.parto1022, R.drawable.parto1023, R.drawable.parto1024, R.drawable.parto1025, R.drawable.parto1026,
             R.drawable.parto1027, R.drawable.parto1028, R.drawable.parto1029, R.drawable.parto1030, R.drawable.parto1031,
-            R.drawable.parto1032, R.drawable.parto1033, R.drawable.parto1034, R.drawable.parto1035, R.drawable.parto1036,};
+            R.drawable.parto1032, R.drawable.parto1033, R.drawable.parto1034, R.drawable.parto1035, R.drawable.partosummary,};
 
 
     public static int[] eclam_imgs = new int[]{
@@ -176,6 +176,30 @@ public class Data {
             R.drawable.hemo1007, R.drawable.hemo1008, R.drawable.hemo1009, R.drawable.hemo1010, R.drawable.hemo1011,
             R.drawable.hemo1012, R.drawable.hemo1013, R.drawable.hemo1014, R.drawable.hemo1015, R.drawable.hemo1016,
             R.drawable.hemo1017, R.drawable.hemo1018, R.drawable.hemo1019, R.drawable.hemo1020,};
+
+
+    public static int[] hemo2_imgs = new int[]{
+            R.drawable.hemo2002, R.drawable.hemo2003, R.drawable.hemo2004, R.drawable.hemo2005, R.drawable.hemo2006,
+            R.drawable.hemo2007, R.drawable.hemo2008, R.drawable.hemo2009, R.drawable.hemo2010, R.drawable.hemo2011,
+            R.drawable.hemo2012, R.drawable.hemo2013, R.drawable.hemo2014, R.drawable.hemo2015, R.drawable.hemo2016,
+            R.drawable.hemo2017, R.drawable.hemo2018, R.drawable.hemo2019, R.drawable.hemo2020,};
+
+
+    public static int[] shock_imgs = new int[]{
+            R.drawable.shock1002, R.drawable.shock1003, R.drawable.shock1004, R.drawable.shock1005, R.drawable.shock1006,
+            R.drawable.shock1007, R.drawable.shock1008, R.drawable.shock1009, R.drawable.shock1010, R.drawable.shock1011,
+            R.drawable.shock1012, R.drawable.shock1013, R.drawable.shock1014, R.drawable.shock1015, R.drawable.shock1016,
+            R.drawable.shock1017, R.drawable.shock1018, R.drawable.shock1019, R.drawable.shock1020, R.drawable.shock1021,
+            R.drawable.shock1022, R.drawable.shock1023, R.drawable.shock1024, R.drawable.shock1025,};
+
+
+    public static int[] sepsis_imgs = new int[]{
+            R.drawable.sepsis1002, R.drawable.sepsis1003, R.drawable.sepsis1004, R.drawable.sepsis1005, R.drawable.sepsis1006,
+            R.drawable.sepsis1007, R.drawable.sepsis1008, R.drawable.sepsis1009, R.drawable.sepsis1010, R.drawable.sepsis1011,
+            R.drawable.sepsis1012, R.drawable.sepsis1013, R.drawable.sepsis1014, R.drawable.sepsis1015, R.drawable.sepsis1016,
+            R.drawable.sepsis1017, R.drawable.sepsis1018, R.drawable.sepsis1019, R.drawable.sepsis1020, R.drawable.sepsis1021,
+            R.drawable.sepsis1022, R.drawable.sepsis1023, R.drawable.sepsis1024, R.drawable.sepsis1025, R.drawable.sepsis1026,
+            R.drawable.sepsis1027, R.drawable.sepsis1028, R.drawable.sepsis1029,};
 
 
 

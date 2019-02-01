@@ -93,6 +93,7 @@ public class EcEbTest01 extends AppCompatActivity {
                         if (MainApp.isSlideStart) {
                             startActivity(new Intent(this, EcEbTest01.class).putExtra("type", type));
                             isComplete = true;
+                            GeneratorClass.incr = 0;
                             finish();
                         } else {
                             Toast.makeText(this, "Training Completed", Toast.LENGTH_SHORT).show();

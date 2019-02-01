@@ -29,6 +29,7 @@ import java.util.Date;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.RetrofitClient.RetrofitClient;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.FormsContract;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.SessionContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.AndroidDatabaseManager;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
@@ -51,12 +52,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     DatabaseHelper db;
     Collection<FormsContract> dbData;
     KProgressHUD hud;
-    public static ArrayList<String> pretestAnswers = new ArrayList<>();
-    public static ArrayList<String> checkboxPreAnswers = new ArrayList<>();
-    public static ArrayList<String> checkboxPostAnswers = new ArrayList<>();
-    public static ArrayList<String> posttestAnswers = new ArrayList<>();
-    public static ArrayList<String> correctAnswers = new ArrayList<>();
-    public static int[] slides;
+
 
 
 
@@ -169,7 +165,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         array.toString().replace("\uFEFF", "");
         hud.setDetailsLabel("Syncing " + array.length() + "Forms");
         hud.show();
-        Call<ResponseBody> call = RetrofitClient.service.syncForms(array);
+        Call<ResponseBody> call = RetrofitClient.service.syncForms(array.toString());
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

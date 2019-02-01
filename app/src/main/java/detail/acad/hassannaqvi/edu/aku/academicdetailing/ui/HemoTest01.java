@@ -80,6 +80,7 @@ public class HemoTest01 extends AppCompatActivity {
                         if (MainApp.isSlideStart) {
                             startActivity(new Intent(this, HemoTest01.class).putExtra("type", type));
                             isComplete = true;
+                            GeneratorClass.incr = 0;
                             finish();
                         } else {
                             Toast.makeText(this, "Training Completed", Toast.LENGTH_SHORT).show();

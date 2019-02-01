@@ -52,6 +52,7 @@ public class PartoTest extends AppCompatActivity {
             bi.heading.setText("PRETEST RESULT");
             GeneratorClass.comparingResult(bi.llPartoTest, true, Data.correctAnswers);
             bi.btnOk.setVisibility(View.VISIBLE);
+            bi.btnOk.setText("Start Training");
             bi.btnContinue.setVisibility(View.GONE);
         } else if (type.equals("post") && !isComplete) {
             bi.heading.setText("POST TEST");
@@ -63,6 +64,7 @@ public class PartoTest extends AppCompatActivity {
             bi.heading.setText(" POST TEST & PRETEST RESULT");
             GeneratorClass.comparingPostTestAndPretestResult(bi.llPartoTest, true, Data.correctAnswers);
             bi.btnOk.setVisibility(View.VISIBLE);
+            bi.btnOk.setText("Finish Training");
             bi.btnContinue.setVisibility(View.GONE);
         }
 
@@ -78,6 +80,7 @@ public class PartoTest extends AppCompatActivity {
                         if (MainApp.isSlideStart) {
                             startActivity(new Intent(this, PartoTest.class).putExtra("type", type));
                             isComplete = true;
+                            GeneratorClass.incr = 0;
                             finish();
                         } else {
                             Toast.makeText(this, "Training Completed", Toast.LENGTH_SHORT).show();

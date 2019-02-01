@@ -16,6 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.JSON.GeneratorClass;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
@@ -23,6 +24,7 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityEnd
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments.InfoFragment;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments.ScheduleFragment;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.interfaces.Callbacks;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.validation.validatorClass;
 
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.isComplete;
@@ -66,8 +68,9 @@ public class EndingActivity extends AppCompatActivity {
                     SaveDraft();
                     if (UpdateDB()) {
 //                        startActivity(new Intent(EndingActivity.this, MainActivity.class));
+
                         loadScheduleFragment();
-                        isComplete = false;
+
                     } else {
                         Toast.makeText(EndingActivity.this, "Error in updating db!!", Toast.LENGTH_SHORT).show();
                     }
@@ -75,6 +78,8 @@ public class EndingActivity extends AppCompatActivity {
             }
         });
     }
+
+
 
     private boolean UpdateDB() {
 

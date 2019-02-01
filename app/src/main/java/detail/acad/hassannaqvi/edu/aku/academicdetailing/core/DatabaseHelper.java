@@ -85,12 +85,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + " ); ";
 
     private static final String SQL_CREATE_SESSION_TABLE = " CREATE TABLE " + SessionTable.TABLE_NAME
-            + " ( " +  SessionTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"+ SessionTable.COLUMN_SLIDE_NUMBER + " INTEGER," +
+            + " ( " + SessionTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + SessionTable.COLUMN_SLIDE_NUMBER + " INTEGER," +
             SessionTable.COLUMN_MODULE + " TEXT," + SessionTable.COLUMN_SESSION
             + " TEXT,"
             + SessionTable.COLUMN_SESSION_TIME + " TEXT,"
             + SessionTable.COLUMN_SYNCED + " TEXT,"
-            + SessionTable.COLUMN_SYNCED_DATE + " TEXT"  +");";
+            + SessionTable.COLUMN_SYNCED_DATE + " TEXT" + ");";
 
     private static final String SQL_DELETE_USERS =
             "DROP TABLE IF EXISTS " + UsersTable.TABLE_NAME;
@@ -446,7 +446,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 do {
                     FormsContract fc = new FormsContract();
                     allFC.add(fc.Hydrate(c));
-                }while (c.moveToNext());
+                } while (c.moveToNext());
 
 
         } finally {
@@ -497,7 +497,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 do {
                     SessionContract sC = new SessionContract();
                     allSc.add(sC.Hydrate(c));
-                }while (c.moveToNext());
+                } while (c.moveToNext());
 
 
         } finally {
@@ -510,6 +510,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return allSc;
     }
+
     public Collection<NextMeetingContract> getUnsyncedNextMeetingForm() {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = null;
@@ -555,7 +556,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 do {
                     NextMeetingContract nC = new NextMeetingContract();
                     allSc.add(nC.Hydrate(c));
-                }while (c.moveToNext());
+                } while (c.moveToNext());
 
 
         } finally {
@@ -995,10 +996,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(SessionTable.COLUMN_MODULE, sc.getModule());
-        values.put(SessionTable.COLUMN_SESSION, sc.getSession());
-        values.put(SessionTable.COLUMN_SESSION_TIME, sc.getSessionTime());
-        values.put(SessionTable.COLUMN_SLIDE_NUMBER, sc.getSlideNumber());
+        values.put(SessionTable.COLUMN_MODULE, String.valueOf(sc.getModule()));
+        values.put(SessionTable.COLUMN_SESSION, String.valueOf(sc.getSession()));
+        values.put(SessionTable.COLUMN_SESSION_TIME, String.valueOf(sc.getSessionTime()));
+        values.put(SessionTable.COLUMN_SLIDE_NUMBER, String.valueOf(sc.getSlideNumber()));
         db.insert(SessionTable.TABLE_NAME, null, values);
     }
 

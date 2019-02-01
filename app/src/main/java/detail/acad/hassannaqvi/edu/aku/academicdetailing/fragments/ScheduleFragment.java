@@ -264,25 +264,25 @@ public class ScheduleFragment extends Fragment {
 
         if(type.equals("child")){
             switch (position) {
-                case 0:
+                case 1:
 
                     sessions.addAll(Arrays.asList(GDS));
                     bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, sessions));
                     break;
 
-                case 1:
+                case 2:
 
                     sessions.addAll(Arrays.asList(CDB));
                     bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, sessions));
                     break;
 
-                case 2:
+                case 3:
 
                     sessions.addAll(Arrays.asList(Diarrhea));
                     bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, sessions));
                     break;
 
-                case 3:
+                case 4:
 
                     sessions.addAll(Arrays.asList(PSBI));
                     bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, sessions));
@@ -290,19 +290,19 @@ public class ScheduleFragment extends Fragment {
             }
         }else if(type.equals("newBorn")){
             switch (position) {
-                case 0:
+                case 1:
 
                     sessions.addAll(Arrays.asList(ECEB));
                     bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, sessions));
                     break;
 
-                case 1:
+                case 2:
 
                     sessions.addAll(Arrays.asList(ECSB));
                     bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, sessions));
                     break;
 
-                case 2:
+                case 3:
 
                     sessions.addAll(Arrays.asList(HBB));
                     bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, sessions));

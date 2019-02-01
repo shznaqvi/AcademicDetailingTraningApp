@@ -85,6 +85,7 @@ public class VB_Pre_test extends AppCompatActivity {
                         if (MainApp.isSlideStart) {
                             startActivity(new Intent(this, VB_Pre_test.class).putExtra("type", type));
                             isComplete = true;
+                            GeneratorClass.incr = 0;
                             finish();
                         } else {
                             Toast.makeText(this, "Training Completed", Toast.LENGTH_SHORT).show();

@@ -197,6 +197,7 @@ public class DiaTest01 extends AppCompatActivity implements RadioButton.OnChecke
                         if (MainApp.isSlideStart) {
                             startActivity(new Intent(this, DiaTest01.class).putExtra("type", type));
                             isComplete = true;
+                            GeneratorClass.incr = 0;
                             finish();
                         } else {
                             Toast.makeText(this, "Training Completed", Toast.LENGTH_SHORT).show();

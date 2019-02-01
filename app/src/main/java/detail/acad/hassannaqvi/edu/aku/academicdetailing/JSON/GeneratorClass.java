@@ -28,13 +28,13 @@ import io.blackbox_vision.datetimepickeredittext.view.DatePickerInputEditText;
 
 public abstract class GeneratorClass {
 
-    private static JSONObject formJSON;
-    private static ArrayList<String> answers;
+    public static JSONObject formJSON;
+    public static ArrayList<String> answers;
     public static int chkbxincr = 0;
-    private static ArrayList<String> testAnswers;
+    public static ArrayList<String> testAnswers;
     public static int incr = 0;
-    private static ArrayList<String> chkboxAnswers;
-    private static ArrayList<String> correctAnswers;
+    public static ArrayList<String> chkboxAnswers;
+    public static ArrayList<String> correctAnswers;
 
     public static JSONObject getContainerJSON(LinearLayout lv, boolean flag, String... convention) {
 
@@ -112,10 +112,7 @@ public abstract class GeneratorClass {
     public static void comparingResult(LinearLayout lv, boolean flag, ArrayList<String>... answers) {
 
         if (flag)
-            if (answers.length != 0) {
-                testAnswers = answers[0];
-
-            }
+            testAnswers = answers[0];
 
         try {
             for (int i = 0; i < lv.getChildCount(); i++) {

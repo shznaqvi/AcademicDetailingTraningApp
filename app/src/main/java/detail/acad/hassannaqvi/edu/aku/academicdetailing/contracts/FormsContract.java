@@ -1,4 +1,4 @@
- package detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts;
+package detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts;
 
 import android.database.Cursor;
 import android.provider.BaseColumns;
@@ -43,17 +43,17 @@ public class FormsContract {
     private String synced = "";
     private String synced_date = "";
     private String appversion;
-    private String districtID= "";
-    private String healthFacilityName="";
-    private String providerName= "";
-    private String sessionStartTime="";
-    private String sessionEndTime="";
-    private String preTestStartTime="";
-    private String preTestEndTime="";
-    private String pre_test ="";
-    private String module ="";
+    private String districtID = "";
+    private String healthFacilityName = "";
+    private String providerName = "";
+    private String sessionStartTime = "";
+    private String sessionEndTime = "";
+    private String preTestStartTime = "";
+    private String preTestEndTime = "";
+    private String pre_test = "";
+    private String module = "";
     private String gpsTime = "";
-    private String session ="";
+    private String session = "";
 
 
     public String getGpsTime() {
@@ -96,7 +96,7 @@ public class FormsContract {
         this.post_test = post_test;
     }
 
-    private String post_test ="";
+    private String post_test = "";
 
     public String getLogginTime() {
         return logginTime;
@@ -106,7 +106,7 @@ public class FormsContract {
         this.logginTime = logginTime;
     }
 
-    private String logginTime ="";
+    private String logginTime = "";
 
     public String getSessionStartTime() {
         return sessionStartTime;
@@ -156,8 +156,8 @@ public class FormsContract {
         this.postTestStartTime = postTestStartTime;
     }
 
-    private String postTestEndTime="";
-    private String postTestStartTime="";
+    private String postTestEndTime = "";
+    private String postTestStartTime = "";
 
     public void setProjectName(String projectName) {
         this.projectName = projectName;
@@ -207,17 +207,18 @@ public class FormsContract {
         this.providerID = providerID;
     }
 
-    private String providerID ="";
+    private String providerID = "";
 
 
     public FormsContract() {
     }
 
 
-    public String setAndGetSyncedDate(){
+    public String setAndGetSyncedDate() {
         Boolean syncstatus = true;
         return syncstatus.toString();
     }
+
     public FormsContract Sync(JSONObject jsonObject) throws JSONException {
         this.projectName = jsonObject.getString(FormsTable.COLUMN_PROJECTNAME);
         this.surveyType = jsonObject.getString(FormsTable.COLUMN_SURVEYTYPE);
@@ -289,39 +290,45 @@ public class FormsContract {
         JSONObject json = new JSONObject();
 
         json.put(FormsTable.COLUMN_PROJECTNAME, this.projectName == null ? JSONObject.NULL : this.projectName);
-        json.put(FormsTable.COLUMN_MODULE,this.module == null ? JSONObject.NULL : this.module);
-        json.put(FormsTable.COLUMN_SESSION,this.session == null ? JSONObject.NULL : this.session);
-        json.put(FormsTable.COLUMN_ISTATUS,this.istatus == null ? JSONObject.NULL : this.istatus);
-        json.put(FormsTable.COLUMN_ISTATUS88X,this.istatus88x == null ? JSONObject.NULL : this.istatus88x);
-        json.put(FormsTable.COLUMN_ENDINGDATETIME,this.endingdatetime == null ? JSONObject.NULL : this.endingdatetime);
-        json.put(FormsTable.COLUMN_GPSLAT,this.gpsLat == null ? JSONObject.NULL : this.gpsLat);
-        json.put(FormsTable.COLUMN_GPSLNG,this.gpsLng == null ? JSONObject.NULL : this.gpsLng);
-        json.put(FormsTable.COLUMN_GPSACC,this.gpsAcc == null ? JSONObject.NULL : this.gpsAcc);
-        json.put(FormsTable.COLUMN_GPSTIME,this.gpsTime == null ? JSONObject.NULL : this.gpsTime);
-        json.put(FormsTable.COLUMN_DEVICEID,this.deviceid == null ? JSONObject.NULL : this.deviceid);
-        json.put(FormsTable.COLUMN_APPVERSION,this.appversion == null ? JSONObject.NULL : this.appversion);
-        json.put(FormsTable.COLUMN_DIST_ID,this.districtID == null ? JSONObject.NULL : this.districtID);
-        json.put(FormsTable.COLUMN_HFACILITY_NAME,this.healthFacilityName == null ? JSONObject.NULL : this.healthFacilityName);
-        json.put(FormsTable.COLUMN_PROVIDER_NAME,this.providerName == null ? JSONObject.NULL : this.providerName);
-        json.put(FormsTable.COLUMN_PROVIDER_ID,this.providerID == null ? JSONObject.NULL : this.providerID);
-        json.put(FormsTable.COLUMN_PRETEST_START_TIME,this.preTestStartTime == null ? JSONObject.NULL : this.preTestStartTime);
-        json.put(FormsTable.COLUMN_PRETEST_END_TIME,this.preTestEndTime == null ? JSONObject.NULL : this.preTestEndTime);
-        json.put(FormsTable.COLUMN_POSTTEST_START_TIME,this.postTestStartTime == null ? JSONObject.NULL : this.postTestStartTime);
-        json.put(FormsTable.COLUMN_POSTTEST_END_TIME,this.postTestEndTime == null ? JSONObject.NULL : this.postTestEndTime);
-        json.put(FormsTable.COLUMN_SESSION_START_TIME,this.sessionStartTime == null ? JSONObject.NULL : this.sessionStartTime);
-        json.put(FormsTable.COLUMN_SESSION_END_TIME,this.sessionEndTime == null ? JSONObject.NULL : this.sessionEndTime);
-        if (!this.pre_test.equals("")) {
-            json.put(FormsTable.COLUMN_PRE_TEST, this.pre_test.equals("") ? JSONObject.NULL : new JSONObject(this.pre_test));
-        }
-        if (!this.post_test.equals("")) {
-            json.put(FormsTable.COLUMN_POST_TEST, this.post_test.equals("") ? JSONObject.NULL : new JSONObject(this.post_test));
+        json.put(FormsTable.COLUMN_MODULE, this.module == null ? JSONObject.NULL : this.module);
+        json.put(FormsTable.COLUMN_SESSION, this.session == null ? JSONObject.NULL : this.session);
+        json.put(FormsTable.COLUMN_ISTATUS, this.istatus == null ? JSONObject.NULL : this.istatus);
+        json.put(FormsTable.COLUMN_ISTATUS88X, this.istatus88x == null ? JSONObject.NULL : this.istatus88x);
+        json.put(FormsTable.COLUMN_ENDINGDATETIME, this.endingdatetime == null ? JSONObject.NULL : this.endingdatetime);
+        json.put(FormsTable.COLUMN_GPSLAT, this.gpsLat == null ? JSONObject.NULL : this.gpsLat);
+        json.put(FormsTable.COLUMN_GPSLNG, this.gpsLng == null ? JSONObject.NULL : this.gpsLng);
+        json.put(FormsTable.COLUMN_GPSACC, this.gpsAcc == null ? JSONObject.NULL : this.gpsAcc);
+        json.put(FormsTable.COLUMN_GPSTIME, this.gpsTime == null ? JSONObject.NULL : this.gpsTime);
+        json.put(FormsTable.COLUMN_DEVICEID, this.deviceid == null ? JSONObject.NULL : this.deviceid);
+        json.put(FormsTable.COLUMN_APPVERSION, this.appversion == null ? JSONObject.NULL : this.appversion);
+        json.put(FormsTable.COLUMN_DIST_ID, this.districtID == null ? JSONObject.NULL : this.districtID);
+        json.put(FormsTable.COLUMN_HFACILITY_NAME, this.healthFacilityName == null ? JSONObject.NULL : this.healthFacilityName);
+        json.put(FormsTable.COLUMN_PROVIDER_NAME, this.providerName == null ? JSONObject.NULL : this.providerName);
+        json.put(FormsTable.COLUMN_PROVIDER_ID, this.providerID == null ? JSONObject.NULL : this.providerID);
+        json.put(FormsTable.COLUMN_PRETEST_START_TIME, this.preTestStartTime == null ? JSONObject.NULL : this.preTestStartTime);
+        json.put(FormsTable.COLUMN_PRETEST_END_TIME, this.preTestEndTime == null ? JSONObject.NULL : this.preTestEndTime);
+        json.put(FormsTable.COLUMN_POSTTEST_START_TIME, this.postTestStartTime == null ? JSONObject.NULL : this.postTestStartTime);
+        json.put(FormsTable.COLUMN_POSTTEST_END_TIME, this.postTestEndTime == null ? JSONObject.NULL : this.postTestEndTime);
+        json.put(FormsTable.COLUMN_SESSION_START_TIME, this.sessionStartTime == null ? JSONObject.NULL : this.sessionStartTime);
+        json.put(FormsTable.COLUMN_SESSION_END_TIME, this.sessionEndTime == null ? JSONObject.NULL : this.sessionEndTime);
+
+        try {
+
+            if (!this.pre_test.equals("")) {
+                json.put(FormsTable.COLUMN_PRE_TEST, this.pre_test.equals("") ? JSONObject.NULL : new JSONObject(this.pre_test));
+            }
+
+            if (!this.post_test.equals("")) {
+                json.put(FormsTable.COLUMN_POST_TEST, this.post_test.equals("") ? JSONObject.NULL : new JSONObject(this.post_test));
+            }
+        } catch (Exception e) {
         }
 
-        json.put(FormsTable.COLUMN_SYNCED,this.synced == null ? JSONObject.NULL : this.synced);
-        json.put(FormsTable.COLUMN_SYNCED_DATE,this.synced_date == null ? JSONObject.NULL : this.synced_date);
-        json.put(FormsTable.COLUMN_loggin_TIME,this.logginTime == null ? JSONObject.NULL : this.logginTime);
-        json.put(FormsTable._ID,this._id == null ? JSONObject.NULL : this._id);
-        json.put(FormsTable.COLUMN_FORMDATE,this.formdate == null ? JSONObject.NULL : this.formdate);
+        json.put(FormsTable.COLUMN_SYNCED, this.synced == null ? JSONObject.NULL : this.synced);
+        json.put(FormsTable.COLUMN_SYNCED_DATE, this.synced_date == null ? JSONObject.NULL : this.synced_date);
+        json.put(FormsTable.COLUMN_loggin_TIME, this.logginTime == null ? JSONObject.NULL : this.logginTime);
+        json.put(FormsTable._ID, this._id == null ? JSONObject.NULL : this._id);
+        json.put(FormsTable.COLUMN_FORMDATE, this.formdate == null ? JSONObject.NULL : this.formdate);
         return json;
     }
 
@@ -510,7 +517,7 @@ public class FormsContract {
         public static final String COLUMN_SYNCED_DATE = "synced_date";
         public static final String COLUMN_APPVERSION = "appversion";
         public static final String COLUMN_DIST_ID = "dictrict_id";
-        public static final String COLUMN_PROVIDER_NAME= "provider_name";
+        public static final String COLUMN_PROVIDER_NAME = "provider_name";
         public static final String COLUMN_PROVIDER_ID = "provider_id";
         public static final String COLUMN_HFACILITY_NAME = "health_fac_name";
         public static final String COLUMN_PRETEST_START_TIME = "pre_test_start_time";
@@ -523,7 +530,7 @@ public class FormsContract {
         public static final String COLUMN_PRE_TEST = "pre_test";
         public static final String COLUMN_POST_TEST = "post_test";
         public static final String COLUMN_MODULE = "module";
-        public static final String COLUMN_SESSION= "session";
+        public static final String COLUMN_SESSION = "session";
 
 
     }

@@ -27,6 +27,7 @@ public class SessionContract {
         json.put(SessionTable.COLUMN_SYNCED, this.synced == null ? JSONObject.NULL : this.synced);
         json.put(SessionTable.COLUMN_SYNCED_DATE, this.synced_date == null ? JSONObject.NULL : this.synced_date);
         json.put(SessionTable._ID, this._id == null ? JSONObject.NULL : this._id);
+
         return json;
     }
 

@@ -140,6 +140,7 @@ public class PsbiTest01 extends AppCompatActivity implements RadioButton.OnCheck
                         if (MainApp.isSlideStart) {
                             startActivity(new Intent(this, PsbiTest01.class).putExtra("type", type));
                             isComplete = true;
+                            GeneratorClass.incr = 0;
                             finish();
                         } else {
                             Toast.makeText(this, "Training Completed", Toast.LENGTH_SHORT).show();

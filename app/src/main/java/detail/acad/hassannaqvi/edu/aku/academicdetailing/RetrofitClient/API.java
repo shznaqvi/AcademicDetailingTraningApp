@@ -15,7 +15,7 @@ public interface API {
 
     @Headers({"Content-Type: application/json;charset=UTF-8"})
     @POST("forms.php")
-    Call<ResponseBody> syncForms(@Body JSONArray array);
+    Call<ResponseBody> syncForms(@Body String array);
 
     @Headers({"Content-Type: application/json;charset=UTF-8"})
     @POST("session_table.php")

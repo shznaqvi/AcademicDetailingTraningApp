@@ -80,6 +80,7 @@ public class ShockTest extends AppCompatActivity {
                         if (MainApp.isSlideStart) {
                             startActivity(new Intent(this, ShockTest.class).putExtra("type", type));
                             isComplete = true;
+                            GeneratorClass.incr = 0;
                             finish();
                         } else {
                             Toast.makeText(this, "Training Completed", Toast.LENGTH_SHORT).show();

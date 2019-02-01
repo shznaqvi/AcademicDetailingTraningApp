@@ -102,6 +102,7 @@ public class GDSSession02_Pre_test extends AppCompatActivity implements RadioBut
                         if (MainApp.isSlideStart) {
                             startActivity(new Intent(this, GDSSession02_Pre_test.class).putExtra("type", type));
                             isComplete = true;
+                            GeneratorClass.incr = 0;
                             finish();
                         } else {
                             Toast.makeText(this, "Training Completed", Toast.LENGTH_SHORT).show();

@@ -2,16 +2,14 @@ package detail.acad.hassannaqvi.edu.aku.academicdetailing.ui;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.kaopiz.kprogresshud.KProgressHUD;
 
 import org.json.JSONArray;
@@ -19,17 +17,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.lang.reflect.Method;
-import java.net.MalformedURLException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.RetrofitClient.RetrofitClient;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.FormsContract;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.SessionContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.AndroidDatabaseManager;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
@@ -43,7 +35,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener,Callbacks {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, Callbacks {
 
 
     private static final String TAG = "MainActivity";
@@ -52,8 +44,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     DatabaseHelper db;
     Collection<FormsContract> dbData;
     KProgressHUD hud;
-
-
 
 
     @Override
@@ -75,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
 
-        switch (v.getId()){
+        switch (v.getId()) {
 
             case R.id.home:
 
@@ -91,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
 //        transaction.setCustomAnimations(R.anim.slide_in,R.anim.slide_out);
-        transaction.add(bi.mainLayout.getId(),fragment);
+        transaction.add(bi.mainLayout.getId(), fragment);
         transaction.addToBackStack(null);
         transaction.commit();
 
@@ -125,8 +115,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         InfoFragment fragment = new InfoFragment();
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.setCustomAnimations(R.anim.slide_in,R.anim.slide_out);
-        transaction.replace(bi.mainLayout.getId(),fragment);
+        transaction.setCustomAnimations(R.anim.slide_in, R.anim.slide_out);
+        transaction.replace(bi.mainLayout.getId(), fragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }
@@ -136,8 +126,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ModuleFragment fragment = new ModuleFragment();
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.setCustomAnimations(R.anim.slide_in,R.anim.slide_out);
-        transaction.replace(bi.mainLayout.getId(),fragment);
+        transaction.setCustomAnimations(R.anim.slide_in, R.anim.slide_out);
+        transaction.replace(bi.mainLayout.getId(), fragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }
@@ -145,7 +135,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void loadDatabaseManager() {
 
-        startActivity(new Intent(MainActivity.this,AndroidDatabaseManager.class));
+        startActivity(new Intent(MainActivity.this, AndroidDatabaseManager.class));
 
     }
 
@@ -154,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         JSONArray array = new JSONArray();
         dbData = db.getUnsyncedForms();
-        for (FormsContract fc : dbData){
+        for (FormsContract fc : dbData) {
             try {
                 array.put(fc.toJSONObject());
             } catch (JSONException e) {
@@ -170,7 +160,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 hud.dismiss();
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     try {
                         String data = response.body().string();
                         JSONObject obj = new JSONObject(data);
@@ -190,9 +180,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(MainActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
             }
         });
-
-
-
 
 
     }

@@ -38,7 +38,6 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments.InfoFragment;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments.MainFragment;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments.ModuleFragment;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.interfaces.Callbacks;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.sync.SyncAllData;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -76,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
 
-        switch (v.getId()){
+        switch (v.getId()) {
 
             case R.id.home:
 
@@ -88,66 +87,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void loadHomeFragment() {
-        MainFragment fragment = new MainFragment();
-        FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-//        transaction.setCustomAnimations(R.anim.slide_in,R.anim.slide_out);
-        transaction.add(bi.mainLayout.getId(),fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
-
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-
-        if (exit) {
-            finish(); // finish activity
-            startActivity(new Intent(this, LoginActivity.class));
-
-        } else {
-
-            Toast.makeText(this, "Press Back again to Exit.",
-                    Toast.LENGTH_SHORT).show();
-            exit = true;
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    exit = false;
-                }
-            }, 3 * 1000);
-
-        }
+        loadFragment(new MainFragment());
     }
 
     @Override
     public void loadInfoFragment() {
-        InfoFragment fragment = new InfoFragment();
-        FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.setCustomAnimations(R.anim.slide_in,R.anim.slide_out);
-        transaction.replace(bi.mainLayout.getId(),fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
+        loadFragment(new InfoFragment());
     }
 
     @Override
     public void loadModuleFragment() {
-        ModuleFragment fragment = new ModuleFragment();
-        FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.setCustomAnimations(R.anim.slide_in,R.anim.slide_out);
-        transaction.replace(bi.mainLayout.getId(),fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
+        loadFragment(new ModuleFragment());
     }
 
     @Override
     public void loadDatabaseManager() {
-
-        startActivity(new Intent(MainActivity.this,AndroidDatabaseManager.class));
-
+        startActivity(new Intent(MainActivity.this, AndroidDatabaseManager.class));
     }
 
     @Override
@@ -175,10 +130,42 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        ).execute();
 
 
-
-
-
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        if (exit) {
+            finish(); // finish activity
+            startActivity(new Intent(this, LoginActivity.class));
+
+        } else {
+
+            Toast.makeText(this, "Press Back again to Exit.",
+                    Toast.LENGTH_SHORT).show();
+            exit = true;
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    exit = false;
+                }
+            }, 3 * 1000);
+
+        }
+    }
+
+    private void loadFragment(Fragment fragment) {
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        if (fragment.getClass().getName().equals(MainFragment.class.getName())) {
+            transaction.add(bi.mainLayout.getId(), fragment);
+        } else {
+            transaction.setCustomAnimations(R.anim.slide_in, R.anim.slide_out);
+            transaction.replace(bi.mainLayout.getId(), fragment);
+        }
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
 
 }

@@ -91,7 +91,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String SQL_CREATE_DISTRICT_TABLE = " CREATE TABLE " + DistrictTable.TABLE_NAME
             + " ( " + DistrictTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + DistrictTable.DISTRICT_CODE + " Long," +
-            DistrictTable.DISTRICT_NAME + " TEXT" +  ");";
+            DistrictTable.DISTRICT_NAME + " TEXT" + ");";
 
 
     private static final String SQL_CREATE_NMS = "CREATE TABLE " + NMCTable.TABLE_NAME +
@@ -112,7 +112,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             "DROP TABLE IF EXISTS " + UsersTable.TABLE_NAME;
     private static final String SQL_DELETE_FORMS =
             "DROP TABLE IF EXISTS " + FormsTable.TABLE_NAME;
-
 
 
     private final String TAG = "DatabaseHelper";
@@ -457,8 +456,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 DistrictsContract dc = new DistrictsContract();
                 dc.Sync(jsonObject);
                 ContentValues values = new ContentValues();
-                values.put(DistrictTable.DISTRICT_CODE,dc.getDICTRICT_CODE());
-                values.put(DistrictTable.DISTRICT_NAME,dc.getDistrict_name());
+                values.put(DistrictTable.DISTRICT_CODE, dc.getDICTRICT_CODE());
+                values.put(DistrictTable.DISTRICT_NAME, dc.getDistrict_name());
                 db.insert(DistrictTable.TABLE_NAME, null, values);
             }
             db.close();
@@ -573,7 +572,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(FormsTable.COLUMN_SYNCED_DATE, new Date().toString());
 
 // Which row to update, based on the title
-        String where = FormsTable._ID + " = ?";
+        String where = FormsTable.COLUMN_ID + " =?";
         String[] whereArgs = {id};
 
         int count = db.update(

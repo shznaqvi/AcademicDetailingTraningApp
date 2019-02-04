@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -24,7 +25,6 @@ import java.util.Collection;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 
-
 /**
  * Created by ali.azaz on 3/14/2018.
  */
@@ -39,6 +39,8 @@ public class SyncAllData extends AsyncTask<Void, Void, String> {
     private String syncClass, url, updateSyncClass;
     private Class contractClass;
     private Collection dbData;
+    private TextView syncStatus;
+
 
     public SyncAllData(Context context, String syncClass, String updateSyncClass, Class contractClass, String url, Collection dbData) {
         mContext = context;
@@ -178,32 +180,20 @@ public class SyncAllData extends AsyncTask<Void, Void, String> {
             }
 
             for (int i = 0; i < json.length(); i++) {
-                int id = 0;
                 JSONObject jsonObject = new JSONObject(json.getString(i));
 
                 if (jsonObject.getString("status").equals("1") && jsonObject.getString("error").equals("0")) {
 
-//                      db.updateSyncedChildForm(jsonObject.getString("id"));  // UPDATE SYNCED
-
                     method.invoke(db, jsonObject.getString("id"));
-                    id = Integer.parseInt(jsonObject.getString("id"));
 
                     sSynced++;
                 } else if (jsonObject.getString("status").equals("2") && jsonObject.getString("error").equals("0")) {
-                    //db.updateSyncedChildForm(jsonObject.getString("id")); // UPDATE DUPLICATES
 
                     method.invoke(db, jsonObject.getString("id"));
-                    id = Integer.parseInt(jsonObject.getString("id"));
 
                     sDuplicate++;
                 } else {
                     sSyncedError += "\nError: " + jsonObject.getString("message");
-                }
-                switch (updateSyncClass) {
-                    case "updateSyncedForms":
-//                        db.updateSyncedForms(id);
-                        break;
-
                 }
             }
             Toast.makeText(mContext, syncClass + " synced: " + sSynced + "\r\n\r\n Errors: " + sSyncedError, Toast.LENGTH_SHORT).show();
@@ -212,7 +202,6 @@ public class SyncAllData extends AsyncTask<Void, Void, String> {
             pd.setMessage(syncClass + " synced: " + sSynced + "\r\n\r\n Duplicates: " + sDuplicate + "\r\n\r\n Errors: " + sSyncedError);
             pd.setTitle("Done uploading +" + syncClass + " data");
             pd.show();
-            //syncStatus.setText(syncStatus.getText() + "\r\nDone uploading +" + syncClass + " data");
 
         } catch (JSONException e) {
             e.printStackTrace();

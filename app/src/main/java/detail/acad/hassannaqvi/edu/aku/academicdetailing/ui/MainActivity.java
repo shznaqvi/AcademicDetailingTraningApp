@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -45,7 +46,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Collection<FormsContract> dbData;
     KProgressHUD hud;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +60,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bi.bottomNav.learning.setOnClickListener(this);
         bi.bottomNav.settings.setOnClickListener(this);
     }
-
 
     @Override
     public void onClick(View v) {
@@ -77,66 +76,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void loadHomeFragment() {
-        MainFragment fragment = new MainFragment();
-        FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-//        transaction.setCustomAnimations(R.anim.slide_in,R.anim.slide_out);
-        transaction.add(bi.mainLayout.getId(), fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
-
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-
-        if (exit) {
-            finish(); // finish activity
-            startActivity(new Intent(this, LoginActivity.class));
-
-        } else {
-
-            Toast.makeText(this, "Press Back again to Exit.",
-                    Toast.LENGTH_SHORT).show();
-            exit = true;
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    exit = false;
-                }
-            }, 3 * 1000);
-
-        }
+        loadFragment(new MainFragment());
     }
 
     @Override
     public void loadInfoFragment() {
-        InfoFragment fragment = new InfoFragment();
-        FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.setCustomAnimations(R.anim.slide_in, R.anim.slide_out);
-        transaction.replace(bi.mainLayout.getId(), fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
+        loadFragment(new InfoFragment());
     }
 
     @Override
     public void loadModuleFragment() {
-        ModuleFragment fragment = new ModuleFragment();
-        FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.setCustomAnimations(R.anim.slide_in, R.anim.slide_out);
-        transaction.replace(bi.mainLayout.getId(), fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
+        loadFragment(new ModuleFragment());
     }
 
     @Override
     public void loadDatabaseManager() {
-
         startActivity(new Intent(MainActivity.this, AndroidDatabaseManager.class));
-
     }
 
     @Override
@@ -184,5 +139,40 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        if (exit) {
+            finish(); // finish activity
+            startActivity(new Intent(this, LoginActivity.class));
+
+        } else {
+
+            Toast.makeText(this, "Press Back again to Exit.",
+                    Toast.LENGTH_SHORT).show();
+            exit = true;
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    exit = false;
+                }
+            }, 3 * 1000);
+
+        }
+    }
+
+    private void loadFragment(Fragment fragment) {
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        if (fragment.getClass().getName().equals(MainFragment.class.getName())) {
+            transaction.add(bi.mainLayout.getId(), fragment);
+        } else {
+            transaction.setCustomAnimations(R.anim.slide_in, R.anim.slide_out);
+            transaction.replace(bi.mainLayout.getId(), fragment);
+        }
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
 
 }

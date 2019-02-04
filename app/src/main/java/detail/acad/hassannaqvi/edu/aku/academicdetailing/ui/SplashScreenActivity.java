@@ -1,9 +1,12 @@
 package detail.acad.hassannaqvi.edu.aku.academicdetailing.ui;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+
+import com.kaopiz.kprogresshud.KProgressHUD;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.RetrofitClient.RetrofitClient;
@@ -35,6 +38,16 @@ public class SplashScreenActivity extends AppCompatActivity {
                 SplashScreenActivity.this.finish();
             }
         }, 1500);
+    }
+
+    public static void showProgress(Context context, String label, String message) {
+
+    }
+
+    public static void hideProgress(Context context) {
+        KProgressHUD hud = KProgressHUD.create(context).setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+                .setCancellable(false);
+        hud.dismiss();
     }
 
 

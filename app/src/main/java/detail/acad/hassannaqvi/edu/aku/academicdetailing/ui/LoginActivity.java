@@ -48,6 +48,7 @@ import com.github.amlcurran.showcaseview.targets.ViewTarget;
 import com.kaopiz.kprogresshud.KProgressHUD;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -63,9 +64,15 @@ import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.RetrofitClient.RetrofitClient;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityLoginBinding;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Utils;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -102,6 +109,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
     private static final long MINIMUM_TIME_BETWEEN_UPDATES = 1000; // in Milliseconds
 
     public static DatabaseHelper db;
+    Call<ResponseBody> call = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -534,20 +542,64 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
 //        }
 
     }
-//    public void onSyncDataClick() {
-//        //TODO implement
-//
-//        // Require permissions INTERNET & ACCESS_NETWORK_STATE
-//        ConnectivityManager connMgr = (ConnectivityManager)
-//                getSystemService(Context.CONNECTIVITY_SERVICE);
-//        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-//        if (networkInfo != null && networkInfo.isConnected()) {
-//            new syncData(this).execute();
-//        } else {
-//            Toast.makeText(this, "No network connection available.", Toast.LENGTH_SHORT).show();
-//        }
-//    }
-//
+    public void onSyncDataClick() {
+        //TODO implement
+
+        // Require permissions INTERNET & ACCESS_NETWORK_STATE
+        ConnectivityManager connMgr = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected()) {
+            call = RetrofitClient.service.getUsers(); //users
+            gettingDataFromService("Syncing Users","Users");
+            call = RetrofitClient.service.getDistricts(); //districts
+            gettingDataFromService("Syncing Districts","Districts");
+        } else {
+            Toast.makeText(this, "No network connection available.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void gettingDataFromService(String label, final String type) {
+
+        hud.setLabel(label);
+        hud.setDetailsLabel("Please Wait");
+        hud.show();
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                hud.dismiss();
+                if(response.isSuccessful()){
+                    try {
+                        String data = response.body().string();
+                        JSONArray array = new JSONArray(data);
+                        switch (type){
+                            case "Users":
+                                db.syncUsers(array);
+                                break;
+                            case "Districts":
+                                db.syncDistricts(array);
+                                break;
+                        }
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    Toast.makeText(LoginActivity.this, "Successfully Synced " + type +" Data ", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                hud.dismiss();
+                Toast.makeText(LoginActivity.this, "Server Connectivity Error", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     private void populateAutoComplete() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS)
@@ -655,6 +707,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
+            hud.setLabel("Logging in");
             hud.show();
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
@@ -675,76 +728,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
         return password.length() >= 7;
     }
 
-    //
-//    /**
-//     * Shows the progress UI and hides the login form.
-//     */
-//    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
-//    private void showProgress(final boolean show) {
-//        // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
-//        // for very easy animations. If available, use these APIs to fade-in
-//        // the progress spinner.
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
-//            int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
-//
-//            bi.loginForm.setVisibility(show ? View.GONE : View.VISIBLE);
-//            bi.loginForm.animate().setDuration(shortAnimTime).alpha(
-//                    show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
-//                @Override
-//                public void onAnimationEnd(Animator animation) {
-//                    bi.loginForm.setVisibility(show ? View.GONE : View.VISIBLE);
-//                }
-//            });
-//
-//            bi.loginProgress.setVisibility(show ? View.VISIBLE : View.GONE);
-//            bi.loginProgress.animate().setDuration(shortAnimTime).alpha(
-//                    show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
-//                @Override
-//                public void onAnimationEnd(Animator animation) {
-//                    bi.loginProgress.setVisibility(show ? View.VISIBLE : View.GONE);
-//                }
-//            });
-//        } else {
-//            // The ViewPropertyAnimator APIs are not available, so simply show
-//            // and hide the relevant UI components.
-//            bi.loginProgress.setVisibility(show ? View.VISIBLE : View.GONE);
-//            bi.loginForm.setVisibility(show ? View.GONE : View.VISIBLE);
-//        }
-//    }
-//
-//    @Override
-//    public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
-//        return new CursorLoader(this,
-//                // Retrieve data rows for the device user's 'profile' contact.
-//                Uri.withAppendedPath(ContactsContract.Profile.CONTENT_URI,
-//                        ContactsContract.Contacts.Data.CONTENT_DIRECTORY), ProfileQuery.PROJECTION,
-//
-//                // Select only email addresses.
-//                ContactsContract.Contacts.Data.MIMETYPE +
-//                        " = ?", new String[]{ContactsContract.CommonDataKinds.Email
-//                .CONTENT_ITEM_TYPE},
-//
-//                // Show primary email addresses first. Note that there won't be
-//                // a primary email address if the user hasn't specified one.
-//                ContactsContract.Contacts.Data.IS_PRIMARY + " DESC");
-//    }
-//
-//    @Override
-//    public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
-//        List<String> emails = new ArrayList<>();
-//        cursor.moveToFirst();
-//        while (!cursor.isAfterLast()) {
-//            emails.add(cursor.getString(ProfileQuery.ADDRESS));
-//            cursor.moveToNext();
-//        }
-//
-//    }
-//
-//    @Override
-//    public void onLoaderReset(Loader<Cursor> cursorLoader) {
-//
-//    }
-//
+
     public void onShowPasswordClick() {
         //TODO implement
         if (bi.password.getTransformationMethod() == null) {
@@ -756,29 +740,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
         }
     }
 
-    //
-//    public void gotoMain(View v) {
-//
-//        finish();
-//
-//        Intent im = new Intent(LoginActivity.this, MainActivity.class);
-//        startActivity(im);
-//    }
-//
-//    private interface ProfileQuery {
-//        String[] PROJECTION = {
-//                ContactsContract.CommonDataKinds.Email.ADDRESS,
-//                ContactsContract.CommonDataKinds.Email.IS_PRIMARY,
-//        };
-//
-//        int ADDRESS = 0;
-//        int IS_PRIMARY = 1;
-//    }
-//
-//    /**
-//     * Represents an asynchronous login/registration task used to authenticate
-//     * the user.
-//     */
     public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
         private final String mEmail;

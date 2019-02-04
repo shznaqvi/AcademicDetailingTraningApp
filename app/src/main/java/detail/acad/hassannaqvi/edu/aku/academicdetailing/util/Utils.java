@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.kaopiz.kprogresshud.KProgressHUD;
+
 import java.util.ArrayList;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
@@ -222,7 +224,7 @@ public class Utils {
             slide.setImageResource(getPreImages(index, moduleName));
         } else if (MainApp.isChild) {
             slide.setImageResource(getPreImages(index, moduleName));
-        }else if (MainApp.isNBorn){
+        } else if (MainApp.isNBorn) {
             slide.setImageResource(getPreImages(index, moduleName));
         }
         builder.setView(view);
@@ -450,7 +452,7 @@ public class Utils {
             }
 
 
-        }else if(MainApp.isNBorn){
+        } else if (MainApp.isNBorn) {
             if (moduleName.equals("eceb")) {
 
                 switch (index) {
@@ -575,6 +577,8 @@ public class Utils {
         return R.drawable.hbb1001;
 
     }
+
+
 
 
 }

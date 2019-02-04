@@ -7,6 +7,7 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
@@ -24,6 +25,11 @@ public interface API {
     @Headers({"Content-Type: application/json;charset=UTF-8"})
     @POST("next_meeting.php")
     Call<ResponseBody> syncNextMeeting(@Body JSONArray array);
+
+    @GET("users.php")
+    Call<ResponseBody> getUsers();
+  @GET("districts.php")
+    Call<ResponseBody> getDistricts();
 
 
 }

@@ -38,6 +38,7 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments.InfoFragment;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments.MainFragment;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments.ModuleFragment;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.interfaces.Callbacks;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.sync.SyncAllData;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -152,44 +153,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void uploadDataToServer() {
 
-        JSONArray array = new JSONArray();
-        dbData = db.getUnsyncedForms();
-        for (FormsContract fc : dbData){
-            try {
-                array.put(fc.toJSONObject());
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
+        DatabaseHelper db = new DatabaseHelper(this);
 
-        array.toString().replace("\uFEFF", "");
-        hud.setDetailsLabel("Syncing " + array.length() + "Forms");
-        hud.show();
-        Call<ResponseBody> call = RetrofitClient.service.syncForms(array.toString());
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                hud.dismiss();
-                if(response.isSuccessful()){
-                    try {
-                        String data = response.body().string();
-                        JSONObject obj = new JSONObject(data);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
+        Toast.makeText(getApplicationContext(), "Syncing Forms", Toast.LENGTH_SHORT).show();
+        new SyncAllData(
+                this,
+                "Forms",
+                "updateSyncedForms",
+                FormsContract.class,
+                MainApp._HOST_URL + FormsContract.FormsTable.Form_Url,
+                db.getUnsyncedForms()
+        ).execute();
 
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-                hud.dismiss();
-                Toast.makeText(MainActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        new SyncAllData(
+//                this,
+//                "Forms",
+//                "updateSyncedForms",
+//                FormsContract.class,
+//                MainApp._HOST_URL + FormsContract.FormsTable.Form_Url,
+//                db.getUnsyncedForms()
+//        ).execute();
 
 
 

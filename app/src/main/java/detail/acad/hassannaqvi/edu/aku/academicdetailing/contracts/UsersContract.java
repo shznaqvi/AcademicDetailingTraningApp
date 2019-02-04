@@ -15,6 +15,7 @@ public class UsersContract {
 
     private static final String TAG = "Users_CONTRACT";
     Long _ID;
+    Long DICTRICT_CODE;
     String ROW_USERNAME;
     String ROW_PASSWORD;
 
@@ -22,9 +23,19 @@ public class UsersContract {
         // Default Constructor
     }
 
+
+
     public UsersContract(String username, String password, String username2, String password2) {
         this.ROW_PASSWORD = password;
         this.ROW_USERNAME = username;
+    }
+
+    public Long getDICTRICT_CODE() {
+        return DICTRICT_CODE;
+    }
+
+    public void setDICTRICT_CODE(Long DICTRICT_CODE) {
+        this.DICTRICT_CODE = DICTRICT_CODE;
     }
 
     public Long getUserID() {
@@ -55,13 +66,14 @@ public class UsersContract {
         //this._ID= jsonObject.getLong(UsersTable._ID);
         this.ROW_USERNAME = jsonObject.getString(UsersTable.ROW_USERNAME);
         this.ROW_PASSWORD = jsonObject.getString(UsersTable.ROW_PASSWORD);
+        this.DICTRICT_CODE = jsonObject.getLong(UsersTable.DISTRICT_CODE);
 
         return this;
 
     }
 
     public UsersContract Hydrate(Cursor cursor) {
-        this._ID = cursor.getLong(cursor.getColumnIndex(UsersTable._ID));
+        this.DICTRICT_CODE = cursor.getLong(cursor.getColumnIndex(UsersTable.DISTRICT_CODE));
         this.ROW_USERNAME = cursor.getString(cursor.getColumnIndex(UsersTable.ROW_USERNAME));
         this.ROW_PASSWORD = cursor.getString(cursor.getColumnIndex(UsersTable.ROW_PASSWORD));
 
@@ -73,9 +85,9 @@ public class UsersContract {
     public JSONObject toJSONObject() throws JSONException {
 
         JSONObject json = new JSONObject();
-        json.put(UsersTable._ID, this._ID == null ? JSONObject.NULL : this._ID);
         json.put(UsersTable.ROW_USERNAME, this.ROW_USERNAME == null ? JSONObject.NULL : this.ROW_USERNAME);
         json.put(UsersTable.ROW_PASSWORD, this.ROW_PASSWORD == null ? JSONObject.NULL : this.ROW_PASSWORD);
+        json.put(UsersTable.DISTRICT_CODE, this.DICTRICT_CODE == null ? JSONObject.NULL : this.DICTRICT_CODE);
         return json;
     }
 
@@ -84,6 +96,7 @@ public class UsersContract {
 
         public static final String TABLE_NAME = "users";
         public static final String _ID = "id";
+        public static final String DISTRICT_CODE = "district_code";
         public static final String ROW_USERNAME = "username";
         public static final String ROW_PASSWORD = "password";
     }

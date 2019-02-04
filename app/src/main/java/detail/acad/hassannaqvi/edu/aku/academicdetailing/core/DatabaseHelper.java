@@ -18,20 +18,16 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.DistrictsContract;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.DistrictsContract.DistrictTable;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.FormsContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.FormsContract.FormsTable;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.HealthFacContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.HealthFacContract.singleHF;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.LHWsContract;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.LHWsContract.singleLHWs;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.NextMeetingContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.NextMeetingContract.NMCTable;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.SessionContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.SessionContract.SessionTable;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.TehsilContract;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.TehsilContract.singleTehsil;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.UCsContract;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.UCsContract.singleUCs;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.UsersContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.UsersContract.UsersTable;
 
@@ -39,6 +35,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String SQL_CREATE_USERS = "CREATE TABLE " + UsersTable.TABLE_NAME + "("
             + UsersTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + UsersTable.DISTRICT_CODE + " LONG,"
             + UsersTable.ROW_USERNAME + " TEXT,"
             + UsersTable.ROW_PASSWORD + " TEXT );";
     public static final String DATABASE_NAME = "dr_reg.db";
@@ -92,10 +89,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + SessionTable.COLUMN_SYNCED + " TEXT,"
             + SessionTable.COLUMN_SYNCED_DATE + " TEXT" + ");";
 
-    private static final String SQL_DELETE_USERS =
-            "DROP TABLE IF EXISTS " + UsersTable.TABLE_NAME;
-    private static final String SQL_DELETE_FORMS =
-            "DROP TABLE IF EXISTS " + FormsTable.TABLE_NAME;
+    private static final String SQL_CREATE_DISTRICT_TABLE = " CREATE TABLE " + DistrictTable.TABLE_NAME
+            + " ( " + DistrictTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + DistrictTable.DISTRICT_CODE + " Long," +
+            DistrictTable.DISTRICT_NAME + " TEXT" +  ");";
 
 
     private static final String SQL_CREATE_NMS = "CREATE TABLE " + NMCTable.TABLE_NAME +
@@ -110,32 +106,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + NMCTable.COLUMN_SYNCED_DATE + " TEXT " + ");";
 
     private static final String SQL_DELETE_SESSION = "DROP TABLE IF EXISTS " + SessionTable.TABLE_NAME;
+    private static final String SQL_DELETE_DISTRICTS = "DROP TABLE IF EXISTS " + DistrictTable.TABLE_NAME;
     private static final String SQL_DELETE_NMS = "DROP TABLE IF EXISTS " + NMCTable.TABLE_NAME;
+    private static final String SQL_DELETE_USERS =
+            "DROP TABLE IF EXISTS " + UsersTable.TABLE_NAME;
+    private static final String SQL_DELETE_FORMS =
+            "DROP TABLE IF EXISTS " + FormsTable.TABLE_NAME;
 
-    private static final String SQL_DELETE_HEALTH_FACILITIES = "DROP TABLE IF EXISTS " + singleHF.TABLE_NAME;
-    private static final String SQL_DELETE_TEHSILS = "DROP TABLE IF EXISTS " + singleTehsil.TABLE_NAME;
-    private static final String SQL_DELETE_UCS = "DROP TABLE IF EXISTS " + singleUCs.TABLE_NAME;
-    private static final String SQL_DELETE_LHWs = "DROP TABLE IF EXISTS " + singleLHWs.TABLE_NAME;
-    final String SQL_CREATE_HEALTH_FACILITIES = "CREATE TABLE " + singleHF.TABLE_NAME + "("
-            + singleHF.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + singleHF.COLUMN_HF_NAME + " TEXT,"
-            + singleHF.COLUMN_HF_TYPE + " TEXT,"
-            + singleHF.COLUMN_HF_DISTRICT_NAME + " TEXT,"
-            + singleHF.COLUMN_HF_PROVINCE_NAME + " TEXT,"
-            + singleHF.COLUMN_HF_UC_NAME + " TEXT,"
-            + singleHF.COLUMN_HF_UEN_CODE + " TEXT,"
-            + singleHF.COLUMN_HF_TEHSIL_NAME + " TEXT );";
-    final String SQL_CREATE_LHWS = "CREATE TABLE " + singleLHWs.TABLE_NAME + "("
-            + singleLHWs.COLUMN_LHW_NAME + " TEXT,"
-            + singleLHWs.COLUMN_HF_CODE + " TEXT,"
-            + singleLHWs.COLUMN_LHW_CODE + " TEXT );";
-    final String SQL_CREATE_TEHSILS = "CREATE TABLE " + singleTehsil.TABLE_NAME + "("
-            + singleTehsil.COLUMN_TEHSIL_CODE + " TEXT,"
-            + singleTehsil.COLUMN_TEHSIL_NAME + " TEXT );";
-    final String SQL_CREATE_UCS = "CREATE TABLE " + singleUCs.TABLE_NAME + "("
-            + singleUCs.COLUMN_UCCODE + " TEXT,"
-            + singleUCs.COLUMN_TEHSIL_CODE + " TEXT,"
-            + singleUCs.COLUMN_UCS + " TEXT );";
+
 
     private final String TAG = "DatabaseHelper";
 
@@ -151,9 +129,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_USERS);
         db.execSQL(SQL_CREATE_FORMS);
         db.execSQL(SQL_CREATE_SESSION_TABLE);
-
-        db.execSQL(SQL_CREATE_HEALTH_FACILITIES);
         db.execSQL(SQL_CREATE_NMS);
+        db.execSQL(SQL_CREATE_DISTRICT_TABLE);
         /*db.execSQL(SQL_CREATE_TEHSILS);
         db.execSQL(SQL_CREATE_UCS);
         db.execSQL(SQL_CREATE_LHWS);*/
@@ -164,7 +141,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         db.execSQL(SQL_DELETE_USERS);
         db.execSQL(SQL_DELETE_FORMS);
-        db.execSQL(SQL_DELETE_HEALTH_FACILITIES);
+        db.execSQL(SQL_DELETE_DISTRICTS);
         db.execSQL(SQL_DELETE_SESSION);
         db.execSQL(SQL_DELETE_NMS);
     }
@@ -236,133 +213,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return allDC;
     }
 
-    public Collection<LHWsContract> getLHWs(String uccode) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c = null;
-        String[] columns = {
-                singleLHWs.COLUMN_LHW_NAME,
-                singleLHWs.COLUMN_HF_CODE,
-                singleLHWs.COLUMN_LHW_CODE,
-        };
-
-        String whereClause = singleLHWs.COLUMN_HF_CODE + " =?";
-        String[] whereArgs = {uccode};
-        String groupBy = null;
-        String having = null;
-
-        String orderBy =
-                singleLHWs.COLUMN_LHW_NAME + " ASC";
-
-        Collection<LHWsContract> allDC = new ArrayList<>();
-        try {
-            c = db.query(
-                    singleLHWs.TABLE_NAME,  // The table to query
-                    columns,                   // The columns to return
-                    whereClause,               // The columns for the WHERE clause
-                    whereArgs,                 // The values for the WHERE clause
-                    groupBy,                   // don't group the rows
-                    having,                    // don't filter by row groups
-                    orderBy                    // The sort order
-            );
-            while (c.moveToNext()) {
-                LHWsContract dc = new LHWsContract();
-                allDC.add(dc.HydrateLHWs(c));
-            }
-        } finally {
-            if (c != null) {
-                c.close();
-            }
-            if (db != null) {
-                db.close();
-            }
-        }
-        return allDC;
-    }
-
-    public Collection<TehsilContract> getAllTehsils() {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c = null;
-        String[] columns = {
-                singleTehsil.COLUMN_TEHSIL_CODE,
-                singleTehsil.COLUMN_TEHSIL_NAME
-        };
-
-        String whereClause = null;
-        String[] whereArgs = null;
-        String groupBy = null;
-        String having = null;
-
-        String orderBy =
-                singleTehsil.COLUMN_TEHSIL_NAME + " ASC";
-
-        Collection<TehsilContract> allDC = new ArrayList<>();
-        try {
-            c = db.query(
-                    singleTehsil.TABLE_NAME,  // The table to query
-                    columns,                   // The columns to return
-                    whereClause,               // The columns for the WHERE clause
-                    whereArgs,                 // The values for the WHERE clause
-                    groupBy,                   // don't group the rows
-                    having,                    // don't filter by row groups
-                    orderBy                    // The sort order
-            );
-            while (c.moveToNext()) {
-                TehsilContract dc = new TehsilContract();
-                allDC.add(dc.HydrateTehsils(c));
-            }
-        } finally {
-            if (c != null) {
-                c.close();
-            }
-            if (db != null) {
-                db.close();
-            }
-        }
-        return allDC;
-    }
-
-    public Collection<UCsContract> getAllUCs(String talukaCode) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c = null;
-        String[] columns = {
-                singleUCs.COLUMN_UCCODE,
-                singleUCs.COLUMN_UCS,
-                singleUCs.COLUMN_TEHSIL_CODE
-        };
-
-        String whereClause = singleUCs.COLUMN_TEHSIL_CODE + "=?";
-        String[] whereArgs = new String[]{talukaCode};
-        String groupBy = null;
-        String having = null;
-
-        String orderBy =
-                singleUCs.COLUMN_UCS + " ASC";
-
-        Collection<UCsContract> allDC = new ArrayList<>();
-        try {
-            c = db.query(
-                    singleUCs.TABLE_NAME,  // The table to query
-                    columns,                   // The columns to return
-                    whereClause,               // The columns for the WHERE clause
-                    whereArgs,                 // The values for the WHERE clause
-                    groupBy,                   // don't group the rows
-                    having,                    // don't filter by row groups
-                    orderBy                    // The sort order
-            );
-            while (c.moveToNext()) {
-                UCsContract dc = new UCsContract();
-                allDC.add(dc.HydrateUCs(c));
-            }
-        } finally {
-            if (c != null) {
-                c.close();
-            }
-            if (db != null) {
-                db.close();
-            }
-        }
-        return allDC;
-    }
 
     public ArrayList<UsersContract> getAllUsers() {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -578,14 +428,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             JSONArray jsonArray = userlist;
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObjectUser = jsonArray.getJSONObject(i);
-                String userName = jsonObjectUser.getString("username");
-                String password = jsonObjectUser.getString("password");
 
+                UsersContract usersContract = new UsersContract();
+                usersContract.Sync(jsonObjectUser);
 
                 ContentValues values = new ContentValues();
 
-                values.put(UsersTable.ROW_USERNAME, userName);
-                values.put(UsersTable.ROW_PASSWORD, password);
+                values.put(UsersTable.ROW_USERNAME, usersContract.getUserName());
+                values.put(UsersTable.ROW_PASSWORD, usersContract.getPassword());
+                values.put(UsersTable.DISTRICT_CODE, usersContract.getDICTRICT_CODE());
                 db.insert(UsersTable.TABLE_NAME, null, values);
             }
             db.close();
@@ -594,107 +445,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public void syncLHWS(JSONArray lhwsList) {
+    public void syncDistricts(JSONArray userlist) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(singleLHWs.TABLE_NAME, null, null);
+        db.delete(DistrictTable.TABLE_NAME, null, null);
+
         try {
-            JSONArray jsonArray = lhwsList;
+            JSONArray jsonArray = userlist;
             for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject jsonObjectCC = jsonArray.getJSONObject(i);
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                LHWsContract Vc = new LHWsContract();
-                Vc.Sync(jsonObjectCC);
-
+                DistrictsContract dc = new DistrictsContract();
+                dc.Sync(jsonObject);
                 ContentValues values = new ContentValues();
-
-                values.put(singleLHWs.COLUMN_LHW_NAME, Vc.getLhwname());
-                values.put(singleLHWs.COLUMN_HF_CODE, Vc.getHf_code());
-                values.put(singleLHWs.COLUMN_LHW_CODE, Vc.getLhwcode());
-
-                db.insert(singleLHWs.TABLE_NAME, null, values);
+                values.put(DistrictTable.DISTRICT_CODE,dc.getDICTRICT_CODE());
+                values.put(DistrictTable.DISTRICT_NAME,dc.getDistrict_name());
+                db.insert(DistrictTable.TABLE_NAME, null, values);
             }
-        } catch (Exception e) {
-        } finally {
             db.close();
+
+        } catch (Exception e) {
         }
     }
 
-    public void syncHF(JSONArray HFlist) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(singleHF.TABLE_NAME, null, null);
-        try {
-            JSONArray jsonArray = HFlist;
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject jsonObjectCC = jsonArray.getJSONObject(i);
-
-                HealthFacContract Vc = new HealthFacContract();
-                Vc.Sync(jsonObjectCC);
-
-                ContentValues values = new ContentValues();
-
-                values.put(singleHF.COLUMN_HF_NAME, Vc.getHf_name());
-                values.put(singleHF.COLUMN_HF_TYPE, Vc.getHf_type());
-                values.put(singleHF.COLUMN_HF_DISTRICT_NAME, Vc.getHf_dist_name());
-                values.put(singleHF.COLUMN_HF_TEHSIL_NAME, Vc.getHf_teh_name());
-                values.put(singleHF.COLUMN_HF_PROVINCE_NAME, Vc.getHf_prv_name());
-                values.put(singleHF.COLUMN_HF_UC_NAME, Vc.getHf_uc_name());
-                values.put(singleHF.COLUMN_HF_UEN_CODE, Vc.getHf_uen_code());
-                db.insert(singleHF.TABLE_NAME, null, values);
-            }
-        } catch (Exception e) {
-        } finally {
-            db.close();
-        }
-    }
-
-    public void syncTehsil(JSONArray Tehsillist) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(singleTehsil.TABLE_NAME, null, null);
-        try {
-            JSONArray jsonArray = Tehsillist;
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject jsonObjectCC = jsonArray.getJSONObject(i);
-
-                TehsilContract Vc = new TehsilContract();
-                Vc.Sync(jsonObjectCC);
-
-                ContentValues values = new ContentValues();
-
-                values.put(singleTehsil.COLUMN_TEHSIL_CODE, Vc.getTehsilcode());
-                values.put(singleTehsil.COLUMN_TEHSIL_NAME, Vc.getTehsil_name());
-
-                db.insert(singleTehsil.TABLE_NAME, null, values);
-            }
-        } catch (Exception e) {
-        } finally {
-            db.close();
-        }
-    }
-
-    public void syncUCs(JSONArray UCslist) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(singleUCs.TABLE_NAME, null, null);
-        try {
-            JSONArray jsonArray = UCslist;
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject jsonObjectCC = jsonArray.getJSONObject(i);
-
-                UCsContract Vc = new UCsContract();
-                Vc.Sync(jsonObjectCC);
-
-                ContentValues values = new ContentValues();
-
-                values.put(singleUCs.COLUMN_UCCODE, Vc.getUccode());
-                values.put(singleUCs.COLUMN_UCS, Vc.getUcs());
-                values.put(singleUCs.COLUMN_TEHSIL_CODE, Vc.getTehsil_code());
-
-                db.insert(singleUCs.TABLE_NAME, null, values);
-            }
-        } catch (Exception e) {
-        } finally {
-            db.close();
-        }
-    }
 
     public boolean Login(String username, String password) throws SQLException {
 
@@ -1047,4 +819,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public interface DBConnection {
         String DB_NAME = "acad_detail";
     }
+
+
 }

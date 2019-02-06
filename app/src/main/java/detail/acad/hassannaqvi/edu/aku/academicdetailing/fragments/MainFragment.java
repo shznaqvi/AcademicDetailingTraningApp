@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.FragmentMainBinding;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.interfaces.Callbacks;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Utils;
@@ -23,6 +25,8 @@ public class MainFragment extends Fragment {
     FragmentMainBinding bi;
     View view;
     Callbacks callbacks;
+    DatabaseHelper db;
+
 
 
     public MainFragment() {
@@ -36,10 +40,20 @@ public class MainFragment extends Fragment {
         // Inflate the layout for this fragment
         bi = DataBindingUtil.inflate(inflater,R.layout.fragment_main,container,false);
         view = bi.getRoot();
+        db = new DatabaseHelper(getContext());
 
 
         onClickListener();
+        setupViews();
         return view;
+    }
+
+    private void setupViews() {
+
+        bi.userName.setText("Hello! " + MainApp.userName);
+        bi.syncedForm.setText(String.valueOf(db.getUnsyncedForms().size()));
+        bi.formsToday.setText(String.valueOf(db.getTodayForms().size()));
+
     }
 
     private void onClickListener() {

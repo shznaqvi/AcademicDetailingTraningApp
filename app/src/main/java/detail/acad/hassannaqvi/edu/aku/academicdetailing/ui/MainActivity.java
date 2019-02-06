@@ -30,6 +30,7 @@ import java.util.Date;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.RetrofitClient.RetrofitClient;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.FormsContract;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.NextMeetingContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.SessionContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.AndroidDatabaseManager;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
@@ -55,9 +56,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Collection<FormsContract> dbData;
     KProgressHUD hud;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,7 +80,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.home:
 
                 loadHomeFragment();
-
                 break;
 
         }
@@ -122,14 +119,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 db.getUnsyncedForms()
         ).execute();
 
-//        new SyncAllData(
-//                this,
-//                "Forms",
-//                "updateSyncedForms",
-//                FormsContract.class,
-//                MainApp._HOST_URL + FormsContract.FormsTable.Form_Url,
-//                db.getUnsyncedForms()
-//        ).execute();
+        new SyncAllData(
+                this,
+                "Session",
+                "updateSyncedSessionForms",
+                SessionContract.class,
+                MainApp._HOST_URL + SessionContract.SessionTable.session_Url,
+                db.getUnsyncedSessions()
+        ).execute();
+
+        new SyncAllData(
+                this,
+                "Next Meeting",
+                "updateSyncedNMSForms",
+                NextMeetingContract.class,
+                MainApp._HOST_URL + NextMeetingContract.NMCTable.nms_Url,
+                db.getUnsyncedNextMeetingForm()
+        ).execute();
 
 
     }

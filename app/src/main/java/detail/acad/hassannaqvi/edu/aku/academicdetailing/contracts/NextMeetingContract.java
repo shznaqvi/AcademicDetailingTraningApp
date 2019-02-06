@@ -201,6 +201,8 @@ public class NextMeetingContract {
         public static final String COLUMN_GPSTIME= "gpsTime";
         public static final String COLUMN_SYNCED= "synced";
         public static final String COLUMN_SYNCED_DATE= "synced_date";
+        public static final String nms_Url = "next_meeting.php";
+
     }
 
 

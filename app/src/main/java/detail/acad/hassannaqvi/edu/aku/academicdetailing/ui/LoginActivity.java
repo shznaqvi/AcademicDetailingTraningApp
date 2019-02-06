@@ -111,6 +111,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
     public static DatabaseHelper db;
     Call<ResponseBody> call = null;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

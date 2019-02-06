@@ -70,6 +70,7 @@ public class EndingActivity extends AppCompatActivity {
 //                        startActivity(new Intent(EndingActivity.this, MainActivity.class));
 
                         loadScheduleFragment();
+                        isComplete = false;
 
                     } else {
                         Toast.makeText(EndingActivity.this, "Error in updating db!!", Toast.LENGTH_SHORT).show();

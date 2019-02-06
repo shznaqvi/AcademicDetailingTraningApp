@@ -88,5 +88,7 @@ public class SessionContract {
         public static final String COLUMN_SYNCED= "synced";
         public static final String COLUMN_SYNCED_DATE= "synced_date";
 
+        public static final String session_Url = "session_table.php";
+
     }
 }

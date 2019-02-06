@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout >
+<layout>
+
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -15,34 +15,48 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
-                android:background="@drawable/dashboard_bg"
+                android:background="@drawable/background_lg"
                 android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/testing"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/ticker_red"
+                    android:elevation="6dp"
+                    android:gravity="center_horizontal"
+                    android:keepScreenOn="true"
+                    android:padding="4dp"
+                    android:text="ONLY FOR TESTING"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/userName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@id/testing"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="20dp"
                     android:text="Hello! Mustufa Ansari"
                     android:textColor="@color/white"
-                    android:textSize="20sp"
+                    android:textSize="17sp"
                     android:textStyle="bold" />
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:id="@+id/linLayout1"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/userName"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="10dp"
                     android:orientation="horizontal">
+
                     <TextView
-                        android:id="@+id/heading1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="District Name:"
                         android:textColor="@color/white"
-                        android:textSize="17sp"
+                        android:textSize="13sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -50,10 +64,120 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
-                        android:text="District Name:"
+                        android:text="None"
                         android:textColor="@color/white"
-                        android:textSize="17sp"
+                        android:textSize="13sp"
+                       />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linLayout2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/userName"
+                    android:layout_marginStart="20dp"
+                    android:layout_toRightOf="@id/linLayout1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Unsynced Forms:"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
                         android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/syncedForm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:text="0"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
+                         />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linLayout3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/linLayout1"
+                    android:layout_marginStart="20dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Last Data Download:"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/lastDownload"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:text="0"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
+                         />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linLayout4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/linLayout1"
+                    android:layout_marginStart="20dp"
+                    android:layout_toRightOf="@id/linLayout3"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Last Data Upload:"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/lastUpdated"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:text="---/---/---"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
+                         />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linLayout5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/linLayout3"
+                    android:layout_marginStart="20dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Today's Forms:"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/formsToday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:text="0"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
+                        />
                 </LinearLayout>
 
 
@@ -69,25 +193,11 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/testing"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/ticker_red"
-                        android:elevation="6dp"
-                        android:gravity="center_horizontal"
-                        android:keepScreenOn="true"
-                        android:padding="4dp"
-                        android:text="ONLY FOR TESTING"
-                        android:textColor="@color/white"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/lblMainMenu"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
                         android:background="@color/colorPrimaryDark"
                         android:padding="10dp"
                         android:text="Main Menu"
@@ -249,9 +359,6 @@
 
 
         </LinearLayout>
-
-
-
 
 
     </FrameLayout>

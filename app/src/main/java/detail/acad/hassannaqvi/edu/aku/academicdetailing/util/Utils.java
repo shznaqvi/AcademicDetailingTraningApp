@@ -9,8 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import com.kaopiz.kprogresshud.KProgressHUD;
-
 import java.util.ArrayList;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
@@ -37,7 +35,6 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.PsbiTest02;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.ShockTest;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.VB_Pre_test;
 
-import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.moduleName;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.cdb1_imgs;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.cdb2_imgs;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.cdba_cans;
@@ -242,6 +239,42 @@ public class Utils {
                                 : MainApp.isNBorn ? Utils.getNBSessions(index, moduleName) : null)
                         .putExtra("type", "pre")
                         .putExtra("ans", selectAnswers(index, moduleName)));
+                MainApp.fc.setSessionStartTime(MainApp.getCurrentTime());
+                dialog.dismiss();
+
+            }
+        });
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                dialog.dismiss();
+            }
+        });
+    }
+
+    public static void showPreDialogue(final Context context, final Data.SubMenu subMenu) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setCancelable(false);
+        View view = LayoutInflater.from(context).inflate(R.layout.dialoge_layout, null);
+        ImageView slide = view.findViewById(R.id.slideImage);
+        Button proceed = view.findViewById(R.id.proceed);
+        Button cancel = view.findViewById(R.id.cancel);
+        slide.setImageResource(subMenu.getPreImage());
+        builder.setView(view);
+        final AlertDialog dialog = builder.create();
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        dialog.show();
+        proceed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                MainApp.isSlideStart = true;
+                context.startActivity(new Intent(context, subMenu.getRouteClass())
+                        .putExtra("slides", subMenu.getSession())
+                        .putExtra("type", "pre")
+                        .putExtra("ans", subMenu.getAnswers()));
                 MainApp.fc.setSessionStartTime(MainApp.getCurrentTime());
                 dialog.dismiss();
 
@@ -577,8 +610,6 @@ public class Utils {
         return R.drawable.hbb1001;
 
     }
-
-
 
 
 }

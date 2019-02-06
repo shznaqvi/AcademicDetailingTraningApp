@@ -137,12 +137,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-        db.execSQL(SQL_DELETE_USERS);
+    public void onUpgrade(SQLiteDatabase db, int oldVer, int newVer) {
+        /*db.execSQL(SQL_DELETE_USERS);
         db.execSQL(SQL_DELETE_FORMS);
         db.execSQL(SQL_DELETE_DISTRICTS);
         db.execSQL(SQL_DELETE_SESSION);
-        db.execSQL(SQL_DELETE_NMS);
+        db.execSQL(SQL_DELETE_NMS);*/
     }
 
     public List<HealthFacContract> getHFData(HealthFacContract.ColumnsClass... columnsClass) {

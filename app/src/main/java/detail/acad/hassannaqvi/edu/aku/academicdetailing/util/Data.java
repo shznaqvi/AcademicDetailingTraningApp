@@ -2,11 +2,18 @@ package detail.acad.hassannaqvi.edu.aku.academicdetailing.util;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.EcEbTest01;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.EcEbTest02;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.EcSbTest01;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.EcSbTest02;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.HbbTest;
 
 
-public class Data {
+public final class Data {
     public static final String[] modules = new String[]{"Child Health", "Maternal Health", "New Born Health"};
     public static final String[] childModule = new String[]{"General Danger Sign", "Cough & Difficult Breathing", "Diarrhoea", "PSBI"};
     public static final String[] GDS = new String[]{"GDS(Assessment and Classification)", "GDS(Management, Counseling and Referral)"};
@@ -16,11 +23,18 @@ public class Data {
     public static final String[] maternalModule = new String[]{"Focused Antenatal Care", "Vaginal Bleeding in Pregnancy",
             "Partograph", "Pre Eclampsia & Eclampsia", "Postpartum Hemorrhage - 1", "Postpartum Hemorrhage - 2", "Assessment and management of Shock", " Puerperal Sepsis"};
 
-    public static final String[] newBornModule = new String[]{"Essential Care for Every Baby", "Essential Care for Small Babies", "Helping Babies Breathe"};
+    public static final String[] newBornModule =
+            new String[]{
+                    "Essential Care for Every Baby",
+                    "Essential Care for Small Babies",
+                    "Helping Babies Breathe"
+            };
+
     public static final String[] ECEB = new String[]{"ECEB(Session One)", "ECEB(Session Two)"};
     public static final String[] ECSB = new String[]{"ECSB(Session One)", "ECSB(Session Two)"};
     public static final String[] HBB = new String[]{"Helping Babies Breathe"};
-
+    public static final ArrayList<String> newBornMenu = new ArrayList<>();
+    public static Map<String, SubMenu[]> newMenuModule;
 
     public static ArrayList<String> pretestAnswers = new ArrayList<>();
     public static ArrayList<String> checkboxPreAnswers = new ArrayList<>();
@@ -245,4 +259,67 @@ public class Data {
             R.drawable.hbb1036, R.drawable.hbb1037, R.drawable.hbb1038, R.drawable.hbb1039, R.drawable.hbb1040,
             R.drawable.hbb1041, R.drawable.hbb1042, R.drawable.hbb1043, R.drawable.hbb1044, R.drawable.hbb1045,
             R.drawable.hbb1046};
+
+    public static void fillingMenus(int type) {
+
+        newMenuModule = new HashMap<>();
+
+        newMenuModule.put("Essential Care for Every Baby",
+                new SubMenu[]{
+                        new SubMenu("ECEB(Session One)", EcEbTest01.class, R.drawable.eceb1001, eceb1_imgs, eceb01_cans),
+                        new SubMenu("ECEB(Session Two)", EcEbTest02.class, R.drawable.eceb2001, eceb2_imgs, eceb02_cans),
+                        new SubMenu("ECEB(Session Three)", EcEbTest02.class, R.drawable.eceb2001, eceb2_imgs, eceb02_cans),
+                }
+        );
+        newMenuModule.put("Essential Care for Small Babies",
+                new SubMenu[]{
+                        new SubMenu("ECSB(Session One)", EcSbTest01.class, R.drawable.ecsb1001, ecsb1_imgs, ecsbA_cans),
+                        new SubMenu("ECSB(Session Two)", EcSbTest02.class, R.drawable.ecsb2001, ecsb2_imgs, ecsbB_cans)
+                }
+        );
+        newMenuModule.put("Helping Babies Breathe",
+                new SubMenu[]{
+                        new SubMenu("Helping Babies Breathe)", HbbTest.class, R.drawable.hbb1001, hbb_imgs, hbb_cans)
+                }
+        );
+
+
+    }
+
+    public static class SubMenu {
+        String name;
+        Class routeClass;
+        int[] session;
+        int preImage;
+        ArrayList<String> answers;
+
+        public SubMenu(String name, Class routeClass, int preImage, int[] session, ArrayList<String> answers) {
+            this.name = name;
+            this.routeClass = routeClass;
+            this.preImage = preImage;
+            this.session = session;
+            this.answers = answers;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public Class getRouteClass() {
+            return routeClass;
+        }
+
+        public int[] getSession() {
+            return session;
+        }
+
+        public int getPreImage() {
+            return preImage;
+        }
+
+        public ArrayList<String> getAnswers() {
+            return answers;
+        }
+    }
+
 }

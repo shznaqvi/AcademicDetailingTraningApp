@@ -267,8 +267,7 @@ public final class Data {
         newMenuModule.put("Essential Care for Every Baby",
                 new SubMenu[]{
                         new SubMenu("ECEB(Session One)", EcEbTest01.class, R.drawable.eceb1001, eceb1_imgs, eceb01_cans),
-                        new SubMenu("ECEB(Session Two)", EcEbTest02.class, R.drawable.eceb2001, eceb2_imgs, eceb02_cans),
-                        new SubMenu("ECEB(Session Three)", EcEbTest02.class, R.drawable.eceb2001, eceb2_imgs, eceb02_cans),
+                        new SubMenu("ECEB(Session Two)", EcEbTest02.class, R.drawable.eceb2001, eceb2_imgs, eceb02_cans)
                 }
         );
         newMenuModule.put("Essential Care for Small Babies",

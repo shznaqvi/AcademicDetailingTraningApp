@@ -72,6 +72,7 @@ import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.psbi2_
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.psbi3_imgs;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.psbia_cans;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.psbib_cans;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.psbic_cans;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.sepsis_imgs;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.sepsistest_cans;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.shock_imgs;
@@ -272,6 +273,7 @@ public class Utils {
 
                 MainApp.isSlideStart = true;
                 context.startActivity(new Intent(context, subMenu.getRouteClass())
+                        .putExtra("mName", subMenu.getName())
                         .putExtra("slides", subMenu.getSession())
                         .putExtra("type", "pre")
                         .putExtra("ans", subMenu.getAnswers()));
@@ -480,6 +482,8 @@ public class Utils {
                         return psbia_cans;
                     case 1:
                         return psbib_cans;
+                    case 2:
+                        return psbic_cans;
                 }
 
             }

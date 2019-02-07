@@ -36,11 +36,10 @@ public class GDSSession02_Pre_test extends AppCompatActivity implements RadioBut
 
         bi = DataBindingUtil.setContentView(this, R.layout.activity_gdssession02__pre_test);
         bi.setCallback(this);
-        this.setTitle(MainApp.moduleSession);
+        this.setTitle(getIntent().getStringExtra("mName"));
 
         events_call();
         setupViews();
-
 
 
     }

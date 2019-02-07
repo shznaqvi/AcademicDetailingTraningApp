@@ -31,7 +31,7 @@ public class ShockTest extends AppCompatActivity {
 
         bi = DataBindingUtil.setContentView(this, R.layout.activity_shock_test);
         bi.setCallback(this);
-        this.setTitle(MainApp.moduleSession);
+        this.setTitle(getIntent().getStringExtra("mName"));
 
         setupViews();
 

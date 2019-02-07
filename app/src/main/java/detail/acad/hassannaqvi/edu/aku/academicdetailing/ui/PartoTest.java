@@ -32,7 +32,7 @@ public class PartoTest extends AppCompatActivity {
         bi = DataBindingUtil.setContentView(this, R.layout.activity_parto_test);
         bi.setCallback(this);
 
-        this.setTitle(MainApp.moduleSession);
+        this.setTitle(getIntent().getStringExtra("mName"));
         setupViews();
 
 

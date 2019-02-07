@@ -29,14 +29,13 @@ public class GDSSession01_Pre_test extends AppCompatActivity implements RadioBut
 
     ActivityGdssession01PreTestBinding bi;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         bi = DataBindingUtil.setContentView(this, R.layout.activity_gdssession01__pre_test);
         bi.setCallback(this);
-        this.setTitle(MainApp.moduleSession);
+        this.setTitle(getIntent().getStringExtra("mName"));
         events_call();
         setupViews();
 
@@ -67,7 +66,7 @@ public class GDSSession01_Pre_test extends AppCompatActivity implements RadioBut
 
         } else if (type.equals("post") && isComplete) {
             bi.heading.setText(" POST TEST & PRETEST RESULT");
-            GeneratorClass.comparingPostTestAndPretestResult(bi.fldGrpPreGds01,true,Data.correctAnswers);
+            GeneratorClass.comparingPostTestAndPretestResult(bi.fldGrpPreGds01, true, Data.correctAnswers);
             bi.btnOk.setVisibility(View.VISIBLE);
             bi.btnOk.setText("Finish Training");
             bi.btnContinue.setVisibility(View.GONE);
@@ -93,9 +92,12 @@ public class GDSSession01_Pre_test extends AppCompatActivity implements RadioBut
             try {
                 SaveDraft();
                 if (UpdateDB()) {
+
+                    Intent intent = new Intent(this, GDSSession01_Pre_test.class).putExtra("type", type).putExtra("mName", this.getTitle());
+
                     if (type.equals("pre")) {
                         if (MainApp.isSlideStart) {
-                            startActivity(new Intent(this, GDSSession01_Pre_test.class).putExtra("type", type));
+                            startActivity(intent);
                             isComplete = true;
                             GeneratorClass.incr = 0;
                             finish();
@@ -104,7 +106,7 @@ public class GDSSession01_Pre_test extends AppCompatActivity implements RadioBut
                             finish();
                         }
                     } else if (type.equals("post")) {
-                        startActivity(new Intent(this, GDSSession01_Pre_test.class).putExtra("type", type));
+                        startActivity(intent);
                         isComplete = true;
                         GeneratorClass.incr = 0;
                         finish();

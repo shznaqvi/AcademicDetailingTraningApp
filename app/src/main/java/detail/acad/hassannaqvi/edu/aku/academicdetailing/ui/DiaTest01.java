@@ -37,7 +37,7 @@ public class DiaTest01 extends AppCompatActivity implements RadioButton.OnChecke
 
         bi = DataBindingUtil.setContentView(this, R.layout.activity_dia_test01);
         bi.setCallback(this);
-        this.setTitle(MainApp.moduleSession);
+        this.setTitle(getIntent().getStringExtra("mName"));
 
         events_call();
 

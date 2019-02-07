@@ -7,11 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
-import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.JSON.GeneratorClass;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
@@ -35,7 +31,7 @@ public class VB_Pre_test extends AppCompatActivity {
 
         bi = DataBindingUtil.setContentView(this, R.layout.activity_vb__pre_test);
         bi.setCallback(this);
-        this.setTitle(MainApp.moduleSession);
+        this.setTitle(getIntent().getStringExtra("mName"));
 
         setupViews();
 

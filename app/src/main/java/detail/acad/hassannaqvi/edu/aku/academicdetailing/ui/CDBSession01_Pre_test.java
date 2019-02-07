@@ -35,7 +35,7 @@ public class CDBSession01_Pre_test extends AppCompatActivity implements RadioBut
         super.onCreate(savedInstanceState);
         bi = DataBindingUtil.setContentView(this, R.layout.activity_cdbsession01__pre_test);
         bi.setCallback(this);
-        this.setTitle(MainApp.moduleSession);
+        this.setTitle(getIntent().getStringExtra("mName"));
         events_call();
 
 

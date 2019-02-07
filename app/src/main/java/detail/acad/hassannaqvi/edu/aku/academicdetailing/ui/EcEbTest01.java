@@ -33,7 +33,7 @@ public class EcEbTest01 extends AppCompatActivity {
 
         bi = DataBindingUtil.setContentView(this, R.layout.activity_ec_eb_test01);
         bi.setCallback(this);
-        this.setTitle(MainApp.moduleSession);
+        this.setTitle(getIntent().getStringExtra("mName"));
         setupViews();
 
 

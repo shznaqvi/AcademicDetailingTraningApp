@@ -2,17 +2,18 @@ package detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.FragmentModuleBinding;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Utils;
 
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.CDB;
@@ -22,19 +23,16 @@ import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.ECSB;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.GDS;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.HBB;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.PSBI;
-import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.childModule;
-import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.maternalModule;
-import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.newBornModule;
 
 
 public class ModuleFragment extends Fragment {
 
     View view;
     FragmentModuleBinding bi;
-    boolean isChildClicked = false;
-    boolean isMaternalClicked = false;
+    boolean isChildClicked = true;
+    boolean isMaternalClicked = true;
     boolean isChildSubClicked = false;
-    boolean isNewBornClicked = false;
+    boolean isNewBornClicked = true;
 
 
     @Override
@@ -66,16 +64,11 @@ public class ModuleFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-
-                if (!isChildClicked) {
+                if (isChildClicked) {
                     showChildModule();
-
-                } else {
-                    bi.childModule.animate().translationY(0);
-                    bi.childModule.removeAllViews();
-
-
                     isChildClicked = false;
+                } else {
+                    removeChildModule();
                 }
 
             }
@@ -85,13 +78,11 @@ public class ModuleFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                if (!isMaternalClicked) {
-
+                if (isMaternalClicked) {
                     showMaternalModule();
-                } else {
-                    bi.maternalModule.animate().translationY(0);
-                    bi.maternalModule.removeAllViews();
                     isMaternalClicked = false;
+                } else {
+                    removeMaternalModule();
                 }
 
             }
@@ -100,13 +91,12 @@ public class ModuleFragment extends Fragment {
         bi.newBornHealth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!isNewBornClicked) {
 
+                if (isNewBornClicked) {
                     showNewBornModule();
-                } else {
-                    bi.nbornModule.animate().translationY(0);
-                    bi.nbornModule.removeAllViews();
                     isNewBornClicked = false;
+                } else {
+                    removeNBModule();
                 }
 
             }
@@ -115,7 +105,7 @@ public class ModuleFragment extends Fragment {
 
     private void showNewBornModule() {
 
-        for (int i = 0; i < newBornModule.length; i++) {
+        /*for (int i = 0; i < newBornModule.length; i++) {
 
             View v = LayoutInflater.from(getContext()).inflate(R.layout.single_module_item, null);
             TextView moduleName = v.findViewById(R.id.moduleName);
@@ -166,15 +156,18 @@ public class ModuleFragment extends Fragment {
                 }
             });
         }
-        isNewBornClicked = true;
+        isNewBornClicked = true;*/
 
+        removeMaternalModule();
+        removeChildModule();
+        openModuleHandler(bi.nbornModule, 2);
 
     }
 
 
     private void showMaternalModule() {
 
-        for (int i = 0; i < maternalModule.length; i++) {
+        /*for (int i = 0; i < maternalModule.length; i++) {
 
             View v = LayoutInflater.from(getContext()).inflate(R.layout.single_module_item, null);
             TextView moduleName = v.findViewById(R.id.moduleName);
@@ -203,13 +196,17 @@ public class ModuleFragment extends Fragment {
                 }
             });
         }
-        isMaternalClicked = true;
+        isMaternalClicked = true;*/
+
+        removeChildModule();
+        removeNBModule();
+        openModuleHandler(bi.maternalModule, 1);
 
     }
 
     private void showChildModule() {
 
-        for (int i = 0; i < childModule.length; i++) {
+        /*for (int i = 0; i < childModule.length; i++) {
 
             View v = LayoutInflater.from(getContext()).inflate(R.layout.single_module_item, null);
             TextView moduleName = v.findViewById(R.id.moduleName);
@@ -262,8 +259,104 @@ public class ModuleFragment extends Fragment {
                 }
             });
         }
-        isChildClicked = true;
+        isChildClicked = true;*/
 
+        removeMaternalModule();
+        removeNBModule();
+        openModuleHandler(bi.childModule, 0);
+
+    }
+
+    private void showModules(final LinearLayout llModule, int type) {
+
+        Data.fillingMenus(type);
+        llModule.removeAllViews();
+        for (final String key : Data.newMenuModule.keySet()) {
+            View v = LayoutInflater.from(getContext()).inflate(R.layout.single_module_item, null);
+            TextView moduleNameTxt = v.findViewById(R.id.moduleName);
+            final LinearLayout subModule = v.findViewById(R.id.subModule);
+            moduleNameTxt.setText(key);
+            llModule.addView(v);
+            v.animate().translationY(v.getHeight());
+            v.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Data.SubMenu[] submenu = Data.newMenuModule.get(key);
+
+                    removeSubGroups(llModule);
+
+                    if (submenu.length > 1) {
+                        showSubMenus(subModule, submenu);
+                    } else
+                        Utils.showPreDialogue(getActivity(), submenu[0]);
+
+                }
+            });
+        }
+
+    }
+
+    private void showSubMenus(LinearLayout llSubModule, Data.SubMenu[] subMenuItem) {
+
+        llSubModule.removeAllViews();
+        for (final Data.SubMenu subMenu : subMenuItem) {
+            View v = LayoutInflater.from(getContext()).inflate(R.layout.single_sub_module_item, null);
+            TextView moduleName = v.findViewById(R.id.subModuleName);
+            moduleName.setText(subMenu.getName());
+            llSubModule.addView(v);
+            v.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Utils.showPreDialogue(getActivity(), subMenu);
+                }
+            });
+        }
+
+    }
+
+    private void removeSubGroups(LinearLayout llModule) {
+        for (byte i = 0; i < llModule.getChildCount(); i++) {
+
+            View child = llModule.getChildAt(i);
+
+            if (child instanceof LinearLayout) {
+
+                for (byte j = 1; j < ((LinearLayout) child).getChildCount(); j++) {
+
+                    View subChild = ((LinearLayout) child).getChildAt(j);
+
+                    ((LinearLayout) subChild).removeAllViews();
+                }
+
+            }
+        }
+    }
+
+    private void openModuleHandler(final ViewGroup view, final int type) {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                showModules((LinearLayout) view, type);
+            }
+        }, 300);
+    }
+
+    private void removeChildModule() {
+        bi.childModule.animate().translationY(0);
+        bi.childModule.removeAllViews();
+        isChildClicked = true;
+    }
+
+    private void removeMaternalModule() {
+        bi.maternalModule.animate().translationY(0);
+        bi.maternalModule.removeAllViews();
+        isMaternalClicked = true;
+    }
+
+    private void removeNBModule() {
+        bi.nbornModule.animate().translationY(0);
+        bi.nbornModule.removeAllViews();
+        isNewBornClicked = true;
     }
 
     public String[] selectSubModule(int finalI) {

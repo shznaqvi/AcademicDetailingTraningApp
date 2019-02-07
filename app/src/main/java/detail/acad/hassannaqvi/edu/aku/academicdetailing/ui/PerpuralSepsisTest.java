@@ -31,7 +31,7 @@ public class PerpuralSepsisTest extends AppCompatActivity {
 
         bi = DataBindingUtil.setContentView(this, R.layout.activity_perpural_sepsis_test);
         bi.setCallback(this);
-        this.setTitle(MainApp.moduleSession);
+        this.setTitle(getIntent().getStringExtra("mName"));
 
         setupViews();
 

@@ -36,7 +36,7 @@ public class PsbiTest01 extends AppCompatActivity implements RadioButton.OnCheck
 
         bi = DataBindingUtil.setContentView(this, R.layout.activity_psbi_test01);
         bi.setCallback(this);
-        this.setTitle(MainApp.moduleSession);
+        this.setTitle(getIntent().getStringExtra("mName"));
 
         events_call();
         setupViews();

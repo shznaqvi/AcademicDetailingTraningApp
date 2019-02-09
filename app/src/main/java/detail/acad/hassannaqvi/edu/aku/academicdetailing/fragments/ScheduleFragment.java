@@ -108,6 +108,7 @@ public class ScheduleFragment extends Fragment {
 
     private void saveDraft() {
 
+        DatabaseHelper db = new DatabaseHelper(getContext());
 
         MainApp.nmc = new NextMeetingContract();
         MainApp.nmc.setDate(bi.date.getText().toString());
@@ -123,7 +124,7 @@ public class ScheduleFragment extends Fragment {
         MainApp.nmc.setBookingtype(bi.bookingType.getSelectedItem().toString());
         MainApp.nmc.setFormdate(new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime()));
         setGPS();
-        DatabaseHelper db = new DatabaseHelper(getContext());
+
         db.updateNMS();
 
 

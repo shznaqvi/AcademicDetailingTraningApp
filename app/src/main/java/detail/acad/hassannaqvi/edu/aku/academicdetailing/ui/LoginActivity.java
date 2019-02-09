@@ -783,7 +783,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
 
             LocationManager mlocManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
-            if(db.getUsersCount() != 0){
+//            if(db.getUsersCount() != 0){
                 if (mlocManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
                     if ((mEmail.equals("dmu@aku") && mPassword.equals("aku?dmu")) ||
                             (db.Login(mEmail, mPassword)) ||
@@ -827,10 +827,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
                     alert.show();
 
                 }
-            }else{
-
-                Toast.makeText(LoginActivity.this, "Please Sync Data before login!", Toast.LENGTH_SHORT).show();
-            }
+//            }else{
+//
+//                Toast.makeText(LoginActivity.this, "Please Sync Data before login!", Toast.LENGTH_SHORT).show();
+//            }
 
 
         }

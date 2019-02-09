@@ -84,8 +84,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String SQL_CREATE_SESSION_TABLE = " CREATE TABLE " + SessionTable.TABLE_NAME
             + " ( " + SessionTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + SessionTable.COLUMN_FORMDATE + "TEXT, "
-            + SessionTable.COLUMN_DEVICEID + "TEXT, "
+            + SessionTable.COLUMN_FORMDATE + " TEXT, "
+            + SessionTable.COLUMN_DEVICEID + " TEXT, "
             + SessionTable.COLUMN_SLIDE_NUMBER + " INTEGER,"
             + SessionTable.COLUMN_MODULE + " TEXT," + SessionTable.COLUMN_SESSION
             + " TEXT,"
@@ -98,14 +98,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             DistrictTable.DISTRICT_NAME + " TEXT" + ");";
 
 
-    private static final String SQL_CREATE_NMS = "CREATE TABLE " + NMCTable.TABLE_NAME +
-            "( " + NMCTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + NMCTable.COLUMN_DEVICEID
-            + " TEXT, " + NMCTable.COLUMN_LAT + " TEXT, " + NMCTable.COLUMN_FORMDATE + "TEXT, "
-            + NMCTable.COLUMN_LNG + " TEXT, " + NMCTable.COLUMN_GPSTIME + " TEXT, " + NMCTable.COLUMN_BTYPE + " TEXT, "
-            + NMCTable.COLUMN_BOOK_DATE + " TEXT, " + NMCTable.COLUMN_BOOKBY + " TEXT, "
-            + NMCTable.COLUMN_DOCTOR_NAME + " TEXT, " + NMCTable.COLUMN_DATE
-            + " TEXT, " + NMCTable.COLUMN_TIME + " TEXT, "
-            + NMCTable.COLUMN_MOD + " TEXT, " + NMCTable.COLUMN_SUBMOD + " TEXT, "
+    private static final String SQL_CREATE_NMS = "CREATE TABLE " + NMCTable.TABLE_NAME + "("
+            + NMCTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + NMCTable.COLUMN_DEVICEID + " TEXT, "
+            + NMCTable.COLUMN_LAT + " TEXT, "
+            + NMCTable.COLUMN_FORMDATE + " TEXT, "
+            + NMCTable.COLUMN_LNG + " TEXT, "
+            + NMCTable.COLUMN_GPSTIME + " TEXT, "
+            + NMCTable.COLUMN_BTYPE + " TEXT, "
+            + NMCTable.COLUMN_BOOK_DATE + " TEXT, "
+            + NMCTable.COLUMN_BOOKBY + " TEXT, "
+            + NMCTable.COLUMN_DOCTOR_NAME + " TEXT, "
+            + NMCTable.COLUMN_DATE + " TEXT, "
+            + NMCTable.COLUMN_TIME + " TEXT, "
+            + NMCTable.COLUMN_MOD + " TEXT, "
+            + NMCTable.COLUMN_SUBMOD + " TEXT, "
             + NMCTable.COLUMN_SESSION + " TEXT, "
             + NMCTable.COLUMN_SYNCED + " TEXT, "
             + NMCTable.COLUMN_SYNCED_DATE + " TEXT " + ");";
@@ -324,7 +331,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 SessionTable.COLUMN_SESSION_TIME,
                 SessionTable.COLUMN_SLIDE_NUMBER,
                 SessionTable.COLUMN_SYNCED,
-                SessionTable.COLUMN_SYNCED_DATE
+                SessionTable.COLUMN_SYNCED_DATE,
+                SessionTable.COLUMN_DEVICEID,
+                SessionTable.COLUMN_FORMDATE
 
         };
         String whereClause = SessionTable.COLUMN_SYNCED + " is null OR " + SessionTable.COLUMN_SYNCED + " = '' ";
@@ -384,6 +393,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 NMCTable._ID,
                 NMCTable.COLUMN_SYNCED,
                 NMCTable.COLUMN_SYNCED_DATE,
+                NMCTable.COLUMN_DEVICEID,
+                NMCTable.COLUMN_FORMDATE
 
         };
         String whereClause = NMCTable.COLUMN_SYNCED + " is null OR " + NMCTable.COLUMN_SYNCED + " = '' ";
@@ -539,7 +550,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
             cursor.close();
         }
-
 
 
         db.close();
@@ -854,16 +864,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public void addSessionData(SessionContract sc) {
 
+        long count;
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(SessionTable.COLUMN_MODULE, sc.getModule());
         values.put(SessionTable.COLUMN_SESSION, sc.getSession());
         values.put(SessionTable.COLUMN_SESSION_TIME, sc.getSessionTime());
-        values.put(SessionTable.COLUMN_SLIDE_NUMBER,sc.getSlideNumber());
+        values.put(SessionTable.COLUMN_SLIDE_NUMBER, sc.getSlideNumber());
         values.put(SessionTable.COLUMN_DEVICEID, sc.getDeviceid());
         values.put(SessionTable.COLUMN_FORMDATE, sc.getFormdate());
-        db.insert(SessionTable.TABLE_NAME, null, values);
+        count = db.insert(SessionTable.TABLE_NAME, null, values);
+
+        Log.d(TAG, "addSessionData: count " + count);
     }
 
     public String getProviderName() {
@@ -888,6 +901,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         SQLiteDatabase db = this.getWritableDatabase();
 
+        long count;
 // New value for one column
         ContentValues values = new ContentValues();
         values.put(NMCTable.COLUMN_DOCTOR_NAME, MainApp.nmc.getDoctorName());
@@ -904,8 +918,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(NMCTable.COLUMN_BTYPE, MainApp.nmc.getBookingtype());
         values.put(NMCTable.COLUMN_GPSTIME, MainApp.nmc.getGpsTime());
         values.put(NMCTable.COLUMN_FORMDATE, MainApp.nmc.getFormdate());
-        db.insert(NMCTable.TABLE_NAME, null, values);
+        count = db.insert(NMCTable.TABLE_NAME, null, values);
 
+        Log.d(TAG, "updateNMS: count " + count);
     }
 
     public interface DBConnection {

@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         new SyncAllData(
                 this,
-                "Session",
+                "Sessions ",
                 "updateSyncedSessionForms",
                 SessionContract.class,
                 MainApp._HOST_URL + SessionContract.SessionTable.session_Url,
@@ -137,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         new SyncAllData(
                 this,
-                "Next Meeting",
+                "Next Meeting Schedule",
                 "updateSyncedNMSForms",
                 NextMeetingContract.class,
                 MainApp._HOST_URL + NextMeetingContract.NMCTable.nms_Url,

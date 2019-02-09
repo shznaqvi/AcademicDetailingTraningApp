@@ -79,7 +79,8 @@ public class ModuleFragment extends Fragment {
         bi.indicator.setViewPager(bi.pager);
 
 
-        NUM_PAGES =Data.dia1_imgs.length;
+
+        NUM_PAGES =Data.mainSlides.length;
 
         // Auto start of viewpager
         final Handler handler = new Handler();

@@ -15,7 +15,6 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.FragmentMainBinding;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.interfaces.Callbacks;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Utils;
 
 
 /**
@@ -27,9 +26,8 @@ public class MainFragment extends Fragment {
     View view;
     Callbacks callbacks;
     DatabaseHelper db;
-    String districtName="";
+    String districtName = "";
     boolean isAdmin;
-
 
 
     public MainFragment() {
@@ -46,15 +44,14 @@ public class MainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        bi = DataBindingUtil.inflate(inflater,R.layout.fragment_main,container,false);
+        bi = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false);
         view = bi.getRoot();
         districtName = getArguments().getString("district_name");
         isAdmin = getArguments().getBoolean("isAdmin");
-        if(!isAdmin){
+        if (!isAdmin) {
             bi.openDB.setVisibility(View.GONE);
         }
         db = new DatabaseHelper(getContext());
-
 
 
         onClickListener();

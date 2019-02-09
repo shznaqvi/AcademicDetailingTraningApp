@@ -23,7 +23,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -32,20 +31,19 @@ import java.util.Date;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.FormsContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.NextMeetingContract;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.SessionContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.EndingActivity;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.FANC_Pre_test;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.ViewPagerActivity;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
 
 
 public class MainApp extends Application {
 
 
-//    http://f38158/phpwebapi/uenad/api/
+    //    http://f38158/phpwebapi/uenad/api/
 //    public static final String _IP = "43.245.131.159"; // Test PHP server
-        public static final String _IP = "f38158/"; // Test PHP server
+    public static final String _IP = "f38158/"; // Test PHP server
     public static final Integer _PORT = 8080; // Port - with colon (:)
-    public static final String _HOST_URL = "http://" + MainApp._IP  + "uen/api/";
+    public static final String _HOST_URL = "http://" + MainApp._IP + "phpwebapi/uenad/api/";
     // public static final String TEST_URL = "http://" + MainApp._IP + ":" + MainApp._PORT + "/leapsup/api/";
 
     //    public static final String _UPDATE_URL = "http://" + MainApp._IP + ":" + MainApp._PORT + "/wfp_recruit_form/app/app-debug.apk";
@@ -87,7 +85,7 @@ public class MainApp extends Application {
     public static boolean isChild = false;
     public static String[] loginMem;
     public static String versionName;
-    public static String districtName="";
+    public static String districtName = "";
     public static int versionCode;
     public static int districtCode = 0;
     public static Boolean admin = false;
@@ -365,6 +363,40 @@ public class MainApp extends Application {
                 }
 
 
+            }
+        });
+
+        no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+    }
+
+    public static void showDialog(final Context context, String message, final String type, final Boolean status, final Data.SubMenu item) {
+
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_ready_for_training, null);
+        Button yes = view.findViewById(R.id.yes);
+        Button no = view.findViewById(R.id.no);
+        TextView text = view.findViewById(R.id.text);
+        text.setText(message);
+        android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context);
+        builder.setView(view);
+        final android.support.v7.app.AlertDialog dialog = builder.create();
+        dialog.show();
+        yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent end_intent;
+                if (type.equals("pre")) {
+                    end_intent = new Intent(context, ViewPagerActivity.class).putExtra(CONSTANTS.URI_SUBMENU_DT, item);
+                } else {
+                    end_intent = new Intent(context, EndingActivity.class).putExtra("complete", status);
+                }
+                dialog.dismiss();
+                context.startActivity(end_intent);
+                ((Activity) context).finish();
             }
         });
 

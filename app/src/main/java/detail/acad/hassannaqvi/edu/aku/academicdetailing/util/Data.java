@@ -1,5 +1,6 @@
 package detail.acad.hassannaqvi.edu.aku.academicdetailing.util;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -366,7 +367,7 @@ public final class Data {
 
     }
 
-    public static class SubMenu {
+    public static class SubMenu implements Serializable {
         String name;
         Class routeClass;
         int[] session;

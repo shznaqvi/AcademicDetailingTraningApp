@@ -22,6 +22,7 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.FragmentInfoBinding;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.interfaces.Callbacks;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.HideKeyboard;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.validation.validatorClass;
 
 
@@ -44,6 +45,7 @@ public class InfoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         bi = DataBindingUtil.inflate(inflater,R.layout.fragment_info,container,false);
         view = bi.getRoot();
@@ -63,6 +65,10 @@ public class InfoFragment extends Fragment {
                     try {
                         saveDraft();
                         if(updateDB()){
+
+                            // Hide keyboard
+                            HideKeyboard.hideKeyboardFragment(getActivity(), getView());
+
                             callbacks.loadModuleFragment();
                         }else{
                             Toast.makeText(getActivity(), "Error in update DB", Toast.LENGTH_SHORT).show();

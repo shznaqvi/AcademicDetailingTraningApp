@@ -35,6 +35,8 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.PsbiTest02;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.ShockTest;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.VB_Pre_test;
 
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.CONSTANTS.URI_FORM_TYPE;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.CONSTANTS.URI_SUBMENU_DT;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.cdb1_imgs;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.cdb2_imgs;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.cdba_cans;
@@ -273,10 +275,8 @@ public class Utils {
 
                 MainApp.isSlideStart = true;
                 context.startActivity(new Intent(context, subMenu.getRouteClass())
-                        .putExtra("mName", subMenu.getName())
-                        .putExtra("slides", subMenu.getSession())
-                        .putExtra("type", "pre")
-                        .putExtra("ans", subMenu.getAnswers()));
+                        .putExtra(URI_FORM_TYPE, "pre")
+                        .putExtra(URI_SUBMENU_DT, subMenu));
                 MainApp.fc.setSessionStartTime(MainApp.getCurrentTime());
                 dialog.dismiss();
 
@@ -320,6 +320,47 @@ public class Utils {
                                 : MainApp.isChild ? Utils.getChildSessions(index, moduleName)
                                 : MainApp.isNBorn ? Utils.getChildSessions(index, moduleName)
                                 : null).putExtra("type", "post"));
+                ((Activity) context).finish();
+                dialog.dismiss();
+            }
+        });
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                dialog.dismiss();
+            }
+        });
+
+    }
+
+    public static void showPostDialoge(final Context context, final Data.SubMenu subMenu) {
+
+        MainApp.isSlideStart = false;
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setCancelable(false);
+        View view = LayoutInflater.from(context).inflate(R.layout.dialoge_layout, null);
+        ImageView slide = view.findViewById(R.id.slideImage);
+        Button proceed = view.findViewById(R.id.proceed);
+        if (MainApp.isSlideStart) {
+            proceed.setText("Proceed To Pre Test");
+        } else {
+            proceed.setText("Proceed To Post Test");
+        }
+        Button cancel = view.findViewById(R.id.cancel);
+        slide.setImageResource(R.drawable.eclam1051);
+        builder.setView(view);
+        final AlertDialog dialog = builder.create();
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        dialog.show();
+        proceed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                context.startActivity(new Intent(context, subMenu.getRouteClass())
+                        .putExtra(URI_SUBMENU_DT, subMenu)
+                        .putExtra("type", "post"));
                 ((Activity) context).finish();
                 dialog.dismiss();
             }

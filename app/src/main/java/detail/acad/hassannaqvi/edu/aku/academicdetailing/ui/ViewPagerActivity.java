@@ -14,12 +14,16 @@ import java.util.Date;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.adapters.Adapter;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.SessionContract;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.CONSTANTS;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityViewPagerBinding;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Utils;
 
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.isComplete;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.LoginActivity.db;
+
+//import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.slides;
 
 
 public class ViewPagerActivity extends AppCompatActivity {
@@ -29,15 +33,15 @@ public class ViewPagerActivity extends AppCompatActivity {
     Adapter adapter;
     int lastItemPosition;
     boolean isClicked = false;
-    int[] slides;
+    Data.SubMenu subMenuDT;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         bi = DataBindingUtil.setContentView(this, R.layout.activity_view_pager);
-        this.setTitle(MainApp.moduleSession);
-        slides = getIntent().getIntArrayExtra("slides");
+
+        subMenuDT = (Data.SubMenu) getIntent().getSerializableExtra(CONSTANTS.URI_SUBMENU_DT);
 
         settingupViewPager();
 
@@ -46,7 +50,8 @@ public class ViewPagerActivity extends AppCompatActivity {
 
     private void settingupViewPager() {
 
-        adapter = new Adapter(this, slides);
+        this.setTitle(subMenuDT.getName());
+        adapter = new Adapter(this, subMenuDT.getSession());
         bi.viewPager.setAdapter(adapter);
         bi.viewPager.beginFakeDrag();
 
@@ -72,9 +77,9 @@ public class ViewPagerActivity extends AppCompatActivity {
         bi.nextSlide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (lastItemPosition == slides.length - 1) {
+                if (lastItemPosition == subMenuDT.getSession().length - 1) {
 
-                    if (MainApp.isMaternal) {
+                    /*if (MainApp.isMaternal) {
                         Utils.showPostDialoge(ViewPagerActivity.this, MainApp.maternalIndex,MainApp.subModuleName);
                         isComplete = false;
 
@@ -85,7 +90,10 @@ public class ViewPagerActivity extends AppCompatActivity {
                     }else if(MainApp.isNBorn){
                         Utils.showPostDialoge(ViewPagerActivity.this, MainApp.childlIndex,MainApp.subModuleName);
                         isComplete = false;
-                    }
+                    }*/
+
+                    Utils.showPostDialoge(ViewPagerActivity.this, subMenuDT);
+                    isComplete = false;
 
 
                 } else {

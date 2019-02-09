@@ -30,6 +30,19 @@
                     android:layout_height="48dp"
                     android:layout_alignParentBottom="true" />
             </RelativeLayout>
+            <TextView
+                android:id="@+id/testing"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/ticker_red"
+                android:elevation="6dp"
+                android:gravity="center_horizontal"
+                android:keepScreenOn="true"
+                android:padding="4dp"
+                android:text="Modules"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <ScrollView
                 android:layout_width="match_parent"
@@ -41,19 +54,7 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/testing"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/ticker_red"
-                        android:elevation="6dp"
-                        android:gravity="center_horizontal"
-                        android:keepScreenOn="true"
-                        android:padding="4dp"
-                        android:text="Modules"
-                        android:textColor="@color/white"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+
 
 
                     <LinearLayout

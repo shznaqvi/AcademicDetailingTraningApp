@@ -149,6 +149,8 @@ public class NextMeetingContract {
         this.module = jsonObject.getString(NMCTable.COLUMN_MOD);
         this.subModule = jsonObject.getString(NMCTable.COLUMN_SUBMOD);
         this.session = jsonObject.getString(NMCTable.COLUMN_SESSION);
+        this.formdate = jsonObject.getString(NMCTable.COLUMN_FORMDATE);
+        this.deviceid = jsonObject.getString(NMCTable.COLUMN_DEVICEID);
 
         return this;
     }

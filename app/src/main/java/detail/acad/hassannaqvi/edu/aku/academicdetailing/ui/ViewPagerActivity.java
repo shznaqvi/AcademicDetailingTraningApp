@@ -8,6 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.adapters.Adapter;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.SessionContract;
@@ -131,6 +134,8 @@ public class ViewPagerActivity extends AppCompatActivity {
         sC.setModule(MainApp.moduleName);
         sC.setSession(MainApp.moduleSession);
         sC.setSlideNumber(lastItemPosition);
+        sC.setDeviceid(MainApp.deviceId);
+        sC.setFormdate(new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime()));
         sC.setSessionTime(MainApp.getCurrentTime());
         db.addSessionData(sC);
     }

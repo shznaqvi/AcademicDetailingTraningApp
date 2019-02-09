@@ -23,12 +23,33 @@ public class NextMeetingContract {
     public String _id;
     public String synced;
     public String synced_date;
+    private String formdate = ""; // Date
+    private String deviceid = "";
+
+    public String getFormdate() {
+        return formdate;
+    }
+
+    public void setFormdate(String formdate) {
+        this.formdate = formdate;
+    }
+
+    public String getDeviceid() {
+        return deviceid;
+    }
+
+    public void setDeviceid(String deviceid) {
+        this.deviceid = deviceid;
+    }
 
     public JSONObject toJSONObject() throws JSONException {
 
         JSONObject json = new JSONObject();
 
         json.put(NMCTable.COLUMN_DOCTOR_NAME, this.doctorname == null ? JSONObject.NULL : this.doctorname);
+        json.put(NMCTable._ID, this._id == null ? JSONObject.NULL : this._id);
+        json.put(NMCTable.COLUMN_FORMDATE, this.formdate == null ? JSONObject.NULL : this.formdate);
+        json.put(NMCTable.COLUMN_DEVICEID, this.deviceid == null ? JSONObject.NULL : this.deviceid);
         json.put(NMCTable.COLUMN_DATE, this.date == null ? JSONObject.NULL : this.date);
         json.put(NMCTable.COLUMN_TIME, this.time == null ? JSONObject.NULL : this.time);
         json.put(NMCTable.COLUMN_MOD, this.module == null ? JSONObject.NULL : this.module);
@@ -64,6 +85,8 @@ public class NextMeetingContract {
         this._id = cursor.getString(cursor.getColumnIndex(NMCTable._ID));
         this.synced = cursor.getString(cursor.getColumnIndex(NMCTable.COLUMN_SYNCED));
         this.synced_date = cursor.getString(cursor.getColumnIndex(NMCTable.COLUMN_SYNCED_DATE));
+        this.formdate = cursor.getString(cursor.getColumnIndex(NMCTable.COLUMN_FORMDATE));
+        this.deviceid = cursor.getString(cursor.getColumnIndex(NMCTable.COLUMN_DEVICEID));
 
 
         return this;
@@ -201,6 +224,7 @@ public class NextMeetingContract {
         public static final String COLUMN_GPSTIME= "gpsTime";
         public static final String COLUMN_SYNCED= "synced";
         public static final String COLUMN_SYNCED_DATE= "synced_date";
+        public static final String COLUMN_FORMDATE = "formdate";
         public static final String nms_Url = "next_meeting.php";
 
     }

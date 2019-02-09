@@ -3,6 +3,7 @@ package detail.acad.hassannaqvi.edu.aku.academicdetailing.core;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.MatrixCursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -82,8 +83,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + " ); ";
 
     private static final String SQL_CREATE_SESSION_TABLE = " CREATE TABLE " + SessionTable.TABLE_NAME
-            + " ( " + SessionTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + SessionTable.COLUMN_SLIDE_NUMBER + " INTEGER," +
-            SessionTable.COLUMN_MODULE + " TEXT," + SessionTable.COLUMN_SESSION
+            + " ( " + SessionTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + SessionTable.COLUMN_FORMDATE + "TEXT, "
+            + SessionTable.COLUMN_DEVICEID + "TEXT, "
+            + SessionTable.COLUMN_SLIDE_NUMBER + " INTEGER,"
+            + SessionTable.COLUMN_MODULE + " TEXT," + SessionTable.COLUMN_SESSION
             + " TEXT,"
             + SessionTable.COLUMN_SESSION_TIME + " TEXT,"
             + SessionTable.COLUMN_SYNCED + " TEXT,"
@@ -95,7 +99,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     private static final String SQL_CREATE_NMS = "CREATE TABLE " + NMCTable.TABLE_NAME +
-            "( " + NMCTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + NMCTable.COLUMN_DEVICEID + " TEXT, " + NMCTable.COLUMN_LAT + " TEXT, "
+            "( " + NMCTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + NMCTable.COLUMN_DEVICEID
+            + " TEXT, " + NMCTable.COLUMN_LAT + " TEXT, " + NMCTable.COLUMN_FORMDATE + "TEXT, "
             + NMCTable.COLUMN_LNG + " TEXT, " + NMCTable.COLUMN_GPSTIME + " TEXT, " + NMCTable.COLUMN_BTYPE + " TEXT, "
             + NMCTable.COLUMN_BOOK_DATE + " TEXT, " + NMCTable.COLUMN_BOOKBY + " TEXT, "
             + NMCTable.COLUMN_DOCTOR_NAME + " TEXT, " + NMCTable.COLUMN_DATE
@@ -138,11 +143,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVer, int newVer) {
-        /*db.execSQL(SQL_DELETE_USERS);
+        db.execSQL(SQL_DELETE_USERS);
         db.execSQL(SQL_DELETE_FORMS);
         db.execSQL(SQL_DELETE_DISTRICTS);
         db.execSQL(SQL_DELETE_SESSION);
-        db.execSQL(SQL_DELETE_NMS);*/
+        db.execSQL(SQL_DELETE_NMS);
     }
 
     public List<HealthFacContract> getHFData(HealthFacContract.ColumnsClass... columnsClass) {
@@ -470,10 +475,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public boolean Login(String username, String password) throws SQLException {
 
         SQLiteDatabase db = this.getReadableDatabase();
-
 // New value for one column
         String[] columns = {
-                UsersTable._ID
+                UsersTable._ID,
+                UsersTable.DISTRICT_CODE
         };
 
 // Which row to update, based on the ID
@@ -487,11 +492,58 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 null,                       //filter by row groups
                 null);                      //The sort order
 
-        int cursorCount = cursor.getCount();
+        if (cursor.moveToFirst()) {
+            MainApp.districtCode = cursor.getInt(cursor.getColumnIndex(UsersTable.DISTRICT_CODE));
+            cursor.moveToNext();
+        }
+
+        int count = cursor.getCount();
 
         cursor.close();
         db.close();
-        return cursorCount > 0;
+        return count > 0;
+    }
+
+
+    public DistrictsContract getDistrict(int distCode) {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        // New value for one column
+        String[] columns = {
+                DistrictTable.DISTRICT_NAME,
+                DistrictTable.DISTRICT_CODE,
+        };
+
+        // Which row to update, based on the ID
+        String selection = null;
+        String[] selectionArgs = null;
+        Cursor cursor = null;
+        DistrictsContract district = null;
+
+        if (distCode > 0) {
+            selection = DistrictTable.DISTRICT_CODE + " = ?";
+            selectionArgs = new String[]{String.valueOf(distCode)};
+            cursor = db.query(DistrictTable.TABLE_NAME, //Table to query
+                    columns,                    //columns to return
+                    selection,                  //columns for the WHERE clause
+                    selectionArgs,              //The values for the WHERE clause
+                    null,                       //group the rows
+                    null,                       //filter by row groups
+                    null);                      //The sort order
+
+
+            if (cursor.moveToFirst()) {
+                district = new DistrictsContract().Hydrate(cursor);
+                cursor.moveToNext();
+            }
+
+            cursor.close();
+        }
+
+
+
+        db.close();
+        return district;
     }
 
     public List<FormsContract> getFormsByDSS(String dssID) {
@@ -805,10 +857,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(SessionTable.COLUMN_MODULE, String.valueOf(sc.getModule()));
-        values.put(SessionTable.COLUMN_SESSION, String.valueOf(sc.getSession()));
-        values.put(SessionTable.COLUMN_SESSION_TIME, String.valueOf(sc.getSessionTime()));
-        values.put(SessionTable.COLUMN_SLIDE_NUMBER, String.valueOf(sc.getSlideNumber()));
+        values.put(SessionTable.COLUMN_MODULE, sc.getModule());
+        values.put(SessionTable.COLUMN_SESSION, sc.getSession());
+        values.put(SessionTable.COLUMN_SESSION_TIME, sc.getSessionTime());
+        values.put(SessionTable.COLUMN_SLIDE_NUMBER,sc.getSlideNumber());
+        values.put(SessionTable.COLUMN_DEVICEID, sc.getDeviceid());
+        values.put(SessionTable.COLUMN_FORMDATE, sc.getFormdate());
         db.insert(SessionTable.TABLE_NAME, null, values);
     }
 
@@ -849,12 +903,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(NMCTable.COLUMN_LNG, MainApp.nmc.getLng());
         values.put(NMCTable.COLUMN_BTYPE, MainApp.nmc.getBookingtype());
         values.put(NMCTable.COLUMN_GPSTIME, MainApp.nmc.getGpsTime());
+        values.put(NMCTable.COLUMN_FORMDATE, MainApp.nmc.getFormdate());
         db.insert(NMCTable.TABLE_NAME, null, values);
 
     }
 
     public interface DBConnection {
         String DB_NAME = "acad_detail";
+    }
+
+    public long getUsersCount() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        long count = DatabaseUtils.queryNumEntries(db, UsersTable.TABLE_NAME);
+        db.close();
+        return count;
     }
 
 

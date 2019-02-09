@@ -4,13 +4,18 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.adapters.SlidingImageAdapter;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.FragmentModuleBinding;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
@@ -33,6 +38,12 @@ public class ModuleFragment extends Fragment {
     boolean isMaternalClicked = true;
     boolean isChildSubClicked = false;
     boolean isNewBornClicked = true;
+    private static int currentPage = 0;
+    private static int NUM_PAGES = 0;
+    String districtName;
+    boolean isAdmin;
+    SlidingImageAdapter imageAdapter;
+
 
 
     @Override
@@ -48,6 +59,10 @@ public class ModuleFragment extends Fragment {
 
         bi = DataBindingUtil.inflate(inflater, R.layout.fragment_module, container, false);
         view = bi.getRoot();
+        districtName = getArguments().getString("district_name");
+        isAdmin = getArguments().getBoolean("isAdmin");
+        setupModules();
+        initSlider();
 
         MainApp.hideKeyboard(getActivity());
 
@@ -55,6 +70,85 @@ public class ModuleFragment extends Fragment {
         setOnClickListener();
 
         return view;
+    }
+
+    private void initSlider() {
+
+        imageAdapter = new SlidingImageAdapter(getContext(), Data.mainSlides);
+        bi.pager.setAdapter(imageAdapter);
+        bi.indicator.setViewPager(bi.pager);
+
+
+        NUM_PAGES =Data.dia1_imgs.length;
+
+        // Auto start of viewpager
+        final Handler handler = new Handler();
+        final Runnable Update = new Runnable() {
+            public void run() {
+                if (currentPage == NUM_PAGES) {
+                    currentPage = 0;
+                }
+                bi.pager.setCurrentItem(currentPage++, true);
+            }
+        };
+        Timer swipeTimer = new Timer();
+        swipeTimer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                handler.post(Update);
+            }
+        }, 2000, 2000);
+
+        // Pager listener over indicator
+        bi.indicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
+            @Override
+            public void onPageSelected(int position) {
+                currentPage = position;
+
+            }
+
+            @Override
+            public void onPageScrolled(int pos, float arg1, int arg2) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int pos) {
+
+            }
+        });
+    }
+
+    private void setupModules() {
+        if (!isAdmin) {
+            switch (MainApp.districtCode) {
+
+                case 113:
+                case 123:
+                case 432:
+                case 234:
+                    bi.newBornHealth.setVisibility(View.GONE);
+                    bi.maternalHealth.setVisibility(View.GONE);
+                    break;
+                case 252:
+                    bi.childHealth.setVisibility(View.GONE);
+                    bi.newBornHealth.setVisibility(View.GONE);
+                    break;
+
+                case 434:
+                    bi.maternalHealth.setVisibility(View.GONE);
+                    bi.childHealth.setVisibility(View.GONE);
+                    break;
+
+                case 211:
+                case 414:
+                    bi.childHealth.setVisibility(View.GONE);
+                    break;
+
+            }
+        }
+
     }
 
     private void setOnClickListener() {

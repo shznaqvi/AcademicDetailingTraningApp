@@ -783,49 +783,55 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
 
             LocationManager mlocManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
-            if (mlocManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-                if ((mEmail.equals("dmu@aku") && mPassword.equals("aku?dmu")) ||
-                        (db.Login(mEmail, mPassword)) ||
-                        (mEmail.equals("test1234") && mPassword.equals("test1234"))
-                        || (mEmail.equals("test12345") && mPassword.equals("test12345"))) {
-                    MainApp.userName = mEmail;
-                    MainApp.admin = mEmail.contains("@");
+            if(db.getUsersCount() != 0){
+                if (mlocManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                    if ((mEmail.equals("dmu@aku") && mPassword.equals("aku?dmu")) ||
+                            (db.Login(mEmail, mPassword)) ||
+                            (mEmail.equals("test1234") && mPassword.equals("test1234"))
+                            || (mEmail.equals("test12345") && mPassword.equals("test12345"))) {
+                        MainApp.userName = mEmail;
+                        MainApp.admin = mEmail.contains("@");
 
-                    Intent iLogin = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(iLogin);
-                    finish();
+                        Intent iLogin = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(iLogin);
+                        finish();
 
 
+                    } else {
+                        bi.password.setError(getString(R.string.error_incorrect_password));
+                        bi.password.requestFocus();
+                        Toast.makeText(LoginActivity.this, mEmail + " " + mPassword, Toast.LENGTH_SHORT).show();
+                    }
                 } else {
-                    bi.password.setError(getString(R.string.error_incorrect_password));
-                    bi.password.requestFocus();
-                    Toast.makeText(LoginActivity.this, mEmail + " " + mPassword, Toast.LENGTH_SHORT).show();
-                }
-            } else {
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                        LoginActivity.this);
-                alertDialogBuilder
-                        .setMessage("GPS is disabled in your device. Enable it?")
-                        .setCancelable(false)
-                        .setPositiveButton("Enable GPS",
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog,
-                                                        int id) {
-                                        Intent callGPSSettingIntent = new Intent(
-                                                android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                                        startActivity(callGPSSettingIntent);
-                                    }
-                                });
-                alertDialogBuilder.setNegativeButton("Cancel",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        });
-                AlertDialog alert = alertDialogBuilder.create();
-                alert.show();
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                            LoginActivity.this);
+                    alertDialogBuilder
+                            .setMessage("GPS is disabled in your device. Enable it?")
+                            .setCancelable(false)
+                            .setPositiveButton("Enable GPS",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog,
+                                                            int id) {
+                                            Intent callGPSSettingIntent = new Intent(
+                                                    android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                                            startActivity(callGPSSettingIntent);
+                                        }
+                                    });
+                    alertDialogBuilder.setNegativeButton("Cancel",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                }
+                            });
+                    AlertDialog alert = alertDialogBuilder.create();
+                    alert.show();
 
+                }
+            }else{
+
+                Toast.makeText(LoginActivity.this, "Please Sync Data before login!", Toast.LENGTH_SHORT).show();
             }
+
 
         }
 

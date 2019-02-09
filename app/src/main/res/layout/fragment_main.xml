@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -198,7 +198,7 @@
                         android:id="@+id/lblMainMenu"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/colorPrimaryDark"
+                        android:background="@color/colorPrimary"
                         android:padding="10dp"
                         android:text="Main Menu"
                         android:textAlignment="center"
@@ -225,7 +225,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_margin="5dp"
                                 android:layout_weight="1"
-                                android:background="@drawable/tv_style">
+                               >
 
                                 <RelativeLayout
                                     android:layout_width="match_parent"
@@ -244,12 +244,11 @@
                                         android:layout_alignParentBottom="true"
                                         android:layout_marginStart="0dp"
                                         android:layout_marginTop="16dp"
-                                        android:background="@color/colorPrimary"
                                         android:padding="10dp"
                                         android:text="Start Training"
                                         android:textAlignment="center"
                                         android:textAllCaps="true"
-                                        android:textColor="@color/white"
+                                        android:textColor="@color/colorPrimaryDark"
                                         android:textSize="20sp"
                                         android:textStyle="bold" />
 
@@ -281,12 +280,11 @@
                                         android:layout_alignParentBottom="true"
                                         android:layout_marginStart="0dp"
                                         android:layout_marginTop="16dp"
-                                        android:background="@color/colorPrimary"
                                         android:padding="10dp"
                                         android:text="Database Manager"
                                         android:textAlignment="center"
                                         android:textAllCaps="true"
-                                        android:textColor="@color/white"
+                                        android:textColor="@color/colorPrimaryDark"
                                         android:textSize="20sp"
                                         android:textStyle="bold" />
 
@@ -334,12 +332,11 @@
                                         android:layout_alignParentBottom="true"
                                         android:layout_marginStart="0dp"
                                         android:layout_marginTop="16dp"
-                                        android:background="@color/colorPrimary"
                                         android:padding="10dp"
                                         android:text="Upload Data"
                                         android:textAlignment="center"
                                         android:textAllCaps="true"
-                                        android:textColor="@color/white"
+                                        android:textColor="@color/colorPrimaryDark"
                                         android:textSize="20sp"
                                         android:textStyle="bold" />
 

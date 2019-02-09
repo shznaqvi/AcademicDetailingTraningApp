@@ -67,8 +67,6 @@ public class DistrictsContract {
         this.DICTRICT_CODE = cursor.getLong(cursor.getColumnIndex(DistrictTable.DISTRICT_CODE));
         this.District_name = cursor.getString(cursor.getColumnIndex(DistrictTable.DISTRICT_NAME));
 
-
-
         return this;
 
     }

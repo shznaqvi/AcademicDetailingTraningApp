@@ -2,20 +2,34 @@ package detail.acad.hassannaqvi.edu.aku.academicdetailing.ui;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.kaopiz.kprogresshud.KProgressHUD;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.lang.reflect.Method;
+import java.net.MalformedURLException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.RetrofitClient.RetrofitClient;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.DistrictsContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.FormsContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.NextMeetingContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.SessionContract;
@@ -28,8 +42,12 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments.MainFragment;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments.ModuleFragment;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.interfaces.Callbacks;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.sync.SyncAllData;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, Callbacks {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener,Callbacks {
 
 
     private static final String TAG = "MainActivity";
@@ -38,7 +56,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     DatabaseHelper db;
     Collection<FormsContract> dbData;
     KProgressHUD hud;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +70,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bi.bottomNav.home.setOnClickListener(this);
         bi.bottomNav.learning.setOnClickListener(this);
         bi.bottomNav.settings.setOnClickListener(this);
+        DistrictsContract dst = db.getDistrict(MainApp.districtCode);
+        if (dst != null) {
+            MainApp.districtName = dst.getDistrict_name();
+        }
+        loadHomeFragment();
+
     }
 
 
@@ -151,13 +174,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         if (fragment.getClass().getName().equals(MainFragment.class.getName())) {
+            clearAllFragments();
             transaction.add(bi.mainLayout.getId(), fragment);
         } else {
             transaction.setCustomAnimations(R.anim.slide_in, R.anim.slide_out);
             transaction.replace(bi.mainLayout.getId(), fragment);
         }
+        Bundle bundle = new Bundle();
+        bundle.putString("district_name",MainApp.districtName);
+        bundle.putBoolean("isAdmin",MainApp.admin);
+        fragment.setArguments(bundle);
         transaction.addToBackStack(null);
         transaction.commit();
     }
+
+    private void clearAllFragments() {
+        for(Fragment fragment : this.getSupportFragmentManager().getFragments()){
+            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+        }
+    }
+
 
 }

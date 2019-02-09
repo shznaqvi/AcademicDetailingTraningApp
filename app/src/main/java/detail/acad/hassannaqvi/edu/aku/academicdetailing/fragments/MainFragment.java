@@ -4,6 +4,7 @@ package detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +27,8 @@ public class MainFragment extends Fragment {
     View view;
     Callbacks callbacks;
     DatabaseHelper db;
+    String districtName="";
+    boolean isAdmin;
 
 
 
@@ -33,6 +36,11 @@ public class MainFragment extends Fragment {
         // Required empty public constructor
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,7 +48,13 @@ public class MainFragment extends Fragment {
         // Inflate the layout for this fragment
         bi = DataBindingUtil.inflate(inflater,R.layout.fragment_main,container,false);
         view = bi.getRoot();
+        districtName = getArguments().getString("district_name");
+        isAdmin = getArguments().getBoolean("isAdmin");
+        if(!isAdmin){
+            bi.openDB.setVisibility(View.GONE);
+        }
         db = new DatabaseHelper(getContext());
+
 
 
         onClickListener();
@@ -53,6 +67,7 @@ public class MainFragment extends Fragment {
         bi.userName.setText("Hello! " + MainApp.userName);
         bi.syncedForm.setText(String.valueOf(db.getUnsyncedForms().size()));
         bi.formsToday.setText(String.valueOf(db.getTodayForms().size()));
+        bi.districtName.setText(districtName);
 
     }
 

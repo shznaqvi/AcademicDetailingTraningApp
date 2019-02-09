@@ -300,7 +300,6 @@ public class Utils {
         View view = LayoutInflater.from(context).inflate(R.layout.dialoge_layout, null);
         ImageView slide = view.findViewById(R.id.slideImage);
         Button proceed = view.findViewById(R.id.proceed);
-
         if (MainApp.isSlideStart) {
             proceed.setText("Proceed To Pre Test");
         } else {
@@ -308,11 +307,6 @@ public class Utils {
         }
         Button cancel = view.findViewById(R.id.cancel);
         slide.setImageResource(R.drawable.eclam1051);
-//        if (MainApp.isMaternal) {
-//
-//        } else if (MainApp.isChild) {
-//            slide.setImageResource(getPostImages(index, MainApp.isChild));
-//        }
         builder.setView(view);
         final AlertDialog dialog = builder.create();
         dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
@@ -324,7 +318,8 @@ public class Utils {
                 context.startActivity(new Intent(context, selectTest(index, moduleName))
                         .putExtra("slides", MainApp.isMaternal ? Utils.getMaternalSessions(index)
                                 : MainApp.isChild ? Utils.getChildSessions(index, moduleName)
-                                : MainApp.isNBorn ? Utils.getChildSessions(index, moduleName) : null).putExtra("type", "post"));
+                                : MainApp.isNBorn ? Utils.getChildSessions(index, moduleName)
+                                : null).putExtra("type", "post"));
                 ((Activity) context).finish();
                 dialog.dismiss();
             }

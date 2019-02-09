@@ -16,8 +16,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.NextMeetingContract;
@@ -119,9 +121,11 @@ public class ScheduleFragment extends Fragment {
         MainApp.nmc.setDoBooking(MainApp.getCurrentTime()); // Timestamp is converted to date above
         MainApp.nmc.setBookBy(MainApp.userName);
         MainApp.nmc.setBookingtype(bi.bookingType.getSelectedItem().toString());
+        MainApp.nmc.setFormdate(new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime()));
         setGPS();
         DatabaseHelper db = new DatabaseHelper(getContext());
         db.updateNMS();
+
 
     }
 

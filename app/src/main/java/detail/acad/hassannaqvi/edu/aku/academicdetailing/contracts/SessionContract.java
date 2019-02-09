@@ -15,6 +15,32 @@ public class SessionContract {
     private String synced_date = "";
     private int slidenumber;
     private String _id;
+    private String formdate = ""; // Date
+    private String deviceid = "";
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
+    }
+
+    public String getFormdate() {
+        return formdate;
+    }
+
+    public void setFormdate(String formdate) {
+        this.formdate = formdate;
+    }
+
+    public String getDeviceid() {
+        return deviceid;
+    }
+
+    public void setDeviceid(String deviceid) {
+        this.deviceid = deviceid;
+    }
 
     public JSONObject toJSONObject() throws JSONException {
 
@@ -27,6 +53,8 @@ public class SessionContract {
         json.put(SessionTable.COLUMN_SYNCED, this.synced == null ? JSONObject.NULL : this.synced);
         json.put(SessionTable.COLUMN_SYNCED_DATE, this.synced_date == null ? JSONObject.NULL : this.synced_date);
         json.put(SessionTable._ID, this._id == null ? JSONObject.NULL : this._id);
+        json.put(SessionTable.COLUMN_FORMDATE, this.formdate == null ? JSONObject.NULL : this.formdate);
+        json.put(SessionTable.COLUMN_DEVICEID, this.deviceid == null ? JSONObject.NULL : this.deviceid);
 
         return json;
     }
@@ -40,6 +68,8 @@ public class SessionContract {
         this.synced = cursor.getString(cursor.getColumnIndex(SessionTable.COLUMN_SYNCED));
         this.synced_date = cursor.getString(cursor.getColumnIndex(SessionTable.COLUMN_SYNCED_DATE));
         this._id = cursor.getString(cursor.getColumnIndex(SessionTable._ID));
+        this.formdate = cursor.getString(cursor.getColumnIndex(SessionTable.COLUMN_FORMDATE));
+        this.deviceid = cursor.getString(cursor.getColumnIndex(SessionTable.COLUMN_DEVICEID));
 
 
         return this;
@@ -87,7 +117,8 @@ public class SessionContract {
         public static final String COLUMN_SLIDE_NUMBER = "slide_number";
         public static final String COLUMN_SYNCED= "synced";
         public static final String COLUMN_SYNCED_DATE= "synced_date";
-
+        public static final String COLUMN_FORMDATE = "formdate";
+        public static final String COLUMN_DEVICEID = "deviceid";
         public static final String session_Url = "session_table.php";
 
     }

@@ -1,78 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragments.ModuleFragment"
-       >
+        tools:context=".fragments.ModuleFragment">
 
-        <ScrollView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <LinearLayout
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="350dp">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/pager"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true" />
+
+                <me.relex.circleindicator.CircleIndicator
+                    android:id="@+id/indicator"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_alignParentBottom="true" />
+            </RelativeLayout>
+
+            <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/testing"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/ticker_red"
-                    android:elevation="6dp"
-                    android:gravity="center_horizontal"
-                    android:keepScreenOn="true"
-                    android:padding="4dp"
-                    android:text="Modules"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                android:padding="0dp">
 
                 <LinearLayout
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-                    <include layout="@layout/child_health"
-                        android:id="@+id/childHealth"/>
+                    <TextView
+                        android:id="@+id/testing"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/ticker_red"
+                        android:elevation="6dp"
+                        android:gravity="center_horizontal"
+                        android:keepScreenOn="true"
+                        android:padding="4dp"
+                        android:text="Modules"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
 
                     <LinearLayout
-                        android:animateLayoutChanges="true"
-                        android:id="@+id/childModule"
-                        android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"></LinearLayout>
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
-                    <include layout="@layout/maternal_health"
-                        android:id="@+id/maternalHealth"/>
+                        <include
+                            android:id="@+id/childHealth"
+                            layout="@layout/child_health" />
+
+                        <LinearLayout
+                            android:id="@+id/childModule"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:animateLayoutChanges="true"
+                            android:orientation="vertical"></LinearLayout>
+
+                        <include
+                            android:id="@+id/maternalHealth"
+                            layout="@layout/maternal_health" />
 
 
-                    <LinearLayout
-                        android:animateLayoutChanges="true"
-                        android:id="@+id/maternalModule"
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"></LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/maternalModule"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:animateLayoutChanges="true"
+                            android:orientation="vertical"></LinearLayout>
 
-                    <include layout="@layout/new_born_health"
-                        android:id="@+id/newBornHealth"/>
-                    <LinearLayout
-                        android:animateLayoutChanges="true"
-                        android:id="@+id/nbornModule"
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"></LinearLayout>
+                        <include
+                            android:id="@+id/newBornHealth"
+                            layout="@layout/new_born_health" />
 
+                        <LinearLayout
+                            android:id="@+id/nbornModule"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:animateLayoutChanges="true"
+                            android:orientation="vertical"></LinearLayout>
+
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
-            </LinearLayout>
+
+            </ScrollView>
 
 
-        </ScrollView>
+        </LinearLayout>
+
 
     </FrameLayout>
 

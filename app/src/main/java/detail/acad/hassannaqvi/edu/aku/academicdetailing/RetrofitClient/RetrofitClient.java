@@ -10,7 +10,7 @@ public class RetrofitClient {
 
     public static Retrofit retrofit;
     public static API service;
-    private static String baseURL = "http://f46916/webapiphp/uenad/api/";
+    private static String baseURL = "http://f38158/phpwebapi/uenad/api/";
 
     public static void createRetrofitInstance(){
 //          OkHttpClient client = new OkHttpClient.Builder().readTimeout(15 , TimeUnit.HOURS);

@@ -23,6 +23,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -31,7 +32,9 @@ import java.util.Date;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.FormsContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.NextMeetingContract;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.SessionContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.EndingActivity;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.FANC_Pre_test;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.ViewPagerActivity;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
 
@@ -43,7 +46,7 @@ public class MainApp extends Application {
 //    public static final String _IP = "43.245.131.159"; // Test PHP server
     public static final String _IP = "f38158/"; // Test PHP server
     public static final Integer _PORT = 8080; // Port - with colon (:)
-    public static final String _HOST_URL = "http://" + MainApp._IP + "phpwebapi/uenad/api/";
+    public static final String _HOST_URL = "http://" + MainApp._IP + "uen/api/";
     // public static final String TEST_URL = "http://" + MainApp._IP + ":" + MainApp._PORT + "/leapsup/api/";
 
     //    public static final String _UPDATE_URL = "http://" + MainApp._IP + ":" + MainApp._PORT + "/wfp_recruit_form/app/app-debug.apk";
@@ -406,6 +409,19 @@ public class MainApp extends Application {
                 dialog.dismiss();
             }
         });
+    }
+
+    public static void setSharedPrefForHf(Context context, boolean synced) {
+        SharedPreferences preferences = context.getSharedPreferences("hfData", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean("isHfSync", synced);
+        editor.apply();
+    }
+
+    public static boolean isHfDataSync(Context context) {
+        SharedPreferences preferences = context.getSharedPreferences("hfData", MODE_PRIVATE);
+        return preferences.getBoolean("isHfSync", false);
+
     }
 
 }

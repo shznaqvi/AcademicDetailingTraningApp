@@ -7,4 +7,5 @@ public interface Callbacks {
     void loadModuleFragment();
     void loadDatabaseManager();
     void uploadDataToServer();
+    void downloadData();
 }

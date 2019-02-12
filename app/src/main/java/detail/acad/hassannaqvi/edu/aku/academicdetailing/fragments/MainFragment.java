@@ -95,6 +95,14 @@ public class MainFragment extends Fragment {
             }
         });
 
+        bi.downloadData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                callbacks.downloadData();
+            }
+        });
+
     }
 
     @Override
@@ -103,4 +111,6 @@ public class MainFragment extends Fragment {
 
         callbacks = (Callbacks) context;
     }
+
+
 }

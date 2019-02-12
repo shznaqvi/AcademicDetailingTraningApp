@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -47,7 +48,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener,Callbacks {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, Callbacks {
 
 
     private static final String TAG = "MainActivity";
@@ -64,9 +65,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         MainApp.logginTime = MainApp.getCurrentTime();
         hud = KProgressHUD.create(this).setCancellable(false).setStyle(KProgressHUD.Style.SPIN_INDETERMINATE);
-
         db = new DatabaseHelper(this);
-        loadHomeFragment();
         bi.bottomNav.home.setOnClickListener(this);
         bi.bottomNav.learning.setOnClickListener(this);
         bi.bottomNav.settings.setOnClickListener(this);
@@ -75,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             MainApp.districtName = dst.getDistrict_name();
         }
         loadHomeFragment();
+
 
     }
 
@@ -148,6 +148,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
+    public void downloadData() {
+        getHfDataFromServer();
+
+    }
+
+    @Override
     public void onBackPressed() {
         super.onBackPressed();
 
@@ -181,17 +187,52 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             transaction.replace(bi.mainLayout.getId(), fragment);
         }
         Bundle bundle = new Bundle();
-        bundle.putString("district_name",MainApp.districtName);
-        bundle.putBoolean("isAdmin",MainApp.admin);
+        bundle.putString("district_name", MainApp.districtName);
+        bundle.putBoolean("isAdmin", MainApp.admin);
         fragment.setArguments(bundle);
         transaction.addToBackStack(null);
         transaction.commit();
     }
 
     private void clearAllFragments() {
-        for(Fragment fragment : this.getSupportFragmentManager().getFragments()){
+        for (Fragment fragment : this.getSupportFragmentManager().getFragments()) {
             getSupportFragmentManager().beginTransaction().remove(fragment).commit();
         }
+    }
+
+    private void getHfDataFromServer() {
+
+        hud.setLabel("Getting Health Facility Data");
+        hud.show();
+        Call<ResponseBody> call = RetrofitClient.service.synHfData();
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+
+                    try {
+                        String data = response.body().string();
+                        final JSONArray array = new JSONArray(data);
+                        db.syncHF(array);
+                        Toast.makeText(MainActivity.this, "Successfully Downloaded " + array.length() + " Health Facilities", Toast.LENGTH_SHORT).show();
+                        hud.dismiss();
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                hud.dismiss();
+                Toast.makeText(MainActivity.this, "Server connection Error", Toast.LENGTH_SHORT).show();
+
+            }
+        });
     }
 
 

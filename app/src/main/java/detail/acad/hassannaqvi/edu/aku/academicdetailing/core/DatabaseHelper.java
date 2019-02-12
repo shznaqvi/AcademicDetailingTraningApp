@@ -97,6 +97,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + " ( " + DistrictTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + DistrictTable.DISTRICT_CODE + " Long," +
             DistrictTable.DISTRICT_NAME + " TEXT" + ");";
 
+    private static final String SQL_CREATE_HF_TABLE = " CREATE TABLE " + singleHF.TABLE_NAME
+            + " ( " + singleHF._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + singleHF.COLUMN_HF_DHIS + " LONG, "
+            + singleHF.COLUMN_HF_DIST_CODE + " LONG, "
+            + singleHF.COLUMN_HF_TEHSIL_NAME + " TEXT, "
+            + singleHF.COLUMN_HF_UC_NAME + " TEXT, "
+            + singleHF.COLUMN_HF_NAME + " TEXT, "
+            + singleHF.COLUMN_HF_NAME_GOVT + " TEXT, "
+            + singleHF.COLUMN_HF_UEN_CODE + " LONG " + ");";
+
 
     private static final String SQL_CREATE_NMS = "CREATE TABLE " + NMCTable.TABLE_NAME + "("
             + NMCTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -120,6 +130,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String SQL_DELETE_SESSION = "DROP TABLE IF EXISTS " + SessionTable.TABLE_NAME;
     private static final String SQL_DELETE_DISTRICTS = "DROP TABLE IF EXISTS " + DistrictTable.TABLE_NAME;
     private static final String SQL_DELETE_NMS = "DROP TABLE IF EXISTS " + NMCTable.TABLE_NAME;
+    private static final String SQL_DELETE_HF = "DROP TABLE IF EXISTS " + singleHF.TABLE_NAME;
     private static final String SQL_DELETE_USERS =
             "DROP TABLE IF EXISTS " + UsersTable.TABLE_NAME;
     private static final String SQL_DELETE_FORMS =
@@ -142,6 +153,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_SESSION_TABLE);
         db.execSQL(SQL_CREATE_NMS);
         db.execSQL(SQL_CREATE_DISTRICT_TABLE);
+        db.execSQL(SQL_CREATE_HF_TABLE);
         /*db.execSQL(SQL_CREATE_TEHSILS);
         db.execSQL(SQL_CREATE_UCS);
         db.execSQL(SQL_CREATE_LHWS);*/
@@ -155,74 +167,75 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_DELETE_DISTRICTS);
         db.execSQL(SQL_DELETE_SESSION);
         db.execSQL(SQL_DELETE_NMS);
+        db.execSQL(SQL_DELETE_HF);
     }
 
-    public List<HealthFacContract> getHFData(HealthFacContract.ColumnsClass... columnsClass) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c = null;
-        String[] columns = {
-                singleHF.COLUMN_ID,
-                singleHF.COLUMN_HF_NAME,
-                singleHF.COLUMN_HF_TYPE,
-                singleHF.COLUMN_HF_DISTRICT_NAME,
-                singleHF.COLUMN_HF_TEHSIL_NAME,
-                singleHF.COLUMN_HF_PROVINCE_NAME,
-                singleHF.COLUMN_HF_UC_NAME,
-                singleHF.COLUMN_HF_UEN_CODE,
-        };
-
-        String whereClause = null;
-        String[] whereArgs = null;
-
-        if (columnsClass.length > 0) {
-
-            whereClause = "";
-            whereArgs = new String[columnsClass.length];
-
-            for (byte i = 0; i < columnsClass.length; i++) {
-                whereClause += columnsClass[i].getColumnName() + " =?";
-                whereArgs[i] = columnsClass[i].getColumnClause();
-
-                if (columnsClass.length - 1 != i) {
-                    whereClause += " AND ";
-                }
-
-            }
-
-        }
-
-        String groupBy = null;
-        String having = null;
-
-        String orderBy = singleHF.COLUMN_HF_NAME + " ASC";
-
-        List<HealthFacContract> allDC = new ArrayList<>();
-
-        try {
-            c = db.query(
-                    singleHF.TABLE_NAME,  // The table to query
-                    columns,                   // The columns to return
-                    whereClause,               // The columns for the WHERE clause
-                    whereArgs,                 // The values for the WHERE clause
-                    groupBy,                   // don't group the rows
-                    having,                    // don't filter by row groups
-                    orderBy                    // The sort order
-            );
-
-            while (c.moveToNext()) {
-                HealthFacContract dc = new HealthFacContract();
-                allDC.add(dc.HydrateHF(c));
-            }
-        } finally {
-            if (c != null) {
-                c.close();
-            }
-            if (db != null) {
-                db.close();
-            }
-        }
-        return allDC;
-    }
+//    public List<HealthFacContract> getHFData(HealthFacContract.ColumnsClass... columnsClass) {
+//        SQLiteDatabase db = this.getReadableDatabase();
+//        Cursor c = null;
+//        String[] columns = {
+//                singleHF.COLUMN_ID,
+//                singleHF.COLUMN_HF_NAME,
+//                singleHF.COLUMN_HF_TYPE,
+//                singleHF.COLUMN_HF_DISTRICT_NAME,
+//                singleHF.COLUMN_HF_TEHSIL_NAME,
+//                singleHF.COLUMN_HF_PROVINCE_NAME,
+//                singleHF.COLUMN_HF_UC_NAME,
+//                singleHF.COLUMN_HF_UEN_CODE,
+//        };
+//
+//        String whereClause = null;
+//        String[] whereArgs = null;
+//
+//        if (columnsClass.length > 0) {
+//
+//            whereClause = "";
+//            whereArgs = new String[columnsClass.length];
+//
+//            for (byte i = 0; i < columnsClass.length; i++) {
+//                whereClause += columnsClass[i].getColumnName() + " =?";
+//                whereArgs[i] = columnsClass[i].getColumnClause();
+//
+//                if (columnsClass.length - 1 != i) {
+//                    whereClause += " AND ";
+//                }
+//
+//            }
+//
+//        }
+//
+//        String groupBy = null;
+//        String having = null;
+//
+//        String orderBy = singleHF.COLUMN_HF_NAME + " ASC";
+//
+//        List<HealthFacContract> allDC = new ArrayList<>();
+//
+//        try {
+//            c = db.query(
+//                    singleHF.TABLE_NAME,  // The table to query
+//                    columns,                   // The columns to return
+//                    whereClause,               // The columns for the WHERE clause
+//                    whereArgs,                 // The values for the WHERE clause
+//                    groupBy,                   // don't group the rows
+//                    having,                    // don't filter by row groups
+//                    orderBy                    // The sort order
+//            );
+//
+//            while (c.moveToNext()) {
+//                HealthFacContract dc = new HealthFacContract();
+//                allDC.add(dc.HydrateHF(c));
+//            }
+//        } finally {
+//            if (c != null) {
+//                c.close();
+//            }
+//            if (db != null) {
+//                db.close();
+//            }
+//        }
+//        return allDC;
+//    }
 
 
     public ArrayList<UsersContract> getAllUsers() {
@@ -437,7 +450,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public void syncUsers(JSONArray userlist) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(UsersTable.TABLE_NAME, null, null);
+        db.execSQL(" DELETE FROM " + UsersTable.TABLE_NAME);
+        db.execSQL(" DELETE FROM sqlite_sequence where name = 'users'");
 
         try {
             JSONArray jsonArray = userlist;
@@ -460,12 +474,46 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public void syncDistricts(JSONArray userlist) {
+
+    public void syncHF(JSONArray hfList) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(DistrictTable.TABLE_NAME, null, null);
+        db.execSQL(" DELETE FROM " + singleHF.TABLE_NAME);
+        db.execSQL(" DELETE FROM sqlite_sequence where name = 'health_fc'");    //TODO you have to add table name manually in order to reset primary key
+        try {
+            JSONArray jsonArray = hfList;
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObjectUser = jsonArray.getJSONObject(i);
+
+                HealthFacContract healthFacContract = new HealthFacContract();
+                healthFacContract.Sync(jsonObjectUser);
+
+                ContentValues values = new ContentValues();
+
+                values.put(singleHF.COLUMN_HF_DHIS, healthFacContract.getHf_dhis());
+                values.put(singleHF.COLUMN_HF_DIST_CODE, healthFacContract.getHf_district_code());
+                values.put(singleHF.COLUMN_HF_TEHSIL_NAME, healthFacContract.getHf_tehsil());
+                values.put(singleHF.COLUMN_HF_UC_NAME, healthFacContract.getHf_uc());
+                values.put(singleHF.COLUMN_HF_NAME, healthFacContract.getHf_name());
+                values.put(singleHF.COLUMN_HF_NAME_GOVT, healthFacContract.getHf_name_govt());
+                values.put(singleHF.COLUMN_HF_UEN_CODE, healthFacContract.getHf_uen_code());
+                long count = db.insert(singleHF.TABLE_NAME, null, values);
+                Log.d(TAG, "syncHF: count " + count);
+            }
+            db.close();
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
+    }
+
+    public void syncDistricts(JSONArray districList) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL(" DELETE FROM " + DistrictTable.TABLE_NAME);
+        db.execSQL(" DELETE FROM sqlite_sequence where name = 'districts'");
 
         try {
-            JSONArray jsonArray = userlist;
+            JSONArray jsonArray = districList;
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 

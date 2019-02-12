@@ -43,6 +43,7 @@ public class ViewPagerActivity extends AppCompatActivity {
 
         subMenuDT = (Data.SubMenu) getIntent().getSerializableExtra(CONSTANTS.URI_SUBMENU_DT);
 
+
         settingupViewPager();
 
 

@@ -26,9 +26,13 @@ public interface API {
     @POST("next_meeting.php")
     Call<ResponseBody> syncNextMeeting(@Body JSONArray array);
 
+    @GET("healthfacilities.php")
+    Call<ResponseBody> synHfData();
+
     @GET("users.php")
     Call<ResponseBody> getUsers();
-  @GET("districts.php")
+
+    @GET("districts.php")
     Call<ResponseBody> getDistricts();
 
 

@@ -91,8 +91,8 @@ public final class Data {
     public static ArrayList<String> hbb_cans = new ArrayList<String>(Arrays.asList("2", "1", "3", "3", "2", "2", "1", "3", "4", "4", "3", "2", "2", "4", "4", "1", "1"));
 
     public static int[] mainSlides = new int[]{
-            R.drawable.cdb,R.drawable.diarrhea,R.drawable.eclampsia,R.drawable.fanc,R.drawable.gds,R.drawable.graph,
-            R.drawable.mother1,R.drawable.newborn,R.drawable.posthemo,R.drawable.shock,R.drawable.sick,R.drawable.vb
+            R.drawable.cdb, R.drawable.diarrhea, R.drawable.eclampsia, R.drawable.fanc, R.drawable.gds, R.drawable.graph,
+            R.drawable.mother1, R.drawable.newborn, R.drawable.posthemo, R.drawable.shock, R.drawable.sick, R.drawable.vb
     };
 
     public static int[] gds1_imgs = new int[]{
@@ -288,79 +288,79 @@ public final class Data {
         if (type == 0) {
             newMenuModule.put("General Danger Sign",
                     new SubMenu[]{
-                            new SubMenu("GDS(Assessment and Classification)", GDSSession01_Pre_test.class, R.drawable.gds1001, gds1_imgs, gdsa_cans),
-                            new SubMenu("GDS(Management, Counseling and Referral)", GDSSession02_Pre_test.class, R.drawable.gds2001, gds2_imgs, gdsb_cans)
+                            new SubMenu("childHealth", "GDS(Assessment and Classification)", GDSSession01_Pre_test.class, R.drawable.gds1001, gds1_imgs, gdsa_cans),
+                            new SubMenu("childHealth", "GDS(Management, Counseling and Referral)", GDSSession02_Pre_test.class, R.drawable.gds2001, gds2_imgs, gdsb_cans)
                     }
             );
             newMenuModule.put("Cough & Difficult Breathing",
                     new SubMenu[]{
-                            new SubMenu("CDB(Assessment and Classification)", CDBSession01_Pre_test.class, R.drawable.cdb1001, cdb1_imgs, cdba_cans),
-                            new SubMenu("CDB(Management, Counseling and Referral)", CDBSession02_Pre_test.class, R.drawable.cdb2001, cdb2_imgs, cdbb_cans)
+                            new SubMenu("childHealth", "CDB(Assessment and Classification)", CDBSession01_Pre_test.class, R.drawable.cdb1001, cdb1_imgs, cdba_cans),
+                            new SubMenu("childHealth", "CDB(Management, Counseling and Referral)", CDBSession02_Pre_test.class, R.drawable.cdb2001, cdb2_imgs, cdbb_cans)
                     }
             );
             newMenuModule.put("Diarrhoea",
                     new SubMenu[]{
-                            new SubMenu("Dia(Assessment and Classification)", DiaTest01.class, R.drawable.dia1001, dia1_imgs, diaa_cans),
-                            new SubMenu("Dia(Management, Counseling and Referral)", DiaTest02.class, R.drawable.cdb2001, dia2_imgs, diab_cans)
+                            new SubMenu("childHealth", "Dia(Assessment and Classification)", DiaTest01.class, R.drawable.dia1001, dia1_imgs, diaa_cans),
+                            new SubMenu("childHealth", "Dia(Management, Counseling and Referral)", DiaTest02.class, R.drawable.cdb2001, dia2_imgs, diab_cans)
                     }
             );
             newMenuModule.put("PSBI",
                     new SubMenu[]{
-                            new SubMenu("PSBI(Assessment and Classification)", PsbiTest01.class, R.drawable.psbi1001, psbi1_imgs, psbia_cans),
-                            new SubMenu("PSBI(Management, Counseling and Referral)", PsbiTest02.class, R.drawable.psbi2001, psbi2_imgs, psbib_cans),
-                            new SubMenu("PSBI(Breast Feeding & Immunization)", PsbiTest02.class, R.drawable.psbi3001, psbi3_imgs, psbic_cans)
+                            new SubMenu("childHealth", "PSBI(Assessment and Classification)", PsbiTest01.class, R.drawable.psbi1001, psbi1_imgs, psbia_cans),
+                            new SubMenu("childHealth", "PSBI(Management, Counseling and Referral)", PsbiTest02.class, R.drawable.psbi2001, psbi2_imgs, psbib_cans),
+                            new SubMenu("childHealth", "PSBI(Breast Feeding & Immunization)", PsbiTest02.class, R.drawable.psbi3001, psbi3_imgs, psbic_cans)
                     }
             );
         } else if (type == 1) {
             newMenuModule.put("Focused Antenatal Care",
                     new SubMenu[]{
-                            new SubMenu("Focused Antenatal Care", FANC_Pre_test.class, R.drawable.fanc_02, fanc_imgs, fanc_cans)
+                            new SubMenu("maternalHealth", "Focused Antenatal Care", FANC_Pre_test.class, R.drawable.fanc_02, fanc_imgs, fanc_cans)
                     });
             newMenuModule.put("Vaginal Bleeding in Pregnancy",
                     new SubMenu[]{
-                            new SubMenu("Vaginal Bleeding in Pregnancy", VB_Pre_test.class, R.drawable.vb_img_2, vb_imgs, vb_cans)
+                            new SubMenu("maternalHealth", "Vaginal Bleeding in Pregnancy", VB_Pre_test.class, R.drawable.vb_img_2, vb_imgs, vb_cans)
                     });
             newMenuModule.put("Partograph",
                     new SubMenu[]{
-                            new SubMenu("Partograph", PartoTest.class, R.drawable.parto1001, parto_imgs, parto_cans)
+                            new SubMenu("maternalHealth", "Partograph", PartoTest.class, R.drawable.parto1001, parto_imgs, parto_cans)
                     });
             newMenuModule.put("Pre Eclampsia & Eclampsia",
                     new SubMenu[]{
-                            new SubMenu("Pre Eclampsia & Eclampsia", EclamTest.class, R.drawable.eclam1001, eclam_imgs, eclam_cans)
+                            new SubMenu("maternalHealth", "Pre Eclampsia & Eclampsia", EclamTest.class, R.drawable.eclam1001, eclam_imgs, eclam_cans)
                     });
             newMenuModule.put("Postpartum Hemorrhage - 1",
                     new SubMenu[]{
-                            new SubMenu("Postpartum Hemorrhage - 1", HemoTest01.class, R.drawable.hemo1001, hemo1_imgs, hemotest01_cans)
+                            new SubMenu("maternalHealth", "Postpartum Hemorrhage - 1", HemoTest01.class, R.drawable.hemo1001, hemo1_imgs, hemotest01_cans)
                     });
             newMenuModule.put("Postpartum Hemorrhage - 2",
                     new SubMenu[]{
-                            new SubMenu("Postpartum Hemorrhage - 2", HemoTest02.class, R.drawable.hemo2001, hemo2_imgs, hemotest02_cans)
+                            new SubMenu("maternalHealth", "Postpartum Hemorrhage - 2", HemoTest02.class, R.drawable.hemo2001, hemo2_imgs, hemotest02_cans)
                     });
             newMenuModule.put("Assessment and management of Shock",
                     new SubMenu[]{
-                            new SubMenu("Assessment and management of Shock", ShockTest.class, R.drawable.shock1001, shock_imgs, shocktest_cans)
+                            new SubMenu("maternalHealth", "Assessment and management of Shock", ShockTest.class, R.drawable.shock1001, shock_imgs, shocktest_cans)
                     });
             newMenuModule.put("Puerperal Sepsis",
                     new SubMenu[]{
-                            new SubMenu("Puerperal Sepsis", PerpuralSepsisTest.class, R.drawable.sepsis1001, sepsis_imgs, sepsistest_cans)
+                            new SubMenu("maternalHealth", "Puerperal Sepsis", PerpuralSepsisTest.class, R.drawable.sepsis1001, sepsis_imgs, sepsistest_cans)
                     });
 
         } else if (type == 2) {
             newMenuModule.put("Essential Care for Every Baby",
                     new SubMenu[]{
-                            new SubMenu("ECEB(Session One)", EcEbTest01.class, R.drawable.eceb1001, eceb1_imgs, eceb01_cans),
-                            new SubMenu("ECEB(Session Two)", EcEbTest02.class, R.drawable.eceb2001, eceb2_imgs, eceb02_cans)
+                            new SubMenu("nBornHealth", "ECEB(Session One)", EcEbTest01.class, R.drawable.eceb1001, eceb1_imgs, eceb01_cans),
+                            new SubMenu("nBornHealth", "ECEB(Session Two)", EcEbTest02.class, R.drawable.eceb2001, eceb2_imgs, eceb02_cans)
                     }
             );
             newMenuModule.put("Essential Care for Small Babies",
                     new SubMenu[]{
-                            new SubMenu("ECSB(Session One)", EcSbTest01.class, R.drawable.ecsb1001, ecsb1_imgs, ecsbA_cans),
-                            new SubMenu("ECSB(Session Two)", EcSbTest02.class, R.drawable.ecsb2001, ecsb2_imgs, ecsbB_cans)
+                            new SubMenu("nBornHealth", "ECSB(Session One)", EcSbTest01.class, R.drawable.ecsb1001, ecsb1_imgs, ecsbA_cans),
+                            new SubMenu("nBornHealth", "ECSB(Session Two)", EcSbTest02.class, R.drawable.ecsb2001, ecsb2_imgs, ecsbB_cans)
                     }
             );
             newMenuModule.put("Helping Babies Breathe",
                     new SubMenu[]{
-                            new SubMenu("Helping Babies Breathe)", HbbTest.class, R.drawable.hbb1001, hbb_imgs, hbb_cans)
+                            new SubMenu("nBornHealth", "Helping Babies Breathe)", HbbTest.class, R.drawable.hbb1001, hbb_imgs, hbb_cans)
                     }
             );
         }
@@ -368,18 +368,24 @@ public final class Data {
     }
 
     public static class SubMenu implements Serializable {
+        String moduleName;
         String name;
         Class routeClass;
         int[] session;
         int preImage;
         ArrayList<String> answers;
 
-        public SubMenu(String name, Class routeClass, int preImage, int[] session, ArrayList<String> answers) {
+        public SubMenu(String moduleName, String name, Class routeClass, int preImage, int[] session, ArrayList<String> answers) {
+            this.moduleName = moduleName;
             this.name = name;
             this.routeClass = routeClass;
             this.preImage = preImage;
             this.session = session;
             this.answers = answers;
+        }
+
+        public String getModuleName() {
+            return moduleName;
         }
 
         public String getName() {

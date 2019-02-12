@@ -85,7 +85,7 @@ public class PsbiTest02 extends AppCompatActivity implements RadioButton.OnCheck
                 finish();
             }
         } else {
-            MainApp.showDialog(this, getString(R.string.areYouSure), "end", true, null);
+            MainApp.showDialog(this, getString(R.string.areYouSure), "end", true, subMenuDT);
         }
     }
 

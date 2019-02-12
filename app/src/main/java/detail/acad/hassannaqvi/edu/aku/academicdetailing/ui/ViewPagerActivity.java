@@ -130,7 +130,7 @@ public class ViewPagerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                MainApp.showDialog(ViewPagerActivity.this, "Do You Want To Exit?", "end", false);
+                MainApp.showDialog(ViewPagerActivity.this, "Do You Want To Exit?", "end", false, subMenuDT);
 
             }
         });
@@ -139,8 +139,8 @@ public class ViewPagerActivity extends AppCompatActivity {
     private void saveDB() {
 
         SessionContract sC = new SessionContract();
-        sC.setModule(MainApp.moduleName);
-        sC.setSession(MainApp.moduleSession);
+        sC.setModule(subMenuDT.getModuleName());
+        sC.setSession(subMenuDT.getName());
         sC.setSlideNumber(lastItemPosition);
         sC.setDeviceid(MainApp.deviceId);
         sC.setFormdate(new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime()));

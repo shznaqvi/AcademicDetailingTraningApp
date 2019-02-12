@@ -85,7 +85,7 @@ public class CDBSession02_Pre_test extends AppCompatActivity implements RadioBut
                 finish();
             }
         } else {
-            MainApp.showDialog(this, getString(R.string.areYouSure), "end", true, null);
+            MainApp.showDialog(this, getString(R.string.areYouSure), "end", true, subMenuDT);
         }
     }
 

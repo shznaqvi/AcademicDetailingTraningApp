@@ -1,29 +1,19 @@
 package detail.acad.hassannaqvi.edu.aku.academicdetailing.ui;
 
-import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Toast;
 
-import org.json.JSONException;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Objects;
-
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.JSON.GeneratorClass;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.CONSTANTS;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityEndingBinding;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments.InfoFragment;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments.ScheduleFragment;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.interfaces.Callbacks;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.validation.validatorClass;
 
@@ -31,9 +21,8 @@ import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.isC
 
 public class EndingActivity extends AppCompatActivity {
 
-
     ActivityEndingBinding bi;
-
+    Data.SubMenu subMenuDT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +31,7 @@ public class EndingActivity extends AppCompatActivity {
         bi = DataBindingUtil.setContentView(this, R.layout.activity_ending);
         bi.setCallback(this);
 
-
+        subMenuDT = (Data.SubMenu) getIntent().getSerializableExtra(CONSTANTS.URI_SUBMENU_DT);
 
         if (getIntent().getBooleanExtra("complete", false)) {
             bi.statusa.setChecked(true);
@@ -67,11 +56,8 @@ public class EndingActivity extends AppCompatActivity {
                 if (formValidation()) {
                     SaveDraft();
                     if (UpdateDB()) {
-//                        startActivity(new Intent(EndingActivity.this, MainActivity.class));
-
                         loadScheduleFragment();
                         isComplete = false;
-
                     } else {
                         Toast.makeText(EndingActivity.this, "Error in updating db!!", Toast.LENGTH_SHORT).show();
                     }
@@ -103,8 +89,8 @@ public class EndingActivity extends AppCompatActivity {
         MainApp.fc.setIstatus88x(bi.status96x.getText().toString());
         MainApp.fc.setEndingdatetime(MainApp.getCurrentTime());
         MainApp.fc.setSessionEndTime(MainApp.getCurrentTime());
-        MainApp.fc.setSession(MainApp.moduleSession);
-        MainApp.fc.setModule(MainApp.moduleName);
+        MainApp.fc.setSession(subMenuDT.getName());
+        MainApp.fc.setModule(subMenuDT.getModuleName());
     }
 
     private boolean formValidation() {

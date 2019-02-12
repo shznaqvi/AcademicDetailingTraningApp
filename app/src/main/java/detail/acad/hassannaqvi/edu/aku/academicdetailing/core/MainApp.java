@@ -392,7 +392,7 @@ public class MainApp extends Application {
                 if (type.equals("pre")) {
                     end_intent = new Intent(context, ViewPagerActivity.class).putExtra(CONSTANTS.URI_SUBMENU_DT, item);
                 } else {
-                    end_intent = new Intent(context, EndingActivity.class).putExtra("complete", status);
+                    end_intent = new Intent(context, EndingActivity.class).putExtra(CONSTANTS.URI_SUBMENU_DT, item).putExtra("complete", status);
                 }
                 dialog.dismiss();
                 context.startActivity(end_intent);

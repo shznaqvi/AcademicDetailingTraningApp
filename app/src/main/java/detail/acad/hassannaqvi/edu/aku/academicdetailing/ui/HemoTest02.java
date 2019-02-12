@@ -80,7 +80,7 @@ public class HemoTest02 extends AppCompatActivity {
                 finish();
             }
         } else {
-            MainApp.showDialog(this, getString(R.string.areYouSure), "end", true, null);
+            MainApp.showDialog(this, getString(R.string.areYouSure), "end", true, subMenuDT);
         }
     }
 

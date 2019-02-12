@@ -86,7 +86,7 @@ public class DiaTest01 extends AppCompatActivity implements RadioButton.OnChecke
                 finish();
             }
         } else {
-            MainApp.showDialog(this, getString(R.string.areYouSure), "end", true, null);
+            MainApp.showDialog(this, getString(R.string.areYouSure), "end", true, subMenuDT);
         }
     }
 

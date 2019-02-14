@@ -11,9 +11,9 @@
     </data>
 
     <LinearLayout
+        android:background="@drawable/background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/background"
         android:fitsSystemWindows="true"
         android:gravity="center_horizontal"
         android:layoutDirection="rtl"
@@ -21,7 +21,8 @@
         tools:context=".ui.LoginActivity">
 
         <LinearLayout
-            android:background="@drawable/background_lg"
+            android:alpha="0.9"
+            android:background="@drawable/main_bg"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -70,7 +71,7 @@
                         android:layout_width="150dp"
                         android:layout_height="100dp"
                         android:layout_gravity="center"
-                        android:background="@drawable/uncolor" />
+                        android:background="@drawable/unwhite" />
 
 
                     <TextView
@@ -80,7 +81,8 @@
                         android:gravity="center_horizontal"
                         android:keepScreenOn="true"
                         android:text="@string/app_name"
-                        android:textColor="@color/colorAccent"
+                        android:fontFamily="serif"
+                        android:textColor="@color/white"
                         android:textSize="32sp"
                         android:textStyle="bold" />
 
@@ -91,6 +93,7 @@
                         android:gravity="center_horizontal"
                         android:text="A PROJECT OF"
                         android:textColor="@color/white"
+                        android:textStyle="bold"
                         android:textSize="16sp" />
 
                     <ImageView
@@ -245,7 +248,7 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_marginTop="50dp"
+                        android:layout_marginTop="20dp"
                         android:orientation="vertical">
 
                         <View

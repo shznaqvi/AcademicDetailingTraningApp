@@ -79,8 +79,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             FormsTable.COLUMN_SESSION_START_TIME + " TEXT ," +
             FormsTable.COLUMN_SESSION_END_TIME + " TEXT, " +
             FormsTable.COLUMN_PRE_TEST + " TEXT ," +
-            FormsTable.COLUMN_POST_TEST + " TEXT"
-            + " ); ";
+            FormsTable.COLUMN_POST_TEST + " TEXT," +
+            FormsTable.COLUMN_TOTAL + " TEXT," +
+            FormsTable.COLUMN_SCORE_PRE + " TEXT," +
+            FormsTable.COLUMN_PER_PRE + " TEXT," +
+            FormsTable.COLUMN_WRONG_PRE + " TEXT, " +
+            FormsTable.COLUMN_SCORE_POST + " TEXT," +
+            FormsTable.COLUMN_PER_POST + " TEXT, " +
+            FormsTable.COLUMN_WRONG_POST + " TEXT " +
+             " ); ";
 
     private static final String SQL_CREATE_SESSION_TABLE = " CREATE TABLE " + SessionTable.TABLE_NAME
             + " ( " + SessionTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -856,6 +863,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(FormsTable.COLUMN_SESSION_END_TIME, MainApp.fc.getSessionEndTime());
         values.put(FormsTable.COLUMN_SESSION, MainApp.fc.getSession());
         values.put(FormsTable.COLUMN_MODULE, MainApp.fc.getModule());
+        values.put(FormsTable.COLUMN_SCORE_PRE, MainApp.fc.getScore_pre());
+        values.put(FormsTable.COLUMN_SCORE_POST, MainApp.fc.getScore_post());
+        values.put(FormsTable.COLUMN_PER_PRE, MainApp.fc.getPercentage_pre());
+        values.put(FormsTable.COLUMN_PER_POST, MainApp.fc.getPercentage_post());
+        values.put(FormsTable.COLUMN_TOTAL, MainApp.fc.getTotal());
+        values.put(FormsTable.COLUMN_MODULE, MainApp.fc.getModule());
+        values.put(FormsTable.COLUMN_WRONG_PRE, MainApp.fc.getWrong_pre());
+        values.put(FormsTable.COLUMN_WRONG_POST, MainApp.fc.getWrong_post());
 
 
 // Which row to update, based on the ID

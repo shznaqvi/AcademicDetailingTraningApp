@@ -47,6 +47,10 @@ public final class Data {
                     "Helping Babies Breathe"
             };
 
+    public static final int correct = 0;
+    public static final int wrong = 0;
+    public static final int total = 0;
+    public static final double percentage = 0;
     public static final String[] ECEB = new String[]{"ECEB(Session One)", "ECEB(Session Two)"};
     public static final String[] ECSB = new String[]{"ECSB(Session One)", "ECSB(Session Two)"};
     public static final String[] HBB = new String[]{"Helping Babies Breathe"};

@@ -18,6 +18,8 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.validation.validatorClass;
 
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.isComplete;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.post_result;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.pre_result;
 
 public class EndingActivity extends AppCompatActivity {
 
@@ -90,7 +92,16 @@ public class EndingActivity extends AppCompatActivity {
         MainApp.fc.setEndingdatetime(MainApp.getCurrentTime());
         MainApp.fc.setSessionEndTime(MainApp.getCurrentTime());
         MainApp.fc.setSession(subMenuDT.getName());
+        MainApp.fc.setScore_pre(String.valueOf(pre_result.getCorrect()));
+        MainApp.fc.setWrong_pre(String.valueOf(pre_result.getWrong()));
+        MainApp.fc.setPercentage_pre(String.valueOf(MainApp.round(pre_result.getPercentage(),2)));
+        MainApp.fc.setTotal(String.valueOf(pre_result.getTotal()));
         MainApp.fc.setModule(subMenuDT.getModuleName());
+        if(post_result != null){
+            MainApp.fc.setScore_post(String.valueOf(post_result.getCorrect()));
+            MainApp.fc.setPercentage_post(String.valueOf(MainApp.round(post_result.getPercentage(),2)));
+            MainApp.fc.setWrong_post(String.valueOf(post_result.getWrong()));
+        }
     }
 
     private boolean formValidation() {

@@ -20,6 +20,8 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.validation.validatorClass;
 
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.isComplete;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.post_result;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.pre_result;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.type;
 
 
@@ -55,6 +57,7 @@ public class EcEbTest01 extends AppCompatActivity {
         } else if (type.equals("pre") && isComplete) {
             bi.heading.setText("PRETEST RESULT");
             GeneratorClass.comparingResult(bi.llecebA, true, subMenuDT.getAnswers());
+            pre_result = GeneratorClass.getResults("pre",subMenuDT.getAnswers());
             bi.btnOk.setVisibility(View.VISIBLE);
             bi.btnOk.setText("Start Training");
             bi.btnContinue.setVisibility(View.GONE);
@@ -76,16 +79,13 @@ public class EcEbTest01 extends AppCompatActivity {
 
     public void BtnOk() {
         if (type.equals("pre")) {
-            if (MainApp.isSlideStart) {
-                MainApp.showDialog(this, getString(R.string.readyForTrain), "pre", null, subMenuDT);
-            } else {
-                Toast.makeText(this, "Training Completed", Toast.LENGTH_SHORT).show();
-                finish();
-            }
+            MainApp.showDialog(this, getString(R.string.readyForTrain), "pre", null, subMenuDT);
         } else {
-            MainApp.showDialog(this, getString(R.string.areYouSure), "end", true, subMenuDT);
+            MainApp.showDialogeWithResult(this, post_result, subMenuDT);
+//            MainApp.showDialog(this, getString(R.string.areYouSure), "end", true, subMenuDT);
         }
     }
+
 
     public void BtnContinue() {
         if (formValidation()) {
@@ -99,7 +99,6 @@ public class EcEbTest01 extends AppCompatActivity {
                                     .putExtra(CONSTANTS.URI_SUBMENU_DT, subMenuDT)
                             );
                             isComplete = true;
-                            GeneratorClass.incr = 0;
                             finish();
                         } else {
                             Toast.makeText(this, "Training Completed", Toast.LENGTH_SHORT).show();
@@ -111,7 +110,6 @@ public class EcEbTest01 extends AppCompatActivity {
                                 .putExtra(CONSTANTS.URI_SUBMENU_DT, subMenuDT)
                         );
                         isComplete = true;
-                        GeneratorClass.incr = 0;
                         finish();
                     }
                 } else {

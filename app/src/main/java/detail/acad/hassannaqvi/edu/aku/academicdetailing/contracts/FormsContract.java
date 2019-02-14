@@ -21,15 +21,10 @@ public class FormsContract {
     private String istatus = ""; // Interview Status
     private String istatus88x = ""; // Interview Status
     private String sA = "";
-
-    public String getsInfo() {
-        return sInfo;
-    }
-
-    public void setsInfo(String sInfo) {
-        this.sInfo = sInfo;
-    }
-
+    private String score_post = "";
+    private String percentage_pre = "";
+    private String score_pre = "";
+    private String percentage_post = "";
     private String sInfo = "";
     private String sno = "";
     private String endingdatetime = "";
@@ -54,6 +49,76 @@ public class FormsContract {
     private String module = "";
     private String gpsTime = "";
     private String session = "";
+    private String wrong_pre = "";
+    private String wrong_post = "";
+    private String total = "";
+
+    public String getWrong_pre() {
+        return wrong_pre;
+    }
+
+    public void setWrong_pre(String wrong_pre) {
+        this.wrong_pre = wrong_pre;
+    }
+
+    public String getWrong_post() {
+        return wrong_post;
+    }
+
+    public void setWrong_post(String wrong_post) {
+        this.wrong_post = wrong_post;
+    }
+
+    public String getScore_post() {
+        return score_post;
+    }
+
+    public void setScore_post(String score_post) {
+        this.score_post = score_post;
+    }
+
+    public String getPercentage_pre() {
+        return percentage_pre;
+    }
+
+    public void setPercentage_pre(String percentage_pre) {
+        this.percentage_pre = percentage_pre;
+    }
+
+    public String getScore_pre() {
+        return score_pre;
+    }
+
+    public void setScore_pre(String score_pre) {
+        this.score_pre = score_pre;
+    }
+
+    public String getPercentage_post() {
+        return percentage_post;
+    }
+
+    public void setPercentage_post(String percentage_post) {
+        this.percentage_post = percentage_post;
+    }
+
+    public String getTotal() {
+        return total;
+    }
+
+    public void setTotal(String total) {
+        this.total = total;
+    }
+
+
+    public String getsInfo() {
+        return sInfo;
+    }
+
+    public void setsInfo(String sInfo) {
+        this.sInfo = sInfo;
+    }
+
+
 
 
     public String getGpsTime() {
@@ -531,7 +596,13 @@ public class FormsContract {
         public static final String COLUMN_POST_TEST = "post_test";
         public static final String COLUMN_MODULE = "module";
         public static final String COLUMN_SESSION = "session";
-
+        public static final String COLUMN_TOTAL = "total";
+        public static final String COLUMN_SCORE_PRE = "correct_pre";
+        public static final String COLUMN_SCORE_POST = "correct_post";
+        public static final String COLUMN_PER_PRE = "percentage_pre";
+        public static final String COLUMN_PER_POST = "percentage_post";
+        public static final String COLUMN_WRONG_PRE = "wrong_pre";
+        public static final String COLUMN_WRONG_POST = "wrong_post";
 
         public static final String Form_Url = "forms.php";
 

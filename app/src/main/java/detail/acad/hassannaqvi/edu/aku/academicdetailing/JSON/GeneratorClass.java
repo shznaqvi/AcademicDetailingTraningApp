@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.CheckBox;
@@ -22,9 +23,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.Result;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.validation.validatorClass;
 import io.blackbox_vision.datetimepickeredittext.view.DatePickerInputEditText;
+
+import static android.support.constraint.Constraints.TAG;
 
 public abstract class GeneratorClass {
 
@@ -35,6 +39,10 @@ public abstract class GeneratorClass {
     public static int incr = 0;
     public static ArrayList<String> chkboxAnswers;
     public static ArrayList<String> correctAnswers;
+    public static double correct = 0;
+    public static double wrong = 0;
+    public static double total = 0;
+    public static Result result;
 
     public static JSONObject getContainerJSON(LinearLayout lv, boolean flag, String... convention) {
 
@@ -111,8 +119,12 @@ public abstract class GeneratorClass {
 
     public static void comparingResult(LinearLayout lv, boolean flag, ArrayList<String>... answers) {
 
-        if (flag)
+        if (flag) {
             testAnswers = answers[0];
+            incr = 0;
+            chkbxincr = 0;
+        }
+
 
         try {
             for (int i = 0; i < lv.getChildCount(); i++) {
@@ -188,6 +200,8 @@ public abstract class GeneratorClass {
         if (flag)
             if (answers.length != 0) {
                 correctAnswers = answers[0];
+                incr = 0;
+                chkbxincr = 0;
 
             }
 
@@ -215,24 +229,27 @@ public abstract class GeneratorClass {
                             rdb.setButtonDrawable(R.drawable.cancel);
                             rdb.setCompoundDrawablesWithIntrinsicBounds(null, null, ContextCompat.getDrawable(rdg.getContext(), R.drawable.posttest), null);
                             rdb.setChecked(true);
+
                         }
                         if (String.valueOf(rdg.getChildAt(j).getTag()).equals(tag1)) {
                             RadioButton rdb = rdg.findViewById(((RadioGroup) view).getChildAt(j).getId());
                             rdb.setButtonDrawable(R.drawable.cancel);
                             rdb.setCompoundDrawablesWithIntrinsicBounds(null, null, ContextCompat.getDrawable(rdg.getContext(), R.drawable.pretest), null);
                             rdb.setChecked(true);
+
+
                         }
                         if (String.valueOf(rdg.getChildAt(j).getTag()).equals(tag3)) {
                             RadioButton rdb = rdg.findViewById(((RadioGroup) view).getChildAt(j).getId());
                             rdb.setButtonDrawable(R.drawable.tick);
                             rdb.setCompoundDrawablesWithIntrinsicBounds(null, null, ContextCompat.getDrawable(rdg.getContext(), R.drawable.correct), null);
                             rdb.setChecked(true);
+
+
                         }
 
 
                     }
-
-
                 } else if (view instanceof CheckBox) {
                     view.setEnabled(false);
                     String tag1 = Data.fanc_cb.get(chkbxincr);
@@ -268,6 +285,37 @@ public abstract class GeneratorClass {
 
             e.printStackTrace();
         }
+
+    }
+
+    public static Result getResults(String testType,ArrayList<String>... answers) {
+
+        result = new Result();
+        correct = 0;
+        wrong = 0;
+        correctAnswers = answers[0];
+        total = 0;
+        total = correctAnswers.size();
+        ArrayList<String> testAnswers;
+
+        if(testType.equals("pre")){
+            testAnswers = Data.pretestAnswers;
+        }else{
+            testAnswers = Data.posttestAnswers;
+        }
+        for (int i = 0; i < total; i++) {
+            if (testAnswers.get(i).equals(correctAnswers.get(i))) {
+                correct++;
+            } else {
+                wrong++;
+            }
+        }
+        result.setCorrect(correct);
+        result.setWrong(wrong);
+        result.setTotal(total);
+        double per = (correct / total) * 100;
+        result.setPercentage(per);
+        return result;
 
     }
 
@@ -340,7 +388,7 @@ public abstract class GeneratorClass {
                         String tag = (String) view.getTag();
                         chkboxAnswers.add(tag);
 
-                    }else{
+                    } else {
                         chkboxAnswers.add("0");
                     }
 

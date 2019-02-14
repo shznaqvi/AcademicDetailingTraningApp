@@ -1,6 +1,8 @@
 package detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts;
 
 import android.database.Cursor;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.provider.BaseColumns;
 
 import org.json.JSONException;
@@ -10,7 +12,7 @@ import org.json.JSONObject;
  * Created by hassan.naqvi on 11/30/2016.
  */
 
-public class FormsContract {
+public class FormsContract implements Parcelable {
 
     private String projectName = "Academic Detailing Training";
     private String surveyType = "BL";
@@ -557,6 +559,16 @@ public class FormsContract {
         this.appversion = appversion;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+
+    }
+
     public static abstract class FormsTable implements BaseColumns {
 
         public static final String TABLE_NAME = "forms";
@@ -603,7 +615,6 @@ public class FormsContract {
         public static final String COLUMN_PER_POST = "percentage_post";
         public static final String COLUMN_WRONG_PRE = "wrong_pre";
         public static final String COLUMN_WRONG_POST = "wrong_post";
-
         public static final String Form_Url = "forms.php";
 
 

@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import java.util.ArrayList;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.FormsContract;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.CDBSession01_Pre_test;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.CDBSession02_Pre_test;
@@ -257,7 +259,7 @@ public class Utils {
         });
     }
 
-    public static void showPreDialogue(final Context context, final Data.SubMenu subMenu) {
+    public static void showPreDialogue(final Context context, final Data.SubMenu subMenu, final FormsContract fc) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setCancelable(false);
         View view = LayoutInflater.from(context).inflate(R.layout.dialoge_layout, null);
@@ -278,6 +280,8 @@ public class Utils {
                         .putExtra(URI_FORM_TYPE, "pre")
                         .putExtra(URI_SUBMENU_DT, subMenu));
                 MainApp.fc.setSessionStartTime(MainApp.getCurrentTime());
+
+                savingDataIntoDB(context,fc);
                 dialog.dismiss();
 
             }
@@ -290,6 +294,12 @@ public class Utils {
                 dialog.dismiss();
             }
         });
+    }
+
+    public static void savingDataIntoDB(Context context,FormsContract fc) {
+        DatabaseHelper db = new DatabaseHelper(context);
+        long rowId = db.addForm(fc);
+        MainApp.fc.set_ID(String.valueOf(rowId));
     }
 
     public static void showPostDialoge(final Context context, final int index, final String moduleName) {

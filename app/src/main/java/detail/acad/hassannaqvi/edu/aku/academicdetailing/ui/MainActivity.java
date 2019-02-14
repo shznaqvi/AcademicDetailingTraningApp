@@ -102,8 +102,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    public void loadModuleFragment() {
-        loadFragment(new ModuleFragment());
+    public void loadModuleFragment(FormsContract fc) {
+        loadFragment(fc,new ModuleFragment());
     }
 
     @Override
@@ -189,6 +189,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Bundle bundle = new Bundle();
         bundle.putString("district_name", MainApp.districtName);
         bundle.putBoolean("isAdmin", MainApp.admin);
+        fragment.setArguments(bundle);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+    private void loadFragment(FormsContract fc,Fragment fragment) {
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        if (fragment.getClass().getName().equals(MainFragment.class.getName())) {
+            clearAllFragments();
+            transaction.add(bi.mainLayout.getId(), fragment);
+        } else {
+            transaction.setCustomAnimations(R.anim.slide_in, R.anim.slide_out);
+            transaction.replace(bi.mainLayout.getId(), fragment);
+        }
+        Bundle bundle = new Bundle();
+        bundle.putString("district_name", MainApp.districtName);
+        bundle.putBoolean("isAdmin", MainApp.admin);
+        bundle.putParcelable("fc", fc);
         fragment.setArguments(bundle);
         transaction.addToBackStack(null);
         transaction.commit();

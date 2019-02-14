@@ -60,6 +60,7 @@ public class EndingActivity extends AppCompatActivity {
                     if (UpdateDB()) {
                         loadScheduleFragment();
                         isComplete = false;
+                        resetAll();
                     } else {
                         Toast.makeText(EndingActivity.this, "Error in updating db!!", Toast.LENGTH_SHORT).show();
                     }
@@ -68,6 +69,10 @@ public class EndingActivity extends AppCompatActivity {
         });
     }
 
+    private void resetAll() {
+        MainApp.pre_result = null;
+        MainApp.post_result = null;
+    }
 
 
     private boolean UpdateDB() {

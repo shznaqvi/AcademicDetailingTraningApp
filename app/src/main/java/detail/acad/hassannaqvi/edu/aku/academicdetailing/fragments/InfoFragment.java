@@ -69,7 +69,7 @@ public class InfoFragment extends Fragment {
                             // Hide keyboard
                             HideKeyboard.hideKeyboardFragment(getActivity(), getView());
 
-                            callbacks.loadModuleFragment();
+                            callbacks.loadModuleFragment(MainApp.fc);
                         }else{
                             Toast.makeText(getActivity(), "Error in update DB", Toast.LENGTH_SHORT).show();
                         }
@@ -87,10 +87,10 @@ public class InfoFragment extends Fragment {
 
     private boolean updateDB() {
 
-        DatabaseHelper db = new DatabaseHelper(getActivity());
-
-        long rowId = db.addForm(MainApp.fc);
-        MainApp.fc.set_ID(String.valueOf(rowId));
+//        DatabaseHelper db = new DatabaseHelper(getActivity());
+//
+//        long rowId = db.addForm(MainApp.fc);
+//        MainApp.fc.set_ID(String.valueOf(rowId));
 
         return true;
     }

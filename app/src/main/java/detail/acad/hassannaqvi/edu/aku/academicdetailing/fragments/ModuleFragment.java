@@ -16,6 +16,7 @@ import java.util.TimerTask;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.adapters.SlidingImageAdapter;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.FormsContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.FragmentModuleBinding;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
@@ -43,6 +44,7 @@ public class ModuleFragment extends Fragment {
     String districtName;
     boolean isAdmin;
     SlidingImageAdapter imageAdapter;
+    FormsContract fc;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,6 +61,7 @@ public class ModuleFragment extends Fragment {
         view = bi.getRoot();
         districtName = getArguments().getString("district_name");
         isAdmin = getArguments().getBoolean("isAdmin");
+        fc = getArguments().getParcelable("fc");
         setupModules();
         initSlider();
 
@@ -77,8 +80,7 @@ public class ModuleFragment extends Fragment {
         bi.indicator.setViewPager(bi.pager);
 
 
-
-        NUM_PAGES =Data.mainSlides.length;
+        NUM_PAGES = Data.mainSlides.length;
 
         // Auto start of viewpager
         final Handler handler = new Handler();
@@ -199,7 +201,6 @@ public class ModuleFragment extends Fragment {
     private void showNewBornModule() {
 
 
-
         removeMaternalModule();
         removeChildModule();
         openModuleHandler(bi.nbornModule, 2);
@@ -208,7 +209,6 @@ public class ModuleFragment extends Fragment {
 
 
     private void showMaternalModule() {
-
 
 
         removeChildModule();
@@ -241,13 +241,11 @@ public class ModuleFragment extends Fragment {
                 @Override
                 public void onClick(View view) {
                     Data.SubMenu[] submenu = Data.newMenuModule.get(key);
-
                     removeSubGroups(llModule);
-
                     if (submenu.length > 1) {
                         showSubMenus(subModule, submenu);
                     } else
-                        Utils.showPreDialogue(getActivity(), submenu[0]);
+                        Utils.showPreDialogue(getActivity(), submenu[0],fc);
 
                 }
             });
@@ -266,7 +264,7 @@ public class ModuleFragment extends Fragment {
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Utils.showPreDialogue(getActivity(), subMenu);
+                    Utils.showPreDialogue(getActivity(), subMenu,fc);
                 }
             });
         }
@@ -317,8 +315,6 @@ public class ModuleFragment extends Fragment {
         bi.nbornModule.removeAllViews();
         isNewBornClicked = true;
     }
-
-
 
 
 }

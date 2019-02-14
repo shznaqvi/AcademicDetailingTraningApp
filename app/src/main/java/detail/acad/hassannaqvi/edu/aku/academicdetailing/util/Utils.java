@@ -37,6 +37,7 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.PsbiTest02;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.ShockTest;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.VB_Pre_test;
 
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.CONSTANTS.URI_DIRECT_VIEWPAGER;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.CONSTANTS.URI_FORM_TYPE;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.CONSTANTS.URI_SUBMENU_DT;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.cdb1_imgs;
@@ -278,6 +279,7 @@ public class Utils {
                 MainApp.isSlideStart = true;
                 context.startActivity(new Intent(context, subMenu.getRouteClass())
                         .putExtra(URI_FORM_TYPE, "pre")
+                        .putExtra(URI_DIRECT_VIEWPAGER, true)
                         .putExtra(URI_SUBMENU_DT, subMenu));
                 MainApp.fc.setSessionStartTime(MainApp.getCurrentTime());
 

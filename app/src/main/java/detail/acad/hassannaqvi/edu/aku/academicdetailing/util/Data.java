@@ -28,6 +28,7 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.PsbiTest01;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.PsbiTest02;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.ShockTest;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.VB_Pre_test;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.ViewPagerActivity;
 
 
 public final class Data {
@@ -312,7 +313,7 @@ public final class Data {
                     new SubMenu[]{
                             new SubMenu("childHealth", "PSBI(Assessment and Classification)", PsbiTest01.class, R.drawable.psbi1001, psbi1_imgs, psbia_cans),
                             new SubMenu("childHealth", "PSBI(Management, Counseling and Referral)", PsbiTest02.class, R.drawable.psbi2001, psbi2_imgs, psbib_cans),
-                            new SubMenu("childHealth", "PSBI(Breast Feeding & Immunization)", PsbiTest02.class, R.drawable.psbi3001, psbi3_imgs, psbic_cans)
+                            new SubMenu("childHealth", "PSBI(Breast Feeding & Immunization)", ViewPagerActivity.class, R.drawable.psbi3001, psbi3_imgs, psbic_cans)
                     }
             );
         } else if (type == 1) {

@@ -35,6 +35,8 @@ public class ViewPagerActivity extends AppCompatActivity {
     boolean isClicked = false;
     Data.SubMenu subMenuDT;
 
+    boolean viewPagerFlag = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,8 @@ public class ViewPagerActivity extends AppCompatActivity {
 
 
         settingupViewPager();
+
+        viewPagerFlag = getIntent().getBooleanExtra(CONSTANTS.URI_DIRECT_VIEWPAGER, false);
 
 
     }
@@ -92,6 +96,7 @@ public class ViewPagerActivity extends AppCompatActivity {
                         Utils.showPostDialoge(ViewPagerActivity.this, MainApp.childlIndex,MainApp.subModuleName);
                         isComplete = false;
                     }*/
+
 
                     Utils.showPostDialoge(ViewPagerActivity.this, subMenuDT);
                     isComplete = false;

@@ -198,58 +198,7 @@ public class ModuleFragment extends Fragment {
 
     private void showNewBornModule() {
 
-        /*for (int i = 0; i < newBornModule.length; i++) {
 
-            View v = LayoutInflater.from(getContext()).inflate(R.layout.single_module_item, null);
-            TextView moduleName = v.findViewById(R.id.moduleName);
-            final LinearLayout subModule = v.findViewById(R.id.subModule);
-            moduleName.setText(newBornModule[i]);
-            bi.nbornModule.addView(v);
-            final int finalI = i;
-            v.animate().translationY(v.getHeight());
-            v.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    if (!isNewBornClicked) {
-                        subModule.removeAllViews();
-                        for (int i = 0; i < selectNBSubModule(finalI).length; i++) {
-                            View vi = LayoutInflater.from(getContext()).inflate(R.layout.single_sub_module_item, null);
-                            TextView moduleName = vi.findViewById(R.id.subModuleName);
-                            moduleName.setText(selectNBSubModule(finalI)[i]);
-                            subModule.addView(vi);
-
-                            final int finalI1 = i;
-                            vi.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    MainApp.moduleName = "nBornHealth";
-                                    MainApp.moduleSession = selectNBSubModule(finalI)[finalI1];
-                                    MainApp.isChild = false;
-                                    MainApp.isMaternal = false;
-                                    MainApp.isNBorn = true;
-                                    if (Utils.selectTest(finalI1, MainApp.subModuleName) != null) {
-                                        Utils.showPreDialogue(getActivity(), finalI1, MainApp.subModuleName);
-                                        MainApp.childlIndex = finalI1;
-                                    } else {
-                                        Toast.makeText(getActivity(), "Module is under Development", Toast.LENGTH_SHORT).show();
-                                    }
-
-                                }
-                            });
-
-                        }
-                        isNewBornClicked = true;
-                    } else {
-                        subModule.removeAllViews();
-                        isNewBornClicked = false;
-                    }
-
-
-                }
-            });
-        }
-        isNewBornClicked = true;*/
 
         removeMaternalModule();
         removeChildModule();
@@ -260,36 +209,7 @@ public class ModuleFragment extends Fragment {
 
     private void showMaternalModule() {
 
-        /*for (int i = 0; i < maternalModule.length; i++) {
 
-            View v = LayoutInflater.from(getContext()).inflate(R.layout.single_module_item, null);
-            TextView moduleName = v.findViewById(R.id.moduleName);
-            moduleName.setText(maternalModule[i]);
-            bi.maternalModule.addView(v);
-            v.animate().translationY(v.getHeight());
-
-
-            final int finalI = i;
-            v.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    MainApp.moduleName = "maternalHealth";
-                    MainApp.isChild = false;
-                    MainApp.isMaternal = true;
-                    MainApp.isNBorn = false;
-                    MainApp.moduleSession = maternalModule[finalI];
-                    if (Utils.selectTest(finalI, MainApp.moduleName) != null) {
-                        Utils.showPreDialogue(getActivity(), finalI, MainApp.moduleName);
-                        MainApp.maternalIndex = finalI;
-                    } else {
-                        Toast.makeText(getActivity(), "Module is under Development", Toast.LENGTH_SHORT).show();
-                    }
-
-
-                }
-            });
-        }
-        isMaternalClicked = true;*/
 
         removeChildModule();
         removeNBModule();
@@ -299,60 +219,6 @@ public class ModuleFragment extends Fragment {
 
     private void showChildModule() {
 
-        /*for (int i = 0; i < childModule.length; i++) {
-
-            View v = LayoutInflater.from(getContext()).inflate(R.layout.single_module_item, null);
-            TextView moduleName = v.findViewById(R.id.moduleName);
-            final LinearLayout subModule = v.findViewById(R.id.subModule);
-            moduleName.setText(childModule[i]);
-            bi.childModule.addView(v);
-            final int finalI = i;
-            v.animate().translationY(v.getHeight());
-            v.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    if (!isChildSubClicked) {
-                        subModule.removeAllViews();
-                        for (int i = 0; i < selectSubModule(finalI).length; i++) {
-                            View vi = LayoutInflater.from(getContext()).inflate(R.layout.single_sub_module_item, null);
-                            TextView moduleName = vi.findViewById(R.id.subModuleName);
-                            moduleName.setText(selectSubModule(finalI)[i]);
-                            subModule.addView(vi);
-
-
-                            final int finalI1 = i;
-                            vi.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-
-                                    MainApp.moduleName = "childHealth";
-                                    MainApp.moduleSession = selectSubModule(finalI)[finalI1];
-                                    MainApp.isChild = true;
-                                    MainApp.isMaternal = false;
-                                    MainApp.isNBorn = false;
-                                    if (Utils.selectTest(finalI1, MainApp.subModuleName) != null) {
-                                        Utils.showPreDialogue(getActivity(), finalI1, MainApp.subModuleName);
-                                        MainApp.childlIndex = finalI1;
-                                    } else {
-                                        Toast.makeText(getActivity(), "Module is under Development", Toast.LENGTH_SHORT).show();
-                                    }
-
-                                }
-                            });
-
-                        }
-                        isChildSubClicked = true;
-                    } else {
-                        subModule.removeAllViews();
-                        isChildSubClicked = false;
-                    }
-
-
-                }
-            });
-        }
-        isChildClicked = true;*/
 
         removeMaternalModule();
         removeNBModule();
@@ -452,34 +318,7 @@ public class ModuleFragment extends Fragment {
         isNewBornClicked = true;
     }
 
-    public String[] selectSubModule(int finalI) {
-        if (finalI == 0) {
-            MainApp.subModuleName = "gds";
-            return GDS;
-        } else if (finalI == 1) {
-            MainApp.subModuleName = "cdb";
-            return CDB;
-        } else if (finalI == 2) {
-            MainApp.subModuleName = "dia";
-            return Diarrhea;
-        } else {
-            MainApp.subModuleName = "psbi";
-            return PSBI;
-        }
-    }
 
-    public String[] selectNBSubModule(int finalI) {
-        if (finalI == 0) {
-            MainApp.subModuleName = "eceb";
-            return ECEB;
-        } else if (finalI == 1) {
-            MainApp.subModuleName = "ecsb";
-            return ECSB;
-        } else {
-            MainApp.subModuleName = "hbb";
-            return HBB;
-        }
-    }
 
 
 }

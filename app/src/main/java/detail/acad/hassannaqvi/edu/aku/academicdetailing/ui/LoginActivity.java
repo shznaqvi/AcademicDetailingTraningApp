@@ -818,10 +818,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
                     alert.show();
 
                 }
-//            }else{
-//
-//                Toast.makeText(LoginActivity.this, "Please Sync Data before login!", Toast.LENGTH_SHORT).show();
-//            }
 
 
         }
@@ -834,48 +830,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
 //            showProgress(false);
         }
     }
-//
-//    public class syncData extends AsyncTask<String, String, String> {
-//
-//        private Context mContext;
-//
-//        public syncData(Context mContext) {
-//            this.mContext = mContext;
-//        }
-//
-//        @Override
-//        protected String doInBackground(String... strings) {
-//            runOnUiThread(new Runnable() {
-//
-//                @Override
-//                public void run() {
-//
-//                    Toast.makeText(LoginActivity.this, "Sync Users", Toast.LENGTH_LONG).show();
-//                    new GetAllData(mContext, "User", MainApp._HOST_URL + CONSTANTS.URL_USERS).execute();
-//                    Toast.makeText(LoginActivity.this, "Sync Clusters", Toast.LENGTH_LONG).show();
-//                    new GetAllData(mContext, "Clusters", MainApp._HOST_URL + CONSTANTS.URL_CLUSTERS).execute();
-//                }
-//            });
-//
-//            return null;
-//        }
-//
-//        @Override
-//        protected void onPostExecute(String s) {
-//            new Handler().postDelayed(new Runnable() {
-//
-//                @Override
-//                public void run() {
-//
-//                    editor.putBoolean("flag", true);
-//                    editor.commit();
-//
-//                    dbBackup();
-//
-//                }
-//            }, 1200);
-//        }
-//    }
+
 
     public void showCredits(View view) {
         if (clicks < 7) {

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.FormsContract;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.CONSTANTS;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.CDBSession01_Pre_test;
@@ -24,6 +25,7 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.EcEbTest02;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.EcSbTest01;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.EcSbTest02;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.EclamTest;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.EndingActivity;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.FANC_Pre_test;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.GDSSession01_Pre_test;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.GDSSession02_Pre_test;
@@ -283,7 +285,7 @@ public class Utils {
                         .putExtra(URI_SUBMENU_DT, subMenu));
                 MainApp.fc.setSessionStartTime(MainApp.getCurrentTime());
 
-                savingDataIntoDB(context,fc);
+                savingDataIntoDB(context, fc);
                 dialog.dismiss();
 
             }
@@ -298,7 +300,7 @@ public class Utils {
         });
     }
 
-    public static void savingDataIntoDB(Context context,FormsContract fc) {
+    public static void savingDataIntoDB(Context context, FormsContract fc) {
         DatabaseHelper db = new DatabaseHelper(context);
         long rowId = db.addForm(fc);
         MainApp.fc.set_ID(String.valueOf(rowId));
@@ -373,6 +375,40 @@ public class Utils {
                 context.startActivity(new Intent(context, subMenu.getRouteClass())
                         .putExtra(URI_SUBMENU_DT, subMenu)
                         .putExtra("type", "post"));
+                ((Activity) context).finish();
+                dialog.dismiss();
+            }
+        });
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                dialog.dismiss();
+            }
+        });
+
+    }
+
+    public static void showViewPagerDialoge(final Context context, final Data.SubMenu subMenu) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setCancelable(false);
+        View view = LayoutInflater.from(context).inflate(R.layout.dialoge_layout, null);
+        ImageView slide = view.findViewById(R.id.slideImage);
+        Button proceed = view.findViewById(R.id.proceed);
+        proceed.setText("Proceed To End Test");
+        Button cancel = view.findViewById(R.id.cancel);
+        slide.setImageResource(R.drawable.eclam1051);
+        builder.setView(view);
+        final AlertDialog dialog = builder.create();
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        dialog.show();
+        proceed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context, EndingActivity.class).putExtra(CONSTANTS.URI_SUBMENU_DT, subMenu)
+                        .putExtra("complete", true));
                 ((Activity) context).finish();
                 dialog.dismiss();
             }

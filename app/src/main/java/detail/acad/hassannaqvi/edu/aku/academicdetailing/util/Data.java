@@ -95,8 +95,8 @@ public final class Data {
     public static ArrayList<String> hbb_cans = new ArrayList<String>(Arrays.asList("2", "1", "3", "3", "2", "2", "1", "3", "4", "4", "3", "2", "2", "4", "4", "1", "1"));
 
     public static int[] mainSlides = new int[]{
-            R.drawable.cdb, R.drawable.diarrhea, R.drawable.eclampsia, R.drawable.fanc, R.drawable.gds, R.drawable.graph,
-            R.drawable.mother1, R.drawable.newborn, R.drawable.posthemo, R.drawable.shock, R.drawable.sick, R.drawable.vb
+            R.drawable.cdb, R.drawable.eclampsia, R.drawable.fanc, R.drawable.gds, R.drawable.graph,
+           R.drawable.newborn,R.drawable.shock, R.drawable.sick,
     };
 
     public static int[] gds1_imgs = new int[]{

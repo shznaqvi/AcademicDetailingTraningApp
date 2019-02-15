@@ -10,5 +10,6 @@ public interface CONSTANTS {
 
     String URI_SUBMENU_DT = "submenuDT";
     String URI_FORM_TYPE = "type";
+    String URI_DIRECT_VIEWPAGER = "vPager";
 
 }

@@ -26,6 +26,43 @@ public class NextMeetingContract {
     private String formdate = ""; // Date
     private String deviceid = "";
 
+    private long dist_id = 0;
+    private String hf_name = "";
+    private String hp_name = "";
+    private long hp_code = 0;
+
+    public long getDist_id() {
+        return dist_id;
+    }
+
+    public void setDist_id(long dist_id) {
+        this.dist_id = dist_id;
+    }
+
+    public String getHf_name() {
+        return hf_name;
+    }
+
+    public void setHf_name(String hf_name) {
+        this.hf_name = hf_name;
+    }
+
+    public String getHp_name() {
+        return hp_name;
+    }
+
+    public void setHp_name(String hp_name) {
+        this.hp_name = hp_name;
+    }
+
+    public long getHp_code() {
+        return hp_code;
+    }
+
+    public void setHp_code(long hp_code) {
+        this.hp_code = hp_code;
+    }
+
     public String getFormdate() {
         return formdate;
     }
@@ -211,7 +248,11 @@ public class NextMeetingContract {
 
         public static final String TABLE_NAME = "next_meeting";
         public static final String _ID = "_id";
-        public static final String COLUMN_DOCTOR_NAME = "doc_name";
+        public static final String COLUMN_DOCTOR_NAME = "provider_name";
+        public static final String COLUMN_HF_NAME = "hf_name";
+        public static final String COLUMN_HP_NAME = "hp_name";
+        public static final String COLUMN_HP_CODE= "hp_code";
+        public static final String COLUMN_DIST_CODE= "dist_code";
         public static final String COLUMN_DATE = "date";
         public static final String COLUMN_TIME = "time";
         public static final String COLUMN_MOD = "mod";

@@ -56,7 +56,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:background="@color/colorPrimaryDark"
-                            android:text="Doctor's Name"
+                            android:text="Provider's Name"
                             android:textColor="@android:color/white"
                             android:textSize="20sp" />
 

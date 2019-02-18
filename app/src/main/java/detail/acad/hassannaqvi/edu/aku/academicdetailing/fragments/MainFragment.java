@@ -103,6 +103,15 @@ public class MainFragment extends Fragment {
             }
         });
 
+        bi.scheduleAppointment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                MainApp.isScheduleAppointment = true;
+                callbacks.loadInfo();
+            }
+        });
+
     }
 
     @Override

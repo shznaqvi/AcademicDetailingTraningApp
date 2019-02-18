@@ -68,7 +68,7 @@ public class ScheduleFragment extends Fragment {
 
         bi.date.setManager(getFragmentManager());
         bi.time.setManager(getFragmentManager());
-        bi.doctorName.setText(db.getProviderName());
+        bi.doctorName.setText(MainApp.providerName);
         modules = new ArrayList<>();
         subModules = new ArrayList<>();
         sessions = new ArrayList<>();
@@ -95,8 +95,13 @@ public class ScheduleFragment extends Fragment {
 
                 if (formValidate()) {
                     saveDraft();
-                    startActivity(new Intent(getContext(), MainActivity.class));
-                    getActivity().finish();
+                    if(updateDB()){
+                        startActivity(new Intent(getContext(), MainActivity.class));
+                        getActivity().finish();
+                    }else {
+                        Toast.makeText(getContext(), "Error in database", Toast.LENGTH_SHORT).show();
+                    }
+
                 } else {
                     Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
                 }
@@ -105,17 +110,29 @@ public class ScheduleFragment extends Fragment {
         });
     }
 
+    public boolean updateDB() {
+        DatabaseHelper db = new DatabaseHelper(getContext());
+        long count = db.updateNMS();
+        if (count !=  -1) {
+            return true;
+        }else{
+            Toast.makeText(getContext(), "Error in updating DB", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+
+    }
+
 
     private void saveDraft() {
 
-        DatabaseHelper db = new DatabaseHelper(getContext());
 
         MainApp.nmc = new NextMeetingContract();
         MainApp.nmc.setDate(bi.date.getText().toString());
         MainApp.nmc.setTime(bi.time.getText().toString());
-        MainApp.nmc.setDoctorName(db.getProviderName());
+        MainApp.nmc.setDoctorName(MainApp.providerName);
         MainApp.nmc.setModule(bi.modules.getSelectedItem().toString());
-        if(bi.modules.getSelectedItemPosition() == 1){
+        if (bi.modules.getSelectedItemPosition() == 1) {
             MainApp.nmc.setSubModule(bi.subModules.getSelectedItem().toString());
         }
         MainApp.nmc.setSession(bi.sessions.getSelectedItem().toString());
@@ -123,9 +140,12 @@ public class ScheduleFragment extends Fragment {
         MainApp.nmc.setBookBy(MainApp.userName);
         MainApp.nmc.setBookingtype(bi.bookingType.getSelectedItem().toString());
         MainApp.nmc.setFormdate(new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime()));
-        setGPS();
 
-        db.updateNMS();
+        MainApp.nmc.setDist_id(Long.parseLong(MainApp.fc.getDistrictID()));
+        MainApp.nmc.setHf_name(MainApp.fc.getHealthFacilityName());
+        MainApp.nmc.setHp_name(MainApp.fc.getProviderName());
+        MainApp.nmc.setHp_code(Long.parseLong(MainApp.fc.getProviderID()));
+        setGPS();
 
 
     }
@@ -148,7 +168,7 @@ public class ScheduleFragment extends Fragment {
             MainApp.nmc.setLat(lat);
             MainApp.nmc.setLng(lang);
             MainApp.nmc.setGpsTime(date); // Timestamp is converted to date above
-             // Timestamp is converted to date above
+            // Timestamp is converted to date above
 
             Toast.makeText(getActivity(), "GPS set", Toast.LENGTH_SHORT).show();
 
@@ -184,14 +204,14 @@ public class ScheduleFragment extends Fragment {
 
     private void populateSpinner() {
 
-        bi.bookingType.setAdapter(new ArrayAdapter<>(getActivity(),android.R.layout.simple_spinner_dropdown_item,bookingType));
-        bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(),android.R.layout.simple_spinner_dropdown_item,sessions));
+        bi.bookingType.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, bookingType));
+        bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, sessions));
         modules.addAll(Arrays.asList(Data.modules));
         bi.modules.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, modules));
         bi.modules.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position !=0){
+                if (position != 0) {
                     selectModule(position);
                 }
 
@@ -217,8 +237,8 @@ public class ScheduleFragment extends Fragment {
                 bi.subModules.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        if(position != 0){
-                            selectSubModule(position,"child");
+                        if (position != 0) {
+                            selectSubModule(position, "child");
                         }
 
                     }
@@ -246,8 +266,8 @@ public class ScheduleFragment extends Fragment {
                 bi.subModules.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        if(position != 0){
-                            selectSubModule(position,"newBorn");
+                        if (position != 0) {
+                            selectSubModule(position, "newBorn");
                         }
 
                     }
@@ -265,9 +285,9 @@ public class ScheduleFragment extends Fragment {
 
     }
 
-    private void selectSubModule(int position,String type) {
+    private void selectSubModule(int position, String type) {
 
-        if(type.equals("child")){
+        if (type.equals("child")) {
             switch (position) {
                 case 1:
 
@@ -293,7 +313,7 @@ public class ScheduleFragment extends Fragment {
                     bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, sessions));
                     break;
             }
-        }else if(type.equals("newBorn")){
+        } else if (type.equals("newBorn")) {
             switch (position) {
                 case 1:
 

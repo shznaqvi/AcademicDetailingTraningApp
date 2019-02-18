@@ -47,6 +47,7 @@ public class HealthFacContract {
 
 //        this.hf_dist_name = cursor.getString(cursor.getColumnIndex(singleHF.COLUMN_HF_DISTRICT_NAME));
         this.hf_name = cursor.getString(cursor.getColumnIndex(singleHF.COLUMN_HF_NAME));
+        this.hf_uen_code = cursor.getLong(cursor.getColumnIndex(singleHF.COLUMN_HF_UEN_CODE));
 
         return this;
     }

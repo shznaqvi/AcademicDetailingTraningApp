@@ -80,18 +80,15 @@ public class MainApp extends Application {
     private static final long DAYS_IN_2_YEAR = 365 * 2;
     public static final long MILLISECONDS_IN_2Years = MILLIS_IN_SECOND * SECONDS_IN_MINUTE * MINUTES_IN_HOUR * HOURS_IN_DAY * DAYS_IN_2_YEAR;
     public static String deviceId;
-    public static boolean isSlideEnd = false;
     public static boolean isSlideStart = false;
-    public static int maternalIndex = 0;
-    public static int childlIndex = 0;
+    public static boolean isScheduleAppointment = false;
     public static boolean isMaternal = false;
     public static boolean isNBorn = false;
-    public static String moduleSession = "";
-    public static String moduleName = "";
     public static boolean isChild = false;
     public static String[] loginMem;
     public static String versionName;
     public static String districtName = "";
+    public static String providerName = "";
     public static int versionCode;
     public static int districtCode = 0;
     public static Boolean admin = false;
@@ -101,11 +98,9 @@ public class MainApp extends Application {
     public static Result pre_result = new Result();
     public static String IMEI;
     public static String logginTime;
-    public static String subModuleName;
     public static NextMeetingContract nmc;
     public static boolean isComplete = false;
     public static String type = "";
-    public static String testName = "";
     public static int[] slides;
 
 

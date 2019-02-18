@@ -183,221 +183,279 @@
 
             </RelativeLayout>
 
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_margin="30dp"
+               android:orientation="vertical">
+
+               <TextView
+                   android:id="@+id/lblMainMenu"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:background="@color/colorPrimary"
+                   android:padding="10dp"
+                   android:text="Main Menu"
+                   android:textAlignment="center"
+                   android:textAllCaps="true"
+                   android:textColor="@color/white"
+                   android:textSize="20sp"
+                   android:textStyle="bold" />
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="30dp"
-                android:orientation="vertical">
+               <ScrollView
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:background="@android:color/transparent"
+                   android:padding="0dp">
+
+                   <LinearLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:orientation="vertical">
 
 
-                <TextView
-                    android:id="@+id/lblMainMenu"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/colorPrimary"
-                    android:padding="10dp"
-                    android:text="Main Menu"
-                    android:textAlignment="center"
-                    android:textAllCaps="true"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                       <LinearLayout
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:orientation="vertical">
 
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:background="@color/dullWhile"
-                        android:orientation="horizontal">
+                           <LinearLayout
+                               android:layout_width="match_parent"
+                               android:layout_height="200dp"
+                               android:background="@color/dullWhile"
+                               android:orientation="horizontal">
 
 
-                        <android.support.v7.widget.CardView
-                            android:id="@+id/startTraining"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_margin="5dp"
-                            android:layout_weight="1"
-                            >
+                               <android.support.v7.widget.CardView
+                                   android:id="@+id/startTraining"
+                                   android:layout_width="0dp"
+                                   android:layout_height="match_parent"
+                                   android:layout_margin="5dp"
+                                   android:layout_weight="1"
+                                   >
 
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+                                   <RelativeLayout
+                                       android:layout_width="match_parent"
+                                       android:layout_height="match_parent">
 
-                                <ImageView
-                                    android:layout_width="80dp"
-                                    android:layout_height="80dp"
-                                    android:layout_centerInParent="true"
-                                    android:src="@drawable/presentation" />
+                                       <ImageView
+                                           android:layout_width="80dp"
+                                           android:layout_height="80dp"
+                                           android:layout_centerInParent="true"
+                                           android:src="@drawable/presentation" />
 
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentStart="true"
-                                    android:layout_alignParentBottom="true"
-                                    android:layout_marginStart="0dp"
-                                    android:layout_marginTop="16dp"
-                                    android:padding="10dp"
-                                    android:text="Start Training"
-                                    android:textAlignment="center"
-                                    android:textAllCaps="true"
-                                    android:textColor="@color/colorPrimaryDark"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold" />
+                                       <TextView
+                                           android:layout_width="match_parent"
+                                           android:layout_height="wrap_content"
+                                           android:layout_alignParentStart="true"
+                                           android:layout_alignParentBottom="true"
+                                           android:layout_marginStart="0dp"
+                                           android:layout_marginTop="16dp"
+                                           android:padding="10dp"
+                                           android:text="Start Training"
+                                           android:textAlignment="center"
+                                           android:textAllCaps="true"
+                                           android:textColor="@color/colorPrimaryDark"
+                                           android:textSize="20sp"
+                                           android:textStyle="bold" />
 
-                            </RelativeLayout>
+                                   </RelativeLayout>
 
-                        </android.support.v7.widget.CardView>
+                               </android.support.v7.widget.CardView>
 
-                        <android.support.v7.widget.CardView
-                            android:id="@+id/openDB"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_margin="5dp"
-                            android:layout_weight="1">
+                               <android.support.v7.widget.CardView
+                                   android:id="@+id/openDB"
+                                   android:layout_width="0dp"
+                                   android:layout_height="match_parent"
+                                   android:layout_margin="5dp"
+                                   android:layout_weight="1">
 
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+                                   <RelativeLayout
+                                       android:layout_width="match_parent"
+                                       android:layout_height="match_parent">
 
-                                <ImageView
-                                    android:layout_width="80dp"
-                                    android:layout_height="80dp"
-                                    android:layout_centerInParent="true"
-                                    android:src="@drawable/database" />
+                                       <ImageView
+                                           android:layout_width="80dp"
+                                           android:layout_height="80dp"
+                                           android:layout_centerInParent="true"
+                                           android:src="@drawable/database" />
 
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentStart="true"
-                                    android:layout_alignParentBottom="true"
-                                    android:layout_marginStart="0dp"
-                                    android:layout_marginTop="16dp"
-                                    android:padding="10dp"
-                                    android:text="Database Manager"
-                                    android:textAlignment="center"
-                                    android:textAllCaps="true"
-                                    android:textColor="@color/colorPrimaryDark"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold" />
+                                       <TextView
+                                           android:layout_width="match_parent"
+                                           android:layout_height="wrap_content"
+                                           android:layout_alignParentStart="true"
+                                           android:layout_alignParentBottom="true"
+                                           android:layout_marginStart="0dp"
+                                           android:layout_marginTop="16dp"
+                                           android:padding="10dp"
+                                           android:text="Database Manager"
+                                           android:textAlignment="center"
+                                           android:textAllCaps="true"
+                                           android:textColor="@color/colorPrimaryDark"
+                                           android:textSize="20sp"
+                                           android:textStyle="bold" />
 
-                            </RelativeLayout>
+                                   </RelativeLayout>
 
-                        </android.support.v7.widget.CardView>
-                    </LinearLayout>
+                               </android.support.v7.widget.CardView>
+                           </LinearLayout>
 
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/dullWhile"
-                    android:orientation="vertical">
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:orientation="horizontal">
+                       </LinearLayout>
+                       <LinearLayout
+                           android:layout_width="match_parent"
+                           android:layout_height="200dp"
+                           android:background="@color/dullWhile"
+                           android:orientation="horizontal">
 
 
-                        <android.support.v7.widget.CardView
-                            android:id="@+id/uploadData"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_margin="5dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/tv_style">
+                           <android.support.v7.widget.CardView
+                               android:id="@+id/scheduleAppointment"
+                               android:layout_width="0dp"
+                               android:layout_height="match_parent"
+                               android:layout_margin="5dp"
+                               android:layout_weight="1"
+                               android:background="@drawable/tv_style">
 
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+                               <RelativeLayout
+                                   android:layout_width="match_parent"
+                                   android:layout_height="match_parent">
 
-                                <ImageView
-                                    android:layout_width="80dp"
-                                    android:layout_height="80dp"
-                                    android:layout_centerInParent="true"
-                                    android:src="@drawable/last_upload" />
+                                   <ImageView
+                                       android:layout_width="80dp"
+                                       android:layout_height="80dp"
+                                       android:layout_centerInParent="true"
+                                       android:src="@drawable/calendar" />
 
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentStart="true"
-                                    android:layout_alignParentBottom="true"
-                                    android:layout_marginStart="0dp"
-                                    android:layout_marginTop="16dp"
-                                    android:padding="10dp"
-                                    android:text="Upload Data"
-                                    android:textAlignment="center"
-                                    android:textAllCaps="true"
-                                    android:textColor="@color/colorPrimaryDark"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold" />
+                                   <TextView
+                                       android:layout_width="match_parent"
+                                       android:layout_height="wrap_content"
+                                       android:layout_alignParentStart="true"
+                                       android:layout_alignParentBottom="true"
+                                       android:layout_marginStart="0dp"
+                                       android:layout_marginTop="16dp"
+                                       android:padding="10dp"
+                                       android:text="Schedule An Appointment"
+                                       android:textAlignment="center"
+                                       android:textAllCaps="true"
+                                       android:textColor="@color/colorPrimaryDark"
+                                       android:textSize="20sp"
+                                       android:textStyle="bold" />
 
-                            </RelativeLayout>
+                               </RelativeLayout>
 
-                        </android.support.v7.widget.CardView>
-
-
-
-                        <android.support.v7.widget.CardView
-                            android:id="@+id/downloadData"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_margin="5dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/tv_style">
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-
-                                <ImageView
-                                    android:layout_width="80dp"
-                                    android:layout_height="80dp"
-                                    android:layout_centerInParent="true"
-                                    android:src="@drawable/last_download" />
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentStart="true"
-                                    android:layout_alignParentBottom="true"
-                                    android:layout_marginStart="0dp"
-                                    android:layout_marginTop="16dp"
-                                    android:padding="10dp"
-                                    android:text="Download Data"
-                                    android:textAlignment="center"
-                                    android:textAllCaps="true"
-                                    android:textColor="@color/colorPrimaryDark"
-                                    android:textSize="20sp"
-                                    android:textStyle="bold" />
-
-                            </RelativeLayout>
-
-                        </android.support.v7.widget.CardView>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-
-            </LinearLayout>
-            <!--<ScrollView-->
-               <!---->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:background="@color/white">-->
+                           </android.support.v7.widget.CardView>
 
 
 
-            <!--</ScrollView>-->
+                       </LinearLayout>
+
+
+                       <LinearLayout
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:background="@color/dullWhile"
+                           android:orientation="vertical">
+
+
+                           <LinearLayout
+                               android:layout_width="match_parent"
+                               android:layout_height="200dp"
+                               android:orientation="horizontal">
+
+
+                               <android.support.v7.widget.CardView
+                                   android:id="@+id/uploadData"
+                                   android:layout_width="0dp"
+                                   android:layout_height="match_parent"
+                                   android:layout_margin="5dp"
+                                   android:layout_weight="1"
+                                   android:background="@drawable/tv_style">
+
+                                   <RelativeLayout
+                                       android:layout_width="match_parent"
+                                       android:layout_height="match_parent">
+
+                                       <ImageView
+                                           android:layout_width="80dp"
+                                           android:layout_height="80dp"
+                                           android:layout_centerInParent="true"
+                                           android:src="@drawable/last_upload" />
+
+                                       <TextView
+                                           android:layout_width="match_parent"
+                                           android:layout_height="wrap_content"
+                                           android:layout_alignParentStart="true"
+                                           android:layout_alignParentBottom="true"
+                                           android:layout_marginStart="0dp"
+                                           android:layout_marginTop="16dp"
+                                           android:padding="10dp"
+                                           android:text="Upload Data"
+                                           android:textAlignment="center"
+                                           android:textAllCaps="true"
+                                           android:textColor="@color/colorPrimaryDark"
+                                           android:textSize="20sp"
+                                           android:textStyle="bold" />
+
+                                   </RelativeLayout>
+
+                               </android.support.v7.widget.CardView>
+
+
+
+                               <android.support.v7.widget.CardView
+                                   android:id="@+id/downloadData"
+                                   android:layout_width="0dp"
+                                   android:layout_height="match_parent"
+                                   android:layout_margin="5dp"
+                                   android:layout_weight="1"
+                                   android:background="@drawable/tv_style">
+
+                                   <RelativeLayout
+                                       android:layout_width="match_parent"
+                                       android:layout_height="match_parent">
+
+                                       <ImageView
+                                           android:layout_width="80dp"
+                                           android:layout_height="80dp"
+                                           android:layout_centerInParent="true"
+                                           android:src="@drawable/last_download" />
+
+                                       <TextView
+                                           android:layout_width="match_parent"
+                                           android:layout_height="wrap_content"
+                                           android:layout_alignParentStart="true"
+                                           android:layout_alignParentBottom="true"
+                                           android:layout_marginStart="0dp"
+                                           android:layout_marginTop="16dp"
+                                           android:padding="10dp"
+                                           android:text="Download Data"
+                                           android:textAlignment="center"
+                                           android:textAllCaps="true"
+                                           android:textColor="@color/colorPrimaryDark"
+                                           android:textSize="20sp"
+                                           android:textStyle="bold" />
+
+                                   </RelativeLayout>
+
+                               </android.support.v7.widget.CardView>
+
+                           </LinearLayout>
+
+                       </LinearLayout>
+
+
+                   </LinearLayout>
+
+
+               </ScrollView>
+
+
+           </LinearLayout>
+
+
+
 
 
         </LinearLayout>

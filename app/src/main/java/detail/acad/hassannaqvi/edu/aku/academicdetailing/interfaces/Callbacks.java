@@ -10,4 +10,6 @@ public interface Callbacks {
     void loadDatabaseManager();
     void uploadDataToServer();
     void downloadData();
+    void loadInfo();
+    void loadScheduleFragment();
 }

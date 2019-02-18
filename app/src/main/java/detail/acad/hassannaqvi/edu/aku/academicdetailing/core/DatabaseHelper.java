@@ -27,6 +27,8 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.HealthFacCont
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.HealthFacContract.singleHF;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.NextMeetingContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.NextMeetingContract.NMCTable;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.ProviderContract;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.ProviderContract.singleProvider;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.SessionContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.SessionContract.SessionTable;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.UsersContract;
@@ -87,7 +89,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             FormsTable.COLUMN_SCORE_POST + " TEXT," +
             FormsTable.COLUMN_PER_POST + " TEXT, " +
             FormsTable.COLUMN_WRONG_POST + " TEXT " +
-             " ); ";
+            " ); ";
 
     private static final String SQL_CREATE_SESSION_TABLE = " CREATE TABLE " + SessionTable.TABLE_NAME
             + " ( " + SessionTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -114,12 +116,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + singleHF.COLUMN_HF_NAME_GOVT + " TEXT, "
             + singleHF.COLUMN_HF_UEN_CODE + " LONG " + ");";
 
+    private static final String SQL_CREATE_HP_TABLE = " CREATE TABLE " + singleProvider.TABLE_NAME
+            + " ( " + singleProvider._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + singleProvider.COLUMN_HP_DIST_CODE + " LONG, "
+            + singleProvider.COLUMN_HP_TEHSIL + " TEXT, "
+            + singleProvider.COLUMN_HP_UC_NAME + " TEXT, "
+            + singleProvider.COLUMN_HP_UEN_CODE + " LONG, "
+            + singleProvider.COLUMN_HF_CODE + " LONG, "
+            + singleProvider.COLUMN_HP_NAME + " TEXT, "
+            + singleProvider.COLUMN_HP_DESIGNATION + " TEXT " + ");";
+
 
     private static final String SQL_CREATE_NMS = "CREATE TABLE " + NMCTable.TABLE_NAME + "("
             + NMCTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + NMCTable.COLUMN_DEVICEID + " TEXT, "
             + NMCTable.COLUMN_LAT + " TEXT, "
             + NMCTable.COLUMN_FORMDATE + " TEXT, "
+            + NMCTable.COLUMN_HF_NAME + " TEXT, "
+            + NMCTable.COLUMN_HP_NAME + " TEXT, "
+            + NMCTable.COLUMN_HP_CODE + " LONG, "
             + NMCTable.COLUMN_LNG + " TEXT, "
             + NMCTable.COLUMN_GPSTIME + " TEXT, "
             + NMCTable.COLUMN_BTYPE + " TEXT, "
@@ -138,6 +153,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String SQL_DELETE_DISTRICTS = "DROP TABLE IF EXISTS " + DistrictTable.TABLE_NAME;
     private static final String SQL_DELETE_NMS = "DROP TABLE IF EXISTS " + NMCTable.TABLE_NAME;
     private static final String SQL_DELETE_HF = "DROP TABLE IF EXISTS " + singleHF.TABLE_NAME;
+    private static final String SQL_DELETE_HP = "DROP TABLE IF EXISTS " + singleProvider.TABLE_NAME;
     private static final String SQL_DELETE_USERS =
             "DROP TABLE IF EXISTS " + UsersTable.TABLE_NAME;
     private static final String SQL_DELETE_FORMS =
@@ -161,6 +177,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_NMS);
         db.execSQL(SQL_CREATE_DISTRICT_TABLE);
         db.execSQL(SQL_CREATE_HF_TABLE);
+        db.execSQL(SQL_CREATE_HP_TABLE);
         /*db.execSQL(SQL_CREATE_TEHSILS);
         db.execSQL(SQL_CREATE_UCS);
         db.execSQL(SQL_CREATE_LHWS);*/
@@ -175,6 +192,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_DELETE_SESSION);
         db.execSQL(SQL_DELETE_NMS);
         db.execSQL(SQL_DELETE_HF);
+        db.execSQL(SQL_DELETE_HP);
+
     }
 
 //    public List<HealthFacContract> getHFData(HealthFacContract.ColumnsClass... columnsClass) {
@@ -514,6 +533,36 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public void syncHP(JSONArray hpList) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL(" DELETE FROM " + singleProvider.TABLE_NAME);
+        db.execSQL(" DELETE FROM sqlite_sequence where name = 'providers'");    //TODO you have to add table name manually in order to reset primary key
+        try {
+            JSONArray jsonArray = hpList;
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObjectUser = jsonArray.getJSONObject(i);
+
+                ProviderContract providerContract = new ProviderContract();
+                providerContract.Sync(jsonObjectUser);
+                ContentValues values = new ContentValues();
+                values.put(singleProvider.COLUMN_HP_DIST_CODE,providerContract.getDistrict_code());
+                values.put(singleProvider.COLUMN_HP_TEHSIL,providerContract.getTehsil());
+                values.put(singleProvider.COLUMN_HP_UC_NAME,providerContract.getUc());
+                values.put(singleProvider.COLUMN_HP_UEN_CODE,providerContract.getHp_uen_code());
+                values.put(singleProvider.COLUMN_HF_CODE,providerContract.getHf_code());
+                values.put(singleProvider.COLUMN_HP_NAME,providerContract.getHp_name());
+                values.put(singleProvider.COLUMN_HP_DESIGNATION,providerContract.getHp_designation());
+                long count = db.insert(singleProvider.TABLE_NAME, null, values);
+                Log.d(TAG, "syncHP: count " + count);
+            }
+            db.close();
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
+    }
+
     public void syncDistricts(JSONArray districList) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL(" DELETE FROM " + DistrictTable.TABLE_NAME);
@@ -625,6 +674,100 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 FormsContract fc = new FormsContract();
                 fc.set_ID(c.getString(c.getColumnIndex(FormsTable._ID)));
                 fc.setFormDate(c.getString(c.getColumnIndex(FormsTable.COLUMN_FORMDATE)));
+                formList.add(fc.Hydrate(c));
+            } while (c.moveToNext());
+        }
+
+        // return contact list
+        return formList;
+    }
+
+    public List<HealthFacContract> getHealthFacilityData(long id) {
+        List<HealthFacContract> formList = new ArrayList<>();
+
+        String[] columns = {
+                singleHF.COLUMN_HF_NAME,
+                singleHF.COLUMN_HF_UEN_CODE
+        };
+        String selection = singleHF.COLUMN_HF_DIST_CODE + " = ?";
+        String[] selectionArgs = new String[]{String.valueOf(id)};
+
+        String orderBy =
+                singleHF.COLUMN_HF_NAME + " COLLATE NOCASE ASC;";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.query(
+                singleHF.TABLE_NAME,
+                columns,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                orderBy);
+
+        if (c.moveToFirst()) {
+            do {
+                HealthFacContract fc = new HealthFacContract();
+//                fc.setHf_name(c.getString(c.getColumnIndex(singleHF.COLUMN_HF_NAME)));
+//                fc.setHf_uen_code(c.getLong(c.getColumnIndex(singleHF.COLUMN_HF_UEN_CODE)));
+                formList.add(fc.HydrateHF(c));
+            } while (c.moveToNext());
+        }
+
+        // return contact list
+        return formList;
+    }
+
+    public List<ProviderContract> getHPData(long id) {
+        List<ProviderContract> formList = new ArrayList<>();
+
+        String[] columns = {
+                singleProvider.COLUMN_HP_NAME,
+                singleProvider.COLUMN_HP_UEN_CODE
+        };
+        String selection = singleProvider.COLUMN_HF_CODE + " = ?";
+        String[] selectionArgs = new String[]{String.valueOf(id)};
+
+        String orderBy =
+                singleProvider.COLUMN_HP_NAME + " COLLATE NOCASE ASC;";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor c = db.query(
+                singleProvider.TABLE_NAME,
+                columns,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                orderBy);
+
+        if (c.moveToFirst()) {
+            do {
+                ProviderContract fc = new ProviderContract();
+//                fc.setHf_name(c.getString(c.getColumnIndex(singleHF.COLUMN_HF_NAME)));
+//                fc.setHf_uen_code(c.getLong(c.getColumnIndex(singleHF.COLUMN_HF_UEN_CODE)));
+                formList.add(fc.Hydrate(c));
+            } while (c.moveToNext());
+        }
+
+        // return contact list
+        return formList;
+    }
+
+    public List<DistrictsContract> getDistrictList() {
+        List<DistrictsContract> formList = new ArrayList<>();
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + DistrictTable.TABLE_NAME;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c.moveToFirst()) {
+            do {
+                DistrictsContract fc = new DistrictsContract();
+                fc.setDICTRICT_CODE(c.getLong(c.getColumnIndex(DistrictTable.DISTRICT_CODE)));
+                fc.setDistrict_name(c.getString(c.getColumnIndex(DistrictTable.DISTRICT_NAME)));
                 formList.add(fc.Hydrate(c));
             } while (c.moveToNext());
         }
@@ -960,7 +1103,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public void updateNMS() {
+    public long updateNMS() {
 
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -981,9 +1124,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(NMCTable.COLUMN_BTYPE, MainApp.nmc.getBookingtype());
         values.put(NMCTable.COLUMN_GPSTIME, MainApp.nmc.getGpsTime());
         values.put(NMCTable.COLUMN_FORMDATE, MainApp.nmc.getFormdate());
-        count = db.insert(NMCTable.TABLE_NAME, null, values);
+        values.put(NMCTable.COLUMN_HF_NAME, MainApp.nmc.getHf_name());
+        values.put(NMCTable.COLUMN_HP_NAME, MainApp.nmc.getHp_name());
+        values.put(NMCTable.COLUMN_HP_CODE, MainApp.nmc.getHp_code());
+        values.put(NMCTable.COLUMN_DIST_CODE, MainApp.nmc.getDist_id());
+        return db.insert(NMCTable.TABLE_NAME, null, values);
 
-        Log.d(TAG, "updateNMS: count " + count);
+
     }
 
     public interface DBConnection {

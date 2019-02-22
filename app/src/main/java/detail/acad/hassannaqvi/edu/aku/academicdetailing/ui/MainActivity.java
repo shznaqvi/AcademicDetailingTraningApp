@@ -60,11 +60,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     KProgressHUD hud;
     Call<ResponseBody> call = null;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         bi = DataBindingUtil.setContentView(this, R.layout.activity_main);
-
+        MainApp.isScheduleAppointment = false;
         MainApp.logginTime = MainApp.getCurrentTime();
         hud = KProgressHUD.create(this).setCancellable(false).setStyle(KProgressHUD.Style.SPIN_INDETERMINATE);
         db = new DatabaseHelper(this);
@@ -100,7 +101,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void loadInfoFragment() {
-        loadFragment(new InfoFragment());
+
+        if(db.getDistrictCount() > 0){
+            loadFragment(new InfoFragment());
+        }else{
+
+            Toast.makeText(this, "Please Download Data First", Toast.LENGTH_SHORT).show();
+        }
+
+
+
     }
 
     @Override
@@ -158,13 +168,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void loadInfo() {
 
-        loadFragment(new InfoFragment());
+        if(db.getDistrictCount() > 0){
+            loadFragment(new InfoFragment());
+        }else{
+            Toast.makeText(this, "Please Download Data First", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     @Override
     public void loadScheduleFragment() {
 
         loadFragment(new ScheduleFragment());
+    }
+
+    @Override
+    public void uploadAppointment() {
+
     }
 
     @Override

@@ -182,12 +182,14 @@ public class InfoFragment extends Fragment {
                 if (formValidation()) {
                     try {
                         saveDraft();
-                        if (MainApp.isScheduleAppointment) {
+                        if(MainApp.isScheduleAppointment){
                             callbacks.loadScheduleFragment();
-                        } else {
+                        }else {
                             HideKeyboard.hideKeyboardFragment(getActivity(), getView());
                             callbacks.loadModuleFragment(MainApp.fc);
                         }
+
+
 
                     } catch (Exception e) {
                         e.printStackTrace();

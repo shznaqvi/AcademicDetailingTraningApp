@@ -26,6 +26,7 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.NextMeetingCo
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.FragmentScheduleBinding;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.interfaces.Callbacks;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.MainActivity;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Utils;
@@ -51,6 +52,7 @@ public class ScheduleFragment extends Fragment {
     FragmentScheduleBinding bi;
     View view;
     DatabaseHelper db;
+    Callbacks callbacks;
 
     public ScheduleFragment() {
         // Required empty public constructor
@@ -73,10 +75,10 @@ public class ScheduleFragment extends Fragment {
         subModules = new ArrayList<>();
         sessions = new ArrayList<>();
         bookingType = new ArrayList<>();
-        modules.add("....");
-        subModules.add("....");
-        sessions.add("....");
-        bookingType.add("....");
+        modules.add("-Select Module-");
+        subModules.add("-Select Sub Module-");
+        sessions.add("-Select Sessions-");
+        bookingType.add("-Select Booking Type-");
         bookingType.add("Over Phone");
         bookingType.add("At Health Facility");
 
@@ -95,10 +97,18 @@ public class ScheduleFragment extends Fragment {
 
                 if (formValidate()) {
                     saveDraft();
-                    if(updateDB()){
-                        startActivity(new Intent(getContext(), MainActivity.class));
-                        getActivity().finish();
-                    }else {
+                    if (updateDB()) {
+                        if (!MainApp.isScheduleAppointment) {
+                            startActivity(new Intent(getContext(), MainActivity.class));
+                            getActivity().finish();
+                        } else {
+                            startActivity(new Intent(getContext(), MainActivity.class));
+//                            callbacks.uploadAppointment();
+                            getActivity().finish();
+                        }
+
+
+                    } else {
                         Toast.makeText(getContext(), "Error in database", Toast.LENGTH_SHORT).show();
                     }
 
@@ -113,9 +123,9 @@ public class ScheduleFragment extends Fragment {
     public boolean updateDB() {
         DatabaseHelper db = new DatabaseHelper(getContext());
         long count = db.updateNMS();
-        if (count !=  -1) {
+        if (count != -1) {
             return true;
-        }else{
+        } else {
             Toast.makeText(getContext(), "Error in updating DB", Toast.LENGTH_SHORT).show();
             return false;
         }
@@ -212,6 +222,10 @@ public class ScheduleFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position != 0) {
+                    sessions.clear();
+                    sessions.add("-Select Sessions-");
+                    subModules.clear();
+                    subModules.add("-Select Sub Module-");
                     selectModule(position);
                 }
 
@@ -229,8 +243,6 @@ public class ScheduleFragment extends Fragment {
 
         switch (position) {
             case 1:
-                subModules.clear();
-                subModules.add("....");
                 bi.fldGrpSubModule.setVisibility(View.VISIBLE);
                 subModules.addAll(Arrays.asList(childModule));
                 bi.subModules.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, subModules));
@@ -238,6 +250,9 @@ public class ScheduleFragment extends Fragment {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         if (position != 0) {
+
+                            sessions.clear();
+                            sessions.add("-Select Sessions-");
                             selectSubModule(position, "child");
                         }
 
@@ -252,14 +267,14 @@ public class ScheduleFragment extends Fragment {
                 break;
             case 2:
 
+                sessions.addAll(Arrays.asList(maternalModule));
                 bi.subModules.setSelection(0);
                 bi.fldGrpSubModule.setVisibility(View.GONE);
-                bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, maternalModule));
+                bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, sessions));
                 break;
 
             case 3:
-                subModules.clear();
-                subModules.add("....");
+
                 bi.fldGrpSubModule.setVisibility(View.VISIBLE);
                 subModules.addAll(Arrays.asList(newBornModule));
                 bi.subModules.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, subModules));
@@ -267,6 +282,8 @@ public class ScheduleFragment extends Fragment {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         if (position != 0) {
+                            sessions.clear();
+                            sessions.add("-Select Sessions-");
                             selectSubModule(position, "newBorn");
                         }
 
@@ -290,13 +307,11 @@ public class ScheduleFragment extends Fragment {
         if (type.equals("child")) {
             switch (position) {
                 case 1:
-
                     sessions.addAll(Arrays.asList(GDS));
                     bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, sessions));
                     break;
 
                 case 2:
-
                     sessions.addAll(Arrays.asList(CDB));
                     bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, sessions));
                     break;
@@ -308,6 +323,7 @@ public class ScheduleFragment extends Fragment {
                     break;
 
                 case 4:
+
 
                     sessions.addAll(Arrays.asList(PSBI));
                     bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, sessions));
@@ -322,13 +338,11 @@ public class ScheduleFragment extends Fragment {
                     break;
 
                 case 2:
-
                     sessions.addAll(Arrays.asList(ECSB));
                     bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, sessions));
                     break;
 
                 case 3:
-
                     sessions.addAll(Arrays.asList(HBB));
                     bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, sessions));
                     break;

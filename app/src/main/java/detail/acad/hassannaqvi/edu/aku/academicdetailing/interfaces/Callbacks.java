@@ -12,4 +12,5 @@ public interface Callbacks {
     void downloadData();
     void loadInfo();
     void loadScheduleFragment();
+    void uploadAppointment();
 }

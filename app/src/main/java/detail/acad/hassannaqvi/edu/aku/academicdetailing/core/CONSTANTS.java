@@ -7,6 +7,7 @@ public interface CONSTANTS {
     String URL_DEVICES = "devices.php";
     String URL_FORMS = "forms.php";
     String URL_HF_FORMS = "hf_forms.php";
+    String URL_APPOINTMENT = "appointments.php";
 
     String URI_SUBMENU_DT = "submenuDT";
     String URI_FORM_TYPE = "type";

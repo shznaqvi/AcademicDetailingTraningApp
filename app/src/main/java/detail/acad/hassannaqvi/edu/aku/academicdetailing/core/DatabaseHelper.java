@@ -135,6 +135,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + NMCTable.COLUMN_HF_NAME + " TEXT, "
             + NMCTable.COLUMN_HP_NAME + " TEXT, "
             + NMCTable.COLUMN_HP_CODE + " LONG, "
+            + NMCTable.COLUMN_DIST_CODE + " LONG, "
             + NMCTable.COLUMN_LNG + " TEXT, "
             + NMCTable.COLUMN_GPSTIME + " TEXT, "
             + NMCTable.COLUMN_BTYPE + " TEXT, "
@@ -545,13 +546,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 ProviderContract providerContract = new ProviderContract();
                 providerContract.Sync(jsonObjectUser);
                 ContentValues values = new ContentValues();
-                values.put(singleProvider.COLUMN_HP_DIST_CODE,providerContract.getDistrict_code());
-                values.put(singleProvider.COLUMN_HP_TEHSIL,providerContract.getTehsil());
-                values.put(singleProvider.COLUMN_HP_UC_NAME,providerContract.getUc());
-                values.put(singleProvider.COLUMN_HP_UEN_CODE,providerContract.getHp_uen_code());
-                values.put(singleProvider.COLUMN_HF_CODE,providerContract.getHf_code());
-                values.put(singleProvider.COLUMN_HP_NAME,providerContract.getHp_name());
-                values.put(singleProvider.COLUMN_HP_DESIGNATION,providerContract.getHp_designation());
+                values.put(singleProvider.COLUMN_HP_DIST_CODE, providerContract.getDistrict_code());
+                values.put(singleProvider.COLUMN_HP_TEHSIL, providerContract.getTehsil());
+                values.put(singleProvider.COLUMN_HP_UC_NAME, providerContract.getUc());
+                values.put(singleProvider.COLUMN_HP_UEN_CODE, providerContract.getHp_uen_code());
+                values.put(singleProvider.COLUMN_HF_CODE, providerContract.getHf_code());
+                values.put(singleProvider.COLUMN_HP_NAME, providerContract.getHp_name());
+                values.put(singleProvider.COLUMN_HP_DESIGNATION, providerContract.getHp_designation());
                 long count = db.insert(singleProvider.TABLE_NAME, null, values);
                 Log.d(TAG, "syncHP: count " + count);
             }
@@ -1140,6 +1141,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public long getUsersCount() {
         SQLiteDatabase db = this.getReadableDatabase();
         long count = DatabaseUtils.queryNumEntries(db, UsersTable.TABLE_NAME);
+        db.close();
+        return count;
+    }
+
+    public long getDistrictCount() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        long count = DatabaseUtils.queryNumEntries(db, DistrictTable.TABLE_NAME);
         db.close();
         return count;
     }

@@ -32,6 +32,7 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.adapters.SlidingImageAdapter;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.FormsContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.CONSTANTS;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.FragmentModuleBinding;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.MainActivity;
@@ -39,13 +40,6 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Utils;
 
 import static android.content.Context.ACTIVITY_SERVICE;
-import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.CDB;
-import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.Diarrhea;
-import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.ECEB;
-import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.ECSB;
-import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.GDS;
-import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.HBB;
-import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.PSBI;
 
 
 public class ModuleFragment extends Fragment {
@@ -244,6 +238,7 @@ public class ModuleFragment extends Fragment {
         openModuleHandler(bi.childModule, 0);
 
     }
+
     BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -284,15 +279,14 @@ public class ModuleFragment extends Fragment {
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Data.SubMenu[]  submenu = Data.newMenuModule.get(key);
+                    Data.SubMenu[] submenu = Data.newMenuModule.get(key);
                     removeSubGroups(llModule);
                     if (submenu.length > 1) {
                         showSubMenus(subModule, submenu);
-                    } else
-                        if(submenu[0].getVideosName().length != 0){
-                            downloadVideos(submenu[0].getVideosName());
-                            Utils.showPreDialogue(getActivity(), submenu[0],fc);
-                        }
+                    } else if (submenu[0].getVideosName().length != 0) {
+                        downloadVideos(submenu[0].getVideosName(), submenu[0].getModuleName().toUpperCase());
+                        Utils.showPreDialogue(getActivity(), submenu[0], fc);
+                    }
 
 
                 }
@@ -301,20 +295,32 @@ public class ModuleFragment extends Fragment {
 
     }
 
-    private void downloadVideos(String[] videosName) {
-        for(int i = 0 ; i < videosName.length ; i++){
+    private void downloadVideos(String[] videosName, String moduleName) {
+
+        File folder = new File(Environment.getExternalStorageDirectory() + File.separator + DatabaseHelper.PROJECT_NAME);
+        boolean success = true;
+        if (!folder.exists())
+            success = folder.mkdirs();
+        if (!success) return;
+
+        folder = new File(folder.getPath() + File.separator + moduleName);
+        if (!folder.exists())
+            success = folder.mkdirs();
+        if (!success) return;
+
+        for (int i = 0; i < videosName.length; i++) {
             String fileName = videosName[i];
-            File file = new File(Environment.getExternalStorageDirectory(),fileName);
-            if(file.exists()){
+            File file = new File(folder.getPath(), fileName);
+            if (file.exists()) {
                 Toast.makeText(getContext(), "file already exists", Toast.LENGTH_SHORT).show();
-            }else{
+            } else {
                 NetworkInfo networkInfo = ((ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
                 if (networkInfo != null && networkInfo.isConnected()) {
 
                     downloadManager = (DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
                     Uri uri = Uri.parse(CONSTANTS.Video_URL + fileName + ".mp4");
                     DownloadManager.Request request = new DownloadManager.Request(uri);
-                    request.setDestinationInExternalPublicDir(file.getPath(),"Videos")
+                    request.setDestinationInExternalPublicDir(file.getPath(), fileName)
                             .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
                             .setTitle("Downloading " + fileName);
                     refID = downloadManager.enqueue(request);
@@ -340,9 +346,9 @@ public class ModuleFragment extends Fragment {
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(subMenu.getVideosName().length != 0){
-                        downloadVideos(subMenu.getVideosName());
-                        Utils.showPreDialogue(getActivity(), subMenu,fc);
+                    if (subMenu.getVideosName().length != 0) {
+                        downloadVideos(subMenu.getVideosName(), subMenu.getModuleName().toUpperCase());
+                        Utils.showPreDialogue(getActivity(), subMenu, fc);
                     }
 
                 }

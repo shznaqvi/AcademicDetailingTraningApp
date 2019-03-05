@@ -24,7 +24,6 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.validation.validatorCla
 
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.isComplete;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.post_result;
-import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.post_result;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.pre_result;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.type;
 
@@ -42,6 +41,7 @@ public class DiaTest01 extends AppCompatActivity implements RadioButton.OnChecke
 
         events_call();
         setupViews();
+
 
     }
 
@@ -61,7 +61,7 @@ public class DiaTest01 extends AppCompatActivity implements RadioButton.OnChecke
         } else if (type.equals("pre") && isComplete) {
             bi.heading.setText("PRETEST RESULT");
             GeneratorClass.comparingResult(bi.llDiaTestA, true, subMenuDT.getAnswers());
-            pre_result = GeneratorClass.getResults("pre",subMenuDT.getAnswers());
+            pre_result = GeneratorClass.getResults("pre", subMenuDT.getAnswers());
             bi.btnOk.setVisibility(View.VISIBLE);
             bi.btnOk.setText("Start Training");
             bi.btnContinue.setVisibility(View.GONE);
@@ -73,7 +73,7 @@ public class DiaTest01 extends AppCompatActivity implements RadioButton.OnChecke
         } else if (type.equals("post") && isComplete) {
             bi.heading.setText(" POST TEST & PRETEST RESULT");
             GeneratorClass.comparingPostTestAndPretestResult(bi.llDiaTestA, true, subMenuDT.getAnswers());
-            post_result = GeneratorClass.getResults("post",subMenuDT.getAnswers());
+            post_result = GeneratorClass.getResults("post", subMenuDT.getAnswers());
             bi.btnOk.setVisibility(View.VISIBLE);
             bi.btnOk.setText("Finish Training");
             bi.btnContinue.setVisibility(View.GONE);

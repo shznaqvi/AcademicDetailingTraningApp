@@ -1,7 +1,18 @@
 package detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments;
 
+import android.app.ActivityManager;
+import android.app.DownloadManager;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.database.Cursor;
 import android.databinding.DataBindingUtil;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -10,18 +21,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.io.File;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.adapters.SlidingImageAdapter;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.FormsContract;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.CONSTANTS;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.FragmentModuleBinding;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.MainActivity;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Utils;
 
+import static android.content.Context.ACTIVITY_SERVICE;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.CDB;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.Diarrhea;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.ECEB;
@@ -45,6 +62,8 @@ public class ModuleFragment extends Fragment {
     boolean isAdmin;
     SlidingImageAdapter imageAdapter;
     FormsContract fc;
+    DownloadManager downloadManager;
+    Long refID;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -225,6 +244,31 @@ public class ModuleFragment extends Fragment {
         openModuleHandler(bi.childModule, 0);
 
     }
+    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (DownloadManager.ACTION_DOWNLOAD_COMPLETE.equals(intent.getAction())) {
+
+                DownloadManager.Query query = new DownloadManager.Query();
+//                query.setFilterById(sharedPrefDownload.getLong("refID", 0));
+
+                downloadManager = (DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
+                Cursor cursor = downloadManager.query(query);
+                if (cursor.moveToFirst()) {
+                    int colIndex = cursor.getColumnIndex(DownloadManager.COLUMN_STATUS);
+                    if (DownloadManager.STATUS_SUCCESSFUL == cursor.getInt(colIndex)) {
+                        Toast.makeText(context, "New App downloaded!!", Toast.LENGTH_SHORT).show();
+                        ActivityManager am = (ActivityManager) getActivity().getSystemService(ACTIVITY_SERVICE);
+                        List<ActivityManager.RunningTaskInfo> taskInfo = am.getRunningTasks(1);
+
+                        if (taskInfo.get(0).topActivity.getClassName().equals(MainActivity.class.getName())) {
+
+                        }
+                    }
+                }
+            }
+        }
+    };
 
     private void showModules(final LinearLayout llModule, int type) {
 
@@ -240,16 +284,48 @@ public class ModuleFragment extends Fragment {
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Data.SubMenu[] submenu = Data.newMenuModule.get(key);
+                    Data.SubMenu[]  submenu = Data.newMenuModule.get(key);
                     removeSubGroups(llModule);
                     if (submenu.length > 1) {
                         showSubMenus(subModule, submenu);
                     } else
-                        Utils.showPreDialogue(getActivity(), submenu[0],fc);
+                        if(submenu[0].getVideosName().length != 0){
+                            downloadVideos(submenu[0].getVideosName());
+                            Utils.showPreDialogue(getActivity(), submenu[0],fc);
+                        }
+
 
                 }
             });
         }
+
+    }
+
+    private void downloadVideos(String[] videosName) {
+        for(int i = 0 ; i < videosName.length ; i++){
+            String fileName = videosName[i];
+            File file = new File(Environment.getExternalStorageDirectory(),fileName);
+            if(file.exists()){
+                Toast.makeText(getContext(), "file already exists", Toast.LENGTH_SHORT).show();
+            }else{
+                NetworkInfo networkInfo = ((ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
+                if (networkInfo != null && networkInfo.isConnected()) {
+
+                    downloadManager = (DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
+                    Uri uri = Uri.parse(CONSTANTS.Video_URL + fileName + ".mp4");
+                    DownloadManager.Request request = new DownloadManager.Request(uri);
+                    request.setDestinationInExternalPublicDir(file.getPath(),"Videos")
+                            .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+                            .setTitle("Downloading " + fileName);
+                    refID = downloadManager.enqueue(request);
+
+                } else {
+                    Toast.makeText(getContext(), "Internet connectivity issue", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+        }
+        getActivity().registerReceiver(broadcastReceiver, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
 
     }
 
@@ -264,7 +340,11 @@ public class ModuleFragment extends Fragment {
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Utils.showPreDialogue(getActivity(), subMenu,fc);
+                    if(subMenu.getVideosName().length != 0){
+                        downloadVideos(subMenu.getVideosName());
+                        Utils.showPreDialogue(getActivity(), subMenu,fc);
+                    }
+
                 }
             });
         }

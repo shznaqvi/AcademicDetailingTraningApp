@@ -102,13 +102,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void loadInfoFragment() {
 
-        if(db.getDistrictCount() > 0){
+        if (db.getDistrictCount() > 0) {
             loadFragment(new InfoFragment());
-        }else{
+        } else {
 
             Toast.makeText(this, "Please Download Data First", Toast.LENGTH_SHORT).show();
         }
-
 
 
     }
@@ -168,9 +167,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void loadInfo() {
 
-        if(db.getDistrictCount() > 0){
+        if (db.getDistrictCount() > 0) {
             loadFragment(new InfoFragment());
-        }else{
+        } else {
             Toast.makeText(this, "Please Download Data First", Toast.LENGTH_SHORT).show();
         }
 

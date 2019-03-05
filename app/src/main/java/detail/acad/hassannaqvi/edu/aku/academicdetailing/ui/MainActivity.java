@@ -41,6 +41,7 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityMai
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments.InfoFragment;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments.MainFragment;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments.ModuleFragment;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments.ScheduleFragment;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.interfaces.Callbacks;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.sync.SyncAllData;
 import okhttp3.ResponseBody;
@@ -57,12 +58,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     DatabaseHelper db;
     Collection<FormsContract> dbData;
     KProgressHUD hud;
+    Call<ResponseBody> call = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         bi = DataBindingUtil.setContentView(this, R.layout.activity_main);
-
+        MainApp.isScheduleAppointment = false;
         MainApp.logginTime = MainApp.getCurrentTime();
         hud = KProgressHUD.create(this).setCancellable(false).setStyle(KProgressHUD.Style.SPIN_INDETERMINATE);
         db = new DatabaseHelper(this);
@@ -98,12 +101,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void loadInfoFragment() {
-        loadFragment(new InfoFragment());
+
+        if (db.getDistrictCount() > 0) {
+            loadFragment(new InfoFragment());
+        } else {
+
+            Toast.makeText(this, "Please Download Data First", Toast.LENGTH_SHORT).show();
+        }
+
+
     }
 
     @Override
     public void loadModuleFragment(FormsContract fc) {
-        loadFragment(fc,new ModuleFragment());
+        loadFragment(fc, new ModuleFragment());
     }
 
     @Override
@@ -154,6 +165,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
+    public void loadInfo() {
+
+        if (db.getDistrictCount() > 0) {
+            loadFragment(new InfoFragment());
+        } else {
+            Toast.makeText(this, "Please Download Data First", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    @Override
+    public void loadScheduleFragment() {
+
+        loadFragment(new ScheduleFragment());
+    }
+
+    @Override
+    public void uploadAppointment() {
+
+    }
+
+    @Override
     public void onBackPressed() {
         super.onBackPressed();
 
@@ -195,7 +228,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         transaction.commit();
     }
 
-    private void loadFragment(FormsContract fc,Fragment fragment) {
+    private void loadFragment(FormsContract fc, Fragment fragment) {
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         if (fragment.getClass().getName().equals(MainFragment.class.getName())) {
@@ -223,8 +256,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void getHfDataFromServer() {
 
         hud.setLabel("Getting Health Facility Data");
+        call = RetrofitClient.service.synHfData();
+        syncingData("hf");
+        hud.setLabel("Getting Providers Data");
+        call = RetrofitClient.service.synHPData();
+        syncingData("hp");
+
+
+    }
+
+    private void syncingData(final String dataType) {
         hud.show();
-        Call<ResponseBody> call = RetrofitClient.service.synHfData();
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -233,8 +275,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     try {
                         String data = response.body().string();
                         final JSONArray array = new JSONArray(data);
-                        db.syncHF(array);
-                        Toast.makeText(MainActivity.this, "Successfully Downloaded " + array.length() + " Health Facilities", Toast.LENGTH_SHORT).show();
+
+                        if (dataType.equals("hf")) {
+                            db.syncHF(array);
+                        } else {
+                            db.syncHP(array);
+                        }
+                        Toast.makeText(MainActivity.this, "Successfully Downloaded", Toast.LENGTH_SHORT).show();
                         hud.dismiss();
 
                     } catch (IOException e) {
@@ -253,6 +300,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             }
         });
+
     }
 
 

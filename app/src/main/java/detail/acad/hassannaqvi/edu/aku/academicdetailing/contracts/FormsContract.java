@@ -55,6 +55,67 @@ public class FormsContract implements Parcelable {
     private String wrong_post = "";
     private String total = "";
 
+    public static final Creator<FormsContract> CREATOR = new Creator<FormsContract>() {
+        @Override
+        public FormsContract createFromParcel(Parcel in) {
+            return new FormsContract(in);
+        }
+
+        @Override
+        public FormsContract[] newArray(int size) {
+            return new FormsContract[size];
+        }
+    };
+
+    protected FormsContract(Parcel in) {
+        projectName = in.readString();
+        surveyType = in.readString();
+        _id = in.readString();
+        _UID = in.readString();
+        formdate = in.readString();
+        user = in.readString();
+        istatus = in.readString();
+        istatus88x = in.readString();
+        sA = in.readString();
+        score_post = in.readString();
+        percentage_pre = in.readString();
+        score_pre = in.readString();
+        percentage_post = in.readString();
+        sInfo = in.readString();
+        sno = in.readString();
+        endingdatetime = in.readString();
+        gpsLat = in.readString();
+        gpsLng = in.readString();
+        gpsDT = in.readString();
+        gpsAcc = in.readString();
+        gpsElev = in.readString();
+        deviceid = in.readString();
+        devicetagID = in.readString();
+        synced = in.readString();
+        synced_date = in.readString();
+        appversion = in.readString();
+        districtID = in.readString();
+        healthFacilityName = in.readString();
+        providerName = in.readString();
+        sessionStartTime = in.readString();
+        sessionEndTime = in.readString();
+        preTestStartTime = in.readString();
+        preTestEndTime = in.readString();
+        pre_test = in.readString();
+        module = in.readString();
+        gpsTime = in.readString();
+        session = in.readString();
+        wrong_pre = in.readString();
+        wrong_post = in.readString();
+        total = in.readString();
+        post_test = in.readString();
+        logginTime = in.readString();
+        postTestEndTime = in.readString();
+        postTestStartTime = in.readString();
+        providerID = in.readString();
+    }
+
+
     public String getWrong_pre() {
         return wrong_pre;
     }
@@ -566,7 +627,51 @@ public class FormsContract implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-
+        dest.writeString(projectName);
+        dest.writeString(surveyType);
+        dest.writeString(_id);
+        dest.writeString(_UID);
+        dest.writeString(formdate);
+        dest.writeString(user);
+        dest.writeString(istatus);
+        dest.writeString(istatus88x);
+        dest.writeString(sA);
+        dest.writeString(score_post);
+        dest.writeString(percentage_pre);
+        dest.writeString(score_pre);
+        dest.writeString(percentage_post);
+        dest.writeString(sInfo);
+        dest.writeString(sno);
+        dest.writeString(endingdatetime);
+        dest.writeString(gpsLat);
+        dest.writeString(gpsLng);
+        dest.writeString(gpsDT);
+        dest.writeString(gpsAcc);
+        dest.writeString(gpsElev);
+        dest.writeString(deviceid);
+        dest.writeString(devicetagID);
+        dest.writeString(synced);
+        dest.writeString(synced_date);
+        dest.writeString(appversion);
+        dest.writeString(districtID);
+        dest.writeString(healthFacilityName);
+        dest.writeString(providerName);
+        dest.writeString(sessionStartTime);
+        dest.writeString(sessionEndTime);
+        dest.writeString(preTestStartTime);
+        dest.writeString(preTestEndTime);
+        dest.writeString(pre_test);
+        dest.writeString(module);
+        dest.writeString(gpsTime);
+        dest.writeString(session);
+        dest.writeString(wrong_pre);
+        dest.writeString(wrong_post);
+        dest.writeString(total);
+        dest.writeString(post_test);
+        dest.writeString(logginTime);
+        dest.writeString(postTestEndTime);
+        dest.writeString(postTestStartTime);
+        dest.writeString(providerID);
     }
 
     public static abstract class FormsTable implements BaseColumns {

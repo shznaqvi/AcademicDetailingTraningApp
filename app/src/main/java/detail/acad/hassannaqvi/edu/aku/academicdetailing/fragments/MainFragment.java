@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
@@ -91,7 +92,8 @@ public class MainFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                callbacks.uploadDataToServer();
+//                callbacks.uploadDataToServer();
+                Toast.makeText(getContext(), "Under Development", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -99,7 +101,17 @@ public class MainFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+
                 callbacks.downloadData();
+            }
+        });
+
+        bi.scheduleAppointment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                MainApp.isScheduleAppointment = true;
+                callbacks.loadInfo();
             }
         });
 

@@ -11,13 +11,21 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.DistrictsContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.FormsContract;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.HealthFacContract;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.ProviderContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.FragmentInfoBinding;
@@ -32,9 +40,24 @@ public class InfoFragment extends Fragment {
     FragmentInfoBinding bi;
     View view;
     Callbacks callbacks;
+    Collection<DistrictsContract> distrcitList;
+    ArrayList<String> districtNames;
+    HashMap<String, Long> districtMap;
+
+    Collection<HealthFacContract> hfList;
+    ArrayList<String> hfNames;
+    HashMap<String, Long> hfMap;
+
+    Collection<ProviderContract> providerList;
+    ArrayList<String> providerNames;
+    HashMap<String, Long> providerMap;
+
+    long districtCode = 0;
+    long hf_uen_code = 0;
+    long hp_code = 0;
 
     private static final String TAG = "InfoFragment";
-
+    DatabaseHelper db;
 
 
     public InfoFragment() {
@@ -47,11 +70,105 @@ public class InfoFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        bi = DataBindingUtil.inflate(inflater,R.layout.fragment_info,container,false);
+        bi = DataBindingUtil.inflate(inflater, R.layout.fragment_info, container, false);
         view = bi.getRoot();
+        db = new DatabaseHelper(getContext());
 
         onCLickListener();
+
+        setupViews();
         return view;
+
+    }
+
+    private void setupViews() {
+
+        distrcitList = db.getDistrictList();
+        districtNames = new ArrayList<>();
+        districtMap = new HashMap<>();
+        districtNames.add("-Select District-");
+
+        for (DistrictsContract dc : distrcitList) {
+
+            districtNames.add(dc.getDistrict_name());
+            districtMap.put(dc.getDistrict_name(), dc.getDICTRICT_CODE());
+        }
+
+        bi.districtSpinner.setAdapter(new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, districtNames));
+
+        bi.districtSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if (bi.districtSpinner.getSelectedItemPosition() != 0) {
+
+                    districtCode = districtMap.get(bi.districtSpinner.getSelectedItem().toString());
+                    hfList = db.getHealthFacilityData(districtCode);
+                    hfMap = new HashMap<>();
+                    hfNames = new ArrayList<>();
+                    hfNames.add("Select Health Facility Name-");
+
+                    for (HealthFacContract hf : hfList) {
+                        hfNames.add(hf.getHf_name());
+                        hfMap.put(hf.getHf_name(), hf.getHf_uen_code());
+                    }
+
+                    bi.healthFacSpinner.setAdapter(new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, hfNames));
+
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        bi.healthFacSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if (bi.healthFacSpinner.getSelectedItemPosition() != 0) {
+
+                    hf_uen_code = hfMap.get(bi.healthFacSpinner.getSelectedItem().toString());
+                    providerList = db.getHPData(hf_uen_code);
+
+                    providerNames = new ArrayList<>();
+                    providerMap = new HashMap<>();
+                    providerNames.add("-Select Provider Name-");
+
+                    for (ProviderContract pC : providerList) {
+
+                        providerNames.add(pC.getHp_name());
+                        providerMap.put(pC.getHp_name(), pC.getHf_code());
+                        bi.providerSpinner.setAdapter(new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, providerNames));
+                    }
+
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        bi.providerSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if (bi.providerSpinner.getSelectedItemPosition() != 0) {
+
+                    hp_code = providerMap.get(bi.providerSpinner.getSelectedItem().toString());
+                    MainApp.providerName = bi.providerSpinner.getSelectedItem().toString();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
     }
 
@@ -61,18 +178,18 @@ public class InfoFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                if(formValidation()){
+                if (formValidation()) {
                     try {
                         saveDraft();
-                        if(updateDB()){
-
-                            // Hide keyboard
+                        if(MainApp.isScheduleAppointment){
+                            callbacks.loadScheduleFragment();
+                        }else {
                             HideKeyboard.hideKeyboardFragment(getActivity(), getView());
-
                             callbacks.loadModuleFragment(MainApp.fc);
-                        }else{
-                            Toast.makeText(getActivity(), "Error in update DB", Toast.LENGTH_SHORT).show();
                         }
+
+
+
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -98,19 +215,20 @@ public class InfoFragment extends Fragment {
     private void saveDraft() {
 
         MainApp.fc = new FormsContract();
-        MainApp.fc.setProviderID(bi.providerId.getText().toString());
-        MainApp.fc.setProviderName(bi.providerNam.getText().toString());
-        MainApp.fc.setHealthFacilityName(bi.info2.getText().toString());
-        MainApp.fc.setDistrictID(bi.info1.getText().toString());
         MainApp.fc.setAppversion(MainApp.versionName);
         MainApp.fc.setLogginTime(MainApp.logginTime);
         MainApp.fc.setDeviceID(MainApp.deviceId);
         MainApp.fc.setFormDate(new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime()));
+
+        MainApp.fc.setProviderID(String.valueOf(hp_code));
+        MainApp.fc.setProviderName(MainApp.providerName);
+        MainApp.fc.setHealthFacilityName(bi.healthFacSpinner.getSelectedItem().toString());
+        MainApp.fc.setDistrictID(String.valueOf(districtCode));
+
         setGPS();
     }
 
     private boolean formValidation() {
-
         return validatorClass.EmptyCheckingContainer(getActivity(), bi.fldGrpInfo);
     }
 

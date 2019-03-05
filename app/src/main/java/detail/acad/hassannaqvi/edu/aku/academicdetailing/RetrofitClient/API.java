@@ -29,6 +29,9 @@ public interface API {
     @GET("healthfacilities.php")
     Call<ResponseBody> synHfData();
 
+    @GET("providers.php")
+    Call<ResponseBody> synHPData();
+
     @GET("users.php")
     Call<ResponseBody> getUsers();
 

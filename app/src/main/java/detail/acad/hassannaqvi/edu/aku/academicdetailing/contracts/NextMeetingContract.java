@@ -26,21 +26,12 @@ public class NextMeetingContract {
     private String formdate = ""; // Date
     private String deviceid = "";
 
-    public String getFormdate() {
-        return formdate;
-    }
+    private long dist_id = 0;
+    private String hf_name = "";
+    private String hp_name = "";
+    private long hp_code = 0;
 
-    public void setFormdate(String formdate) {
-        this.formdate = formdate;
-    }
 
-    public String getDeviceid() {
-        return deviceid;
-    }
-
-    public void setDeviceid(String deviceid) {
-        this.deviceid = deviceid;
-    }
 
     public JSONObject toJSONObject() throws JSONException {
 
@@ -63,6 +54,10 @@ public class NextMeetingContract {
         json.put(NMCTable.COLUMN_BTYPE, this.bookingtype == null ? JSONObject.NULL : this.bookingtype);
         json.put(NMCTable.COLUMN_SYNCED, this.synced == null ? JSONObject.NULL : this.synced);
         json.put(NMCTable.COLUMN_SYNCED_DATE, this.synced_date == null ? JSONObject.NULL : this.synced_date);
+        json.put(NMCTable.COLUMN_DIST_CODE, this.dist_id == 0 ? JSONObject.NULL : this.dist_id);
+        json.put(NMCTable.COLUMN_HF_NAME, this.hf_name == null ? JSONObject.NULL : this.hf_name);
+        json.put(NMCTable.COLUMN_HP_NAME, this.hp_name == null ? JSONObject.NULL : this.hp_name);
+        json.put(NMCTable.COLUMN_HP_CODE, this.hp_code == 0 ? JSONObject.NULL : this.hp_code);
 
         return json;
     }
@@ -87,10 +82,62 @@ public class NextMeetingContract {
         this.synced_date = cursor.getString(cursor.getColumnIndex(NMCTable.COLUMN_SYNCED_DATE));
         this.formdate = cursor.getString(cursor.getColumnIndex(NMCTable.COLUMN_FORMDATE));
         this.deviceid = cursor.getString(cursor.getColumnIndex(NMCTable.COLUMN_DEVICEID));
+        this.dist_id = cursor.getLong(cursor.getColumnIndex(NMCTable.COLUMN_DIST_CODE));
+        this.hf_name = cursor.getString(cursor.getColumnIndex(NMCTable.COLUMN_HF_NAME));
+        this.hp_name = cursor.getString(cursor.getColumnIndex(NMCTable.COLUMN_HP_NAME));
+        this.hp_code = cursor.getLong(cursor.getColumnIndex(NMCTable.COLUMN_HP_CODE));
 
 
         return this;
 
+    }
+
+    public long getDist_id() {
+        return dist_id;
+    }
+
+    public void setDist_id(long dist_id) {
+        this.dist_id = dist_id;
+    }
+
+    public String getHf_name() {
+        return hf_name;
+    }
+
+    public void setHf_name(String hf_name) {
+        this.hf_name = hf_name;
+    }
+
+    public String getHp_name() {
+        return hp_name;
+    }
+
+    public void setHp_name(String hp_name) {
+        this.hp_name = hp_name;
+    }
+
+    public long getHp_code() {
+        return hp_code;
+    }
+
+    public void setHp_code(long hp_code) {
+        this.hp_code = hp_code;
+    }
+
+    public String getFormdate() {
+        return formdate;
+    }
+
+    public void setFormdate(String formdate) {
+        this.formdate = formdate;
+    }
+
+    public String getDeviceid() {
+        return deviceid;
+    }
+
+    public void setDeviceid(String deviceid) {
+        this.deviceid = deviceid;
     }
 
     public String getGpsTime() {
@@ -211,7 +258,11 @@ public class NextMeetingContract {
 
         public static final String TABLE_NAME = "next_meeting";
         public static final String _ID = "_id";
-        public static final String COLUMN_DOCTOR_NAME = "doc_name";
+        public static final String COLUMN_DOCTOR_NAME = "provider_name";
+        public static final String COLUMN_HF_NAME = "hf_name";
+        public static final String COLUMN_HP_NAME = "hp_name";
+        public static final String COLUMN_HP_CODE= "hp_code";
+        public static final String COLUMN_DIST_CODE= "dist_code";
         public static final String COLUMN_DATE = "date";
         public static final String COLUMN_TIME = "time";
         public static final String COLUMN_MOD = "mod";
@@ -227,6 +278,7 @@ public class NextMeetingContract {
         public static final String COLUMN_SYNCED= "synced";
         public static final String COLUMN_SYNCED_DATE= "synced_date";
         public static final String COLUMN_FORMDATE = "formdate";
+
         public static final String nms_Url = "next_meeting.php";
 
     }

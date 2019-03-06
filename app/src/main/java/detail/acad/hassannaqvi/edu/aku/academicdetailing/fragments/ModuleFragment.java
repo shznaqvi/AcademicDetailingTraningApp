@@ -297,13 +297,14 @@ public class ModuleFragment extends Fragment {
 
     private void downloadVideos(String[] videosName, String moduleName) {
 
-        File folder = new File(Environment.getExternalStorageDirectory() + File.separator + DatabaseHelper.PROJECT_NAME);
+        String Directrory = Environment.getExternalStorageDirectory() + File.separator + DatabaseHelper.PROJECT_NAME;
+        File folder = new File(Directrory);
         boolean success = true;
         if (!folder.exists())
             success = folder.mkdirs();
         if (!success) return;
 
-        folder = new File(folder.getPath() + File.separator + moduleName);
+        folder = new File(Directrory + File.separator + moduleName);
         if (!folder.exists())
             success = folder.mkdirs();
         if (!success) return;
@@ -320,7 +321,7 @@ public class ModuleFragment extends Fragment {
                     downloadManager = (DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
                     Uri uri = Uri.parse(CONSTANTS.Video_URL + fileName + ".mp4");
                     DownloadManager.Request request = new DownloadManager.Request(uri);
-                    request.setDestinationInExternalPublicDir(file.getPath(), fileName)
+                    request.setDestinationInExternalPublicDir(DatabaseHelper.PROJECT_NAME + File.separator + moduleName, fileName)
                             .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
                             .setTitle("Downloading " + fileName);
                     refID = downloadManager.enqueue(request);

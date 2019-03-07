@@ -103,7 +103,7 @@ public class ScheduleFragment extends Fragment {
                             getActivity().finish();
                         } else {
                             startActivity(new Intent(getContext(), MainActivity.class));
-//                            callbacks.uploadAppointment();
+                            callbacks.uploadAppointment();
                             getActivity().finish();
                         }
 
@@ -353,5 +353,10 @@ public class ScheduleFragment extends Fragment {
 
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
 
+        callbacks = (Callbacks) context;
+    }
 }

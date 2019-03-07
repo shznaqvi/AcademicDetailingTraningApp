@@ -1,6 +1,7 @@
 package detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments;
 
 import android.app.ActivityManager;
+import android.app.AlertDialog;
 import android.app.DownloadManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -20,6 +21,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,6 +60,13 @@ public class ModuleFragment extends Fragment {
     FormsContract fc;
     DownloadManager downloadManager;
     Long refID;
+    String[] videos;
+    TextView progressText;
+    ProgressBar progressBar;
+    int finalProgress = 0;
+    AlertDialog dialog;
+    Data.SubMenu moduleToStart;
+    boolean fileAlreadyExist = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -252,7 +261,14 @@ public class ModuleFragment extends Fragment {
                 if (cursor.moveToFirst()) {
                     int colIndex = cursor.getColumnIndex(DownloadManager.COLUMN_STATUS);
                     if (DownloadManager.STATUS_SUCCESSFUL == cursor.getInt(colIndex)) {
-                        Toast.makeText(context, "New App downloaded!!", Toast.LENGTH_SHORT).show();
+
+                        finalProgress++;
+                        progressText.setText(finalProgress + "/" + videos.length);
+                        if (finalProgress == videos.length) {
+                            dialog.dismiss();
+                            Utils.showPreDialogue(getActivity(),moduleToStart, fc);
+                        }
+//                        Toast.makeText(context, "New App downloaded!!", Toast.LENGTH_SHORT).show();
                         ActivityManager am = (ActivityManager) getActivity().getSystemService(ACTIVITY_SERVICE);
                         List<ActivityManager.RunningTaskInfo> taskInfo = am.getRunningTasks(1);
 
@@ -285,13 +301,38 @@ public class ModuleFragment extends Fragment {
                         showSubMenus(subModule, submenu);
                     } else if (submenu[0].getVideosName().length != 0) {
                         downloadVideos(submenu[0].getVideosName(), submenu[0].getModuleName().toUpperCase());
-                        Utils.showPreDialogue(getActivity(), submenu[0], fc);
+                        moduleToStart = submenu[0];
+                        if(!fileAlreadyExist){
+                            videos = submenu[0].getVideosName();
+                            showDialogue(submenu[0].getVideosName(), submenu[0].getModuleName().toUpperCase());
+                        }else{
+                            Utils.showPreDialogue(getActivity(),moduleToStart, fc);
+                        }
+
+
+
                     }
 
 
                 }
             });
         }
+
+    }
+
+    private void showDialogue(String[] videosName, String moduleName) {
+
+        finalProgress = 0;
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setCancelable(false);
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.downloading_dialog_layout, null);
+        progressText = view.findViewById(R.id.progressTextView);
+        progressText.setText("0/" + videosName.length);
+        progressBar = view.findViewById(R.id.progressBar);
+        builder.setView(view);
+        progressBar.setMax(100);
+        dialog = builder.create();
+        dialog.show();
 
     }
 
@@ -312,8 +353,9 @@ public class ModuleFragment extends Fragment {
         for (int i = 0; i < videosName.length; i++) {
             String fileName = videosName[i];
             File file = new File(folder.getPath(), fileName);
-            if (file.exists()) {
-                Toast.makeText(getContext(), "file already exists", Toast.LENGTH_SHORT).show();
+            fileAlreadyExist = file.exists();
+            if (fileAlreadyExist) {
+                return;
             } else {
                 NetworkInfo networkInfo = ((ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
                 if (networkInfo != null && networkInfo.isConnected()) {
@@ -322,7 +364,7 @@ public class ModuleFragment extends Fragment {
                     Uri uri = Uri.parse(CONSTANTS.Video_URL + fileName + ".mp4");
                     DownloadManager.Request request = new DownloadManager.Request(uri);
                     request.setDestinationInExternalPublicDir(DatabaseHelper.PROJECT_NAME + File.separator + moduleName, fileName)
-                            .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+//                            .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
                             .setTitle("Downloading " + fileName);
                     refID = downloadManager.enqueue(request);
 
@@ -349,7 +391,15 @@ public class ModuleFragment extends Fragment {
                 public void onClick(View view) {
                     if (subMenu.getVideosName().length != 0) {
                         downloadVideos(subMenu.getVideosName(), subMenu.getModuleName().toUpperCase());
-                        Utils.showPreDialogue(getActivity(), subMenu, fc);
+                        moduleToStart = subMenu;
+                        if(!fileAlreadyExist){
+                            showDialogue(subMenu.getVideosName(), subMenu.getModuleName().toUpperCase());
+                            videos = subMenu.getVideosName();
+                        }else{
+                            Utils.showPreDialogue(getActivity(),moduleToStart, fc);
+                        }
+
+
                     }
 
                 }
@@ -360,15 +410,10 @@ public class ModuleFragment extends Fragment {
 
     private void removeSubGroups(LinearLayout llModule) {
         for (byte i = 0; i < llModule.getChildCount(); i++) {
-
             View child = llModule.getChildAt(i);
-
             if (child instanceof LinearLayout) {
-
                 for (byte j = 1; j < ((LinearLayout) child).getChildCount(); j++) {
-
                     View subChild = ((LinearLayout) child).getChildAt(j);
-
                     ((LinearLayout) subChild).removeAllViews();
                 }
 

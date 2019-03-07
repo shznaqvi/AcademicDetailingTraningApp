@@ -51,8 +51,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             FormsTable.COLUMN_PROJECTNAME + " TEXT," +
             FormsTable.COLUMN_loggin_TIME + " TEXT, " +
             FormsTable.COLUMN_SURVEYTYPE + " TEXT," +
-            FormsTable.COLUMN_MODULE + " TEXT, " +
-            FormsTable.COLUMN_SESSION + " TEXT, " +
+            FormsTable.COLUMN_MODULE_CODE + " TEXT, " +
+            FormsTable.COLUMN_SESSION_CODE + " TEXT, " +
             FormsTable.COLUMN_UID + " TEXT," +
             FormsTable.COLUMN_FORMDATE + " TEXT," +
             FormsTable.COLUMN_USER + " TEXT," +
@@ -96,7 +96,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + SessionTable.COLUMN_FORMDATE + " TEXT, "
             + SessionTable.COLUMN_DEVICEID + " TEXT, "
             + SessionTable.COLUMN_SLIDE_NUMBER + " INTEGER,"
-            + SessionTable.COLUMN_MODULE + " TEXT," + SessionTable.COLUMN_SESSION
+            + SessionTable.COLUMN_MODULE_CODE + " TEXT," + SessionTable.COLUMN_SESSION_CODE
             + " TEXT,"
             + SessionTable.COLUMN_SESSION_TIME + " TEXT,"
             + SessionTable.COLUMN_SYNCED + " TEXT,"
@@ -141,12 +141,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + NMCTable.COLUMN_BTYPE + " TEXT, "
             + NMCTable.COLUMN_BOOK_DATE + " TEXT, "
             + NMCTable.COLUMN_BOOKBY + " TEXT, "
-            + NMCTable.COLUMN_DOCTOR_NAME + " TEXT, "
             + NMCTable.COLUMN_DATE + " TEXT, "
             + NMCTable.COLUMN_TIME + " TEXT, "
-            + NMCTable.COLUMN_MOD + " TEXT, "
-            + NMCTable.COLUMN_SUBMOD + " TEXT, "
-            + NMCTable.COLUMN_SESSION + " TEXT, "
+            + NMCTable.COLUMN_MODULE_CODE + " TEXT, "
+            + NMCTable.COLUMN_SUBMOD_CODE + " TEXT, "
+            + NMCTable.COLUMN_SESSION_CODE + " TEXT, "
             + NMCTable.COLUMN_SYNCED + " TEXT, "
             + NMCTable.COLUMN_SYNCED_DATE + " TEXT " + ");";
 
@@ -197,72 +196,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-//    public List<HealthFacContract> getHFData(HealthFacContract.ColumnsClass... columnsClass) {
-//        SQLiteDatabase db = this.getReadableDatabase();
-//        Cursor c = null;
-//        String[] columns = {
-//                singleHF.COLUMN_ID,
-//                singleHF.COLUMN_HF_NAME,
-//                singleHF.COLUMN_HF_TYPE,
-//                singleHF.COLUMN_HF_DISTRICT_NAME,
-//                singleHF.COLUMN_HF_TEHSIL_NAME,
-//                singleHF.COLUMN_HF_PROVINCE_NAME,
-//                singleHF.COLUMN_HF_UC_NAME,
-//                singleHF.COLUMN_HF_UEN_CODE,
-//        };
-//
-//        String whereClause = null;
-//        String[] whereArgs = null;
-//
-//        if (columnsClass.length > 0) {
-//
-//            whereClause = "";
-//            whereArgs = new String[columnsClass.length];
-//
-//            for (byte i = 0; i < columnsClass.length; i++) {
-//                whereClause += columnsClass[i].getColumnName() + " =?";
-//                whereArgs[i] = columnsClass[i].getColumnClause();
-//
-//                if (columnsClass.length - 1 != i) {
-//                    whereClause += " AND ";
-//                }
-//
-//            }
-//
-//        }
-//
-//        String groupBy = null;
-//        String having = null;
-//
-//        String orderBy = singleHF.COLUMN_HF_NAME + " ASC";
-//
-//        List<HealthFacContract> allDC = new ArrayList<>();
-//
-//        try {
-//            c = db.query(
-//                    singleHF.TABLE_NAME,  // The table to query
-//                    columns,                   // The columns to return
-//                    whereClause,               // The columns for the WHERE clause
-//                    whereArgs,                 // The values for the WHERE clause
-//                    groupBy,                   // don't group the rows
-//                    having,                    // don't filter by row groups
-//                    orderBy                    // The sort order
-//            );
-//
-//            while (c.moveToNext()) {
-//                HealthFacContract dc = new HealthFacContract();
-//                allDC.add(dc.HydrateHF(c));
-//            }
-//        } finally {
-//            if (c != null) {
-//                c.close();
-//            }
-//            if (db != null) {
-//                db.close();
-//            }
-//        }
-//        return allDC;
-//    }
 
 
     public ArrayList<UsersContract> getAllUsers() {
@@ -293,10 +226,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor c = null;
         String[] columns = {
                 FormsTable.COLUMN_PROJECTNAME,
-                FormsTable.COLUMN_MODULE,
+                FormsTable.COLUMN_MODULE_CODE,
                 FormsTable._ID,
                 FormsTable.COLUMN_FORMDATE,
-                FormsTable.COLUMN_SESSION,
+                FormsTable.COLUMN_SESSION_CODE,
                 FormsTable.COLUMN_ISTATUS,
                 FormsTable.COLUMN_ISTATUS88X,
                 FormsTable.COLUMN_ENDINGDATETIME,
@@ -365,9 +298,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = null;
         String[] columns = {
-                SessionTable.COLUMN_SESSION,
+                SessionTable.COLUMN_SESSION_CODE,
                 SessionTable._ID,
-                SessionTable.COLUMN_MODULE,
+                SessionTable.COLUMN_MODULE_CODE,
                 SessionTable.COLUMN_SESSION_TIME,
                 SessionTable.COLUMN_SLIDE_NUMBER,
                 SessionTable.COLUMN_SYNCED,
@@ -418,12 +351,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = null;
         String[] columns = {
-                NMCTable.COLUMN_DOCTOR_NAME,
                 NMCTable.COLUMN_DATE,
                 NMCTable.COLUMN_TIME,
-                NMCTable.COLUMN_MOD,
-                NMCTable.COLUMN_SUBMOD,
-                NMCTable.COLUMN_SESSION,
+                NMCTable.COLUMN_MODULE_CODE,
+                NMCTable.COLUMN_SUBMOD_CODE,
+                NMCTable.COLUMN_SESSION_CODE,
                 NMCTable.COLUMN_LAT,
                 NMCTable.COLUMN_LNG,
                 NMCTable.COLUMN_BOOK_DATE,
@@ -434,7 +366,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 NMCTable.COLUMN_SYNCED,
                 NMCTable.COLUMN_SYNCED_DATE,
                 NMCTable.COLUMN_DEVICEID,
-                NMCTable.COLUMN_FORMDATE
+                NMCTable.COLUMN_FORMDATE,
+                NMCTable.COLUMN_HP_CODE,
+                NMCTable.COLUMN_HF_NAME,
+                NMCTable.COLUMN_DIST_CODE,
+                NMCTable.COLUMN_HP_NAME
 
         };
         String whereClause = NMCTable.COLUMN_SYNCED + " is null OR " + NMCTable.COLUMN_SYNCED + " = '' ";
@@ -1005,14 +941,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(FormsTable.COLUMN_ENDINGDATETIME, MainApp.fc.getEndingdatetime());
         values.put(FormsTable.COLUMN_SESSION_START_TIME, MainApp.fc.getSessionStartTime());
         values.put(FormsTable.COLUMN_SESSION_END_TIME, MainApp.fc.getSessionEndTime());
-        values.put(FormsTable.COLUMN_SESSION, MainApp.fc.getSession());
-        values.put(FormsTable.COLUMN_MODULE, MainApp.fc.getModule());
+        values.put(FormsTable.COLUMN_SESSION_CODE, MainApp.fc.getSessionCode());
         values.put(FormsTable.COLUMN_SCORE_PRE, MainApp.fc.getScore_pre());
         values.put(FormsTable.COLUMN_SCORE_POST, MainApp.fc.getScore_post());
         values.put(FormsTable.COLUMN_PER_PRE, MainApp.fc.getPercentage_pre());
         values.put(FormsTable.COLUMN_PER_POST, MainApp.fc.getPercentage_post());
         values.put(FormsTable.COLUMN_TOTAL, MainApp.fc.getTotal());
-        values.put(FormsTable.COLUMN_MODULE, MainApp.fc.getModule());
+        values.put(FormsTable.COLUMN_MODULE_CODE, MainApp.fc.getModuleCode());
         values.put(FormsTable.COLUMN_WRONG_PRE, MainApp.fc.getWrong_pre());
         values.put(FormsTable.COLUMN_WRONG_POST, MainApp.fc.getWrong_post());
 
@@ -1075,8 +1010,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(SessionTable.COLUMN_MODULE, sc.getModule());
-        values.put(SessionTable.COLUMN_SESSION, sc.getSession());
+        values.put(SessionTable.COLUMN_MODULE_CODE, sc.getModule());
+        values.put(SessionTable.COLUMN_SESSION_CODE, sc.getSession());
         values.put(SessionTable.COLUMN_SESSION_TIME, sc.getSessionTime());
         values.put(SessionTable.COLUMN_SLIDE_NUMBER, sc.getSlideNumber());
         values.put(SessionTable.COLUMN_DEVICEID, sc.getDeviceid());
@@ -1111,12 +1046,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         long count;
 // New value for one column
         ContentValues values = new ContentValues();
-        values.put(NMCTable.COLUMN_DOCTOR_NAME, MainApp.nmc.getDoctorName());
         values.put(NMCTable.COLUMN_DATE, MainApp.nmc.getDate());
         values.put(NMCTable.COLUMN_TIME, MainApp.nmc.getTime());
-        values.put(NMCTable.COLUMN_MOD, MainApp.nmc.getModule());
-        values.put(NMCTable.COLUMN_SUBMOD, MainApp.nmc.getSubModule());
-        values.put(NMCTable.COLUMN_SESSION, MainApp.nmc.getSession());
+        values.put(NMCTable.COLUMN_MODULE_CODE, MainApp.nmc.getModule());
+        values.put(NMCTable.COLUMN_SUBMOD_CODE, MainApp.nmc.getSubModule());
+        values.put(NMCTable.COLUMN_SESSION_CODE, MainApp.nmc.getSession());
         values.put(NMCTable.COLUMN_BOOK_DATE, MainApp.nmc.getDoBooking());
         values.put(NMCTable.COLUMN_BOOKBY, MainApp.nmc.getBookBy());
         values.put(NMCTable.COLUMN_DEVICEID, MainApp.deviceId);

@@ -35,6 +35,7 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.FormsContract
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.NextMeetingContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.SessionContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.AndroidDatabaseManager;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.CONSTANTS;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityMainBinding;
@@ -183,6 +184,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void uploadAppointment() {
+
+        new SyncAllData(
+                this,
+                "Appointment",
+                "updateSyncedNMSForms",
+                NextMeetingContract.class,
+                MainApp._HOST_URL + CONSTANTS.appointmentURL,
+                db.getUnsyncedNextMeetingForm()
+        ).execute();
+
 
     }
 

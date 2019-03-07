@@ -54,18 +54,8 @@ public class FormsContract implements Parcelable {
     private String wrong_pre = "";
     private String wrong_post = "";
     private String total = "";
-
-    public static final Creator<FormsContract> CREATOR = new Creator<FormsContract>() {
-        @Override
-        public FormsContract createFromParcel(Parcel in) {
-            return new FormsContract(in);
-        }
-
-        @Override
-        public FormsContract[] newArray(int size) {
-            return new FormsContract[size];
-        }
-    };
+    private String sessionCode = "";
+    private String moduleCode = "";
 
     protected FormsContract(Parcel in) {
         projectName = in.readString();
@@ -113,6 +103,36 @@ public class FormsContract implements Parcelable {
         postTestEndTime = in.readString();
         postTestStartTime = in.readString();
         providerID = in.readString();
+        sessionCode = in.readString();
+        moduleCode = in.readString();
+    }
+
+    public String getSessionCode() {
+        return sessionCode;
+    }
+
+    public void setSessionCode(String sessionCode) {
+        this.sessionCode = sessionCode;
+    }
+
+    public String getModuleCode() {
+        return moduleCode;
+    }
+
+    public static final Creator<FormsContract> CREATOR = new Creator<FormsContract>() {
+        @Override
+        public FormsContract createFromParcel(Parcel in) {
+            return new FormsContract(in);
+        }
+
+        @Override
+        public FormsContract[] newArray(int size) {
+            return new FormsContract[size];
+        }
+    };
+
+    public void setModuleCode(String moduleCode) {
+        this.moduleCode = moduleCode;
     }
 
 
@@ -380,8 +400,8 @@ public class FormsContract implements Parcelable {
 
         this.projectName = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_PROJECTNAME));
         this._id = cursor.getString(cursor.getColumnIndex(FormsTable._ID));
-        this.module = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MODULE));
-        this.session = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SESSION));
+        this.moduleCode = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MODULE_CODE));
+        this.sessionCode = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SESSION_CODE));
         this.istatus = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_ISTATUS));
         this.istatus88x = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_ISTATUS88X));
         this.endingdatetime = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_ENDINGDATETIME));
@@ -418,8 +438,8 @@ public class FormsContract implements Parcelable {
         JSONObject json = new JSONObject();
 
         json.put(FormsTable.COLUMN_PROJECTNAME, this.projectName == null ? JSONObject.NULL : this.projectName);
-        json.put(FormsTable.COLUMN_MODULE, this.module == null ? JSONObject.NULL : this.module);
-        json.put(FormsTable.COLUMN_SESSION, this.session == null ? JSONObject.NULL : this.session);
+        json.put(FormsTable.COLUMN_MODULE_CODE, this.moduleCode == null ? JSONObject.NULL : this.moduleCode);
+        json.put(FormsTable.COLUMN_SESSION_CODE, this.sessionCode == null ? JSONObject.NULL : this.sessionCode);
         json.put(FormsTable.COLUMN_ISTATUS, this.istatus == null ? JSONObject.NULL : this.istatus);
         json.put(FormsTable.COLUMN_ISTATUS88X, this.istatus88x == null ? JSONObject.NULL : this.istatus88x);
         json.put(FormsTable.COLUMN_ENDINGDATETIME, this.endingdatetime == null ? JSONObject.NULL : this.endingdatetime);
@@ -672,6 +692,8 @@ public class FormsContract implements Parcelable {
         dest.writeString(postTestEndTime);
         dest.writeString(postTestStartTime);
         dest.writeString(providerID);
+        dest.writeString(moduleCode);
+        dest.writeString(sessionCode);
     }
 
     public static abstract class FormsTable implements BaseColumns {
@@ -711,8 +733,8 @@ public class FormsContract implements Parcelable {
         public static final String COLUMN_loggin_TIME = "login_time";
         public static final String COLUMN_PRE_TEST = "pre_test";
         public static final String COLUMN_POST_TEST = "post_test";
-        public static final String COLUMN_MODULE = "module";
-        public static final String COLUMN_SESSION = "session";
+        public static final String COLUMN_MODULE_CODE = "module_code";
+        public static final String COLUMN_SESSION_CODE = "session_code";
         public static final String COLUMN_TOTAL = "total";
         public static final String COLUMN_SCORE_PRE = "correct_pre";
         public static final String COLUMN_SCORE_POST = "correct_post";

@@ -423,7 +423,7 @@ public class MainApp extends Application {
         TextView finalText = view.findViewById(R.id.finalText);
         TextView wrong = view.findViewById(R.id.wrong);
 
-        percentage.setText(String.valueOf(result.getPercentage()) + "%");
+        percentage.setText(String.valueOf(MainApp.round(result.getPercentage(),2) + "%"));
         correct.setText(String.valueOf(correct_number));
         wrong.setText(String.valueOf(wrong_number));
         ImageView icon = view.findViewById(R.id.resultImage);

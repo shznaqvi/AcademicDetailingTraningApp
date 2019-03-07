@@ -92,7 +92,7 @@ public class MainFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-//                callbacks.uploadDataToServer();
+                callbacks.uploadDataToServer();
                 Toast.makeText(getContext(), "Under Development", Toast.LENGTH_SHORT).show();
             }
         });

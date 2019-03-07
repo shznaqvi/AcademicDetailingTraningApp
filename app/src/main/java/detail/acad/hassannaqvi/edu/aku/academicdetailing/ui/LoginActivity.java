@@ -466,74 +466,75 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
 
 //        if (sharedPref.getBoolean("flag", true)) {
 
-            String dt = sharedPref.getString("dt", new SimpleDateFormat("dd-MM-yy").format(new Date()));
+        String dt = sharedPref.getString("dt", new SimpleDateFormat("dd-MM-yy").format(new Date()));
 
-            if (dt != new SimpleDateFormat("dd-MM-yy").format(new Date())) {
-                editor.putString("dt", new SimpleDateFormat("dd-MM-yy").format(new Date()));
+        if (dt != new SimpleDateFormat("dd-MM-yy").format(new Date())) {
+            editor.putString("dt", new SimpleDateFormat("dd-MM-yy").format(new Date()));
 
-                editor.commit();
-            }
+            editor.commit();
+        }
 
-            File folder = new File(Environment.getExternalStorageDirectory() + File.separator + "DMU-ACADDETAIL");
-            boolean success = true;
+        File folder = new File(Environment.getExternalStorageDirectory() + File.separator + "DMU-ACADDETAIL");
+        boolean success = true;
+        if (!folder.exists()) {
+            success = folder.mkdirs();
+        }
+        if (success) {
+
+            DirectoryName = folder.getPath() + File.separator + sharedPref.getString("dt", "");
+            folder = new File(DirectoryName);
             if (!folder.exists()) {
                 success = folder.mkdirs();
             }
             if (success) {
 
-                DirectoryName = folder.getPath() + File.separator + sharedPref.getString("dt", "");
-                folder = new File(DirectoryName);
-                if (!folder.exists()) {
-                    success = folder.mkdirs();
-                }
-                if (success) {
+                try {
+                    File dbFile = new File(this.getDatabasePath(DatabaseHelper.DBConnection.DB_NAME).getAbsolutePath());
+                    FileInputStream fis = new FileInputStream(dbFile);
 
-                    try {
-                        File dbFile = new File(this.getDatabasePath(DatabaseHelper.DBConnection.DB_NAME).getAbsolutePath());
-                        FileInputStream fis = new FileInputStream(dbFile);
+                    String outFileName = DirectoryName + File.separator +
+                            DatabaseHelper.DBConnection.DB_NAME + ".db";
 
-                        String outFileName = DirectoryName + File.separator +
-                                DatabaseHelper.DBConnection.DB_NAME + ".db";
+                    // Open the empty db as the output stream
+                    OutputStream output = new FileOutputStream(outFileName);
 
-                        // Open the empty db as the output stream
-                        OutputStream output = new FileOutputStream(outFileName);
-
-                        // Transfer bytes from the inputfile to the outputfile
-                        byte[] buffer = new byte[1024];
-                        int length;
-                        while ((length = fis.read(buffer)) > 0) {
-                            output.write(buffer, 0, length);
-                        }
-                        // Close the streams
-                        output.flush();
-                        output.close();
-                        fis.close();
-
-                        String dbFileName = this.getDatabasePath(DatabaseHelper.DBConnection.DB_NAME).getAbsolutePath();
-                        outFileName = DirectoryName + File.separator + DatabaseHelper.DBConnection.DB_NAME + ".db";
-
-                        File currentDB = new File(dbFileName);
-                        File backupDB = new File(outFileName);
-
-                        FileChannel src = new FileInputStream(currentDB).getChannel();
-                        FileChannel dst = new FileOutputStream(backupDB).getChannel();
-                        dst.transferFrom(src, 0, src.size());
-                        src.close();
-                        dst.close();
-
-
-                    } catch (IOException e) {
-                        Log.e("dbBackup:", e.getMessage());
+                    // Transfer bytes from the inputfile to the outputfile
+                    byte[] buffer = new byte[1024];
+                    int length;
+                    while ((length = fis.read(buffer)) > 0) {
+                        output.write(buffer, 0, length);
                     }
+                    // Close the streams
+                    output.flush();
+                    output.close();
+                    fis.close();
 
+                    String dbFileName = this.getDatabasePath(DatabaseHelper.DBConnection.DB_NAME).getAbsolutePath();
+                    outFileName = DirectoryName + File.separator + DatabaseHelper.DBConnection.DB_NAME + ".db";
+
+                    File currentDB = new File(dbFileName);
+                    File backupDB = new File(outFileName);
+
+                    FileChannel src = new FileInputStream(currentDB).getChannel();
+                    FileChannel dst = new FileOutputStream(backupDB).getChannel();
+                    dst.transferFrom(src, 0, src.size());
+                    src.close();
+                    dst.close();
+
+
+                } catch (IOException e) {
+                    Log.e("dbBackup:", e.getMessage());
                 }
 
-            } else {
-                Toast.makeText(this, "Not create folder", Toast.LENGTH_SHORT).show();
             }
+
+        } else {
+            Toast.makeText(this, "Not create folder", Toast.LENGTH_SHORT).show();
+        }
 //        }
 
     }
+
     public void onSyncDataClick() {
         //TODO implement
 
@@ -543,9 +544,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
             call = RetrofitClient.service.getUsers(); //users
-            gettingDataFromService("Syncing Users","Users");
+            gettingDataFromService("Syncing Users", "Users");
             call = RetrofitClient.service.getDistricts(); //districts
-            gettingDataFromService("Syncing Districts","Districts");
+            gettingDataFromService("Syncing Districts", "Districts");
+            hud.setLabel("Getting Health Facility Data");
+            call = RetrofitClient.service.synHfData();
+            gettingDataFromService("Syncing Health Facility Data", "hf");
+            hud.setLabel("Getting Providers Data");
+            call = RetrofitClient.service.synHPData();
+            gettingDataFromService("Syncing Health Provider", "hp");
         } else {
             Toast.makeText(this, "No network connection available.", Toast.LENGTH_SHORT).show();
         }
@@ -560,17 +567,25 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 hud.dismiss();
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     try {
                         String data = response.body().string();
                         JSONArray array = new JSONArray(data);
-                        switch (type){
+                        switch (type) {
                             case "Users":
                                 db.syncUsers(array);
                                 break;
                             case "Districts":
                                 db.syncDistricts(array);
                                 break;
+                            case "hf":
+                                db.syncHF(array);
+                                break;
+
+                            case "hp":
+                                db.syncHP(array);
+                                break;
+
                         }
 
                     } catch (IOException e) {
@@ -579,7 +594,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
                         e.printStackTrace();
                     }
 
-                    Toast.makeText(LoginActivity.this, "Successfully Synced " + type +" Data ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Successfully Synced " + type + " Data ", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -775,49 +790,49 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
             LocationManager mlocManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
 //            if(db.getUsersCount() != 0){
-                if (mlocManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-                    if ((mEmail.equals("dmu@aku") && mPassword.equals("aku?dmu")) ||
-                            (db.Login(mEmail, mPassword)) ||
-                            (mEmail.equals("test1234") && mPassword.equals("test1234"))
-                            || (mEmail.equals("test12345") && mPassword.equals("test12345"))) {
-                        MainApp.userName = mEmail;
-                        MainApp.admin = mEmail.contains("@");
+            if (mlocManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                if ((mEmail.equals("dmu@aku") && mPassword.equals("aku?dmu")) ||
+                        (db.Login(mEmail, mPassword)) ||
+                        (mEmail.equals("test1234") && mPassword.equals("test1234"))
+                        || (mEmail.equals("test12345") && mPassword.equals("test12345"))) {
+                    MainApp.userName = mEmail;
+                    MainApp.admin = mEmail.contains("@");
 
-                        Intent iLogin = new Intent(LoginActivity.this, MainActivity.class);
-                        startActivity(iLogin);
-                        finish();
+                    Intent iLogin = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(iLogin);
+                    finish();
 
 
-                    } else {
-                        bi.password.setError(getString(R.string.error_incorrect_password));
-                        bi.password.requestFocus();
-                        Toast.makeText(LoginActivity.this, mEmail + " " + mPassword, Toast.LENGTH_SHORT).show();
-                    }
                 } else {
-                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                            LoginActivity.this);
-                    alertDialogBuilder
-                            .setMessage("GPS is disabled in your device. Enable it?")
-                            .setCancelable(false)
-                            .setPositiveButton("Enable GPS",
-                                    new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog,
-                                                            int id) {
-                                            Intent callGPSSettingIntent = new Intent(
-                                                    android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                                            startActivity(callGPSSettingIntent);
-                                        }
-                                    });
-                    alertDialogBuilder.setNegativeButton("Cancel",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    dialog.cancel();
-                                }
-                            });
-                    AlertDialog alert = alertDialogBuilder.create();
-                    alert.show();
-
+                    bi.password.setError(getString(R.string.error_incorrect_password));
+                    bi.password.requestFocus();
+                    Toast.makeText(LoginActivity.this, mEmail + " " + mPassword, Toast.LENGTH_SHORT).show();
                 }
+            } else {
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                        LoginActivity.this);
+                alertDialogBuilder
+                        .setMessage("GPS is disabled in your device. Enable it?")
+                        .setCancelable(false)
+                        .setPositiveButton("Enable GPS",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,
+                                                        int id) {
+                                        Intent callGPSSettingIntent = new Intent(
+                                                android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                                        startActivity(callGPSSettingIntent);
+                                    }
+                                });
+                alertDialogBuilder.setNegativeButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog alert = alertDialogBuilder.create();
+                alert.show();
+
+            }
 
 
         }

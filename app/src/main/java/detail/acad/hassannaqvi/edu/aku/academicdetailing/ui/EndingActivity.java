@@ -9,11 +9,13 @@ import android.view.View;
 import android.widget.Toast;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.FormsContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.CONSTANTS;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityEndingBinding;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments.ScheduleFragment;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.interfaces.Callbacks;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.validation.validatorClass;
 
@@ -21,7 +23,7 @@ import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.isC
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.post_result;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.pre_result;
 
-public class EndingActivity extends AppCompatActivity {
+public class EndingActivity extends AppCompatActivity implements Callbacks {
 
     ActivityEndingBinding bi;
     Data.SubMenu subMenuDT;
@@ -96,12 +98,12 @@ public class EndingActivity extends AppCompatActivity {
         MainApp.fc.setIstatus88x(bi.status96x.getText().toString());
         MainApp.fc.setEndingdatetime(MainApp.getCurrentTime());
         MainApp.fc.setSessionEndTime(MainApp.getCurrentTime());
-        MainApp.fc.setSession(subMenuDT.getName());
+        MainApp.fc.setSessionCode(subMenuDT.getSessionCode());
         MainApp.fc.setScore_pre(String.valueOf(pre_result.getCorrect()));
         MainApp.fc.setWrong_pre(String.valueOf(pre_result.getWrong()));
         MainApp.fc.setPercentage_pre(String.valueOf(MainApp.round(pre_result.getPercentage(),2)));
         MainApp.fc.setTotal(String.valueOf(pre_result.getTotal()));
-        MainApp.fc.setModule(subMenuDT.getModuleName());
+        MainApp.fc.setModuleCode(subMenuDT.getModuleCode());
         if(post_result != null){
             MainApp.fc.setScore_post(String.valueOf(post_result.getCorrect()));
             MainApp.fc.setPercentage_post(String.valueOf(MainApp.round(post_result.getPercentage(),2)));
@@ -121,6 +123,36 @@ public class EndingActivity extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    public void loadInfoFragment() {
+
+    }
+
+    @Override
+    public void loadModuleFragment(FormsContract fc) {
+
+    }
+
+    @Override
+    public void loadDatabaseManager() {
+
+    }
+
+    @Override
+    public void uploadDataToServer() {
+
+    }
+
+    @Override
+    public void downloadData() {
+
+    }
+
+    @Override
+    public void loadInfo() {
+
+    }
+
     public void loadScheduleFragment(){
         ScheduleFragment fragment = new ScheduleFragment();
         FragmentManager manager = getSupportFragmentManager();
@@ -129,6 +161,11 @@ public class EndingActivity extends AppCompatActivity {
         transaction.replace(bi.fragmentLayout.getId(),fragment);
         transaction.addToBackStack(null);
         transaction.commit();
+
+    }
+
+    @Override
+    public void uploadAppointment() {
 
     }
 

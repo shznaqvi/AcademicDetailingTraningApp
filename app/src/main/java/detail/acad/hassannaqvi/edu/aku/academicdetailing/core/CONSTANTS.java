@@ -13,5 +13,6 @@ public interface CONSTANTS {
     String URI_FORM_TYPE = "type";
     String URI_DIRECT_VIEWPAGER = "vPager";
     String Video_URL = "http://f38158/uen/vdo/";
+    String appointmentURL = "appointments.php";
 
 }

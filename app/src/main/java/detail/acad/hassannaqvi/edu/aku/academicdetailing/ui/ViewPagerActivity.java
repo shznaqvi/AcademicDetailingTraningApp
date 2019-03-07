@@ -148,8 +148,8 @@ public class ViewPagerActivity extends AppCompatActivity {
     private void saveDB() {
 
         SessionContract sC = new SessionContract();
-        sC.setModule(subMenuDT.getModuleName());
-        sC.setSession(subMenuDT.getName());
+        sC.setModule(subMenuDT.getModuleCode());
+        sC.setSession(subMenuDT.getSessionCode());
         sC.setSlideNumber(lastItemPosition);
         sC.setDeviceid(MainApp.deviceId);
         sC.setFormdate(new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime()));

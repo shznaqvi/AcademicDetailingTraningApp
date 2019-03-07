@@ -46,8 +46,8 @@ public class SessionContract {
 
         JSONObject json = new JSONObject();
 
-        json.put(SessionTable.COLUMN_SESSION, this.session == null ? JSONObject.NULL : this.session);
-        json.put(SessionTable.COLUMN_MODULE, this.module == null ? JSONObject.NULL : this.module);
+        json.put(SessionTable.COLUMN_SESSION_CODE, this.session == null ? JSONObject.NULL : this.session);
+        json.put(SessionTable.COLUMN_MODULE_CODE, this.module == null ? JSONObject.NULL : this.module);
         json.put(SessionTable.COLUMN_SESSION_TIME, this.sessionTime == null ? JSONObject.NULL : this.sessionTime);
         json.put(SessionTable.COLUMN_SLIDE_NUMBER, this.slidenumber == 0 ? JSONObject.NULL : this.slidenumber);
         json.put(SessionTable.COLUMN_SYNCED, this.synced == null ? JSONObject.NULL : this.synced);
@@ -61,8 +61,8 @@ public class SessionContract {
 
     public SessionContract Hydrate(Cursor cursor) {
 
-        this.session = cursor.getString(cursor.getColumnIndex(SessionTable.COLUMN_SESSION));
-        this.module = cursor.getString(cursor.getColumnIndex(SessionTable.COLUMN_MODULE));
+        this.session = cursor.getString(cursor.getColumnIndex(SessionTable.COLUMN_SESSION_CODE));
+        this.module = cursor.getString(cursor.getColumnIndex(SessionTable.COLUMN_MODULE_CODE));
         this.sessionTime = cursor.getString(cursor.getColumnIndex(SessionTable.COLUMN_SESSION_TIME));
         this.slidenumber = cursor.getInt(cursor.getColumnIndex(SessionTable.COLUMN_SLIDE_NUMBER));
         this.synced = cursor.getString(cursor.getColumnIndex(SessionTable.COLUMN_SYNCED));
@@ -111,8 +111,8 @@ public class SessionContract {
 
         public static final String TABLE_NAME = "sessions_table";
         public static final String _ID = "_id";
-        public static final String COLUMN_SESSION = "session";
-        public static final String COLUMN_MODULE = "module";
+        public static final String COLUMN_SESSION_CODE = "session_code";
+        public static final String COLUMN_MODULE_CODE = "module_code";
         public static final String COLUMN_SESSION_TIME = "session_time";
         public static final String COLUMN_SLIDE_NUMBER = "slide_number";
         public static final String COLUMN_SYNCED= "synced";

@@ -304,7 +304,7 @@ public class ModuleFragment extends Fragment {
                         moduleToStart = submenu[0];
                         if (!fileAlreadyExist) {
                             videos = submenu[0].getVideosName();
-                            showDialogue(submenu[0].getVideosName(), submenu[0].getModuleName().toUpperCase());
+                            showVideodownloadDialoge(submenu[0].getVideosName(), submenu[0].getModuleName().toUpperCase());
                         } else {
                             Utils.showPreDialogue(getActivity(), moduleToStart, fc);
                         }
@@ -315,7 +315,7 @@ public class ModuleFragment extends Fragment {
 
     }
 
-    private void showDialogue(String[] videosName, String moduleName) {
+    private void showVideodownloadDialoge(String[] videosName, String moduleName) {
 
         finalProgress = 0;
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
@@ -388,7 +388,7 @@ public class ModuleFragment extends Fragment {
                         downloadVideos(subMenu.getVideosName(), subMenu.getModuleName().toUpperCase());
                         moduleToStart = subMenu;
                         if (!fileAlreadyExist) {
-                            showDialogue(subMenu.getVideosName(), subMenu.getModuleName().toUpperCase());
+                            showVideodownloadDialoge(subMenu.getVideosName(), subMenu.getModuleName().toUpperCase());
                             videos = subMenu.getVideosName();
                         } else {
                             Utils.showPreDialogue(getActivity(), moduleToStart, fc);

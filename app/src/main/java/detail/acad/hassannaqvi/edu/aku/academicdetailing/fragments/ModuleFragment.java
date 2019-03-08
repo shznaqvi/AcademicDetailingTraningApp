@@ -297,19 +297,7 @@ public class ModuleFragment extends Fragment {
                 public void onClick(View view) {
                     Data.SubMenu[] submenu = Data.newMenuModule.get(key);
                     removeSubGroups(llModule);
-
                     showSubMenus(subModule, submenu);
-
-                    /*if (submenu[0].getVideosName().length != 0) {
-                        downloadVideos(submenu[0].getVideosName(), submenu[0].getModuleName().toUpperCase());
-                        moduleToStart = submenu[0];
-                        if (!fileAlreadyExist) {
-                            videos = submenu[0].getVideosName();
-                            showVideodownloadDialoge(submenu[0].getVideosName(), submenu[0].getModuleName().toUpperCase());
-                        } else {
-                            Utils.showPreDialogue(getActivity(), moduleToStart, fc);
-                        }
-                    }*/
                 }
             });
         }

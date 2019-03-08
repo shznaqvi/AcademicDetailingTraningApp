@@ -297,9 +297,10 @@ public class ModuleFragment extends Fragment {
                 public void onClick(View view) {
                     Data.SubMenu[] submenu = Data.newMenuModule.get(key);
                     removeSubGroups(llModule);
-                    if (submenu.length > 1) {
-                        showSubMenus(subModule, submenu);
-                    } else if (submenu[0].getVideosName().length != 0) {
+
+                    showSubMenus(subModule, submenu);
+
+                    /*if (submenu[0].getVideosName().length != 0) {
                         downloadVideos(submenu[0].getVideosName(), submenu[0].getModuleName().toUpperCase());
                         moduleToStart = submenu[0];
                         if (!fileAlreadyExist) {
@@ -308,7 +309,7 @@ public class ModuleFragment extends Fragment {
                         } else {
                             Utils.showPreDialogue(getActivity(), moduleToStart, fc);
                         }
-                    }
+                    }*/
                 }
             });
         }
@@ -374,6 +375,11 @@ public class ModuleFragment extends Fragment {
     }
 
     private void showSubMenus(LinearLayout llSubModule, Data.SubMenu[] subMenuItem) {
+
+        if (subMenuItem.length == 1) {
+            Utils.showPreDialogue(getActivity(), subMenuItem[0], fc);
+            return;
+        }
 
         llSubModule.removeAllViews();
         for (final Data.SubMenu subMenu : subMenuItem) {

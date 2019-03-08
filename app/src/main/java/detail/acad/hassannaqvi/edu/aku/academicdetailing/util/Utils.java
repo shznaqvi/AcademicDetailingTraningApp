@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -34,6 +37,7 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.HemoTest01;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.HemoTest02;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.PartoTest;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.PerpuralSepsisTest;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.PlayerActivity;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.PsbiTest01;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.PsbiTest02;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.ShockTest;
@@ -372,11 +376,17 @@ public class Utils {
             @Override
             public void onClick(View v) {
 
-                context.startActivity(new Intent(context, subMenu.getRouteClass())
-                        .putExtra(URI_SUBMENU_DT, subMenu)
-                        .putExtra("type", "post"));
-                ((Activity) context).finish();
+                Intent intent = new Intent(context, PlayerActivity.class).putExtra("submenu", subMenu);
+                context.startActivity(intent);
+
+                MediaPlayer md = MediaPlayer.create(context, R.raw.gds01);
+                long duration = md.getDuration();
+
+
+                forcePostTest(context, subMenu, duration);
                 dialog.dismiss();
+
+
             }
         });
 
@@ -388,6 +398,20 @@ public class Utils {
             }
         });
 
+    }
+
+    public static void forcePostTest(final Context context, final Data.SubMenu subMenu, long duration) {
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                context.startActivity(new Intent(context, subMenu.getRouteClass())
+                        .putExtra(URI_SUBMENU_DT, subMenu)
+                        .putExtra("type", "post"));
+                ((Activity) context).finish();
+
+            }
+        }, duration);
     }
 
     public static void showViewPagerDialoge(final Context context, final Data.SubMenu subMenu) {

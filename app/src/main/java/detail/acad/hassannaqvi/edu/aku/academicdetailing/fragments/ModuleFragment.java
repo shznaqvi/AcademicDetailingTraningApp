@@ -266,7 +266,7 @@ public class ModuleFragment extends Fragment {
                         progressText.setText(finalProgress + "/" + videos.length);
                         if (finalProgress == videos.length) {
                             dialog.dismiss();
-                            Utils.showPreDialogue(getActivity(),moduleToStart, fc);
+                            Utils.showPreDialogue(getActivity(), moduleToStart, fc);
                         }
 //                        Toast.makeText(context, "New App downloaded!!", Toast.LENGTH_SHORT).show();
                         ActivityManager am = (ActivityManager) getActivity().getSystemService(ACTIVITY_SERVICE);
@@ -302,18 +302,13 @@ public class ModuleFragment extends Fragment {
                     } else if (submenu[0].getVideosName().length != 0) {
                         downloadVideos(submenu[0].getVideosName(), submenu[0].getModuleName().toUpperCase());
                         moduleToStart = submenu[0];
-                        if(!fileAlreadyExist){
+                        if (!fileAlreadyExist) {
                             videos = submenu[0].getVideosName();
                             showDialogue(submenu[0].getVideosName(), submenu[0].getModuleName().toUpperCase());
-                        }else{
-                            Utils.showPreDialogue(getActivity(),moduleToStart, fc);
+                        } else {
+                            Utils.showPreDialogue(getActivity(), moduleToStart, fc);
                         }
-
-
-
                     }
-
-
                 }
             });
         }
@@ -392,11 +387,11 @@ public class ModuleFragment extends Fragment {
                     if (subMenu.getVideosName().length != 0) {
                         downloadVideos(subMenu.getVideosName(), subMenu.getModuleName().toUpperCase());
                         moduleToStart = subMenu;
-                        if(!fileAlreadyExist){
+                        if (!fileAlreadyExist) {
                             showDialogue(subMenu.getVideosName(), subMenu.getModuleName().toUpperCase());
                             videos = subMenu.getVideosName();
-                        }else{
-                            Utils.showPreDialogue(getActivity(),moduleToStart, fc);
+                        } else {
+                            Utils.showPreDialogue(getActivity(), moduleToStart, fc);
                         }
 
 

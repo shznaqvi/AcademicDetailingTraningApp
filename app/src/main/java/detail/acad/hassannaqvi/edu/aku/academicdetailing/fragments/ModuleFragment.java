@@ -71,7 +71,6 @@ public class ModuleFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -263,12 +262,11 @@ public class ModuleFragment extends Fragment {
                     if (DownloadManager.STATUS_SUCCESSFUL == cursor.getInt(colIndex)) {
 
                         finalProgress++;
-                        progressText.setText(finalProgress + "/" + videos.length);
-                        if (finalProgress == videos.length) {
+                        progressText.setText(finalProgress + "/" + moduleToStart.getVideosName().length);
+                        if (finalProgress == moduleToStart.getVideosName().length) {
                             dialog.dismiss();
                             Utils.showPreDialogue(getActivity(), moduleToStart, fc);
                         }
-//                        Toast.makeText(context, "New App downloaded!!", Toast.LENGTH_SHORT).show();
                         ActivityManager am = (ActivityManager) getActivity().getSystemService(ACTIVITY_SERVICE);
                         List<ActivityManager.RunningTaskInfo> taskInfo = am.getRunningTasks(1);
 
@@ -320,26 +318,28 @@ public class ModuleFragment extends Fragment {
 
     }
 
-    private void downloadVideos(String[] videosName, String moduleName) {
+    private boolean downloadVideos(String[] videosName, String moduleName) {
+
+        boolean fileExist = true;
 
         String Directrory = Environment.getExternalStorageDirectory() + File.separator + DatabaseHelper.PROJECT_NAME;
         File folder = new File(Directrory);
         boolean success = true;
         if (!folder.exists())
             success = folder.mkdirs();
-        if (!success) return;
+        if (!success) return false;
 
         folder = new File(Directrory + File.separator + moduleName);
         if (!folder.exists())
             success = folder.mkdirs();
-        if (!success) return;
+        if (!success) return false;
 
         for (int i = 0; i < videosName.length; i++) {
             String fileName = videosName[i];
             File file = new File(folder.getPath(), fileName);
-            fileAlreadyExist = file.exists();
-            if (fileAlreadyExist) {
-                return;
+//            fileAlreadyExist = file.exists();
+            if (file.exists()) {
+                continue;
             } else {
                 NetworkInfo networkInfo = ((ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
                 if (networkInfo != null && networkInfo.isConnected()) {
@@ -351,6 +351,7 @@ public class ModuleFragment extends Fragment {
 //                            .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
                             .setTitle("Downloading " + fileName);
                     refID = downloadManager.enqueue(request);
+                    fileExist = false;
 
                 } else {
                     Toast.makeText(getContext(), "Internet connectivity issue", Toast.LENGTH_SHORT).show();
@@ -358,14 +359,18 @@ public class ModuleFragment extends Fragment {
             }
 
         }
+
         getActivity().registerReceiver(broadcastReceiver, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
+
+        return fileExist;
 
     }
 
     private void showSubMenus(LinearLayout llSubModule, Data.SubMenu[] subMenuItem) {
 
         if (subMenuItem.length == 1) {
-            Utils.showPreDialogue(getActivity(), subMenuItem[0], fc);
+            if (videoDownload(subMenuItem[0]))
+                Utils.showPreDialogue(getActivity(), subMenuItem[0], fc);
             return;
         }
 
@@ -378,7 +383,7 @@ public class ModuleFragment extends Fragment {
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (subMenu.getVideosName().length != 0) {
+                    /*if (subMenu.getVideosName().length != 0) {
                         downloadVideos(subMenu.getVideosName(), subMenu.getModuleName().toUpperCase());
                         moduleToStart = subMenu;
                         if (!fileAlreadyExist) {
@@ -389,13 +394,26 @@ public class ModuleFragment extends Fragment {
                         }
 
 
-                    }
+                    }*/
+                    if (videoDownload(subMenu))
+                        Utils.showPreDialogue(getActivity(), subMenu, fc);
 
                 }
             });
         }
 
     }
+
+    private boolean videoDownload(Data.SubMenu subMenu) {
+        boolean flag = downloadVideos(subMenu.getVideosName(), subMenu.getModuleName().toUpperCase());
+        if (!flag) {
+            showVideodownloadDialoge(subMenu.getVideosName(), subMenu.getModuleName().toUpperCase());
+            moduleToStart = subMenu;
+            return false;
+        }
+        return true;
+    }
+
 
     private void removeSubGroups(LinearLayout llModule) {
         for (byte i = 0; i < llModule.getChildCount(); i++) {

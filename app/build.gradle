@@ -33,6 +33,12 @@ android {
     dataBinding {
         enabled true
     }
+
+    /*Add Compile options in following block*/
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
@@ -57,4 +63,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
 
     implementation 'me.relex:circleindicator:1.2.2'
+
+    //ExoPlayer
+    implementation 'com.google.android.exoplayer:exoplayer:2.9.6'
 }

@@ -100,7 +100,7 @@ public class ViewPagerActivity extends AppCompatActivity {
                     if (viewPagerFlag)
                         Utils.showViewPagerDialoge(ViewPagerActivity.this, subMenuDT);
                     else {
-                        Utils.showPostDialoge(ViewPagerActivity.this, subMenuDT);
+                        Utils.showPostDialoge(ViewPagerActivity.this, subMenuDT, 1);
                         isComplete = false;
                     }
 

@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.LayoutInflater;
@@ -70,7 +69,7 @@ public class Utils {
         MainApp.fc.set_ID(String.valueOf(rowId));
     }
 
-    public static void showPostDialoge(final Context context, final Data.SubMenu subMenu) {
+    public static void showPostDialoge(final Context context, final Data.SubMenu subMenu, final int type) {
 
         MainApp.isSlideStart = false;
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -93,15 +92,19 @@ public class Utils {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(context, PlayerActivity.class).putExtra("submenu", subMenu);
-                context.startActivity(intent);
-
-                MediaPlayer md = MediaPlayer.create(context, R.raw.gds01);
-                long duration = md.getDuration();
-
-
-                forcePostTest(context, subMenu, duration);
                 dialog.dismiss();
+
+                if (type == 1) {
+                    Intent intent = new Intent(context, PlayerActivity.class).putExtra("submenu", subMenu);
+                    context.startActivity(intent);
+                } else
+                    forcePostTest(context, subMenu, 0);
+
+                /*MediaPlayer md = MediaPlayer.create(context, R.raw.gds01);
+                long duration = md.getDuration();*/
+
+
+//                forcePostTest(context, subMenu, 0);
 
 
             }

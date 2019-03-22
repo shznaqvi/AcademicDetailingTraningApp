@@ -72,13 +72,6 @@ public class EcSbTest02 extends AppCompatActivity {
             bi.btnOk.setText("Finish Training");
             bi.btnContinue.setVisibility(View.GONE);
         }
-
-        /*if (MainApp.isSlideStart) {
-            bi.btnContinue.setText("Start Training");
-        } else {
-            bi.btnContinue.setText("Finish Training");
-        }*/
-
     }
 
     public void BtnOk() {

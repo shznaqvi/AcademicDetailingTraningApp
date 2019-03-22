@@ -145,7 +145,6 @@ public class ModuleFragment extends Fragment {
     private void setupModules() {
         if (!isAdmin) {
             switch (MainApp.districtCode) {
-
                 case 113:
                 case 123:
                 case 432:
@@ -157,17 +156,14 @@ public class ModuleFragment extends Fragment {
                     bi.childHealth.setVisibility(View.GONE);
                     bi.newBornHealth.setVisibility(View.GONE);
                     break;
-
                 case 434:
                     bi.maternalHealth.setVisibility(View.GONE);
                     bi.childHealth.setVisibility(View.GONE);
                     break;
-
                 case 211:
                 case 414:
                     bi.childHealth.setVisibility(View.GONE);
                     break;
-
             }
         }
 
@@ -239,8 +235,6 @@ public class ModuleFragment extends Fragment {
     }
 
     private void showChildModule() {
-
-
         removeMaternalModule();
         removeNBModule();
         openModuleHandler(bi.childModule, 0);
@@ -253,7 +247,7 @@ public class ModuleFragment extends Fragment {
             if (DownloadManager.ACTION_DOWNLOAD_COMPLETE.equals(intent.getAction())) {
 
                 DownloadManager.Query query = new DownloadManager.Query();
-//                query.setFilterById(sharedPrefDownload.getLong("refID", 0));
+//                query.setFilterById(sharedPrefDownload.getL  5 7nong("refID", 0));
 
                 downloadManager = (DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
                 Cursor cursor = downloadManager.query(query);

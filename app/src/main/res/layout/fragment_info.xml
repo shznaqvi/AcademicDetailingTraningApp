@@ -62,6 +62,8 @@
                             android:layout_margin="10dp"
                           />
 
+
+
                     </LinearLayout>
 
 
@@ -87,13 +89,20 @@
                             android:textSize="20sp" />
 
 
-                        <Spinner
-                            android:id="@+id/healthFacSpinner"
-                            style="@style/spinner"
+                        <!--<Spinner-->
+                            <!--android:id="@+id/healthFacSpinner"-->
+                            <!--style="@style/spinner"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_margin="10dp"-->
+                           <!--/>-->
+
+                        <EditText
+                            android:id="@+id/hfName"
+                            style="@style/textInput"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                           />
+                            android:hint="Enter Health Facility Name.."/>
 
                     </LinearLayout>
 
@@ -121,13 +130,20 @@
 
 
 
-                        <Spinner
-                            android:id="@+id/providerSpinner"
-                            style="@style/spinner"
+                        <!--<Spinner-->
+                            <!--android:id="@+id/providerSpinner"-->
+                            <!--style="@style/spinner"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_margin="10dp"-->
+                            <!--/>-->
+
+                        <EditText
+                            android:id="@+id/hpName"
+                            style="@style/textInput"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            />
+                            android:hint="Enter Provider Name.."/>
 
                     </LinearLayout>
 

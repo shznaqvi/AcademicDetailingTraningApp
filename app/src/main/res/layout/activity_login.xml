@@ -117,7 +117,6 @@
                             android:orientation="vertical">
 
                             <EditText
-                                android:text="dmu@aku"
                                 android:id="@+id/email"
                                 style="@style/textInput"
                                 android:layout_width="match_parent"
@@ -135,6 +134,7 @@
                                 android:layoutDirection="ltr"
                                 android:maxLines="1"
                                 android:singleLine="true"
+                                android:text="dmu@aku"
                                 android:textColor="@color/black"
                                 android:textSize="18sp">
 
@@ -149,7 +149,6 @@
 
 
                                 <EditText
-                                    android:text="aku?dmu"
                                     android:id="@+id/password"
                                     style="@style/textInput"
                                     android:layout_width="match_parent"
@@ -169,6 +168,7 @@
                                     android:layoutDirection="ltr"
                                     android:maxLines="1"
                                     android:singleLine="true"
+                                    android:text="aku?dmu"
                                     android:textColor="@color/black"
                                     android:textSize="18sp" />
 
@@ -186,6 +186,22 @@
                                     android:gravity="center"
                                     android:onClick='@{ () -> callback.onShowPasswordClick()}'
                                     android:padding="3dp" />
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:layoutDirection="ltr">
+
+                                <Spinner
+                                    android:id="@+id/districtNameSpinner"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                </Spinner>
+
 
                             </RelativeLayout>
 

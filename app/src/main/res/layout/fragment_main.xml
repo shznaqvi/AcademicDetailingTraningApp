@@ -405,8 +405,8 @@
 
 
                                <android.support.v7.widget.CardView
-                                   android:visibility="gone"
-                                   android:id="@+id/downloadData"
+                                   android:id="@+id/downloadVideo"
+                                   android:visibility="visible"
                                    android:layout_width="0dp"
                                    android:layout_height="match_parent"
                                    android:layout_margin="5dp"
@@ -431,7 +431,7 @@
                                            android:layout_marginStart="0dp"
                                            android:layout_marginTop="16dp"
                                            android:padding="10dp"
-                                           android:text="Download Data"
+                                           android:text="Download Video Data"
                                            android:textAlignment="center"
                                            android:textAllCaps="true"
                                            android:textColor="@color/colorPrimaryDark"

@@ -33,6 +33,7 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.SessionContra
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.SessionContract.SessionTable;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.UsersContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.UsersContract.UsersTable;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.LoginActivity;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -164,8 +165,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public String spDateT = new SimpleDateFormat("dd-MM-yy").format(new Date().getTime());
 
+    DataDownload delegate;
+
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+
+        // Data download
+        if (context.getClass().equals(LoginActivity.class.getName()))
+            delegate = (DataDownload) context;
+
     }
 
     @Override
@@ -195,8 +203,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_DELETE_HP);
 
     }
-
-
 
     public ArrayList<UsersContract> getAllUsers() {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -519,7 +525,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             }
             db.close();
 
+            delegate.downloded(true);
+
         } catch (Exception e) {
+            delegate.downloded(false);
         }
     }
 
@@ -711,6 +720,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         // return contact list
         return formList;
+    }
+
+    public interface DataDownload {
+        void downloded(boolean flag);
     }
 
     public Long addForm(FormsContract fc) {

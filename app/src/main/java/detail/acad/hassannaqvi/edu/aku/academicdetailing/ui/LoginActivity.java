@@ -32,6 +32,9 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,12 +54,15 @@ import java.io.OutputStream;
 import java.nio.channels.FileChannel;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.RetrofitClient.RetrofitClient;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.DistrictsContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityLoginBinding;
@@ -65,7 +71,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LoginActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+public class LoginActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>, DatabaseHelper.DataDownload {
 
     /**
      * A dummy authentication store containing known user names and passwords.
@@ -101,6 +107,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
 
     public static DatabaseHelper db;
     Call<ResponseBody> call = null;
+
+    List<DistrictsContract> distrcitList;
+    ArrayList<String> districtNames;
+    HashMap<String, Long> districtMap;
+    long districtCode = 0;
 
 
     @Override
@@ -203,6 +214,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
         } else {
             bi.testing.setVisibility(View.VISIBLE);
         }
+
+        //Populating district
+        if (db.getDistrictList().size() > 0)
+            populatingSpinner();
+
     }
 
     public void loadIMEI() {
@@ -396,6 +412,57 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
 
     }
 
+    @Override
+    public void downloded(boolean flag) {
+        if (false) return;
+
+        populatingSpinner();
+    }
+
+    private void populatingSpinner() {
+        distrcitList = db.getDistrictList();
+        districtNames = new ArrayList<>();
+        districtMap = new HashMap<>();
+        districtNames.add("-Select District-");
+
+        for (DistrictsContract dc : distrcitList) {
+            districtNames.add(dc.getDistrict_name());
+            districtMap.put(dc.getDistrict_name(), dc.getDICTRICT_CODE());
+        }
+
+        bi.districtNameSpinner.setAdapter(new ArrayAdapter<>(LoginActivity.this,
+                android.R.layout.simple_spinner_dropdown_item, districtNames));
+
+        bi.districtNameSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if (bi.districtNameSpinner.getSelectedItemPosition() != 0) {
+
+                    districtCode = districtMap.get(bi.districtNameSpinner.getSelectedItem().toString());
+//                    hfList = db.getHealthFacilityData(districtCode);
+//                    hfMap = new HashMap<>();
+//                    hfNames = new ArrayList<>();
+//                    hfNames.add("Select Health Facility Name-");
+//
+//                    for (HealthFacContract hf : hfList) {
+//                        hfNames.add(hf.getHf_name());
+//                        hfMap.put(hf.getHf_name(), hf.getHf_uen_code());
+//                    }
+//
+//                    bi.healthFacSpinner.setAdapter(new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, hfNames));
+
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
     //
     public class GPSLocationListener implements LocationListener {
         public void onLocationChanged(Location location) {
@@ -578,13 +645,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
                             case "Districts":
                                 db.syncDistricts(array);
                                 break;
-                            case "hf":
-                                db.syncHF(array);
-                                break;
-
-                            case "hp":
-                                db.syncHP(array);
-                                break;
+//                            case "hf":
+//                                db.syncHF(array);
+//                                break;
+//
+//                            case "hp":
+//                                db.syncHP(array);
+//                                break;
 
                         }
 
@@ -797,10 +864,16 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
                         || (mEmail.equals("test12345") && mPassword.equals("test12345"))) {
                     MainApp.userName = mEmail;
                     MainApp.admin = mEmail.contains("@");
+                    if (db.getDistrictList().size() == 0) {
+                        Toast.makeText(LoginActivity.this, "Please Sync Districts", Toast.LENGTH_SHORT).show();
+                    } else if (bi.districtNameSpinner.getSelectedItemPosition() == 0) {
+                        Toast.makeText(LoginActivity.this, "Please Select District", Toast.LENGTH_SHORT).show();
 
-                    Intent iLogin = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(iLogin);
-                    finish();
+                    } else {
+                        Intent iLogin = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(iLogin);
+                        finish();
+                    }
 
 
                 } else {
@@ -837,7 +910,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
 
         }
 
-
         @Override
         protected void onCancelled() {
             mAuthTask = null;
@@ -845,7 +917,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
 //            showProgress(false);
         }
     }
-
 
     public void showCredits(View view) {
         if (clicks < 7) {
@@ -862,4 +933,5 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
                     .show();
         }
     }
+
 }

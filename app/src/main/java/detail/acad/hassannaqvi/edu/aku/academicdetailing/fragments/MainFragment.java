@@ -71,48 +71,22 @@ public class MainFragment extends Fragment {
 
     private void onClickListener() {
 
-        bi.startTraining.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        bi.startTraining.setOnClickListener(v -> callbacks.loadInfoFragment());
 
-                callbacks.loadInfoFragment();
+        bi.openDB.setOnClickListener(v -> callbacks.loadDatabaseManager());
 
-            }
+        bi.uploadData.setOnClickListener(v -> {
+
+            callbacks.uploadDataToServer();
+            Toast.makeText(getContext(), "Under Development", Toast.LENGTH_SHORT).show();
         });
 
-        bi.openDB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        bi.downloadVideo.setOnClickListener(v -> callbacks.downloadData());
 
-                callbacks.loadDatabaseManager();
-            }
-        });
+        bi.scheduleAppointment.setOnClickListener(v -> {
 
-        bi.uploadData.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                callbacks.uploadDataToServer();
-                Toast.makeText(getContext(), "Under Development", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        bi.downloadData.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                callbacks.downloadData();
-            }
-        });
-
-        bi.scheduleAppointment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                MainApp.isScheduleAppointment = true;
-                callbacks.loadInfo();
-            }
+            MainApp.isScheduleAppointment = true;
+            callbacks.loadInfo();
         });
 
     }

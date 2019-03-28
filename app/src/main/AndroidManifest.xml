@@ -23,7 +23,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
             android:name=".ui.SplashScreenActivity"
             android:screenOrientation="portrait">
@@ -65,37 +64,30 @@
             android:name=".ui.VB_Pre_test"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1" />
-
         <activity
             android:name=".ui.PartoTest"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1" />
-
         <activity
             android:name=".ui.EclamTest"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1" />
-
         <activity
             android:name=".ui.HemoTest01"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1" />
-
         <activity
             android:name=".ui.HemoTest02"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1" />
-
         <activity
             android:name=".ui.ShockTest"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1" />
-
         <activity
             android:name=".ui.PerpuralSepsisTest"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1" />
-
         <activity
             android:name=".ui.LoginActivity"
             android:screenOrientation="portrait"
@@ -147,6 +139,11 @@
             android:name=".ui.PlayerActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1" />
+
+        <activity
+            android:name=".ui.DownloadVideoActivity"
+            android:theme="@style/AppTheme1" />
+
     </application>
 
 </manifest>

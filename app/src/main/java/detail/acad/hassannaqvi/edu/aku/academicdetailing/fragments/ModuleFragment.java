@@ -279,7 +279,7 @@ public class ModuleFragment extends Fragment {
         llModule.removeAllViews();
         for (final String key : Data.newMenuModule.keySet()) {
             View v = LayoutInflater.from(getContext()).inflate(R.layout.single_module_item, null);
-            TextView moduleNameTxt = v.findViewById(R.id.moduleName);
+            TextView moduleNameTxt = v.findViewById(R.id.modNSpinner);
             final LinearLayout subModule = v.findViewById(R.id.subModule);
             moduleNameTxt.setText(key);
             llModule.addView(v);

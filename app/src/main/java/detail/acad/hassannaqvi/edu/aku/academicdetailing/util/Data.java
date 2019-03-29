@@ -52,6 +52,9 @@ public final class Data {
     public static final String[] dia_videos = new String[]{"dia_10301_01", "dia_10301_02", "dia_10301_03", "dia_10302_01"};
     public static final String[] gds_videos = new String[]{"gds_1234_01", "gds_1234_02"};
     public static final String[] psbi_videos = new String[]{"psbi_10401_01"};
+
+//    public static final String[] newbornVideos = Obj{Arrays.asList(cdb_videos)};
+
     public static final String[] ECEB = new String[]{"ECEB(Session One)", "ECEB(Session Two)"};
     public static final String[] ECSB = new String[]{"ECSB(Session One)", "ECSB(Session Two)"};
     public static final String[] HBB = new String[]{"Helping Babies Breathe"};

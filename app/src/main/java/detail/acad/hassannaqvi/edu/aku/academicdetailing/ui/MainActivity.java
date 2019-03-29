@@ -2,31 +2,22 @@ package detail.acad.hassannaqvi.edu.aku.academicdetailing.ui;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.kaopiz.kprogresshud.KProgressHUD;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
-import java.lang.reflect.Method;
-import java.net.MalformedURLException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.RetrofitClient.RetrofitClient;
@@ -71,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         hud = KProgressHUD.create(this).setCancellable(false).setStyle(KProgressHUD.Style.SPIN_INDETERMINATE);
         db = new DatabaseHelper(this);
         bi.bottomNav.home.setOnClickListener(this);
-        bi.bottomNav.learning.setOnClickListener(this);
+        bi.bottomNav.vidDownload.setOnClickListener(this);
         bi.bottomNav.settings.setOnClickListener(this);
         DistrictsContract dst = db.getDistrict(MainApp.districtCode);
         if (dst != null) {
@@ -91,6 +82,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.home:
 
                 loadHomeFragment();
+                break;
+
+            case R.id.vidDownload:
+
+                startActivity(new Intent(this, DownloadVideoActivity.class));
                 break;
 
         }
@@ -273,7 +269,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         hud.setLabel("Getting Providers Data");
         call = RetrofitClient.service.synHPData();
         syncingData("hp");
-
 
     }
 

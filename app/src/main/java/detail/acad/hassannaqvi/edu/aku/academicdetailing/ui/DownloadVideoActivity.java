@@ -333,6 +333,7 @@ public class DownloadVideoActivity extends AppCompatActivity {
             pd = new ProgressDialog(mContext);
             pd.setTitle("LOADING VIDEOS");
             pd.setMessage("Processing...");
+            pd.setCancelable(false);
             pd.setProgressStyle(R.layout.kprogresshud_hud);
             pd.show();
         }

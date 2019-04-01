@@ -1,9 +1,21 @@
 package detail.acad.hassannaqvi.edu.aku.academicdetailing.ui;
 
+import android.app.AlertDialog;
+import android.app.DownloadManager;
+import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.database.Cursor;
 import android.databinding.DataBindingUtil;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -15,11 +27,20 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.List;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.CONSTANTS;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityDownloadVideoBinding;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.VideoItemLayoutBinding;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
@@ -28,6 +49,32 @@ public class DownloadVideoActivity extends AppCompatActivity {
 
     ActivityDownloadVideoBinding bi;
     VideoItemsAdapter mAdapter;
+    List<String> existVideos;
+    DownloadManager downloadManager;
+    Long refID;
+    AlertDialog dialog;
+    TextView progressText;
+    ProgressBar progressBar;
+    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (DownloadManager.ACTION_DOWNLOAD_COMPLETE.equals(intent.getAction())) {
+                DownloadManager.Query query = new DownloadManager.Query();
+                downloadManager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
+                Cursor cursor = downloadManager.query(query);
+                if (cursor.moveToFirst()) {
+                    int colIndex = cursor.getColumnIndex(DownloadManager.COLUMN_STATUS);
+                    if (DownloadManager.STATUS_SUCCESSFUL == cursor.getInt(colIndex)) {
+                        dialog.dismiss();
+
+                        // Populate recycler_view
+                        new populateRecyclerView(DownloadVideoActivity.this, bi.modNSpinner.getSelectedIndex()).execute();
+
+                    }
+                }
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +82,21 @@ public class DownloadVideoActivity extends AppCompatActivity {
         bi = DataBindingUtil.setContentView(this, R.layout.activity_download_video);
         bi.setCallback(this);
 
+        settingFunctionality();
+        setListeners();
+    }
+
+    private void settingFunctionality() {
+        existVideos = new ArrayList<>();
         bi.modNSpinner.attachDataSource(new LinkedList<>(Arrays.asList("NEWBORN MODULE", "MATERNAL MODULE", "CHILD MODULE")));
+
+        // Populate recycler_view
+        new populateRecyclerView(DownloadVideoActivity.this, 0).execute();
+
+    }
+
+    private void setListeners() {
+
         bi.modNSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -48,13 +109,105 @@ public class DownloadVideoActivity extends AppCompatActivity {
             }
         });
 
-        // populate recycler_view
-        new populateRecyclerView(DownloadVideoActivity.this, 0).execute();
+        // Click listener recycler_view
+        bi.modVidRecycler.addOnItemTouchListener(new RecyclerItemClickListener(this, new RecyclerItemClickListener.OnItemClickListener() {
+
+                    @Override
+                    public void onItemClick(View view, final int position) {
+
+                        for (String item : existVideos) {
+                            if (item.equals(Data.newbornVideos[position])) {
+                                Toast.makeText(DownloadVideoActivity.this, "Video Already Downloaded!!", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                        }
+
+                        // Downloading video
+                        startDownloadingVideo(DownloadVideoActivity.this,
+                                MainApp.getModuleName(bi.modNSpinner.getSelectedIndex()),
+                                Data.newbornVideos[position]);
+
+                    }
+
+                    @Override
+                    public void onItemLongClick(final View view, final int position) {
+
+                    }
+                })
+        );
 
     }
 
+    private void startDownloadingVideo(Context mContext, String moduleName, String videosName) {
+
+        String Directrory = Environment.getExternalStorageDirectory() + File.separator + DatabaseHelper.PROJECT_NAME;
+        File folder = new File(Directrory);
+        boolean success = true;
+        if (!folder.exists())
+            success = folder.mkdirs();
+        if (!success) return;
+
+        folder = new File(Directrory + File.separator + moduleName);
+        if (!folder.exists())
+            success = folder.mkdirs();
+        if (!success) return;
+
+        NetworkInfo networkInfo = ((ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected()) {
+
+            downloadManager = (DownloadManager) mContext.getSystemService(Context.DOWNLOAD_SERVICE);
+            Uri uri = Uri.parse(CONSTANTS.Video_URL + videosName + ".mp4");
+            DownloadManager.Request request = new DownloadManager.Request(uri);
+            request.setDestinationInExternalPublicDir(DatabaseHelper.PROJECT_NAME + File.separator + moduleName, videosName)
+                    .setTitle("Downloading " + videosName);
+            refID = downloadManager.enqueue(request);
+
+            showVideodownloadDialoge(mContext, getVideoItemName(videosName));
+
+        } else {
+            Toast.makeText(mContext, "Internet connectivity issue", Toast.LENGTH_SHORT).show();
+        }
+
+        registerReceiver(broadcastReceiver, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
+
+    }
+
+    private void showVideodownloadDialoge(Context mContext, String videosName) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        builder.setCancelable(false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.downloading_dialog_layout, null);
+        progressText = view.findViewById(R.id.progressTextView);
+        progressText.setText("Downloading: " + videosName);
+        progressBar = view.findViewById(R.id.progressBar);
+        builder.setView(view);
+        progressBar.setMax(100);
+        dialog = builder.create();
+        dialog.show();
+    }
+
+    private String getVideoItemName(String moduleName) {
+        String[] nameSplit = moduleName.split("_");
+        if (nameSplit.length != 3) return moduleName;
+        return getSubModuleName(nameSplit[0]) + " " + nameSplit[2];
+    }
+
+    private String getSubModuleName(String startChar) {
+        switch (startChar) {
+            case "dia":
+                return "Diarrhoea";
+            case "gds":
+                return "General Danger Sign";
+            case "psbi":
+                return "PSBI";
+            case "cdb":
+                return "Cough & Difficult Breathing";
+            default:
+                return startChar;
+        }
+    }
+
     //    Recycler classes
-    public static class RecyclerItemClickListener implements RecyclerView.OnItemTouchListener {
+    private static class RecyclerItemClickListener implements RecyclerView.OnItemTouchListener {
         GestureDetector mGestureDetector;
         private OnItemClickListener mListener;
         private RecyclerView viewRecycle;
@@ -108,7 +261,6 @@ public class DownloadVideoActivity extends AppCompatActivity {
     }
 
     private String[] getStringArray(int position) {
-
         switch (position) {
             case 0:
                 return Data.newbornVideos;
@@ -117,28 +269,7 @@ public class DownloadVideoActivity extends AppCompatActivity {
         }
     }
 
-    private String getVideoItemName(String moduleName) {
-        String[] nameSplit = moduleName.split("_");
-        if (nameSplit.length != 3) return moduleName;
-        return getModuleName(nameSplit[0]) + " " + nameSplit[2];
-    }
-
-    private String getModuleName(String startChar) {
-        switch (startChar) {
-            case "dia":
-                return "Diarrhoea";
-            case "gds":
-                return "General Danger Sign";
-            case "psbi":
-                return "PSBI";
-            case "cdb":
-                return "Cough & Difficult Breathing";
-            default:
-                return startChar;
-        }
-    }
-
-    public class VideoItemsAdapter extends RecyclerView.Adapter<VideoItemsAdapter.MyViewHolder> {
+    private class VideoItemsAdapter extends RecyclerView.Adapter<VideoItemsAdapter.MyViewHolder> {
 
         MyViewHolder holder;
         private String[] videosList;
@@ -149,9 +280,10 @@ public class DownloadVideoActivity extends AppCompatActivity {
 
         @Override
         public MyViewHolder onCreateViewHolder(final ViewGroup parent, int viewType) {
-            View itemView = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.video_item_layout, parent, false);
-            return new MyViewHolder(itemView);
+            return new MyViewHolder(
+                    LayoutInflater.from(parent.getContext())
+                            .inflate(R.layout.video_item_layout, parent, false)
+            );
         }
 
         @Override
@@ -172,28 +304,42 @@ public class DownloadVideoActivity extends AppCompatActivity {
             public MyViewHolder(View itemView) {
                 super(itemView);
                 videoItemBinding = DataBindingUtil.bind(itemView);
-
             }
 
             public void bindUser(String mname) {
                 videoItemBinding.movieName.setText(getVideoItemName(mname));
+                if (MainApp.checkVideoExist(bi.modNSpinner.getSelectedIndex(), mname)) {
+                    videoItemBinding.downloadImage.setImageResource(R.drawable.ic_check_circle);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+                        videoItemBinding.movieName.setTextColor(getColor(R.color.colorPrimary));
+                    else
+                        videoItemBinding.movieName.setTextColor(getResources().getColor(R.color.colorPrimary));
+
+                    existVideos.add(mname);
+                }
             }
         }
     }
 
-    public class populateRecyclerView extends AsyncTask<String, String, String> {
+    private class populateRecyclerView extends AsyncTask<String, String, String> {
         private Context mContext;
         private int position;
+        private ProgressDialog pd;
 
         public populateRecyclerView(Context mContext, int position) {
             this.mContext = mContext;
             this.position = position;
+
+            pd = new ProgressDialog(mContext);
+            pd.setTitle("LOADING VIDEOS");
+            pd.setMessage("Processing...");
+            pd.setProgressStyle(R.layout.kprogresshud_hud);
+            pd.show();
         }
 
         @Override
         protected String doInBackground(String... strings) {
             runOnUiThread(new Runnable() {
-
                 @Override
                 public void run() {
 //              Set Recycler View
@@ -201,12 +347,8 @@ public class DownloadVideoActivity extends AppCompatActivity {
                     RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(mContext, 2);
                     bi.modVidRecycler.setLayoutManager(mLayoutManager);
                     bi.modVidRecycler.setItemAnimator(new DefaultItemAnimator());
-                    bi.modVidRecycler.setAdapter(mAdapter);
-                    mAdapter.notifyDataSetChanged();
                 }
             });
-
-
             return null;
         }
 
@@ -216,38 +358,11 @@ public class DownloadVideoActivity extends AppCompatActivity {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-//                   Background black for those that's data filled
-                /*    for (int item : MainApp.hhClicked) {
-
-                        JSONModelClass json = JSONUtilClass.getModelFromJSON(MainApp.familyMembersClicked.get(item).getsA2(), JSONModelClass.class);
-                        int age = Integer.valueOf(json.getAge());
-
-                        if (age >= 10) {
-                            if (json.getGender().equals("1")) {
-                                binding.recyclerNoMembers.getChildAt(item).setBackgroundColor(getResources().getColor(R.color.darkBlue));
-                            } else if (json.getGender().equals("2")) {
-                                binding.recyclerNoMembers.getChildAt(item).setBackgroundColor(getResources().getColor(R.color.darkPink));
-                            } else {
-                                binding.recyclerNoMembers.getChildAt(item).setBackgroundColor(Color.BLACK);
-                            }
-                        } else {
-                            if (json.getGender().equals("1")) {
-                                binding.recyclerNoMembers.getChildAt(item).setBackgroundColor(getResources().getColor(R.color.lightBlue));
-                            } else if (json.getGender().equals("2")) {
-                                binding.recyclerNoMembers.getChildAt(item).setBackgroundColor(getResources().getColor(R.color.lightPink));
-                            } else {
-                                binding.recyclerNoMembers.getChildAt(item).setBackgroundColor(Color.BLACK);
-                            }
-                        }
-
-                    }
-
-                    for (int item : MainApp.flagClicked) {
-                        binding.recyclerNoMembers.getChildAt(item).setBackgroundColor(getResources().getColor(R.color.brown));
-                    }
-*/
+                    bi.modVidRecycler.setAdapter(mAdapter);
+                    mAdapter.notifyDataSetChanged();
+                    pd.dismiss();
                 }
-            }, 800);
+            }, 2000);
         }
     }
 

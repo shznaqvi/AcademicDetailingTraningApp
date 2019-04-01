@@ -220,7 +220,7 @@ public class ModuleFragment extends Fragment {
 
         removeMaternalModule();
         removeChildModule();
-        openModuleHandler(bi.nbornModule, 2);
+        openModuleHandler(getContext(), bi.nbornModule, 2);
 
     }
 
@@ -230,14 +230,14 @@ public class ModuleFragment extends Fragment {
 
         removeChildModule();
         removeNBModule();
-        openModuleHandler(bi.maternalModule, 1);
+        openModuleHandler(getContext(), bi.maternalModule, 1);
 
     }
 
     private void showChildModule() {
         removeMaternalModule();
         removeNBModule();
-        openModuleHandler(bi.childModule, 0);
+        openModuleHandler(getContext(), bi.childModule, 0);
 
     }
 
@@ -273,7 +273,7 @@ public class ModuleFragment extends Fragment {
         }
     };
 
-    private void showModules(final LinearLayout llModule, int type) {
+    private void showModules(final Context mContext, final LinearLayout llModule, int type) {
 
         Data.fillingMenus(type);
         llModule.removeAllViews();
@@ -289,7 +289,7 @@ public class ModuleFragment extends Fragment {
                 public void onClick(View view) {
                     Data.SubMenu[] submenu = Data.newMenuModule.get(key);
                     removeSubGroups(llModule);
-                    showSubMenus(subModule, submenu);
+                    showSubMenus(mContext, subModule, submenu);
                 }
             });
         }
@@ -360,10 +360,10 @@ public class ModuleFragment extends Fragment {
 
     }
 
-    private void showSubMenus(LinearLayout llSubModule, Data.SubMenu[] subMenuItem) {
+    private void showSubMenus(Context mContext, LinearLayout llSubModule, Data.SubMenu[] subMenuItem) {
 
         if (subMenuItem.length == 1) {
-            if (videoDownload(subMenuItem[0]))
+            if (videoDownload(mContext, subMenuItem[0]))
                 Utils.showPreDialogue(getActivity(), subMenuItem[0], fc);
             return;
         }
@@ -377,19 +377,7 @@ public class ModuleFragment extends Fragment {
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    /*if (subMenu.getVideosName().length != 0) {
-                        downloadVideos(subMenu.getVideosName(), subMenu.getModuleName().toUpperCase());
-                        moduleToStart = subMenu;
-                        if (!fileAlreadyExist) {
-                            showVideodownloadDialoge(subMenu.getVideosName(), subMenu.getModuleName().toUpperCase());
-                            videos = subMenu.getVideosName();
-                        } else {
-                            Utils.showPreDialogue(getActivity(), moduleToStart, fc);
-                        }
-
-
-                    }*/
-                    if (videoDownload(subMenu))
+                    if (videoDownload(mContext, subMenu))
                         Utils.showPreDialogue(getActivity(), subMenu, fc);
 
                 }
@@ -398,16 +386,21 @@ public class ModuleFragment extends Fragment {
 
     }
 
-    private boolean videoDownload(Data.SubMenu subMenu) {
-        boolean flag = downloadVideos(subMenu.getVideosName(), subMenu.getModuleName().toUpperCase());
-        if (!flag) {
-            showVideodownloadDialoge(subMenu.getVideosName(), subMenu.getModuleName().toUpperCase());
-            moduleToStart = subMenu;
-            return false;
+    private boolean videoDownload(Context mContext, Data.SubMenu subMenu) {
+        boolean flag = true;
+        for (String videoName : subMenu.getVideosName()) {
+            if (!MainApp.checkVideoExist(MainApp.getModulePosition(subMenu.getModuleName().toUpperCase()), videoName)) {
+                flag = false;
+                break;
+            }
         }
-        return true;
-    }
 
+        if (!flag) Toast.makeText(mContext,
+                "Please Download all videos for this section!!",
+                Toast.LENGTH_SHORT).show();
+
+        return flag;
+    }
 
     private void removeSubGroups(LinearLayout llModule) {
         for (byte i = 0; i < llModule.getChildCount(); i++) {
@@ -422,11 +415,11 @@ public class ModuleFragment extends Fragment {
         }
     }
 
-    private void openModuleHandler(final ViewGroup view, final int type) {
+    private void openModuleHandler(Context mContext, final ViewGroup view, final int type) {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                showModules((LinearLayout) view, type);
+                showModules(mContext, (LinearLayout) view, type);
             }
         }, 300);
     }

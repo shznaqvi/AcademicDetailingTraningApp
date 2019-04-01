@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
@@ -15,16 +15,14 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
-import java.util.List;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityDownloadVideoBinding;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.VideoItemLayoutBinding;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
 
 public class DownloadVideoActivity extends AppCompatActivity {
 
@@ -41,13 +39,17 @@ public class DownloadVideoActivity extends AppCompatActivity {
         bi.modNSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(DownloadVideoActivity.this, "" + i, Toast.LENGTH_SHORT).show();
+                // populate recycler_view
+                new populateRecyclerView(DownloadVideoActivity.this, i).execute();
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });
+
+        // populate recycler_view
+        new populateRecyclerView(DownloadVideoActivity.this, 0).execute();
 
     }
 
@@ -105,12 +107,43 @@ public class DownloadVideoActivity extends AppCompatActivity {
 
     }
 
+    private String[] getStringArray(int position) {
+
+        switch (position) {
+            case 0:
+                return Data.newbornVideos;
+            default:
+                return new String[]{};
+        }
+    }
+
+    private String getVideoItemName(String moduleName) {
+        String[] nameSplit = moduleName.split("_");
+        if (nameSplit.length != 3) return moduleName;
+        return getModuleName(nameSplit[0]) + " " + nameSplit[2];
+    }
+
+    private String getModuleName(String startChar) {
+        switch (startChar) {
+            case "dia":
+                return "Diarrhoea";
+            case "gds":
+                return "General Danger Sign";
+            case "psbi":
+                return "PSBI";
+            case "cdb":
+                return "Cough & Difficult Breathing";
+            default:
+                return startChar;
+        }
+    }
+
     public class VideoItemsAdapter extends RecyclerView.Adapter<VideoItemsAdapter.MyViewHolder> {
 
         MyViewHolder holder;
-        private List<String> videosList;
+        private String[] videosList;
 
-        public VideoItemsAdapter(List<String> videosList) {
+        public VideoItemsAdapter(String[] videosList) {
             this.videosList = videosList;
         }
 
@@ -124,12 +157,12 @@ public class DownloadVideoActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(MyViewHolder holder, int position) {
             this.holder = holder;
-            this.holder.bindUser(this.videosList.get(position));
+            this.holder.bindUser(this.videosList[position]);
         }
 
         @Override
         public int getItemCount() {
-            return videosList.size();
+            return videosList.length;
         }
 
         public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -143,16 +176,18 @@ public class DownloadVideoActivity extends AppCompatActivity {
             }
 
             public void bindUser(String mname) {
-                videoItemBinding.movieName.setText(mname);
+                videoItemBinding.movieName.setText(getVideoItemName(mname));
             }
         }
     }
 
     public class populateRecyclerView extends AsyncTask<String, String, String> {
         private Context mContext;
+        private int position;
 
-        public populateRecyclerView(Context mContext) {
+        public populateRecyclerView(Context mContext, int position) {
             this.mContext = mContext;
+            this.position = position;
         }
 
         @Override
@@ -162,8 +197,8 @@ public class DownloadVideoActivity extends AppCompatActivity {
                 @Override
                 public void run() {
 //              Set Recycler View
-                    mAdapter = new VideoItemsAdapter(new ArrayList<>());
-                    RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+                    mAdapter = new VideoItemsAdapter(getStringArray(position));
+                    RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(mContext, 2);
                     bi.modVidRecycler.setLayoutManager(mLayoutManager);
                     bi.modVidRecycler.setItemAnimator(new DefaultItemAnimator());
                     bi.modVidRecycler.setAdapter(mAdapter);

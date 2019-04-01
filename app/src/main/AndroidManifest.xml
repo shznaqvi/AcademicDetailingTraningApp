@@ -139,7 +139,6 @@
             android:name=".ui.PlayerActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1" />
-
         <activity
             android:name=".ui.DownloadVideoActivity"
             android:theme="@style/AppTheme1" />

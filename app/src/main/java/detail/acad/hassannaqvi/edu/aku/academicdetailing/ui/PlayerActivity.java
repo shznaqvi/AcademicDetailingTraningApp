@@ -28,30 +28,19 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Utils;
 
 public class PlayerActivity extends AppCompatActivity {
 
-
     ActivityPlayerBinding bi;
-    String path;
+    SimpleExoPlayer player;
     Data.SubMenu subMenu;
-
+    Long playbackPosition = new Long(0);
+    int currentWindow = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         bi = DataBindingUtil.setContentView(this, R.layout.activity_player);
         bi.setCallback(this);
 
-        /*String fileName = "gds01";
-        String filePlace = "android.resource://" + getPackageName() + "/raw/" + fileName;
-        bi.videoPlayer.setVideoURI(Uri.parse(filePlace));
-        bi.videoPlayer.requestFocus();
-        MediaController mediaController = new MediaController(this);
-        bi.videoPlayer.setMediaController(mediaController);
-        mediaController.setAnchorView(bi.videoPlayer);
-        bi.videoPlayer.start();*/
-
         initializingComponents();
-
     }
 
     void initializingComponents() {
@@ -60,7 +49,7 @@ public class PlayerActivity extends AppCompatActivity {
         subMenu = (Data.SubMenu) getIntent().getSerializableExtra("submenu");
 
         //Video
-        SimpleExoPlayer player = ExoPlayerFactory.newSimpleInstance(this);
+        player = ExoPlayerFactory.newSimpleInstance(this);
         // Bind the player to the view.
         bi.videoPlayer.setPlayer(player);
         // Produces DataSource instances through which media data is loaded.
@@ -99,23 +88,45 @@ public class PlayerActivity extends AppCompatActivity {
 
     }
 
-
     public void BtnOK() {
-
-//        Utils.forcePostTest(this, subMenu, 0);
         Utils.showPostDialoge(this, subMenu, 0);
-
     }
 
     @Override
-    protected void onPause() {
+    protected void onStart() {
+        super.onStart();
+        if (player != null) {
+            restartPlayer();
+        }
+    }
+
+    @Override
+    public void onPause() {
         super.onPause();
-        bi.videoPlayer.onPause();
+        if (Util.SDK_INT <= 23) {
+            releasePlayer();
+        }
     }
 
     @Override
-    protected void onStop() {
+    public void onStop() {
         super.onStop();
-        bi.videoPlayer.onPause();
+        if (Util.SDK_INT > 23) {
+            releasePlayer();
+        }
+    }
+
+    private void releasePlayer() {
+        if (player != null) {
+            playbackPosition = player.getCurrentPosition();
+            currentWindow = player.getCurrentWindowIndex();
+            player.setPlayWhenReady(false);
+            bi.videoPlayer.onResume();
+        }
+    }
+
+    private void restartPlayer() {
+        bi.videoPlayer.setPlayer(player);
+        player.seekTo(currentWindow, playbackPosition);
     }
 }

@@ -34,7 +34,6 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,7 +53,6 @@ import java.io.OutputStream;
 import java.nio.channels.FileChannel;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -110,9 +108,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
 
     List<DistrictsContract> distrcitList;
     ArrayList<String> districtNames;
-    HashMap<String, Long> districtMap;
-    long districtCode = 0;
-
+    HashMap<String, DistrictsContract> districtMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -236,7 +232,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
         }
     }
 
-    //
     private void requestReadPhoneStatePermission() {
         if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                 Manifest.permission.READ_PHONE_STATE)) {
@@ -263,7 +258,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
         }
     }
 
-    //
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
@@ -320,7 +314,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
         }
     }
 
-    //
     protected void showCurrentLocation() {
         if (ActivityCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION)
@@ -389,7 +382,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
         } else return isNewer && !isSignificantlyLessAccurate && isFromSameProvider;
     }
 
-    //
     private boolean isSameProvider(String provider1, String provider2) {
         if (provider1 == null) {
             return provider2 == null;
@@ -427,7 +419,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
 
         for (DistrictsContract dc : distrcitList) {
             districtNames.add(dc.getDistrict_name());
-            districtMap.put(dc.getDistrict_name(), dc.getDICTRICT_CODE());
+            districtMap.put(dc.getDistrict_name(), dc);
         }
 
         bi.districtNameSpinner.setAdapter(new ArrayAdapter<>(LoginActivity.this,
@@ -438,20 +430,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 if (bi.districtNameSpinner.getSelectedItemPosition() != 0) {
-
-                    districtCode = districtMap.get(bi.districtNameSpinner.getSelectedItem().toString());
-//                    hfList = db.getHealthFacilityData(districtCode);
-//                    hfMap = new HashMap<>();
-//                    hfNames = new ArrayList<>();
-//                    hfNames.add("Select Health Facility Name-");
-//
-//                    for (HealthFacContract hf : hfList) {
-//                        hfNames.add(hf.getHf_name());
-//                        hfMap.put(hf.getHf_name(), hf.getHf_uen_code());
-//                    }
-//
-//                    bi.healthFacSpinner.setAdapter(new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, hfNames));
-
+                    MainApp.dContract = districtMap.get(bi.districtNameSpinner.getSelectedItem().toString());
                 }
 
             }
@@ -463,7 +442,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
         });
     }
 
-    //
     public class GPSLocationListener implements LocationListener {
         public void onLocationChanged(Location location) {
 
@@ -510,7 +488,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
         }
     }
 
-    //
     private void doPermissionGrantedStuffs() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
@@ -690,7 +667,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
         }
     }
 
-    //
     private boolean checkAndRequestPermissions() {
         int permissionContact = ContextCompat.checkSelfPermission(this,
                 Manifest.permission.READ_CONTACTS);
@@ -737,12 +713,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
         return true;
     }
 
-    //
-//    /**
-//     * Attempts to sign in or register the account specified by the login form.
-//     * If there are form errors (invalid email, missing fields, etc.), the
-//     * errors are presented and no actual login attempt is made.
-//     */
+    /**
+     * Attempts to sign in or register the account specified by the login form.
+     * If there are form errors (invalid email, missing fields, etc.), the
+     * errors are presented and no actual login attempt is made.
+     */
     private void attemptLogin() {
         if (mAuthTask != null) {
             return;
@@ -790,18 +765,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
         }
     }
 
-    //
     private boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
         return email.contains("@");
     }
 
-    //
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
         return password.length() >= 7;
     }
-
 
     public void onShowPasswordClick() {
         //TODO implement

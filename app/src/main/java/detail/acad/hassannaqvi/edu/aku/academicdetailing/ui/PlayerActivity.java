@@ -59,7 +59,6 @@ public class PlayerActivity extends AppCompatActivity {
     }
 
     void playingVideo(SimpleExoPlayer videoPlayer, DataSource.Factory dataSourceFactory, Data.SubMenu data) {
-
         String Directory = Environment.getExternalStorageDirectory() + File.separator
                 + DatabaseHelper.PROJECT_NAME + File.separator + data.getModuleName().toUpperCase()
                 + File.separator;
@@ -76,7 +75,6 @@ public class PlayerActivity extends AppCompatActivity {
             }
         });
 
-
         for (byte i = 0; i < videos.length; i++) {
             mediaSources[i] = new ExtractorMediaSource.Factory(dataSourceFactory).createMediaSource(Uri.parse(Directory + videos[i]));
         }
@@ -85,7 +83,6 @@ public class PlayerActivity extends AppCompatActivity {
         ConcatenatingMediaSource concatenatedSource = new ConcatenatingMediaSource(mediaSources);
         // Prepare the player with the source.
         videoPlayer.prepare(concatenatedSource);
-
     }
 
     public void BtnOK() {

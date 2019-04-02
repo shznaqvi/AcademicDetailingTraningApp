@@ -11,8 +11,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
@@ -52,7 +50,6 @@ public class InfoFragment extends Fragment {
     ArrayList<String> providerNames;
     HashMap<String, Long> providerMap;
 
-    long districtCode = 0;
     long hf_uen_code = 0;
     long hp_code = 0;
 
@@ -83,7 +80,9 @@ public class InfoFragment extends Fragment {
 
     private void setupViews() {
 
-        distrcitList = db.getDistrictList();
+        bi.districtSpinner.setText(MainApp.dContract.getDistrict_name());
+
+/*      distrcitList = db.getDistrictList();
         districtNames = new ArrayList<>();
         districtMap = new HashMap<>();
         districtNames.add("-Select District-");
@@ -123,7 +122,8 @@ public class InfoFragment extends Fragment {
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
-        });
+        });*/
+
 //        bi.healthFacSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 //            @Override
 //            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -181,13 +181,12 @@ public class InfoFragment extends Fragment {
                 if (formValidation()) {
                     try {
                         saveDraft();
-                        if(MainApp.isScheduleAppointment){
+                        if (MainApp.isScheduleAppointment) {
                             callbacks.loadScheduleFragment();
-                        }else {
+                        } else {
                             HideKeyboard.hideKeyboardFragment(getActivity(), getView());
                             callbacks.loadModuleFragment(MainApp.fc);
                         }
-
 
 
                     } catch (Exception e) {
@@ -202,16 +201,6 @@ public class InfoFragment extends Fragment {
 
     }
 
-    private boolean updateDB() {
-
-//        DatabaseHelper db = new DatabaseHelper(getActivity());
-//
-//        long rowId = db.addForm(MainApp.fc);
-//        MainApp.fc.set_ID(String.valueOf(rowId));
-
-        return true;
-    }
-
     private void saveDraft() {
 
         MainApp.fc = new FormsContract();
@@ -223,7 +212,7 @@ public class InfoFragment extends Fragment {
         MainApp.fc.setProviderID(String.valueOf(hp_code));
         MainApp.fc.setProviderName(bi.hpName.getText().toString());
         MainApp.fc.setHealthFacilityName(bi.hfName.getText().toString());
-        MainApp.fc.setDistrictID(String.valueOf(districtCode));
+        MainApp.fc.setDistrictID(String.valueOf(MainApp.dContract.getDICTRICT_CODE()));
         MainApp.providerName = bi.hpName.getText().toString();
 
         setGPS();

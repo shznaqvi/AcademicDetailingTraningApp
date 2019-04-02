@@ -36,6 +36,7 @@ import java.util.Date;
 import java.util.List;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.DistrictsContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.FormsContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.NextMeetingContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.Result;
@@ -104,6 +105,7 @@ public class MainApp extends Application {
     public static boolean isComplete = false;
     public static String type = "";
     public static int[] slides;
+    public static DistrictsContract dContract;
 
 
     protected static LocationManager locationManager;

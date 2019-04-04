@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.CDBSession01_Pre_test;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.CDBSession02_Pre_test;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.DiaTest01;
@@ -48,12 +49,12 @@ public final class Data {
                     "Helping Babies Breathe"
             };
 
-    public static final String[] cdb_videos = new String[]{"cdb_1234_01", "cdb_1234_02", "cdb_1234_03", "cdb_1234_04"};
-    public static final String[] dia_videos = new String[]{"dia_10301_01", "dia_10301_02", "dia_10301_03", "dia_10302_01"};
-    public static final String[] gds_videos = new String[]{"gds_1234_01", "gds_1234_02"};
-    public static final String[] psbi_videos = new String[]{"psbi_10401_01"};
+    public static final String[] cdb_videos = {"cdb_1234_01", "cdb_1234_02", "cdb_1234_03", "cdb_1234_04"};
+    public static final String[] dia_videos = {"dia_10301_01", "dia_10301_02", "dia_10301_03", "dia_10302_01"};
+    public static final String[] gds_videos = {"gds_1234_01", "gds_1234_02"};
+    public static final String[] psbi_videos = {"psbi_10401_01"};
 
-//    public static final String[] newbornVideos = Obj{Arrays.asList(cdb_videos)};
+    public static final String[] newbornVideos = MainApp.mergeArrays(cdb_videos, dia_videos, gds_videos, psbi_videos);
 
     public static final String[] ECEB = new String[]{"ECEB(Session One)", "ECEB(Session Two)"};
     public static final String[] ECSB = new String[]{"ECSB(Session One)", "ECSB(Session Two)"};

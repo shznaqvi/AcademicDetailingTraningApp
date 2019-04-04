@@ -14,6 +14,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.text.format.DateFormat;
@@ -24,20 +25,22 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.io.Serializable;
+import java.io.File;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.DistrictsContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.FormsContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.NextMeetingContract;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.SessionContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.Result;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.EndingActivity;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.FANC_Pre_test;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.ViewPagerActivity;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
 
@@ -102,6 +105,9 @@ public class MainApp extends Application {
     public static boolean isComplete = false;
     public static String type = "";
     public static int[] slides;
+    public static DistrictsContract dContract;
+
+
     protected static LocationManager locationManager;
 
     public static String getTagName(Context mContext) {
@@ -149,6 +155,53 @@ public class MainApp extends Application {
             view = new View(activity);
         }
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+    // Function to merge multiple arrays in Java
+    public static String[] mergeArrays(String[]... arrays) {
+        List<String> list = new ArrayList<>();
+
+        for (String[] array : arrays)
+            Collections.addAll(list, array);
+
+        return list.toArray(new String[0]);
+    }
+
+    public static boolean checkVideoExist(int position, String fName) {
+
+        String Directrory = Environment.getExternalStorageDirectory() + File.separator + DatabaseHelper.PROJECT_NAME;
+        File folder = new File(Directrory);
+        if (!folder.exists()) return false;
+        folder = new File(Directrory + File.separator + getModuleName(position));
+        if (!folder.exists()) return false;
+        File file = new File(folder.getPath(), fName);
+        return file.exists();
+    }
+
+    public static String getModuleName(int position) {
+        switch (position) {
+            case 0:
+                return "CHILDHEALTH";
+            case 1:
+                return "MATERNALHEALTH";
+            case 2:
+                return "NBORNHEALTH";
+            default:
+                return "";
+        }
+    }
+
+    public static int getModulePosition(String module) {
+        switch (module) {
+            case "CHILDHEALTH":
+                return 0;
+            case "MATERNALHEALTH":
+                return 1;
+            case "NBORNHEALTH":
+                return 2;
+            default:
+                return -1;
+        }
     }
 
     @Override
@@ -409,7 +462,7 @@ public class MainApp extends Application {
         });
     }
 
-    public static void showDialogeWithResult(final Context context, Result result,final Data.SubMenu item) {
+    public static void showDialogeWithResult(final Context context, Result result, final Data.SubMenu item) {
 
 
         int correct_number = (int) result.getCorrect();
@@ -421,18 +474,18 @@ public class MainApp extends Application {
         TextView finalText = view.findViewById(R.id.finalText);
         TextView wrong = view.findViewById(R.id.wrong);
 
-        percentage.setText(String.valueOf(MainApp.round(result.getPercentage(),2) + "%"));
+        percentage.setText(String.valueOf(MainApp.round(result.getPercentage(), 2) + "%"));
         correct.setText(String.valueOf(correct_number));
         wrong.setText(String.valueOf(wrong_number));
         ImageView icon = view.findViewById(R.id.resultImage);
 
         final boolean sessionCondition = result.getPercentage() < 80.0;
-        if(sessionCondition){
+        if (sessionCondition) {
             icon.setImageResource(R.drawable.sad);
             percentage.setTextColor(context.getResources().getColor(R.color.red));
             finalText.setText("You are required to reschedule this session again!");
             finalText.setTextColor(context.getResources().getColor(R.color.red));
-        }else{
+        } else {
             percentage.setTextColor(context.getResources().getColor(R.color.colorPrimary));
             icon.setImageResource(R.drawable.smile);
             finalText.setText("Awesome!");

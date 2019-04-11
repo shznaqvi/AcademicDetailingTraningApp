@@ -69,14 +69,12 @@ public class ScheduleFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // Inflate the layout for this fragmentdate
         bi = DataBindingUtil.inflate(inflater, R.layout.fragment_schedule, container, false);
 
         db = new DatabaseHelper(getContext());
         view = bi.getRoot();
 
-        bi.date.setManager(getFragmentManager());
-        bi.time.setManager(getFragmentManager());
         bi.doctorName.setText(MainApp.providerName);
         modules = new ArrayList<>();
         subModules = new ArrayList<>();

@@ -591,12 +591,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
             gettingDataFromService("Syncing Users", "Users");
             call = RetrofitClient.service.getDistricts(); //districts
             gettingDataFromService("Syncing Districts", "Districts");
-            hud.setLabel("Getting Health Facility Data");
-            call = RetrofitClient.service.synHfData();
-            gettingDataFromService("Syncing Health Facility Data", "hf");
-            hud.setLabel("Getting Providers Data");
-            call = RetrofitClient.service.synHPData();
-            gettingDataFromService("Syncing Health Provider", "hp");
+//            hud.setLabel("Getting Health Facility Data");
+//            call = RetrofitClient.service.synHfData();
+//            gettingDataFromService("Syncing Health Facility Data", "hf");
+//            hud.setLabel("Getting Providers Data");
+//            call = RetrofitClient.service.synHPData();
+//            gettingDataFromService("Syncing Health Provider", "hp");
         } else {
             Toast.makeText(this, "No network connection available.", Toast.LENGTH_SHORT).show();
         }
@@ -622,13 +622,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
                             case "Districts":
                                 db.syncDistricts(array);
                                 break;
-//                            case "hf":
-//                                db.syncHF(array);
-//                                break;
 //
-//                            case "hp":
-//                                db.syncHP(array);
-//                                break;
 
                         }
 
@@ -649,6 +643,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
                 Toast.makeText(LoginActivity.this, "Server Connectivity Error", Toast.LENGTH_SHORT).show();
             }
         });
+
+
     }
 
     private void populateAutoComplete() {
@@ -668,42 +664,21 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
     }
 
     private boolean checkAndRequestPermissions() {
-        int permissionContact = ContextCompat.checkSelfPermission(this,
-                Manifest.permission.READ_CONTACTS);
-        int permissionGetAccount = ContextCompat.checkSelfPermission(this,
-                Manifest.permission.GET_ACCOUNTS);
-        int permissionReadPhoneState = ContextCompat.checkSelfPermission(this,
-                Manifest.permission.READ_PHONE_STATE);
-        int accessFineLocation = ContextCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION);
-        int accessCoarseLocation = ContextCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_COARSE_LOCATION);
-        int writeExternalStorage = ContextCompat.checkSelfPermission(this,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        int permissionCamera = ContextCompat.checkSelfPermission(this,
-                Manifest.permission.CAMERA);
+        String[] permissions = new String[]{
+                Manifest.permission.READ_CONTACTS,
+                Manifest.permission.GET_ACCOUNTS,
+                Manifest.permission.READ_PHONE_STATE,
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.CAMERA};
 
         List<String> listPermissionsNeeded = new ArrayList<>();
-        if (permissionContact != PackageManager.PERMISSION_GRANTED) {
-            listPermissionsNeeded.add(Manifest.permission.READ_CONTACTS);
-        }
-        if (permissionGetAccount != PackageManager.PERMISSION_GRANTED) {
-            listPermissionsNeeded.add(Manifest.permission.GET_ACCOUNTS);
-        }
-        if (permissionReadPhoneState != PackageManager.PERMISSION_GRANTED) {
-            listPermissionsNeeded.add(Manifest.permission.READ_PHONE_STATE);
-        }
-        if (accessFineLocation != PackageManager.PERMISSION_GRANTED) {
-            listPermissionsNeeded.add(Manifest.permission.ACCESS_FINE_LOCATION);
-        }
-        if (accessCoarseLocation != PackageManager.PERMISSION_GRANTED) {
-            listPermissionsNeeded.add(Manifest.permission.ACCESS_COARSE_LOCATION);
-        }
-        if (writeExternalStorage != PackageManager.PERMISSION_GRANTED) {
-            listPermissionsNeeded.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        }
-        if (permissionCamera != PackageManager.PERMISSION_GRANTED) {
-            listPermissionsNeeded.add(Manifest.permission.CAMERA);
+        for (String perm : permissions) {
+            if (ContextCompat.checkSelfPermission(this, perm) != PackageManager.PERMISSION_GRANTED) {
+                listPermissionsNeeded.add(perm);
+            }
         }
         if (!listPermissionsNeeded.isEmpty()) {
             ActivityCompat.requestPermissions(this, listPermissionsNeeded.toArray(new String[listPermissionsNeeded.size()]), MY_PERMISSIONS_REQUEST_READ_CONTACTS);

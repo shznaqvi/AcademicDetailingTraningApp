@@ -8,7 +8,6 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.format.DateFormat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,18 +28,25 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.FragmentSch
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.interfaces.Callbacks;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.MainActivity;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Utils;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.validation.validatorClass;
 
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.CDB;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.CDBMap;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.DiaMap;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.Diarrhea;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.ECEB;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.ECEBMap;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.ECSB;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.ECSBMap;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.GDS;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.GDSMap;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.HBB;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.PSBI;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.PSBIMap;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.childModule;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.maternalMap;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.maternalModule;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.modulesCode;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.newBornModule;
 
 public class ScheduleFragment extends Fragment {
@@ -53,6 +59,7 @@ public class ScheduleFragment extends Fragment {
     View view;
     DatabaseHelper db;
     Callbacks callbacks;
+    String moduleCode, sessionCode;
 
     public ScheduleFragment() {
         // Required empty public constructor
@@ -141,12 +148,9 @@ public class ScheduleFragment extends Fragment {
         MainApp.nmc.setDate(bi.date.getText().toString());
         MainApp.nmc.setTime(bi.time.getText().toString());
         MainApp.nmc.setDoctorName(MainApp.providerName);
-        MainApp.nmc.setModule(bi.modules.getSelectedItem().toString());
-        if (bi.modules.getSelectedItemPosition() == 1) {
-            MainApp.nmc.setSubModule(bi.subModules.getSelectedItem().toString());
-        }
-        MainApp.nmc.setSession(bi.sessions.getSelectedItem().toString());
-        MainApp.nmc.setDoBooking(MainApp.getCurrentTime()); // Timestamp is converted to date above
+        MainApp.nmc.setModule(moduleCode);
+
+        MainApp.nmc.setSession(sessionCode);
         MainApp.nmc.setBookBy(MainApp.userName);
         MainApp.nmc.setBookingtype(bi.bookingType.getSelectedItem().toString());
         MainApp.nmc.setFormdate(new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime()));
@@ -227,6 +231,7 @@ public class ScheduleFragment extends Fragment {
                     subModules.clear();
                     subModules.add("-Select Sub Module-");
                     selectModule(position);
+                    moduleCode = modulesCode[position];
                 }
 
             }
@@ -266,11 +271,22 @@ public class ScheduleFragment extends Fragment {
 
                 break;
             case 2:
-
                 sessions.addAll(Arrays.asList(maternalModule));
                 bi.subModules.setSelection(0);
                 bi.fldGrpSubModule.setVisibility(View.GONE);
                 bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, sessions));
+                bi.sessions.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                        sessionCode = maternalMap.get(bi.sessions.getSelectedItem().toString());
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
                 break;
 
             case 3:
@@ -309,6 +325,7 @@ public class ScheduleFragment extends Fragment {
                 case 1:
                     sessions.addAll(Arrays.asList(GDS));
                     bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, sessions));
+
                     break;
 
                 case 2:
@@ -317,22 +334,19 @@ public class ScheduleFragment extends Fragment {
                     break;
 
                 case 3:
-
                     sessions.addAll(Arrays.asList(Diarrhea));
                     bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, sessions));
                     break;
 
                 case 4:
-
-
                     sessions.addAll(Arrays.asList(PSBI));
                     bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, sessions));
                     break;
             }
+
         } else if (type.equals("newBorn")) {
             switch (position) {
                 case 1:
-
                     sessions.addAll(Arrays.asList(ECEB));
                     bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, sessions));
                     break;
@@ -349,6 +363,47 @@ public class ScheduleFragment extends Fragment {
 
             }
         }
+        AdapterView.OnItemSelectedListener listener = new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int selectedItem, long id) {
+                if (type.equals("child")) {
+                    switch (position) {
+                        case 1:
+                            sessionCode = GDSMap.get(bi.sessions.getSelectedItem().toString());
+                            break;
+                        case 2:
+                            sessionCode = CDBMap.get(bi.sessions.getSelectedItem().toString());
+                            break;
+                        case 3:
+                            sessionCode = DiaMap.get(bi.sessions.getSelectedItem().toString());
+                            break;
+                        case 4:
+                            sessionCode = PSBIMap.get(bi.sessions.getSelectedItem().toString());
+                            break;
+                    }
+                } else if (type.equals("newBorn")) {
+                    switch (position) {
+                        case 1:
+                            sessionCode = ECEBMap.get(bi.sessions.getSelectedItem().toString());
+                            break;
+                        case 2:
+                            sessionCode = ECSBMap.get(bi.sessions.getSelectedItem().toString());
+                            break;
+                        case 3:
+                            sessionCode = "30301";
+                            break;
+
+                    }
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        };
+
+        bi.sessions.setOnItemSelectedListener(listener);
 
 
     }

@@ -10,7 +10,7 @@ public class RetrofitClient {
 
     public static Retrofit retrofit;
     public static API service;
-    private static String baseURL = "http://f38158/uen/api/";
+    private static String baseURL = "http://f38158/uen_ad/api/";
 
     public static void createRetrofitInstance() {
 

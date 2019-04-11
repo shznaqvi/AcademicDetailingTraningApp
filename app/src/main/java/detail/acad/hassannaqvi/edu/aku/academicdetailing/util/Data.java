@@ -34,13 +34,43 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.ViewPagerActivity;
 
 public final class Data {
     public static final String[] modules = new String[]{"Child Health", "Maternal Health", "New Born Health"};
+    public static final String[] modulesCode = new String[]{"0", "1", "2", "3"};
     public static final String[] childModule = new String[]{"General Danger Sign", "Cough & Difficult Breathing", "Diarrhoea", "PSBI"};
     public static final String[] GDS = new String[]{"GDS(Assessment and Classification)", "GDS(Management, Counseling and Referral)"};
+    public static final HashMap<String, String> GDSMap = new HashMap<String, String>() {{
+        put("GDS(Assessment and Classification)", "10101");
+        put("GDS(Management, Counseling and Referral)", "10102");
+    }};
     public static final String[] CDB = new String[]{"CDB(Assessment and Classification)", "CDB(Management, Counseling and Referral)"};
+    public static final HashMap<String, String> CDBMap = new HashMap<String, String>() {{
+        put("CDB(Assessment and Classification)", "10201");
+        put("CDB(Management, Counseling and Referral)", "10202");
+    }};
     public static final String[] Diarrhea = new String[]{"Dia(Assessment and Classification)", "Dia(Management, Counseling and Referral)"};
+    public static final HashMap<String, String> DiaMap = new HashMap<String, String>() {{
+        put("Dia(Assessment and Classification)", "10301");
+        put("Dia(Management, Counseling and Referral)", "10302");
+    }};
     public static final String[] PSBI = new String[]{"PSBI(Assessment and Classification)", "PSBI(Management, Counseling and Referral)", "PSBI(Breast Feeding & Immunization)"};
+    public static final String[] PSBI_Code = new String[]{"10401", "10402", "10403"};
+    public static final HashMap<String, String> PSBIMap = new HashMap<String, String>() {{
+        put("PSBI(Assessment and Classification)", "10401");
+        put("PSBI(Management, Counseling and Referral)", "10402");
+        put("PSBI(Breast Feeding & Immunization)", "10403");
+    }};
     public static final String[] maternalModule = new String[]{"Focused Antenatal Care", "Vaginal Bleeding in Pregnancy",
             "Partograph", "Pre Eclampsia & Eclampsia", "Postpartum Hemorrhage - 1", "Postpartum Hemorrhage - 2", "Assessment and management of Shock", "Puerperal Sepsis"};
+
+    public static final HashMap<String, String> maternalMap = new HashMap<String, String>() {{
+        put("Focused Antenatal Care", "20101");
+        put("Vaginal Bleeding in Pregnancy", "20201");
+        put("Partograph", "20301");
+        put("Pre Eclampsia & Eclampsia", "20401");
+        put("Postpartum Hemorrhage - 1", "20501");
+        put("Postpartum Hemorrhage - 2", "20502");
+        put("Assessment and management of Shock", "20601");
+        put("Puerperal Sepsis", "20701");
+    }};
 
     public static final String[] newBornModule =
             new String[]{
@@ -57,7 +87,17 @@ public final class Data {
     public static final String[] newbornVideos = MainApp.mergeArrays(cdb_videos, dia_videos, gds_videos, psbi_videos);
 
     public static final String[] ECEB = new String[]{"ECEB(Session One)", "ECEB(Session Two)"};
+    public static final HashMap<String, String> ECEBMap = new HashMap<String, String>() {{
+        put("ECEB(Session One)", "30101");
+        put("ECEB(Session Two)", "30102");
+
+    }};
     public static final String[] ECSB = new String[]{"ECSB(Session One)", "ECSB(Session Two)"};
+    public static final HashMap<String, String> ECSBMap = new HashMap<String, String>() {{
+        put("ECSB(Session One)", "30201");
+        put("ECSB(Session Two)", "30202");
+
+    }};
     public static final String[] HBB = new String[]{"Helping Babies Breathe"};
     public static Map<String, SubMenu[]> newMenuModule;
 

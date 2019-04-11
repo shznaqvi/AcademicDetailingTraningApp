@@ -209,7 +209,7 @@ public class InfoFragment extends Fragment {
         MainApp.fc.setDeviceID(MainApp.deviceId);
         MainApp.fc.setFormDate(new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime()));
 
-        MainApp.fc.setProviderID(String.valueOf(hp_code));
+        MainApp.fc.setProviderID(bi.providerId.getText().toString());
         MainApp.fc.setProviderName(bi.hpName.getText().toString());
         MainApp.fc.setHealthFacilityName(bi.hfName.getText().toString());
         MainApp.fc.setDistrictID(String.valueOf(MainApp.dContract.getDICTRICT_CODE()));

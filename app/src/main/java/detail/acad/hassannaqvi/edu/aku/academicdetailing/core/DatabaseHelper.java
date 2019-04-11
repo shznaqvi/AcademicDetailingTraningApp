@@ -140,12 +140,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + NMCTable.COLUMN_LNG + " TEXT, "
             + NMCTable.COLUMN_GPSTIME + " TEXT, "
             + NMCTable.COLUMN_BTYPE + " TEXT, "
-            + NMCTable.COLUMN_BOOK_DATE + " TEXT, "
             + NMCTable.COLUMN_BOOKBY + " TEXT, "
             + NMCTable.COLUMN_DATE + " TEXT, "
             + NMCTable.COLUMN_TIME + " TEXT, "
             + NMCTable.COLUMN_MODULE_CODE + " TEXT, "
-            + NMCTable.COLUMN_SUBMOD_CODE + " TEXT, "
             + NMCTable.COLUMN_SESSION_CODE + " TEXT, "
             + NMCTable.COLUMN_SYNCED + " TEXT, "
             + NMCTable.COLUMN_SYNCED_DATE + " TEXT " + ");";
@@ -360,11 +358,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 NMCTable.COLUMN_DATE,
                 NMCTable.COLUMN_TIME,
                 NMCTable.COLUMN_MODULE_CODE,
-                NMCTable.COLUMN_SUBMOD_CODE,
                 NMCTable.COLUMN_SESSION_CODE,
                 NMCTable.COLUMN_LAT,
                 NMCTable.COLUMN_LNG,
-                NMCTable.COLUMN_BOOK_DATE,
                 NMCTable.COLUMN_BOOKBY,
                 NMCTable.COLUMN_GPSTIME,
                 NMCTable.COLUMN_BTYPE,
@@ -426,20 +422,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             JSONArray jsonArray = userlist;
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObjectUser = jsonArray.getJSONObject(i);
+                if (jsonObjectUser != null) {
 
-                UsersContract usersContract = new UsersContract();
-                usersContract.Sync(jsonObjectUser);
+                    UsersContract usersContract = new UsersContract();
+                    usersContract.Sync(jsonObjectUser);
 
-                ContentValues values = new ContentValues();
+                    ContentValues values = new ContentValues();
 
-                values.put(UsersTable.ROW_USERNAME, usersContract.getUserName());
-                values.put(UsersTable.ROW_PASSWORD, usersContract.getPassword());
-                values.put(UsersTable.DISTRICT_CODE, usersContract.getDICTRICT_CODE());
-                db.insert(UsersTable.TABLE_NAME, null, values);
+                    values.put(UsersTable.ROW_USERNAME, usersContract.getUserName());
+                    values.put(UsersTable.ROW_PASSWORD, usersContract.getPassword());
+                    values.put(UsersTable.DISTRICT_CODE, usersContract.getDICTRICT_CODE());
+                    db.insert(UsersTable.TABLE_NAME, null, values);
+                }
+
             }
             db.close();
 
         } catch (Exception e) {
+
+            e.printStackTrace();
         }
     }
 
@@ -524,9 +525,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 db.insert(DistrictTable.TABLE_NAME, null, values);
             }
             db.close();
-
             delegate.downloded(true);
-
         } catch (Exception e) {
             delegate.downloded(false);
         }
@@ -1062,9 +1061,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(NMCTable.COLUMN_DATE, MainApp.nmc.getDate());
         values.put(NMCTable.COLUMN_TIME, MainApp.nmc.getTime());
         values.put(NMCTable.COLUMN_MODULE_CODE, MainApp.nmc.getModule());
-        values.put(NMCTable.COLUMN_SUBMOD_CODE, MainApp.nmc.getSubModule());
         values.put(NMCTable.COLUMN_SESSION_CODE, MainApp.nmc.getSession());
-        values.put(NMCTable.COLUMN_BOOK_DATE, MainApp.nmc.getDoBooking());
         values.put(NMCTable.COLUMN_BOOKBY, MainApp.nmc.getBookBy());
         values.put(NMCTable.COLUMN_DEVICEID, MainApp.deviceId);
         values.put(NMCTable.COLUMN_LAT, MainApp.nmc.getLat());

@@ -78,7 +78,7 @@ public class MainFragment extends Fragment {
         bi.uploadData.setOnClickListener(v -> {
 
             callbacks.uploadDataToServer();
-            Toast.makeText(getContext(), "Under Development", Toast.LENGTH_SHORT).show();
+
         });
 
         bi.downloadVideo.setOnClickListener(v -> callbacks.downloadData());

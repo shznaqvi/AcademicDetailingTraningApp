@@ -18,7 +18,7 @@ public class FormsContract implements Parcelable {
     private String surveyType = "BL";
     private String _id = "";
     private String _UID = "";
-    private String formdate = ""; // Date
+    private String formDate = ""; // Date
     private String user = ""; // Interviewer 01
     private String istatus = ""; // Interview Status
     private String istatus88x = ""; // Interview Status
@@ -35,7 +35,7 @@ public class FormsContract implements Parcelable {
     private String gpsDT = "";
     private String gpsAcc = "";
     private String gpsElev = "";
-    private String deviceid = "";
+    private String deviceID = "";
     private String devicetagID = "";
     private String synced = "";
     private String synced_date = "";
@@ -62,7 +62,7 @@ public class FormsContract implements Parcelable {
         surveyType = in.readString();
         _id = in.readString();
         _UID = in.readString();
-        formdate = in.readString();
+        formDate = in.readString();
         user = in.readString();
         istatus = in.readString();
         istatus88x = in.readString();
@@ -79,7 +79,7 @@ public class FormsContract implements Parcelable {
         gpsDT = in.readString();
         gpsAcc = in.readString();
         gpsElev = in.readString();
-        deviceid = in.readString();
+        deviceID = in.readString();
         devicetagID = in.readString();
         synced = in.readString();
         synced_date = in.readString();
@@ -372,7 +372,7 @@ public class FormsContract implements Parcelable {
         this.surveyType = jsonObject.getString(FormsTable.COLUMN_SURVEYTYPE);
         this._id = jsonObject.getString(FormsTable.COLUMN_ID);
         this._UID = jsonObject.getString(FormsTable.COLUMN_UID);
-        this.formdate = jsonObject.getString(FormsTable.COLUMN_FORMDATE);
+        this.formDate = jsonObject.getString(FormsTable.COLUMN_FORMDATE);
         this.user = jsonObject.getString(FormsTable.COLUMN_USER);
         this.istatus = jsonObject.getString(FormsTable.COLUMN_ISTATUS);
         this.istatus88x = jsonObject.getString(FormsTable.COLUMN_ISTATUS88X);
@@ -382,7 +382,7 @@ public class FormsContract implements Parcelable {
         this.gpsDT = jsonObject.getString(FormsTable.COLUMN_GPSDT);
         this.gpsAcc = jsonObject.getString(FormsTable.COLUMN_GPSACC);
         this.gpsElev = jsonObject.getString(FormsTable.COLUMN_GPSELEV);
-        this.deviceid = jsonObject.getString(FormsTable.COLUMN_DEVICEID);
+        this.deviceID = jsonObject.getString(FormsTable.COLUMN_DEVICEID);
         this.devicetagID = jsonObject.getString(FormsTable.COLUMN_DEVICETAGID);
         this.synced = jsonObject.getString(FormsTable.COLUMN_SYNCED);
         this.synced_date = jsonObject.getString(FormsTable.COLUMN_SYNCED_DATE);
@@ -409,7 +409,7 @@ public class FormsContract implements Parcelable {
         this.gpsLng = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_GPSLNG));
         this.gpsAcc = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_GPSACC));
         this.gpsTime = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_GPSTIME));
-        this.deviceid = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_DEVICEID));
+        this.deviceID = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_DEVICEID));
         this.appversion = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_APPVERSION));
         this.districtID = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_DIST_ID));
         this.healthFacilityName = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_HFACILITY_NAME));
@@ -426,7 +426,7 @@ public class FormsContract implements Parcelable {
         this.synced = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SYNCED));
         this.synced_date = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SYNCED_DATE));
         this.logginTime = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_loggin_TIME));
-        this.formdate = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_FORMDATE));
+        this.formDate = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_FORMDATE));
 
         return this;
 
@@ -447,7 +447,7 @@ public class FormsContract implements Parcelable {
         json.put(FormsTable.COLUMN_GPSLNG, this.gpsLng == null ? JSONObject.NULL : this.gpsLng);
         json.put(FormsTable.COLUMN_GPSACC, this.gpsAcc == null ? JSONObject.NULL : this.gpsAcc);
         json.put(FormsTable.COLUMN_GPSTIME, this.gpsTime == null ? JSONObject.NULL : this.gpsTime);
-        json.put(FormsTable.COLUMN_DEVICEID, this.deviceid == null ? JSONObject.NULL : this.deviceid);
+        json.put(FormsTable.COLUMN_DEVICEID, this.deviceID == null ? JSONObject.NULL : this.deviceID);
         json.put(FormsTable.COLUMN_APPVERSION, this.appversion == null ? JSONObject.NULL : this.appversion);
         json.put(FormsTable.COLUMN_DIST_ID, this.districtID == null ? JSONObject.NULL : this.districtID);
         json.put(FormsTable.COLUMN_HFACILITY_NAME, this.healthFacilityName == null ? JSONObject.NULL : this.healthFacilityName);
@@ -476,7 +476,7 @@ public class FormsContract implements Parcelable {
         json.put(FormsTable.COLUMN_SYNCED_DATE, this.synced_date == null ? JSONObject.NULL : this.synced_date);
         json.put(FormsTable.COLUMN_loggin_TIME, this.logginTime == null ? JSONObject.NULL : this.logginTime);
         json.put(FormsTable._ID, this._id == null ? JSONObject.NULL : this._id);
-        json.put(FormsTable.COLUMN_FORMDATE, this.formdate == null ? JSONObject.NULL : this.formdate);
+        json.put(FormsTable.COLUMN_FORMDATE, this.formDate == null ? JSONObject.NULL : this.formDate);
         return json;
     }
 
@@ -529,11 +529,11 @@ public class FormsContract implements Parcelable {
     }
 
     public String getFormDate() {
-        return formdate;
+        return formDate;
     }
 
     public void setFormDate(String formDate) {
-        this.formdate = formDate;
+        this.formDate = formDate;
     }
 
     public String getIstatus() {
@@ -601,11 +601,11 @@ public class FormsContract implements Parcelable {
     }
 
     public String getDeviceID() {
-        return deviceid;
+        return deviceID;
     }
 
     public void setDeviceID(String deviceID) {
-        this.deviceid = deviceID;
+        this.deviceID = deviceID;
     }
 
     public String getDevicetagID() {
@@ -651,7 +651,7 @@ public class FormsContract implements Parcelable {
         dest.writeString(surveyType);
         dest.writeString(_id);
         dest.writeString(_UID);
-        dest.writeString(formdate);
+        dest.writeString(formDate);
         dest.writeString(user);
         dest.writeString(istatus);
         dest.writeString(istatus88x);
@@ -668,7 +668,7 @@ public class FormsContract implements Parcelable {
         dest.writeString(gpsDT);
         dest.writeString(gpsAcc);
         dest.writeString(gpsElev);
-        dest.writeString(deviceid);
+        dest.writeString(deviceID);
         dest.writeString(devicetagID);
         dest.writeString(synced);
         dest.writeString(synced_date);
@@ -704,7 +704,7 @@ public class FormsContract implements Parcelable {
         public static final String COLUMN_SURVEYTYPE = "surveytype";
         public static final String COLUMN_ID = "_id";
         public static final String COLUMN_UID = "_uid";
-        public static final String COLUMN_FORMDATE = "formdate";
+        public static final String COLUMN_FORMDATE = "formDate";
         public static final String COLUMN_USER = "user";
         public static final String COLUMN_ISTATUS = "istatus";
         public static final String COLUMN_ISTATUS88X = "istatus88x";
@@ -715,7 +715,7 @@ public class FormsContract implements Parcelable {
         public static final String COLUMN_GPSACC = "gpsacc";
         public static final String COLUMN_GPSTIME = "gps_time";
         public static final String COLUMN_GPSELEV = "gpselev";
-        public static final String COLUMN_DEVICEID = "deviceid";
+        public static final String COLUMN_DEVICEID = "deviceID";
         public static final String COLUMN_DEVICETAGID = "devicetagid";
         public static final String COLUMN_SYNCED = "synced";
         public static final String COLUMN_SYNCED_DATE = "synced_date";

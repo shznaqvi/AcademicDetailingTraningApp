@@ -43,11 +43,9 @@ public class NextMeetingContract {
         json.put(NMCTable.COLUMN_DATE, this.date == null ? JSONObject.NULL : this.date);
         json.put(NMCTable.COLUMN_TIME, this.time == null ? JSONObject.NULL : this.time);
         json.put(NMCTable.COLUMN_MODULE_CODE, this.module == null ? JSONObject.NULL : this.module);
-        json.put(NMCTable.COLUMN_SUBMOD_CODE, this.subModule == null ? JSONObject.NULL : this.subModule);
         json.put(NMCTable.COLUMN_SESSION_CODE, this.session == null ? JSONObject.NULL : this.session);
         json.put(NMCTable.COLUMN_LAT, this.lat == null ? JSONObject.NULL : this.lat);
         json.put(NMCTable.COLUMN_LNG, this.lng == null ? JSONObject.NULL : this.lng);
-        json.put(NMCTable.COLUMN_BOOK_DATE, this.doBooking == null ? JSONObject.NULL : this.doBooking);
         json.put(NMCTable.COLUMN_BOOKBY, this.bookBy == null ? JSONObject.NULL : this.bookBy);
         json.put(NMCTable.COLUMN_GPSTIME, this.gpsTime == null ? JSONObject.NULL : this.gpsTime);
         json.put(NMCTable.COLUMN_BTYPE, this.bookingtype == null ? JSONObject.NULL : this.bookingtype);
@@ -66,11 +64,9 @@ public class NextMeetingContract {
         this.module = cursor.getString(cursor.getColumnIndex(NMCTable.COLUMN_MODULE_CODE));
         this.date = cursor.getString(cursor.getColumnIndex(NMCTable.COLUMN_DATE));
         this.time = cursor.getString(cursor.getColumnIndex(NMCTable.COLUMN_TIME));
-        this.subModule = cursor.getString(cursor.getColumnIndex(NMCTable.COLUMN_SUBMOD_CODE));
         this.session = cursor.getString(cursor.getColumnIndex(NMCTable.COLUMN_SESSION_CODE));
         this.lat = cursor.getString(cursor.getColumnIndex(NMCTable.COLUMN_LAT));
         this.lng = cursor.getString(cursor.getColumnIndex(NMCTable.COLUMN_LNG));
-        this.doBooking = cursor.getString(cursor.getColumnIndex(NMCTable.COLUMN_BOOK_DATE));
         this.bookBy = cursor.getString(cursor.getColumnIndex(NMCTable.COLUMN_BOOKBY));
         this.gpsTime = cursor.getString(cursor.getColumnIndex(NMCTable.COLUMN_GPSTIME));
         this.bookingtype = cursor.getString(cursor.getColumnIndex(NMCTable.COLUMN_BTYPE));
@@ -191,7 +187,6 @@ public class NextMeetingContract {
         this.date = jsonObject.getString(NMCTable.COLUMN_DATE);
         this.time = jsonObject.getString(NMCTable.COLUMN_TIME);
         this.module = jsonObject.getString(NMCTable.COLUMN_MODULE_CODE);
-        this.subModule = jsonObject.getString(NMCTable.COLUMN_SUBMOD_CODE);
         this.session = jsonObject.getString(NMCTable.COLUMN_SESSION_CODE);
         this.formdate = jsonObject.getString(NMCTable.COLUMN_FORMDATE);
         this.deviceid = jsonObject.getString(NMCTable.COLUMN_DEVICEID);
@@ -262,12 +257,10 @@ public class NextMeetingContract {
         public static final String COLUMN_DATE = "date";
         public static final String COLUMN_TIME = "time";
         public static final String COLUMN_MODULE_CODE = "module_code";
-        public static final String COLUMN_SUBMOD_CODE = "sub_module_code";
         public static final String COLUMN_SESSION_CODE = "session_code";
         public static final String COLUMN_LAT = "lat";
         public static final String COLUMN_LNG = "lng";
         public static final String COLUMN_BTYPE= "book_type";
-        public static final String COLUMN_BOOK_DATE= "book_date";
         public static final String COLUMN_DEVICEID= "deviceid";
         public static final String COLUMN_BOOKBY= "booking_by";
         public static final String COLUMN_GPSTIME= "gpsTime";

@@ -399,7 +399,10 @@ public class FormsContract implements Parcelable {
     public FormsContract Hydrate(Cursor cursor) {
 
         this.projectName = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_PROJECTNAME));
-        this._id = cursor.getString(cursor.getColumnIndex(FormsTable._ID));
+        this._id = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_ID));
+        this._UID = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_UID));
+        this.user = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_USER));
+        this.devicetagID = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_DEVICETAGID));
         this.moduleCode = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MODULE_CODE));
         this.sessionCode = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SESSION_CODE));
         this.istatus = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_ISTATUS));

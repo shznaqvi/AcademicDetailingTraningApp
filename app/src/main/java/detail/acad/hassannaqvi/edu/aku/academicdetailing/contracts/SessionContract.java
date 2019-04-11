@@ -111,6 +111,9 @@ public class SessionContract {
 
         public static final String TABLE_NAME = "sessions_table";
         public static final String _ID = "_id";
+        public static final String UID = "_uid";
+        public static final String UUID = "_uuid";
+        public static final String USER = "user";
         public static final String COLUMN_SESSION_CODE = "session_code";
         public static final String COLUMN_MODULE_CODE = "module_code";
         public static final String COLUMN_SESSION_TIME = "session_time";
@@ -119,7 +122,7 @@ public class SessionContract {
         public static final String COLUMN_SYNCED_DATE= "synced_date";
         public static final String COLUMN_FORMDATE = "formdate";
         public static final String COLUMN_DEVICEID = "deviceid";
-        public static final String session_Url = "session_table.php";
+        public static final String SESSION_URL = "session_table.php";
 
     }
 }

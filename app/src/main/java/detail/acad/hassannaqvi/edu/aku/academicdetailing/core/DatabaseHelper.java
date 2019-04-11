@@ -232,6 +232,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 FormsTable.COLUMN_PROJECTNAME,
                 FormsTable.COLUMN_MODULE_CODE,
                 FormsTable._ID,
+                FormsTable.COLUMN_USER,
                 FormsTable.COLUMN_FORMDATE,
                 FormsTable.COLUMN_SESSION_CODE,
                 FormsTable.COLUMN_ISTATUS,

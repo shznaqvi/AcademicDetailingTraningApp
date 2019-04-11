@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 "Sessions ",
                 "updateSyncedSessionForms",
                 SessionContract.class,
-                MainApp._HOST_URL + SessionContract.SessionTable.session_Url,
+                MainApp._HOST_URL + SessionContract.SessionTable.SESSION_URL,
                 db.getUnsyncedSessions()
         ).execute();
 

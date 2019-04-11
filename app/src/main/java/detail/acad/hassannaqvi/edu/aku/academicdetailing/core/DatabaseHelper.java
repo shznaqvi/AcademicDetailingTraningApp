@@ -169,7 +169,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
 
         // Data download
-        if (context.getClass().equals(LoginActivity.class.getName()))
+        if (context.getClass().getName().equals(LoginActivity.class.getName()))
             delegate = (DataDownload) context;
 
     }

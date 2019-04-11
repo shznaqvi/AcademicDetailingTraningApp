@@ -71,7 +71,6 @@ public class SessionContract {
         this.formdate = cursor.getString(cursor.getColumnIndex(SessionTable.COLUMN_FORMDATE));
         this.deviceid = cursor.getString(cursor.getColumnIndex(SessionTable.COLUMN_DEVICEID));
 
-
         return this;
 
     }

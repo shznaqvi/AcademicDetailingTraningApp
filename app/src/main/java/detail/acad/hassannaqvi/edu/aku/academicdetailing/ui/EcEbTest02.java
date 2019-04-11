@@ -36,7 +36,6 @@ public class EcEbTest02 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         bi = DataBindingUtil.setContentView(this, R.layout.activity_ec_eb_test02);
         bi.setCallback(this);
-
         setupViews();
 
     }
@@ -143,7 +142,7 @@ public class EcEbTest02 extends AppCompatActivity {
 
         if (type.equals("pre")) {
             MainApp.fc.setPreTestEndTime(MainApp.getCurrentTime());
-            JSONObject json = GeneratorClass.getContainerJSON(bi.llecebB, true, type);
+            JSONObject json = GeneratorClass.getContainerJSON(bi.llecebB, true, type+"");
             MainApp.fc.setPre_test(String.valueOf(json));
             Data.pretestAnswers = GeneratorClass.getAnswers(bi.llecebB, true);
         } else {

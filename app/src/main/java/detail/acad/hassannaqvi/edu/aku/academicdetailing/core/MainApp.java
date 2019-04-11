@@ -106,6 +106,7 @@ public class MainApp extends Application {
     public static boolean isComplete = false;
     public static String type = "";
     public static int[] slides;
+    public static String formsUID = "";
     public static DistrictsContract dContract;
 
 

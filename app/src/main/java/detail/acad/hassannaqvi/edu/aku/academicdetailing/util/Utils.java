@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.LayoutInflater;
@@ -19,6 +20,7 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.EndingActivity;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.PlayerActivity;
 
+import static android.content.Context.MODE_PRIVATE;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.CONSTANTS.URI_DIRECT_VIEWPAGER;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.CONSTANTS.URI_FORM_TYPE;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.CONSTANTS.URI_SUBMENU_DT;
@@ -64,11 +66,15 @@ public class Utils {
     }
 
     public static void savingDataIntoDB(Context context, FormsContract fc) {
+        SharedPreferences sharedPref = context.getSharedPreferences("tagName", MODE_PRIVATE);
+        MainApp.fc.setDevicetagID(sharedPref.getString("tagName", null));
+        MainApp.fc.setUser(MainApp.userName);
         DatabaseHelper db = new DatabaseHelper(context);
         long rowId = db.addForm(fc);
         if (rowId > 0) {
             fc.set_ID(String.valueOf(rowId));
             fc.setUID((fc.getDeviceID() + fc.get_ID()));
+            MainApp.formsUID = fc.getDeviceID() + fc.get_ID();
             db.updateFormID(fc);
         }
     }

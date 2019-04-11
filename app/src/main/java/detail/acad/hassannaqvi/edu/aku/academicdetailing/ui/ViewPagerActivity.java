@@ -1,5 +1,6 @@
 package detail.acad.hassannaqvi.edu.aku.academicdetailing.ui;
 
+import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,13 +16,13 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.adapters.Adapter;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.SessionContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.CONSTANTS;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityViewPagerBinding;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Utils;
 
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.isComplete;
-import static detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.LoginActivity.db;
 
 //import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.slides;
 
@@ -37,12 +38,14 @@ public class ViewPagerActivity extends AppCompatActivity {
 
     boolean viewPagerFlag = false;
 
+    DatabaseHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         bi = DataBindingUtil.setContentView(this, R.layout.activity_view_pager);
 
+        db = new DatabaseHelper(this);
         subMenuDT = (Data.SubMenu) getIntent().getSerializableExtra(CONSTANTS.URI_SUBMENU_DT);
 
 
@@ -147,6 +150,7 @@ public class ViewPagerActivity extends AppCompatActivity {
 
     private void saveDB() {
 
+        SharedPreferences sharedPref = getSharedPreferences("tagName", MODE_PRIVATE);
         SessionContract sC = new SessionContract();
         sC.setModule(subMenuDT.getModuleCode());
         sC.setSession(subMenuDT.getSessionCode());
@@ -154,7 +158,16 @@ public class ViewPagerActivity extends AppCompatActivity {
         sC.setDeviceid(MainApp.deviceId);
         sC.setFormdate(new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime()));
         sC.setSessionTime(MainApp.getCurrentTime());
-        db.addSessionData(sC);
+        sC.set_UUID(MainApp.formsUID);
+        sC.setDevicetagID(sharedPref.getString("tagName", null));
+        sC.setUser(MainApp.userName);
+
+        long rowId = db.addSessionData(sC);
+        if (rowId > 0) {
+            sC.set_id(String.valueOf(rowId));
+            sC.set_UID((sC.getDeviceid() + sC.get_id()));
+            db.updateSessionFormID(sC);
+        }
     }
 
 

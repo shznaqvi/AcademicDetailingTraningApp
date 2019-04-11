@@ -23,6 +23,10 @@ public class NextMeetingContract {
     public String _id;
     public String synced;
     public String synced_date;
+
+    private String _UID = "";
+    private String user = "";
+
     private String formdate = ""; // Date
     private String deviceid = "";
 
@@ -30,8 +34,39 @@ public class NextMeetingContract {
     private String hf_name = "";
     private String hp_name = "";
     private long hp_code = 0;
+    private String devicetagID = "";
 
+    public String get_id() {
+        return _id;
+    }
 
+    public void set_id(String _id) {
+        this._id = _id;
+    }
+
+    public String get_UID() {
+        return _UID;
+    }
+
+    public void set_UID(String _UID) {
+        this._UID = _UID;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public String getDevicetagID() {
+        return devicetagID;
+    }
+
+    public void setDevicetagID(String devicetagID) {
+        this.devicetagID = devicetagID;
+    }
 
     public JSONObject toJSONObject() throws JSONException {
 
@@ -55,6 +90,9 @@ public class NextMeetingContract {
         json.put(NMCTable.COLUMN_HF_NAME, this.hf_name == null ? JSONObject.NULL : this.hf_name);
         json.put(NMCTable.COLUMN_HP_NAME, this.hp_name == null ? JSONObject.NULL : this.hp_name);
         json.put(NMCTable.COLUMN_HP_CODE, this.hp_code == 0 ? JSONObject.NULL : this.hp_code);
+        json.put(NMCTable.COLUMN_USER, this.user == null ? JSONObject.NULL : this.user);
+        json.put(NMCTable.COLUMN_DEVICETAGID, this.devicetagID == null ? JSONObject.NULL : this.devicetagID);
+        json.put(NMCTable.COLUMN_UID, this._UID == null ? JSONObject.NULL : this._UID);
 
         return json;
     }
@@ -80,6 +118,9 @@ public class NextMeetingContract {
         this.hf_name = cursor.getString(cursor.getColumnIndex(NMCTable.COLUMN_HF_NAME));
         this.hp_name = cursor.getString(cursor.getColumnIndex(NMCTable.COLUMN_HP_NAME));
         this.hp_code = cursor.getLong(cursor.getColumnIndex(NMCTable.COLUMN_HP_CODE));
+        this.user = cursor.getString(cursor.getColumnIndex(NMCTable.COLUMN_USER));
+        this._UID = cursor.getString(cursor.getColumnIndex(NMCTable.COLUMN_UID));
+        this.devicetagID = cursor.getString(cursor.getColumnIndex(NMCTable.COLUMN_DEVICETAGID));
 
 
         return this;
@@ -267,6 +308,9 @@ public class NextMeetingContract {
         public static final String COLUMN_SYNCED= "synced";
         public static final String COLUMN_SYNCED_DATE= "synced_date";
         public static final String COLUMN_FORMDATE = "formdate";
+        public static final String COLUMN_UID = "_uid";
+        public static final String COLUMN_USER = "user";
+        public static final String COLUMN_DEVICETAGID = "devicetagid";
 
         public static final String nms_Url = "next_meeting.php";
 

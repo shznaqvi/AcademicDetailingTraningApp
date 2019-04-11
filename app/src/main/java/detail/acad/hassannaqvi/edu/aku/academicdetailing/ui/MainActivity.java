@@ -80,8 +80,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         loadHomeFragment();
 
-        if (sharedPref.getString("tagName", null) != ""
-                && sharedPref.getString("tagName", null) != null && !MainApp.userName.equals("0000")) {
+        loadTagDialog();
+
+
+
+    }
+
+    private void loadTagDialog() {
+
+        sharedPref = getSharedPreferences("tagName", MODE_PRIVATE);
+        editor = sharedPref.edit();
+        if (!sharedPref.contains("tagName") && sharedPref.getString("tagName",null) == null) {
 
             builder = new AlertDialog.Builder(MainActivity.this);
             ImageView img = new ImageView(getApplicationContext());
@@ -114,7 +123,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             builder.show();
         }
-
 
     }
 

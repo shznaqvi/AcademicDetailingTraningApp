@@ -30,6 +30,7 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.MainActivity;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.validation.validatorClass;
 
+import static android.content.Context.MODE_PRIVATE;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.CDB;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.CDBMap;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.DiaMap;
@@ -61,6 +62,7 @@ public class ScheduleFragment extends Fragment {
     Callbacks callbacks;
     String moduleCode, sessionCode;
 
+
     public ScheduleFragment() {
         // Required empty public constructor
     }
@@ -74,7 +76,7 @@ public class ScheduleFragment extends Fragment {
 
         db = new DatabaseHelper(getContext());
         view = bi.getRoot();
-
+        MainApp.nmc = new NextMeetingContract();
         bi.doctorName.setText(MainApp.providerName);
         modules = new ArrayList<>();
         subModules = new ArrayList<>();
@@ -129,6 +131,11 @@ public class ScheduleFragment extends Fragment {
         DatabaseHelper db = new DatabaseHelper(getContext());
         long count = db.updateNMS();
         if (count != -1) {
+            if (count > 0) {
+                MainApp.nmc.set_id(String.valueOf(count));
+                MainApp.nmc.set_UID((MainApp.nmc.getDeviceid() + MainApp.nmc.get_id()));
+                db.updateNMCFormID(MainApp.nmc);
+            }
             return true;
         } else {
             Toast.makeText(getContext(), "Error in updating DB", Toast.LENGTH_SHORT).show();
@@ -140,9 +147,8 @@ public class ScheduleFragment extends Fragment {
 
 
     private void saveDraft() {
+        SharedPreferences sharedPref = getContext().getSharedPreferences("tagName", MODE_PRIVATE);
 
-
-        MainApp.nmc = new NextMeetingContract();
         MainApp.nmc.setDate(bi.date.getText().toString());
         MainApp.nmc.setTime(bi.time.getText().toString());
         MainApp.nmc.setDoctorName(MainApp.providerName);
@@ -152,11 +158,16 @@ public class ScheduleFragment extends Fragment {
         MainApp.nmc.setBookBy(MainApp.userName);
         MainApp.nmc.setBookingtype(bi.bookingType.getSelectedItemPosition() == 0 ? "0" : "1");
         MainApp.nmc.setFormdate(new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime()));
+        MainApp.nmc.setDeviceid(MainApp.deviceId);
 
         MainApp.nmc.setDist_id(Long.parseLong(MainApp.fc.getDistrictID()));
         MainApp.nmc.setHf_name(MainApp.fc.getHealthFacilityName());
         MainApp.nmc.setHp_name(MainApp.fc.getProviderName());
         MainApp.nmc.setHp_code(Long.parseLong(MainApp.fc.getProviderID()));
+        MainApp.nmc.setDevicetagID(sharedPref.getString("tagName", null));
+        MainApp.nmc.setUser(MainApp.userName);
+
+
         setGPS();
 
 

@@ -96,6 +96,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + " ( " + SessionTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + SessionTable.COLUMN_FORMDATE + " TEXT, "
             + SessionTable.COLUMN_DEVICEID + " TEXT, "
+            + SessionTable.COLUMN_USER + " TEXT, "
+            + SessionTable.COLUMN_UID + " TEXT, "
+            + SessionTable.COLUMN_DEVICETAGID + " TEXT, "
+            + SessionTable.COLUMN_UUID + " TEXT, "
             + SessionTable.COLUMN_SLIDE_NUMBER + " INTEGER,"
             + SessionTable.COLUMN_MODULE_CODE + " TEXT," + SessionTable.COLUMN_SESSION_CODE
             + " TEXT,"
@@ -131,6 +135,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String SQL_CREATE_NMS = "CREATE TABLE " + NMCTable.TABLE_NAME + "("
             + NMCTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + NMCTable.COLUMN_DEVICEID + " TEXT, "
+            + NMCTable.COLUMN_USER + " TEXT, "
+            + NMCTable.COLUMN_UID + " TEXT, "
+            + NMCTable.COLUMN_DEVICETAGID + " TEXT, "
             + NMCTable.COLUMN_LAT + " TEXT, "
             + NMCTable.COLUMN_FORMDATE + " TEXT, "
             + NMCTable.COLUMN_HF_NAME + " TEXT, "
@@ -313,7 +320,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 SessionTable.COLUMN_SYNCED,
                 SessionTable.COLUMN_SYNCED_DATE,
                 SessionTable.COLUMN_DEVICEID,
-                SessionTable.COLUMN_FORMDATE
+                SessionTable.COLUMN_FORMDATE,
+                SessionTable.COLUMN_UID,
+                SessionTable.COLUMN_UUID,
+                SessionTable.COLUMN_DEVICETAGID,
+                SessionTable.COLUMN_USER,
 
         };
         String whereClause = SessionTable.COLUMN_SYNCED + " is null OR " + SessionTable.COLUMN_SYNCED + " = '' ";
@@ -375,7 +386,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 NMCTable.COLUMN_HP_CODE,
                 NMCTable.COLUMN_HF_NAME,
                 NMCTable.COLUMN_DIST_CODE,
-                NMCTable.COLUMN_HP_NAME
+                NMCTable.COLUMN_HP_NAME,
+                NMCTable.COLUMN_UID,
+                NMCTable.COLUMN_DEVICETAGID,
+                NMCTable.COLUMN_USER,
 
         };
         String whereClause = NMCTable.COLUMN_SYNCED + " is null OR " + NMCTable.COLUMN_SYNCED + " = '' ";
@@ -718,6 +732,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(FormsTable.COLUMN_UID, fc.getUID());
 //        values.put(FormsTable._ID, fc.get_ID());
         values.put(FormsTable.COLUMN_FORMDATE, fc.getFormDate());
+        values.put(FormsTable.COLUMN_DEVICETAGID, fc.getDevicetagID());
         values.put(FormsTable.COLUMN_USER, fc.getUser());
         values.put(FormsTable.COLUMN_ISTATUS, fc.getIstatus());
         values.put(FormsTable.COLUMN_ISTATUS88X, fc.getIstatus88x());
@@ -822,6 +837,43 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String[] selectionArgs = {String.valueOf(fc.get_ID())};
 
         int count = db.update(FormsTable.TABLE_NAME,
+                values,
+                selection,
+                selectionArgs);
+        return count;
+    }
+
+    public int updateNMCFormID(NextMeetingContract nmc) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+// New value for one column
+        ContentValues values = new ContentValues();
+        values.put(NMCTable.COLUMN_UID, nmc.get_UID());
+
+// Which row to update, based on the ID
+        String selection = NMCTable._ID + " =?";
+        String[] selectionArgs = {String.valueOf(nmc.get_id())};
+
+        int count = db.update(NMCTable.TABLE_NAME,
+                values,
+                selection,
+                selectionArgs);
+        return count;
+    }
+
+    public int updateSessionFormID(SessionContract fc) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+// New value for one column
+        ContentValues values = new ContentValues();
+        values.put(SessionTable.COLUMN_UID, fc.get_UID());
+
+
+// Which row to update, based on the ID
+        String selection = SessionTable._ID + " =?";
+        String[] selectionArgs = {String.valueOf(fc.get_id())};
+
+        int count = db.update(SessionTable.TABLE_NAME,
                 values,
                 selection,
                 selectionArgs);
@@ -997,7 +1049,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return count;
     }
 
-    public void addSessionData(SessionContract sc) {
+    public Long addSessionData(SessionContract sc) {
 
         long count;
         SQLiteDatabase db = this.getWritableDatabase();
@@ -1009,9 +1061,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(SessionTable.COLUMN_SLIDE_NUMBER, sc.getSlideNumber());
         values.put(SessionTable.COLUMN_DEVICEID, sc.getDeviceid());
         values.put(SessionTable.COLUMN_FORMDATE, sc.getFormdate());
-        count = db.insert(SessionTable.TABLE_NAME, null, values);
+        values.put(SessionTable.COLUMN_DEVICETAGID, sc.getDevicetagID());
+        values.put(SessionTable.COLUMN_USER, sc.getUser());
+        values.put(SessionTable.COLUMN_UUID, sc.get_UUID());
 
-        Log.d(TAG, "addSessionData: count " + count);
+        return db.insert(SessionTable.TABLE_NAME, null, values);
+
+
     }
 
     public String getProviderName() {
@@ -1044,7 +1100,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(NMCTable.COLUMN_MODULE_CODE, MainApp.nmc.getModule());
         values.put(NMCTable.COLUMN_SESSION_CODE, MainApp.nmc.getSession());
         values.put(NMCTable.COLUMN_BOOKBY, MainApp.nmc.getBookBy());
-        values.put(NMCTable.COLUMN_DEVICEID, MainApp.deviceId);
+        values.put(NMCTable.COLUMN_DEVICEID, MainApp.nmc.getDeviceid());
+        values.put(NMCTable.COLUMN_USER, MainApp.nmc.getUser());
         values.put(NMCTable.COLUMN_LAT, MainApp.nmc.getLat());
         values.put(NMCTable.COLUMN_LNG, MainApp.nmc.getLng());
         values.put(NMCTable.COLUMN_BTYPE, MainApp.nmc.getBookingtype());
@@ -1054,6 +1111,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(NMCTable.COLUMN_HP_NAME, MainApp.nmc.getHp_name());
         values.put(NMCTable.COLUMN_HP_CODE, MainApp.nmc.getHp_code());
         values.put(NMCTable.COLUMN_DIST_CODE, MainApp.nmc.getDist_id());
+        values.put(NMCTable.COLUMN_DEVICETAGID, MainApp.nmc.getDevicetagID());
         return db.insert(NMCTable.TABLE_NAME, null, values);
 
 

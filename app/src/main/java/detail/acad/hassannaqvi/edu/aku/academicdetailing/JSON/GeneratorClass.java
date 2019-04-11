@@ -49,7 +49,6 @@ public abstract class GeneratorClass {
 
                 String assig_id = convention.length > 0 ? convention[0] : "";
 
-                assig_id += (ansIncrement > 9 ? ansIncrement : "0" + ansIncrement);
 
                 if (view instanceof CardView) {
                     for (int j = 0; j < ((CardView) view).getChildCount(); j++) {
@@ -62,6 +61,7 @@ public abstract class GeneratorClass {
 
                     RadioGroup rdp = (RadioGroup) view;
 //                    assig_id += validatorClass.getIDComponent(rdp);
+                    assig_id += (ansIncrement > 9 ? ansIncrement : "0" + ansIncrement);
                     int rdbID = rdp.getCheckedRadioButtonId();
 
                     if (rdbID != -1) {
@@ -74,56 +74,42 @@ public abstract class GeneratorClass {
 
                                 formJSON.put(assig_id, getValues(validatorClass.getIDComponent(rdb)));
 
-                                ansIncrement++;
-
                                 break;
                             }
 
                         }
                     } else {
                         formJSON.put(assig_id, "0");
-
-                        ansIncrement++;
-
                     }
+                    ansIncrement++;
                 } else if (view instanceof io.blackbox_vision.datetimepickeredittext.view.DatePickerInputEditText) {
 //                    assig_id += validatorClass.getIDComponent(view);
+                    assig_id += (ansIncrement > 9 ? ansIncrement : "0" + ansIncrement);
                     formJSON.put(assig_id, ((DatePickerInputEditText) view).getText().toString());
-
                     ansIncrement++;
-
                 } else if (view instanceof EditText) {
 //                    assig_id += validatorClass.getIDComponent(view);
+                    assig_id += (ansIncrement > 9 ? ansIncrement : "0" + ansIncrement);
                     formJSON.put(assig_id, ((EditText) view).getText().toString());
-
                     ansIncrement++;
-
                 } else if (view instanceof CheckBox) {
 //                    assig_id += validatorClass.getIDComponent(view);
+                    assig_id += (ansIncrement > 9 ? ansIncrement : "0" + ansIncrement);
                     if (((CheckBox) view).isChecked()) {
                         formJSON.put(assig_id, getValues(assig_id));
-
-                        ansIncrement++;
-
                     } else {
                         formJSON.put(assig_id, "0");
-
-                        ansIncrement++;
-
                     }
+                    ansIncrement++;
                 } else if (view instanceof Spinner) {
 //                    assig_id += validatorClass.getIDComponent(view);
+                    assig_id += (ansIncrement > 9 ? ansIncrement : "0" + ansIncrement);
                     if (((Spinner) view).getSelectedItemPosition() != 0) {
                         formJSON.put(assig_id, ((Spinner) view).getSelectedItem());
-
-                        ansIncrement++;
-
                     } else {
                         formJSON.put(assig_id, "");
-
-                        ansIncrement++;
-
                     }
+                    ansIncrement++;
                 }
 
             }

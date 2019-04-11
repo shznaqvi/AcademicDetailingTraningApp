@@ -121,7 +121,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:hint="@string/date"
-                                app:minDate="CR_DATE" />
+                                app:dateFormat="dd-MM-yyyy"
+                                app:minDate="CR_DATE"/>
 
                         </LinearLayout>
 

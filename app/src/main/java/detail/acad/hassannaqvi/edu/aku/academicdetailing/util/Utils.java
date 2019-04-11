@@ -66,7 +66,11 @@ public class Utils {
     public static void savingDataIntoDB(Context context, FormsContract fc) {
         DatabaseHelper db = new DatabaseHelper(context);
         long rowId = db.addForm(fc);
-        MainApp.fc.set_ID(String.valueOf(rowId));
+        if (rowId > 0) {
+            fc.set_ID(String.valueOf(rowId));
+            fc.setUID((fc.getDeviceID() + fc.get_ID()));
+            db.updateFormID(fc);
+        }
     }
 
     public static void showPostDialoge(final Context context, final Data.SubMenu subMenu, final int type) {

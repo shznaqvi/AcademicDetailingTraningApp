@@ -480,6 +480,9 @@ public class FormsContract implements Parcelable {
         json.put(FormsTable.COLUMN_loggin_TIME, this.logginTime == null ? JSONObject.NULL : this.logginTime);
         json.put(FormsTable._ID, this._id == null ? JSONObject.NULL : this._id);
         json.put(FormsTable.COLUMN_FORMDATE, this.formDate == null ? JSONObject.NULL : this.formDate);
+        json.put(FormsTable.COLUMN_UID, this._UID == null ? JSONObject.NULL : this._UID);
+        json.put(FormsTable.COLUMN_USER, this.user == null ? JSONObject.NULL : this.user);
+        json.put(FormsTable.COLUMN_DEVICETAGID, this.devicetagID == null ? JSONObject.NULL : this.devicetagID);
         return json;
     }
 
@@ -746,7 +749,6 @@ public class FormsContract implements Parcelable {
         public static final String COLUMN_WRONG_PRE = "wrong_pre";
         public static final String COLUMN_WRONG_POST = "wrong_post";
         public static final String Form_Url = "forms.php";
-
 
 
     }

@@ -233,6 +233,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 FormsTable.COLUMN_MODULE_CODE,
                 FormsTable._ID,
                 FormsTable.COLUMN_USER,
+                FormsTable.COLUMN_UID,
+                FormsTable.COLUMN_DEVICETAGID,
                 FormsTable.COLUMN_FORMDATE,
                 FormsTable.COLUMN_SESSION_CODE,
                 FormsTable.COLUMN_ISTATUS,
@@ -606,28 +608,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return district;
     }
 
-    public List<FormsContract> getFormsByDSS(String dssID) {
-        List<FormsContract> formList = new ArrayList<>();
-        // Select All Query
-        String selectQuery = "SELECT  * FROM " + FormsTable.TABLE_NAME;
-
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor c = db.rawQuery(selectQuery, null);
-
-        // looping through all rows and adding to list
-        if (c.moveToFirst()) {
-            do {
-                FormsContract fc = new FormsContract();
-                fc.set_ID(c.getString(c.getColumnIndex(FormsTable._ID)));
-                fc.setFormDate(c.getString(c.getColumnIndex(FormsTable.COLUMN_FORMDATE)));
-                formList.add(fc.Hydrate(c));
-            } while (c.moveToNext());
-        }
-
-        // return contact list
-        return formList;
-    }
-
     public List<HealthFacContract> getHealthFacilityData(long id) {
         List<HealthFacContract> formList = new ArrayList<>();
 
@@ -830,16 +810,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 whereArgs);
     }
 
-    public int updateFormID() {
+    public int updateFormID(FormsContract fc) {
         SQLiteDatabase db = this.getReadableDatabase();
 
 // New value for one column
         ContentValues values = new ContentValues();
-        values.put(FormsTable.COLUMN_UID, MainApp.fc.getUID());
+        values.put(FormsTable.COLUMN_UID, fc.getUID());
 
 // Which row to update, based on the ID
-        String selection = FormsTable.COLUMN_ID + " = ?";
-        String[] selectionArgs = {String.valueOf(MainApp.fc.get_ID())};
+        String selection = FormsTable.COLUMN_ID + " =?";
+        String[] selectionArgs = {String.valueOf(fc.get_ID())};
 
         int count = db.update(FormsTable.TABLE_NAME,
                 values,

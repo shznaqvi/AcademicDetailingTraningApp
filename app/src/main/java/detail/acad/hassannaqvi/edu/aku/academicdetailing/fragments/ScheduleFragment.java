@@ -8,7 +8,6 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.format.DateFormat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +28,6 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.FragmentSch
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.interfaces.Callbacks;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.MainActivity;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Utils;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.validation.validatorClass;
 
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.CDB;
@@ -62,14 +60,12 @@ public class ScheduleFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // Inflate the layout for this fragmentdate
         bi = DataBindingUtil.inflate(inflater, R.layout.fragment_schedule, container, false);
 
         db = new DatabaseHelper(getContext());
         view = bi.getRoot();
 
-        bi.date.setManager(getFragmentManager());
-        bi.time.setManager(getFragmentManager());
         bi.doctorName.setText(MainApp.providerName);
         modules = new ArrayList<>();
         subModules = new ArrayList<>();

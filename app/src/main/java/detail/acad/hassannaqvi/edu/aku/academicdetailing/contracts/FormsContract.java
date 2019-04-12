@@ -19,7 +19,7 @@ public class FormsContract implements Parcelable {
     private String _id = "";
     private String _UID = "";
     private String formDate = ""; // Date
-    private String user = ""; // Interviewer 01
+    private String username = ""; // Interviewer 01
     private String istatus = ""; // Interview Status
     private String istatus88x = ""; // Interview Status
     private String sA = "";
@@ -63,7 +63,7 @@ public class FormsContract implements Parcelable {
         _id = in.readString();
         _UID = in.readString();
         formDate = in.readString();
-        user = in.readString();
+        username = in.readString();
         istatus = in.readString();
         istatus88x = in.readString();
         sA = in.readString();
@@ -373,7 +373,7 @@ public class FormsContract implements Parcelable {
         this._id = jsonObject.getString(FormsTable.COLUMN_ID);
         this._UID = jsonObject.getString(FormsTable.COLUMN_UID);
         this.formDate = jsonObject.getString(FormsTable.COLUMN_FORMDATE);
-        this.user = jsonObject.getString(FormsTable.COLUMN_USER);
+        this.username = jsonObject.getString(FormsTable.COLUMN_USER);
         this.istatus = jsonObject.getString(FormsTable.COLUMN_ISTATUS);
         this.istatus88x = jsonObject.getString(FormsTable.COLUMN_ISTATUS88X);
         this.endingdatetime = jsonObject.getString(FormsTable.COLUMN_ENDINGDATETIME);
@@ -401,7 +401,7 @@ public class FormsContract implements Parcelable {
         this.projectName = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_PROJECTNAME));
         this._id = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_ID));
         this._UID = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_UID));
-        this.user = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_USER));
+        this.username = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_USER));
         this.devicetagID = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_DEVICETAGID));
         this.moduleCode = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MODULE_CODE));
         this.sessionCode = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SESSION_CODE));
@@ -430,6 +430,13 @@ public class FormsContract implements Parcelable {
         this.synced_date = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SYNCED_DATE));
         this.logginTime = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_loggin_TIME));
         this.formDate = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_FORMDATE));
+        this.total = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_TOTAL));
+        this.score_pre = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SCORE_PRE));
+        this.score_post = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SCORE_POST));
+        this.wrong_pre = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_WRONG_PRE));
+        this.wrong_post = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_WRONG_POST));
+        this.percentage_pre = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_PER_PRE));
+        this.percentage_post = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_PER_POST));
 
         return this;
 
@@ -462,7 +469,6 @@ public class FormsContract implements Parcelable {
         json.put(FormsTable.COLUMN_POSTTEST_END_TIME, this.postTestEndTime == null ? JSONObject.NULL : this.postTestEndTime);
         json.put(FormsTable.COLUMN_SESSION_START_TIME, this.sessionStartTime == null ? JSONObject.NULL : this.sessionStartTime);
         json.put(FormsTable.COLUMN_SESSION_END_TIME, this.sessionEndTime == null ? JSONObject.NULL : this.sessionEndTime);
-
         try {
 
             if (!this.pre_test.equals("")) {
@@ -474,15 +480,21 @@ public class FormsContract implements Parcelable {
             }
         } catch (Exception e) {
         }
-
         json.put(FormsTable.COLUMN_SYNCED, this.synced == null ? JSONObject.NULL : this.synced);
         json.put(FormsTable.COLUMN_SYNCED_DATE, this.synced_date == null ? JSONObject.NULL : this.synced_date);
         json.put(FormsTable.COLUMN_loggin_TIME, this.logginTime == null ? JSONObject.NULL : this.logginTime);
         json.put(FormsTable._ID, this._id == null ? JSONObject.NULL : this._id);
         json.put(FormsTable.COLUMN_FORMDATE, this.formDate == null ? JSONObject.NULL : this.formDate);
         json.put(FormsTable.COLUMN_UID, this._UID == null ? JSONObject.NULL : this._UID);
-        json.put(FormsTable.COLUMN_USER, this.user == null ? JSONObject.NULL : this.user);
+        json.put(FormsTable.COLUMN_USER, this.username == null ? JSONObject.NULL : this.username);
         json.put(FormsTable.COLUMN_DEVICETAGID, this.devicetagID == null ? JSONObject.NULL : this.devicetagID);
+        json.put(FormsTable.COLUMN_TOTAL, this.total == null ? JSONObject.NULL : this.total);
+        json.put(FormsTable.COLUMN_SCORE_PRE, this.score_pre == null ? JSONObject.NULL : this.score_pre);
+        json.put(FormsTable.COLUMN_SCORE_POST, this.score_post == null ? JSONObject.NULL : this.score_post);
+        json.put(FormsTable.COLUMN_WRONG_PRE, this.devicetagID == null ? JSONObject.NULL : this.wrong_pre);
+        json.put(FormsTable.COLUMN_WRONG_POST, this.devicetagID == null ? JSONObject.NULL : this.wrong_post);
+        json.put(FormsTable.COLUMN_PER_PRE, this.devicetagID == null ? JSONObject.NULL : this.percentage_pre);
+        json.put(FormsTable.COLUMN_PER_POST, this.devicetagID == null ? JSONObject.NULL : this.percentage_post);
         return json;
     }
 
@@ -494,12 +506,12 @@ public class FormsContract implements Parcelable {
         this.endingdatetime = endingdatetime;
     }
 
-    public String getUser() {
-        return user;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getSno() {
@@ -658,7 +670,7 @@ public class FormsContract implements Parcelable {
         dest.writeString(_id);
         dest.writeString(_UID);
         dest.writeString(formDate);
-        dest.writeString(user);
+        dest.writeString(username);
         dest.writeString(istatus);
         dest.writeString(istatus88x);
         dest.writeString(sA);
@@ -711,7 +723,7 @@ public class FormsContract implements Parcelable {
         public static final String COLUMN_ID = "_id";
         public static final String COLUMN_UID = "_uid";
         public static final String COLUMN_FORMDATE = "formDate";
-        public static final String COLUMN_USER = "user";
+        public static final String COLUMN_USER = "username";
         public static final String COLUMN_ISTATUS = "istatus";
         public static final String COLUMN_ISTATUS88X = "istatus88x";
         public static final String COLUMN_ENDINGDATETIME = "endingdatetime";
@@ -742,12 +754,12 @@ public class FormsContract implements Parcelable {
         public static final String COLUMN_MODULE_CODE = "module_code";
         public static final String COLUMN_SESSION_CODE = "session_code";
         public static final String COLUMN_TOTAL = "total";
-        public static final String COLUMN_SCORE_PRE = "correct_pre";
-        public static final String COLUMN_SCORE_POST = "correct_post";
-        public static final String COLUMN_PER_PRE = "percentage_pre";
-        public static final String COLUMN_PER_POST = "percentage_post";
-        public static final String COLUMN_WRONG_PRE = "wrong_pre";
-        public static final String COLUMN_WRONG_POST = "wrong_post";
+        public static final String COLUMN_SCORE_PRE = "pre_correct";
+        public static final String COLUMN_SCORE_POST = "post_correct";
+        public static final String COLUMN_PER_PRE = "pre_percentage";
+        public static final String COLUMN_PER_POST = "post_percentage";
+        public static final String COLUMN_WRONG_PRE = "pre_wrong";
+        public static final String COLUMN_WRONG_POST = "post_wrong";
         public static final String Form_Url = "forms.php";
 
 

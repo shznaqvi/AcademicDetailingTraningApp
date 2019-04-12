@@ -2,6 +2,7 @@ package detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments;
 
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -47,7 +48,7 @@ public class MainFragment extends Fragment {
         // Inflate the layout for this fragment
         bi = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false);
         view = bi.getRoot();
-        districtName = getArguments().getString("district_name");
+
         isAdmin = getArguments().getBoolean("isAdmin");
         if (!isAdmin) {
             bi.openDB.setVisibility(View.GONE);
@@ -61,11 +62,13 @@ public class MainFragment extends Fragment {
     }
 
     private void setupViews() {
-
+        SharedPreferences syncPref = getContext().getSharedPreferences("SyncInfo", Context.MODE_PRIVATE);
         bi.userName.setText("Hello! " + MainApp.userName);
+        bi.lastDownload.setText(syncPref.getString("LastDownSyncServer", "Never Downloaded"));
+        bi.lastUpdated.setText(syncPref.getString("LastUpSyncServer", "Never Synced"));
         bi.syncedForm.setText(String.valueOf(db.getUnsyncedForms().size()));
         bi.formsToday.setText(String.valueOf(db.getTodayForms().size()));
-        bi.districtName.setText(districtName);
+        bi.districtName.setText(MainApp.districtName);
 
     }
 

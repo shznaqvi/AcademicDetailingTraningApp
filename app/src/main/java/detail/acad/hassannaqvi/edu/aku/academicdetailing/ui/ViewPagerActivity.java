@@ -103,7 +103,7 @@ public class ViewPagerActivity extends AppCompatActivity {
                     if (viewPagerFlag)
                         Utils.showViewPagerDialoge(ViewPagerActivity.this, subMenuDT);
                     else {
-                        Utils.showPostDialoge(ViewPagerActivity.this, subMenuDT, 1);
+                        Utils.showPostDialoge(ViewPagerActivity.this, subMenuDT, (subMenuDT.getVideosName().length > 0 ? 1 : 0));
                         isComplete = false;
                     }
 
@@ -160,7 +160,7 @@ public class ViewPagerActivity extends AppCompatActivity {
         sC.setSessionTime(MainApp.getCurrentTime());
         sC.set_UUID(MainApp.formsUID);
         sC.setDevicetagID(sharedPref.getString("tagName", null));
-        sC.setUser(MainApp.userName);
+        sC.setUsername(MainApp.userName);
 
         long rowId = db.addSessionData(sC);
         if (rowId > 0) {

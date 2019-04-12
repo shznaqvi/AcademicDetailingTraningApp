@@ -68,7 +68,7 @@ public class Utils {
     public static void savingDataIntoDB(Context context, FormsContract fc) {
         SharedPreferences sharedPref = context.getSharedPreferences("tagName", MODE_PRIVATE);
         MainApp.fc.setDevicetagID(sharedPref.getString("tagName", null));
-        MainApp.fc.setUser(MainApp.userName);
+        MainApp.fc.setUsername(MainApp.userName);
         DatabaseHelper db = new DatabaseHelper(context);
         long rowId = db.addForm(fc);
         if (rowId > 0) {
@@ -107,6 +107,7 @@ public class Utils {
                 if (type == 1) {
                     Intent intent = new Intent(context, PlayerActivity.class).putExtra("submenu", subMenu);
                     context.startActivity(intent);
+                    ((Activity)context).finish();
                 } else
                     forcePostTest(context, subMenu, 0);
 
@@ -130,7 +131,7 @@ public class Utils {
 
     }
 
-    public static void forcePostTest(final Context context, final Data.SubMenu subMenu, long duration) {
+    public static void  forcePostTest(final Context context, final Data.SubMenu subMenu, long duration) {
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {

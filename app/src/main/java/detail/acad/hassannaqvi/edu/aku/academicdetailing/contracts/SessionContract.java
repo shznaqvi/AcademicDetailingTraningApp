@@ -19,7 +19,7 @@ public class SessionContract {
     private String deviceid = "";
     private String _UID = "";
     private String _UUID = "";
-    private String user = "";
+    private String username = "";
     private String devicetagID = "";
 
     public String get_UUID() {
@@ -38,12 +38,12 @@ public class SessionContract {
         this._UID = _UID;
     }
 
-    public String getUser() {
-        return user;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getDevicetagID() {
@@ -91,7 +91,7 @@ public class SessionContract {
         json.put(SessionTable._ID, this._id == null ? JSONObject.NULL : this._id);
         json.put(SessionTable.COLUMN_FORMDATE, this.formdate == null ? JSONObject.NULL : this.formdate);
         json.put(SessionTable.COLUMN_DEVICEID, this.deviceid == null ? JSONObject.NULL : this.deviceid);
-        json.put(SessionTable.COLUMN_USER, this.user == null ? JSONObject.NULL : this.user);
+        json.put(SessionTable.COLUMN_USER, this.username == null ? JSONObject.NULL : this.username);
         json.put(SessionTable.COLUMN_DEVICETAGID, this.devicetagID == null ? JSONObject.NULL : this.devicetagID);
         json.put(SessionTable.COLUMN_UID, this._UID == null ? JSONObject.NULL : this._UID);
         json.put(SessionTable.COLUMN_UUID, this._UUID == null ? JSONObject.NULL : this._UUID);
@@ -110,7 +110,7 @@ public class SessionContract {
         this._id = cursor.getString(cursor.getColumnIndex(SessionTable._ID));
         this.formdate = cursor.getString(cursor.getColumnIndex(SessionTable.COLUMN_FORMDATE));
         this.deviceid = cursor.getString(cursor.getColumnIndex(SessionTable.COLUMN_DEVICEID));
-        this.user = cursor.getString(cursor.getColumnIndex(SessionTable.COLUMN_USER));
+        this.username = cursor.getString(cursor.getColumnIndex(SessionTable.COLUMN_USER));
         this._UID = cursor.getString(cursor.getColumnIndex(SessionTable.COLUMN_UID));
         this._UUID = cursor.getString(cursor.getColumnIndex(SessionTable.COLUMN_UUID));
         this.devicetagID = cursor.getString(cursor.getColumnIndex(SessionTable.COLUMN_DEVICETAGID));
@@ -157,7 +157,7 @@ public class SessionContract {
         public static final String _ID = "_id";
         public static final String COLUMN_UID = "_uid";
         public static final String COLUMN_UUID = "_uuid";
-        public static final String COLUMN_USER = "user";
+        public static final String COLUMN_USER = "username";
         public static final String COLUMN_DEVICETAGID = "devicetagid";
         public static final String COLUMN_SESSION_CODE = "session_code";
         public static final String COLUMN_MODULE_CODE = "module_code";
@@ -167,7 +167,7 @@ public class SessionContract {
         public static final String COLUMN_SYNCED_DATE= "synced_date";
         public static final String COLUMN_FORMDATE = "formdate";
         public static final String COLUMN_DEVICEID = "deviceid";
-        public static final String SESSION_URL = "session_table.php";
+        public static final String SESSION_URL = "sessions.php";
 
     }
 }

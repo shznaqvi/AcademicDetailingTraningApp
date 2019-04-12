@@ -88,7 +88,7 @@ public class DownloadVideoActivity extends AppCompatActivity {
 
     private void settingFunctionality() {
         existVideos = new ArrayList<>();
-        bi.modNSpinner.attachDataSource(new LinkedList<>(Arrays.asList("NEWBORN MODULE", "MATERNAL MODULE", "CHILD MODULE")));
+        bi.modNSpinner.attachDataSource(new LinkedList<>(Arrays.asList("CHILD MODULE", "MATERNAL MODULE", "NEWBORN MODULE")));
 
         // Populate recycler_view
         new populateRecyclerView(DownloadVideoActivity.this, 0).execute();

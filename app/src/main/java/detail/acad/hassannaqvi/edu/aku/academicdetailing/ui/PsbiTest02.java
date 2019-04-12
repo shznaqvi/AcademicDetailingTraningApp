@@ -135,19 +135,19 @@ public class PsbiTest02 extends AppCompatActivity implements RadioButton.OnCheck
 
             if (bi.PsbiTestB01a.isChecked()) {
                 bi.tvPsbiTestB01.clearComposingText();
-                String styledText = "The follow-up time for sick young infants with diarrhea and pneumonia is <font color='yellow'><b><i>2nd day</i></b></font> .";
+                String styledText = "The follow-up book_time for sick young infants with diarrhea and pneumonia is <font color='yellow'><b><i>2nd day</i></b></font> .";
                 bi.tvPsbiTestB01.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.PsbiTestB01b.isChecked()) {
                 bi.tvPsbiTestB01.clearComposingText();
-                String styledText = "The follow-up time for sick young infants with diarrhea and pneumonia is <font color='yellow'><b><i>3rd day</i></b></font> .";
+                String styledText = "The follow-up book_time for sick young infants with diarrhea and pneumonia is <font color='yellow'><b><i>3rd day</i></b></font> .";
                 bi.tvPsbiTestB01.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.PsbiTestB01c.isChecked()) {
                 bi.tvPsbiTestB01.clearComposingText();
-                String styledText = "The follow-up time for sick young infants with diarrhea and pneumonia is <font color='yellow'><b><i>4th day</i></b></font> .";
+                String styledText = "The follow-up book_time for sick young infants with diarrhea and pneumonia is <font color='yellow'><b><i>4th day</i></b></font> .";
                 bi.tvPsbiTestB01.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.PsbiTestB01d.isChecked()) {
                 bi.tvPsbiTestB01.clearComposingText();
-                String styledText = "The follow-up time for sick young infants with diarrhea and pneumonia is <font color='yellow'><b><i>5th day</i></b></font> .";
+                String styledText = "The follow-up book_time for sick young infants with diarrhea and pneumonia is <font color='yellow'><b><i>5th day</i></b></font> .";
                 bi.tvPsbiTestB01.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             }
         }

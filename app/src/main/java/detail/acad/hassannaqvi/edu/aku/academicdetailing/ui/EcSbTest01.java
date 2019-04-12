@@ -55,7 +55,7 @@ public class EcSbTest01 extends AppCompatActivity {
         } else if (type.equals("pre") && isComplete) {
             bi.heading.setText("PRETEST RESULT");
             GeneratorClass.comparingResult(bi.llecsbA, true, subMenuDT.getAnswers());
-            pre_result = GeneratorClass.getResults("post",subMenuDT.getAnswers());
+            pre_result = GeneratorClass.getResults("pre",subMenuDT.getAnswers());
             bi.btnOk.setVisibility(View.VISIBLE);
             bi.btnOk.setText("Start Training");
             bi.btnContinue.setVisibility(View.GONE);

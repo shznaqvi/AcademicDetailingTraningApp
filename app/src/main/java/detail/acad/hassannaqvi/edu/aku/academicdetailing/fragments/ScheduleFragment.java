@@ -101,27 +101,18 @@ public class ScheduleFragment extends Fragment {
         bi.saveData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 if (formValidate()) {
                     saveDraft();
                     if (updateDB()) {
-                        if (!MainApp.isScheduleAppointment) {
-                            startActivity(new Intent(getContext(), MainActivity.class));
-                            getActivity().finish();
-                        } else {
-                            startActivity(new Intent(getContext(), MainActivity.class));
-                            callbacks.uploadAppointment();
-                            getActivity().finish();
-                        }
-
-
+                        startActivity(new Intent(getContext(), MainActivity.class));
+                        getActivity().finish();
                     } else {
                         Toast.makeText(getContext(), "Error in database", Toast.LENGTH_SHORT).show();
                     }
-
                 } else {
                     Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
                 }
+
 
             }
         });
@@ -149,8 +140,8 @@ public class ScheduleFragment extends Fragment {
     private void saveDraft() {
         SharedPreferences sharedPref = getContext().getSharedPreferences("tagName", MODE_PRIVATE);
 
-        MainApp.nmc.setDate(bi.date.getText().toString());
-        MainApp.nmc.setTime(bi.time.getText().toString());
+        MainApp.nmc.setBook_date(bi.bookDate.getText().toString());
+        MainApp.nmc.setBook_time(bi.bookTime.getText().toString());
         MainApp.nmc.setDoctorName(MainApp.providerName);
         MainApp.nmc.setModule(moduleCode);
 
@@ -165,7 +156,7 @@ public class ScheduleFragment extends Fragment {
         MainApp.nmc.setHp_name(MainApp.fc.getProviderName());
         MainApp.nmc.setHp_code(Long.parseLong(MainApp.fc.getProviderID()));
         MainApp.nmc.setDevicetagID(sharedPref.getString("tagName", null));
-        MainApp.nmc.setUser(MainApp.userName);
+        MainApp.nmc.setUsername(MainApp.userName);
 
 
         setGPS();
@@ -188,10 +179,10 @@ public class ScheduleFragment extends Fragment {
 
             String date = DateFormat.format("dd-MM-yyyy HH:mm", Long.parseLong(dt)).toString();
 
-            MainApp.nmc.setLat(lat);
-            MainApp.nmc.setLng(lang);
-            MainApp.nmc.setGpsTime(date); // Timestamp is converted to date above
-            // Timestamp is converted to date above
+            MainApp.nmc.setGpsLat(lat);
+            MainApp.nmc.setGpsLng(lang);
+            MainApp.nmc.setGps_time(date); // Timestamp is converted to book_date above
+            // Timestamp is converted to book_date above
 
             Toast.makeText(getActivity(), "GPS set", Toast.LENGTH_SHORT).show();
 
@@ -204,11 +195,11 @@ public class ScheduleFragment extends Fragment {
 
     private boolean formValidate() {
 
-        if (!validatorClass.EmptyTextBox(getContext(), bi.date, getString(R.string.date))) {
+        if (!validatorClass.EmptyTextBox(getContext(), bi.bookDate, getString(R.string.book_date))) {
             return false;
         }
 
-        if (!validatorClass.EmptyTextBox(getContext(), bi.time, getString(R.string.time))) {
+        if (!validatorClass.EmptyTextBox(getContext(), bi.bookTime, getString(R.string.book_time))) {
             return false;
         }
         if (!validatorClass.EmptySpinner(getContext(), bi.modules, "Module")) {

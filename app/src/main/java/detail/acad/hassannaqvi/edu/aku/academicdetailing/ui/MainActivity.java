@@ -1,6 +1,7 @@
 package detail.acad.hassannaqvi.edu.aku.academicdetailing.ui;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -23,7 +24,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
+import java.util.Date;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.RetrofitClient.RetrofitClient;
@@ -61,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     SharedPreferences.Editor editor;
     AlertDialog.Builder builder;
     String m_Text = "";
+    String dtToday = new SimpleDateFormat("dd-MM-yy HH:mm ").format(new Date().getTime());
 
 
     @Override
@@ -73,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         db = new DatabaseHelper(this);
         bi.bottomNav.home.setOnClickListener(this);
         bi.bottomNav.vidDownload.setOnClickListener(this);
-        bi.bottomNav.settings.setOnClickListener(this);
+        bi.bottomNav.appointment.setOnClickListener(this);
         DistrictsContract dst = db.getDistrict(MainApp.districtCode);
         if (dst != null) {
             MainApp.districtName = dst.getDistrict_name();
@@ -142,6 +146,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(this, DownloadVideoActivity.class));
                 break;
 
+            case R.id.appointment:
+
+                Toast.makeText(this, "Under Development", Toast.LENGTH_SHORT).show();
+                break;
+
         }
     }
 
@@ -204,6 +213,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 MainApp._HOST_URL + NextMeetingContract.NMCTable.nms_Url,
                 db.getUnsyncedNextMeetingForm()
         ).execute();
+
+        SharedPreferences syncPref = getSharedPreferences("SyncInfo", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = syncPref.edit();
+
+        editor.putString("LastUpSyncServer", dtToday);
+
+        editor.apply();
 
 
     }

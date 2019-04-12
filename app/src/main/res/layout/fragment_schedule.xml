@@ -111,17 +111,17 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
                                 android:background="@color/colorPrimaryDark"
-                                android:text="@string/date"
+                                android:text="@string/book_date"
                                 android:textColor="@android:color/white"
                                 android:textSize="20sp" />
 
                             <io.blackbox_vision.datetimepickeredittext.view.DatePickerInputEditText
-                                android:id="@+id/date"
+                                android:id="@+id/book_date"
                                 style="@style/textInput"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:hint="@string/date"
-                                app:dateFormat="dd-MM-yyyy"
+                                android:hint="@string/book_date"
+                                app:dateFormat="MM-dd-yyyy"
                                 app:minDate="CR_DATE"/>
 
                         </LinearLayout>
@@ -145,16 +145,16 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
                                 android:background="@color/colorPrimaryDark"
-                                android:text="@string/time"
+                                android:text="@string/book_time"
                                 android:textColor="@android:color/white"
                                 android:textSize="20sp" />
 
                             <io.blackbox_vision.datetimepickeredittext.view.TimePickerInputEditText
-                                android:id="@+id/time"
+                                android:id="@+id/book_time"
                                 style="@style/textInput"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:hint="@string/time"
+                                android:hint="@string/book_time"
                                 app:timeFormat="HH:mm:ss"/>
 
                         </LinearLayout>

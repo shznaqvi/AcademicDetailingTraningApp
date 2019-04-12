@@ -204,7 +204,7 @@ public class InfoFragment extends Fragment {
     private void saveDraft() {
 
         MainApp.fc = new FormsContract();
-        MainApp.fc.setAppversion(MainApp.versionName);
+        MainApp.fc.setAppversion(MainApp.versionName + "." + MainApp.versionCode);
         MainApp.fc.setLogginTime(MainApp.logginTime);
         MainApp.fc.setDeviceID(MainApp.deviceId);
         MainApp.fc.setFormDate(new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime()));
@@ -240,7 +240,7 @@ public class InfoFragment extends Fragment {
             MainApp.fc.setGpsLat(lat);
             MainApp.fc.setGpsLng(lang);
             MainApp.fc.setGpsAcc(acc);
-            MainApp.fc.setGpsTime(date); // Timestamp is converted to date above
+            MainApp.fc.setGpsTime(date); // Timestamp is converted to book_date above
 
             Toast.makeText(getActivity(), "GPS set", Toast.LENGTH_SHORT).show();
 

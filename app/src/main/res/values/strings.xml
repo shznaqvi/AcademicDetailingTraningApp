@@ -19,8 +19,8 @@
     <string name="provider_id">Provider ID</string>
     <string name="hfac_name">Health Facility Name</string>
 
-    <string name="date">Date</string>
-    <string name="time">Time</string>
+    <string name="book_date">Date</string>
+    <string name="book_time">Time</string>
     <string name="schedule">Next Meeting Schedule</string>
 
     <string name="mainFragment">MainFragment</string>
@@ -242,7 +242,7 @@
     <string name="psbitestq1a3"> Thrush</string>
     <string name="psbitestq1a4"> Diarrhea</string>
 
-    <string name="psbitestq2">2- The follow-up time for sick young infants with diarrhea and pneumonia is ________ days.</string>
+    <string name="psbitestq2">2- The follow-up book_time for sick young infants with diarrhea and pneumonia is ________ days.</string>
     <string name="psbitestq2a1"> 2nd Day</string>
     <string name="psbitestq2a2"> 3rd Day</string>
     <string name="psbitestq2a3"> 4th Day</string>
@@ -558,10 +558,10 @@
     <!--SepsisTest -->
     <!--Q01-->
     <string name="SepsisTest01">Puerperal sepsis is an infection of the genital tract:</string>
-    <string name="SepsisTest01a">At any time before the 42nd day after birth</string>
-    <string name="SepsisTest01b">At any time after the 42nd day after birth</string>
-    <string name="SepsisTest01c">At any time between the rupture of membranes or onset of labor and the 42nd day after birth</string>
-    <string name="SepsisTest01d">At any time after the 40th day after birth</string>
+    <string name="SepsisTest01a">At any book_time before the 42nd day after birth</string>
+    <string name="SepsisTest01b">At any book_time after the 42nd day after birth</string>
+    <string name="SepsisTest01c">At any book_time between the rupture of membranes or onset of labor and the 42nd day after birth</string>
+    <string name="SepsisTest01d">At any book_time after the 40th day after birth</string>
 
     <!--Q02-->
     <string name="SepsisTest02">Chorioamnionitis can occur due to:</string>
@@ -650,7 +650,7 @@
     <string name="ecebB08a">After transfer for advanced care</string>
     <string name="ecebB08b">As soon as possible after a Danger Sign has been identified</string>
     <string name="ecebB08c">After all family members have been contacted</string>
-    <string name="ecebB08d">At a time that is convenient for the health care provider</string>
+    <string name="ecebB08d">At a book_time that is convenient for the health care provider</string>
 
     <string name="ecebB09">After the first day following birth, jaundice is severe when it appears on what body area?</string>
     <string name="ecebB09a">Back and abdomen</string>
@@ -661,7 +661,7 @@
     <string name="ecebB10">How often should a mother express milk for a baby who cannot feed at the breast?</string>
     <string name="ecebB10a">As often as the baby would normally feed (8&#8211;12 times per 24 hours)</string>
     <string name="ecebB10b">3 times during the daytime only</string>
-    <string name="ecebB10c">Once in the morning and once before bed time</string>
+    <string name="ecebB10c">Once in the morning and once before bed book_time</string>
     <string name="ecebB10d">4 times per 24 hours</string>
 
     <string name="ecebB11">A 3000 gram baby is unable to suck or swallow during the first 6 hours after birth. How would you classify this baby and what should you do?</string>
@@ -708,7 +708,7 @@
     <string name="ecebA04d">Never</string>
 
     <string name="ecebA05">What is an early sign that a baby is ready to breast feed?</string>
-    <string name="ecebA05a">Crying for a long period of time</string>
+    <string name="ecebA05a">Crying for a long period of book_time</string>
     <string name="ecebA05b">Opening the mouth and licking</string>
     <string name="ecebA05c">Eyes closed and hands open</string>
     <string name="ecebA05d">Breathing rapidly with the mouth open</string>
@@ -763,7 +763,7 @@
 
     <string name="ecsbA02">Which of the following is an important step in the care of a small baby?</string>
     <string name="ecsbA02a">Teaching the mother to give a bath</string>
-    <string name="ecsbA02b">Giving the small baby lots of time in the sunlight</string>
+    <string name="ecsbA02b">Giving the small baby lots of book_time in the sunlight</string>
     <string name="ecsbA02c">Preventing infection by washing hands before touching the baby</string>
     <string name="ecsbA02d">Weighing the small baby five times a day</string>
 
@@ -1087,7 +1087,7 @@
     <string name="PsbiTestA02d">Restless and irritable</string>
 
     <!--B-->
-    <string name="PsbiTestB01">The follow-up time for sick young infants with diarrhea and pneumonia is ________ days.</string>
+    <string name="PsbiTestB01">The follow-up book_time for sick young infants with diarrhea and pneumonia is ________ days.</string>
     <string name="PsbiTestB01a">2nd day</string>
     <string name="PsbiTestB01b">3rd day</string>
     <string name="PsbiTestB01c">4th day</string>

@@ -267,7 +267,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 FormsTable.COLUMN_PRE_TEST,
                 FormsTable.COLUMN_POST_TEST,
                 FormsTable.COLUMN_SYNCED,
-                FormsTable.COLUMN_SYNCED_DATE
+                FormsTable.COLUMN_SYNCED_DATE,
+                FormsTable.COLUMN_TOTAL,
+                FormsTable.COLUMN_SCORE_PRE,
+                FormsTable.COLUMN_SCORE_POST,
+                FormsTable.COLUMN_WRONG_PRE,
+                FormsTable.COLUMN_WRONG_POST,
+                FormsTable.COLUMN_PER_PRE,
+                FormsTable.COLUMN_PER_POST,
 
         };
         String whereClause = FormsTable.COLUMN_SYNCED + " is null OR " + FormsTable.COLUMN_SYNCED + " = '' ";
@@ -733,7 +740,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 //        values.put(FormsTable._ID, fc.get_ID());
         values.put(FormsTable.COLUMN_FORMDATE, fc.getFormDate());
         values.put(FormsTable.COLUMN_DEVICETAGID, fc.getDevicetagID());
-        values.put(FormsTable.COLUMN_USER, fc.getUser());
+        values.put(FormsTable.COLUMN_USER, fc.getUsername());
         values.put(FormsTable.COLUMN_ISTATUS, fc.getIstatus());
         values.put(FormsTable.COLUMN_ISTATUS88X, fc.getIstatus88x());
 //        values.put(FormsTable.COLUMN_SA, fc.getsA());
@@ -1062,7 +1069,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(SessionTable.COLUMN_DEVICEID, sc.getDeviceid());
         values.put(SessionTable.COLUMN_FORMDATE, sc.getFormdate());
         values.put(SessionTable.COLUMN_DEVICETAGID, sc.getDevicetagID());
-        values.put(SessionTable.COLUMN_USER, sc.getUser());
+        values.put(SessionTable.COLUMN_USER, sc.getUsername());
         values.put(SessionTable.COLUMN_UUID, sc.get_UUID());
 
         return db.insert(SessionTable.TABLE_NAME, null, values);
@@ -1095,17 +1102,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         long count;
 // New value for one column
         ContentValues values = new ContentValues();
-        values.put(NMCTable.COLUMN_DATE, MainApp.nmc.getDate());
-        values.put(NMCTable.COLUMN_TIME, MainApp.nmc.getTime());
+        values.put(NMCTable.COLUMN_DATE, MainApp.nmc.getBook_date());
+        values.put(NMCTable.COLUMN_TIME, MainApp.nmc.getBook_time());
         values.put(NMCTable.COLUMN_MODULE_CODE, MainApp.nmc.getModule());
         values.put(NMCTable.COLUMN_SESSION_CODE, MainApp.nmc.getSession());
         values.put(NMCTable.COLUMN_BOOKBY, MainApp.nmc.getBookBy());
         values.put(NMCTable.COLUMN_DEVICEID, MainApp.nmc.getDeviceid());
-        values.put(NMCTable.COLUMN_USER, MainApp.nmc.getUser());
-        values.put(NMCTable.COLUMN_LAT, MainApp.nmc.getLat());
-        values.put(NMCTable.COLUMN_LNG, MainApp.nmc.getLng());
+        values.put(NMCTable.COLUMN_USER, MainApp.nmc.getUsername());
+        values.put(NMCTable.COLUMN_LAT, MainApp.nmc.getGpsLat());
+        values.put(NMCTable.COLUMN_LNG, MainApp.nmc.getGpsLng());
         values.put(NMCTable.COLUMN_BTYPE, MainApp.nmc.getBookingtype());
-        values.put(NMCTable.COLUMN_GPSTIME, MainApp.nmc.getGpsTime());
+        values.put(NMCTable.COLUMN_GPSTIME, MainApp.nmc.getGps_time());
         values.put(NMCTable.COLUMN_FORMDATE, MainApp.nmc.getFormdate());
         values.put(NMCTable.COLUMN_HF_NAME, MainApp.nmc.getHf_name());
         values.put(NMCTable.COLUMN_HP_NAME, MainApp.nmc.getHp_name());

@@ -35,12 +35,16 @@ public abstract class GeneratorClass {
     public static double total = 0;
     public static Result result;
 
-    static int ansIncrement = 1;
+    public static int ansIncrement = 1;
 
     public static JSONObject getContainerJSON(LinearLayout lv, boolean flag, String... convention) {
 
-        if (flag)
+        if (flag){
             formJSON = new JSONObject();
+            ansIncrement = 1;
+        }
+
+
 
         try {
 

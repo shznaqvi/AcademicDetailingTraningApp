@@ -92,6 +92,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
     KProgressHUD hud;
 
     private int clicks;
+    String dtToday = new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime());
     //
     private StringBuffer jsonString_output;
     private JSONArray json;
@@ -431,6 +432,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
 
                 if (bi.districtNameSpinner.getSelectedItemPosition() != 0) {
                     MainApp.dContract = districtMap.get(bi.districtNameSpinner.getSelectedItem().toString());
+                    MainApp.districtName = bi.districtNameSpinner.getSelectedItem().toString();
                 }
 
             }
@@ -442,49 +444,23 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
         });
     }
 
-    public class GPSLocationListener implements LocationListener {
-        public void onLocationChanged(Location location) {
+    public void onSyncDataClick() {
+        //TODO implement
 
-            SharedPreferences sharedPref = getSharedPreferences("GPSCoordinates", Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPref.edit();
+        // Require permissions INTERNET & ACCESS_NETWORK_STATE
+        ConnectivityManager connMgr = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected()) {
+            call = RetrofitClient.service.getUsers(); //users
+            gettingDataFromService("Syncing Users", "Users");
+            call = RetrofitClient.service.getDistricts(); //districts
+            gettingDataFromService("Syncing Districts", "Districts");
+//            call = RetrofitClient.service.getAppointments(); //districts
+//            gettingDataFromService("Syncing Appointments", "app");
 
-            String dt = DateFormat.format("dd-MM-yyyy HH:mm", Long.parseLong(sharedPref.getString("Time", "0"))).toString();
-
-            Location bestLocation = new Location("storedProvider");
-            bestLocation.setAccuracy(Float.parseFloat(sharedPref.getString("Accuracy", "0")));
-            bestLocation.setTime(Long.parseLong(sharedPref.getString(dt, "0")));
-            bestLocation.setLatitude(Float.parseFloat(sharedPref.getString("Latitude", "0")));
-            bestLocation.setLongitude(Float.parseFloat(sharedPref.getString("Longitude", "0")));
-
-            if (isBetterLocation(location, bestLocation)) {
-                editor.putString("Longitude", String.valueOf(location.getLongitude()));
-                editor.putString("Latitude", String.valueOf(location.getLatitude()));
-                editor.putString("Accuracy", String.valueOf(location.getAccuracy()));
-                editor.putString("Time", String.valueOf(location.getTime()));
-                editor.putString("Elevation", String.valueOf(location.getAltitude()));
-                String date = DateFormat.format("dd-MM-yyyy HH:mm", Long.parseLong(String.valueOf(location.getTime()))).toString();
-//                Toast.makeText(getApplicationContext(),
-//                        "GPS Commit! LAT: " + String.valueOf(location.getLongitude()) +
-//                                " LNG: " + String.valueOf(location.getLatitude()) +
-//                                " Accuracy: " + String.valueOf(location.getAccuracy()) +
-//                                " Time: " + date,
-//                        Toast.LENGTH_SHORT).show();
-
-                editor.apply();
-            }
-        }
-
-
-        public void onStatusChanged(String s, int i, Bundle b) {
-            showCurrentLocation();
-        }
-
-        public void onProviderDisabled(String s) {
-
-        }
-
-        public void onProviderEnabled(String s) {
-
+        } else {
+            Toast.makeText(this, "No network connection available.", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -579,29 +555,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
 
     }
 
-    public void onSyncDataClick() {
-        //TODO implement
-
-        // Require permissions INTERNET & ACCESS_NETWORK_STATE
-        ConnectivityManager connMgr = (ConnectivityManager)
-                getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-        if (networkInfo != null && networkInfo.isConnected()) {
-            call = RetrofitClient.service.getUsers(); //users
-            gettingDataFromService("Syncing Users", "Users");
-            call = RetrofitClient.service.getDistricts(); //districts
-            gettingDataFromService("Syncing Districts", "Districts");
-//            hud.setLabel("Getting Health Facility Data");
-//            call = RetrofitClient.service.synHfData();
-//            gettingDataFromService("Syncing Health Facility Data", "hf");
-//            hud.setLabel("Getting Providers Data");
-//            call = RetrofitClient.service.synHPData();
-//            gettingDataFromService("Syncing Health Provider", "hp");
-        } else {
-            Toast.makeText(this, "No network connection available.", Toast.LENGTH_SHORT).show();
-        }
-    }
-
     private void gettingDataFromService(String label, final String type) {
 
         hud.setLabel(label);
@@ -622,7 +575,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
                             case "Districts":
                                 db.syncDistricts(array);
                                 break;
-//
+//                            case "app":
+//                                db.syncDistricts(array);
+//                                break;
+////
 
                         }
 
@@ -633,6 +589,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
                     }
 
                     Toast.makeText(LoginActivity.this, "Successfully Synced " + type + " Data ", Toast.LENGTH_SHORT).show();
+                    SharedPreferences syncPref = getSharedPreferences("SyncInfo", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = syncPref.edit();
+
+                    editor.putString("LastDownSyncServer", dtToday);
+
+                    editor.apply();
                 }
             }
 
@@ -645,6 +607,58 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
         });
 
 
+    }
+
+    /**
+     * Attempts to sign in or register the account specified by the login form.
+     * If there are form errors (invalid email, missing fields, etc.), the
+     * errors are presented and no actual login attempt is made.
+     */
+    private void attemptLogin() {
+        if (mAuthTask != null) {
+            return;
+        }
+
+        // Reset errors.
+        bi.email.setError(null);
+        bi.password.setError(null);
+
+        // Store values at the book_time of the login attempt.
+        String email = bi.email.getText().toString();
+        String password = bi.password.getText().toString();
+
+        boolean cancel = false;
+        View focusView = null;
+
+        // Check for a valid password, if the user entered one.
+        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
+            bi.password.setError(getString(R.string.error_invalid_password));
+            focusView = bi.password;
+            cancel = true;
+        }
+
+        // Check for a valid email address.
+        if (TextUtils.isEmpty(email)) {
+            bi.email.setError(getString(R.string.error_field_required));
+            focusView = bi.email;
+            cancel = true;
+        }
+
+
+        if (cancel) {
+            // There was an error; don't attempt login and focus the first
+            // form field with an error.
+            focusView.requestFocus();
+        } else {
+            // Show a progress spinner, and kick off a background task to
+            // perform the user login attempt.
+            hud.setLabel("Logging in");
+            hud.show();
+            mAuthTask = new UserLoginTask(email, password);
+            mAuthTask.execute((Void) null);
+
+
+        }
     }
 
     private void populateAutoComplete() {
@@ -688,54 +702,48 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
         return true;
     }
 
-    /**
-     * Attempts to sign in or register the account specified by the login form.
-     * If there are form errors (invalid email, missing fields, etc.), the
-     * errors are presented and no actual login attempt is made.
-     */
-    private void attemptLogin() {
-        if (mAuthTask != null) {
-            return;
-        }
+    public class GPSLocationListener implements LocationListener {
+        public void onLocationChanged(Location location) {
 
-        // Reset errors.
-        bi.email.setError(null);
-        bi.password.setError(null);
+            SharedPreferences sharedPref = getSharedPreferences("GPSCoordinates", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPref.edit();
 
-        // Store values at the time of the login attempt.
-        String email = bi.email.getText().toString();
-        String password = bi.password.getText().toString();
+            String dt = DateFormat.format("dd-MM-yyyy HH:mm", Long.parseLong(sharedPref.getString("Time", "0"))).toString();
 
-        boolean cancel = false;
-        View focusView = null;
+            Location bestLocation = new Location("storedProvider");
+            bestLocation.setAccuracy(Float.parseFloat(sharedPref.getString("Accuracy", "0")));
+            bestLocation.setTime(Long.parseLong(sharedPref.getString(dt, "0")));
+            bestLocation.setLatitude(Float.parseFloat(sharedPref.getString("Latitude", "0")));
+            bestLocation.setLongitude(Float.parseFloat(sharedPref.getString("Longitude", "0")));
 
-        // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
-            bi.password.setError(getString(R.string.error_invalid_password));
-            focusView = bi.password;
-            cancel = true;
-        }
+            if (isBetterLocation(location, bestLocation)) {
+                editor.putString("Longitude", String.valueOf(location.getLongitude()));
+                editor.putString("Latitude", String.valueOf(location.getLatitude()));
+                editor.putString("Accuracy", String.valueOf(location.getAccuracy()));
+                editor.putString("Time", String.valueOf(location.getTime()));
+                editor.putString("Elevation", String.valueOf(location.getAltitude()));
+                String date = DateFormat.format("dd-MM-yyyy HH:mm", Long.parseLong(String.valueOf(location.getTime()))).toString();
+//                Toast.makeText(getApplicationContext(),
+//                        "GPS Commit! LAT: " + String.valueOf(location.getLongitude()) +
+//                                " LNG: " + String.valueOf(location.getLatitude()) +
+//                                " Accuracy: " + String.valueOf(location.getAccuracy()) +
+//                                " Time: " + book_date,
+//                        Toast.LENGTH_SHORT).show();
 
-        // Check for a valid email address.
-        if (TextUtils.isEmpty(email)) {
-            bi.email.setError(getString(R.string.error_field_required));
-            focusView = bi.email;
-            cancel = true;
+                editor.apply();
+            }
         }
 
 
-        if (cancel) {
-            // There was an error; don't attempt login and focus the first
-            // form field with an error.
-            focusView.requestFocus();
-        } else {
-            // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
-            hud.setLabel("Logging in");
-            hud.show();
-            mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute((Void) null);
+        public void onStatusChanged(String s, int i, Bundle b) {
+            showCurrentLocation();
+        }
 
+        public void onProviderDisabled(String s) {
+
+        }
+
+        public void onProviderEnabled(String s) {
 
         }
     }

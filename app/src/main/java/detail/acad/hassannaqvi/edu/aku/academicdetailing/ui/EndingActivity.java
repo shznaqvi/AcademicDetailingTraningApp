@@ -101,12 +101,12 @@ public class EndingActivity extends AppCompatActivity implements Callbacks {
         MainApp.fc.setSessionCode(subMenuDT.getSessionCode());
         MainApp.fc.setScore_pre(String.valueOf(pre_result.getCorrect()));
         MainApp.fc.setWrong_pre(String.valueOf(pre_result.getWrong()));
-        MainApp.fc.setPercentage_pre(String.valueOf(MainApp.round(pre_result.getPercentage(),2)));
+        MainApp.fc.setPercentage_pre(String.valueOf(MainApp.roundOffFigure(pre_result.getPercentage(),2)));
         MainApp.fc.setTotal(String.valueOf(pre_result.getTotal()));
         MainApp.fc.setModuleCode(subMenuDT.getModuleCode());
         if(post_result != null){
             MainApp.fc.setScore_post(String.valueOf(post_result.getCorrect()));
-            MainApp.fc.setPercentage_post(String.valueOf(MainApp.round(post_result.getPercentage(),2)));
+            MainApp.fc.setPercentage_post(String.valueOf(MainApp.roundOffFigure(post_result.getPercentage(),2)));
             MainApp.fc.setWrong_post(String.valueOf(post_result.getWrong()));
         }
     }

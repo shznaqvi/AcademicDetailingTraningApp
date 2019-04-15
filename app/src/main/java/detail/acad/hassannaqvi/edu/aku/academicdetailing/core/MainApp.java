@@ -476,7 +476,7 @@ public class MainApp extends Application {
         TextView finalText = view.findViewById(R.id.finalText);
         TextView wrong = view.findViewById(R.id.wrong);
 
-        percentage.setText(String.valueOf(MainApp.round(result.getPercentage(), 2) + "%"));
+        percentage.setText(String.valueOf(MainApp.roundOffFigure(result.getPercentage(), 2) + "%"));
         correct.setText(String.valueOf(correct_number));
         wrong.setText(String.valueOf(wrong_number));
         ImageView icon = view.findViewById(R.id.resultImage);
@@ -514,7 +514,7 @@ public class MainApp extends Application {
 
     }
 
-    public static float round(double number, int decimalPlace) {
+    public static float roundOffFigure(double number, int decimalPlace) {
         BigDecimal bd = new BigDecimal(number);
         bd = bd.setScale(decimalPlace, BigDecimal.ROUND_HALF_UP);
         return bd.floatValue();

@@ -823,8 +823,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
                         Toast.makeText(LoginActivity.this, "Please Sync Districts", Toast.LENGTH_SHORT).show();
                     } else if (bi.districtNameSpinner.getSelectedItemPosition() == 0) {
                         Toast.makeText(LoginActivity.this, "Please Select District", Toast.LENGTH_SHORT).show();
-
-                    } else {
+                    }if(!MainApp.admin){
+                        if(!db.checkingUser(mEmail,MainApp.dContract.getDICTRICT_CODE())){
+                            Toast.makeText(LoginActivity.this, "This user is not assigned to Selected District", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                    else {
                         Intent iLogin = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(iLogin);
                         finish();

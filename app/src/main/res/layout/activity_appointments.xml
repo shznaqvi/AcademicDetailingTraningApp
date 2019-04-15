@@ -6,16 +6,18 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@color/colorPrimaryDark"
+            android:id="@+id/noAppointment"
+            android:layout_height="match_parent"
             android:gravity="center"
-            android:text="All Appointments"
-            android:textSize="20sp"/>
+            android:text="No Appointments Today!"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:layout_width="match_parent"
+            android:visibility="gone" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/appointmentList"
@@ -24,6 +26,7 @@
 
 
         </android.support.v7.widget.RecyclerView>
+
 
     </LinearLayout>
 

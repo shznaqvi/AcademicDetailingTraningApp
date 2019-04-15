@@ -147,7 +147,7 @@
             android:theme="@style/AppTheme1" />
         <activity android:name=".ui.AppointmentsActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme1">
+            android:theme="@style/AppTheme2">
 
         </activity>
     </application>

@@ -22,6 +22,15 @@ public class NextMeetingContract {
     public String bookingtype;
     public String _id;
     public String synced;
+
+    public String getSynced() {
+        return synced;
+    }
+
+    public void setSynced(String synced) {
+        this.synced = synced;
+    }
+
     public String synced_date;
 
 
@@ -127,6 +136,74 @@ public class NextMeetingContract {
         return this;
 
     }
+    public NextMeetingContract HydrateForAppointment(Cursor cursor) {
+
+        this.module = cursor.getString(cursor.getColumnIndex(NMCTable.COLUMN_MODULE_CODE));
+        this.book_date = cursor.getString(cursor.getColumnIndex(NMCTable.COLUMN_DATE));
+        this.book_time = cursor.getString(cursor.getColumnIndex(NMCTable.COLUMN_TIME));
+        this.session = cursor.getString(cursor.getColumnIndex(NMCTable.COLUMN_SESSION_CODE));
+        this.bookBy = cursor.getString(cursor.getColumnIndex(NMCTable.COLUMN_BOOKBY));
+        this.bookingtype = cursor.getString(cursor.getColumnIndex(NMCTable.COLUMN_BTYPE));
+        this._id = cursor.getString(cursor.getColumnIndex(NMCTable._ID));
+        this.dist_id = cursor.getLong(cursor.getColumnIndex(NMCTable.COLUMN_DIST_CODE));
+        this.hf_name = cursor.getString(cursor.getColumnIndex(NMCTable.COLUMN_HF_NAME));
+        this.hp_name = cursor.getString(cursor.getColumnIndex(NMCTable.COLUMN_HP_NAME));
+        this.hp_code = cursor.getLong(cursor.getColumnIndex(NMCTable.COLUMN_HP_CODE));
+        this.username = cursor.getString(cursor.getColumnIndex(NMCTable.COLUMN_USER));
+        this.formdate = cursor.getString(cursor.getColumnIndex(NMCTable.COLUMN_FORMDATE));
+
+//          NMCTable.COLUMN_DATE,
+//                NMCTable.COLUMN_TIME,
+//                NMCTable.COLUMN_MODULE_CODE,
+//                NMCTable.COLUMN_SESSION_CODE,
+//                NMCTable.COLUMN_BOOKBY,
+//                NMCTable.COLUMN_BTYPE,
+//                NMCTable._ID,
+//                NMCTable.COLUMN_HP_CODE,
+//                NMCTable.COLUMN_HF_NAME,
+//                NMCTable.COLUMN_DIST_CODE,
+//                NMCTable.COLUMN_HP_NAME,
+//                NMCTable.COLUMN_USER,
+
+        return this;
+
+    }
+
+
+    public NextMeetingContract Sync(JSONObject jsonObject) throws JSONException {
+        this._UID = jsonObject.getString(NMCTable.COLUMN_UID);
+        this.bookingtype = jsonObject.getString(NMCTable.COLUMN_BTYPE);
+        this.bookBy = jsonObject.getString(NMCTable.COLUMN_BOOKBY);
+        this.book_date = jsonObject.getString(NMCTable.COLUMN_DATE);
+        this.book_time = jsonObject.getString(NMCTable.COLUMN_TIME);
+        this.formdate = jsonObject.getString(NMCTable.COLUMN_FORMDATE);
+        this.dist_id = jsonObject.getLong(NMCTable.COLUMN_DIST_CODE);
+        this.hf_name = jsonObject.getString(NMCTable.COLUMN_HF_NAME);
+        this.hp_code = jsonObject.getLong(NMCTable.COLUMN_HP_CODE);
+        this.hp_name = jsonObject.getString(NMCTable.COLUMN_HP_NAME);
+        this.module = jsonObject.getString(NMCTable.COLUMN_MODULE_CODE);
+        this.session = jsonObject.getString(NMCTable.COLUMN_SESSION_CODE);
+        this.synced = jsonObject.getString(NMCTable.COLUMN_SYNCED);
+        this.formdate = jsonObject.getString(NMCTable.COLUMN_FORMDATE);
+
+        return this;
+
+
+//        "_uid": "3206860ee5ba1081",
+//                "book_type": "1",
+//                "booking_by": "dmu@aku",
+//                "book_date": "04-12-2019",
+//                "dist_code": "414",
+//                "formdate": "12-04-19 10:34",
+//                "hf_name": "nn",
+//                "hp_code": "35376",
+//                "hp_name": "chd",
+//                "module_code": "1",
+//                "session_code": "10201",
+//                "book_time": "10:34:49",
+//                "synced": 2
+
+    }
 
     public long getDist_id() {
         return dist_id;
@@ -222,18 +299,6 @@ public class NextMeetingContract {
 
     public void setBookingtype(String bookingtype) {
         this.bookingtype = bookingtype;
-    }
-
-    public NextMeetingContract Sync(JSONObject jsonObject) throws JSONException {
-
-        this.book_date = jsonObject.getString(NMCTable.COLUMN_DATE);
-        this.book_time = jsonObject.getString(NMCTable.COLUMN_TIME);
-        this.module = jsonObject.getString(NMCTable.COLUMN_MODULE_CODE);
-        this.session = jsonObject.getString(NMCTable.COLUMN_SESSION_CODE);
-        this.formdate = jsonObject.getString(NMCTable.COLUMN_FORMDATE);
-        this.deviceid = jsonObject.getString(NMCTable.COLUMN_DEVICEID);
-
-        return this;
     }
 
 

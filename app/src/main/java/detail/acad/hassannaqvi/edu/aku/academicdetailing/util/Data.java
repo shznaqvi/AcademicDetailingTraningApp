@@ -72,6 +72,31 @@ public final class Data {
         put("Puerperal Sepsis", "20701");
     }};
 
+    public static final HashMap<String, String> allSessionsMap = new HashMap<String, String>() {{
+        put("10101", "GDS(Assessment and Classification)");
+        put("10102", "GDS(Management, Counseling and Referral)");
+        put("10201", "CDB(Assessment and Classification)");
+        put("10202", "CDB(Management, Counseling and Referral)");
+        put("10301", "Dia(Assessment and Classification)");
+        put("10302", "Dia(Management, Counseling and Referral)");
+        put("10401", "PSBI(Assessment and Classification)");
+        put("10402", "PSBI(Management, Counseling and Referral)");
+        put("10403", "PSBI(Breast Feeding & Immunization)");
+        put("20101", "Focused Antenatal Care");
+        put("20201", "Vaginal Bleeding in Pregnancy");
+        put("20301", "Partograph");
+        put("20401", "Pre Eclampsia & Eclampsia");
+        put("20501", "Postpartum Hemorrhage - 1");
+        put("20502", "Postpartum Hemorrhage - 2");
+        put("20601", "Assessment and management of Shock");
+        put("20701", "Puerperal Sepsis");
+        put("30101", "ECEB(Session One)");
+        put("30102", "ECEB(Session Two)");
+        put("30201", "ECSB(Session One)");
+        put("30202", "ECSB(Session Two)");
+        put("30301", "Helping Babies Breathe");
+    }};
+
     public static final String[] newBornModule =
             new String[]{
                     "Essential Care for Every Baby",

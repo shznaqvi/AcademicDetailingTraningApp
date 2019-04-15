@@ -437,6 +437,64 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return allSc;
     }
 
+
+    public List<NextMeetingContract> getAppointmentsList() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = null;
+        String[] columns = {
+                NMCTable.COLUMN_DATE,
+                NMCTable.COLUMN_TIME,
+                NMCTable.COLUMN_MODULE_CODE,
+                NMCTable.COLUMN_SESSION_CODE,
+                NMCTable.COLUMN_BOOKBY,
+                NMCTable.COLUMN_BTYPE,
+                NMCTable._ID,
+                NMCTable.COLUMN_HP_CODE,
+                NMCTable.COLUMN_HF_NAME,
+                NMCTable.COLUMN_DIST_CODE,
+                NMCTable.COLUMN_HP_NAME,
+                NMCTable.COLUMN_USER,
+                NMCTable.COLUMN_FORMDATE
+
+        };
+        String whereClause = NMCTable.COLUMN_SYNCED + " is 2 ";
+        String[] whereArgs = null;
+        String groupBy = null;
+        String having = null;
+
+        String orderBy =
+                NMCTable._ID + " ASC";
+
+        List<NextMeetingContract> allSc = new ArrayList<NextMeetingContract>();
+        try {
+            c = db.query(
+                    NMCTable.TABLE_NAME,  // The table to query
+                    columns,                   // The columns to return
+                    whereClause,               // The columns for the WHERE clause
+                    whereArgs,                 // The values for the WHERE clause
+                    groupBy,                   // don't group the rows
+                    having,                    // don't filter by row groups
+                    orderBy                    // The sort order
+            );
+
+            if (c.moveToFirst())
+                do {
+                    NextMeetingContract nC = new NextMeetingContract();
+                    allSc.add(nC.HydrateForAppointment(c));
+                } while (c.moveToNext());
+
+
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+            if (db != null) {
+                db.close();
+            }
+        }
+        return allSc;
+    }
+
     public void syncUsers(JSONArray userlist) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL(" DELETE FROM " + UsersTable.TABLE_NAME);
@@ -468,6 +526,35 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+
+    public boolean checkingUser(String username,long distCode) {
+        SQLiteDatabase db = this.getReadableDatabase();
+// New value for one column
+        String[] columns = {
+                UsersTable._ID,
+                UsersTable.DISTRICT_CODE
+        };
+
+// Which row to update, based on the ID
+        String selection = UsersTable.ROW_USERNAME + " = ?" + " AND " + UsersTable.DISTRICT_CODE + " = ?";
+        String[] selectionArgs = {username, String.valueOf(distCode)};
+        Cursor cursor = db.query(UsersTable.TABLE_NAME, //Table to query
+                columns,                    //columns to return
+                selection,                  //columns for the WHERE clause
+                selectionArgs,              //The values for the WHERE clause
+                null,                       //group the rows
+                null,                       //filter by row groups
+                null);                      //The sort order
+
+        if (cursor.moveToFirst()) {
+            cursor.moveToNext();
+        }
+        int count = cursor.getCount();
+        cursor.close();
+        db.close();
+        return count > 0;
+
+    }
 
     public void syncHF(JSONArray hfList) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -1122,6 +1209,64 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.insert(NMCTable.TABLE_NAME, null, values);
 
 
+    }
+
+    public void syncAppointments(JSONArray appList) {
+        SQLiteDatabase db = this.getWritableDatabase();
+//        db.execSQL(" DELETE FROM " + UsersTable.TABLE_NAME);
+//        db.execSQL(" DELETE FROM sqlite_sequence where name = 'users'");
+
+        //DELETING Data with synced = 2
+        db.delete(NMCTable.TABLE_NAME, NMCTable.COLUMN_SYNCED + "=?", new String[]{"2"});
+
+        try {
+            JSONArray jsonArray = appList;
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObjectUser = jsonArray.getJSONObject(i);
+                if (jsonObjectUser != null) {
+
+                    NextMeetingContract nextMeetingContract = new NextMeetingContract();
+                    nextMeetingContract.Sync(jsonObjectUser);
+
+                    ContentValues values = new ContentValues();
+
+                    values.put(NMCTable.COLUMN_UID, nextMeetingContract.get_UID());
+                    values.put(NMCTable.COLUMN_BTYPE, nextMeetingContract.getBookingtype());
+                    values.put(NMCTable.COLUMN_BOOKBY, nextMeetingContract.getBookBy());
+                    values.put(NMCTable.COLUMN_DATE, nextMeetingContract.getBook_date());
+                    values.put(NMCTable.COLUMN_DIST_CODE, nextMeetingContract.getDist_id());
+                    values.put(NMCTable.COLUMN_FORMDATE, nextMeetingContract.getFormdate());
+                    values.put(NMCTable.COLUMN_HF_NAME, nextMeetingContract.getHf_name());
+                    values.put(NMCTable.COLUMN_HP_CODE, nextMeetingContract.getHp_code());
+                    values.put(NMCTable.COLUMN_HP_NAME, nextMeetingContract.getHp_name());
+                    values.put(NMCTable.COLUMN_MODULE_CODE, nextMeetingContract.getModule());
+                    values.put(NMCTable.COLUMN_SESSION_CODE, nextMeetingContract.getSession());
+                    values.put(NMCTable.COLUMN_TIME, nextMeetingContract.getBook_time());
+                    values.put(NMCTable.COLUMN_SYNCED, nextMeetingContract.getSynced());
+                    db.insert(NMCTable.TABLE_NAME, null, values);
+                }
+
+            }
+            db.close();
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
+
+//                         "_uid": "3206860ee5ba1081",
+//                            "book_type": "1",
+//                            "booking_by": "dmu@aku",
+//                            "book_date": "04-12-2019",
+//                            "dist_code": "414",
+//                            "formdate": "12-04-19 10:34",
+//                            "hf_name": "nn",
+//                            "hp_code": "35376",
+//                            "hp_name": "chd",
+//                            "module_code": "1",
+//                            "session_code": "10201",
+//                            "book_time": "10:34:49",
+//                            "synced": 2
     }
 
     public interface DBConnection {

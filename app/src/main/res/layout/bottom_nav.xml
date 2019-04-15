@@ -32,6 +32,13 @@
                 android:layout_below="@id/ic_home"
                 android:layout_centerHorizontal="true"
                 android:text="Home" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_margin="5dp"
+                android:background="@color/white"/>
         </RelativeLayout>
 
         <RelativeLayout
@@ -58,6 +65,12 @@
                 android:layout_centerHorizontal="true"
                 android:text="Download Videos"
                 />
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_margin="5dp"
+                android:background="@color/white"/>
         </RelativeLayout>
 
         <RelativeLayout

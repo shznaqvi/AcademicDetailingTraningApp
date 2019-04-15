@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     AlertDialog.Builder builder;
     String m_Text = "";
     String dtToday = new SimpleDateFormat("dd-MM-yy HH:mm ").format(new Date().getTime());
+    boolean newDist,oldDist;
 
 
     @Override
@@ -87,14 +88,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         loadTagDialog();
 
 
-
     }
 
     private void loadTagDialog() {
 
         sharedPref = getSharedPreferences("tagName", MODE_PRIVATE);
         editor = sharedPref.edit();
-        if (!sharedPref.contains("tagName") && sharedPref.getString("tagName",null) == null) {
+        if (!sharedPref.contains("tagName") && sharedPref.getString("tagName", null) == null) {
 
             builder = new AlertDialog.Builder(MainActivity.this);
             ImageView img = new ImageView(getApplicationContext());
@@ -147,8 +147,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.appointment:
-
-                Toast.makeText(this, "Under Development", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, AppointmentsActivity.class));
                 break;
 
         }

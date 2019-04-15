@@ -2,6 +2,7 @@ package detail.acad.hassannaqvi.edu.aku.academicdetailing.RetrofitClient;
 
 import org.json.JSONArray;
 
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -36,8 +37,9 @@ public interface API {
     @GET("districts.php")
     Call<ResponseBody> getDistricts();
 
-    @GET("appointments.php")
-    Call<ResponseBody> getAppointments();
+    @Headers({"Content-Type: application/json;charset=UTF-8"})
+    @POST("appointments.php")
+    Call<ResponseBody> getAppointments(@Body RequestBody object);
 
 
 }

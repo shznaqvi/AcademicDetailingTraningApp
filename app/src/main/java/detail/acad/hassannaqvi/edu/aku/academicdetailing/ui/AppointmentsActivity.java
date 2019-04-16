@@ -3,7 +3,9 @@ package detail.acad.hassannaqvi.edu.aku.academicdetailing.ui;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import java.util.List;
@@ -37,6 +39,7 @@ public class AppointmentsActivity extends AppCompatActivity {
             bi.noAppointment.setVisibility(View.GONE);
             adapter = new AppointmentListAdapter(this, list);
             bi.appointmentList.setLayoutManager(new LinearLayoutManager(this));
+            bi.appointmentList.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.HORIZONTAL));
             bi.appointmentList.setHasFixedSize(true);
             bi.appointmentList.setAdapter(adapter);
         }else{

@@ -23,5 +23,8 @@
     <color name="green">#4caf50</color>
     <color name="grayOverlay">#7f7f7f7f</color>
 
+    <color name="darkRed">#D50000</color>
+    <color name="lightOrange">#FFE0B2</color>
+
 
 </resources>

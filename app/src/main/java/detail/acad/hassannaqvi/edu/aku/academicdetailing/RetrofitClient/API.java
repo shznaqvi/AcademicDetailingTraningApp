@@ -34,6 +34,9 @@ public interface API {
     @GET("users.php")
     Call<ResponseBody> getUsers();
 
+    @GET("output.php")
+    Call<ResponseBody> getAppVersion();
+
     @GET("districts.php")
     Call<ResponseBody> getDistricts();
 

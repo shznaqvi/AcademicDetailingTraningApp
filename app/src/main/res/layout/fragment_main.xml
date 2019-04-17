@@ -18,6 +18,7 @@
                 android:layout_height="250dp"
                 android:orientation="vertical">
 
+
                 <TextView
                     android:id="@+id/testing"
                     android:layout_width="match_parent"
@@ -33,6 +34,19 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/lblAppVersion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@color/lightOrange"
+                    android:textAlignment="center"
+                    android:textColor="@color/darkRed"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+
+                <TextView
                     android:id="@+id/userName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -42,6 +56,8 @@
                     android:textColor="@color/white"
                     android:textSize="17sp"
                     android:textStyle="bold" />
+
+
 
                 <LinearLayout
                     android:id="@+id/linLayout1"

@@ -40,10 +40,12 @@ import android.widget.Toast;
 import com.github.amlcurran.showcaseview.ShowcaseView;
 import com.github.amlcurran.showcaseview.targets.Target;
 import com.github.amlcurran.showcaseview.targets.ViewTarget;
+import com.google.gson.Gson;
 import com.kaopiz.kprogresshud.KProgressHUD;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -61,6 +63,7 @@ import java.util.Map;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.RetrofitClient.RetrofitClient;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.DistrictsContract;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.VersionAppContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityLoginBinding;
@@ -456,8 +459,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
             gettingDataFromService("Syncing Users", "Users");
             call = RetrofitClient.service.getDistricts(); //districts
             gettingDataFromService("Syncing Districts", "Districts");
-//            call = RetrofitClient.service.getAppointments(); //districts
-//            gettingDataFromService("Syncing Appointments", "app");
+            call = RetrofitClient.service.getAppVersion(); //districts
+            gettingDataFromService("Checking App", "appversion");
 
         } else {
             Toast.makeText(this, "No network connection available.", Toast.LENGTH_SHORT).show();
@@ -575,9 +578,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
                             case "Districts":
                                 db.syncDistricts(array);
                                 break;
-//                            case "app":
-//                                db.syncDistricts(array);
-//                                break;
+                            case "appversion":
+                                savingAppVersion(array);
+                                break;
 ////
 
                         }
@@ -605,6 +608,17 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
                 Toast.makeText(LoginActivity.this, "Server Connectivity Error", Toast.LENGTH_SHORT).show();
             }
         });
+
+
+    }
+
+    private void savingAppVersion(JSONArray array) throws JSONException {
+
+        JSONObject object = array.getJSONObject(0);
+        VersionAppContract contract = new VersionAppContract();
+        contract.Sync(object);
+        String json = new Gson().toJson(contract);
+        getSharedPreferences("main",MODE_PRIVATE).edit().putString("appVersion",json).apply();
 
 
     }

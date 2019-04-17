@@ -51,13 +51,13 @@ public class MainApp extends Application {
 
     //    http://f38158/phpwebapi/uenad/api/
 //    public static final String _IP = "43.245.131.159"; // Test PHP server
-    public static final String _IP = "f38158/"; // Test PHP server
+    public static final String _IP = "vcoe1.aku.edu//"; // Test PHP server
     public static final Integer _PORT = 8080; // Port - with colon (:)
-    public static final String _HOST_URL = "http://" + MainApp._IP + "uen_ad/api/";
+    public static final String _HOST_URL = "https://" + MainApp._IP + "uen_ad/api/";
     // public static final String TEST_URL = "http://" + MainApp._IP + ":" + MainApp._PORT + "/leapsup/api/";
 
     //    public static final String _UPDATE_URL = "http://" + MainApp._IP + ":" + MainApp._PORT + "/wfp_recruit_form/app/app-debug.apk";
-//    public static final String _UPDATE_URL = "http://" + MainApp._IP + ":" + MainApp._PORT + "/leapsup/app/app-debug.apk";
+    public static final String _UPDATE_URL = "https://" + MainApp._IP + "/uen_ad/app/";
 
     public static final Integer MONTHS_LIMIT = 11;
     public static final Integer DAYS_LIMIT = 29;
@@ -70,7 +70,7 @@ public class MainApp extends Application {
     private static final long SECONDS_IN_MINUTE = 60;
     private static final long MINUTES_IN_HOUR = 60;
     private static final long HOURS_IN_DAY = 24;
-    public static final long MILLISECONDS_IN_DAY = MILLIS_IN_SECOND *  SECONDS_IN_MINUTE * MINUTES_IN_HOUR * HOURS_IN_DAY;
+    public static final long MILLISECONDS_IN_DAY = MILLIS_IN_SECOND * SECONDS_IN_MINUTE * MINUTES_IN_HOUR * HOURS_IN_DAY;
     private static final long DAYS_IN_YEAR = 365;
     public static final long MILLISECONDS_IN_8Days = MILLIS_IN_SECOND * SECONDS_IN_MINUTE * MINUTES_IN_HOUR * HOURS_IN_DAY * 8;
     public static final long MILLISECONDS_IN_YEAR = MILLIS_IN_SECOND * SECONDS_IN_MINUTE * MINUTES_IN_HOUR * HOURS_IN_DAY * DAYS_IN_YEAR;
@@ -519,7 +519,6 @@ public class MainApp extends Application {
         bd = bd.setScale(decimalPlace, BigDecimal.ROUND_HALF_UP);
         return bd.floatValue();
     }
-
 
 
 }

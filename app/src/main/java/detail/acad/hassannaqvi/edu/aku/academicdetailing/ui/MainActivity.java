@@ -1,11 +1,18 @@
 package detail.acad.hassannaqvi.edu.aku.academicdetailing.ui;
 
+import android.app.ActivityManager;
 import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.app.DownloadManager;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.databinding.DataBindingUtil;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -23,10 +30,12 @@ import com.kaopiz.kprogresshud.KProgressHUD;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.RetrofitClient.RetrofitClient;
@@ -66,6 +75,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     String m_Text = "";
     String dtToday = new SimpleDateFormat("dd-MM-yy HH:mm ").format(new Date().getTime());
     boolean newDist,oldDist;
+
+    static File file;
+    DownloadManager downloadManager;
+    SharedPreferences sharedPrefDownload;
+    SharedPreferences.Editor editorDownload;
+    String preVer = "", newVer = "";
+
 
 
     @Override
@@ -179,6 +195,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void loadDatabaseManager() {
         startActivity(new Intent(MainActivity.this, AndroidDatabaseManager.class));
     }
+
 
     @Override
     public void uploadDataToServer() {
@@ -377,6 +394,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
 
     }
+
+
+
+
 
 
 }

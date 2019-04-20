@@ -187,46 +187,48 @@ public class MainFragment extends Fragment {
         };
 
         versionAppContract = new Gson().fromJson(getContext().getSharedPreferences("main", Context.MODE_PRIVATE).getString("appVersion", ""), VersionAppContract.class);
-        if (versionAppContract.getVersioncode() != null) {
+        if (versionAppContract != null) {
 
-            preVer = MainApp.versionName + "." + MainApp.versionCode;
-            newVer = versionAppContract.getVersionname() + "." + versionAppContract.getVersioncode();
+            if (versionAppContract.getVersioncode() != null) {
+                preVer = MainApp.versionName + "." + MainApp.versionCode;
+                newVer = versionAppContract.getVersionname() + "." + versionAppContract.getVersioncode();
 
-            if (MainApp.versionCode < Integer.valueOf(versionAppContract.getVersioncode())) {
-                bi.lblAppVersion.setVisibility(View.VISIBLE);
+                if (MainApp.versionCode < Integer.valueOf(versionAppContract.getVersioncode())) {
+                    bi.lblAppVersion.setVisibility(View.VISIBLE);
 
-                String fileName = DatabaseHelper.DATABASE_NAME.replace(".db", "-New-Apps");
-                file = new File(Environment.getExternalStorageDirectory() + File.separator + fileName, versionAppContract.getPathname());
+                    String fileName = DatabaseHelper.DATABASE_NAME.replace(".db", "-New-Apps");
+                    file = new File(Environment.getExternalStorageDirectory() + File.separator + fileName, versionAppContract.getPathname());
 
-                if (file.exists()) {
-                    bi.lblAppVersion.setText("Academic Detailing Training App New Version " + newVer + "  Downloaded.");
+                    if (file.exists()) {
+                        bi.lblAppVersion.setText("Academic Detailing Training App New Version " + newVer + "  Downloaded.");
 //                    InstallNewApp(newVer, preVer);
-                    showDialog(newVer, preVer);
-                } else {
-                    NetworkInfo networkInfo = ((ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
-                    if (networkInfo != null && networkInfo.isConnected()) {
-
-                        bi.lblAppVersion.setText("Academic Detailing Training App New Version " + newVer + " Downloading..");
-                        downloadManager = (DownloadManager) getContext().getSystemService(Context.DOWNLOAD_SERVICE);
-                        Uri uri = Uri.parse(MainApp._UPDATE_URL + versionAppContract.getPathname());
-                        DownloadManager.Request request = new DownloadManager.Request(uri);
-                        request.setDestinationInExternalPublicDir(fileName, versionAppContract.getPathname())
-                                .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
-                                .setTitle("Downloading Academic Detailing Training App new App ver." + newVer);
-                        refID = downloadManager.enqueue(request);
-
-                        editorDownload.putLong("refID", refID);
-                        editorDownload.putBoolean("flag", false);
-                        editorDownload.commit();
-
+                        showDialog(newVer, preVer);
                     } else {
-                        bi.lblAppVersion.setText("Academic Detailing Training App New Version " + newVer + "  Available..\n(Can't download.. Internet connectivity issue!!)");
-                    }
-                }
+                        NetworkInfo networkInfo = ((ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
+                        if (networkInfo != null && networkInfo.isConnected()) {
 
-            } else {
-                bi.lblAppVersion.setVisibility(View.GONE);
-                bi.lblAppVersion.setText(null);
+                            bi.lblAppVersion.setText("Academic Detailing Training App New Version " + newVer + " Downloading..");
+                            downloadManager = (DownloadManager) getContext().getSystemService(Context.DOWNLOAD_SERVICE);
+                            Uri uri = Uri.parse(MainApp._UPDATE_URL + versionAppContract.getPathname());
+                            DownloadManager.Request request = new DownloadManager.Request(uri);
+                            request.setDestinationInExternalPublicDir(fileName, versionAppContract.getPathname())
+                                    .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+                                    .setTitle("Downloading Academic Detailing Training App new App ver." + newVer);
+                            refID = downloadManager.enqueue(request);
+
+                            editorDownload.putLong("refID", refID);
+                            editorDownload.putBoolean("flag", false);
+                            editorDownload.commit();
+
+                        } else {
+                            bi.lblAppVersion.setText("Academic Detailing Training App New Version " + newVer + "  Available..\n(Can't download.. Internet connectivity issue!!)");
+                        }
+                    }
+
+                } else {
+                    bi.lblAppVersion.setVisibility(View.GONE);
+                    bi.lblAppVersion.setText(null);
+                }
             }
         }
 

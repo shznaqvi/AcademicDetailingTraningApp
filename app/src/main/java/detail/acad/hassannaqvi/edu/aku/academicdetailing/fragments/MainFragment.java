@@ -96,6 +96,8 @@ public class MainFragment extends Fragment {
         bi = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false);
         view = bi.getRoot();
 
+        sharedPrefDownload = getContext().getSharedPreferences("appDownload", getContext().MODE_PRIVATE);
+        editorDownload = sharedPrefDownload.edit();
 
         isAdmin = getArguments().getBoolean("isAdmin");
         if (!isAdmin) {
@@ -324,7 +326,7 @@ public class MainFragment extends Fragment {
             preVer = getArguments().getString("preVer");
 
             return new AlertDialog.Builder(getActivity())
-                    .setIcon(R.drawable.exclamation)
+                    .setIcon(android.R.drawable.ic_dialog_info)
                     .setTitle("Academic Detailing Training App is available!")
                     .setMessage("Academic Detailing Training App " + newVer + " is now available. Your are currently using older version " + preVer + ".\nInstall new version to use this app.")
                     .setPositiveButton("INSTALL!!",

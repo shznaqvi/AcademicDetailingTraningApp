@@ -28,20 +28,20 @@ public interface API {
     @GET("healthfacilities.php")
     Call<ResponseBody> synHfData();
 
-    @GET("providers.php")
+    @GET("api/providers.php")
     Call<ResponseBody> synHPData();
 
-    @GET("users.php")
+    @GET("api/users.php")
     Call<ResponseBody> getUsers();
 
-    @GET("output.php")
+    @GET("app/output.json")
     Call<ResponseBody> getAppVersion();
 
-    @GET("districts.php")
+    @GET("api/districts.php")
     Call<ResponseBody> getDistricts();
 
     @Headers({"Content-Type: application/json;charset=UTF-8"})
-    @POST("appointments.php")
+    @POST("api/appointments.php")
     Call<ResponseBody> getAppointments(@Body RequestBody object);
 
 

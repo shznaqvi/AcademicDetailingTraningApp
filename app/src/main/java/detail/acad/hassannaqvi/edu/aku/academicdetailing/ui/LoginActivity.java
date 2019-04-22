@@ -581,7 +581,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
                             case "appversion":
                                 savingAppVersion(array);
                                 break;
-////
+
 
                         }
 
@@ -597,7 +597,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
 
                     editor.putString("LastDownSyncServer", dtToday);
 
-                    editor.apply();
+
                 }
             }
 

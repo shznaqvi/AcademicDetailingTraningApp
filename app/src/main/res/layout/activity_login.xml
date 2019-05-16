@@ -138,7 +138,6 @@
                                     android:layoutDirection="ltr"
                                     android:maxLines="1"
                                     android:singleLine="true"
-                                    android:text="dmu@aku"
                                     android:textColor="@color/black"
                                     android:textSize="18sp">
 
@@ -172,7 +171,6 @@
                                         android:layoutDirection="ltr"
                                         android:maxLines="1"
                                         android:singleLine="true"
-                                        android:text="aku?dmu"
                                         android:textColor="@color/black"
                                         android:textSize="18sp" />
 

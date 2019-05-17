@@ -95,10 +95,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bi.bottomNav.home.setOnClickListener(this);
         bi.bottomNav.vidDownload.setOnClickListener(this);
         bi.bottomNav.appointment.setOnClickListener(this);
-        DistrictsContract dst = db.getDistrict(MainApp.districtCode);
-        if (dst != null) {
-            MainApp.districtName = dst.getDistrict_name();
-        }
+//        DistrictsContract dst = db.getDistrict(MainApp.districtCode);
+//        if (dst != null) {
+//            MainApp.districtName = dst.getDistrict_name();
+//        }
         loadHomeFragment();
 
         loadTagDialog();

@@ -435,7 +435,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
 
                 if (bi.districtNameSpinner.getSelectedItemPosition() != 0) {
                     MainApp.dContract = districtMap.get(bi.districtNameSpinner.getSelectedItem().toString());
-                    MainApp.districtName = bi.districtNameSpinner.getSelectedItem().toString();
+                    MainApp.districtName = MainApp.dContract.getDistrict_name();
                 }
 
             }

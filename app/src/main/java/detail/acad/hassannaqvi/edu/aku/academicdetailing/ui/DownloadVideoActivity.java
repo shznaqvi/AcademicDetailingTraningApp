@@ -27,6 +27,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,6 +56,7 @@ public class DownloadVideoActivity extends AppCompatActivity {
     AlertDialog dialog;
     TextView progressText;
     ProgressBar progressBar;
+    Button cancelButton;
     BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -66,6 +68,7 @@ public class DownloadVideoActivity extends AppCompatActivity {
                     int colIndex = cursor.getColumnIndex(DownloadManager.COLUMN_STATUS);
                     if (DownloadManager.STATUS_SUCCESSFUL == cursor.getInt(colIndex)) {
                         dialog.dismiss();
+
 
                         // Populate recycler_view
                         new populateRecyclerView(DownloadVideoActivity.this, bi.modNSpinner.getSelectedIndex()).execute();
@@ -179,10 +182,30 @@ public class DownloadVideoActivity extends AppCompatActivity {
         progressText = view.findViewById(R.id.progressTextView);
         progressText.setText("Downloading: " + videosName);
         progressBar = view.findViewById(R.id.progressBar);
+        cancelButton = view.findViewById(R.id.cancelButton);
         builder.setView(view);
         progressBar.setMax(100);
         dialog = builder.create();
         dialog.show();
+
+
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                cancelAllVideos();
+
+
+            }
+        });
+    }
+
+    private void cancelAllVideos() {
+
+        downloadManager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
+        downloadManager.remove(refID);
+        unregisterReceiver(broadcastReceiver);
+        dialog.dismiss();
     }
 
     private String getVideoItemName(String moduleName) {

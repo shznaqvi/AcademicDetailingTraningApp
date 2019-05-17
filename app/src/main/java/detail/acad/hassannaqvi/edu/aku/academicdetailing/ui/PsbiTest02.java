@@ -180,7 +180,7 @@ public class PsbiTest02 extends AppCompatActivity implements RadioButton.OnCheck
 
 
         //PsbiTest02-Q3
-        /*if (compoundButton.getId() == R.id.PsbiTestB03a
+        if (compoundButton.getId() == R.id.PsbiTestB03a
                 || compoundButton.getId() == R.id.PsbiTestB03b
                 || compoundButton.getId() == R.id.PsbiTestB03c
                 || compoundButton.getId() == R.id.PsbiTestB03d) {
@@ -202,7 +202,7 @@ public class PsbiTest02 extends AppCompatActivity implements RadioButton.OnCheck
                 String styledText = "Pre referral treatment for severe Pneumonia or very severe disease in young infant up to 2 months require first dose of an appropriate <font color='yellow'><b><i>None of the above</i></b></font> antibiotic .";
                 bi.tvPsbiTestB03.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             }
-        }*/
+        }
 
     }
 

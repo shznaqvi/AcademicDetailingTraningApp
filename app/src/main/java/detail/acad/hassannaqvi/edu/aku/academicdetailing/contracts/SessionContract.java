@@ -119,6 +119,7 @@ public class SessionContract {
         return this;
 
     }
+
     public String getSession() {
         return session;
     }

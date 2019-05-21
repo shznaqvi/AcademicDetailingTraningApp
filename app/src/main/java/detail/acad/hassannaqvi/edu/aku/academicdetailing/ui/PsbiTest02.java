@@ -59,7 +59,7 @@ public class PsbiTest02 extends AppCompatActivity implements RadioButton.OnCheck
         } else if (type.equals("pre") && isComplete) {
             bi.heading.setText("PRETEST RESULT");
             GeneratorClass.comparingResult(bi.llPsbiTestB, true, subMenuDT.getAnswers());
-            pre_result = GeneratorClass.getResults("pre",subMenuDT.getAnswers());
+            pre_result = GeneratorClass.getResults("pre", subMenuDT.getAnswers());
             bi.btnOk.setVisibility(View.VISIBLE);
             bi.btnOk.setText("Start Training");
             bi.btnContinue.setVisibility(View.GONE);
@@ -71,7 +71,7 @@ public class PsbiTest02 extends AppCompatActivity implements RadioButton.OnCheck
         } else if (type.equals("post") && isComplete) {
             bi.heading.setText(" POST TEST & PRETEST RESULT");
             GeneratorClass.comparingPostTestAndPretestResult(bi.llPsbiTestB, true, subMenuDT.getAnswers());
-            post_result = GeneratorClass.getResults("post",subMenuDT.getAnswers());
+            post_result = GeneratorClass.getResults("post", subMenuDT.getAnswers());
             bi.btnOk.setVisibility(View.VISIBLE);
             bi.btnOk.setText("Finish Training");
             bi.btnContinue.setVisibility(View.GONE);

@@ -69,7 +69,6 @@ public class DownloadVideoActivity extends AppCompatActivity {
                     if (DownloadManager.STATUS_SUCCESSFUL == cursor.getInt(colIndex)) {
                         dialog.dismiss();
 
-
                         // Populate recycler_view
                         new populateRecyclerView(DownloadVideoActivity.this, bi.modNSpinner.getSelectedIndex()).execute();
 
@@ -85,13 +84,37 @@ public class DownloadVideoActivity extends AppCompatActivity {
         bi = DataBindingUtil.setContentView(this, R.layout.activity_download_video);
         bi.setCallback(this);
 
-        settingFunctionality();
+        setupModules();
         setListeners();
+
     }
 
-    private void settingFunctionality() {
+    private void setupModules() {
+        if (!MainApp.admin && !MainApp.userName.equals("test1234")) {
+            switch (MainApp.districtCode) {
+                case 113:
+                case 123:
+                case 432:
+                case 234:
+                    bi.modNSpinner.attachDataSource(new LinkedList<>(Arrays.asList("-Select Module-", "CHILD MODULE")));
+                    break;
+                case 252:
+                    bi.modNSpinner.attachDataSource(new LinkedList<>(Arrays.asList("-Select Module-", "MATERNAL MODULE")));
+                    break;
+                case 434:
+                    bi.modNSpinner.attachDataSource(new LinkedList<>(Arrays.asList("-Select Module-", "NEWBORN MODULE")));
+                    break;
+                case 211:
+                case 414:
+                    bi.modNSpinner.attachDataSource(new LinkedList<>(Arrays.asList("-Select Module-", "MATERNAL MODULE", "NEWBORN MODULE")));
+                    break;
+            }
+        } else {
+            bi.modNSpinner.attachDataSource(new LinkedList<>(Arrays.asList("-Select Module-", "CHILD MODULE", "MATERNAL MODULE", "NEWBORN MODULE")));
+        }
+
         existVideos = new ArrayList<>();
-        bi.modNSpinner.attachDataSource(new LinkedList<>(Arrays.asList("CHILD MODULE", "MATERNAL MODULE", "NEWBORN MODULE")));
+
 
         // Populate recycler_view
         new populateRecyclerView(DownloadVideoActivity.this, 0).execute();
@@ -104,7 +127,8 @@ public class DownloadVideoActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 // populate recycler_view
-                new populateRecyclerView(DownloadVideoActivity.this, i).execute();
+                if (i != 0)
+                    new populateRecyclerView(DownloadVideoActivity.this, i).execute();
             }
 
             @Override
@@ -285,7 +309,8 @@ public class DownloadVideoActivity extends AppCompatActivity {
 
     private String[] getStringArray(int position) {
         switch (position) {
-            case 0:
+            case 1:
+
                 return Data.newbornVideos;
             default:
                 return new String[]{};

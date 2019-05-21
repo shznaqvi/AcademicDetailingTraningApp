@@ -3,6 +3,7 @@ package detail.acad.hassannaqvi.edu.aku.academicdetailing.ui;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.app.LoaderManager;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -113,6 +114,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
     List<DistrictsContract> distrcitList;
     ArrayList<String> districtNames;
     HashMap<String, DistrictsContract> districtMap;
+    private ProgressDialog pd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,6 +124,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
         bi.setCallback(this);
 
         db = new DatabaseHelper(this);
+
+        pd = new ProgressDialog(this);
 
         hud = KProgressHUD.create(this).setCancellable(false).setStyle(KProgressHUD.Style.SPIN_INDETERMINATE);
         MainApp.loginMem = new String[3];
@@ -212,7 +216,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
         if (Integer.valueOf(MainApp.versionName.split("\\.")[0]) > 0) {
             bi.testing.setVisibility(View.VISIBLE);
         } else {
-            bi.testing.setVisibility(View.VISIBLE);
+            bi.testing.setVisibility(View.GONE);
         }
 
         //Populating district
@@ -462,6 +466,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
             call = RetrofitClient.service.getAppVersion(); //districts
             gettingDataFromService("Checking App", "appversion");
 
+
         } else {
             Toast.makeText(this, "No network connection available.", Toast.LENGTH_SHORT).show();
         }
@@ -591,11 +596,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
                         e.printStackTrace();
                     }
 
-                    Toast.makeText(LoginActivity.this, "Successfully Synced " + type + " Data ", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(LoginActivity.this, "Successfully Synced " + type + " Data ", Toast.LENGTH_SHORT).show();
                     SharedPreferences syncPref = getSharedPreferences("SyncInfo", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = syncPref.edit();
-
-                    editor.putString("LastDownSyncServer", dtToday);
+                    editor.putString("LastDownSyncServer", dtToday).apply();
 
 
                 }
@@ -837,7 +841,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
                         Toast.makeText(LoginActivity.this, "Please Sync Districts", Toast.LENGTH_SHORT).show();
                     } else if (bi.districtNameSpinner.getSelectedItemPosition() == 0) {
                         Toast.makeText(LoginActivity.this, "Please Select District", Toast.LENGTH_SHORT).show();
-                    }else if (!MainApp.admin && !MainApp.userName.equals("test1234") && !MainApp.userName.equals("test12345")) {
+                    } else if (!MainApp.admin && !MainApp.userName.equals("test1234") && !MainApp.userName.equals("test12345")) {
                         if (!db.checkingUser(mEmail, MainApp.dContract.getDICTRICT_CODE())) {
                             Toast.makeText(LoginActivity.this, "This user is not assigned to Selected District", Toast.LENGTH_LONG).show();
                         } else {

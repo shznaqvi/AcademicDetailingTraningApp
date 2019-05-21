@@ -527,7 +527,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public boolean checkingUser(String username,long distCode) {
+    public boolean checkingUser(String username, long distCode) {
         SQLiteDatabase db = this.getReadableDatabase();
 // New value for one column
         String[] columns = {

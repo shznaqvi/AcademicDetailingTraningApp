@@ -399,8 +399,6 @@ public class DownloadVideoActivity extends AppCompatActivity {
         public populateRecyclerView(Context mContext, int position) {
             this.mContext = mContext;
             this.position = position;
-
-
             pd = new ProgressDialog(mContext);
             pd.setTitle("LOADING VIDEOS");
             pd.setMessage("Processing...");

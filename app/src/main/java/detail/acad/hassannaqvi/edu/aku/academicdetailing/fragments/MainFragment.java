@@ -345,10 +345,5 @@ public class MainFragment extends Fragment {
 
     }
 
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        getContext().unregisterReceiver(broadcastReceiver);
-    }
+    
 }

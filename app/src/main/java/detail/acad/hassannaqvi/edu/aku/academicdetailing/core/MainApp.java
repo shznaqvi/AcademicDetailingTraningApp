@@ -51,6 +51,7 @@ public class MainApp extends Application {
 
     //    http://f38158/phpwebapi/uenad/api/
 //    public static final String _IP = "43.245.131.159"; // Test PHP server
+//    http://f38158/uen/api/
     public static final String _IP = "vcoe1.aku.edu/"; // Test PHP server
     public static final Integer _PORT = 8080; // Port - with colon (:)
     public static final String _HOST_URL = "https://" + MainApp._IP + "uen_ad/api/";
@@ -182,11 +183,11 @@ public class MainApp extends Application {
 
     public static String getModuleName(int position) {
         switch (position) {
-            case 0:
-                return "CHILDHEALTH";
             case 1:
-                return "MATERNALHEALTH";
+                return "CHILDHEALTH";
             case 2:
+                return "MATERNALHEALTH";
+            case 3:
                 return "NBORNHEALTH";
             default:
                 return "";
@@ -196,11 +197,11 @@ public class MainApp extends Application {
     public static int getModulePosition(String module) {
         switch (module) {
             case "CHILDHEALTH":
-                return 0;
-            case "MATERNALHEALTH":
                 return 1;
-            case "NBORNHEALTH":
+            case "MATERNALHEALTH":
                 return 2;
+            case "NBORNHEALTH":
+                return 3;
             default:
                 return -1;
         }

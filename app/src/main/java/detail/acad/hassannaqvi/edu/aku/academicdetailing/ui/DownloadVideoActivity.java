@@ -57,6 +57,8 @@ public class DownloadVideoActivity extends AppCompatActivity {
     TextView progressText;
     ProgressBar progressBar;
     Button cancelButton;
+    int modulePosition;
+    List<String> modules;
     BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -70,7 +72,7 @@ public class DownloadVideoActivity extends AppCompatActivity {
                         dialog.dismiss();
 
                         // Populate recycler_view
-                        new populateRecyclerView(DownloadVideoActivity.this, bi.modNSpinner.getSelectedIndex()).execute();
+                        new populateRecyclerView(DownloadVideoActivity.this, modulePosition).execute();
 
                     }
                 }
@@ -84,6 +86,8 @@ public class DownloadVideoActivity extends AppCompatActivity {
         bi = DataBindingUtil.setContentView(this, R.layout.activity_download_video);
         bi.setCallback(this);
 
+        modules = new ArrayList<>();
+
         setupModules();
         setListeners();
 
@@ -96,21 +100,34 @@ public class DownloadVideoActivity extends AppCompatActivity {
                 case 123:
                 case 432:
                 case 234:
-                    bi.modNSpinner.attachDataSource(new LinkedList<>(Arrays.asList("-Select Module-", "CHILD MODULE")));
+                    modules.add("-Select Module-");
+                    modules.add("CHILD MODULE");
+                    bi.modNSpinner.attachDataSource(modules);
                     break;
                 case 252:
-                    bi.modNSpinner.attachDataSource(new LinkedList<>(Arrays.asList("-Select Module-", "MATERNAL MODULE")));
+                    modules.add("-Select Module-");
+                    modules.add("MATERNAL MODULE");
+                    bi.modNSpinner.attachDataSource(modules);
                     break;
                 case 434:
-                    bi.modNSpinner.attachDataSource(new LinkedList<>(Arrays.asList("-Select Module-", "NEWBORN MODULE")));
+                    modules.add("-Select Module-");
+                    modules.add("NEWBORN MODULE");
+                    bi.modNSpinner.attachDataSource(modules);
                     break;
                 case 211:
                 case 414:
-                    bi.modNSpinner.attachDataSource(new LinkedList<>(Arrays.asList("-Select Module-", "MATERNAL MODULE", "NEWBORN MODULE")));
+                    modules.add("-Select Module-");
+                    modules.add("MATERNAL MODULE");
+                    modules.add("NEWBORN MODULE");
+                    bi.modNSpinner.attachDataSource(modules);
                     break;
             }
         } else {
-            bi.modNSpinner.attachDataSource(new LinkedList<>(Arrays.asList("-Select Module-", "CHILD MODULE", "MATERNAL MODULE", "NEWBORN MODULE")));
+            modules.add("-Select Module-");
+            modules.add("CHILD MODULE");
+            modules.add("MATERNAL MODULE");
+            modules.add("NEWBORN MODULE");
+            bi.modNSpinner.attachDataSource(modules);
         }
 
         existVideos = new ArrayList<>();
@@ -128,6 +145,7 @@ public class DownloadVideoActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 // populate recycler_view
                 if (i != 0)
+                    modulePosition = i;
                     new populateRecyclerView(DownloadVideoActivity.this, i).execute();
             }
 
@@ -143,7 +161,7 @@ public class DownloadVideoActivity extends AppCompatActivity {
                     public void onItemClick(View view, final int position) {
 
                         for (String item : existVideos) {
-                            if (item.equals(Data.newbornVideos[position])) {
+                            if (item.equals(getStringArray(modules.get(modulePosition).equals("CHILD MODULE") ? 1 : modules.get(modulePosition).equals("NEWBORN MODULE") ? 2 : 0)[position])) {
                                 Toast.makeText(DownloadVideoActivity.this, "Video Already Downloaded!!", Toast.LENGTH_SHORT).show();
                                 return;
                             }
@@ -151,8 +169,8 @@ public class DownloadVideoActivity extends AppCompatActivity {
 
                         // Downloading video
                         startDownloadingVideo(DownloadVideoActivity.this,
-                                MainApp.getModuleName(bi.modNSpinner.getSelectedIndex()),
-                                Data.newbornVideos[position]);
+                                MainApp.getModuleName(modules.get(modulePosition).equals("CHILD MODULE") ? 1 : modules.get(modulePosition).equals("MATERNAL MODULE") ? 2 : modules.get(modulePosition).equals("NEWBORN MODULE") ? 3 : 4),
+                                getStringArray(modules.get(modulePosition).equals("CHILD MODULE") ? 1 : modules.get(modulePosition).equals("NEWBORN MODULE") ? 2 : 0)[position]);
 
                     }
 
@@ -248,6 +266,8 @@ public class DownloadVideoActivity extends AppCompatActivity {
                 return "PSBI";
             case "cdb":
                 return "Cough & Difficult Breathing";
+            case "eceb":
+                return "Newborn";
             default:
                 return startChar;
         }
@@ -310,8 +330,9 @@ public class DownloadVideoActivity extends AppCompatActivity {
     private String[] getStringArray(int position) {
         switch (position) {
             case 1:
-
-                return Data.newbornVideos;
+                return Data.childVideos;
+            case 2:
+                return Data.newBornVideos;
             default:
                 return new String[]{};
         }
@@ -372,11 +393,13 @@ public class DownloadVideoActivity extends AppCompatActivity {
     private class populateRecyclerView extends AsyncTask<String, String, String> {
         private Context mContext;
         private int position;
+        private String moduleName;
         private ProgressDialog pd;
 
         public populateRecyclerView(Context mContext, int position) {
             this.mContext = mContext;
             this.position = position;
+
 
             pd = new ProgressDialog(mContext);
             pd.setTitle("LOADING VIDEOS");
@@ -392,7 +415,7 @@ public class DownloadVideoActivity extends AppCompatActivity {
                 @Override
                 public void run() {
 //              Set Recycler View
-                    mAdapter = new VideoItemsAdapter(getStringArray(position));
+                    mAdapter = new VideoItemsAdapter(getStringArray(modules.get(position).equals("CHILD MODULE") ? 1 : modules.get(position).equals("NEWBORN MODULE") ? 2 : 0));
                     RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(mContext, 2);
                     bi.modVidRecycler.setLayoutManager(mLayoutManager);
                     bi.modVidRecycler.setItemAnimator(new DefaultItemAnimator());

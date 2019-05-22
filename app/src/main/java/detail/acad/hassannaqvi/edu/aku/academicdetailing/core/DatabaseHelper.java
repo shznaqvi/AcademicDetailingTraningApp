@@ -169,6 +169,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private final String TAG = "DatabaseHelper";
 
     public String spDateT = new SimpleDateFormat("dd-MM-yy").format(new Date().getTime());
+    String dtToday = new SimpleDateFormat("MM-dd-yyyy").format(new Date().getTime());
+    String dtToday1 = new SimpleDateFormat("MM-dd-yy").format(new Date().getTime());
 
     DataDownload delegate;
 
@@ -437,63 +439,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return allSc;
     }
 
-
-    public List<NextMeetingContract> getAppointmentsList() {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c = null;
-        String[] columns = {
-                NMCTable.COLUMN_DATE,
-                NMCTable.COLUMN_TIME,
-                NMCTable.COLUMN_MODULE_CODE,
-                NMCTable.COLUMN_SESSION_CODE,
-                NMCTable.COLUMN_BOOKBY,
-                NMCTable.COLUMN_BTYPE,
-                NMCTable._ID,
-                NMCTable.COLUMN_HP_CODE,
-                NMCTable.COLUMN_HF_NAME,
-                NMCTable.COLUMN_DIST_CODE,
-                NMCTable.COLUMN_HP_NAME,
-                NMCTable.COLUMN_USER,
-                NMCTable.COLUMN_FORMDATE
-
-        };
-        String whereClause = NMCTable.COLUMN_SYNCED + " is 2 ";
-        String[] whereArgs = null;
-        String groupBy = null;
-        String having = null;
-
-        String orderBy =
-                NMCTable._ID + " ASC";
-
-        List<NextMeetingContract> allSc = new ArrayList<NextMeetingContract>();
-        try {
-            c = db.query(
-                    NMCTable.TABLE_NAME,  // The table to query
-                    columns,                   // The columns to return
-                    whereClause,               // The columns for the WHERE clause
-                    whereArgs,                 // The values for the WHERE clause
-                    groupBy,                   // don't group the rows
-                    having,                    // don't filter by row groups
-                    orderBy                    // The sort order
-            );
-
-            if (c.moveToFirst())
-                do {
-                    NextMeetingContract nC = new NextMeetingContract();
-                    allSc.add(nC.HydrateForAppointment(c));
-                } while (c.moveToNext());
-
-
-        } finally {
-            if (c != null) {
-                c.close();
-            }
-            if (db != null) {
-                db.close();
-            }
-        }
-        return allSc;
-    }
 
     public void syncUsers(JSONArray userlist) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -1285,6 +1230,116 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         long count = DatabaseUtils.queryNumEntries(db, DistrictTable.TABLE_NAME);
         db.close();
         return count;
+    }
+
+    public List<NextMeetingContract> getAppointmentsList() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = null;
+        String[] columns = {
+                NMCTable.COLUMN_DATE,
+                NMCTable.COLUMN_TIME,
+                NMCTable.COLUMN_MODULE_CODE,
+                NMCTable.COLUMN_SESSION_CODE,
+                NMCTable.COLUMN_BOOKBY,
+                NMCTable.COLUMN_BTYPE,
+                NMCTable._ID,
+                NMCTable.COLUMN_HP_CODE,
+                NMCTable.COLUMN_HF_NAME,
+                NMCTable.COLUMN_DIST_CODE,
+                NMCTable.COLUMN_HP_NAME,
+                NMCTable.COLUMN_USER,
+                NMCTable.COLUMN_FORMDATE
+
+        };
+        String whereClause = NMCTable.COLUMN_FORMDATE + " Like ? ";
+        String[] whereArgs = new String[]{"%" + dtToday1.substring(0, 8).trim() + "%"};
+        String groupBy = null;
+        String having = null;
+
+        String orderBy =
+                NMCTable._ID + " ASC";
+
+        List<NextMeetingContract> allSc = new ArrayList<NextMeetingContract>();
+        try {
+            c = db.query(
+                    NMCTable.TABLE_NAME,  // The table to query
+                    columns,                   // The columns to return
+                    whereClause,               // The columns for the WHERE clause
+                    whereArgs,                 // The values for the WHERE clause
+                    groupBy,                   // don't group the rows
+                    having,                    // don't filter by row groups
+                    orderBy                    // The sort order
+            );
+
+            if (c.moveToFirst())
+                do {
+                    NextMeetingContract nC = new NextMeetingContract();
+                    allSc.add(nC.HydrateForAppointment(c));
+                } while (c.moveToNext());
+
+
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+            if (db != null) {
+                db.close();
+            }
+        }
+        return allSc;
+    }
+
+    public List<NextMeetingContract> getTodaysAppointment() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = null;
+        String[] columns = {
+                NMCTable.COLUMN_DATE,
+                NMCTable.COLUMN_TIME,
+                NMCTable.COLUMN_MODULE_CODE,
+                NMCTable.COLUMN_SESSION_CODE,
+                NMCTable.COLUMN_BOOKBY,
+                NMCTable.COLUMN_BTYPE,
+                NMCTable._ID,
+                NMCTable.COLUMN_HP_CODE,
+                NMCTable.COLUMN_HF_NAME,
+                NMCTable.COLUMN_DIST_CODE,
+                NMCTable.COLUMN_HP_NAME,
+                NMCTable.COLUMN_USER,
+                NMCTable.COLUMN_FORMDATE
+
+        };
+        String whereClause = NMCTable.COLUMN_SYNCED + " is 2 AND " + NMCTable.COLUMN_DATE + " Like ? ";
+        String[] whereArgs = new String[]{"%" + dtToday.substring(0, 7).trim() + "%"};
+        String groupBy = null;
+        String having = null;
+
+        String orderBy =
+                NMCTable._ID + " ASC";
+
+        List<NextMeetingContract> allFC = new ArrayList<>();
+        try {
+            c = db.query(
+                    NMCTable.TABLE_NAME,  // The table to query
+                    columns,                   // The columns to return
+                    whereClause,               // The columns for the WHERE clause
+                    whereArgs,                 // The values for the WHERE clause
+                    groupBy,                   // don't group the rows
+                    having,                    // don't filter by row groups
+                    orderBy                    // The sort order
+            );
+            while (c.moveToNext()) {
+                NextMeetingContract nC = new NextMeetingContract();
+                allFC.add(nC.HydrateForAppointment(c));
+            }
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+            if (db != null) {
+                db.close();
+            }
+        }
+        return allFC;
     }
 
 

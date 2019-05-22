@@ -99,14 +99,17 @@ public class EndingActivity extends AppCompatActivity implements Callbacks {
         MainApp.fc.setEndingdatetime(MainApp.getCurrentTime());
         MainApp.fc.setSessionEndTime(MainApp.getCurrentTime());
         MainApp.fc.setSessionCode(subMenuDT.getSessionCode());
-        MainApp.fc.setScore_pre(String.valueOf(pre_result.getCorrect()));
-        MainApp.fc.setWrong_pre(String.valueOf(pre_result.getWrong()));
-        MainApp.fc.setPercentage_pre(String.valueOf(MainApp.roundOffFigure(pre_result.getPercentage(),2)));
-        MainApp.fc.setTotal(String.valueOf(pre_result.getTotal()));
+        if (pre_result != null) {
+            MainApp.fc.setScore_pre(String.valueOf(pre_result.getCorrect()));
+            MainApp.fc.setWrong_pre(String.valueOf(pre_result.getWrong()));
+            MainApp.fc.setPercentage_pre(String.valueOf(MainApp.roundOffFigure(pre_result.getPercentage(), 2)));
+            MainApp.fc.setTotal(String.valueOf(pre_result.getTotal()));
+        }
+
         MainApp.fc.setModuleCode(subMenuDT.getModuleCode());
-        if(post_result != null){
+        if (post_result != null) {
             MainApp.fc.setScore_post(String.valueOf(post_result.getCorrect()));
-            MainApp.fc.setPercentage_post(String.valueOf(MainApp.roundOffFigure(post_result.getPercentage(),2)));
+            MainApp.fc.setPercentage_post(String.valueOf(MainApp.roundOffFigure(post_result.getPercentage(), 2)));
             MainApp.fc.setWrong_post(String.valueOf(post_result.getWrong()));
         }
     }
@@ -153,12 +156,12 @@ public class EndingActivity extends AppCompatActivity implements Callbacks {
 
     }
 
-    public void loadScheduleFragment(){
+    public void loadScheduleFragment() {
         ScheduleFragment fragment = new ScheduleFragment();
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.setCustomAnimations(R.anim.slide_in,R.anim.slide_out);
-        transaction.replace(bi.fragmentLayout.getId(),fragment);
+        transaction.setCustomAnimations(R.anim.slide_in, R.anim.slide_out);
+        transaction.replace(bi.fragmentLayout.getId(), fragment);
         transaction.addToBackStack(null);
         transaction.commit();
 

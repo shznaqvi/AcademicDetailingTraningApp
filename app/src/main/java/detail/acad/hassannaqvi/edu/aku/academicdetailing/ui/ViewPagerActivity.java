@@ -39,6 +39,8 @@ public class ViewPagerActivity extends AppCompatActivity {
     boolean viewPagerFlag = false;
 
     DatabaseHelper db;
+    int item = 0;
+    int lastItem = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,8 @@ public class ViewPagerActivity extends AppCompatActivity {
 
         db = new DatabaseHelper(this);
         subMenuDT = (Data.SubMenu) getIntent().getSerializableExtra(CONSTANTS.URI_SUBMENU_DT);
+
+        bi.slideCount.setText(item + "/" + (subMenuDT.getSession().length - 1));
 
 
         settingupViewPager();
@@ -86,20 +90,6 @@ public class ViewPagerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (lastItemPosition == subMenuDT.getSession().length - 1) {
-
-                    /*if (MainApp.isMaternal) {
-                        Utils.showPostDialoge(ViewPagerActivity.this, MainApp.maternalIndex,MainApp.subModuleName);
-                        isComplete = false;
-
-
-                    } else if (MainApp.isChild) {
-                        Utils.showPostDialoge(ViewPagerActivity.this, MainApp.childlIndex,MainApp.subModuleName);
-                        isComplete = false;
-                    }else if(MainApp.isNBorn){
-                        Utils.showPostDialoge(ViewPagerActivity.this, MainApp.childlIndex,MainApp.subModuleName);
-                        isComplete = false;
-                    }*/
-
                     if (viewPagerFlag)
                         Utils.showViewPagerDialoge(ViewPagerActivity.this, subMenuDT);
                     else {
@@ -109,7 +99,9 @@ public class ViewPagerActivity extends AppCompatActivity {
 
 
                 } else {
-                    bi.viewPager.setCurrentItem(getItem(+1), true);
+                    item = getItem(+1);
+                    bi.slideCount.setText(item + "/" + (subMenuDT.getSession().length - 1));
+                    bi.viewPager.setCurrentItem(item, true);
                     saveDB();
 
 
@@ -123,8 +115,15 @@ public class ViewPagerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
                 if (lastItemPosition >= 0) {
-                    bi.viewPager.setCurrentItem(getItem(-1), true);
+                    lastItem = getItem(-1);
+                    if (lastItem > 0)
+                        bi.slideCount.setText(lastItem + "/" + (subMenuDT.getSession().length - 1));
+                    else
+                        bi.slideCount.setText("0/" + (subMenuDT.getSession().length - 1));
+                    bi.viewPager.setCurrentItem(lastItem, true);
+
 
                     new Handler().post(new Runnable() {
                         @Override

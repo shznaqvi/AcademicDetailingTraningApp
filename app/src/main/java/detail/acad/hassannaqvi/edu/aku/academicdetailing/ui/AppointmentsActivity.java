@@ -6,6 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 import java.util.List;
@@ -35,18 +38,72 @@ public class AppointmentsActivity extends AppCompatActivity {
 
         list = db.getAppointmentsList();
 
-        if(list.size() > 0){
+        if (list.size() > 0) {
             bi.noAppointment.setVisibility(View.GONE);
             adapter = new AppointmentListAdapter(this, list);
             bi.appointmentList.setLayoutManager(new LinearLayoutManager(this));
-            bi.appointmentList.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.HORIZONTAL));
+            bi.appointmentList.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.HORIZONTAL));
             bi.appointmentList.setHasFixedSize(true);
             bi.appointmentList.setAdapter(adapter);
-        }else{
+        } else {
             bi.noAppointment.setVisibility(View.VISIBLE);
         }
 
 
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.dropdown_menu, menu);
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.showCurrent:
+                showCurrentAppointment();
+                return true;
+            case R.id.showAll:
+                showAllAppointment();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void showAllAppointment() {
+        list = db.getAppointmentsList();
+
+        if (list.size() > 0) {
+            bi.noAppointment.setVisibility(View.GONE);
+            adapter = new AppointmentListAdapter(this, list);
+            bi.appointmentList.setLayoutManager(new LinearLayoutManager(this));
+            bi.appointmentList.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.HORIZONTAL));
+            bi.appointmentList.setHasFixedSize(true);
+            bi.appointmentList.setAdapter(adapter);
+        } else {
+            bi.noAppointment.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void showCurrentAppointment() {
+
+        list = db.getTodaysAppointment();
+
+        if (list.size() > 0) {
+            bi.noAppointment.setVisibility(View.GONE);
+            adapter = new AppointmentListAdapter(this, list);
+            bi.appointmentList.setLayoutManager(new LinearLayoutManager(this));
+            bi.appointmentList.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.HORIZONTAL));
+            bi.appointmentList.setHasFixedSize(true);
+            bi.appointmentList.setAdapter(adapter);
+        } else {
+            bi.noAppointment.setVisibility(View.VISIBLE);
+        }
     }
 }

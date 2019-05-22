@@ -108,8 +108,11 @@ public final class Data {
     public static final String[] dia_videos = {"dia_10301_01", "dia_10301_02", "dia_10301_03", "dia_10302_01"};
     public static final String[] gds_videos = {"gds_1234_01", "gds_1234_02"};
     public static final String[] psbi_videos = {"psbi_10401_01"};
+    public static final String[] eceb_videos = {"eceb_30101_01", "eceb_30101_02", "eceb_30101_03", "eceb_30101_04",
+            "eceb_30101_05", "eceb_30101_06", "eceb_30101_07", "eceb_30101_08", "eceb_30101_09", "eceb_30101_10", "eceb_30101_11"};
 
-    public static final String[] newbornVideos = MainApp.mergeArrays(cdb_videos, dia_videos, gds_videos, psbi_videos);
+    public static final String[] childVideos = MainApp.mergeArrays(cdb_videos, dia_videos, gds_videos, psbi_videos);
+    public static final String[] newBornVideos = MainApp.mergeArrays(eceb_videos);
 
     public static final String[] ECEB = new String[]{"ECEB(Session One)", "ECEB(Session Two)"};
     public static final HashMap<String, String> ECEBMap = new HashMap<String, String>() {{
@@ -422,14 +425,14 @@ public final class Data {
         } else if (type == 2) {
             newMenuModule.put("Essential Care for Every Baby",
                     new SubMenu[]{
-                            new SubMenu("nBornHealth", "3", "30101", "ECEB(Session One)", EcEbTest01.class, R.drawable.eceb1001, eceb1_imgs, eceb01_cans, new String[]{}),
-                            new SubMenu("nBornHealth", "3", "30102", "ECEB(Session Two)", EcEbTest02.class, R.drawable.eceb2001, eceb2_imgs, eceb02_cans, new String[]{})
+                            new SubMenu("nBornHealth", "3", "30101", "ECEB(Session One)", EcEbTest01.class, R.drawable.eceb1001, eceb1_imgs, eceb01_cans, eceb_videos),
+                            new SubMenu("nBornHealth", "3", "30102", "ECEB(Session Two)", EcEbTest02.class, R.drawable.eceb2001, eceb2_imgs, eceb02_cans, eceb_videos)
                     }
             );
             newMenuModule.put("Essential Care for Small Babies",
                     new SubMenu[]{
-                            new SubMenu("nBornHealth", "3", "30201", "ECSB(Session One)", EcSbTest01.class, R.drawable.ecsb1001, ecsb1_imgs, ecsbA_cans, new String[]{}),
-                            new SubMenu("nBornHealth", "3", "30202", "ECSB(Session Two)", EcSbTest02.class, R.drawable.ecsb2001, ecsb2_imgs, ecsbB_cans, new String[]{})
+                            new SubMenu("nBornHealth", "3", "30201", "ECSB(Session One)", EcSbTest01.class, R.drawable.ecsb1001, ecsb1_imgs, ecsbA_cans, eceb_videos),
+                            new SubMenu("nBornHealth", "3", "30202", "ECSB(Session Two)", EcSbTest02.class, R.drawable.ecsb2001, ecsb2_imgs, ecsbB_cans, eceb_videos)
                     }
             );
             newMenuModule.put("Helping Babies Breathe",

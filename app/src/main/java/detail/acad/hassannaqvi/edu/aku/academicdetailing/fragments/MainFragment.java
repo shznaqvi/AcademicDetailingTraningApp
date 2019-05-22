@@ -76,6 +76,7 @@ public class MainFragment extends Fragment {
     SharedPreferences sharedPrefDownload;
     SharedPreferences.Editor editorDownload;
     VersionAppContract versionAppContract;
+    BroadcastReceiver broadcastReceiver;
 
     String preVer = "", newVer = "";
 
@@ -156,7 +157,7 @@ public class MainFragment extends Fragment {
 
         //update App feature Code---------------------------------------
 
-        BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        broadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
                 if (DownloadManager.ACTION_DOWNLOAD_COMPLETE.equals(intent.getAction())) {
@@ -344,5 +345,10 @@ public class MainFragment extends Fragment {
 
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
 
+        getContext().unregisterReceiver(broadcastReceiver);
+    }
 }

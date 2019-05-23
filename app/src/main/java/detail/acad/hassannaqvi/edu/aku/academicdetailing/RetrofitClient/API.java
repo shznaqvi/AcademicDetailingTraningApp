@@ -19,7 +19,7 @@ public interface API {
 
     @Headers({"Content-Type: application/json;charset=UTF-8"})
     @POST("session_table.php")
-    Call<ResponseBody> syncSession(@Body JSONArray array);
+    Call<ResponseBody>  syncSession(@Body JSONArray array);
 
     @Headers({"Content-Type: application/json;charset=UTF-8"})
     @POST("next_meeting.php")

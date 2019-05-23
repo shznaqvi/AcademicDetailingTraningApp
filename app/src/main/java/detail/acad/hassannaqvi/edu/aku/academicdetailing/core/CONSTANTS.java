@@ -11,7 +11,7 @@ public interface CONSTANTS {
 
     String URI_SUBMENU_DT = "submenuDT";
     String URI_FORM_TYPE = "type";
-    String URI_DIRECT_VIEWPAGER = "vPager";
+    String URI_DIRECT_VIEWPAGER = "vPage r";
     String Video_URL = "https://vcoe1.aku.edu/uen_ad/vdo/";
     String appointmentURL = "appointments.php";
 

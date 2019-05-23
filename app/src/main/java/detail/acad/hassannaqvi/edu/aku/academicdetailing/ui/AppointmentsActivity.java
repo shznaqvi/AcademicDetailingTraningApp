@@ -77,33 +77,33 @@ public class AppointmentsActivity extends AppCompatActivity {
     }
 
     private void showAllAppointment() {
-//        list = db.getAppointmentsList();
-//
-//        if (list.size() > 0) {
-//            bi.noAppointment.setVisibility(View.GONE);
-//            adapter = new AppointmentListAdapter(this, list);
-//            bi.appointmentList.setLayoutManager(new LinearLayoutManager(this));
-//            bi.appointmentList.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.HORIZONTAL));
-//            bi.appointmentList.setHasFixedSize(true);
-//            bi.appointmentList.setAdapter(adapter);
-//        } else {
-//            bi.noAppointment.setVisibility(View.VISIBLE);
-//        }
+        list = db.getAppointmentsList();
+
+        if (list.size() > 0) {
+            bi.noAppointment.setVisibility(View.GONE);
+            adapter = new AppointmentListAdapter(this, list);
+            bi.appointmentList.setLayoutManager(new LinearLayoutManager(this));
+            bi.appointmentList.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.HORIZONTAL));
+            bi.appointmentList.setHasFixedSize(true);
+            bi.appointmentList.setAdapter(adapter);
+        } else {
+            bi.noAppointment.setVisibility(View.VISIBLE);
+        }
     }
 
     private void showCurrentAppointment() {
 
-//        list = db.getTodaysAppointment();
-//
-//        if (list.size() > 0) {
-//            bi.noAppointment.setVisibility(View.GONE);
-//            adapter = new AppointmentListAdapter(this, list);
-//            bi.appointmentList.setLayoutManager(new LinearLayoutManager(this));
-//            bi.appointmentList.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.HORIZONTAL));
-//            bi.appointmentList.setHasFixedSize(true);
-//            bi.appointmentList.setAdapter(adapter);
-//        } else {
-//            bi.noAppointment.setVisibility(View.VISIBLE);
-//        }
+        list = db.getTodaysAppointment();
+
+        if (list.size() > 0) {
+            bi.noAppointment.setVisibility(View.GONE);
+            adapter = new AppointmentListAdapter(this, list);
+            bi.appointmentList.setLayoutManager(new LinearLayoutManager(this));
+            bi.appointmentList.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.HORIZONTAL));
+            bi.appointmentList.setHasFixedSize(true);
+            bi.appointmentList.setAdapter(adapter);
+        } else {
+            bi.noAppointment.setVisibility(View.VISIBLE);
+        }
     }
 }

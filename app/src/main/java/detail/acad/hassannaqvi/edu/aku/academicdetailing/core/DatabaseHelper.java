@@ -1251,8 +1251,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 NMCTable.COLUMN_FORMDATE
 
         };
-        String whereClause = NMCTable.COLUMN_SYNCED + " is 2 ";
-        String[] whereArgs = null;
+        String whereClause = NMCTable.COLUMN_SYNCED + " is 2 AND " + NMCTable.COLUMN_FORMDATE + " Like ?";
+        String[] whereArgs = new String[]{"%" + spDateT.substring(0, 8).trim() + "%"};
         String groupBy = null;
         String having = null;
 

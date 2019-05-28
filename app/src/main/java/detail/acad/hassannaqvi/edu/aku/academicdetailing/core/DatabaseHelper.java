@@ -1251,13 +1251,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 NMCTable.COLUMN_FORMDATE
 
         };
-        String whereClause = NMCTable.COLUMN_SYNCED + " is 2 AND " + NMCTable.COLUMN_FORMDATE + " Like ?";
+        String whereClause = NMCTable.COLUMN_SYNCED + " is not 2 and " + NMCTable.COLUMN_FORMDATE + " Like ? ";
         String[] whereArgs = new String[]{"%" + spDateT.substring(0, 8).trim() + "%"};
         String groupBy = null;
         String having = null;
 
         String orderBy =
-                NMCTable._ID + " ASC";
+                NMCTable._ID + " DESC";
 
         List<NextMeetingContract> allSc = new ArrayList<NextMeetingContract>();
         try {
@@ -1308,8 +1308,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 NMCTable.COLUMN_FORMDATE
 
         };
-        String whereClause = NMCTable.COLUMN_SYNCED + " is 2 AND " + NMCTable.COLUMN_DATE + " Like ? ";
-        String[] whereArgs = new String[]{"%" + dtToday.substring(0, 7).trim() + "%"};
+        String whereClause = NMCTable.COLUMN_SYNCED + " is 2 ";
+        String[] whereArgs = null;
         String groupBy = null;
         String having = null;
 

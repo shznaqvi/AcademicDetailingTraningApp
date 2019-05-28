@@ -6,5 +6,5 @@
         android:title="Show Today's Appointments"></item>
     <item
         android:id="@+id/showAll"
-        android:title="Show All Appointments"></item>
+        android:title="Show New Bookings"></item>
 </menu>

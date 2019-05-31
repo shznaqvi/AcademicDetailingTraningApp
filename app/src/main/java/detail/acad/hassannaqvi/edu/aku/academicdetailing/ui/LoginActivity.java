@@ -214,9 +214,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
 //
 //        Testing visibility
         if (Integer.valueOf(MainApp.versionName.split("\\.")[0]) > 0) {
-            bi.testing.setVisibility(View.VISIBLE);
-        } else {
             bi.testing.setVisibility(View.GONE);
+        } else {
+            bi.testing.setVisibility(View.VISIBLE);
         }
 
         //Populating district

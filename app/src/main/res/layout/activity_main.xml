@@ -2,6 +2,7 @@
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.MainActivity">
 
     <RelativeLayout
@@ -20,9 +21,20 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true">
 
-            <include
-                android:id="@+id/bottom_nav"
-                layout="@layout/bottom_nav" />
+            <android.support.design.widget.BottomNavigationView
+                android:id="@+id/navigation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                app:itemIconTint="@color/white"
+                app:itemTextColor="@color/white"
+                app:menu="@menu/bottom_navigation_item">
+
+            </android.support.design.widget.BottomNavigationView>
+
+            <!--<include-->
+                <!--android:id="@+id/bottom_nav"-->
+                <!--layout="@layout/bottom_nav" />-->
 
         </RelativeLayout>
 

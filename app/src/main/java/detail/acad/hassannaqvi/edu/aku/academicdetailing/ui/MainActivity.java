@@ -15,11 +15,14 @@ import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -74,14 +77,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     AlertDialog.Builder builder;
     String m_Text = "";
     String dtToday = new SimpleDateFormat("dd-MM-yy HH:mm ").format(new Date().getTime());
-    boolean newDist,oldDist;
+    boolean newDist, oldDist;
 
     static File file;
     DownloadManager downloadManager;
     SharedPreferences sharedPrefDownload;
     SharedPreferences.Editor editorDownload;
     String preVer = "", newVer = "";
-
 
 
     @Override
@@ -92,9 +94,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         MainApp.logginTime = MainApp.getCurrentTime();
         hud = KProgressHUD.create(this).setCancellable(false).setStyle(KProgressHUD.Style.SPIN_INDETERMINATE);
         db = new DatabaseHelper(this);
-        bi.bottomNav.home.setOnClickListener(this);
-        bi.bottomNav.vidDownload.setOnClickListener(this);
-        bi.bottomNav.appointment.setOnClickListener(this);
+//        bi.bottomNav.home.setOnClickListener(this);
+//        bi.bottomNav.vidDownload.setOnClickListener(this);
+//        bi.bottomNav.appointment.setOnClickListener(this);
 //        DistrictsContract dst = db.getDistrict(MainApp.districtCode);
 //        if (dst != null) {
 //            MainApp.districtName = dst.getDistrict_name();
@@ -102,6 +104,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         loadHomeFragment();
 
         loadTagDialog();
+
+        bi.navigation.setOnNavigationItemSelectedListener(menuItem -> {
+
+            switch (menuItem.getItemId()) {
+                case R.id.home:
+                    loadHomeFragment();
+                    return true;
+                case R.id.videos:
+                    startActivity(new Intent(MainActivity.this, DownloadVideoActivity.class));
+                    return true;
+                case R.id.appointment:
+                    startActivity(new Intent(MainActivity.this, AppointmentsActivity.class));
+                    return true;
+            }
+            return false;
+        });
 
 
     }
@@ -150,23 +168,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
 
-        switch (v.getId()) {
-
-            case R.id.home:
-
-                loadHomeFragment();
-                break;
-
-            case R.id.vidDownload:
-
-                startActivity(new Intent(this, DownloadVideoActivity.class));
-                break;
-
-            case R.id.appointment:
-                startActivity(new Intent(this, AppointmentsActivity.class));
-                break;
-
-        }
+//        switch (v.getId()) {
+//
+//            case R.id.home:
+//
+//                loadHomeFragment();
+//                break;
+//
+//            case R.id.vidDownload:
+//
+//                startActivity(new Intent(this, DownloadVideoActivity.class));
+//                break;
+//
+//            case R.id.appointment:
+//                startActivity(new Intent(this, AppointmentsActivity.class));
+//                break;
+//
+//        }
     }
 
     public void loadHomeFragment() {
@@ -394,10 +412,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
 
     }
-
-
-
-
 
 
 }

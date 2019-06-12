@@ -104,6 +104,7 @@ public class MainFragment extends Fragment {
         if (!isAdmin) {
             bi.openDB.setVisibility(View.GONE);
         }
+
         db = new DatabaseHelper(getContext());
 
 

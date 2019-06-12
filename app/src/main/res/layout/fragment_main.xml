@@ -20,20 +20,6 @@
 
 
                 <TextView
-                    android:id="@+id/testing"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/ticker_red"
-                    android:elevation="6dp"
-                    android:gravity="center_horizontal"
-                    android:keepScreenOn="true"
-                    android:padding="4dp"
-                    android:text="ONLY FOR TESTING"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
                     android:id="@+id/lblAppVersion"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

@@ -138,11 +138,11 @@ public final class Data {
 
 
     public static ArrayList<String> gdsa_cans = new ArrayList<String>(Arrays.asList("4", "1", "1", "3", "4"));
-    public static ArrayList<String> gdsb_cans = new ArrayList<String>(Arrays.asList("2", "3", "3", "1", "3"));
-    public static ArrayList<String> cdba_cans = new ArrayList<String>(Arrays.asList("1", "3", "2", "2"));
+    public static ArrayList<String> gdsb_cans = new ArrayList<String>(Arrays.asList("2", "3", "2", "1", "3"));
+    public static ArrayList<String> cdba_cans = new ArrayList<String>(Arrays.asList("4", "3", "2", "1"));
     public static ArrayList<String> cdbb_cans = new ArrayList<String>(Arrays.asList("3", "3", "2", "1", "4", "4"));
-    public static ArrayList<String> diaa_cans = new ArrayList<String>(Arrays.asList("1", "2", "4", "1", "4"));
-    public static ArrayList<String> diab_cans = new ArrayList<String>(Arrays.asList("2", "1", "1", "2", "2"));
+    public static ArrayList<String> diaa_cans = new ArrayList<String>(Arrays.asList("1", "2", "4", "2", "4"));
+    public static ArrayList<String> diab_cans = new ArrayList<String>(Arrays.asList("1", "1", "1", "2", "2"));
     public static ArrayList<String> psbia_cans = new ArrayList<String>(Arrays.asList("1", "3"));
     public static ArrayList<String> psbib_cans = new ArrayList<String>(Arrays.asList("2", "3", "3", "2", "3"));
     public static ArrayList<String> psbic_cans = new ArrayList<String>(Arrays.asList("1", "3", "2", "2"));

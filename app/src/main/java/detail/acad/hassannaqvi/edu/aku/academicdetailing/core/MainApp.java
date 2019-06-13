@@ -481,7 +481,7 @@ public class MainApp extends Application {
         wrong.setText(String.valueOf(wrong_number));
         ImageView icon = view.findViewById(R.id.resultImage);
 
-        final boolean sessionCondition = result.getPercentage() < 80.0;
+        final boolean sessionCondition = result.getPercentage() < 70.0;
         if (sessionCondition) {
             icon.setImageResource(R.drawable.sad);
             percentage.setTextColor(context.getResources().getColor(R.color.red));

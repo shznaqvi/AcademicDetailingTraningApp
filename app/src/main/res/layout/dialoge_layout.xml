@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    android:background="@color/white" xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/white">
 
     <ImageView
         android:id="@+id/slideImage"
@@ -12,8 +10,7 @@
         android:layout_height="480dp"
         android:layout_marginBottom="8dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/fanc_10"
-        />
+        android:src="@drawable/fanc01" />
 
 
     <LinearLayout
@@ -32,8 +29,7 @@
             android:padding="10dp"
             android:text="Cancel"
             android:textColor="@color/white"
-            android:textSize="13sp"
-            />
+            android:textSize="13sp" />
 
         <Button
             android:id="@+id/proceed"
@@ -45,17 +41,10 @@
             android:padding="10dp"
             android:text="Proceed to Pre-Test"
             android:textColor="@color/white"
-            android:textSize="13sp"
-            />
+            android:textSize="13sp" />
 
 
     </LinearLayout>
-
-
-
-
-
-
 
 
 </RelativeLayout>

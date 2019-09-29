@@ -20,7 +20,6 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.FANC_Pre_test;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.GDSSession01_Pre_test;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.HbbTest;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.HemoTest01;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.HemoTest02;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.PartoTest;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.PerpuralSepsisTest;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.PsbiTest01;
@@ -57,15 +56,15 @@ public final class Data {
         put("PSBI(Breast Feeding & Immunization)", "10403");
     }};
     public static final String[] maternalModule = new String[]{"Focused Antenatal Care", "Vaginal Bleeding in Pregnancy",
-            "Partograph", "Pre Eclampsia & Eclampsia", "Postpartum Hemorrhage - 1", "Postpartum Hemorrhage - 2", "Assessment and management of Shock", "Puerperal Sepsis"};
+            "Partograph", "Pre Eclampsia & Eclampsia", "Postpartum Hemorrhage", "Assessment and management of Shock", "Puerperal Sepsis"};
 
     public static final HashMap<String, String> maternalMap = new HashMap<String, String>() {{
         put("Focused Antenatal Care", "20101");
         put("Vaginal Bleeding in Pregnancy", "20201");
         put("Partograph", "20301");
         put("Pre Eclampsia & Eclampsia", "20401");
-        put("Postpartum Hemorrhage - 1", "20501");
-        put("Postpartum Hemorrhage - 2", "20502");
+        put("Postpartum Hemorrhage", "20501");
+//        put("Postpartum Hemorrhage - 2", "20502");
         put("Assessment and management of Shock", "20601");
         put("Puerperal Sepsis", "20701");
     }};
@@ -84,8 +83,8 @@ public final class Data {
         put("20201", "Vaginal Bleeding in Pregnancy");
         put("20301", "Partograph");
         put("20401", "Pre Eclampsia & Eclampsia");
-        put("20501", "Postpartum Hemorrhage - 1");
-        put("20502", "Postpartum Hemorrhage - 2");
+        put("20501", "Postpartum Hemorrhage");
+//        put("20502", "Postpartum Hemorrhage - 2");
         put("20601", "Assessment and management of Shock");
         put("20701", "Puerperal Sepsis");
         put("30101", "ECEB(Session One)");
@@ -235,76 +234,58 @@ public final class Data {
 
 
     public static int[] fanc_imgs = new int[]{
-            R.drawable.fanc_05, R.drawable.fanc_06, R.drawable.fanc_07, R.drawable.fanc_08, R.drawable.fanc_09,
-            R.drawable.fanc_10, R.drawable.fanc_11, R.drawable.fanc_12, R.drawable.fanc_13, R.drawable.fanc_14,
-            R.drawable.fanc_15, R.drawable.fanc_16, R.drawable.fanc_17, R.drawable.fanc_18, R.drawable.fanc_19,
-            R.drawable.fanc_20, R.drawable.fanc_21, R.drawable.fanc_22, R.drawable.fanc_23, R.drawable.fanc_24,
-            R.drawable.fanc_25, R.drawable.fanc_26, R.drawable.fanc_27, R.drawable.fanc_28, R.drawable.fanc_29,
-            R.drawable.fanc_30, R.drawable.fanc_31, R.drawable.fanc_32, R.drawable.fanc_33, R.drawable.fanc_34,
-            R.drawable.fanc_35, R.drawable.fanc_36, R.drawable.fanc_37, R.drawable.fanc_38, R.drawable.fanc_39,
-            R.drawable.fanc_40, R.drawable.fanc_41, R.drawable.fanc_42, R.drawable.fanc_43, R.drawable.fanc_44,
-            R.drawable.fanc_45, R.drawable.fanc_46, R.drawable.fanc_47, R.drawable.fanc_48, R.drawable.fanc_49,
-            R.drawable.fanc_50, R.drawable.fanc_51, R.drawable.fanc_52};
+            R.drawable.fanc02, R.drawable.fanc03, R.drawable.fanc04, R.drawable.fanc05, R.drawable.fanc06, R.drawable.fanc07,
+            R.drawable.fanc08, R.drawable.fanc09, R.drawable.fanc10, R.drawable.fanc11, R.drawable.fanc12, R.drawable.fanc13,
+            R.drawable.fanc14, R.drawable.fanc15, R.drawable.fanc16, R.drawable.fanc17, R.drawable.fanc18, R.drawable.fanc19,
+            R.drawable.fanc20, R.drawable.fanc21, R.drawable.fanc22, R.drawable.fanc23};
 
     public static int[] vb_imgs = new int[]{
-            R.drawable.vb_img_1, R.drawable.vb_img_5, R.drawable.vb_img_6, R.drawable.vb_img_7, R.drawable.vb_img_8,
-            R.drawable.vb_img_9, R.drawable.vb_img_10, R.drawable.vb_img_11, R.drawable.vb_img_12, R.drawable.vb_img_13,
-            R.drawable.vb_img_14, R.drawable.vb_img_15, R.drawable.vb_img_16, R.drawable.vb_img_17, R.drawable.vb_img_18,
-            R.drawable.vb_img_19, R.drawable.vb_img_20, R.drawable.vb_img_21, R.drawable.vb_img_22, R.drawable.vb_img_23,
-            R.drawable.vb_img_24};
+            R.drawable.vbdp02, R.drawable.vbdp04, R.drawable.vbdp05, R.drawable.vbdp06, R.drawable.vbdp07,
+            R.drawable.vbdp08, R.drawable.vbdp09, R.drawable.vbdp10, R.drawable.vbdp11, R.drawable.vbdp12, R.drawable.vbdp13,
+    };
 
     public static int[] parto_imgs = new int[]{
-            R.drawable.parto1002, R.drawable.parto1003, R.drawable.parto1004, R.drawable.parto1005, R.drawable.parto1006,
-            R.drawable.parto1007, R.drawable.parto1008, R.drawable.parto1009, R.drawable.parto1010, R.drawable.parto1011,
-            R.drawable.parto1012, R.drawable.parto1013, R.drawable.parto1014, R.drawable.parto1015, R.drawable.parto1016,
-            R.drawable.parto1017, R.drawable.parto1018, R.drawable.parto1019, R.drawable.parto1020, R.drawable.parto1021,
-            R.drawable.parto1022, R.drawable.parto1023, R.drawable.parto1024, R.drawable.parto1025, R.drawable.parto1026,
-            R.drawable.parto1027, R.drawable.parto1028, R.drawable.parto1029, R.drawable.parto1030, R.drawable.parto1031,
-            R.drawable.parto1032, R.drawable.parto1033, R.drawable.parto1034, R.drawable.parto1035,};
+            R.drawable.part02, R.drawable.part03, R.drawable.part04, R.drawable.part05, R.drawable.part06,
+            R.drawable.part07, R.drawable.part08, R.drawable.part09, R.drawable.part10, R.drawable.part11, R.drawable.part12,
+            R.drawable.part13, R.drawable.part14, R.drawable.part15, R.drawable.part16, R.drawable.part17, R.drawable.part18,
+            R.drawable.part19, R.drawable.part20, R.drawable.part21, R.drawable.part22, R.drawable.part23, R.drawable.part24,
+            R.drawable.part25, R.drawable.part26, R.drawable.part27, R.drawable.part28, R.drawable.part29, R.drawable.part30,
+            R.drawable.part31, R.drawable.part32, R.drawable.part33
+    };
 
 
     public static int[] eclam_imgs = new int[]{
-            R.drawable.eclam1002, R.drawable.eclam1003, R.drawable.eclam1004, R.drawable.eclam1005, R.drawable.eclam1006,
-            R.drawable.eclam1007, R.drawable.eclam1008, R.drawable.eclam1009, R.drawable.eclam1010, R.drawable.eclam1011,
-            R.drawable.eclam1012, R.drawable.eclam1013, R.drawable.eclam1014, R.drawable.eclam1015, R.drawable.eclam1016,
-            R.drawable.eclam1017, R.drawable.eclam1018, R.drawable.eclam1019, R.drawable.eclam1020, R.drawable.eclam1021,
-            R.drawable.eclam1022, R.drawable.eclam1023, R.drawable.eclam1024, R.drawable.eclam1025, R.drawable.eclam1026,
-            R.drawable.eclam1027, R.drawable.eclam1028, R.drawable.eclam1029, R.drawable.eclam1030, R.drawable.eclam1031,
-            R.drawable.eclam1032, R.drawable.eclam1033, R.drawable.eclam1034, R.drawable.eclam1035, R.drawable.eclam1036,
-            R.drawable.eclam1037, R.drawable.eclam1038, R.drawable.eclam1039, R.drawable.eclam1040, R.drawable.eclam1041,
-            R.drawable.eclam1042, R.drawable.eclam1043, R.drawable.eclam1044, R.drawable.eclam1045, R.drawable.eclam1046,
-            R.drawable.eclam1047, R.drawable.eclam1048, R.drawable.eclam1049, R.drawable.eclam1050,};
+            R.drawable.preecl02, R.drawable.ationplan01, R.drawable.actionplan02, R.drawable.preecl03, R.drawable.preecl04
+            , R.drawable.preecl05, R.drawable.preecl06, R.drawable.preecl07, R.drawable.preecl08, R.drawable.preecl09, R.drawable.preecl10,
+            R.drawable.preecl11, R.drawable.preecl12, R.drawable.preecl13, R.drawable.preecl14, R.drawable.preecl15, R.drawable.preecl16,
+            R.drawable.preecl17, R.drawable.preecl18, R.drawable.preecl19, R.drawable.preecl20, R.drawable.preecl21, R.drawable.preecl22,
+            R.drawable.preecl23, R.drawable.preecl24, R.drawable.preecl25
+    };
 
 
     public static int[] hemo1_imgs = new int[]{
-            R.drawable.hemo1002, R.drawable.hemo1003, R.drawable.hemo1004, R.drawable.hemo1005, R.drawable.hemo1006,
-            R.drawable.hemo1007, R.drawable.hemo1008, R.drawable.hemo1009, R.drawable.hemo1010, R.drawable.hemo1011,
-            R.drawable.hemo1012, R.drawable.hemo1013, R.drawable.hemo1014, R.drawable.hemo1015, R.drawable.hemo1016,
-            R.drawable.hemo1017, R.drawable.hemo1018, R.drawable.hemo1019,};
+            R.drawable.cdpph02, R.drawable.cdpph03, R.drawable.cdpph04, R.drawable.cdpph05, R.drawable.cdpph06, R.drawable.cdpph07,
+            R.drawable.cdpph08, R.drawable.cdpph09, R.drawable.cdpph10, R.drawable.cdpph11, R.drawable.cdpph12, R.drawable.cdpph13,
+            R.drawable.cdpph14, R.drawable.cdpph15, R.drawable.cdpph16, R.drawable.cdpph17};
 
 
-    public static int[] hemo2_imgs = new int[]{
-            R.drawable.hemo2002, R.drawable.hemo2003, R.drawable.hemo2004, R.drawable.hemo2005, R.drawable.hemo2006,
-            R.drawable.hemo2007, R.drawable.hemo2008, R.drawable.hemo2009, R.drawable.hemo2010, R.drawable.hemo2011,
-            R.drawable.hemo2012, R.drawable.hemo2013, R.drawable.hemo2014, R.drawable.hemo2015, R.drawable.hemo2016,
-            R.drawable.hemo2017, R.drawable.hemo2018, R.drawable.hemo2019, R.drawable.hemo2020,};
+//    public static int[] hemo2_imgs = new int[]{
+//            R.drawable.hemo2002, R.drawable.hemo2003, R.drawable.hemo2004, R.drawable.hemo2005, R.drawable.hemo2006,
+//            R.drawable.hemo2007, R.drawable.hemo2008, R.drawable.hemo2009, R.drawable.hemo2010, R.drawable.hemo2011,
+//            R.drawable.hemo2012, R.drawable.hemo2013, R.drawable.hemo2014, R.drawable.hemo2015, R.drawable.hemo2016,
+//            R.drawable.hemo2017, R.drawable.hemo2018, R.drawable.hemo2019, R.drawable.hemo2020,};
 
 
     public static int[] shock_imgs = new int[]{
-            R.drawable.shock1002, R.drawable.shock1003, R.drawable.shock1004, R.drawable.shock1005, R.drawable.shock1006,
-            R.drawable.shock1007, R.drawable.shock1008, R.drawable.shock1009, R.drawable.shock1010, R.drawable.shock1011,
-            R.drawable.shock1012, R.drawable.shock1013, R.drawable.shock1014, R.drawable.shock1015, R.drawable.shock1016,
-            R.drawable.shock1017, R.drawable.shock1018, R.drawable.shock1019, R.drawable.shock1020, R.drawable.shock1021,
-            R.drawable.shock1022, R.drawable.shock1023, R.drawable.shock1024, R.drawable.shock1025,};
+            R.drawable.sh02, R.drawable.sh03, R.drawable.sh04, R.drawable.sh05, R.drawable.sh06, R.drawable.sh07, R.drawable.sh08,
+            R.drawable.sh09, R.drawable.sh10, R.drawable.sh11, R.drawable.sh12, R.drawable.sh13};
 
 
     public static int[] sepsis_imgs = new int[]{
-            R.drawable.sepsis1002, R.drawable.sepsis1003, R.drawable.sepsis1004, R.drawable.sepsis1005, R.drawable.sepsis1006,
-            R.drawable.sepsis1007, R.drawable.sepsis1008, R.drawable.sepsis1009, R.drawable.sepsis1010, R.drawable.sepsis1011,
-            R.drawable.sepsis1012, R.drawable.sepsis1013, R.drawable.sepsis1014, R.drawable.sepsis1015, R.drawable.sepsis1016,
-            R.drawable.sepsis1017, R.drawable.sepsis1018, R.drawable.sepsis1019, R.drawable.sepsis1020, R.drawable.sepsis1021,
-            R.drawable.sepsis1022, R.drawable.sepsis1023, R.drawable.sepsis1024, R.drawable.sepsis1025, R.drawable.sepsis1026,
-            R.drawable.sepsis1027, R.drawable.sepsis1028, R.drawable.sepsis1029,};
+            R.drawable.ps02, R.drawable.ps03, R.drawable.ps04, R.drawable.ps05, R.drawable.ps06, R.drawable.ps07, R.drawable.ps08,
+            R.drawable.ps09, R.drawable.ps10, R.drawable.ps11, R.drawable.ps12, R.drawable.ps13, R.drawable.ps14, R.drawable.ps15,
+            R.drawable.ps15, R.drawable.ps16, R.drawable.ps17, R.drawable.ps18, R.drawable.ps19, R.drawable.ps20, R.drawable.ps21,
+            R.drawable.ps22, R.drawable.ps23, R.drawable.ps24, R.drawable.ps25, R.drawable.ps26, R.drawable.ps27, R.drawable.ps28};
 
 
     public static int[] eceb1_imgs = new int[]{
@@ -387,35 +368,35 @@ public final class Data {
         } else if (type == 1) {
             newMenuModule.put("Focused Antenatal Care",
                     new SubMenu[]{
-                            new SubMenu("maternalHealth", "2", "20101", "Focused Antenatal Care", FANC_Pre_test.class, R.drawable.fanc_02, fanc_imgs, fanc_cans, new String[]{})
+                            new SubMenu("maternalHealth", "2", "20101", "Focused Antenatal Care", FANC_Pre_test.class, R.drawable.fanc01, fanc_imgs, fanc_cans, new String[]{})
                     });
             newMenuModule.put("Vaginal Bleeding in Pregnancy",
                     new SubMenu[]{
-                            new SubMenu("maternalHealth", "2", "20201", "Vaginal Bleeding in Pregnancy", VB_Pre_test.class, R.drawable.vb_img_2, vb_imgs, vb_cans, new String[]{})
+                            new SubMenu("maternalHealth", "2", "20201", "Vaginal Bleeding in Pregnancy", VB_Pre_test.class, R.drawable.vbdp01, vb_imgs, vb_cans, new String[]{})
                     });
             newMenuModule.put("Partograph",
                     new SubMenu[]{
-                            new SubMenu("maternalHealth", "2", "20301", "Partograph", PartoTest.class, R.drawable.parto1001, parto_imgs, parto_cans, new String[]{})
+                            new SubMenu("maternalHealth", "2", "20301", "Partograph", PartoTest.class, R.drawable.part01, parto_imgs, parto_cans, new String[]{})
                     });
             newMenuModule.put("Pre Eclampsia & Eclampsia",
                     new SubMenu[]{
-                            new SubMenu("maternalHealth", "2", "20401", "Pre Eclampsia & Eclampsia", EclamTest.class, R.drawable.eclam1001, eclam_imgs, eclam_cans, new String[]{})
+                            new SubMenu("maternalHealth", "2", "20401", "Pre Eclampsia & Eclampsia", EclamTest.class, R.drawable.preecl01, eclam_imgs, eclam_cans, new String[]{})
                     });
-            newMenuModule.put("Postpartum Hemorrhage - 1",
+            newMenuModule.put("Postpartum Hemorrhage",
                     new SubMenu[]{
-                            new SubMenu("maternalHealth", "2", "20501", "Postpartum Hemorrhage - 1", HemoTest01.class, R.drawable.hemo1001, hemo1_imgs, hemotest01_cans, new String[]{})
+                            new SubMenu("maternalHealth", "2", "20501", "Postpartum Hemorrhage", HemoTest01.class, R.drawable.cdpph01, hemo1_imgs, hemotest01_cans, new String[]{})
                     });
-            newMenuModule.put("Postpartum Hemorrhage - 2",
-                    new SubMenu[]{
-                            new SubMenu("maternalHealth", "2", "20502", "Postpartum Hemorrhage - 2", HemoTest02.class, R.drawable.hemo2001, hemo2_imgs, hemotest02_cans, new String[]{})
-                    });
+//            newMenuModule.put("Postpartum Hemorrhage - 2",
+//                    new SubMenu[]{
+//                            new SubMenu("maternalHealth", "2", "20502", "Postpartum Hemorrhage - 2", HemoTest02.class, R.drawable.hemo2001, hemo2_imgs, hemotest02_cans, new String[]{})
+//                    });
             newMenuModule.put("Assessment and management of Shock",
                     new SubMenu[]{
-                            new SubMenu("maternalHealth", "2", "20601", "Assessment and management of Shock", ShockTest.class, R.drawable.shock1001, shock_imgs, shocktest_cans, new String[]{})
+                            new SubMenu("maternalHealth", "2", "20601", "Assessment and management of Shock", ShockTest.class, R.drawable.sh01, shock_imgs, shocktest_cans, new String[]{})
                     });
             newMenuModule.put("Puerperal Sepsis",
                     new SubMenu[]{
-                            new SubMenu("maternalHealth", "2", "20701", "Puerperal Sepsis", PerpuralSepsisTest.class, R.drawable.sepsis1001, sepsis_imgs, sepsistest_cans, new String[]{})
+                            new SubMenu("maternalHealth", "2", "20701", "Puerperal Sepsis", PerpuralSepsisTest.class, R.drawable.ps01, sepsis_imgs, sepsistest_cans, new String[]{})
                     });
 
         } else if (type == 2) {

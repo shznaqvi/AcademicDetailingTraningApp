@@ -1,10 +1,13 @@
 package detail.acad.hassannaqvi.edu.aku.academicdetailing.ui;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
@@ -14,6 +17,7 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.CONSTANTS;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityEndingBinding;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.DialogEndBinding;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments.ScheduleFragment;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.interfaces.Callbacks;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
@@ -60,13 +64,41 @@ public class EndingActivity extends AppCompatActivity implements Callbacks {
                 if (formValidation()) {
                     SaveDraft();
                     if (UpdateDB()) {
-                        loadScheduleFragment();
-                        isComplete = false;
-                        resetAll();
+                        openDialog();
+
                     } else {
                         Toast.makeText(EndingActivity.this, "Error in updating db!!", Toast.LENGTH_SHORT).show();
                     }
                 }
+            }
+        });
+    }
+
+    private void openDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View view = LayoutInflater.from(this).inflate(R.layout.dialog_end, null);
+        builder.setView(view);
+        AlertDialog dialog = builder.create();
+        dialog.show();
+        DialogEndBinding bi = DataBindingUtil.bind(view);
+        bi.completed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                startActivity(new Intent(EndingActivity.this, MainActivity.class));
+                isComplete = false;
+                resetAll();
+                dialog.dismiss();
+            }
+        });
+
+        bi.makeAppointment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadScheduleFragment();
+                isComplete = false;
+                resetAll();
+                dialog.dismiss();
             }
         });
     }

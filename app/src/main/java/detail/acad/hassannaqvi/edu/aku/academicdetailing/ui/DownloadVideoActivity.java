@@ -224,6 +224,7 @@ public class DownloadVideoActivity extends AppCompatActivity {
         progressText = view.findViewById(R.id.progressTextView);
         progressText.setText("Downloading: " + videosName);
         progressBar = view.findViewById(R.id.progressBar);
+
         cancelButton = view.findViewById(R.id.cancelButton);
         builder.setView(view);
         progressBar.setMax(100);
@@ -231,15 +232,7 @@ public class DownloadVideoActivity extends AppCompatActivity {
         dialog.show();
 
 
-        cancelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                cancelAllVideos();
-
-
-            }
-        });
+        cancelButton.setOnClickListener(v -> cancelAllVideos());
     }
 
     private void cancelAllVideos() {

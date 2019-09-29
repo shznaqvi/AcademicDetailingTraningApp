@@ -9,7 +9,6 @@ import java.util.Map;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.CDBSession01_Pre_test;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.CDBSession02_Pre_test;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.DiaTest01;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.DiaTest02;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.EcEbTest01;
@@ -19,7 +18,6 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.EcSbTest02;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.EclamTest;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.FANC_Pre_test;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.GDSSession01_Pre_test;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.GDSSession02_Pre_test;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.HbbTest;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.HemoTest01;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.HemoTest02;
@@ -36,15 +34,15 @@ public final class Data {
     public static final String[] modules = new String[]{"Child Health", "Maternal Health", "New Born Health"};
     public static final String[] modulesCode = new String[]{"0", "1", "2", "3"};
     public static final String[] childModule = new String[]{"General Danger Sign", "Cough & Difficult Breathing", "Diarrhoea", "PSBI"};
-    public static final String[] GDS = new String[]{"GDS(Assessment and Classification)", "GDS(Management, Counseling and Referral)"};
+    public static final String[] GDS = new String[]{"General Danger Sign"};
     public static final HashMap<String, String> GDSMap = new HashMap<String, String>() {{
-        put("GDS(Assessment and Classification)", "10101");
-        put("GDS(Management, Counseling and Referral)", "10102");
+        put("General Danger Sign", "10101");
+//        put("GDS(Management, Counseling and Referral)", "10102");
     }};
-    public static final String[] CDB = new String[]{"CDB(Assessment and Classification)", "CDB(Management, Counseling and Referral)"};
+    public static final String[] CDB = new String[]{"Cough & Difficult Breathing"};
     public static final HashMap<String, String> CDBMap = new HashMap<String, String>() {{
-        put("CDB(Assessment and Classification)", "10201");
-        put("CDB(Management, Counseling and Referral)", "10202");
+        put("Cough & Difficult Breathing", "10201");
+//        put("CDB(Management, Counseling and Referral)", "10202");
     }};
     public static final String[] Diarrhea = new String[]{"Dia(Assessment and Classification)", "Dia(Management, Counseling and Referral)"};
     public static final HashMap<String, String> DiaMap = new HashMap<String, String>() {{
@@ -73,10 +71,10 @@ public final class Data {
     }};
 
     public static final HashMap<String, String> allSessionsMap = new HashMap<String, String>() {{
-        put("10101", "GDS(Assessment and Classification)");
-        put("10102", "GDS(Management, Counseling and Referral)");
-        put("10201", "CDB(Assessment and Classification)");
-        put("10202", "CDB(Management, Counseling and Referral)");
+        put("10101", "General Danger Sign");
+//        put("10102", "GDS(Management, Counseling and Referral)");
+        put("10201", "Cough & Difficult Breathing");
+//        put("10202", "CDB(Management, Counseling and Referral)");
         put("10301", "Dia(Assessment and Classification)");
         put("10302", "Dia(Management, Counseling and Referral)");
         put("10401", "PSBI(Assessment and Classification)");
@@ -173,69 +171,67 @@ public final class Data {
     };
 
     public static int[] gds1_imgs = new int[]{
-            R.drawable.gds1002, R.drawable.gds1003, R.drawable.gds1004, R.drawable.gds1005, R.drawable.gds1006,
-            R.drawable.gds1007, R.drawable.gds1008, R.drawable.gds1009, R.drawable.gds1010, R.drawable.gds1011,
-            R.drawable.gds1012, R.drawable.gds1013, R.drawable.gds1014, R.drawable.gds1015, R.drawable.gds1016,
-            R.drawable.gds1017, R.drawable.gds1018};
+            R.drawable.gds02, R.drawable.gds03, R.drawable.gds04, R.drawable.gds05, R.drawable.gds06,
+            R.drawable.gds07, R.drawable.gds08, R.drawable.gds09, R.drawable.gds10, R.drawable.gds11,
+            R.drawable.gds12, R.drawable.gds13, R.drawable.gds14, R.drawable.gds15, R.drawable.gds16,
+            R.drawable.gds17, R.drawable.gds18, R.drawable.gds19, R.drawable.gds20, R.drawable.gds21, R.drawable.gds22,
+            R.drawable.gds23, R.drawable.gds24, R.drawable.gds25, R.drawable.gds26, R.drawable.gds27, R.drawable.gds28,
+            R.drawable.gds29, R.drawable.gds30,
+            R.drawable.gds31,
+    };
 
-    public static int[] gds2_imgs = new int[]{
-            R.drawable.gds2002, R.drawable.gds2003, R.drawable.gds2004, R.drawable.gds2005, R.drawable.gds2006,
-            R.drawable.gds2007, R.drawable.gds2008, R.drawable.gds2009, R.drawable.gds2010, R.drawable.gds2011,
-            R.drawable.gds2012, R.drawable.gds2013, R.drawable.gds2014, R.drawable.gds2015, R.drawable.gds2016,
-            R.drawable.gds2017, R.drawable.gds2018, R.drawable.gds2019, R.drawable.gds2020,};
+//    public static int[] gds2_imgs = new int[]{
+//            R.drawable.gds2002, R.drawable.gds2003, R.drawable.gds2004, R.drawable.gds2005, R.drawable.gds2006,
+//            R.drawable.gds2007, R.drawable.gds2008, R.drawable.gds2009, R.drawable.gds2010, R.drawable.gds2011,
+//            R.drawable.gds2012, R.drawable.gds2013, R.drawable.gds2014, R.drawable.gds2015, R.drawable.gds2016,
+//            R.drawable.gds2017, R.drawable.gds2018, R.drawable.gds2019, R.drawable.gds2020,};
 
     public static int[] cdb1_imgs = new int[]{
-            R.drawable.cdb1002, R.drawable.cdb1003, R.drawable.cdb1004, R.drawable.cdb1005, R.drawable.cdb1006,
-            R.drawable.cdb1007, R.drawable.cdb1008, R.drawable.cdb1009, R.drawable.cdb1010, R.drawable.cdb1011,
-            R.drawable.cdb1012, R.drawable.cdb1013, R.drawable.cdb1014, R.drawable.cdb1015, R.drawable.cdb1016,
-            R.drawable.cdb1017, R.drawable.cdb1018, R.drawable.cdb1019, R.drawable.cdb1020, R.drawable.cdb1021,
-            R.drawable.cdb1022, R.drawable.cdb1023,};
-
-    public static int[] cdb2_imgs = new int[]{
-            R.drawable.cdb2002, R.drawable.cdb2003, R.drawable.cdb2004, R.drawable.cdb2005, R.drawable.cdb2006,
-            R.drawable.cdb2007, R.drawable.cdb2008, R.drawable.cdb2009, R.drawable.cdb2010, R.drawable.cdb2011,
-            R.drawable.cdb2012, R.drawable.cdb2013, R.drawable.cdb2014, R.drawable.cdb2015, R.drawable.cdb2016,
-            R.drawable.cdb2017, R.drawable.cdb2018, R.drawable.cdb2019, R.drawable.cdb2020, R.drawable.cdb2021,
-            R.drawable.cdb2022,};
+            R.drawable.cdbs02, R.drawable.cdbs03, R.drawable.cdbs04, R.drawable.cdbs05,
+            R.drawable.cdbs06, R.drawable.cdbs07, R.drawable.cdbs08, R.drawable.cdbs09, R.drawable.cdbs10,
+            R.drawable.cdbs11, R.drawable.cdbs12, R.drawable.cdbs13, R.drawable.cdbs14, R.drawable.cdbs15,
+            R.drawable.cdbs16, R.drawable.cdbs17, R.drawable.cdbs18, R.drawable.cdbs19, R.drawable.cdbs20,
+            R.drawable.cdbs21, R.drawable.cdbs22, R.drawable.cdbs23, R.drawable.cdbs24, R.drawable.cdbs25,
+            R.drawable.cdbs26, R.drawable.cdbs27, R.drawable.cdbs28, R.drawable.cdbs29, R.drawable.cdbs30, R.drawable.cdbs31
+            , R.drawable.cdbs32, R.drawable.cdbs33, R.drawable.cdbs34, R.drawable.cdbs35, R.drawable.cdbs36,
+            R.drawable.cdbs37, R.drawable.cdbs38,
+            R.drawable.cdbs39};
 
     public static int[] dia1_imgs = new int[]{
-            R.drawable.dia1001, R.drawable.dia1002, R.drawable.dia1003, R.drawable.dia1004, R.drawable.dia1005,
-            R.drawable.dia1006, R.drawable.dia1007, R.drawable.dia1008, R.drawable.dia1009, R.drawable.dia1010,
-            R.drawable.dia1011, R.drawable.dia1012, R.drawable.dia1013, R.drawable.dia1014, R.drawable.dia1015,
-            R.drawable.dia1016, R.drawable.dia1017, R.drawable.dia1018, R.drawable.dia1019, R.drawable.dia1020,
-            R.drawable.dia1021, R.drawable.dia1022, R.drawable.dia1023, R.drawable.dia1024, R.drawable.dia1025,
-            R.drawable.dia1026,};
+            R.drawable.ds0102, R.drawable.ds0103, R.drawable.ds0104, R.drawable.ds0105, R.drawable.ds0106,
+            R.drawable.ds0107, R.drawable.ds0108, R.drawable.ds0109, R.drawable.ds0110, R.drawable.ds0111, R.drawable.ds0112,
+            R.drawable.ds0113, R.drawable.ds0114, R.drawable.ds0115, R.drawable.ds0116, R.drawable.ds0117, R.drawable.ds0118,
+            R.drawable.ds0119, R.drawable.ds0120, R.drawable.ds0121, R.drawable.ds0122, R.drawable.ds0123, R.drawable.ds0124, R.drawable.ds0125,
+            R.drawable.ds0126, R.drawable.ds0127};
 
     public static int[] dia2_imgs = new int[]{
-            R.drawable.dia2001, R.drawable.dia2002, R.drawable.dia2003, R.drawable.dia2004, R.drawable.dia2005,
-            R.drawable.dia2006, R.drawable.dia2007, R.drawable.dia2008, R.drawable.dia2009, R.drawable.dia2010,
-            R.drawable.dia2011, R.drawable.dia2012, R.drawable.dia2013, R.drawable.dia2014, R.drawable.dia2015,
-            R.drawable.dia2016, R.drawable.dia2017, R.drawable.dia2018, R.drawable.dia2019, R.drawable.dia2020,
-            R.drawable.dia2021, R.drawable.dia2022, R.drawable.dia2023, R.drawable.dia2024, R.drawable.dia2025,
-            R.drawable.dia2026, R.drawable.dia2027, R.drawable.dia2028, R.drawable.dia2029, R.drawable.dia2030,
-            R.drawable.dia2031, R.drawable.dia2032, R.drawable.dia2033, R.drawable.dia2034, R.drawable.dia2035,
+            R.drawable.ds0202, R.drawable.ds0203, R.drawable.ds0204, R.drawable.ds0205, R.drawable.ds0206, R.drawable.ds0207,
+            R.drawable.ds0208, R.drawable.ds0209, R.drawable.ds0210, R.drawable.ds0211, R.drawable.ds0212, R.drawable.ds0213,
+            R.drawable.ds0214, R.drawable.ds0215, R.drawable.ds0216, R.drawable.ds0217, R.drawable.ds0218, R.drawable.ds0219,
+            R.drawable.ds0220, R.drawable.ds0221, R.drawable.ds0222, R.drawable.ds0223, R.drawable.ds0224, R.drawable.ds0225,
+            R.drawable.ds0226, R.drawable.ds0227, R.drawable.ds0228, R.drawable.ds0229, R.drawable.ds0230, R.drawable.ds0231,
+            R.drawable.ds0232, R.drawable.ds0233, R.drawable.ds0234
     };
 
     public static int[] psbi1_imgs = new int[]{
-            R.drawable.psbi1001, R.drawable.psbi1002, R.drawable.psbi1003, R.drawable.psbi1004, R.drawable.psbi1005,
-            R.drawable.psbi1006, R.drawable.psbi1007, R.drawable.psbi1008, R.drawable.psbi1009, R.drawable.psbi1010,
-            R.drawable.psbi1011, R.drawable.psbi1012, R.drawable.psbi1013, R.drawable.psbi1014, R.drawable.psbi1015,
-            R.drawable.psbi1016, R.drawable.psbi1017, R.drawable.psbi1018, R.drawable.psbi1019, R.drawable.psbi1020,
-            R.drawable.psbi1021,};
+            R.drawable.psbi02, R.drawable.psbi03, R.drawable.psbi04, R.drawable.psbi05, R.drawable.psbi06,
+            R.drawable.psbi07, R.drawable.psbi08, R.drawable.psbi09, R.drawable.psbi10, R.drawable.psbi11
+            , R.drawable.psbi12, R.drawable.psbi13, R.drawable.psbi14, R.drawable.psbi15, R.drawable.psbi16, R.drawable.psbi17
+            , R.drawable.psbi18, R.drawable.psbi19, R.drawable.psbi20, R.drawable.psbi21, R.drawable.psbi22};
 
     public static int[] psbi2_imgs = new int[]{
-            R.drawable.psbi2001, R.drawable.psbi2002, R.drawable.psbi2003, R.drawable.psbi2004, R.drawable.psbi2005,
-            R.drawable.psbi2006, R.drawable.psbi2007, R.drawable.psbi2008, R.drawable.psbi2009, R.drawable.psbi2010,
-            R.drawable.psbi2011, R.drawable.psbi2012, R.drawable.psbi2013, R.drawable.psbi2014, R.drawable.psbi2015,
-            R.drawable.psbi2016, R.drawable.psbi2017, R.drawable.psbi2018, R.drawable.psbi2019, R.drawable.psbi2020,
-            R.drawable.psbi2021, R.drawable.psbi2022, R.drawable.psbi2023, R.drawable.psbi2024, R.drawable.psbi2025,
-            R.drawable.psbi2026, R.drawable.psbi2027, R.drawable.psbi2028, R.drawable.psbi2029, R.drawable.psbi2030,
+            R.drawable.psbi0102, R.drawable.psbi0103, R.drawable.psbi0104, R.drawable.psbi0105, R.drawable.psbi0106
+            , R.drawable.psbi0107, R.drawable.psbi0108, R.drawable.psbi0109, R.drawable.psbi0110, R.drawable.psbi0111,
+            R.drawable.psbi0112, R.drawable.psbi0113, R.drawable.psbi0114, R.drawable.psbi0115, R.drawable.psbi0116,
+            R.drawable.psbi0117, R.drawable.psbi0118, R.drawable.psbi0119, R.drawable.psbi0120, R.drawable.psbi0121, R.drawable.psbi0122,
+            R.drawable.psbi0123, R.drawable.psbi0124, R.drawable.psbi0125, R.drawable.psbi0126
     };
 
     public static int[] psbi3_imgs = new int[]{
-            R.drawable.psbi3001, R.drawable.psbi3002, R.drawable.psbi3003, R.drawable.psbi3004, R.drawable.psbi3005,
-            R.drawable.psbi3006, R.drawable.psbi3007, R.drawable.psbi3008, R.drawable.psbi3009, R.drawable.psbi3010,
-            R.drawable.psbi3011, R.drawable.psbi3012, R.drawable.psbi3013, R.drawable.psbi3014, R.drawable.psbi3015,};
+            R.drawable.psbi0302, R.drawable.psbi0303, R.drawable.psbi0304, R.drawable.psbi0305, R.drawable.psbi0306,
+            R.drawable.psbi0307, R.drawable.psbi0308, R.drawable.psbi0309, R.drawable.psbi0310, R.drawable.psbi0311, R.drawable.psbi0312
+
+    };
 
 
     public static int[] fanc_imgs = new int[]{
@@ -365,27 +361,27 @@ public final class Data {
         if (type == 0) {
             newMenuModule.put("General Danger Sign",
                     new SubMenu[]{
-                            new SubMenu("childHealth", "1", "10101", "GDS(Assessment and Classification)", GDSSession01_Pre_test.class, R.drawable.gds1001, gds1_imgs, gdsa_cans, gds_videos),
-                            new SubMenu("childHealth", "1", "10102", "GDS(Management, Counseling and Referral)", GDSSession02_Pre_test.class, R.drawable.gds2001, gds2_imgs, gdsb_cans, gds_videos)
+                            new SubMenu("childHealth", "1", "10101", "General Danger Sign", GDSSession01_Pre_test.class, R.drawable.gds01, gds1_imgs, gdsa_cans, gds_videos),
+//                            new SubMenu("childHealth", "1", "10102", "GDS(Management, Counseling and Referral)", GDSSession02_Pre_test.class, R.drawable.gds2001, gds2_imgs, gdsb_cans, gds_videos)
                     }
             );
             newMenuModule.put("Cough & Difficult Breathing",
                     new SubMenu[]{
-                            new SubMenu("childHealth", "1", "10201", "CDB(Assessment and Classification)", CDBSession01_Pre_test.class, R.drawable.cdb1001, cdb1_imgs, cdba_cans, cdb_videos),
-                            new SubMenu("childHealth", "1", "10202", "CDB(Management, Counseling and Referral)", CDBSession02_Pre_test.class, R.drawable.cdb2001, cdb2_imgs, cdbb_cans, cdb_videos)
+                            new SubMenu("childHealth", "1", "10201", "Cough & Difficult Breathing", CDBSession01_Pre_test.class, R.drawable.cdbs01, cdb1_imgs, cdba_cans, cdb_videos),
+//                            new SubMenu("childHealth", "1", "10202", "CDB(Management, Counseling and Referral)", CDBSession02_Pre_test.class, R.drawable.cdb2001, cdb2_imgs, cdbb_cans, cdb_videos)
                     }
             );
             newMenuModule.put("Diarrhoea",
                     new SubMenu[]{
-                            new SubMenu("childHealth", "1", "10301", "Dia(Assessment and Classification)", DiaTest01.class, R.drawable.dia1001, dia1_imgs, diaa_cans, dia_videos),
-                            new SubMenu("childHealth", "1", "10302", "Dia(Management, Counseling and Referral)", DiaTest02.class, R.drawable.cdb2001, dia2_imgs, diab_cans, dia_videos)
+                            new SubMenu("childHealth", "1", "10301", "Dia(Assessment and Classification)", DiaTest01.class, R.drawable.ds0101, dia1_imgs, diaa_cans, dia_videos),
+                            new SubMenu("childHealth", "1", "10302", "Dia(Management, Counseling and Referral)", DiaTest02.class, R.drawable.ds0202, dia2_imgs, diab_cans, dia_videos)
                     }
             );
             newMenuModule.put("PSBI",
                     new SubMenu[]{
-                            new SubMenu("childHealth", "1", "10401", "PSBI(Assessment and Classification)", PsbiTest01.class, R.drawable.psbi1001, psbi1_imgs, psbia_cans, psbi_videos),
-                            new SubMenu("childHealth", "1", "10402", "PSBI(Management, Counseling and Referral)", PsbiTest02.class, R.drawable.psbi2001, psbi2_imgs, psbib_cans, psbi_videos),
-                            new SubMenu("childHealth", "1", "10403", "PSBI(Breast Feeding & Immunization)", ViewPagerActivity.class, R.drawable.psbi3001, psbi3_imgs, psbic_cans, psbi_videos)
+                            new SubMenu("childHealth", "1", "10401", "PSBI(Assessment and Classification)", PsbiTest01.class, R.drawable.psbi01, psbi1_imgs, psbia_cans, psbi_videos),
+                            new SubMenu("childHealth", "1", "10402", "PSBI(Management, Counseling and Referral)", PsbiTest02.class, R.drawable.psbi0101, psbi2_imgs, psbib_cans, psbi_videos),
+                            new SubMenu("childHealth", "1", "10403", "PSBI(Breast Feeding & Immunization)", ViewPagerActivity.class, R.drawable.psbi0301, psbi3_imgs, psbic_cans, psbi_videos)
                     }
             );
         } else if (type == 1) {

@@ -845,30 +845,37 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
                         (mEmail.equals("test1234") && mPassword.equals("test1234"))
                         || (mEmail.equals("test12345") && mPassword.equals("test12345"))) {
                     MainApp.userName = mEmail;
-                    MainApp.admin = mEmail.contains("@");
+                    MainApp.admin = mEmail.equals("dmu@aku");
                     if (db.getDistrictList().size() == 0) {
                         Toast.makeText(LoginActivity.this, "Please Sync Districts", Toast.LENGTH_SHORT).show();
                     } else if (bi.districtNameSpinner.getSelectedItemPosition() == 0) {
                         Toast.makeText(LoginActivity.this, "Please Select District", Toast.LENGTH_SHORT).show();
-                    } else if (!MainApp.admin && !MainApp.userName.equals("test1234") && !MainApp.userName.equals("test12345")) {
+                    } else if (MainApp.admin || MainApp.userName.equals("test1234") || MainApp.userName.equals("test12345")) {
+                        Intent iLogin = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(iLogin);
+                        finish();
+                    } else if (db.getUser(mEmail, mPassword).getDICTRICT_CODE() == 0) {
+                        Intent iLogin = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(iLogin);
+                        finish();
+                        MainApp.admin = true;
+                    } else {
                         if (!db.checkingUser(mEmail, MainApp.dContract.getDICTRICT_CODE())) {
                             Toast.makeText(LoginActivity.this, "This user is not assigned to Selected District", Toast.LENGTH_LONG).show();
                         } else {
                             Intent iLogin = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(iLogin);
                             finish();
+                            MainApp.admin = false;
                         }
-                    } else {
-                        Intent iLogin = new Intent(LoginActivity.this, MainActivity.class);
-                        startActivity(iLogin);
-                        finish();
+
                     }
 
 
                 } else {
                     bi.password.setError(getString(R.string.error_incorrect_password));
                     bi.password.requestFocus();
-                    Toast.makeText(LoginActivity.this, mEmail + " " + mPassword, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(LoginActivity.this, mEmail + " " + mPassword, Toast.LENGTH_SHORT).show();
                 }
             } else {
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(

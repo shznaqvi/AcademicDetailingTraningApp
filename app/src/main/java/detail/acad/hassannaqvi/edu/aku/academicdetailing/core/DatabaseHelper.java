@@ -165,7 +165,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String SQL_DELETE_NMS = "DROP TABLE IF EXISTS " + NMCTable.TABLE_NAME;
     private static final String SQL_DELETE_HF = "DROP TABLE IF EXISTS " + singleHF.TABLE_NAME;
     private static final String SQL_DELETE_HP = "DROP TABLE IF EXISTS " + singleProvider.TABLE_NAME;
-//    private static final String SQL_DELETE_TEHSIL = "DROP TABLE IF EXISTS " + TehsilTable.TABLE_NAME;
+    //    private static final String SQL_DELETE_TEHSIL = "DROP TABLE IF EXISTS " + TehsilTable.TABLE_NAME;
     private static final String SQL_DELETE_USERS =
             "DROP TABLE IF EXISTS " + UsersTable.TABLE_NAME;
     private static final String SQL_DELETE_FORMS =
@@ -594,7 +594,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             delegate.downloded(false);
         }
     }
-    
+
     public boolean Login(String username, String password) throws SQLException {
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -666,6 +666,43 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.close();
         return district;
+    }
+
+    public UsersContract getUser(String username, String password) {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        // New value for one column
+        String[] columns = {
+                UsersTable.ROW_USERNAME,
+                UsersTable.ROW_PASSWORD,
+                UsersTable.DISTRICT_CODE,
+        };
+
+        // Which row to update, based on the ID
+        String selection = null;
+        String[] selectionArgs = null;
+        Cursor cursor = null;
+        UsersContract user = null;
+
+        selection = UsersTable.ROW_USERNAME + " = ?  " + " AND " + UsersTable.ROW_PASSWORD + " = ?";
+        selectionArgs = new String[]{username, password};
+        cursor = db.query(UsersTable.TABLE_NAME, //Table to query
+                columns,                    //columns to return
+                selection,                  //columns for the WHERE clause
+                selectionArgs,              //The values for the WHERE clause
+                null,                       //group the rows
+                null,                       //filter by row groups
+                null);                      //The sort order
+
+
+        cursor.moveToFirst();
+        do {
+            user = new UsersContract().Hydrate(cursor);
+        } while (cursor.moveToNext());
+
+
+        db.close();
+        return user;
     }
 
     public List<HealthFacContract> getHealthFacilityData(long id) {

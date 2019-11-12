@@ -125,7 +125,7 @@ public class InfoFragment extends Fragment {
             hfMap.put(hf.getHf_name(), hf.getHf_uen_code());
         }
 
-        bi.healthFacSpinner.setAdapter(new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, hfNames));
+        bi.hfName.setAdapter(new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, hfNames));
 
 //        bi.healthFacSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 //            @Override
@@ -213,7 +213,7 @@ public class InfoFragment extends Fragment {
         MainApp.fc.setFormDate(new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime()));
         MainApp.fc.setProviderID(bi.providerId.getText().toString());
         MainApp.fc.setProviderName(bi.hpName.getText().toString());
-        MainApp.fc.setHealthFacilityCode(String.valueOf(hfMap.get(bi.healthFacSpinner.getSelectedItem().toString())));
+        MainApp.fc.setHealthFacilityCode(String.valueOf(hfMap.get(bi.hfName.getText().toString())));
         MainApp.fc.setDistrictID(String.valueOf(MainApp.dContract.getDICTRICT_CODE()));
         MainApp.providerName = bi.hpName.getText().toString();
 

@@ -30,10 +30,10 @@ public class HealthFacContract {
 
     public HealthFacContract Sync(JSONObject jsonObject) throws JSONException {
         this.hf_name = jsonObject.getString(singleHF.COLUMN_HF_NAME);
-        this.hf_dhis = jsonObject.getLong(singleHF.COLUMN_HF_DHIS);
+//        this.hf_dhis = jsonObject.getLong(singleHF.COLUMN_HF_DHIS);
         this.hf_tehsil = jsonObject.getString(singleHF.COLUMN_HF_TEHSIL_NAME);
-        this.hf_uc = jsonObject.getString(singleHF.COLUMN_HF_UC_NAME);
-        this.hf_name_govt = jsonObject.getString(singleHF.COLUMN_HF_NAME_GOVT);
+//        this.hf_uc = jsonObject.getString(singleHF.COLUMN_HF_UC_NAME);
+//        this.hf_name_govt = jsonObject.getString(singleHF.COLUMN_HF_NAME_GOVT);
 //        this.hf_dist_name = jsonObject.getString(singleHF.COLUMN_HF_DISTRICT_NAME);
         this.hf_district_code = jsonObject.getLong(singleHF.COLUMN_HF_DIST_CODE);
         this.hf_uen_code = jsonObject.getLong(singleHF.COLUMN_HF_UEN_CODE);

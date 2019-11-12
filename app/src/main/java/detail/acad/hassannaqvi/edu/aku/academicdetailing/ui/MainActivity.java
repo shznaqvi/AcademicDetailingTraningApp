@@ -94,13 +94,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         MainApp.logginTime = MainApp.getCurrentTime();
         hud = KProgressHUD.create(this).setCancellable(false).setStyle(KProgressHUD.Style.SPIN_INDETERMINATE);
         db = new DatabaseHelper(this);
-//        bi.bottomNav.home.setOnClickListener(this);
-//        bi.bottomNav.vidDownload.setOnClickListener(this);
-//        bi.bottomNav.appointment.setOnClickListener(this);
-//        DistrictsContract dst = db.getDistrict(MainApp.districtCode);
-//        if (dst != null) {
-//            MainApp.districtName = dst.getDistrict_name();
-//        }
+
         loadHomeFragment();
 
         loadTagDialog();
@@ -365,13 +359,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void getHfDataFromServer() {
-
-        hud.setLabel("Getting Health Facility Data");
-        call = RetrofitClient.service.synHfData();
-        syncingData("hf");
-        hud.setLabel("Getting Providers Data");
-        call = RetrofitClient.service.synHPData();
-        syncingData("hp");
+//
+//        hud.setLabel("Getting Health Facility Data");
+//        call = RetrofitClient.service.synHfData();
+//        syncingData("hf");
+//        hud.setLabel("Getting Providers Data");
+//        call = RetrofitClient.service.synHPData();
+//        syncingData("hp");
 
     }
 

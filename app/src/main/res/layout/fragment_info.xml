@@ -83,20 +83,19 @@
                             android:textSize="20sp" />
 
 
-                        <!--<Spinner-->
-                        <!--android:id="@+id/healthFacSpinner"-->
-                        <!--style="@style/spinner"-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:layout_margin="10dp"-->
-                        <!--/>-->
-
-                        <EditText
-                            android:id="@+id/hfName"
-                            style="@style/textInput"
+                        <Spinner
+                            android:id="@+id/healthFacSpinner"
+                            style="@style/spinner"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Enter Health Facility Name.." />
+                            android:layout_margin="10dp" />
+
+                        <!--                        <EditText-->
+                        <!--                            android:id="@+id/hfName"-->
+                        <!--                            style="@style/textInput"-->
+                        <!--                            android:layout_width="match_parent"-->
+                        <!--                            android:layout_height="wrap_content"-->
+                        <!--                            android:hint="Enter Health Facility Name.." />-->
 
                     </LinearLayout>
 

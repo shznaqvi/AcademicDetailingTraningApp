@@ -41,7 +41,7 @@ public class FormsContract implements Parcelable {
     private String synced_date = "";
     private String appversion;
     private String districtID = "";
-    private String healthFacilityName = "";
+    private String healthFacilityCode = "";
     private String providerName = "";
     private String sessionStartTime = "";
     private String sessionEndTime = "";
@@ -85,7 +85,7 @@ public class FormsContract implements Parcelable {
         synced_date = in.readString();
         appversion = in.readString();
         districtID = in.readString();
-        healthFacilityName = in.readString();
+        healthFacilityCode = in.readString();
         providerName = in.readString();
         sessionStartTime = in.readString();
         sessionEndTime = in.readString();
@@ -331,12 +331,12 @@ public class FormsContract implements Parcelable {
         this.districtID = districtID;
     }
 
-    public String getHealthFacilityName() {
-        return healthFacilityName;
+    public String getHealthFacilityCode() {
+        return healthFacilityCode;
     }
 
-    public void setHealthFacilityName(String healthFacilityName) {
-        this.healthFacilityName = healthFacilityName;
+    public void setHealthFacilityCode(String healthFacilityCode) {
+        this.healthFacilityCode = healthFacilityCode;
     }
 
     public String getProviderName() {
@@ -415,7 +415,7 @@ public class FormsContract implements Parcelable {
         this.deviceID = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_DEVICEID));
         this.appversion = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_APPVERSION));
         this.districtID = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_DIST_ID));
-        this.healthFacilityName = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_HFACILITY_NAME));
+        this.healthFacilityCode = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_HFACILITY_NAME));
         this.providerName = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_PROVIDER_NAME));
         this.providerID = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_PROVIDER_ID));
         this.preTestStartTime = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_PRETEST_START_TIME));
@@ -460,7 +460,7 @@ public class FormsContract implements Parcelable {
         json.put(FormsTable.COLUMN_DEVICEID, this.deviceID == null ? JSONObject.NULL : this.deviceID);
         json.put(FormsTable.COLUMN_APPVERSION, this.appversion == null ? JSONObject.NULL : this.appversion);
         json.put(FormsTable.COLUMN_DIST_ID, this.districtID == null ? JSONObject.NULL : this.districtID);
-        json.put(FormsTable.COLUMN_HFACILITY_NAME, this.healthFacilityName == null ? JSONObject.NULL : this.healthFacilityName);
+        json.put(FormsTable.COLUMN_HFACILITY_NAME, this.healthFacilityCode == null ? JSONObject.NULL : this.healthFacilityCode);
         json.put(FormsTable.COLUMN_PROVIDER_NAME, this.providerName == null ? JSONObject.NULL : this.providerName);
         json.put(FormsTable.COLUMN_PROVIDER_ID, this.providerID == null ? JSONObject.NULL : this.providerID);
         json.put(FormsTable.COLUMN_PRETEST_START_TIME, this.preTestStartTime == null ? JSONObject.NULL : this.preTestStartTime);
@@ -692,7 +692,7 @@ public class FormsContract implements Parcelable {
         dest.writeString(synced_date);
         dest.writeString(appversion);
         dest.writeString(districtID);
-        dest.writeString(healthFacilityName);
+        dest.writeString(healthFacilityCode);
         dest.writeString(providerName);
         dest.writeString(sessionStartTime);
         dest.writeString(sessionEndTime);

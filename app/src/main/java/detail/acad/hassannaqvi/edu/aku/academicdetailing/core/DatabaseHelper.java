@@ -130,7 +130,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + singleProvider.COLUMN_HF_CODE + " LONG, "
             + singleProvider.COLUMN_HP_NAME + " TEXT, "
             + singleProvider.COLUMN_HP_DESIGNATION + " TEXT " + ");";
-
+//    private static final String SQL_CREATE_TEHSIL = " CREATE TABLE " + TehsilTable.TABLE_NAME
+//            + " ( " + TehsilTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+//            + TehsilTable.TEHSIL_CODE + " LONG, "
+//            + TehsilTable.TEHSIL_NAME + " TEXT, "
+//            + TehsilTable.DIST_CODE + " LONG " + ");";
+//
 
     private static final String SQL_CREATE_NMS = "CREATE TABLE " + NMCTable.TABLE_NAME + "("
             + NMCTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -160,6 +165,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String SQL_DELETE_NMS = "DROP TABLE IF EXISTS " + NMCTable.TABLE_NAME;
     private static final String SQL_DELETE_HF = "DROP TABLE IF EXISTS " + singleHF.TABLE_NAME;
     private static final String SQL_DELETE_HP = "DROP TABLE IF EXISTS " + singleProvider.TABLE_NAME;
+//    private static final String SQL_DELETE_TEHSIL = "DROP TABLE IF EXISTS " + TehsilTable.TABLE_NAME;
     private static final String SQL_DELETE_USERS =
             "DROP TABLE IF EXISTS " + UsersTable.TABLE_NAME;
     private static final String SQL_DELETE_FORMS =
@@ -193,6 +199,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_DISTRICT_TABLE);
         db.execSQL(SQL_CREATE_HF_TABLE);
         db.execSQL(SQL_CREATE_HP_TABLE);
+//        db.execSQL(SQL_CREATE_TEHSIL);
         /*db.execSQL(SQL_CREATE_TEHSILS);
         db.execSQL(SQL_CREATE_UCS);
         db.execSQL(SQL_CREATE_LHWS);*/
@@ -208,6 +215,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_DELETE_NMS);
         db.execSQL(SQL_DELETE_HF);
         db.execSQL(SQL_DELETE_HP);
+//        db.execSQL(SQL_DELETE_TEHSIL);
 
     }
 
@@ -586,8 +594,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             delegate.downloded(false);
         }
     }
-
-
+    
     public boolean Login(String username, String password) throws SQLException {
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -790,7 +797,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(FormsTable.COLUMN_APPVERSION, fc.getAppversion());
         values.put(FormsTable.COLUMN_DIST_ID, fc.getDistrictID());
         values.put(FormsTable.COLUMN_loggin_TIME, fc.getLogginTime());
-        values.put(FormsTable.COLUMN_HFACILITY_NAME, fc.getHealthFacilityName());
+        values.put(FormsTable.COLUMN_HFACILITY_NAME, fc.getHealthFacilityCode());
         values.put(FormsTable.COLUMN_PROVIDER_NAME, fc.getProviderName());
         values.put(FormsTable.COLUMN_PROVIDER_ID, fc.getProviderID());
         values.put(FormsTable.COLUMN_PRETEST_START_TIME, fc.getPreTestStartTime());

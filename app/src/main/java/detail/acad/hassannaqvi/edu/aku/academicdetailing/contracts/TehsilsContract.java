@@ -15,9 +15,19 @@ public class TehsilsContract {
 
     private static final String TAG = "Districts_CONTRACT";
     Long _ID;
-
     Long TEHSIL_CODE;
     String Tehsil_name;
+    Long district_code;
+
+    public Long getDistrict_code() {
+        return district_code;
+    }
+
+    public void setDistrict_code(Long district_code) {
+        this.district_code = district_code;
+    }
+
+
 
     public TehsilsContract() {
         // Default Constructor
@@ -58,6 +68,7 @@ public class TehsilsContract {
 
         this.TEHSIL_CODE = jsonObject.getLong(TehsilTable.TEHSIL_CODE);
         this.Tehsil_name = jsonObject.getString(TehsilTable.TEHSIL_NAME);
+        this.district_code = jsonObject.getLong(TehsilTable.DIST_CODE);
 
         return this;
 
@@ -66,6 +77,7 @@ public class TehsilsContract {
     public TehsilsContract Hydrate(Cursor cursor) {
         this.TEHSIL_CODE = cursor.getLong(cursor.getColumnIndex(TehsilTable.TEHSIL_CODE));
         this.Tehsil_name = cursor.getString(cursor.getColumnIndex(TehsilTable.TEHSIL_NAME));
+        this.district_code = cursor.getLong(cursor.getColumnIndex(TehsilTable.DIST_CODE));
         return this;
 
     }
@@ -76,6 +88,7 @@ public class TehsilsContract {
         JSONObject json = new JSONObject();
         json.put(TehsilTable.TEHSIL_CODE, this.TEHSIL_CODE == null ? JSONObject.NULL : this.TEHSIL_CODE);
         json.put(TehsilTable.TEHSIL_NAME, this.Tehsil_name == null ? JSONObject.NULL : this.Tehsil_name);
+        json.put(TehsilTable.DIST_CODE, this.district_code == null ? JSONObject.NULL : this.district_code);
         return json;
     }
 
@@ -86,6 +99,7 @@ public class TehsilsContract {
         public static final String _ID = "id";
         public static final String TEHSIL_CODE = "tehsil_code";
         public static final String TEHSIL_NAME = "tehsil_name";
+        public static final String DIST_CODE = "district_code";
 
     }
 }

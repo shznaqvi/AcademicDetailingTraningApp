@@ -152,7 +152,7 @@ public class ScheduleFragment extends Fragment {
         MainApp.nmc.setDeviceid(MainApp.deviceId);
 
         MainApp.nmc.setDist_id(Long.parseLong(MainApp.fc.getDistrictID()));
-        MainApp.nmc.setHf_name(MainApp.fc.getHealthFacilityName());
+        MainApp.nmc.setHf_name(MainApp.fc.getHealthFacilityCode());
         MainApp.nmc.setHp_name(MainApp.fc.getProviderName());
         MainApp.nmc.setHp_code(Long.parseLong(MainApp.fc.getProviderID()));
         MainApp.nmc.setDevicetagID(sharedPref.getString("tagName", null));

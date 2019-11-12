@@ -459,10 +459,16 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
                 getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
+
             call = RetrofitClient.service.getUsers(); //users
             gettingDataFromService("Syncing Users", "Users");
+
             call = RetrofitClient.service.getDistricts(); //districts
             gettingDataFromService("Syncing Districts", "Districts");
+
+            call = RetrofitClient.service.synHfData(); //hfs
+            gettingDataFromService("Syncing HF", "hf");
+
             call = RetrofitClient.service.getAppVersion(); //districts
             gettingDataFromService("Checking App", "appversion");
 
@@ -582,6 +588,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
                                 break;
                             case "Districts":
                                 db.syncDistricts(array);
+                                break;
+                            case "hf":
+                                db.syncHF(array);
                                 break;
                             case "appversion":
                                 savingAppVersion(array);

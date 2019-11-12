@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
@@ -102,17 +103,7 @@ public class InfoFragment extends Fragment {
                 if (bi.districtSpinner.getSelectedItemPosition() != 0) {
 
                     districtCode = districtMap.get(bi.districtSpinner.getSelectedItem().toString());
-//                    hfList = db.getHealthFacilityData(districtCode);
-//                    hfMap = new HashMap<>();
-//                    hfNames = new ArrayList<>();
-//                    hfNames.add("Select Health Facility Name-");
 //
-//                    for (HealthFacContract hf : hfList) {
-//                        hfNames.add(hf.getHf_name());
-//                        hfMap.put(hf.getHf_name(), hf.getHf_uen_code());
-//                    }
-//
-//                    bi.healthFacSpinner.setAdapter(new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, hfNames));
 
                 }
 
@@ -123,6 +114,18 @@ public class InfoFragment extends Fragment {
 
             }
         });*/
+
+        hfList = db.getHealthFacilityData(MainApp.dContract.getDICTRICT_CODE());
+        hfMap = new HashMap<>();
+        hfNames = new ArrayList<>();
+        hfNames.add("Select Health Facility Name-");
+
+        for (HealthFacContract hf : hfList) {
+            hfNames.add(hf.getHf_name());
+            hfMap.put(hf.getHf_name(), hf.getHf_uen_code());
+        }
+
+        bi.healthFacSpinner.setAdapter(new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, hfNames));
 
 //        bi.healthFacSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 //            @Override
@@ -208,10 +211,9 @@ public class InfoFragment extends Fragment {
         MainApp.fc.setLogginTime(MainApp.logginTime);
         MainApp.fc.setDeviceID(MainApp.deviceId);
         MainApp.fc.setFormDate(new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime()));
-
         MainApp.fc.setProviderID(bi.providerId.getText().toString());
         MainApp.fc.setProviderName(bi.hpName.getText().toString());
-        MainApp.fc.setHealthFacilityName(bi.hfName.getText().toString());
+        MainApp.fc.setHealthFacilityCode(String.valueOf(hfMap.get(bi.healthFacSpinner.getSelectedItem().toString())));
         MainApp.fc.setDistrictID(String.valueOf(MainApp.dContract.getDICTRICT_CODE()));
         MainApp.providerName = bi.hpName.getText().toString();
 

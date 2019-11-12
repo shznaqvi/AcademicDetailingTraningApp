@@ -101,8 +101,8 @@ public class MainFragment extends Fragment {
         editorDownload = sharedPrefDownload.edit();
 
         isAdmin = getArguments().getBoolean("isAdmin");
-        if (!isAdmin) {
-            bi.openDB.setVisibility(View.GONE);
+        if (MainApp.userName.equals("dmu@aku")) {
+            bi.openDB.setVisibility(View.VISIBLE);
         }
 
         db = new DatabaseHelper(getContext());
@@ -346,5 +346,5 @@ public class MainFragment extends Fragment {
 
     }
 
-    
+
 }

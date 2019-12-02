@@ -85,7 +85,7 @@ public class DistrictsContract {
         public static final String TABLE_NAME = "districts";
         public static final String _ID = "id";
         public static final String DISTRICT_CODE = "district_code";
-        public static final String DISTRICT_NAME = "district_name";
+        public static final String DISTRICT_NAME = "district";
 
     }
 }

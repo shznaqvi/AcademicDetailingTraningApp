@@ -43,14 +43,16 @@ public class TableContracts {
         public static final String COLUMN_DIST_ID = "dist_id";
 
     }
+
     public static abstract class DistrictTable implements BaseColumns {
 
         public static final String TABLE_NAME = "districts";
         public static final String _ID = "id";
-        public static final String COLUMN_DIST_ID = "COLUMN_DIST_ID";
-        public static final String DISTRICT_NAME = "district";
+        public static final String COLUMN_DIST_ID = "district_code";
+        public static final String DISTRICT_NAME = "district_name";
 
     }
+
     public static abstract class TehsilTable implements BaseColumns {
 
         public static final String TABLE_NAME = "tehsils";

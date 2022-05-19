@@ -19,12 +19,12 @@
 
                 <com.google.android.exoplayer2.ui.StyledPlayerView
                     android:id="@+id/playerView"
-                    android:background="@color/blackOverlay"
                     android:layout_width="match_parent"
-                    android:minHeight="360dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="360dp"
                     android:layout_margin="8dp"
-                    />
+                    android:background="@color/blackOverlay"
+                    android:minHeight="360dp"
+                    android:visibility="gone" />
 
                 <Button
                     android:layout_width="match_parent"
@@ -34,6 +34,7 @@
                     android:paddingEnd="24dp"
                     android:layout_height="wrap_content"
                     android:text="[  Full-Screen  ]"
+                    android:visibility="gone"
                     android:onClick="openFullScreen"/>
                 <org.angmarch.views.NiceSpinner
                     android:id="@+id/modNSpinner"

@@ -104,7 +104,12 @@ public class DownloadVideoActivity extends AppCompatActivity {
     }
 
     private void setupModules() {
-        if (!MainApp.admin && !MainApp.userName.equals("test1234")) {
+        modules.add("-Select Module-");
+        modules.add("CHILD MODULE");
+        modules.add("MATERNAL MODULE");
+        modules.add("NEWBORN MODULE");
+        bi.modNSpinner.attachDataSource(modules);
+     /*   if (!MainApp.admin && !MainApp.userName.equals("test1234")) {
             switch (MainApp.districtCode) {
                 case 113:
                 case 123:
@@ -138,14 +143,16 @@ public class DownloadVideoActivity extends AppCompatActivity {
             modules.add("MATERNAL MODULE");
             modules.add("NEWBORN MODULE");
             bi.modNSpinner.attachDataSource(modules);
-        }
+        }*/
 
         existVideos = new ArrayList<>();
 
 
         // Populate recycler_view
-        new populateRecyclerView(DownloadVideoActivity.this, 0).execute();
+        if (modules.size() > 0) {
 
+            new populateRecyclerView(DownloadVideoActivity.this, 0).execute();
+        }
     }
 
     private void setListeners() {
@@ -287,10 +294,58 @@ public class DownloadVideoActivity extends AppCompatActivity {
         }
     }
 
+    private void showVideo() {
+        player = new ExoPlayer.Builder(this).build();
+
+        // Bind the player to the view.
+        bi.playerView.setPlayer(player);
+        DefaultTrackSelector trackSelector = new DefaultTrackSelector(this);
+
+        player.addAnalyticsListener(new EventLogger(trackSelector));
+        // Build the media item.
+        Uri videoUri = RawResourceDataSource.buildRawResourceUri(R.raw.gds01);
+
+
+        MediaItem mediaItem = MediaItem.fromUri(videoUri);
+// Set the media item to be played.
+        player.setMediaItem(mediaItem);
+// Prepare the player.
+        player.prepare();
+// Start the playback.
+        player.play();
+
+        player.addListener(new Player.Listener() {
+
+            @Override
+            public void onPlaybackStateChanged(@Player.State int state) {
+                if (state == Player.STATE_ENDED) {
+
+                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                    bi.playerView.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_FIT);
+
+                } else {
+                    bi.playerView.hideController();
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        player.release();
+    }
+
+    public void openFullScreen(View view) {
+
+        bi.playerView.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_FILL);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+    }
+
     //    Recycler classes
     private static class RecyclerItemClickListener implements RecyclerView.OnItemTouchListener {
-        GestureDetector mGestureDetector;
         private final OnItemClickListener mListener;
+        GestureDetector mGestureDetector;
         private RecyclerView viewRecycle;
 
         public RecyclerItemClickListener(Context context, OnItemClickListener listener) {
@@ -343,8 +398,8 @@ public class DownloadVideoActivity extends AppCompatActivity {
 
     private class VideoItemsAdapter extends RecyclerView.Adapter<VideoItemsAdapter.MyViewHolder> {
 
-        MyViewHolder holder;
         private final String[] videosList;
+        MyViewHolder holder;
 
         public VideoItemsAdapter(String[] videosList) {
             this.videosList = videosList;
@@ -397,8 +452,8 @@ public class DownloadVideoActivity extends AppCompatActivity {
     private class populateRecyclerView extends AsyncTask<String, String, String> {
         private final Context mContext;
         private final int position;
-        private String moduleName;
         private final ProgressDialog pd;
+        private String moduleName;
 
         public populateRecyclerView(Context mContext, int position) {
             this.mContext = mContext;
@@ -421,6 +476,7 @@ public class DownloadVideoActivity extends AppCompatActivity {
                     RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(mContext, 1);
                     bi.modVidRecycler.setLayoutManager(mLayoutManager);
                     bi.modVidRecycler.setItemAnimator(new DefaultItemAnimator());
+
                 }
             });
             return null;
@@ -440,52 +496,5 @@ public class DownloadVideoActivity extends AppCompatActivity {
         }
     }
 
-    private void showVideo() {
-        player = new ExoPlayer.Builder(this).build();
 
-        // Bind the player to the view.
-        bi.playerView.setPlayer(player);
-        DefaultTrackSelector trackSelector = new DefaultTrackSelector(this);
-
-        player.addAnalyticsListener(new EventLogger(trackSelector));
-        // Build the media item.
-        Uri videoUri = RawResourceDataSource.buildRawResourceUri(R.raw.gds01);
-
-
-        MediaItem mediaItem = MediaItem.fromUri(videoUri);
-// Set the media item to be played.
-        player.setMediaItem(mediaItem);
-// Prepare the player.
-        player.prepare();
-// Start the playback.
-        player.play();
-
-        player.addListener(new Player.Listener() {
-
-            @Override
-            public void onPlaybackStateChanged(@Player.State int state) {
-                if (state == Player.STATE_ENDED) {
-
-                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-                    bi.playerView.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_FIT);
-
-                } else {
-                    bi.playerView.hideController();
-                }
-            }
-        });
-    }
-
-    @Override
-    public void onStop(){
-        super.onStop();
-        player.release();
-    }
-
-
-    public void openFullScreen(View view) {
-
-        bi.playerView.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_FILL);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-    }
 }

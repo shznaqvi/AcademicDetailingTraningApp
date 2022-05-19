@@ -467,28 +467,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return insertCount;
     }
 
-    public void syncDistricts(JSONArray districList) {
+    public int syncdistricts(JSONArray districList) throws JSONException {
         SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
         db.execSQL(" DELETE FROM " + DistrictTable.TABLE_NAME);
         db.execSQL(" DELETE FROM sqlite_sequence where name = 'districts'");
 
-        try {
-            JSONArray jsonArray = districList;
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                District dc = new District();
-                dc.Sync(jsonObject);
-                ContentValues values = new ContentValues();
-                values.put(DistrictTable.COLUMN_DIST_ID, dc.getDICTRICT_CODE());
-                values.put(DistrictTable.DISTRICT_NAME, dc.getDistrict_name());
-                db.insert(DistrictTable.TABLE_NAME, null, values);
-            }
-            db.close();
-            delegate.downloded(true);
-        } catch (Exception e) {
-            delegate.downloded(false);
+        JSONArray jsonArray = districList;
+        int insertCount = 0;
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+            District dc = new District();
+            dc.Sync(jsonObject);
+            ContentValues values = new ContentValues();
+            values.put(DistrictTable.COLUMN_DIST_ID, dc.getDICTRICT_CODE());
+            values.put(DistrictTable.DISTRICT_NAME, dc.getDistrict_name());
+            long rowID = db.insert(DistrictTable.TABLE_NAME, null, values);
+            if (rowID != -1) insertCount++;
+
         }
+        db.close();
+
+        return insertCount;
+
     }
 
     public boolean Login(String username, String password) throws SQLException {
@@ -1268,19 +1270,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // Which row to update, based on the ID
         String selection = null;
         String[] selectionArgs = null;
-        Cursor cursor ;
+        int distCount = 0;
+        Cursor cursor;
 
-            selection = DistrictTable.COLUMN_DIST_ID + " = ?";
-            cursor = db.query(DistrictTable.TABLE_NAME, //Table to query
-                    columns,                    //columns to return
-                    selection,                  //columns for the WHERE clause
-                    selectionArgs,              //The values for the WHERE clause
-                    null,                       //group the rows
-                    null,                       //filter by row groups
-                    null);                      //The sort order
-
+        selection = null;
+        cursor = db.query(DistrictTable.TABLE_NAME, //Table to query
+                columns,                    //columns to return
+                selection,                  //columns for the WHERE clause
+                selectionArgs,              //The values for the WHERE clause
+                null,                       //group the rows
+                null,                       //filter by row groups
+                null);                      //The sort order
+        distCount = cursor.getCount();
         db.close();
-        return cursor.getCount();
+        return distCount;
     }
 
     public List<NextMeeting> getAppointmentsList() {

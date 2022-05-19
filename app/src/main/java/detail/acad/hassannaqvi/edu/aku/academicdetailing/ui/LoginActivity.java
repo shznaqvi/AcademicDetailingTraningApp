@@ -314,6 +314,8 @@ public class LoginActivity extends AppCompatActivity {
                 ) {
 
                     MainApp.user.setUserName(username);
+                    //  MainApp.dContract = db.getDistrict(Integer.parseInt(MainApp.user.getDist_id()));
+                    MainApp.dContract = db.getDistrict(Integer.parseInt("432"));
                     MainApp.admin = username.contains("@") || username.contains("test1234");
                     MainApp.superuser = MainApp.user.getDesignation().equals("Supervisor");
                     Intent iLogin = null;

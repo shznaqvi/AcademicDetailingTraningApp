@@ -50,6 +50,7 @@ import java.util.concurrent.TimeUnit;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.adapters.SyncListAdapter;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.TableContracts.DistrictTable;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.TableContracts.EntryLogTable;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.TableContracts.FormsTable;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.TableContracts.HealthFacilityTable;
@@ -237,24 +238,23 @@ public class SyncActivity extends AppCompatActivity {
                 String select = " * ";
                 String filter = " colflag is null ";
 
-            //    if (sync_flag) {
-                    select = " * ";
-                    filter = " enabled = '1' ";
-
-                    downloadTables.add(new SyncModel(UsersTable.TABLE_NAME));
-                    select = " * ";
-                 //   filter = " (colflag != '1' or colflag is null) AND hf_district_code = '" + MainApp.user.getDist_id() + "' ";
-                    filter = " hf_district_code = '432' ";
-                    downloadTables.add(new SyncModel(HealthFacilityTable.TABLE_NAME, select, filter));
+                //    if (sync_flag) {
+                downloadTables.add(new SyncModel(DistrictTable.TABLE_NAME));
+                select = " * ";
+                filter = " enabled = '1' ";
+                downloadTables.add(new SyncModel(UsersTable.TABLE_NAME));
+                select = " * ";
+                //   filter = " (colflag != '1' or colflag is null) AND hf_district_code = '" + MainApp.user.getDist_id() + "' ";
+                filter = " hf_district_code = '432' ";
+                downloadTables.add(new SyncModel(HealthFacilityTable.TABLE_NAME, select, filter));
                 //    filter = " (colflag != '1' or colflag is null) AND hf_district_code = '404' ";
-                    filter = " district_code = '432' ";
-                    downloadTables.add(new SyncModel(HealthProviderTable.TABLE_NAME, select, filter));
-                   // downloadTables.add(new SyncModel(HealthFacilityTable.TABLE_NAME));
-                    //downloadTables.add(new SyncModel(DistrictsTable.TABLE_NAME));
+                filter = " district_code = '432' ";
+                downloadTables.add(new SyncModel(HealthProviderTable.TABLE_NAME, select, filter));
+                // downloadTables.add(new SyncModel(HealthFacilityTable.TABLE_NAME));
+                //downloadTables.add(new SyncModel(DistrictsTable.TABLE_NAME));
                     downloadTables.add(new SyncModel("versionApp"));
-                    select = " * ";
-                    filter = " deviceid = '" + MainApp.deviceId + "_x' ";
-                    downloadTables.add(new SyncModel("Unlocked", select, filter));
+
+
                /* } else {
 
                     select = " * ";

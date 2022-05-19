@@ -1,143 +1,63 @@
 package detail.acad.hassannaqvi.edu.aku.academicdetailing.core;
 
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.UserAuth.checkPassword;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.database.MatrixCursor;
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import net.sqlcipher.SQLException;
+import net.sqlcipher.database.SQLiteDatabase;
+import net.sqlcipher.database.SQLiteException;
+import net.sqlcipher.database.SQLiteOpenHelper;
+
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.DistrictsContract;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.DistrictsContract.DistrictTable;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.FormsContract;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.FormsContract.FormsTable;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.HealthFacContract;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.HealthFacContract.singleHF;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.NextMeetingContract;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.NextMeetingContract.NMCTable;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.SessionContract;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.SessionContract.SessionTable;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.UsersContract;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.UsersContract.UsersTable;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.TableContracts.DistrictTable;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.TableContracts.EntryLogTable;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.TableContracts.FormsTable;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.TableContracts.HealthFacilityTable;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.TableContracts.HealthProviderTable;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.TableContracts.NextMeetingTable;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.TableContracts.SessionTable;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.TableContracts.UsersTable;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.District;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.EntryLog;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.Forms;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.HealthFacility;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.HealthProvider;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.NextMeeting;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.Session;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.Users;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.LoginActivity;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    public static final String SQL_CREATE_USERS = "CREATE TABLE " + UsersTable.TABLE_NAME + "("
-            + UsersTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + UsersTable.DISTRICT_CODE + " LONG,"
-            + UsersTable.ROW_USERNAME + " TEXT,"
-            + UsersTable.ROW_PASSWORD + " TEXT );";
+
     public static final String DATABASE_NAME = "dr_reg.db";
-    public static final String DB_NAME = DATABASE_NAME.replace(".", "_copy.");
+    public static final String DATABASE_COPY = DATABASE_NAME.replace(".", "_copy.");
     public static final String PROJECT_NAME = "DR-REGISTRATION-FORM";
     private static final int DATABASE_VERSION = 1;
-    private static final String SQL_CREATE_FORMS = "CREATE TABLE "
-            + FormsTable.TABLE_NAME + "("
-            + FormsTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-            FormsTable.COLUMN_PROJECTNAME + " TEXT," +
-            FormsTable.COLUMN_loggin_TIME + " TEXT, " +
-            FormsTable.COLUMN_SURVEYTYPE + " TEXT," +
-            FormsTable.COLUMN_MODULE + " TEXT, " +
-            FormsTable.COLUMN_SESSION + " TEXT, " +
-            FormsTable.COLUMN_UID + " TEXT," +
-            FormsTable.COLUMN_FORMDATE + " TEXT," +
-            FormsTable.COLUMN_USER + " TEXT," +
-            FormsTable.COLUMN_ISTATUS + " TEXT," +
-            FormsTable.COLUMN_ISTATUS88X + " TEXT," +
-            FormsTable.COLUMN_ENDINGDATETIME + " TEXT," +
-            FormsTable.COLUMN_GPSLAT + " TEXT," +
-            FormsTable.COLUMN_GPSLNG + " TEXT," +
-            FormsTable.COLUMN_GPSDT + " TEXT," +
-            FormsTable.COLUMN_GPSACC + " TEXT," +
-            FormsTable.COLUMN_GPSELEV + " TEXT," +
-            FormsTable.COLUMN_GPSTIME + " TEXT," +
-            FormsTable.COLUMN_DEVICEID + " TEXT," +
-            FormsTable.COLUMN_DEVICETAGID + " TEXT," +
-            FormsTable.COLUMN_SYNCED + " TEXT," +
-            FormsTable.COLUMN_SYNCED_DATE + " TEXT," +
-            FormsTable.COLUMN_APPVERSION + " TEXT," +
-            FormsTable.COLUMN_DIST_ID + " TEXT," +
-            FormsTable.COLUMN_HFACILITY_NAME + " TEXT," +
-            FormsTable.COLUMN_PROVIDER_NAME + " TEXT," +
-            FormsTable.COLUMN_PROVIDER_ID + " TEXT ," +
-            FormsTable.COLUMN_PRETEST_START_TIME + " TEXT ," +
-            FormsTable.COLUMN_PRETEST_END_TIME + " TEXT ," +
-            FormsTable.COLUMN_POSTTEST_START_TIME + " TEXT ," +
-            FormsTable.COLUMN_POSTTEST_END_TIME + " TEXT ," +
-            FormsTable.COLUMN_SESSION_START_TIME + " TEXT ," +
-            FormsTable.COLUMN_SESSION_END_TIME + " TEXT, " +
-            FormsTable.COLUMN_PRE_TEST + " TEXT ," +
-            FormsTable.COLUMN_POST_TEST + " TEXT," +
-            FormsTable.COLUMN_TOTAL + " TEXT," +
-            FormsTable.COLUMN_SCORE_PRE + " TEXT," +
-            FormsTable.COLUMN_PER_PRE + " TEXT," +
-            FormsTable.COLUMN_WRONG_PRE + " TEXT, " +
-            FormsTable.COLUMN_SCORE_POST + " TEXT," +
-            FormsTable.COLUMN_PER_POST + " TEXT, " +
-            FormsTable.COLUMN_WRONG_POST + " TEXT " +
-             " ); ";
 
-    private static final String SQL_CREATE_SESSION_TABLE = " CREATE TABLE " + SessionTable.TABLE_NAME
-            + " ( " + SessionTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + SessionTable.COLUMN_FORMDATE + " TEXT, "
-            + SessionTable.COLUMN_DEVICEID + " TEXT, "
-            + SessionTable.COLUMN_SLIDE_NUMBER + " INTEGER,"
-            + SessionTable.COLUMN_MODULE + " TEXT," + SessionTable.COLUMN_SESSION
-            + " TEXT,"
-            + SessionTable.COLUMN_SESSION_TIME + " TEXT,"
-            + SessionTable.COLUMN_SYNCED + " TEXT,"
-            + SessionTable.COLUMN_SYNCED_DATE + " TEXT" + ");";
-
-    private static final String SQL_CREATE_DISTRICT_TABLE = " CREATE TABLE " + DistrictTable.TABLE_NAME
-            + " ( " + DistrictTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + DistrictTable.DISTRICT_CODE + " Long," +
-            DistrictTable.DISTRICT_NAME + " TEXT" + ");";
-
-    private static final String SQL_CREATE_HF_TABLE = " CREATE TABLE " + singleHF.TABLE_NAME
-            + " ( " + singleHF._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + singleHF.COLUMN_HF_DHIS + " LONG, "
-            + singleHF.COLUMN_HF_DIST_CODE + " LONG, "
-            + singleHF.COLUMN_HF_TEHSIL_NAME + " TEXT, "
-            + singleHF.COLUMN_HF_UC_NAME + " TEXT, "
-            + singleHF.COLUMN_HF_NAME + " TEXT, "
-            + singleHF.COLUMN_HF_NAME_GOVT + " TEXT, "
-            + singleHF.COLUMN_HF_UEN_CODE + " LONG " + ");";
-
-
-    private static final String SQL_CREATE_NMS = "CREATE TABLE " + NMCTable.TABLE_NAME + "("
-            + NMCTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + NMCTable.COLUMN_DEVICEID + " TEXT, "
-            + NMCTable.COLUMN_LAT + " TEXT, "
-            + NMCTable.COLUMN_FORMDATE + " TEXT, "
-            + NMCTable.COLUMN_LNG + " TEXT, "
-            + NMCTable.COLUMN_GPSTIME + " TEXT, "
-            + NMCTable.COLUMN_BTYPE + " TEXT, "
-            + NMCTable.COLUMN_BOOK_DATE + " TEXT, "
-            + NMCTable.COLUMN_BOOKBY + " TEXT, "
-            + NMCTable.COLUMN_DOCTOR_NAME + " TEXT, "
-            + NMCTable.COLUMN_DATE + " TEXT, "
-            + NMCTable.COLUMN_TIME + " TEXT, "
-            + NMCTable.COLUMN_MOD + " TEXT, "
-            + NMCTable.COLUMN_SUBMOD + " TEXT, "
-            + NMCTable.COLUMN_SESSION + " TEXT, "
-            + NMCTable.COLUMN_SYNCED + " TEXT, "
-            + NMCTable.COLUMN_SYNCED_DATE + " TEXT " + ");";
 
     private static final String SQL_DELETE_SESSION = "DROP TABLE IF EXISTS " + SessionTable.TABLE_NAME;
     private static final String SQL_DELETE_DISTRICTS = "DROP TABLE IF EXISTS " + DistrictTable.TABLE_NAME;
-    private static final String SQL_DELETE_NMS = "DROP TABLE IF EXISTS " + NMCTable.TABLE_NAME;
-    private static final String SQL_DELETE_HF = "DROP TABLE IF EXISTS " + singleHF.TABLE_NAME;
+    private static final String SQL_DELETE_NMS = "DROP TABLE IF EXISTS " + NextMeetingTable.TABLE_NAME;
+    private static final String SQL_DELETE_HF = "DROP TABLE IF EXISTS " + HealthFacilityTable.TABLE_NAME;
+    private static final String SQL_DELETE_HP = "DROP TABLE IF EXISTS " + HealthProviderTable.TABLE_NAME;
+    //    private static final String SQL_DELETE_TEHSIL = "DROP TABLE IF EXISTS " + TehsilTable.TABLE_NAME;
     private static final String SQL_DELETE_USERS =
             "DROP TABLE IF EXISTS " + UsersTable.TABLE_NAME;
     private static final String SQL_DELETE_FORMS =
@@ -147,20 +67,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private final String TAG = "DatabaseHelper";
 
     public String spDateT = new SimpleDateFormat("dd-MM-yy").format(new Date().getTime());
+    String dtToday = new SimpleDateFormat("MM-dd-yyyy").format(new Date().getTime());
+    String dtToday1 = new SimpleDateFormat("MM-dd-yy").format(new Date().getTime());
+
+    DataDownload delegate;
+    private static final String DATABASE_PASSWORD = MainApp.IBAHC;
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+
+        // Data download
+        if (context.getClass().getName().equals(LoginActivity.class.getName()))
+            delegate = (DataDownload) context;
+
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        db.execSQL(SQL_CREATE_USERS);
-        db.execSQL(SQL_CREATE_FORMS);
-        db.execSQL(SQL_CREATE_SESSION_TABLE);
-        db.execSQL(SQL_CREATE_NMS);
-        db.execSQL(SQL_CREATE_DISTRICT_TABLE);
-        db.execSQL(SQL_CREATE_HF_TABLE);
+        db.execSQL(CreateTable.SQL_CREATE_USERS);
+        db.execSQL(CreateTable.SQL_CREATE_FORMS);
+        db.execSQL(CreateTable.SQL_CREATE_SESSION_TABLE);
+        db.execSQL(CreateTable.SQL_CREATE_NMS);
+        db.execSQL(CreateTable.SQL_CREATE_DISTRICT_TABLE);
+        db.execSQL(CreateTable.SQL_CREATE_HF_TABLE);
+        db.execSQL(CreateTable.SQL_CREATE_HP_TABLE);
+//        db.execSQL(SQL_CREATE_TEHSIL);
         /*db.execSQL(SQL_CREATE_TEHSILS);
         db.execSQL(SQL_CREATE_UCS);
         db.execSQL(SQL_CREATE_LHWS);*/
@@ -175,90 +107,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_DELETE_SESSION);
         db.execSQL(SQL_DELETE_NMS);
         db.execSQL(SQL_DELETE_HF);
+        db.execSQL(SQL_DELETE_HP);
+//        db.execSQL(SQL_DELETE_TEHSIL);
+
     }
 
-//    public List<HealthFacContract> getHFData(HealthFacContract.ColumnsClass... columnsClass) {
-//        SQLiteDatabase db = this.getReadableDatabase();
-//        Cursor c = null;
-//        String[] columns = {
-//                singleHF.COLUMN_ID,
-//                singleHF.COLUMN_HF_NAME,
-//                singleHF.COLUMN_HF_TYPE,
-//                singleHF.COLUMN_HF_DISTRICT_NAME,
-//                singleHF.COLUMN_HF_TEHSIL_NAME,
-//                singleHF.COLUMN_HF_PROVINCE_NAME,
-//                singleHF.COLUMN_HF_UC_NAME,
-//                singleHF.COLUMN_HF_UEN_CODE,
-//        };
-//
-//        String whereClause = null;
-//        String[] whereArgs = null;
-//
-//        if (columnsClass.length > 0) {
-//
-//            whereClause = "";
-//            whereArgs = new String[columnsClass.length];
-//
-//            for (byte i = 0; i < columnsClass.length; i++) {
-//                whereClause += columnsClass[i].getColumnName() + " =?";
-//                whereArgs[i] = columnsClass[i].getColumnClause();
-//
-//                if (columnsClass.length - 1 != i) {
-//                    whereClause += " AND ";
-//                }
-//
-//            }
-//
-//        }
-//
-//        String groupBy = null;
-//        String having = null;
-//
-//        String orderBy = singleHF.COLUMN_HF_NAME + " ASC";
-//
-//        List<HealthFacContract> allDC = new ArrayList<>();
-//
-//        try {
-//            c = db.query(
-//                    singleHF.TABLE_NAME,  // The table to query
-//                    columns,                   // The columns to return
-//                    whereClause,               // The columns for the WHERE clause
-//                    whereArgs,                 // The values for the WHERE clause
-//                    groupBy,                   // don't group the rows
-//                    having,                    // don't filter by row groups
-//                    orderBy                    // The sort order
-//            );
-//
-//            while (c.moveToNext()) {
-//                HealthFacContract dc = new HealthFacContract();
-//                allDC.add(dc.HydrateHF(c));
-//            }
-//        } finally {
-//            if (c != null) {
-//                c.close();
-//            }
-//            if (db != null) {
-//                db.close();
-//            }
-//        }
-//        return allDC;
-//    }
-
-
-    public ArrayList<UsersContract> getAllUsers() {
-        SQLiteDatabase db = this.getReadableDatabase();
-        ArrayList<UsersContract> userList = null;
+    public ArrayList<Users> getAllUsers() {
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
+        ArrayList<Users> userList = null;
         try {
-            userList = new ArrayList<UsersContract>();
+            userList = new ArrayList<Users>();
             String QUERY = "SELECT * FROM " + UsersTable.TABLE_NAME;
             Cursor cursor = db.rawQuery(QUERY, null);
             int num = cursor.getCount();
             if (!cursor.isLast()) {
                 while (cursor.moveToNext()) {
-                    UsersContract user = new UsersContract();
-                    user.setId(cursor.getInt(0));
-                    user.setUserName(cursor.getString(1));
-                    user.setPassword(cursor.getString(2));
+                    Users user = new Users().hydrate(cursor);
                     userList.add(user);
                 }
             }
@@ -268,243 +132,205 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return userList;
     }
 
-    public Collection<FormsContract> getUnsyncedForms() {
-        SQLiteDatabase db = this.getReadableDatabase();
+    //get UnSyncedTables
+    public JSONArray getUnsyncedForms() throws JSONException {
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
         Cursor c = null;
-        String[] columns = {
-                FormsTable.COLUMN_PROJECTNAME,
-                FormsTable.COLUMN_MODULE,
-                FormsTable._ID,
-                FormsTable.COLUMN_FORMDATE,
-                FormsTable.COLUMN_SESSION,
-                FormsTable.COLUMN_ISTATUS,
-                FormsTable.COLUMN_ISTATUS88X,
-                FormsTable.COLUMN_ENDINGDATETIME,
-                FormsTable.COLUMN_GPSLAT,
-                FormsTable.COLUMN_GPSLNG,
-                FormsTable.COLUMN_GPSTIME,
-                FormsTable.COLUMN_GPSACC,
-                FormsTable.COLUMN_DEVICEID,
-                FormsTable.COLUMN_APPVERSION,
-                FormsTable.COLUMN_DIST_ID,
-                FormsTable.COLUMN_loggin_TIME,
-                FormsTable.COLUMN_HFACILITY_NAME,
-                FormsTable.COLUMN_PROVIDER_NAME,
-                FormsTable.COLUMN_PROVIDER_ID,
-                FormsTable.COLUMN_PRETEST_START_TIME,
-                FormsTable.COLUMN_PRETEST_END_TIME,
-                FormsTable.COLUMN_POSTTEST_START_TIME,
-                FormsTable.COLUMN_POSTTEST_END_TIME,
-                FormsTable.COLUMN_SESSION_START_TIME,
-                FormsTable.COLUMN_SESSION_END_TIME,
-                FormsTable.COLUMN_PRE_TEST,
-                FormsTable.COLUMN_POST_TEST,
-                FormsTable.COLUMN_SYNCED,
-                FormsTable.COLUMN_SYNCED_DATE
+        String[] columns = null;
 
-        };
-        String whereClause = FormsTable.COLUMN_SYNCED + " is null OR " + FormsTable.COLUMN_SYNCED + " = '' ";
+        String whereClause;
+        //whereClause = null;
+        whereClause = FormsTable.COLUMN_SYNCED + " = '' AND " +
+                FormsTable.COLUMN_ISTATUS + "!= ''";
+
         String[] whereArgs = null;
+
         String groupBy = null;
         String having = null;
 
-        String orderBy =
-                FormsTable._ID + " ASC";
+        String orderBy = FormsTable.COLUMN_ID + " ASC";
 
-        Collection<FormsContract> allFC = new ArrayList<FormsContract>();
-        try {
-            c = db.query(
-                    FormsTable.TABLE_NAME,  // The table to query
-                    columns,                   // The columns to return
-                    whereClause,               // The columns for the WHERE clause
-                    whereArgs,                 // The values for the WHERE clause
-                    groupBy,                   // don't group the rows
-                    having,                    // don't filter by row groups
-                    orderBy                    // The sort order
-            );
+        JSONArray allForms = new JSONArray();
+        c = db.query(
+                FormsTable.TABLE_NAME,  // The table to query
+                columns,                   // The columns to return
+                whereClause,               // The columns for the WHERE clause
+                whereArgs,                 // The values for the WHERE clause
+                groupBy,                   // don't group the rows
+                having,                    // don't filter by row groups
+                orderBy                    // The sort order
+        );
+        while (c.moveToNext()) {
+            /** WorkManager Upload
+             /*Form fc = new Form();
+             allFC.add(fc.Hydrate(c));*/
+            Log.d(TAG, "getUnsyncedForm: " + c.getCount());
+            Forms form = new Forms();
+            allForms.put(form.Hydrate(c).toJSONObject());
 
-            if (c.moveToFirst())
-                do {
-                    FormsContract fc = new FormsContract();
-                    allFC.add(fc.Hydrate(c));
-                } while (c.moveToNext());
 
-
-        } finally {
-            if (c != null) {
-                c.close();
-            }
-            if (db != null) {
-                db.close();
-            }
         }
-        return allFC;
+
+        c.close();
+        db.close();
+
+        Log.d(TAG, "getUnsyncedForm: " + allForms.toString().length());
+        Log.d(TAG, "getUnsyncedForm: " + allForms);
+        return allForms;
     }
 
-    public Collection<SessionContract> getUnsyncedSessions() {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c = null;
-        String[] columns = {
-                SessionTable.COLUMN_SESSION,
-                SessionTable._ID,
-                SessionTable.COLUMN_MODULE,
-                SessionTable.COLUMN_SESSION_TIME,
-                SessionTable.COLUMN_SLIDE_NUMBER,
-                SessionTable.COLUMN_SYNCED,
-                SessionTable.COLUMN_SYNCED_DATE,
-                SessionTable.COLUMN_DEVICEID,
-                SessionTable.COLUMN_FORMDATE
 
-        };
-        String whereClause = SessionTable.COLUMN_SYNCED + " is null OR " + SessionTable.COLUMN_SYNCED + " = '' ";
+    public JSONArray getUnsyncedSessions() throws JSONException {
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
+        Cursor c = null;
+        String[] columns = null;
+
+        String whereClause;
+        //whereClause = null;
+        whereClause = SessionTable.COLUMN_SYNCED + " = ''";
+
         String[] whereArgs = null;
+
         String groupBy = null;
         String having = null;
 
-        String orderBy =
-                SessionTable._ID + " ASC";
+        String orderBy = SessionTable._ID + " ASC";
 
-        Collection<SessionContract> allSc = new ArrayList<SessionContract>();
-        try {
-            c = db.query(
-                    SessionTable.TABLE_NAME,  // The table to query
-                    columns,                   // The columns to return
-                    whereClause,               // The columns for the WHERE clause
-                    whereArgs,                 // The values for the WHERE clause
-                    groupBy,                   // don't group the rows
-                    having,                    // don't filter by row groups
-                    orderBy                    // The sort order
-            );
+        JSONArray allSession= new JSONArray();
+        c = db.query(
+                SessionTable.TABLE_NAME,  // The table to query
+                columns,                   // The columns to return
+                whereClause,               // The columns for the WHERE clause
+                whereArgs,                 // The values for the WHERE clause
+                groupBy,                   // don't group the rows
+                having,                    // don't filter by row groups
+                orderBy                    // The sort order
+        );
+        while (c.moveToNext()) {
+            /** WorkManager Upload
+             /*Form fc = new Form();
+             allFC.add(fc.Hydrate(c));*/
+            Log.d(TAG, "getUnsyncedSession: " + c.getCount());
+            Session session = new Session();
+            allSession.put(session.Hydrate(c).toJSONObject());
 
-            if (c.moveToFirst())
-                do {
-                    SessionContract sC = new SessionContract();
-                    allSc.add(sC.Hydrate(c));
-                } while (c.moveToNext());
 
-
-        } finally {
-            if (c != null) {
-                c.close();
-            }
-            if (db != null) {
-                db.close();
-            }
         }
-        return allSc;
+
+        c.close();
+        db.close();
+
+
+        return allSession;
     }
 
-    public Collection<NextMeetingContract> getUnsyncedNextMeetingForm() {
-        SQLiteDatabase db = this.getReadableDatabase();
+    public JSONArray getUnsyncedNextMeetings() throws JSONException {
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
         Cursor c = null;
-        String[] columns = {
-                NMCTable.COLUMN_DOCTOR_NAME,
-                NMCTable.COLUMN_DATE,
-                NMCTable.COLUMN_TIME,
-                NMCTable.COLUMN_MOD,
-                NMCTable.COLUMN_SUBMOD,
-                NMCTable.COLUMN_SESSION,
-                NMCTable.COLUMN_LAT,
-                NMCTable.COLUMN_LNG,
-                NMCTable.COLUMN_BOOK_DATE,
-                NMCTable.COLUMN_BOOKBY,
-                NMCTable.COLUMN_GPSTIME,
-                NMCTable.COLUMN_BTYPE,
-                NMCTable._ID,
-                NMCTable.COLUMN_SYNCED,
-                NMCTable.COLUMN_SYNCED_DATE,
-                NMCTable.COLUMN_DEVICEID,
-                NMCTable.COLUMN_FORMDATE
+        String[] columns = null;
 
-        };
-        String whereClause = NMCTable.COLUMN_SYNCED + " is null OR " + NMCTable.COLUMN_SYNCED + " = '' ";
+        String whereClause;
+        //whereClause = null;
+        whereClause = NextMeetingTable.COLUMN_SYNCED + " = ''";
+
         String[] whereArgs = null;
+
         String groupBy = null;
         String having = null;
 
-        String orderBy =
-                NMCTable._ID + " ASC";
+        String orderBy = NextMeetingTable._ID + " ASC";
 
-        Collection<NextMeetingContract> allSc = new ArrayList<NextMeetingContract>();
-        try {
-            c = db.query(
-                    NMCTable.TABLE_NAME,  // The table to query
-                    columns,                   // The columns to return
-                    whereClause,               // The columns for the WHERE clause
-                    whereArgs,                 // The values for the WHERE clause
-                    groupBy,                   // don't group the rows
-                    having,                    // don't filter by row groups
-                    orderBy                    // The sort order
-            );
+        JSONArray allNextMeeting= new JSONArray();
+        c = db.query(
+                NextMeetingTable.TABLE_NAME,  // The table to query
+                columns,                   // The columns to return
+                whereClause,               // The columns for the WHERE clause
+                whereArgs,                 // The values for the WHERE clause
+                groupBy,                   // don't group the rows
+                having,                    // don't filter by row groups
+                orderBy                    // The sort order
+        );
+        while (c.moveToNext()) {
+            /** WorkManager Upload
+             /*Form fc = new Form();
+             allFC.add(fc.Hydrate(c));*/
+            Log.d(TAG, "getUnsyncedNextMeeting: " + c.getCount());
+            NextMeeting nextMeeting = new NextMeeting();
+            allNextMeeting.put(nextMeeting.Hydrate(c).toJSONObject());
 
-            if (c.moveToFirst())
-                do {
-                    NextMeetingContract nC = new NextMeetingContract();
-                    allSc.add(nC.Hydrate(c));
-                } while (c.moveToNext());
-
-
-        } finally {
-            if (c != null) {
-                c.close();
-            }
-            if (db != null) {
-                db.close();
-            }
         }
-        return allSc;
+
+        c.close();
+        db.close();
+        
+        return allNextMeeting;
+    }
+    public JSONArray getUnsyncedEntryLogs() throws JSONException {
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
+        Cursor c = null;
+        String[] columns = null;
+
+        String whereClause;
+        //whereClause = null;
+        whereClause = EntryLogTable.COLUMN_SYNCED + " = ''";
+
+        String[] whereArgs = null;
+
+        String groupBy = null;
+        String having = null;
+
+        String orderBy = EntryLogTable._ID + " ASC";
+
+        JSONArray allEntryLog= new JSONArray();
+        c = db.query(
+                EntryLogTable.TABLE_NAME,  // The table to query
+                columns,                   // The columns to return
+                whereClause,               // The columns for the WHERE clause
+                whereArgs,                 // The values for the WHERE clause
+                groupBy,                   // don't group the rows
+                having,                    // don't filter by row groups
+                orderBy                    // The sort order
+        );
+        while (c.moveToNext()) {
+            /** WorkManager Upload
+             /*Form fc = new Form();
+             allFC.add(fc.Hydrate(c));*/
+            Log.d(TAG, "getUnsyncedEntryLog: " + c.getCount());
+            EntryLog entryLog = new EntryLog();
+            allEntryLog.put(entryLog.Hydrate(c).toJSONObject());
+
+
+        }
+
+        c.close();
+        db.close();
+
+
+        return allEntryLog;
     }
 
     public void syncUsers(JSONArray userlist) {
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
         db.execSQL(" DELETE FROM " + UsersTable.TABLE_NAME);
-        db.execSQL(" DELETE FROM sqlite_sequence where name = 'users'");
+        db.execSQL(" DELETE FROM sqlite_sequence where name = 'user'");
 
         try {
             JSONArray jsonArray = userlist;
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObjectUser = jsonArray.getJSONObject(i);
+                if (jsonObjectUser != null) {
 
-                UsersContract usersContract = new UsersContract();
-                usersContract.Sync(jsonObjectUser);
+                    Users users = new Users();
+                    users.sync(jsonObjectUser);
 
-                ContentValues values = new ContentValues();
+                    ContentValues values = new ContentValues();
 
-                values.put(UsersTable.ROW_USERNAME, usersContract.getUserName());
-                values.put(UsersTable.ROW_PASSWORD, usersContract.getPassword());
-                values.put(UsersTable.DISTRICT_CODE, usersContract.getDICTRICT_CODE());
-                db.insert(UsersTable.TABLE_NAME, null, values);
-            }
-            db.close();
+                    values.put(UsersTable.COLUMN_USERNAME, users.getUserName());
+                    values.put(UsersTable.COLUMN_PASSWORD, users.getPassword());
+                    values.put(UsersTable.COLUMN_DIST_ID, users.getDist_id());
+                    db.insert(UsersTable.TABLE_NAME, null, values);
+                }
 
-        } catch (Exception e) {
-        }
-    }
-
-
-    public void syncHF(JSONArray hfList) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL(" DELETE FROM " + singleHF.TABLE_NAME);
-        db.execSQL(" DELETE FROM sqlite_sequence where name = 'health_fc'");    //TODO you have to add table name manually in order to reset primary key
-        try {
-            JSONArray jsonArray = hfList;
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject jsonObjectUser = jsonArray.getJSONObject(i);
-
-                HealthFacContract healthFacContract = new HealthFacContract();
-                healthFacContract.Sync(jsonObjectUser);
-
-                ContentValues values = new ContentValues();
-
-                values.put(singleHF.COLUMN_HF_DHIS, healthFacContract.getHf_dhis());
-                values.put(singleHF.COLUMN_HF_DIST_CODE, healthFacContract.getHf_district_code());
-                values.put(singleHF.COLUMN_HF_TEHSIL_NAME, healthFacContract.getHf_tehsil());
-                values.put(singleHF.COLUMN_HF_UC_NAME, healthFacContract.getHf_uc());
-                values.put(singleHF.COLUMN_HF_NAME, healthFacContract.getHf_name());
-                values.put(singleHF.COLUMN_HF_NAME_GOVT, healthFacContract.getHf_name_govt());
-                values.put(singleHF.COLUMN_HF_UEN_CODE, healthFacContract.getHf_uen_code());
-                long count = db.insert(singleHF.TABLE_NAME, null, values);
-                Log.d(TAG, "syncHF: count " + count);
             }
             db.close();
 
@@ -514,8 +340,136 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+
+    public boolean checkingUser(String username, long distCode) {
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
+// New value for one column
+        String[] columns = {
+                UsersTable._ID,
+                UsersTable.COLUMN_DIST_ID
+        };
+
+// Which row to update, based on the ID
+        String selection = UsersTable.COLUMN_USERNAME + " = ?" + " AND " + UsersTable.COLUMN_DIST_ID + " = ?";
+        String[] selectionArgs = {username, String.valueOf(distCode)};
+        Cursor cursor = db.query(UsersTable.TABLE_NAME, //Table to query
+                columns,                    //columns to return
+                selection,                  //columns for the WHERE clause
+                selectionArgs,              //The values for the WHERE clause
+                null,                       //group the rows
+                null,                       //filter by row groups
+                null);                      //The sort order
+
+        if (cursor.moveToFirst()) {
+            cursor.moveToNext();
+        }
+        int count = cursor.getCount();
+        cursor.close();
+        db.close();
+        return count > 0;
+
+    }
+
+    public int syncAppUser(JSONArray userList) throws JSONException {
+        SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
+        db.delete(UsersTable.TABLE_NAME, null, null);
+        int insertCount = 0;
+        for (int i = 0; i < userList.length(); i++) {
+
+            JSONObject jsonObjectUser = userList.getJSONObject(i);
+
+            Users user = new Users();
+            user.sync(jsonObjectUser);
+            ContentValues values = new ContentValues();
+
+            values.put(UsersTable.COLUMN_USERNAME, user.getUserName());
+            values.put(UsersTable.COLUMN_PASSWORD, user.getPassword());
+            values.put(UsersTable.COLUMN_FULLNAME, user.getFullname());
+            values.put(UsersTable.COLUMN_ENABLED, user.getEnabled());
+            values.put(UsersTable.COLUMN_ISNEW_USER, user.getNewUser());
+            values.put(UsersTable.COLUMN_PWD_EXPIRY, user.getPwdExpiry());
+            values.put(UsersTable.COLUMN_DESIGNATION, user.getDesignation());
+            values.put(UsersTable.COLUMN_DIST_ID, user.getDist_id());
+            long rowID = db.insertOrThrow(UsersTable.TABLE_NAME, null, values);
+            if (rowID != -1) insertCount++;
+        }
+
+        db.close();
+        return insertCount;
+    }
+
+    public int synchealth_facilities(JSONArray hfList) {
+        SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
+        db.execSQL(" DELETE FROM " + HealthFacilityTable.TABLE_NAME);
+        db.execSQL(" DELETE FROM sqlite_sequence where name = 'health_fc'");    //TODO you have to add table name manually in order to reset primary key
+        int insertCount =0;
+        try {
+            JSONArray jsonArray = hfList;
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObjectUser = jsonArray.getJSONObject(i);
+
+                HealthFacility healthFacility = new HealthFacility();
+                healthFacility.Sync(jsonObjectUser);
+
+                ContentValues values = new ContentValues();
+
+                values.put(HealthFacilityTable.COLUMN_HF_DHIS, healthFacility.getHf_dhis());
+                values.put(HealthFacilityTable.COLUMN_HF_DIST_CODE, healthFacility.getHf_COLUMN_DIST_ID());
+                values.put(HealthFacilityTable.COLUMN_HF_TEHSIL_NAME, healthFacility.getHf_tehsil());
+                values.put(HealthFacilityTable.COLUMN_HF_UC_NAME, healthFacility.getHf_uc());
+                values.put(HealthFacilityTable.COLUMN_HF_NAME, healthFacility.getHf_name());
+                values.put(HealthFacilityTable.COLUMN_HF_NAME_GOVT, healthFacility.getHf_name_govt());
+                values.put(HealthFacilityTable.COLUMN_HF_UEN_CODE, healthFacility.getHf_uen_code());
+                long rowID = db.insert(HealthFacilityTable.TABLE_NAME, null, values);
+                if (rowID != -1) insertCount++;
+
+                //    Log.d(TAG, "syncHF: count " + count);
+            }
+            db.close();
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
+        return insertCount;
+
+    }
+
+    public int syncproviders(JSONArray hpList) {
+        SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
+        db.execSQL(" DELETE FROM " + HealthProviderTable.TABLE_NAME);
+        db.execSQL(" DELETE FROM sqlite_sequence where name = 'providers'");    //TODO you have to add table name manually in order to reset primary key
+        int insertCount = 0;
+        try {
+            JSONArray jsonArray = hpList;
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObjectUser = jsonArray.getJSONObject(i);
+
+                HealthProvider healthProvider = new HealthProvider();
+                healthProvider.Sync(jsonObjectUser);
+                ContentValues values = new ContentValues();
+                values.put(HealthProviderTable.COLUMN_HP_DIST_CODE, healthProvider.getCOLUMN_DIST_ID());
+                values.put(HealthProviderTable.COLUMN_HP_TEHSIL, healthProvider.getTehsil());
+                values.put(HealthProviderTable.COLUMN_HP_UC_NAME, healthProvider.getUc());
+                values.put(HealthProviderTable.COLUMN_HP_UEN_CODE, healthProvider.getHp_uen_code());
+                values.put(HealthProviderTable.COLUMN_HF_CODE, healthProvider.getHf_code());
+                values.put(HealthProviderTable.COLUMN_HP_NAME, healthProvider.getHp_name());
+                values.put(HealthProviderTable.COLUMN_HP_DESIGNATION, healthProvider.getHp_designation());
+                long rowID = db.insert(HealthProviderTable.TABLE_NAME, null, values);
+                if (rowID != -1) insertCount++;
+
+            }
+            db.close();
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
+        return insertCount;
+    }
+
     public void syncDistricts(JSONArray districList) {
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
         db.execSQL(" DELETE FROM " + DistrictTable.TABLE_NAME);
         db.execSQL(" DELETE FROM sqlite_sequence where name = 'districts'");
 
@@ -524,31 +478,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                DistrictsContract dc = new DistrictsContract();
+                District dc = new District();
                 dc.Sync(jsonObject);
                 ContentValues values = new ContentValues();
-                values.put(DistrictTable.DISTRICT_CODE, dc.getDICTRICT_CODE());
+                values.put(DistrictTable.COLUMN_DIST_ID, dc.getDICTRICT_CODE());
                 values.put(DistrictTable.DISTRICT_NAME, dc.getDistrict_name());
                 db.insert(DistrictTable.TABLE_NAME, null, values);
             }
             db.close();
-
+            delegate.downloded(true);
         } catch (Exception e) {
+            delegate.downloded(false);
         }
     }
 
-
     public boolean Login(String username, String password) throws SQLException {
 
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
 // New value for one column
         String[] columns = {
                 UsersTable._ID,
-                UsersTable.DISTRICT_CODE
+                UsersTable.COLUMN_DIST_ID
         };
 
 // Which row to update, based on the ID
-        String selection = UsersTable.ROW_USERNAME + " = ?" + " AND " + UsersTable.ROW_PASSWORD + " = ?";
+        String selection = UsersTable.COLUMN_USERNAME + " = ?" + " AND " + UsersTable.COLUMN_PASSWORD + " = ?";
         String[] selectionArgs = {username, password};
         Cursor cursor = db.query(UsersTable.TABLE_NAME, //Table to query
                 columns,                    //columns to return
@@ -559,7 +513,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 null);                      //The sort order
 
         if (cursor.moveToFirst()) {
-            MainApp.districtCode = cursor.getInt(cursor.getColumnIndex(UsersTable.DISTRICT_CODE));
+            MainApp.districtCode = cursor.getInt(cursor.getColumnIndexOrThrow(UsersTable.COLUMN_DIST_ID));
             cursor.moveToNext();
         }
 
@@ -571,23 +525,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public DistrictsContract getDistrict(int distCode) {
+    public District getDistrict(int distCode) {
 
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
         // New value for one column
         String[] columns = {
                 DistrictTable.DISTRICT_NAME,
-                DistrictTable.DISTRICT_CODE,
+                DistrictTable.COLUMN_DIST_ID,
         };
 
         // Which row to update, based on the ID
         String selection = null;
         String[] selectionArgs = null;
         Cursor cursor = null;
-        DistrictsContract district = null;
+        District district = null;
 
         if (distCode > 0) {
-            selection = DistrictTable.DISTRICT_CODE + " = ?";
+            selection = DistrictTable.COLUMN_DIST_ID + " = ?";
             selectionArgs = new String[]{String.valueOf(distCode)};
             cursor = db.query(DistrictTable.TABLE_NAME, //Table to query
                     columns,                    //columns to return
@@ -599,7 +553,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
             if (cursor.moveToFirst()) {
-                district = new DistrictsContract().Hydrate(cursor);
+                district = new District().Hydrate(cursor);
                 cursor.moveToNext();
             }
 
@@ -611,20 +565,107 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return district;
     }
 
-    public List<FormsContract> getFormsByDSS(String dssID) {
-        List<FormsContract> formList = new ArrayList<>();
-        // Select All Query
-        String selectQuery = "SELECT  * FROM " + FormsTable.TABLE_NAME;
+    public Users getUser(String username, String password) {
 
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor c = db.rawQuery(selectQuery, null);
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
+        // New value for one column
+        String[] columns = {
+                UsersTable.COLUMN_USERNAME,
+                UsersTable.COLUMN_PASSWORD,
+                UsersTable.COLUMN_DIST_ID,
+        };
 
-        // looping through all rows and adding to list
+        // Which row to update, based on the ID
+        String selection = null;
+        String[] selectionArgs = null;
+        Cursor cursor = null;
+        Users user = null;
+
+        selection = UsersTable.COLUMN_USERNAME + " = ?  " + " AND " + UsersTable.COLUMN_PASSWORD + " = ?";
+        selectionArgs = new String[]{username, password};
+        cursor = db.query(UsersTable.TABLE_NAME, //Table to query
+                columns,                    //columns to return
+                selection,                  //columns for the WHERE clause
+                selectionArgs,              //The values for the WHERE clause
+                null,                       //group the rows
+                null,                       //filter by row groups
+                null);                      //The sort order
+
+
+        cursor.moveToFirst();
+        do {
+            user = new Users().hydrate(cursor);
+        } while (cursor.moveToNext());
+
+
+        db.close();
+        return user;
+    }
+
+    public List<HealthFacility> getHealthFacilityData(long id) {
+        List<HealthFacility> formList = new ArrayList<>();
+
+        String[] columns = {
+                HealthFacilityTable.COLUMN_HF_NAME,
+                HealthFacilityTable.COLUMN_HF_UEN_CODE
+        };
+        String selection = HealthFacilityTable.COLUMN_HF_DIST_CODE + " = ?";
+        String[] selectionArgs = new String[]{String.valueOf(id)};
+
+        String orderBy =
+                HealthFacilityTable.COLUMN_HF_NAME + " COLLATE NOCASE ASC;";
+
+        SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
+        Cursor c = db.query(
+                HealthFacilityTable.TABLE_NAME,
+                columns,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                orderBy);
+
         if (c.moveToFirst()) {
             do {
-                FormsContract fc = new FormsContract();
-                fc.set_ID(c.getString(c.getColumnIndex(FormsTable._ID)));
-                fc.setFormDate(c.getString(c.getColumnIndex(FormsTable.COLUMN_FORMDATE)));
+                HealthFacility fc = new HealthFacility();
+//                forms.setHf_name(c.getString(c.getColumnIndexOrThrow(HealthFacilityTable.COLUMN_HF_NAME)));
+//                forms.setHf_uen_code(c.getLong(c.getColumnIndexOrThrow(HealthFacilityTable.COLUMN_HF_UEN_CODE)));
+                formList.add(fc.HydrateHF(c));
+            } while (c.moveToNext());
+        }
+
+        // return contact list
+        return formList;
+    }
+
+    public List<HealthProvider> getHPData(long id) {
+        List<HealthProvider> formList = new ArrayList<>();
+
+        String[] columns = {
+                HealthProviderTable.COLUMN_HP_NAME,
+                HealthProviderTable.COLUMN_HP_UEN_CODE
+        };
+        String selection = HealthProviderTable.COLUMN_HF_CODE + " = ?";
+        String[] selectionArgs = new String[]{String.valueOf(id)};
+
+        String orderBy =
+                HealthProviderTable.COLUMN_HP_NAME + " COLLATE NOCASE ASC;";
+
+        SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
+        Cursor c = db.query(
+                HealthProviderTable.TABLE_NAME,
+                columns,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                orderBy);
+
+        if (c.moveToFirst()) {
+            do {
+                HealthProvider fc = new HealthProvider();
+//                forms.setHf_name(c.getString(c.getColumnIndexOrThrow(HealthFacilityTable.COLUMN_HF_NAME)));
+//                forms.setHf_uen_code(c.getLong(c.getColumnIndexOrThrow(HealthFacilityTable.COLUMN_HF_UEN_CODE)));
                 formList.add(fc.Hydrate(c));
             } while (c.moveToNext());
         }
@@ -633,22 +674,147 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return formList;
     }
 
-    public Long addForm(FormsContract fc) {
+    public List<District> getDistrictList() {
+        List<District> formList = new ArrayList<>();
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + DistrictTable.TABLE_NAME;
+
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c.moveToFirst()) {
+            do {
+                District fc = new District();
+                fc.setDICTRICT_CODE(c.getLong(c.getColumnIndexOrThrow(DistrictTable.COLUMN_DIST_ID)));
+                fc.setDistrict_name(c.getString(c.getColumnIndexOrThrow(DistrictTable.DISTRICT_NAME)));
+                formList.add(fc.Hydrate(c));
+            } while (c.moveToNext());
+        }
+
+        // return contact list
+        return formList;
+    }
+
+    //Functions that dealing with table data
+    public boolean doLogin(String username, String password) throws InvalidKeySpecException, NoSuchAlgorithmException, IllegalArgumentException {
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
+        Cursor c = null;
+        String[] columns = null;
+        String whereClause = UsersTable.COLUMN_USERNAME + "=? ";
+        String[] whereArgs = {username};
+        String groupBy = null;
+        String having = null;
+        String orderBy = UsersTable.COLUMN_ID + " ASC";
+
+        Users loggedInUser = new Users();
+        c = db.query(
+                UsersTable.TABLE_NAME,  // The table to query
+                columns,                   // The columns to return
+                whereClause,               // The columns for the WHERE clause
+                whereArgs,                 // The values for the WHERE clause
+                groupBy,                   // don't group the rows
+                having,                    // don't filter by row groups
+                orderBy                    // The sort order
+        );
+        while (c.moveToNext()) {
+            loggedInUser = new Users().hydrate(c);
+
+        }
+
+        c.close();
+
+        db.close();
+
+        if (checkPassword(password, loggedInUser.getPassword())) {
+            MainApp.user = loggedInUser;
+            MainApp.selectedDistrict = loggedInUser.getDist_id();
+            return c.getCount() > 0;
+        } else {
+            return false;
+        }
+    }
+
+    public int updatePassword(String hashedPassword) {
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
+
+        ContentValues values = new ContentValues();
+        values.put(UsersTable.COLUMN_PASSWORD, hashedPassword);
+        values.put(UsersTable.COLUMN_ISNEW_USER, "");
+
+        String selection = UsersTable.COLUMN_USERNAME + " =? ";
+        String[] selectionArgs = {MainApp.user.getUserName()};
+
+        return db.update(UsersTable.TABLE_NAME,
+                values,
+                selection,
+                selectionArgs);
+    }
+
+    public Long addEntryLog(EntryLog entryLog) throws SQLiteException {
+        SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
+        ContentValues values = new ContentValues();
+        values.put(EntryLogTable.COLUMN_PROJECT_NAME, entryLog.getProjectName());
+        values.put(EntryLogTable.COLUMN_UUID, entryLog.getUuid());
+        values.put(EntryLogTable.COLUMN_EB_CODE, entryLog.getEbCode());
+        values.put(EntryLogTable.COLUMN_HHID, entryLog.getHhid());
+        values.put(EntryLogTable.COLUMN_USERNAME, entryLog.getUserName());
+        values.put(EntryLogTable.COLUMN_SYSDATE, entryLog.getSysDate());
+        values.put(EntryLogTable.COLUMN_ISTATUS, entryLog.getiStatus());
+        values.put(EntryLogTable.COLUMN_ISTATUS96x, entryLog.getiStatus96x());
+        values.put(EntryLogTable.COLUMN_ENTRY_TYPE, entryLog.getEntryType());
+        values.put(EntryLogTable.COLUMN_ENTRY_DATE, entryLog.getEntryDate());
+        values.put(EntryLogTable.COLUMN_DEVICEID, entryLog.getDeviceId());
+        values.put(EntryLogTable.COLUMN_SYNCED, entryLog.getSynced());
+        values.put(EntryLogTable.COLUMN_SYNC_DATE, entryLog.getSyncDate());
+        values.put(EntryLogTable.COLUMN_APPVERSION, entryLog.getAppver());
+
+        long newRowId;
+        newRowId = db.insertOrThrow(
+                EntryLogTable.TABLE_NAME,
+                EntryLogTable.COLUMN_NAME_NULLABLE,
+                values);
+        return newRowId;
+    }
+
+
+    public int updatesEntryLogColumn(String column, String value, String id) {
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
+
+        ContentValues values = new ContentValues();
+        values.put(column, value);
+
+        String selection = EntryLogTable._ID + " =? ";
+        String[] selectionArgs = {id};
+
+        return db.update(EntryLogTable.TABLE_NAME,
+                values,
+                selection,
+                selectionArgs);
+    }
+
+
+    public interface DataDownload {
+        void downloded(boolean flag);
+    }
+
+    public Long addForm(Forms fc) {
 
         // Gets the data repository in write mode
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
 
 // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
         values.put(FormsTable.COLUMN_PROJECTNAME, fc.getProjectName());
         values.put(FormsTable.COLUMN_SURVEYTYPE, fc.getSurveyType());
         values.put(FormsTable.COLUMN_UID, fc.getUID());
-//        values.put(FormsTable._ID, fc.get_ID());
+//        values.put(FormsTable._ID, forms.get_ID());
         values.put(FormsTable.COLUMN_FORMDATE, fc.getFormDate());
-        values.put(FormsTable.COLUMN_USER, fc.getUser());
+        values.put(FormsTable.COLUMN_DEVICETAGID, fc.getDevicetagID());
+        values.put(FormsTable.COLUMN_USER, fc.getUsername());
         values.put(FormsTable.COLUMN_ISTATUS, fc.getIstatus());
         values.put(FormsTable.COLUMN_ISTATUS88X, fc.getIstatus88x());
-//        values.put(FormsTable.COLUMN_SA, fc.getsA());
+//        values.put(FormsTable.COLUMN_SA, forms.getsA());
         values.put(FormsTable.COLUMN_ENDINGDATETIME, fc.getEndingdatetime());
         values.put(FormsTable.COLUMN_GPSLAT, fc.getGpsLat());
         values.put(FormsTable.COLUMN_GPSLNG, fc.getGpsLng());
@@ -663,7 +829,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(FormsTable.COLUMN_APPVERSION, fc.getAppversion());
         values.put(FormsTable.COLUMN_DIST_ID, fc.getDistrictID());
         values.put(FormsTable.COLUMN_loggin_TIME, fc.getLogginTime());
-        values.put(FormsTable.COLUMN_HFACILITY_NAME, fc.getHealthFacilityName());
+        values.put(FormsTable.COLUMN_HFACILITY_NAME, fc.getHealthFacilityCode());
         values.put(FormsTable.COLUMN_PROVIDER_NAME, fc.getProviderName());
         values.put(FormsTable.COLUMN_PROVIDER_ID, fc.getProviderID());
         values.put(FormsTable.COLUMN_PRETEST_START_TIME, fc.getPreTestStartTime());
@@ -681,7 +847,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void updateSyncedForms(String id) {
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
 
 // New value for one column
         ContentValues values = new ContentValues();
@@ -700,7 +866,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void updateSyncedSessionForms(String id) {
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
 
 // New value for one column
         ContentValues values = new ContentValues();
@@ -719,34 +885,34 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void updateSyncedNMSForms(String id) {
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
 
 // New value for one column
         ContentValues values = new ContentValues();
-        values.put(NMCTable.COLUMN_SYNCED, true);
-        values.put(NMCTable.COLUMN_SYNCED_DATE, new Date().toString());
+        values.put(NextMeetingTable.COLUMN_SYNCED, true);
+        values.put(NextMeetingTable.COLUMN_SYNCED_DATE, new Date().toString());
 
 // Which row to update, based on the title
-        String where = NMCTable._ID + " = ?";
+        String where = NextMeetingTable._ID + " = ?";
         String[] whereArgs = {id};
 
         int count = db.update(
-                NMCTable.TABLE_NAME,
+                NextMeetingTable.TABLE_NAME,
                 values,
                 where,
                 whereArgs);
     }
 
-    public int updateFormID() {
-        SQLiteDatabase db = this.getReadableDatabase();
+    public int updateFormID(Forms fc) {
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
 
 // New value for one column
         ContentValues values = new ContentValues();
-        values.put(FormsTable.COLUMN_UID, MainApp.fc.getUID());
+        values.put(FormsTable.COLUMN_UID, fc.getUID());
 
 // Which row to update, based on the ID
-        String selection = FormsTable.COLUMN_ID + " = ?";
-        String[] selectionArgs = {String.valueOf(MainApp.fc.get_ID())};
+        String selection = FormsTable.COLUMN_ID + " =?";
+        String[] selectionArgs = {String.valueOf(fc.get_ID())};
 
         int count = db.update(FormsTable.TABLE_NAME,
                 values,
@@ -755,9 +921,46 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return count;
     }
 
+    public int updateNMCFormID(NextMeeting nmc) {
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
 
-    public Collection<FormsContract> getTodayForms() {
-        SQLiteDatabase db = this.getReadableDatabase();
+// New value for one column
+        ContentValues values = new ContentValues();
+        values.put(NextMeetingTable.COLUMN_UID, nmc.get_UID());
+
+// Which row to update, based on the ID
+        String selection = NextMeetingTable._ID + " =?";
+        String[] selectionArgs = {String.valueOf(nmc.get_id())};
+
+        int count = db.update(NextMeetingTable.TABLE_NAME,
+                values,
+                selection,
+                selectionArgs);
+        return count;
+    }
+
+    public int updateSessionFormID(Session fc) {
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
+
+// New value for one column
+        ContentValues values = new ContentValues();
+        values.put(SessionTable.COLUMN_UID, fc.get_UID());
+
+
+// Which row to update, based on the ID
+        String selection = SessionTable._ID + " =?";
+        String[] selectionArgs = {String.valueOf(fc.get_id())};
+
+        int count = db.update(SessionTable.TABLE_NAME,
+                values,
+                selection,
+                selectionArgs);
+        return count;
+    }
+
+
+    public Collection<Forms> getTodayForms() {
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
         Cursor c = null;
         String[] columns = {
                 FormsTable._ID,
@@ -775,7 +978,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String orderBy =
                 FormsTable._ID + " ASC";
 
-        Collection<FormsContract> allFC = new ArrayList<>();
+        Collection<Forms> allFC = new ArrayList<>();
         try {
             c = db.query(
                     FormsTable.TABLE_NAME,  // The table to query
@@ -787,11 +990,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     orderBy                    // The sort order
             );
             while (c.moveToNext()) {
-                FormsContract fc = new FormsContract();
-                fc.set_ID(c.getString(c.getColumnIndex(FormsTable._ID)));
-                fc.setFormDate(c.getString(c.getColumnIndex(FormsTable.COLUMN_FORMDATE)));
-                fc.setIstatus(c.getString(c.getColumnIndex(FormsTable.COLUMN_ISTATUS)));
-                fc.setSynced(c.getString(c.getColumnIndex(FormsTable.COLUMN_SYNCED)));
+                Forms fc = new Forms();
+                fc.set_ID(c.getString(c.getColumnIndexOrThrow(FormsTable._ID)));
+                fc.setFormDate(c.getString(c.getColumnIndexOrThrow(FormsTable.COLUMN_FORMDATE)));
+                fc.setIstatus(c.getString(c.getColumnIndexOrThrow(FormsTable.COLUMN_ISTATUS)));
+                fc.setSynced(c.getString(c.getColumnIndexOrThrow(FormsTable.COLUMN_SYNCED)));
                 allFC.add(fc);
             }
         } finally {
@@ -808,7 +1011,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // ANDROID DATABASE MANAGER
     public ArrayList<Cursor> getData(String Query) {
         //get writable database
-        SQLiteDatabase sqlDB = this.getWritableDatabase();
+        SQLiteDatabase sqlDB = this.getWritableDatabase(DATABASE_PASSWORD);
         String[] columns = new String[]{"message"};
         //an array list of cursor to save two cursors one has results from the query
         //other cursor stores error message if any errors are triggered
@@ -852,30 +1055,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public int updateEnding() {
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
 
 // New value for one column
         ContentValues values = new ContentValues();
-        values.put(FormsTable.COLUMN_ISTATUS, MainApp.fc.getIstatus());
-        values.put(FormsTable.COLUMN_ISTATUS88X, MainApp.fc.getIstatus88x());
-        values.put(FormsTable.COLUMN_ENDINGDATETIME, MainApp.fc.getEndingdatetime());
-        values.put(FormsTable.COLUMN_SESSION_START_TIME, MainApp.fc.getSessionStartTime());
-        values.put(FormsTable.COLUMN_SESSION_END_TIME, MainApp.fc.getSessionEndTime());
-        values.put(FormsTable.COLUMN_SESSION, MainApp.fc.getSession());
-        values.put(FormsTable.COLUMN_MODULE, MainApp.fc.getModule());
-        values.put(FormsTable.COLUMN_SCORE_PRE, MainApp.fc.getScore_pre());
-        values.put(FormsTable.COLUMN_SCORE_POST, MainApp.fc.getScore_post());
-        values.put(FormsTable.COLUMN_PER_PRE, MainApp.fc.getPercentage_pre());
-        values.put(FormsTable.COLUMN_PER_POST, MainApp.fc.getPercentage_post());
-        values.put(FormsTable.COLUMN_TOTAL, MainApp.fc.getTotal());
-        values.put(FormsTable.COLUMN_MODULE, MainApp.fc.getModule());
-        values.put(FormsTable.COLUMN_WRONG_PRE, MainApp.fc.getWrong_pre());
-        values.put(FormsTable.COLUMN_WRONG_POST, MainApp.fc.getWrong_post());
+        values.put(FormsTable.COLUMN_ISTATUS, MainApp.forms.getIstatus());
+        values.put(FormsTable.COLUMN_ISTATUS88X, MainApp.forms.getIstatus88x());
+        values.put(FormsTable.COLUMN_ENDINGDATETIME, MainApp.forms.getEndingdatetime());
+        values.put(FormsTable.COLUMN_SESSION_START_TIME, MainApp.forms.getSessionStartTime());
+        values.put(FormsTable.COLUMN_SESSION_END_TIME, MainApp.forms.getSessionEndTime());
+        values.put(FormsTable.COLUMN_SESSION_CODE, MainApp.forms.getSessionCode());
+        values.put(FormsTable.COLUMN_SCORE_PRE, MainApp.forms.getScore_pre());
+        values.put(FormsTable.COLUMN_SCORE_POST, MainApp.forms.getScore_post());
+        values.put(FormsTable.COLUMN_PER_PRE, MainApp.forms.getPercentage_pre());
+        values.put(FormsTable.COLUMN_PER_POST, MainApp.forms.getPercentage_post());
+        values.put(FormsTable.COLUMN_TOTAL, MainApp.forms.getTotal());
+        values.put(FormsTable.COLUMN_MODULE_CODE, MainApp.forms.getModuleCode());
+        values.put(FormsTable.COLUMN_WRONG_PRE, MainApp.forms.getWrong_pre());
+        values.put(FormsTable.COLUMN_WRONG_POST, MainApp.forms.getWrong_post());
 
 
 // Which row to update, based on the ID
         String selection = FormsTable._ID + " =? ";
-        String[] selectionArgs = {String.valueOf(MainApp.fc.get_ID())};
+        String[] selectionArgs = {String.valueOf(MainApp.forms.get_ID())};
 
         int count = db.update(FormsTable.TABLE_NAME,
                 values,
@@ -885,18 +1087,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public int updatePreTest() {
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
 
 // New value for one column
         ContentValues values = new ContentValues();
-        values.put(FormsTable.COLUMN_PRETEST_START_TIME, MainApp.fc.getPreTestStartTime());
-        values.put(FormsTable.COLUMN_PRETEST_END_TIME, MainApp.fc.getPreTestEndTime());
-        values.put(FormsTable.COLUMN_PRE_TEST, MainApp.fc.getPre_test());
+        values.put(FormsTable.COLUMN_PRETEST_START_TIME, MainApp.forms.getPreTestStartTime());
+        values.put(FormsTable.COLUMN_PRETEST_END_TIME, MainApp.forms.getPreTestEndTime());
+        values.put(FormsTable.COLUMN_PRE_TEST, MainApp.forms.getPre_test());
 
 
 // Which row to update, based on the ID
         String selection = FormsTable._ID + " =? ";
-        String[] selectionArgs = {String.valueOf(MainApp.fc.get_ID())};
+        String[] selectionArgs = {String.valueOf(MainApp.forms.get_ID())};
 
         int count = db.update(FormsTable.TABLE_NAME,
                 values,
@@ -906,17 +1108,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public int updatePostTest() {
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
 
 // New value for one column
         ContentValues values = new ContentValues();
-        values.put(FormsTable.COLUMN_POSTTEST_START_TIME, MainApp.fc.getPostTestStartTime());
-        values.put(FormsTable.COLUMN_POSTTEST_END_TIME, MainApp.fc.getPostTestEndTime());
-        values.put(FormsTable.COLUMN_POST_TEST, MainApp.fc.getPost_test());
+        values.put(FormsTable.COLUMN_POSTTEST_START_TIME, MainApp.forms.getPostTestStartTime());
+        values.put(FormsTable.COLUMN_POSTTEST_END_TIME, MainApp.forms.getPostTestEndTime());
+        values.put(FormsTable.COLUMN_POST_TEST, MainApp.forms.getPost_test());
 
 // Which row to update, based on the ID
         String selection = FormsTable._ID + " =? ";
-        String[] selectionArgs = {String.valueOf(MainApp.fc.get_ID())};
+        String[] selectionArgs = {String.valueOf(MainApp.forms.get_ID())};
 
         int count = db.update(FormsTable.TABLE_NAME,
                 values,
@@ -925,34 +1127,38 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return count;
     }
 
-    public void addSessionData(SessionContract sc) {
+    public Long addSessionData(Session sc) {
 
         long count;
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
 
         ContentValues values = new ContentValues();
-        values.put(SessionTable.COLUMN_MODULE, sc.getModule());
-        values.put(SessionTable.COLUMN_SESSION, sc.getSession());
+        values.put(SessionTable.COLUMN_MODULE_CODE, sc.getModule());
+        values.put(SessionTable.COLUMN_SESSION_CODE, sc.getSession());
         values.put(SessionTable.COLUMN_SESSION_TIME, sc.getSessionTime());
         values.put(SessionTable.COLUMN_SLIDE_NUMBER, sc.getSlideNumber());
         values.put(SessionTable.COLUMN_DEVICEID, sc.getDeviceid());
         values.put(SessionTable.COLUMN_FORMDATE, sc.getFormdate());
-        count = db.insert(SessionTable.TABLE_NAME, null, values);
+        values.put(SessionTable.COLUMN_DEVICETAGID, sc.getDevicetagID());
+        values.put(SessionTable.COLUMN_USER, sc.getUsername());
+        values.put(SessionTable.COLUMN_UUID, sc.get_UUID());
 
-        Log.d(TAG, "addSessionData: count " + count);
+        return db.insert(SessionTable.TABLE_NAME, null, values);
+
+
     }
 
     public String getProviderName() {
 
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
 
         String providerName;
         Cursor cursor = db.query(FormsTable.TABLE_NAME, new String[]{FormsTable.COLUMN_PROVIDER_NAME},
-                FormsTable._ID + "=?", new String[]{String.valueOf(MainApp.fc.get_ID())},
+                FormsTable._ID + "=?", new String[]{String.valueOf(MainApp.forms.get_ID())},
                 null, null, null);
         cursor.moveToFirst();
         do {
-            providerName = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_PROVIDER_NAME));
+            providerName = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_PROVIDER_NAME));
         } while (cursor.moveToNext());
 
 
@@ -960,41 +1166,232 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public void updateNMS() {
+    public long updateNMS() {
 
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
 
         long count;
 // New value for one column
         ContentValues values = new ContentValues();
-        values.put(NMCTable.COLUMN_DOCTOR_NAME, MainApp.nmc.getDoctorName());
-        values.put(NMCTable.COLUMN_DATE, MainApp.nmc.getDate());
-        values.put(NMCTable.COLUMN_TIME, MainApp.nmc.getTime());
-        values.put(NMCTable.COLUMN_MOD, MainApp.nmc.getModule());
-        values.put(NMCTable.COLUMN_SUBMOD, MainApp.nmc.getSubModule());
-        values.put(NMCTable.COLUMN_SESSION, MainApp.nmc.getSession());
-        values.put(NMCTable.COLUMN_BOOK_DATE, MainApp.nmc.getDoBooking());
-        values.put(NMCTable.COLUMN_BOOKBY, MainApp.nmc.getBookBy());
-        values.put(NMCTable.COLUMN_DEVICEID, MainApp.deviceId);
-        values.put(NMCTable.COLUMN_LAT, MainApp.nmc.getLat());
-        values.put(NMCTable.COLUMN_LNG, MainApp.nmc.getLng());
-        values.put(NMCTable.COLUMN_BTYPE, MainApp.nmc.getBookingtype());
-        values.put(NMCTable.COLUMN_GPSTIME, MainApp.nmc.getGpsTime());
-        values.put(NMCTable.COLUMN_FORMDATE, MainApp.nmc.getFormdate());
-        count = db.insert(NMCTable.TABLE_NAME, null, values);
+        values.put(NextMeetingTable.COLUMN_DATE, MainApp.nmc.getBook_date());
+        values.put(NextMeetingTable.COLUMN_TIME, MainApp.nmc.getBook_time());
+        values.put(NextMeetingTable.COLUMN_MODULE_CODE, MainApp.nmc.getModule());
+        values.put(NextMeetingTable.COLUMN_SESSION_CODE, MainApp.nmc.getSession());
+        values.put(NextMeetingTable.COLUMN_BOOKBY, MainApp.nmc.getBookBy());
+        values.put(NextMeetingTable.COLUMN_DEVICEID, MainApp.nmc.getDeviceid());
+        values.put(NextMeetingTable.COLUMN_USER, MainApp.nmc.getUsername());
+        values.put(NextMeetingTable.COLUMN_LAT, MainApp.nmc.getGpsLat());
+        values.put(NextMeetingTable.COLUMN_LNG, MainApp.nmc.getGpsLng());
+        values.put(NextMeetingTable.COLUMN_BTYPE, MainApp.nmc.getBookingtype());
+        values.put(NextMeetingTable.COLUMN_GPSTIME, MainApp.nmc.getGps_time());
+        values.put(NextMeetingTable.COLUMN_FORMDATE, MainApp.nmc.getFormdate());
+        values.put(NextMeetingTable.COLUMN_HF_NAME, MainApp.nmc.getHf_name());
+        values.put(NextMeetingTable.COLUMN_HP_NAME, MainApp.nmc.getHp_name());
+        values.put(NextMeetingTable.COLUMN_HP_CODE, MainApp.nmc.getHp_code());
+        values.put(NextMeetingTable.COLUMN_DIST_CODE, MainApp.nmc.getDist_id());
+        values.put(NextMeetingTable.COLUMN_DEVICETAGID, MainApp.nmc.getDevicetagID());
+        return db.insert(NextMeetingTable.TABLE_NAME, null, values);
 
-        Log.d(TAG, "updateNMS: count " + count);
+
     }
 
-    public interface DBConnection {
-        String DB_NAME = "acad_detail";
+    public void syncAppointments(JSONArray appList) {
+        SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
+//        db.execSQL(" DELETE FROM " + UsersTable.TABLE_NAME);
+//        db.execSQL(" DELETE FROM sqlite_sequence where name = 'user'");
+
+        //DELETING Data with synced = 2
+        db.delete(NextMeetingTable.TABLE_NAME, NextMeetingTable.COLUMN_SYNCED + "=?", new String[]{"2"});
+
+        try {
+            JSONArray jsonArray = appList;
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObjectUser = jsonArray.getJSONObject(i);
+                if (jsonObjectUser != null) {
+
+                    NextMeeting nextMeeting = new NextMeeting();
+                    nextMeeting.Sync(jsonObjectUser);
+
+                    ContentValues values = new ContentValues();
+
+                    values.put(NextMeetingTable.COLUMN_UID, nextMeeting.get_UID());
+                    values.put(NextMeetingTable.COLUMN_BTYPE, nextMeeting.getBookingtype());
+                    values.put(NextMeetingTable.COLUMN_BOOKBY, nextMeeting.getBookBy());
+                    values.put(NextMeetingTable.COLUMN_DATE, nextMeeting.getBook_date());
+                    values.put(NextMeetingTable.COLUMN_DIST_CODE, nextMeeting.getDist_id());
+                    values.put(NextMeetingTable.COLUMN_FORMDATE, nextMeeting.getFormdate());
+                    values.put(NextMeetingTable.COLUMN_HF_NAME, nextMeeting.getHf_name());
+                    values.put(NextMeetingTable.COLUMN_HP_CODE, nextMeeting.getHp_code());
+                    values.put(NextMeetingTable.COLUMN_HP_NAME, nextMeeting.getHp_name());
+                    values.put(NextMeetingTable.COLUMN_MODULE_CODE, nextMeeting.getModule());
+                    values.put(NextMeetingTable.COLUMN_SESSION_CODE, nextMeeting.getSession());
+                    values.put(NextMeetingTable.COLUMN_TIME, nextMeeting.getBook_time());
+                    values.put(NextMeetingTable.COLUMN_SYNCED, nextMeeting.getSynced());
+                    db.insert(NextMeetingTable.TABLE_NAME, null, values);
+                }
+
+            }
+            db.close();
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
+
+//                         "_uid": "3206860ee5ba1081",
+//                            "book_type": "1",
+//                            "booking_by": "dmu@aku",
+//                            "book_date": "04-12-2019",
+//                            "dist_code": "414",
+//                            "formdate": "12-04-19 10:34",
+//                            "hf_name": "nn",
+//                            "hp_code": "35376",
+//                            "hp_name": "chd",
+//                            "module_code": "1",
+//                            "session_code": "10201",
+//                            "book_time": "10:34:49",
+//                            "synced": 2
     }
 
-    public long getUsersCount() {
-        SQLiteDatabase db = this.getReadableDatabase();
+
+/*    public long getUsersCount() {
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
         long count = DatabaseUtils.queryNumEntries(db, UsersTable.TABLE_NAME);
         db.close();
         return count;
+    }*/
+
+    public long getDistrictCount() {
+
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
+        // New value for one column
+        String[] columns = null;
+        // Which row to update, based on the ID
+        String selection = null;
+        String[] selectionArgs = null;
+        Cursor cursor ;
+
+            selection = DistrictTable.COLUMN_DIST_ID + " = ?";
+            cursor = db.query(DistrictTable.TABLE_NAME, //Table to query
+                    columns,                    //columns to return
+                    selection,                  //columns for the WHERE clause
+                    selectionArgs,              //The values for the WHERE clause
+                    null,                       //group the rows
+                    null,                       //filter by row groups
+                    null);                      //The sort order
+
+        db.close();
+        return cursor.getCount();
+    }
+
+    public List<NextMeeting> getAppointmentsList() {
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
+        Cursor c = null;
+        String[] columns = {
+                NextMeetingTable.COLUMN_DATE,
+                NextMeetingTable.COLUMN_TIME,
+                NextMeetingTable.COLUMN_MODULE_CODE,
+                NextMeetingTable.COLUMN_SESSION_CODE,
+                NextMeetingTable.COLUMN_BOOKBY,
+                NextMeetingTable.COLUMN_BTYPE,
+                NextMeetingTable._ID,
+                NextMeetingTable.COLUMN_HP_CODE,
+                NextMeetingTable.COLUMN_HF_NAME,
+                NextMeetingTable.COLUMN_DIST_CODE,
+                NextMeetingTable.COLUMN_HP_NAME,
+                NextMeetingTable.COLUMN_USER,
+                NextMeetingTable.COLUMN_FORMDATE
+
+        };
+        String whereClause = NextMeetingTable.COLUMN_SYNCED + " is not 2 and " + NextMeetingTable.COLUMN_FORMDATE + " Like ? ";
+        String[] whereArgs = new String[]{"%" + spDateT.substring(0, 8).trim() + "%"};
+        String groupBy = null;
+        String having = null;
+
+        String orderBy =
+                NextMeetingTable._ID + " DESC";
+
+        List<NextMeeting> allSc = new ArrayList<NextMeeting>();
+        try {
+            c = db.query(
+                    NextMeetingTable.TABLE_NAME,  // The table to query
+                    columns,                   // The columns to return
+                    whereClause,               // The columns for the WHERE clause
+                    whereArgs,                 // The values for the WHERE clause
+                    groupBy,                   // don't group the rows
+                    having,                    // don't filter by row groups
+                    orderBy                    // The sort order
+            );
+
+            if (c.moveToFirst())
+                do {
+                    NextMeeting nC = new NextMeeting();
+                    allSc.add(nC.HydrateForAppointment(c));
+                } while (c.moveToNext());
+
+
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+            if (db != null) {
+                db.close();
+            }
+        }
+        return allSc;
+    }
+
+    public List<NextMeeting> getTodaysAppointment() {
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
+        Cursor c = null;
+        String[] columns = {
+                NextMeetingTable.COLUMN_DATE,
+                NextMeetingTable.COLUMN_TIME,
+                NextMeetingTable.COLUMN_MODULE_CODE,
+                NextMeetingTable.COLUMN_SESSION_CODE,
+                NextMeetingTable.COLUMN_BOOKBY,
+                NextMeetingTable.COLUMN_BTYPE,
+                NextMeetingTable._ID,
+                NextMeetingTable.COLUMN_HP_CODE,
+                NextMeetingTable.COLUMN_HF_NAME,
+                NextMeetingTable.COLUMN_DIST_CODE,
+                NextMeetingTable.COLUMN_HP_NAME,
+                NextMeetingTable.COLUMN_USER,
+                NextMeetingTable.COLUMN_FORMDATE
+
+        };
+        String whereClause = NextMeetingTable.COLUMN_SYNCED + " is 2 ";
+        String[] whereArgs = null;
+        String groupBy = null;
+        String having = null;
+
+        String orderBy =
+                NextMeetingTable._ID + " ASC";
+
+        List<NextMeeting> allFC = new ArrayList<>();
+        try {
+            c = db.query(
+                    NextMeetingTable.TABLE_NAME,  // The table to query
+                    columns,                   // The columns to return
+                    whereClause,               // The columns for the WHERE clause
+                    whereArgs,                 // The values for the WHERE clause
+                    groupBy,                   // don't group the rows
+                    having,                    // don't filter by row groups
+                    orderBy                    // The sort order
+            );
+            while (c.moveToNext()) {
+                NextMeeting nC = new NextMeeting();
+                allFC.add(nC.HydrateForAppointment(c));
+            }
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+            if (db != null) {
+                db.close();
+            }
+        }
+        return allFC;
     }
 
 

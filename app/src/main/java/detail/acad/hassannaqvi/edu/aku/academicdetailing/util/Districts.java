@@ -1,10 +1,11 @@
 package detail.acad.hassannaqvi.edu.aku.academicdetailing.util;
 
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Multimap;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import com.google.common.collect.HashMultimap;
-import com.google.common.collect.Multimap;
 
 /**
  * Created by Umeed-e-Nau on 12/21/2016.
@@ -34,7 +35,6 @@ public class Districts {
         for (String item : coll) {
             list.add(item);
         }
-
 
         return list;
     }

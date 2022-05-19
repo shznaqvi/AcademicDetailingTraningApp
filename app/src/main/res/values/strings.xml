@@ -19,8 +19,8 @@
     <string name="provider_id">Provider ID</string>
     <string name="hfac_name">Health Facility Name</string>
 
-    <string name="date">Date</string>
-    <string name="time">Time</string>
+    <string name="book_date">Date</string>
+    <string name="book_time">Time</string>
     <string name="schedule">Next Meeting Schedule</string>
 
     <string name="mainFragment">MainFragment</string>
@@ -55,15 +55,11 @@
     <string name="gds01_03b">Two</string>
     <string name="gds01_03c">Three</string>
     <string name="gds01_03d">None</string>
-
-    <!--GDS01_04-->
-    <string name="gds01_04">For assessing a general danger sign, a healthcare provider needs to ASK _____ questions and LOOK for ______ observations to observe the child\'s actions.</string>
+    <string name="gds01_04">For assessing a general danger sign, a healthcare healthProvider needs to ASK _____ questions and LOOK for ______ observations to observe the child\'s actions.</string>
     <string name="gds01_04a">One, Two</string>
     <string name="gds01_04b">Two, Two</string>
     <string name="gds01_04c">Three, Two</string>
     <string name="gds01_04d">Three, One</string>
-
-    <!--GDS01_05-->
     <string name="gds01_05">Which of the following is NOT a danger sign?</string>
     <string name="gds01_05a">Child is not able to drink or breastfeed</string>
     <string name="gds01_05b">Child vomits everything</string>
@@ -71,31 +67,22 @@
     <string name="gds01_05d">Child is shivering</string>
 
     <!--GDS General Danger Sign 02-->
-    <!--GDS02_01-->
     <string name="gds02_01">A classification in a Yellow row (IMNCI chart) is a classification of very severe disease and needs urgent attention and referral.</string>
-
-    <!--GDS02_02-->
     <string name="gds02_02">Which of the following is NOT true, if a child has a general danger sign?</string>
     <string name="gds02_02a">Complete assessment immediately - the child has a severe problem. </string>
     <string name="gds02_02b">Provide urgent pre-referral treatment </string>
     <string name="gds02_02c">Observe and reassess child after pre-referral treatment</string>
     <string name="gds02_02d">Refer child to hospital</string>
-
-    <!--GDS02_03-->
     <string name="gds02_03">A child who is not able to hold anything down at all has the sign _______________</string>
     <string name="gds02_03a">Not able to drink or breastfeed</string>
     <string name="gds02_03b">vomits everything</string>
     <string name="gds02_03c">Lethargic</string>
     <string name="gds02_03d">Unconscious </string>
-
-    <!--GDS02_04-->
     <string name="gds02_04">What is the dose of Diazepam required to Stop Convulsions?</string>
     <string name="gds02_04a">0.5mg/kg diazepam injection solution per rectum</string>
     <string name="gds02_04b">0.8mg/kg diazepam injection solution per rectum</string>
     <string name="gds02_04c">1.0mg/kg diazepam injection solution per rectum</string>
     <string name="gds02_04d">1.5mg/kg diazepam injection solution per rectum</string>
-
-    <!--GDS02_05-->
     <string name="gds02_05">To make sugar water: Dissolve 4 level teaspoons of sugar (20 grams) in a _______ cup of clean water. </string>
     <string name="gds02_05a">100-ml</string>
     <string name="gds02_05b">150-ml</string>
@@ -109,63 +96,46 @@
     <string name="cdb01_01b">Asthma</string>
     <string name="cdb01_01c">Whooping cough</string>
     <string name="cdb01_01d">All of the above</string>
-
-    <!--CDB01_02-->
     <string name="cdb01_02">Talha is 6 months old. He has fast breathing if:</string>
     <string name="cdb01_02a">30 or more breaths/minute</string>
     <string name="cdb01_02b">40 or more breaths/minute</string>
     <string name="cdb01_02c">50 or more breaths/minute</string>
     <string name="cdb01_02d">60 or more breaths/minute</string>
-
-    <!--CDB01_03-->
     <string name="cdb01_03">Fast breathing or ____________ if present in a child between 2 months to 5 years of age are the clinical signs for Pneumonia.</string>
     <string name="cdb01_03a">Wheeze</string>
     <string name="cdb01_03b">Chest in-drawing</string>
     <string name="cdb01_03c">Cough</string>
     <string name="cdb01_03d">Fever</string>
-
-    <!--CDB01_04-->
     <string name="cdb01_04">The child has chest in drawing if the lower chest wall (lower ribs) goes ____ when the child breathes IN.</string>
     <string name="cdb01_04a">IN</string>
     <string name="cdb01_04b">OUT</string>
 
     <!--CDB Cough & Difficult Breathing 02-->
-    <!--CDB02_01-->
     <string name="cdb02_01">What is the dose of Amoxicillin DT (250 gm) for children aged 12 months up to 3 years?</string>
     <string name="cdb02_01a">(&#189;) tablet twice a day</string>
     <string name="cdb02_01b"> <b>1</b> tablet twice a day</string>
     <string name="cdb02_01c"> <b>2</b> tablet twice a day</string>
     <string name="cdb02_01d"> <b>2.5</b> tablet twice a day</string>
-
-    <!--CDB02_02-->
     <string name="cdb02_02">The dose for intramuscular antibiotics (urgent referral); Ampicillin _______mg/kg and Gentamicin ________mg/kg</string>
     <string name="cdb02_02a"> 40 mg and 7 mg</string>
     <string name="cdb02_02b"> 45 mg and 7.5 mg</string>
     <string name="cdb02_02c"> 50 mg and 7.5 mg</string>
     <string name="cdb02_02d"> 55 mg and 8 mg</string>
-
-    <!--CDB02_03-->
     <string name="cdb02_03">What is the minimum SpO2 saturation level for urgent referral to a health facility?</string>
     <string name="cdb02_03a"> ≥90%</string>
     <string name="cdb02_03b"> ≤90%</string>
     <string name="cdb02_03c"> ≥80%</string>
     <string name="cdb02_03d"> ≥70%</string>
-
-    <!--CDB02_04-->
     <string name="cdb02_04">Standard flow rates for oxygen through nasal prongs or nasal catheters are up to ____ L/min for infants, up to _____ L/min for older children</string>
     <string name="cdb02_04a"><![CDATA[2 & 4]]></string>
     <string name="cdb02_04b"><![CDATA[3 & 4]]></string>
     <string name="cdb02_04c"><![CDATA[3.5 & 4.5]]></string>
     <string name="cdb02_04d"><![CDATA[4 & 4.5]]></string>
-
-    <!--CDB02_05-->
     <string name="cdb02_05">Following of the vaccines prevent pneumonia infections, <b>EXCEPT:</b></string>
     <string name="cdb02_05a">PCV</string>
     <string name="cdb02_05b">Hib</string>
     <string name="cdb02_05c">Pertussis</string>
     <string name="cdb02_05d">Rotavirus</string>
-
-    <!--CDB02_06-->
     <string name="cdb02_06">What are the harmful home remedies for cough?</string>
     <string name="cdb02_06a">Cough syrup containing codeine, antihistamines, alcohol, atropine and expectorants.</string>
     <string name="cdb02_06b">Oral and nasal decongestants</string>
@@ -180,55 +150,46 @@
     <string name="diarrheatestq1a2">Dysentery</string>
     <string name="diarrheatestq1a3">Hydration</string>
     <string name="diarrheatestq1a4">Malnutrition</string>
-
     <string name="diarrheatestq2">2- A child with persistent diarrhea needs Zinc DT for _________ days.</string>
     <string name="diarrheatestq2a1">10 days</string>
     <string name="diarrheatestq2a2">12 days</string>
     <string name="diarrheatestq2a3">14 days</string>
     <string name="diarrheatestq2a4">16 days</string>
-
     <string name="diarrheatestq3">3- The antibiotic prescribed for dysentery is __________ for 3 days.</string>
     <string name="diarrheatestq3a1">Ciprofloxacin</string>
     <string name="diarrheatestq3a2">Amoxicillin</string>
     <string name="diarrheatestq3a3">Ampicillin</string>
     <string name="diarrheatestq3a4">Diazepam</string>
-
     <string name="diarrheatestq4">4- The common cause of dysentery is ______________ bacteria.</string>
     <string name="diarrheatestq4a1">Brucella</string>
     <string name="diarrheatestq4a2">Shigella</string>
     <string name="diarrheatestq4a3">Bacillus</string>
     <string name="diarrheatestq4a4">Salmonella</string>
-
     <string name="diarrheatestq5">5- Which one of the following is a danger sign for severe dehydration?</string>
     <string name="diarrheatestq5a1">Lethargic or unconscious</string>
     <string name="diarrheatestq5a2">Not able to drink</string>
     <string name="diarrheatestq5a3">Sunken eyes</string>
     <string name="diarrheatestq5a4">All of the above</string>
-
     <string name="diarrheatestq6">6- Shaista is restless, but drinks quickly when you give her water. How would you classify her dehydration?</string>
     <string name="diarrheatestq6a1">Severe dehydration</string>
     <string name="diarrheatestq6a2">Some dehydration</string>
     <string name="diarrheatestq6a3">No dehydration</string>
     <string name="diarrheatestq6a4">Persistent diarrhea</string>
-
     <string name="diarrheatestq7">7- Children with diarrhea who come to a health worker with NO ____________ are put on plan A</string>
     <string name="diarrheatestq7a1"> Dehydration</string>
     <string name="diarrheatestq7a2"> Dysentery</string>
     <string name="diarrheatestq7a3"> Hydration</string>
     <string name="diarrheatestq7a4"> Pneumonia</string>
-
     <string name="diarrheatestq8">8- Identify, which one of the following is NOT a rule for home treatment.</string>
     <string name="diarrheatestq8a1"> Give extra fluids</string>
     <string name="diarrheatestq8a2"> Give oral Amoxicillin</string>
     <string name="diarrheatestq8a3"> Continue feeding</string>
     <string name="diarrheatestq8a4"> When to return (follow-up visit)</string>
-
     <string name="diarrheatestq9">9- What is the dose of Zinc DT for home treatment for a child 6 months or older_____________?</string>
     <string name="diarrheatestq9a1"> <b>(&#189;)</b> tablet per day for 12 days</string>
     <string name="diarrheatestq9a2"> <b>1</b> tablet per day for 10 days</string>
     <string name="diarrheatestq9a3"> <b>1.5</b> tablets per day for 11 days</string>
     <string name="diarrheatestq9a4"> <b>2</b> tablets per day for 10 days</string>
-
     <string name="diarrheatestq10">10- <![CDATA[_____________vaccination is recommended for diarrhea by WHO for children  < 5 years.]]></string>
     <string name="diarrheatestq10a1"> PCV</string>
     <string name="diarrheatestq10a2"> Hib</string>
@@ -241,37 +202,31 @@
     <string name="psbitestq1a2"> Local Bacterial Infection</string>
     <string name="psbitestq1a3"> Thrush</string>
     <string name="psbitestq1a4"> Diarrhea</string>
-
-    <string name="psbitestq2">2- The follow-up time for sick young infants with diarrhea and pneumonia is ________ days.</string>
+    <string name="psbitestq2">2- The follow-up book_time for sick young infants with diarrhea and pneumonia is ________ days.</string>
     <string name="psbitestq2a1"> 2nd Day</string>
     <string name="psbitestq2a2"> 3rd Day</string>
     <string name="psbitestq2a3"> 4th Day</string>
     <string name="psbitestq2a4"> 5th Day</string>
-
     <string name="psbitestq3">3- Persistent vomiting is defined as vomiting following three attempts to feed the infant within ______ minutes, and the infant vomits after each attempt.</string>
     <string name="psbitestq3a1"> 10 minutes</string>
     <string name="psbitestq3a2"> 20 minutes</string>
     <string name="psbitestq3a3"> 30 minutes</string>
     <string name="psbitestq3a4"> 40 minutes</string>
-
     <string name="psbitestq4">4- Which one of the following is NOT a danger sign for some dehydration in young infants</string>
     <string name="psbitestq4a1">Movement only when stimulated or no movement at all</string>
     <string name="psbitestq4a2">Sunken eyes</string>
     <string name="psbitestq4a3">Skin pinch goes back very slowly.</string>
     <string name="psbitestq4a4">Restless and irritable</string>
-
     <string name="psbitestq5">5- Pre referral treatment for severe Pneumonia or very severe disease in young infant up to 2 months require first dose of an appropriate _________ antibiotic.</string>
     <string name="psbitestq5a1">Oral</string>
     <string name="psbitestq5a2">Intravenous</string>
     <string name="psbitestq5a3">Intramuscular</string>
     <string name="psbitestq5a4">None of the above</string>
-
     <string name="psbitestq6">6- What is the correct dose to prepare sugar water?</string>
     <string name="psbitestq6a1">3 level teaspoons of sugar in a 200-ml cup of clean water.</string>
     <string name="psbitestq6a2">4 level teaspoons of sugar in a 200-ml cup of clean water.</string>
     <string name="psbitestq6a3">2 level teaspoons of sugar in a 200-ml cup of clean water.</string>
     <string name="psbitestq6a4">5 level teaspoons of sugar in a 250-ml cup of clean water.</string>
-
     <string name="psbitestq7">7- What does APAC process mean?</string>
     <string name="psbitestq7a1">Ask, Praise, Assess, Check</string>
     <string name="psbitestq7a2">Assess, Praise, Ask, Counsel</string>
@@ -280,45 +235,32 @@
 
 
     <!--FANC-->
-    <!--Q01-->
     <string name="fanc_01">WHO recommends?</string>
     <string name="fanc_01a">One visit during every month of pregnancy</string>
     <string name="fanc_01b">One visit per month during the first 28 weeks, then two visits per month between 28 weeks and birth</string>
     <string name="fanc_01c">Four visits, with additional visits as needed</string>
     <string name="fanc_01d">One visit per month up to 28 weeks, two visits per month between 28 and 36 weeks, and one visit per week between 36 and 40 weeks</string>
-
-    <!--Q02-->
     <string name="fanc_02">Danger signs of pregnancy include all of the following except:</string>
     <string name="fanc_02a">Vaginal bleeding</string>
     <string name="fanc_02b">Respiratory difficulty</string>
     <string name="fanc_02c">Fever</string>
     <string name="fanc_02d">Backache</string>
     <string name="fanc_02e">Convulsions</string>
-
-    <!--Q03-->
     <string name="fanc_03">The position of the fetus should be confirmed:</string>
     <string name="fanc_03a">At every visit</string>
     <string name="fanc_03b">After 14 weeks</string>
     <string name="fanc_03c">After 28 weeks</string>
     <string name="fanc_03d">After 36 weeks</string>
-
-    <!--Q04-->
     <string name="fanc_04">Components of FANC include all of the following except:</string>
     <string name="fanc_04a">Identification of preexisting health conditions</string>
     <string name="fanc_04b">Early detection of complications arising during the pregnancy</string>
     <string name="fanc_04c">Magnesium sulfate injection</string>
     <string name="fanc_04d">Birth preparedness and complication readiness planning</string>
-
-    <!--Q05-->
     <string name="fanc_05">A mother with which of the following blood groups is a candidate for Anti-D immunoglobulin:</string>
     <string name="fanc_05a">A+</string>
     <string name="fanc_05b">O+</string>
     <string name="fanc_05c">A-</string>
     <string name="fanc_05d">AB+</string>
-
-    <string name="readyForTrain">Are You Ready For Training?</string>
-    <string name="areYouSure">Are You Sure You Want To Continue?</string>
-    <!--Q06-->
     <string name="fanc_06">From the following list, please indicate which conditions are danger signs of pregnancy:</string>
     <string name="fanc_06a">Vaginal bleeding</string>
     <string name="fanc_06b">Increased frequency of micturition</string>
@@ -332,6 +274,9 @@
     <string name="fanc_06j">Nausea/vomiting</string>
     <string name="fanc_06k">Convulsions/loss of consciousness</string>
 
+    <string name="readyForTrain">Are You Ready For Training?</string>
+    <string name="areYouSure">Are You Sure You Want To Continue?</string>
+
 
     <!--VB Vaginal Bleeding-->
     <!--Q01-->
@@ -340,29 +285,21 @@
     <string name="vb_01b">Light vaginal bleeding, closed cervix, and uterus that corresponds to dates</string>
     <string name="vb_01c">Heavy vaginal bleeding, dilated cervix, and uterus that corresponds to dates</string>
     <string name="vb_01d">Light vaginal bleeding, dilated cervix, and uterus smaller than dates</string>
-
-    <!--Q02-->
     <string name="vb_02">Management of inevitable abortion when the pregnancy is greater than 16 weeks usually involves:</string>
     <string name="vb_02a">Immediate evacuation of the uterus</string>
     <string name="vb_02b">Administration of ergometrine or misoprostol</string>
     <string name="vb_02c">Awaiting spontaneous expulsion of products of conception followed by evacuation of the uterus</string>
     <string name="vb_02d">(a) and (b)</string>
-
-    <!--Q03-->
     <string name="vb_03">Incomplete abortion can be diagnosed according to:</string>
     <string name="vb_03a">Ultrasound only</string>
     <string name="vb_03b">Light bleeding</string>
     <string name="vb_03c">Uterus softer than normal</string>
     <string name="vb_03d">Heavy bleeding, dilated cervix, and partial expulsion of products of conception</string>
-
-    <!--Q04-->
     <string name="vb_04">The best way to determine uterine size is by:</string>
     <string name="vb_04a">Looking at the cervix</string>
     <string name="vb_04b">A history of amenorrhea based on last menstrual period</string>
     <string name="vb_04c">Bimanual pelvic examination</string>
     <string name="vb_04d">Abdominal examination</string>
-
-    <!--Q05-->
     <string name="vb_05">Assessment of a woman who presents with vaginal bleeding after 28 weeks of pregnancy should:</string>
     <string name="vb_05a">Include immediate vaginal examination</string>
     <string name="vb_05b">Exclude immediate vaginal examination</string>
@@ -377,29 +314,21 @@
     <string name="PartoTest01b">It is a tool to document cervical dilation during labor.</string>
     <string name="PartoTest01c">It is a tool to document fetal heart sounds during labor.</string>
     <string name="PartoTest01d">Both b and c</string>
-
-    <!--Q02-->
     <string name="PartoTest02">Plotting of the Partograph should start when cervix is:</string>
     <string name="PartoTest02a">2cm dilated</string>
     <string name="PartoTest02b">3cm dilated</string>
     <string name="PartoTest02c">4cm dilated</string>
     <string name="PartoTest02d">7cm dilated</string>
-
-    <!--Q03-->
     <string name="PartoTest03">Recording and plotting of fetal heart sounds is mandatory in the first stage of labor at the following interval:</string>
     <string name="PartoTest03a">Every half-hour</string>
     <string name="PartoTest03b">Every hour</string>
     <string name="PartoTest03c">Every 15 minutes</string>
     <string name="PartoTest03d">Not important</string>
-
-    <!--Q04-->
     <string name="PartoTest04">Contractions during labor should be charted for:</string>
     <string name="PartoTest04a">Five minutes every half-hour</string>
     <string name="PartoTest04b">10 minutes every hour</string>
     <string name="PartoTest04c">10 minutes every half-hour</string>
     <string name="PartoTest04d">One minute every four hours</string>
-
-    <!--Q05-->
     <string name="PartoTest05">Decision-making is important when plotting of cervical dilation is:</string>
     <string name="PartoTest05a">On the alert line</string>
     <string name="PartoTest05b">Between the alert line and the action line</string>
@@ -414,29 +343,21 @@
     <string name="EclamTest01b">Proteinuria</string>
     <string name="EclamTest01c">Convulsions</string>
     <string name="EclamTest01d">Gestational age of more than 20 weeks</string>
-
-    <!--Q02-->
     <string name="EclamTest02">The drug of choice for preventing convulsions in severe Pre-Eclampsia and Eclampsia is:</string>
     <string name="EclamTest02a">Diazepam</string>
     <string name="EclamTest02b">Magnesium sulfate</string>
     <string name="EclamTest02c">Ergometrine</string>
     <string name="EclamTest02d">Hydralazine</string>
-
-    <!--Q03-->
     <string name="EclamTest03">When you assess and take the history of a woman with severe Pre-Eclampsia, what is the most important information you should know about her:</string>
     <string name="EclamTest03a">If she has a family history of pre-eclampsia/eclampsia</string>
     <string name="EclamTest03b">If she has a severe headache and decreased urine output </string>
     <string name="EclamTest03c">Her dietary intake of salt</string>
     <string name="EclamTest03d">If she is diabetic</string>
-
-    <!--Q04-->
     <string name="EclamTest04">The recommended dose of calcium for the prevention of pre-eclampsia in all women is:</string>
     <string name="EclamTest04a">2.5 – 3.5 g elemental calcium/day</string>
     <string name="EclamTest04b">1.5 – 2.0 g elemental calcium/day</string>
     <string name="EclamTest04c">0.5 – 2.0 g elemental calcium/day</string>
     <string name="EclamTest04d">3.0 – 3.5 g elemental calcium/day</string>
-
-    <!--Q05-->
     <string name="EclamTest05">The loading dose of magnesium sulfate is given via:</string>
     <string name="EclamTest05a">IV over 20 minutes, followed by deep IM injection into each buttock</string>
     <string name="EclamTest05b">IV over 5 minutes, followed by deep IM injection into one buttock</string>
@@ -451,29 +372,21 @@
     <string name="HemoTestA01b">Uterine atony</string>
     <string name="HemoTestA01c">Vaginal tears</string>
     <string name="HemoTestA01d">None of the above</string>
-
-    <!--Q02-->
     <string name="HemoTestA02">Primary PPH is defined as:</string>
     <string name="HemoTestA02a">Bleeding occurring after 24 hours of childbirth</string>
     <string name="HemoTestA02b">Bleeding occurring within 24 hours of childbirth</string>
     <string name="HemoTestA02c">Bleeding occurring within 48 hours of childbirth</string>
     <string name="HemoTestA02d">All of the above</string>
-
-    <!--Q03-->
     <string name="HemoTestA03">Postpartum hemorrhage is defined as:</string>
     <string name="HemoTestA03a">Vaginal bleeding of any amount after childbirth</string>
     <string name="HemoTestA03b">Sudden bleeding after childbirth</string>
     <string name="HemoTestA03c">Vaginal bleeding in excess of 300mL after childbirth</string>
     <string name="HemoTestA03d">Vaginal bleeding in excess of 500mL after childbirth</string>
-
-    <!--Q04-->
     <string name="HemoTestA04">The proper starting dose of oxytocin for management of PPH in uterine atony is:</string>
     <string name="HemoTestA04a">10 IU in 1,000 mL of saline at the rate of 60 drops/minute</string>
     <string name="HemoTestA04b">5 IU in 1,000 mL of Ringer’s lactate at the rate of 60 drops/minute</string>
     <string name="HemoTestA04c">10 IU stat + 20 IU in 1,000 mL of saline at the rate of 60 drops/minute</string>
     <string name="HemoTestA04d">All of the above</string>
-
-    <!--Q05-->
     <string name="HemoTestA05">Hypovolemic shock due to excessive vaginal bleeding is characterized by</string>
     <string name="HemoTestA05a">BP &gt; 90 mm Hg</string>
     <string name="HemoTestA05b">Pulse &lt; 110 beats/minute</string>
@@ -488,29 +401,21 @@
     <string name="HemoTestB01b">A temporary treatment</string>
     <string name="HemoTestB01c">Should not be performed</string>
     <string name="HemoTestB01d">None of the above</string>
-
-    <!--Q02-->
     <string name="HemoTestB02">The placenta is considered retained if it is not delivered within:</string>
     <string name="HemoTestB02a">40 minutes</string>
     <string name="HemoTestB02b">20 minutes</string>
     <string name="HemoTestB02c">30 minutes</string>
     <string name="HemoTestB02d">60 minutes</string>
-
-    <!--Q03-->
     <string name="HemoTestB03">Retained placenta may be caused by:</string>
     <string name="HemoTestB03a">Uterine atony</string>
     <string name="HemoTestB03b">Placenta accreta</string>
     <string name="HemoTestB03c">Full bladder</string>
     <string name="HemoTestB03d">All of the above</string>
-
-    <!--Q04-->
     <string name="HemoTestB04">Wearing sterile gloves is necessary for:</string>
     <string name="HemoTestB04a">Manual removal of placenta </string>
     <string name="HemoTestB04b">Bimanual compression of the uterus</string>
     <string name="HemoTestB04c">Vaginal examination</string>
     <string name="HemoTestB04d">All of the above </string>
-
-    <!--Q05-->
     <string name="HemoTestB05">After manual removal of the placenta, monitoring the woman’s vital signs is mandatory for:</string>
     <string name="HemoTestB05a">2 hours</string>
     <string name="HemoTestB05b">10 minutes</string>
@@ -525,29 +430,21 @@
     <string name="ShockTest01b">Slurring of speech</string>
     <string name="ShockTest01c">Systolic blood pressure less than 90 mm Hg</string>
     <string name="ShockTest01d">Pallor, confusion, and unconsciousness</string>
-
-    <!--Q02-->
     <string name="ShockTest02">Rapid initial assessment for hypovolemic shock does not include:</string>
     <string name="ShockTest02a">Shout for help</string>
     <string name="ShockTest02b">Pulse</string>
     <string name="ShockTest02c">Abdominal examination </string>
     <string name="ShockTest02d">Blood pressure and breathing</string>
-
-    <!--Q03-->
     <string name="ShockTest03">If a patient is in shock, start rapid infusion as follows:</string>
     <string name="ShockTest03a">1 liter in 15–20 minutes</string>
     <string name="ShockTest03b">1 liter in 30–40 minutes</string>
     <string name="ShockTest03c">1 liter in 60–70 minutes</string>
     <string name="ShockTest03d">1 liter in 5–10 minutes</string>
-
-    <!--Q04-->
     <string name="ShockTest04">Management of a patient with shock is the responsibility of:</string>
     <string name="ShockTest04a">Doctor</string>
     <string name="ShockTest04b">Nurse</string>
     <string name="ShockTest04c">Theatre technician</string>
     <string name="ShockTest04d">All team members</string>
-
-    <!--Q05-->
     <string name="ShockTest05">A patient is said to be stabilized after initial rapid management if:</string>
     <string name="ShockTest05a">Blood pressure is ≥ 100 mm Hg</string>
     <string name="ShockTest05b">Pulse is 90 beats/minute or less</string>
@@ -558,33 +455,25 @@
     <!--SepsisTest -->
     <!--Q01-->
     <string name="SepsisTest01">Puerperal sepsis is an infection of the genital tract:</string>
-    <string name="SepsisTest01a">At any time before the 42nd day after birth</string>
-    <string name="SepsisTest01b">At any time after the 42nd day after birth</string>
-    <string name="SepsisTest01c">At any time between the rupture of membranes or onset of labor and the 42nd day after birth</string>
-    <string name="SepsisTest01d">At any time after the 40th day after birth</string>
-
-    <!--Q02-->
+    <string name="SepsisTest01a">At any book_time before the 42nd day after birth</string>
+    <string name="SepsisTest01b">At any book_time after the 42nd day after birth</string>
+    <string name="SepsisTest01c">At any book_time between the rupture of membranes or onset of labor and the 42nd day after birth</string>
+    <string name="SepsisTest01d">At any book_time after the 40th day after birth</string>
     <string name="SepsisTest02">Chorioamnionitis can occur due to:</string>
     <string name="SepsisTest02a">Premature rupture of the membranes</string>
     <string name="SepsisTest02b">Prolonged labor of more than 24 hours</string>
     <string name="SepsisTest02c">More than three vaginal exams during labor</string>
     <string name="SepsisTest02d">All of the above</string>
-
-    <!--Q03-->
     <string name="SepsisTest03">A reddened, wedge-shaped area on the breast is a typical sign of:</string>
     <string name="SepsisTest03a">Breast abscess</string>
     <string name="SepsisTest03b">Mastitis</string>
     <string name="SepsisTest03c">Breast engorgement</string>
     <string name="SepsisTest03d">Breast cancer</string>
-
-    <!--Q04-->
     <string name="SepsisTest04">Lower abdominal pain and uterine tenderness, together with foul-smelling lochia, are characteristics of:</string>
     <string name="SepsisTest04a">Pelvic abscess</string>
     <string name="SepsisTest04b">Metritis</string>
     <string name="SepsisTest04c">Peritonitis</string>
     <string name="SepsisTest04d">Appendicitis</string>
-
-    <!--Q05-->
     <string name="SepsisTest05">The treatment of Metritis should include:</string>
     <string name="SepsisTest05a">IV ampicillin, IV gentamicin, or IV metronidazole</string>
     <string name="SepsisTest05b">IV ampicillin, IV gentamicin, and IV metronidazole</string>
@@ -607,75 +496,61 @@
     <string name="ecebB01b">The baby bites down and pulls on the nipple.</string>
     <string name="ecebB01c">Only the tip of breast is in the baby’s mouth.</string>
     <string name="ecebB01d">The baby’s mouth is wide open on the breast.</string>
-
-    <!--ECEB B02-->
     <string name="ecebB02">What should mothers do if they have breast engorgement?</string>
     <string name="ecebB02a">Feed more often or express milk</string>
     <string name="ecebB02b">Stop breastfeeding for one day</string>
     <string name="ecebB02c">Take antibiotics</string>
     <string name="ecebB02d">Apply herbs to the breasts</string>
-
-    <!--ECEB B03-->
     <string name="ecebB03">At  90 minutes after birth, a 2700 gram baby is skin-to-skin with the mother and has a temperature of 36.0 °C. What should you do next?</string>
     <string name="ecebB03a">Give antibiotics and seek advanced care.</string>
     <string name="ecebB03b">This temperature is normal and no special care is needed</string>
     <string name="ecebB03c">Make the room warm and free of drafts and replace any wet clothing.</string>
     <string name="ecebB03d">Place warm stones next to the baby</string>
-
     <string name="ecebB04">Babies with what problem might benefit from cup feeding?</string>
     <string name="ecebB04a">Vomiting with every feeding</string>
     <string name="ecebB04b">Unable to awaken for feedings</string>
     <string name="ecebB04c">Able to swallow but unable to suck effectively</string>
     <string name="ecebB04d">Unable to swallow</string>
-
     <string name="ecebB05">When cup feeding a baby, what is the correct action?</string>
     <string name="ecebB05a">Allow the baby to lick the milk from the cup</string>
     <string name="ecebB05b">Pour small quantities of milk into the baby’s mouth</string>
     <string name="ecebB05c">Place the baby flat on his back</string>
     <string name="ecebB05d">Drip a continuous stream of milk into the mouth</string>
-
     <string name="ecebB06">Which of the following would describe convulsions?</string>
     <string name="ecebB06a">Occur only in the legs</string>
     <string name="ecebB06b">Cannot be stopped by holding arms and legs</string>
     <string name="ecebB06c">Occur in response to a loud noise</string>
     <string name="ecebB06d">Occur only when the baby is awake</string>
-
     <string name="ecebB07">When should a baby be treated with antibiotics?</string>
     <string name="ecebB07a">If birth weight is less than 2000 grams</string>
     <string name="ecebB07b">When a Danger Sign is present</string>
     <string name="ecebB07c">If the baby cries often</string>
     <string name="ecebB07d">If the baby appears to be in pain</string>
-
     <string name="ecebB08">When should the first dose of an antibiotic be given?</string>
     <string name="ecebB08a">After transfer for advanced care</string>
     <string name="ecebB08b">As soon as possible after a Danger Sign has been identified</string>
     <string name="ecebB08c">After all family members have been contacted</string>
-    <string name="ecebB08d">At a time that is convenient for the health care provider</string>
-
+    <string name="ecebB08d">At a book_time that is convenient for the health care healthProvider</string>
     <string name="ecebB09">After the first day following birth, jaundice is severe when it appears on what body area?</string>
     <string name="ecebB09a">Back and abdomen</string>
     <string name="ecebB09b">White part of the eye</string>
     <string name="ecebB09c">Legs and arms</string>
     <string name="ecebB09d">Palms and soles</string>
-
     <string name="ecebB10">How often should a mother express milk for a baby who cannot feed at the breast?</string>
     <string name="ecebB10a">As often as the baby would normally feed (8&#8211;12 times per 24 hours)</string>
     <string name="ecebB10b">3 times during the daytime only</string>
-    <string name="ecebB10c">Once in the morning and once before bed time</string>
+    <string name="ecebB10c">Once in the morning and once before bed book_time</string>
     <string name="ecebB10d">4 times per 24 hours</string>
-
     <string name="ecebB11">A 3000 gram baby is unable to suck or swallow during the first 6 hours after birth. How would you classify this baby and what should you do?</string>
     <string name="ecebB11a">The baby is normal, and breastfeeding should be encouraged</string>
     <string name="ecebB11b">The baby has a Danger Sign, and you should seek advanced care</string>
     <string name="ecebB11c">The baby has a feeding problem, and should be cup fed.</string>
     <string name="ecebB11d">The baby will probably die, and no further care should be provided</string>
-
     <string name="ecebB12">Which of the following is a sign that a baby is breastfeeding adequately?</string>
     <string name="ecebB12a">Crying within one hour after each feeding</string>
     <string name="ecebB12b">Vigorous sucking that causes nipple pain with each feeding</string>
     <string name="ecebB12c">Remains awake and active after each feeding</string>
     <string name="ecebB12d">Feeding 8 to10 times per day</string>
-
     <string name="ecebB13">You have determined that a baby with a birth weight of 1800 grams needs antibiotics. How much ampicillin (200 mg/mL) should you give?</string>
     <string name="ecebB13a">0.6 mL</string>
     <string name="ecebB13b">0.5 mL</string>
@@ -688,27 +563,23 @@
     <string name="ecebA01b">As long as it is convenient for the mother</string>
     <string name="ecebA01c">Only until the baby’s temperature is normal</string>
     <string name="ecebA01d">At least 24 hours</string>
-
     <string name="ecebA02">During the first hour after birth, how often should babies be observed for breathing problems?</string>
     <string name="ecebA02a">Once during the hour</string>
     <string name="ecebA02b">Every 30 minutes</string>
     <string name="ecebA02c">Every 15 minutes</string>
     <string name="ecebA02d">Every 5 minutes</string>
-
     <string name="ecebA03">Why is it important to begin breastfeeding within the first hour after birth?</string>
     <string name="ecebA03a">It helps babies breastfeed more successfully</string>
     <string name="ecebA03b">It keeps the baby from crying</string>
     <string name="ecebA03c">It keeps babies alert soon after birth</string>
     <string name="ecebA03d">It helps babies breathe more easily</string>
-
     <string name="ecebA04">When should a baby be given liquids other than breast milk?</string>
     <string name="ecebA04a">When the baby does not feed at the breast within the first hour after birth</string>
     <string name="ecebA04b">When the mother has engorged breasts</string>
     <string name="ecebA04c">When the baby cries between feedings</string>
     <string name="ecebA04d">Never</string>
-
     <string name="ecebA05">What is an early sign that a baby is ready to breast feed?</string>
-    <string name="ecebA05a">Crying for a long period of time</string>
+    <string name="ecebA05a">Crying for a long period of book_time</string>
     <string name="ecebA05b">Opening the mouth and licking</string>
     <string name="ecebA05c">Eyes closed and hands open</string>
     <string name="ecebA05d">Breathing rapidly with the mouth open</string>
@@ -717,37 +588,31 @@
     <string name="ecebA06b">At any rate as long as there is no chest in-drawing</string>
     <string name="ecebA06c">40&#8211;60 times per minute</string>
     <string name="ecebA06d">25 times per minute</string>
-
     <string name="ecebA07">What is the most important reason for weighing all babies soon after birth?</string>
     <string name="ecebA07a">Birth weight may identify babies who need special care</string>
     <string name="ecebA07b">Mother and family members often want to know the birth weight</string>
     <string name="ecebA07c">Birth weight will determine how long a baby will breast feed at each feeding</string>
     <string name="ecebA07d">Birth weight will identify babies who need vitamin K</string>
-
     <string name="ecebA08">In what part of the eye should medicine to prevent eye infections be given?</string>
     <string name="ecebA08a">Inside the upper eyelid</string>
     <string name="ecebA08b">Inside the lower eyelid</string>
     <string name="ecebA08c">In the corner of the eye only</string>
     <string name="ecebA08d">On the outside of the eye lid</string>
-
     <string name="ecebA09">What is the normal temperature range for a healthy baby?</string>
     <string name="ecebA09a">36.5°C - 37.5°C</string>
     <string name="ecebA09b">34.0°C – 35.5°C</string>
     <string name="ecebA09c">35.5°C - 36.5°C</string>
     <string name="ecebA09d">37.5°C - 38.5°C</string>
-
     <string name="ecebA10">Which babies should be given vitamin K after birth?</string>
     <string name="ecebA10a">Only babies with bleeding</string>
     <string name="ecebA10b">Only babies with birth weight >2500 grams</string>
     <string name="ecebA10c">All babies</string>
     <string name="ecebA10d">Only sick babies</string>
-
     <string name="ecebA11">How should a baby be kept warm after skin-to-skin care?</string>
     <string name="ecebA11a">Bathing in warm water</string>
     <string name="ecebA11b">Wrapping in a clean, dry blanket or cloth</string>
     <string name="ecebA11c">Placing near warm stones</string>
     <string name="ecebA11d">Exposing to sunshine</string>
-
     <string name="ecebA12">How soon after birth can a healthy baby be bathed?</string>
     <string name="ecebA12a">As soon as the baby has a normal temperature</string>
     <string name="ecebA12b">As soon as normal breathing has been established</string>
@@ -755,72 +620,61 @@
     <string name="ecebA12d">Immediately after the first breastfeeding</string>
 
 
-    <string name="ecsbA01">Which of the following statements correctly describes a well small baby? E</string>
+    <string name="ecsbA01">Which of the following statements correctly describes a well small baby?</string>
     <string name="ecsbA01a">Feed by  cup, stays warm with skin-to-skin care, has convulsions</string>
     <string name="ecsbA01b">Feeds by cup, stays warm with skin-to-skin care, weighs 1600 grams</string>
     <string name="ecsbA01c">Breastfeeds poorly, breathes at 100 times per minute, maintains temperature in an incubator</string>
     <string name="ecsbA01d">Feeds by cup, weighs 1200 grams, maintains temperature in an incubator</string>
-
     <string name="ecsbA02">Which of the following is an important step in the care of a small baby?</string>
     <string name="ecsbA02a">Teaching the mother to give a bath</string>
-    <string name="ecsbA02b">Giving the small baby lots of time in the sunlight</string>
+    <string name="ecsbA02b">Giving the small baby lots of book_time in the sunlight</string>
     <string name="ecsbA02c">Preventing infection by washing hands before touching the baby</string>
     <string name="ecsbA02d">Weighing the small baby five times a day</string>
-
     <string name="ecsbA03">Which of the following statements describes preparation for the birth of a small baby?</string>
     <string name="ecsbA03a">Identify a skilled helper, provide extra warmth in the area for Delivery, anticipate need to help the baby breathe at birth.</string>
     <string name="ecsbA03b">Prepare an area for the baby’s bath, check equipment, review emergency plan.</string>
     <string name="ecsbA03c">Wash hands, prepare herbs for babies first feeding.</string>
     <string name="ecsbA03d">Anticipate need to help baby breathe at birth, identify a skilled helper, prepare an area for the baby’s bath.</string>
-
     <string name="ecsbA04">A 1700 gram baby has been placed skin-to-skin with the mother after birth. What other care should be provided in the first 90 minutes after birth?</string>
     <string name="ecsbA04a">Showing the baby to the extended family</string>
     <string name="ecsbA04b">Feeding the baby with a nasogastric tube</string>
     <string name="ecsbA04c">Monitoring breathing and measuring temperature</string>
     <string name="ecsbA04d">Bathing the baby</string>
-
     <string name="ecsbA05">At 90 minutes after birth, an 1800 gram baby is placed skin-to-skin with the mother and has a temperature of 36.7˚ C. What should you do to help maintain the baby’s temperature?</string>
     <string name="ecsbA05a">Bathe the baby in warm water.</string>
     <string name="ecsbA05b">Place in direct sunlight.</string>
     <string name="ecsbA05c">Assist mother with continuous skin-to-skin care.</string>
     <string name="ecsbA05d">Place the baby on an open warmer set for high heat output.</string>
-
     <string name="ecsbA06">Shortly after birth, a small baby is classified based on the temperature, weight, and physical exam. The baby is 1400 grams, is breathing at 90 breaths per minute, and has a temperature of 35˚C. What should you do?</string>
     <string name="ecsbA06a">Put the baby to the breast to assess breastfeeding.</string>
     <string name="ecsbA06b">Continue to watch for improvement.</string>
     <string name="ecsbA06c">Place a nasogastric tube to administer a feeding.</string>
     <string name="ecsbA06d">Arrange a transfer for advanced care.</string>
-
     <string name="ecsbA07">How many feedings should a small baby receive in a day?</string>
     <string name="ecsbA07a">Two to four</string>
     <string name="ecsbA07b">Five to six</string>
     <string name="ecsbA07c">Eight to twelve</string>
     <string name="ecsbA07d">Twenty-four</string>
-
     <string name="ecsbA08">Which of the following techniques can help a mother to support or improve a small baby’s latch?</string>
     <string name="ecsbA08a">Wrapping the breasts in tight clothing between feedings</string>
     <string name="ecsbA08b">Supporting the head of the baby so he is positioned to take the nipple and surrounding area into an open mouth</string>
     <string name="ecsbA08c">Putting oils on the breast</string>
     <string name="ecsbA08d">Feeding first with a bottle until sucking is strong</string>
-
     <string name="ecsbA09">What is the skin temperature of a well small baby? </string>
     <string name="ecsbA09a">35.0&#8211;35.5˚C</string>
     <string name="ecsbA09b">35.5&#8211;36.5˚C</string>
     <string name="ecsbA09c">36.5&#8211;37.5˚C</string>
     <string name="ecsbA09d">37.0&#8211;38.0˚C</string>
-
     <string name="ecsbA10">Shortly after birth, the temperature of an 1800 gram baby is 36˚C. After placing the baby skin-to-skin, the baby’s temperature remains the same. Which of the following actions should be taken?</string>
     <string name="ecsbA10a">Place the baby in direct sunlight.</string>
     <string name="ecsbA10b">Place warm stones around the baby.</string>
     <string name="ecsbA10c">Bathe the baby in warm water.</string>
     <string name="ecsbA10d">Remove wet diaper and cover the mother and the baby with a blanket.</string>
-
     <string name="ecsbA11">A 1600 gram baby has been maintaining temperature with continuous skin-to-skin care. The babies will not breastfeed or cup feed and requires nasogastric feeding. What do you advise the mother about skin-to- skin care?</string>
     <string name="ecsbA11a">The mother can continue skin-to-skin care even while the baby is receiving nasogastric feedings.</string>
     <string name="ecsbA11b">The baby will need to be in an incubator while receiving nasogastric feeding.</string>
     <string name="ecsbA11c">The baby will need to be on a radiant warmer while receiving nasogastric feeding.</string>
     <string name="ecsbA11d">The mother must stop skin-to-skin care during nasogastric feeding.</string>
-
     <string name="ecsbA12">When a baby cannot feed directly from the breast after support is provided, what should you advise a mother to do next?</string>
     <string name="ecsbA12a">Give the baby formula.</string>
     <string name="ecsbA12b">Keep trying to breastfeed the baby.</string>
@@ -833,73 +687,61 @@
     <string name="ecsbB01b">In an open container in a shaded area</string>
     <string name="ecsbB01c">In an open container in direct sunlight</string>
     <string name="ecsbB01d">In a covered container heated in warm water until used</string>
-
     <string name="ecsbB02">When breastfeeding is not effective, which of the following are safe and recommended alternate feeding methods for a small baby? </string>
     <string name="ecsbB02a">Attempt a cup  feedings and if not successful, insert a nasogastric tube.</string>
     <string name="ecsbB02b">Use a syringe to pour milk directly into the baby’s mouth.</string>
     <string name="ecsbB02c">Dip finger or tongue depressor into milk and allow the baby to lick the milk.</string>
     <string name="ecsbB02d">Give bottle feedings and insert a nasogastric tube.</string>
-
     <string name="ecsbB03">Which of the following best describes a 3-day-old 1800 gram baby who needs nasogastric tube feeding?</string>
     <string name="ecsbB03a">The baby is breastfeeding 8&#8211;12 times per day.</string>
     <string name="ecsbB03b">The baby is gaining 15 grams/kilogram per day.</string>
     <string name="ecsbB03c">The baby shows feeding readiness cues every 2&#8211;4 hours.</string>
     <string name="ecsbB03d">The baby takes 5&#8211;10 mL by cup per feeding for 4 feedings.</string>
-
     <string name="ecsbB04">What is the proper length for nasogastric tube insertion?</string>
     <string name="ecsbB04a">From the tip of the nose to earlobe to half way between the tip of the breast bone and the umbilicus</string>
     <string name="ecsbB04b">From the mouth opening to the nipple to the umbilicus</string>
     <string name="ecsbB04c">From the earlobe to the umbilicus</string>
     <string name="ecsbB04d">From the earlobe to the umbilicus</string>
-
     <string name="ecsbB05">Just inserted a nasogastric tube into a small baby who cannot breastfeed or receive cup feedings. Which of the following best describes a method for confirming proper placement of the nasogastric tube?</string>
     <string name="ecsbB05a">Measure the tube outside the nose.</string>
     <string name="ecsbB05b">Inject 2 mL of air while listening with a stethoscope for the sound of air entering the stomach.</string>
     <string name="ecsbB05c">Administer 5 mL of a feeding and then withdraw it back to see if it is mixed with gastric contents.</string>
     <string name="ecsbB05d">Evaluate the baby’s breathing.</string>
-
     <string name="ecsbB06">What should a mother be taught to do before administering a nasogastric feeding?</string>
     <string name="ecsbB06a">Wash her hands and reinsert the nasogastric tube.</string>
     <string name="ecsbB06b">Wash her hands and confirm placement of the nasogastric tube by checking that the mark on the tube is at the edge of the nose.</string>
     <string name="ecsbB06c">Wash her hands and confirm placement of the nasogastric tube by checking that the mark on the tube is at the sternum.</string>
     <string name="ecsbB06d">Wash her hands and inject 10 mL of air into the tube.</string>
-
     <string name="ecsbB07">After initial weight loss, how much weight should a small baby gain each day?</string>
     <string name="ecsbB07a">5 grams per kilogram per day on average</string>
     <string name="ecsbB07b">15 grams per kilogram per day on average</string>
     <string name="ecsbB07c">25 grams per kilogram per day on average</string>
     <string name="ecsbB07d">30 grams per day on average</string>
-
     <string name="ecsbB08">On the day after birth, a 1600 gram baby cannot breastfeed or cup feed, and will be fed every three hours by a nasogastric tube. What volume should be administered for the baby’s first feeding?</string>
     <string name="ecsbB08a">1ml</string>
     <string name="ecsbB08b">5ml</string>
     <string name="ecsbB08c">12ml</string>
     <string name="ecsbB08d">25ml</string>
-
     <string name="ecsbB09">A 1600 gram baby is fed by a nasogastric tube. After the initial day of feedings, what is the daily increase in the volume of each feeding?</string>
     <string name="ecsbB09a">4ml</string>
     <string name="ecsbB09b">5ml</string>
     <string name="ecsbB09c">10ml</string>
     <string name="ecsbB09d">15ml</string>
-
     <string name="ecsbB10">Which of the following indicates feeding intolerance and the need for advanced care?</string>
     <string name="ecsbB10a">Spitting up small amounts</string>
     <string name="ecsbB10b">Tense abdominal distension</string>
     <string name="ecsbB10c">Stooling 6&#8211;8 times per day</string>
     <string name="ecsbB10d">Crying before each feeding</string>
-
     <string name="ecsbB11">In a small baby being fed by an alternative method, how often should breastfeeding readiness be assessed?</string>
     <string name="ecsbB11a">At least once per day</string>
     <string name="ecsbB11b">At least once per week</string>
     <string name="ecsbB11c">At least once every two weeks</string>
     <string name="ecsbB11d">At least once per month</string>
-
     <string name="ecsbB12">A small baby is now 10 days old and has been fed by nasogastric tube e  birtshin.c    During the first attempt to breast feed, he sucks actively, and swallowing sounds are heard. What should be done next to make the transition to breastfeeding?</string>
     <string name="ecsbB12a">top nasogastric feeding immediately, pull out the nasogastric tube, and breastfeed only.</string>
     <string name="ecsbB12b">ontinue with nasogastric feeding, while gradually increasing the number of breastfeeding attempts per day.</string>
     <string name="ecsbB12c">top nasogastric feeding immediately and breastfeed only throughout the daytime.</string>
     <string name="ecsbB12d">ontinue with nasogastric feeding, wait two days, and try breastfeeding again.</string>
-
     <string name="ecsbB13">A 1600 gram baby has been receiving nasogastric feeding for 10 days and now has started to feed at the breast. Which of the following is an indication that the baby is ready to receive all the feedings by breast?</string>
     <string name="ecsbB13a">Waking and crying in between feedings.</string>
     <string name="ecsbB13b">Choking during occasional feedings</string>
@@ -913,97 +755,81 @@
     <string name="HbbTest01b">Help the baby breathe</string>
     <string name="HbbTest01c">Feed the baby</string>
     <string name="HbbTest01d">Not touch the baby</string>
-
     <string name="HbbTest02">To prepare for a birth</string>
     <string name="HbbTest02a">You identify a helper and review the emergency plan</string>
     <string name="HbbTest02b">You ask everyone but the mother to leave the area</string>
     <string name="HbbTest02c">You prepare equipment only when you need it</string>
     <string name="HbbTest02d">You do not need a helper</string>
-
     <string name="HbbTest03">To prepare the area for delivery</string>
     <string name="HbbTest03a">Open all the doors and windows to get fresh air</string>
     <string name="HbbTest03b">A clean space for the baby will not be required</string>
     <string name="HbbTest03c">Make sure the area is clean, warm, and well-lighted</string>
     <string name="HbbTest03d">Keep the room temperature cold</string>
-
     <string name="HbbTest04">Which baby can receive routine care after birth?</string>
     <string name="HbbTest04a">A baby who is not breathing</string>
     <string name="HbbTest04b">A baby who is gasping</string>
     <string name="HbbTest04c">A baby who is crying and/or breathing well</string>
     <string name="HbbTest04d">A baby who is limp</string>
-
     <string name="HbbTest05">Routine care for a healthy baby at birth includes</string>
     <string name="HbbTest05a">Drying, removing the wet cloth, and bathing the baby</string>
     <string name="HbbTest05b">Drying, removing the wet cloth, and positioning the baby skin-to-skin</string>
     <string name="HbbTest05c">Bathing and putting clean clothes on the baby</string>
     <string name="HbbTest05d">Drying and wrapping the baby in the wet cloth</string>
-
     <string name="HbbTest06">When should the umbilical cord be clamped or tied and cut during routine care?</string>
     <string name="HbbTest06a">After the placenta is delivered</string>
     <string name="HbbTest06b">Around 1&#8211;3 minutes after birth</string>
     <string name="HbbTest06c">Immediately after the baby is born</string>
     <string name="HbbTest06d">Before a baby has cried</string>
-
     <string name="HbbTest07">A baby is quiet, limp and not breathing at birth. What should you do?</string>
     <string name="HbbTest07a">Dry the baby thoroughly</string>
     <string name="HbbTest07b">Shake the baby</string>
     <string name="HbbTest07c">Throw cold water on the face</string>
     <string name="HbbTest07d">Hold the baby upside down</string>
-
     <string name="HbbTest08">A baby is born through meconium-stained amniotic fluid. Which statement is TRUE?</string>
     <string name="HbbTest08a">Stimulate the baby and then clear the airway</string>
     <string name="HbbTest08b">Meconium cannot be inhaled into the lungs</string>
     <string name="HbbTest08c">Clear the airway before drying the baby</string>
     <string name="HbbTest08d">All babies born through meconium-stained amniotic fluid can receive routine care</string>
-
     <string name="HbbTest09">What should you do in The Golden Minute SM?</string>
     <string name="HbbTest09a">Bathe the baby</string>
     <string name="HbbTest09b">Deliver the placenta</string>
     <string name="HbbTest09c">Evaluate the heart rate</string>
     <string name="HbbTest09d">Help a baby breathe if necessary</string>
-
     <string name="HbbTest10">A newborn baby is quiet, limp and not crying. The baby does not respond to steps to stimulate breathing. What should you do next?</string>
     <string name="HbbTest10a">Slap the baby\'s back</string>
     <string name="HbbTest10b">Hold the baby upside down</string>
     <string name="HbbTest10c">Squeeze the baby\'s ribs</string>
     <string name="HbbTest10d">Begin ventilation</string>
-
     <string name="HbbTest11">Which of the following statements about ventilation with bag and mask isTRUE? </string>
     <string name="HbbTest11a">The mask should cover the eyes</string>
     <string name="HbbTest11b">bAir should escape between the mask and face</string>
     <string name="HbbTest11c">cSqueeze the bag to produce gentle movement of the chest</string>
     <string name="HbbTest11d">dSqueeze the bag to give 80 to 100 breaths per minute</string>
-
     <string name="HbbTest12">Which of the following signs MUST be monitored in a baby during the first few hours after birth?</string>
     <string name="HbbTest12a">Length</string>
     <string name="HbbTest12b">Breathing</string>
     <string name="HbbTest12c">Smile</string>
     <string name="HbbTest12d">Urine output</string>
-
     <string name="HbbTest13">A baby\'s chest is not moving with bag and mask ventilation. What should you do?</string>
     <string name="HbbTest13a">Stop ventilation</string>
     <string name="HbbTest13b">Reapply the mask to get a better seal</string>
     <string name="HbbTest13c">Slap the baby\'s back</string>
     <string name="HbbTest13d">Give medicine to the baby</string>
-
     <string name="HbbTest14">You can stop ventilation if</string>
     <string name="HbbTest14a">Baby is blue and limp</string>
     <string name="HbbTest14b">Baby\'s heart rate is 80 per minute</string>
     <string name="HbbTest14c">Baby\'s heart rate is 120 per minute and the chest is not moving</string>
     <string name="HbbTest14d">Baby\'s heart rate is 120 per minute and the baby is breathing or crying</string>
-
     <string name="HbbTest15">What should you do to keep the baby warm?</string>
     <string name="HbbTest15a">Open all the windows to allow warm air to circulate</string>
     <string name="HbbTest15b">Give the baby a bath after birth</string>
     <string name="HbbTest15c">Place hot water bottles next to the baby\'s skin</string>
     <string name="HbbTest15d">Place the baby skin-to-skin with mother</string>
-
     <string name="HbbTest16">What should you do to keep the baby clean?</string>
     <string name="HbbTest16a">Wash your hands before touching the baby and help mother wash her hands</string>
     <string name="HbbTest16b">before breast feeding</string>
     <string name="HbbTest16c">Reuse the suction device before cleaning</string>
     <string name="HbbTest16d">Keep the umbilical cord tightly covered</string>
-
     <string name="HbbTest17">A newborn baby\'s heart rate should be:</string>
     <string name="HbbTest17a">Faster than your heart rate</string>
     <string name="HbbTest17b">Slower than your heart rate</string>
@@ -1087,7 +913,7 @@
     <string name="PsbiTestA02d">Restless and irritable</string>
 
     <!--B-->
-    <string name="PsbiTestB01">The follow-up time for sick young infants with diarrhea and pneumonia is ________ days.</string>
+    <string name="PsbiTestB01">The follow-up book_time for sick young infants with diarrhea and pneumonia is ________ days.</string>
     <string name="PsbiTestB01a">2nd day</string>
     <string name="PsbiTestB01b">3rd day</string>
     <string name="PsbiTestB01c">4th day</string>

@@ -1,33 +1,49 @@
 package detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments;
 
-import android.databinding.DataBindingUtil;
+import static android.content.Context.ACTIVITY_SERVICE;
+
+import android.app.ActivityManager;
+import android.app.AlertDialog;
+import android.app.DownloadManager;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.database.Cursor;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
+
+import java.io.File;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.adapters.SlidingImageAdapter;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.CONSTANTS;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.FragmentModuleBinding;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.Forms;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.MainActivity;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Utils;
 
-import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.CDB;
-import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.Diarrhea;
-import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.ECEB;
-import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.ECSB;
-import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.GDS;
-import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.HBB;
-import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.PSBI;
 
 
 public class ModuleFragment extends Fragment {
@@ -43,11 +59,20 @@ public class ModuleFragment extends Fragment {
     String districtName;
     boolean isAdmin;
     SlidingImageAdapter imageAdapter;
+    Forms fc;
+    DownloadManager downloadManager;
+    Long refID;
+    String[] videos;
+    TextView progressText;
+    ProgressBar progressBar;
+    int finalProgress = 0;
+    AlertDialog dialog;
+    Data.SubMenu moduleToStart;
+    boolean fileAlreadyExist = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -59,6 +84,7 @@ public class ModuleFragment extends Fragment {
         view = bi.getRoot();
         districtName = getArguments().getString("district_name");
         isAdmin = getArguments().getBoolean("isAdmin");
+        fc = getArguments().getParcelable("forms");
         setupModules();
         initSlider();
 
@@ -77,8 +103,7 @@ public class ModuleFragment extends Fragment {
         bi.indicator.setViewPager(bi.pager);
 
 
-
-        NUM_PAGES =Data.mainSlides.length;
+        NUM_PAGES = Data.mainSlides.length;
 
         // Auto start of viewpager
         final Handler handler = new Handler();
@@ -120,9 +145,8 @@ public class ModuleFragment extends Fragment {
     }
 
     private void setupModules() {
-        if (!isAdmin) {
+        if (!isAdmin && !MainApp.userName.equals("test1234")) {
             switch (MainApp.districtCode) {
-
                 case 113:
                 case 123:
                 case 432:
@@ -134,17 +158,14 @@ public class ModuleFragment extends Fragment {
                     bi.childHealth.setVisibility(View.GONE);
                     bi.newBornHealth.setVisibility(View.GONE);
                     break;
-
                 case 434:
                     bi.maternalHealth.setVisibility(View.GONE);
                     bi.childHealth.setVisibility(View.GONE);
                     break;
-
                 case 211:
                 case 414:
                     bi.childHealth.setVisibility(View.GONE);
                     break;
-
             }
         }
 
@@ -198,175 +219,69 @@ public class ModuleFragment extends Fragment {
 
     private void showNewBornModule() {
 
-        /*for (int i = 0; i < newBornModule.length; i++) {
-
-            View v = LayoutInflater.from(getContext()).inflate(R.layout.single_module_item, null);
-            TextView moduleName = v.findViewById(R.id.moduleName);
-            final LinearLayout subModule = v.findViewById(R.id.subModule);
-            moduleName.setText(newBornModule[i]);
-            bi.nbornModule.addView(v);
-            final int finalI = i;
-            v.animate().translationY(v.getHeight());
-            v.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    if (!isNewBornClicked) {
-                        subModule.removeAllViews();
-                        for (int i = 0; i < selectNBSubModule(finalI).length; i++) {
-                            View vi = LayoutInflater.from(getContext()).inflate(R.layout.single_sub_module_item, null);
-                            TextView moduleName = vi.findViewById(R.id.subModuleName);
-                            moduleName.setText(selectNBSubModule(finalI)[i]);
-                            subModule.addView(vi);
-
-                            final int finalI1 = i;
-                            vi.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    MainApp.moduleName = "nBornHealth";
-                                    MainApp.moduleSession = selectNBSubModule(finalI)[finalI1];
-                                    MainApp.isChild = false;
-                                    MainApp.isMaternal = false;
-                                    MainApp.isNBorn = true;
-                                    if (Utils.selectTest(finalI1, MainApp.subModuleName) != null) {
-                                        Utils.showPreDialogue(getActivity(), finalI1, MainApp.subModuleName);
-                                        MainApp.childlIndex = finalI1;
-                                    } else {
-                                        Toast.makeText(getActivity(), "Module is under Development", Toast.LENGTH_SHORT).show();
-                                    }
-
-                                }
-                            });
-
-                        }
-                        isNewBornClicked = true;
-                    } else {
-                        subModule.removeAllViews();
-                        isNewBornClicked = false;
-                    }
-
-
-                }
-            });
-        }
-        isNewBornClicked = true;*/
 
         removeMaternalModule();
         removeChildModule();
-        openModuleHandler(bi.nbornModule, 2);
+        openModuleHandler(getContext(), bi.nbornModule, 2);
 
     }
 
 
     private void showMaternalModule() {
 
-        /*for (int i = 0; i < maternalModule.length; i++) {
-
-            View v = LayoutInflater.from(getContext()).inflate(R.layout.single_module_item, null);
-            TextView moduleName = v.findViewById(R.id.moduleName);
-            moduleName.setText(maternalModule[i]);
-            bi.maternalModule.addView(v);
-            v.animate().translationY(v.getHeight());
-
-
-            final int finalI = i;
-            v.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    MainApp.moduleName = "maternalHealth";
-                    MainApp.isChild = false;
-                    MainApp.isMaternal = true;
-                    MainApp.isNBorn = false;
-                    MainApp.moduleSession = maternalModule[finalI];
-                    if (Utils.selectTest(finalI, MainApp.moduleName) != null) {
-                        Utils.showPreDialogue(getActivity(), finalI, MainApp.moduleName);
-                        MainApp.maternalIndex = finalI;
-                    } else {
-                        Toast.makeText(getActivity(), "Module is under Development", Toast.LENGTH_SHORT).show();
-                    }
-
-
-                }
-            });
-        }
-        isMaternalClicked = true;*/
 
         removeChildModule();
         removeNBModule();
-        openModuleHandler(bi.maternalModule, 1);
+        openModuleHandler(getContext(), bi.maternalModule, 1);
 
     }
 
     private void showChildModule() {
-
-        /*for (int i = 0; i < childModule.length; i++) {
-
-            View v = LayoutInflater.from(getContext()).inflate(R.layout.single_module_item, null);
-            TextView moduleName = v.findViewById(R.id.moduleName);
-            final LinearLayout subModule = v.findViewById(R.id.subModule);
-            moduleName.setText(childModule[i]);
-            bi.childModule.addView(v);
-            final int finalI = i;
-            v.animate().translationY(v.getHeight());
-            v.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    if (!isChildSubClicked) {
-                        subModule.removeAllViews();
-                        for (int i = 0; i < selectSubModule(finalI).length; i++) {
-                            View vi = LayoutInflater.from(getContext()).inflate(R.layout.single_sub_module_item, null);
-                            TextView moduleName = vi.findViewById(R.id.subModuleName);
-                            moduleName.setText(selectSubModule(finalI)[i]);
-                            subModule.addView(vi);
-
-
-                            final int finalI1 = i;
-                            vi.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-
-                                    MainApp.moduleName = "childHealth";
-                                    MainApp.moduleSession = selectSubModule(finalI)[finalI1];
-                                    MainApp.isChild = true;
-                                    MainApp.isMaternal = false;
-                                    MainApp.isNBorn = false;
-                                    if (Utils.selectTest(finalI1, MainApp.subModuleName) != null) {
-                                        Utils.showPreDialogue(getActivity(), finalI1, MainApp.subModuleName);
-                                        MainApp.childlIndex = finalI1;
-                                    } else {
-                                        Toast.makeText(getActivity(), "Module is under Development", Toast.LENGTH_SHORT).show();
-                                    }
-
-                                }
-                            });
-
-                        }
-                        isChildSubClicked = true;
-                    } else {
-                        subModule.removeAllViews();
-                        isChildSubClicked = false;
-                    }
-
-
-                }
-            });
-        }
-        isChildClicked = true;*/
-
         removeMaternalModule();
         removeNBModule();
-        openModuleHandler(bi.childModule, 0);
+        openModuleHandler(getContext(), bi.childModule, 0);
 
     }
 
-    private void showModules(final LinearLayout llModule, int type) {
+    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (DownloadManager.ACTION_DOWNLOAD_COMPLETE.equals(intent.getAction())) {
+
+                DownloadManager.Query query = new DownloadManager.Query();
+//                query.setFilterById(sharedPrefDownload.getL  5 7nong("refID", 0));
+
+                downloadManager = (DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
+                Cursor cursor = downloadManager.query(query);
+                if (cursor.moveToFirst()) {
+                    int colIndex = cursor.getColumnIndexOrThrow(DownloadManager.COLUMN_STATUS);
+                    if (DownloadManager.STATUS_SUCCESSFUL == cursor.getInt(colIndex)) {
+
+                        finalProgress++;
+                        progressText.setText(finalProgress + "/" + moduleToStart.getVideosName().length);
+                        if (finalProgress == moduleToStart.getVideosName().length) {
+                            dialog.dismiss();
+                            Utils.showPreDialogue(getActivity(), moduleToStart, fc);
+                        }
+                        ActivityManager am = (ActivityManager) getActivity().getSystemService(ACTIVITY_SERVICE);
+                        List<ActivityManager.RunningTaskInfo> taskInfo = am.getRunningTasks(1);
+
+                        if (taskInfo.get(0).topActivity.getClassName().equals(MainActivity.class.getName())) {
+
+                        }
+                    }
+                }
+            }
+        }
+    };
+
+    private void showModules(final Context mContext, final LinearLayout llModule, int type) {
 
         Data.fillingMenus(type);
         llModule.removeAllViews();
         for (final String key : Data.newMenuModule.keySet()) {
             View v = LayoutInflater.from(getContext()).inflate(R.layout.single_module_item, null);
-            TextView moduleNameTxt = v.findViewById(R.id.moduleName);
+            TextView moduleNameTxt = v.findViewById(R.id.modNSpinner);
             final LinearLayout subModule = v.findViewById(R.id.subModule);
             moduleNameTxt.setText(key);
             llModule.addView(v);
@@ -375,21 +290,85 @@ public class ModuleFragment extends Fragment {
                 @Override
                 public void onClick(View view) {
                     Data.SubMenu[] submenu = Data.newMenuModule.get(key);
-
                     removeSubGroups(llModule);
-
-                    if (submenu.length > 1) {
-                        showSubMenus(subModule, submenu);
-                    } else
-                        Utils.showPreDialogue(getActivity(), submenu[0]);
-
+                    showSubMenus(mContext, subModule, submenu);
                 }
             });
         }
 
     }
 
-    private void showSubMenus(LinearLayout llSubModule, Data.SubMenu[] subMenuItem) {
+    private void showVideodownloadDialoge(String[] videosName, String moduleName) {
+
+        finalProgress = 0;
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setCancelable(false);
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.downloading_dialog_layout, null);
+        progressText = view.findViewById(R.id.progressTextView);
+        progressText.setText("0/" + videosName.length);
+        progressBar = view.findViewById(R.id.progressBar);
+        builder.setView(view);
+        progressBar.setMax(100);
+        dialog = builder.create();
+        dialog.show();
+
+    }
+
+    private boolean downloadVideos(String[] videosName, String moduleName) {
+
+        boolean fileExist = true;
+
+        String Directrory = Environment.getExternalStorageDirectory() + File.separator + DatabaseHelper.PROJECT_NAME;
+        File folder = new File(Directrory);
+        boolean success = true;
+        if (!folder.exists())
+            success = folder.mkdirs();
+        if (!success) return false;
+
+        folder = new File(Directrory + File.separator + moduleName);
+        if (!folder.exists())
+            success = folder.mkdirs();
+        if (!success) return false;
+
+        for (int i = 0; i < videosName.length; i++) {
+            String fileName = videosName[i];
+            File file = new File(folder.getPath(), fileName);
+//            fileAlreadyExist = file.exists();
+            if (file.exists()) {
+                continue;
+            } else {
+                NetworkInfo networkInfo = ((ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
+                if (networkInfo != null && networkInfo.isConnected()) {
+
+                    downloadManager = (DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
+                    Uri uri = Uri.parse(CONSTANTS.Video_URL + fileName + ".mp4");
+                    DownloadManager.Request request = new DownloadManager.Request(uri);
+                    request.setDestinationInExternalPublicDir(DatabaseHelper.PROJECT_NAME + File.separator + moduleName, fileName)
+//                            .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+                            .setTitle("Downloading " + fileName);
+                    refID = downloadManager.enqueue(request);
+                    fileExist = false;
+
+                } else {
+                    Toast.makeText(getContext(), "Internet connectivity issue", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+        }
+
+        getActivity().registerReceiver(broadcastReceiver, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
+
+        return fileExist;
+
+    }
+
+    private void showSubMenus(Context mContext, LinearLayout llSubModule, Data.SubMenu[] subMenuItem) {
+
+        if (subMenuItem.length == 1) {
+            if (videoDownload(mContext, subMenuItem[0]))
+                Utils.showPreDialogue(getActivity(), subMenuItem[0], fc);
+            return;
+        }
 
         llSubModule.removeAllViews();
         for (final Data.SubMenu subMenu : subMenuItem) {
@@ -400,24 +379,37 @@ public class ModuleFragment extends Fragment {
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Utils.showPreDialogue(getActivity(), subMenu);
+                    if (videoDownload(mContext, subMenu))
+                        Utils.showPreDialogue(getActivity(), subMenu, fc);
+
                 }
             });
         }
 
     }
 
+    private boolean videoDownload(Context mContext, Data.SubMenu subMenu) {
+        boolean flag = true;
+        for (String videoName : subMenu.getVideosName()) {
+            if (!MainApp.checkVideoExist(MainApp.getModulePosition(subMenu.getModuleName().toUpperCase()), videoName)) {
+                flag = false;
+                break;
+            }
+        }
+
+        if (!flag) Toast.makeText(mContext,
+                "Please Download all videos for this section!!",
+                Toast.LENGTH_SHORT).show();
+
+        return flag;
+    }
+
     private void removeSubGroups(LinearLayout llModule) {
         for (byte i = 0; i < llModule.getChildCount(); i++) {
-
             View child = llModule.getChildAt(i);
-
             if (child instanceof LinearLayout) {
-
                 for (byte j = 1; j < ((LinearLayout) child).getChildCount(); j++) {
-
                     View subChild = ((LinearLayout) child).getChildAt(j);
-
                     ((LinearLayout) subChild).removeAllViews();
                 }
 
@@ -425,11 +417,11 @@ public class ModuleFragment extends Fragment {
         }
     }
 
-    private void openModuleHandler(final ViewGroup view, final int type) {
+    private void openModuleHandler(Context mContext, final ViewGroup view, final int type) {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                showModules((LinearLayout) view, type);
+                showModules(mContext, (LinearLayout) view, type);
             }
         }, 300);
     }
@@ -450,35 +442,6 @@ public class ModuleFragment extends Fragment {
         bi.nbornModule.animate().translationY(0);
         bi.nbornModule.removeAllViews();
         isNewBornClicked = true;
-    }
-
-    public String[] selectSubModule(int finalI) {
-        if (finalI == 0) {
-            MainApp.subModuleName = "gds";
-            return GDS;
-        } else if (finalI == 1) {
-            MainApp.subModuleName = "cdb";
-            return CDB;
-        } else if (finalI == 2) {
-            MainApp.subModuleName = "dia";
-            return Diarrhea;
-        } else {
-            MainApp.subModuleName = "psbi";
-            return PSBI;
-        }
-    }
-
-    public String[] selectNBSubModule(int finalI) {
-        if (finalI == 0) {
-            MainApp.subModuleName = "eceb";
-            return ECEB;
-        } else if (finalI == 1) {
-            MainApp.subModuleName = "ecsb";
-            return ECSB;
-        } else {
-            MainApp.subModuleName = "hbb";
-            return HBB;
-        }
     }
 
 

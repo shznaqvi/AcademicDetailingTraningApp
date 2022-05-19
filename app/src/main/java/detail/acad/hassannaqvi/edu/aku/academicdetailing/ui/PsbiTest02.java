@@ -1,15 +1,21 @@
 package detail.acad.hassannaqvi.edu.aku.academicdetailing.ui;
 
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.isComplete;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.post_result;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.pre_result;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.type;
+
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 import org.json.JSONObject;
 
@@ -21,11 +27,6 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityPsbiTest02Binding;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.validation.validatorClass;
-
-import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.isComplete;
-import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.post_result;
-import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.pre_result;
-import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.type;
 
 public class PsbiTest02 extends AppCompatActivity implements RadioButton.OnCheckedChangeListener {
 
@@ -53,25 +54,25 @@ public class PsbiTest02 extends AppCompatActivity implements RadioButton.OnCheck
             bi.heading.setText("PRETEST");
 //            slides = getIntent().getIntArrayExtra("slides");
 //            Data.correctAnswers = getIntent().getStringArrayListExtra("ans");
-            MainApp.fc.setPreTestStartTime(MainApp.getCurrentTime());
+            MainApp.forms.setPreTestStartTime(MainApp.getCurrentTime());
             bi.btnOk.setVisibility(View.GONE);
             bi.btnContinue.setVisibility(View.VISIBLE);
         } else if (type.equals("pre") && isComplete) {
             bi.heading.setText("PRETEST RESULT");
             GeneratorClass.comparingResult(bi.llPsbiTestB, true, subMenuDT.getAnswers());
-            pre_result = GeneratorClass.getResults("pre",subMenuDT.getAnswers());
+            pre_result = GeneratorClass.getResults("pre", subMenuDT.getAnswers());
             bi.btnOk.setVisibility(View.VISIBLE);
             bi.btnOk.setText("Start Training");
             bi.btnContinue.setVisibility(View.GONE);
         } else if (type.equals("post") && !isComplete) {
             bi.heading.setText("POST TEST");
-            MainApp.fc.setPostTestStartTime(MainApp.getCurrentTime());
+            MainApp.forms.setPostTestStartTime(MainApp.getCurrentTime());
             bi.btnOk.setVisibility(View.GONE);
             bi.btnContinue.setVisibility(View.VISIBLE);
         } else if (type.equals("post") && isComplete) {
             bi.heading.setText(" POST TEST & PRETEST RESULT");
             GeneratorClass.comparingPostTestAndPretestResult(bi.llPsbiTestB, true, subMenuDT.getAnswers());
-            post_result = GeneratorClass.getResults("post",subMenuDT.getAnswers());
+            post_result = GeneratorClass.getResults("post", subMenuDT.getAnswers());
             bi.btnOk.setVisibility(View.VISIBLE);
             bi.btnOk.setText("Finish Training");
             bi.btnContinue.setVisibility(View.GONE);
@@ -80,7 +81,7 @@ public class PsbiTest02 extends AppCompatActivity implements RadioButton.OnCheck
 
     }
 
-    public void BtnOk() {
+    public void btnOk() {
         if (type.equals("pre")) {
             MainApp.showDialog(this, getString(R.string.readyForTrain), "pre", null, subMenuDT);
         } else {
@@ -135,19 +136,19 @@ public class PsbiTest02 extends AppCompatActivity implements RadioButton.OnCheck
 
             if (bi.PsbiTestB01a.isChecked()) {
                 bi.tvPsbiTestB01.clearComposingText();
-                String styledText = "The follow-up time for sick young infants with diarrhea and pneumonia is <font color='yellow'><b><i>2nd day</i></b></font> .";
+                String styledText = "The follow-up book_time for sick young infants with diarrhea and pneumonia is <font color='yellow'><b><i>2nd day</i></b></font> .";
                 bi.tvPsbiTestB01.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.PsbiTestB01b.isChecked()) {
                 bi.tvPsbiTestB01.clearComposingText();
-                String styledText = "The follow-up time for sick young infants with diarrhea and pneumonia is <font color='yellow'><b><i>3rd day</i></b></font> .";
+                String styledText = "The follow-up book_time for sick young infants with diarrhea and pneumonia is <font color='yellow'><b><i>3rd day</i></b></font> .";
                 bi.tvPsbiTestB01.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.PsbiTestB01c.isChecked()) {
                 bi.tvPsbiTestB01.clearComposingText();
-                String styledText = "The follow-up time for sick young infants with diarrhea and pneumonia is <font color='yellow'><b><i>4th day</i></b></font> .";
+                String styledText = "The follow-up book_time for sick young infants with diarrhea and pneumonia is <font color='yellow'><b><i>4th day</i></b></font> .";
                 bi.tvPsbiTestB01.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.PsbiTestB01d.isChecked()) {
                 bi.tvPsbiTestB01.clearComposingText();
-                String styledText = "The follow-up time for sick young infants with diarrhea and pneumonia is <font color='yellow'><b><i>5th day</i></b></font> .";
+                String styledText = "The follow-up book_time for sick young infants with diarrhea and pneumonia is <font color='yellow'><b><i>5th day</i></b></font> .";
                 bi.tvPsbiTestB01.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             }
         }
@@ -246,14 +247,14 @@ public class PsbiTest02 extends AppCompatActivity implements RadioButton.OnCheck
     private void SaveDraft() {
 
         if (type.equals("pre")) {
-            MainApp.fc.setPreTestEndTime(MainApp.getCurrentTime());
+            MainApp.forms.setPreTestEndTime(MainApp.getCurrentTime());
             JSONObject json = GeneratorClass.getContainerJSON(bi.llPsbiTestB, true, type);
-            MainApp.fc.setPre_test(String.valueOf(json));
+            MainApp.forms.setPre_test(String.valueOf(json));
             Data.pretestAnswers = GeneratorClass.getAnswers(bi.llPsbiTestB, true);
         } else {
-            MainApp.fc.setPostTestEndTime(MainApp.getCurrentTime());
+            MainApp.forms.setPostTestEndTime(MainApp.getCurrentTime());
             JSONObject json = GeneratorClass.getContainerJSON(bi.llPsbiTestB, true, type);
-            MainApp.fc.setPost_test(String.valueOf(json));
+            MainApp.forms.setPost_test(String.valueOf(json));
             Data.posttestAnswers = GeneratorClass.getAnswers(bi.llPsbiTestB, true);
         }
 

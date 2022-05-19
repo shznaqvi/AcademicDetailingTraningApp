@@ -10,12 +10,10 @@ public class RetrofitClient {
 
     public static Retrofit retrofit;
     public static API service;
-    private static String baseURL = "http://f38158/uen/api/";
+    private static String baseURL = "https://vcoe1.aku.edu/uen_ad/";
+//    private static String baseURL = "http://f38158//uen_ad/";
 
-    public static void createRetrofitInstance(){
-//          OkHttpClient client = new OkHttpClient.Builder().readTimeout(15 , TimeUnit.HOURS);
-//             OkHttpClient client = new OkHttpClient.Builder().readTimeout(15 , TimeUnit.HOURS);
-
+    public static void createRetrofitInstance() {
 
         final OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .connectTimeout(2, TimeUnit.MINUTES)
@@ -32,7 +30,6 @@ public class RetrofitClient {
                 .build();
 
         service = retrofit.create(API.class);
-
 
 
     }

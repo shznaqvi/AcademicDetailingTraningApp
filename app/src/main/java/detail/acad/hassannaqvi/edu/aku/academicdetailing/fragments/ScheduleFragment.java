@@ -1,14 +1,31 @@
 package detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments;
 
 
+import static android.content.Context.MODE_PRIVATE;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.CDB;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.CDBMap;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.DiaMap;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.Diarrhea;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.ECEB;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.ECEBMap;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.ECSB;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.ECSBMap;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.GDS;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.GDSMap;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.HBB;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.PSBI;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.PSBIMap;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.childModule;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.maternalMap;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.maternalModule;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.modulesCode;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.newBornModule;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.text.format.DateFormat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,31 +33,23 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.NextMeetingContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.FragmentScheduleBinding;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.interfaces.Callbacks;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.NextMeeting;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.MainActivity;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Utils;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.validation.validatorClass;
-
-import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.CDB;
-import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.Diarrhea;
-import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.ECEB;
-import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.ECSB;
-import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.GDS;
-import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.HBB;
-import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.PSBI;
-import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.childModule;
-import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.maternalModule;
-import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.newBornModule;
 
 public class ScheduleFragment extends Fragment {
 
@@ -51,6 +60,9 @@ public class ScheduleFragment extends Fragment {
     FragmentScheduleBinding bi;
     View view;
     DatabaseHelper db;
+    Callbacks callbacks;
+    String moduleCode, sessionCode;
+
 
     public ScheduleFragment() {
         // Required empty public constructor
@@ -60,23 +72,21 @@ public class ScheduleFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // Inflate the layout for this fragmentdate
         bi = DataBindingUtil.inflate(inflater, R.layout.fragment_schedule, container, false);
 
         db = new DatabaseHelper(getContext());
         view = bi.getRoot();
-
-        bi.date.setManager(getFragmentManager());
-        bi.time.setManager(getFragmentManager());
-        bi.doctorName.setText(db.getProviderName());
+        MainApp.nmc = new NextMeeting();
+        bi.doctorName.setText(MainApp.providerName);
         modules = new ArrayList<>();
         subModules = new ArrayList<>();
         sessions = new ArrayList<>();
         bookingType = new ArrayList<>();
-        modules.add("....");
-        subModules.add("....");
-        sessions.add("....");
-        bookingType.add("....");
+        modules.add("-Select Module-");
+        subModules.add("-Select Sub Module-");
+        sessions.add("-Select Sessions-");
+        bookingType.add("-Select Booking Type-");
         bookingType.add("Over Phone");
         bookingType.add("At Health Facility");
 
@@ -92,40 +102,65 @@ public class ScheduleFragment extends Fragment {
         bi.saveData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 if (formValidate()) {
                     saveDraft();
-                    startActivity(new Intent(getContext(), MainActivity.class));
-                    getActivity().finish();
+                    if (updateDB()) {
+                        startActivity(new Intent(getContext(), MainActivity.class));
+                        getActivity().finish();
+                    } else {
+                        Toast.makeText(getContext(), "Error in database", Toast.LENGTH_SHORT).show();
+                    }
                 } else {
                     Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
                 }
+
 
             }
         });
     }
 
+    public boolean updateDB() {
+        DatabaseHelper db = new DatabaseHelper(getContext());
+        long count = db.updateNMS();
+        if (count != -1) {
+            if (count > 0) {
+                MainApp.nmc.set_id(String.valueOf(count));
+                MainApp.nmc.set_UID((MainApp.nmc.getDeviceid() + MainApp.nmc.get_id()));
+                db.updateNMCFormID(MainApp.nmc);
+            }
+            return true;
+        } else {
+            Toast.makeText(getContext(), "Error in updating DB", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+
+    }
+
 
     private void saveDraft() {
+        SharedPreferences sharedPref = getContext().getSharedPreferences("tagName", MODE_PRIVATE);
 
-        DatabaseHelper db = new DatabaseHelper(getContext());
+        MainApp.nmc.setBook_date(bi.bookDate.getText().toString());
+        MainApp.nmc.setBook_time(bi.bookTime.getText().toString());
+        MainApp.nmc.setDoctorName(MainApp.providerName);
+        MainApp.nmc.setModule(moduleCode);
 
-        MainApp.nmc = new NextMeetingContract();
-        MainApp.nmc.setDate(bi.date.getText().toString());
-        MainApp.nmc.setTime(bi.time.getText().toString());
-        MainApp.nmc.setDoctorName(db.getProviderName());
-        MainApp.nmc.setModule(bi.modules.getSelectedItem().toString());
-        if(bi.modules.getSelectedItemPosition() == 1){
-            MainApp.nmc.setSubModule(bi.subModules.getSelectedItem().toString());
-        }
-        MainApp.nmc.setSession(bi.sessions.getSelectedItem().toString());
-        MainApp.nmc.setDoBooking(MainApp.getCurrentTime()); // Timestamp is converted to date above
+        MainApp.nmc.setSession(sessionCode);
         MainApp.nmc.setBookBy(MainApp.userName);
-        MainApp.nmc.setBookingtype(bi.bookingType.getSelectedItem().toString());
+        MainApp.nmc.setBookingtype(bi.bookingType.getSelectedItemPosition() == 0 ? "0" : "1");
         MainApp.nmc.setFormdate(new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime()));
-        setGPS();
+        MainApp.nmc.setDeviceid(MainApp.deviceId);
 
-        db.updateNMS();
+        MainApp.nmc.setDist_id(Long.parseLong(MainApp.forms.getDistrictID()));
+        MainApp.nmc.setHf_name(MainApp.forms.getHealthFacilityCode());
+        MainApp.nmc.setHp_name(MainApp.forms.getProviderName());
+        MainApp.nmc.setHp_code(Long.parseLong(MainApp.forms.getProviderID()));
+        MainApp.nmc.setDevicetagID(sharedPref.getString("tagName", null));
+        MainApp.nmc.setUsername(MainApp.userName);
+
+
+        setGPS();
 
 
     }
@@ -145,10 +180,10 @@ public class ScheduleFragment extends Fragment {
 
             String date = DateFormat.format("dd-MM-yyyy HH:mm", Long.parseLong(dt)).toString();
 
-            MainApp.nmc.setLat(lat);
-            MainApp.nmc.setLng(lang);
-            MainApp.nmc.setGpsTime(date); // Timestamp is converted to date above
-             // Timestamp is converted to date above
+            MainApp.nmc.setGpsLat(lat);
+            MainApp.nmc.setGpsLng(lang);
+            MainApp.nmc.setGps_time(date); // Timestamp is converted to book_date above
+            // Timestamp is converted to book_date above
 
             Toast.makeText(getActivity(), "GPS set", Toast.LENGTH_SHORT).show();
 
@@ -161,11 +196,11 @@ public class ScheduleFragment extends Fragment {
 
     private boolean formValidate() {
 
-        if (!validatorClass.EmptyTextBox(getContext(), bi.date, getString(R.string.date))) {
+        if (!validatorClass.EmptyTextBox(getContext(), bi.bookDate, getString(R.string.book_date))) {
             return false;
         }
 
-        if (!validatorClass.EmptyTextBox(getContext(), bi.time, getString(R.string.time))) {
+        if (!validatorClass.EmptyTextBox(getContext(), bi.bookTime, getString(R.string.book_time))) {
             return false;
         }
         if (!validatorClass.EmptySpinner(getContext(), bi.modules, "Module")) {
@@ -184,15 +219,20 @@ public class ScheduleFragment extends Fragment {
 
     private void populateSpinner() {
 
-        bi.bookingType.setAdapter(new ArrayAdapter<>(getActivity(),android.R.layout.simple_spinner_dropdown_item,bookingType));
-        bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(),android.R.layout.simple_spinner_dropdown_item,sessions));
+        bi.bookingType.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, bookingType));
+        bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, sessions));
         modules.addAll(Arrays.asList(Data.modules));
         bi.modules.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, modules));
         bi.modules.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position !=0){
+                if (position != 0) {
+                    sessions.clear();
+                    sessions.add("-Select Sessions-");
+                    subModules.clear();
+                    subModules.add("-Select Sub Module-");
                     selectModule(position);
+                    moduleCode = modulesCode[position];
                 }
 
             }
@@ -209,16 +249,17 @@ public class ScheduleFragment extends Fragment {
 
         switch (position) {
             case 1:
-                subModules.clear();
-                subModules.add("....");
                 bi.fldGrpSubModule.setVisibility(View.VISIBLE);
                 subModules.addAll(Arrays.asList(childModule));
                 bi.subModules.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, subModules));
                 bi.subModules.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        if(position != 0){
-                            selectSubModule(position,"child");
+                        if (position != 0) {
+
+                            sessions.clear();
+                            sessions.add("-Select Sessions-");
+                            selectSubModule(position, "child");
                         }
 
                     }
@@ -231,23 +272,36 @@ public class ScheduleFragment extends Fragment {
 
                 break;
             case 2:
-
+                sessions.addAll(Arrays.asList(maternalModule));
                 bi.subModules.setSelection(0);
                 bi.fldGrpSubModule.setVisibility(View.GONE);
-                bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, maternalModule));
+                bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, sessions));
+                bi.sessions.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                        sessionCode = maternalMap.get(bi.sessions.getSelectedItem().toString());
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
                 break;
 
             case 3:
-                subModules.clear();
-                subModules.add("....");
+
                 bi.fldGrpSubModule.setVisibility(View.VISIBLE);
                 subModules.addAll(Arrays.asList(newBornModule));
                 bi.subModules.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, subModules));
                 bi.subModules.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        if(position != 0){
-                            selectSubModule(position,"newBorn");
+                        if (position != 0) {
+                            sessions.clear();
+                            sessions.add("-Select Sessions-");
+                            selectSubModule(position, "newBorn");
                         }
 
                     }
@@ -265,59 +319,100 @@ public class ScheduleFragment extends Fragment {
 
     }
 
-    private void selectSubModule(int position,String type) {
+    private void selectSubModule(int position, String type) {
 
-        if(type.equals("child")){
+        if (type.equals("child")) {
             switch (position) {
                 case 1:
-
                     sessions.addAll(Arrays.asList(GDS));
                     bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, sessions));
+
                     break;
 
                 case 2:
-
                     sessions.addAll(Arrays.asList(CDB));
                     bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, sessions));
                     break;
 
                 case 3:
-
                     sessions.addAll(Arrays.asList(Diarrhea));
                     bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, sessions));
                     break;
 
                 case 4:
-
                     sessions.addAll(Arrays.asList(PSBI));
                     bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, sessions));
                     break;
             }
-        }else if(type.equals("newBorn")){
+
+        } else if (type.equals("newBorn")) {
             switch (position) {
                 case 1:
-
                     sessions.addAll(Arrays.asList(ECEB));
                     bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, sessions));
                     break;
 
                 case 2:
-
                     sessions.addAll(Arrays.asList(ECSB));
                     bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, sessions));
                     break;
 
                 case 3:
-
                     sessions.addAll(Arrays.asList(HBB));
                     bi.sessions.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, sessions));
                     break;
 
             }
         }
+        AdapterView.OnItemSelectedListener listener = new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int selectedItem, long id) {
+                if (type.equals("child")) {
+                    switch (position) {
+                        case 1:
+                            sessionCode = GDSMap.get(bi.sessions.getSelectedItem().toString());
+                            break;
+                        case 2:
+                            sessionCode = CDBMap.get(bi.sessions.getSelectedItem().toString());
+                            break;
+                        case 3:
+                            sessionCode = DiaMap.get(bi.sessions.getSelectedItem().toString());
+                            break;
+                        case 4:
+                            sessionCode = PSBIMap.get(bi.sessions.getSelectedItem().toString());
+                            break;
+                    }
+                } else if (type.equals("newBorn")) {
+                    switch (position) {
+                        case 1:
+                            sessionCode = ECEBMap.get(bi.sessions.getSelectedItem().toString());
+                            break;
+                        case 2:
+                            sessionCode = ECSBMap.get(bi.sessions.getSelectedItem().toString());
+                            break;
+                        case 3:
+                            sessionCode = "30301";
+                            break;
+
+                    }
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        };
+
+        bi.sessions.setOnItemSelectedListener(listener);
 
 
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
 
+        callbacks = (Callbacks) context;
+    }
 }

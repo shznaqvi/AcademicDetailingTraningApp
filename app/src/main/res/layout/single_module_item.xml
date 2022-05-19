@@ -15,7 +15,7 @@
             android:layout_marginBottom="20dp"
             android:layout_marginTop="20dp"
             android:text="kdfjksdjfksjdf"
-            android:id="@+id/moduleName"
+            android:id="@+id/modNSpinner"
             android:layout_marginStart="50dp"
             android:textSize="15sp"
             android:textColor="@color/black"

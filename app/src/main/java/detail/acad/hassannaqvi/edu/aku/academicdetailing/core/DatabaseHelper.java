@@ -51,7 +51,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String PROJECT_NAME = "DR-REGISTRATION-FORM";
     private static final int DATABASE_VERSION = 1;
 
-
     private static final String SQL_DELETE_SESSION = "DROP TABLE IF EXISTS " + SessionTable.TABLE_NAME;
     private static final String SQL_DELETE_DISTRICTS = "DROP TABLE IF EXISTS " + DistrictTable.TABLE_NAME;
     private static final String SQL_DELETE_NMS = "DROP TABLE IF EXISTS " + NextMeetingTable.TABLE_NAME;

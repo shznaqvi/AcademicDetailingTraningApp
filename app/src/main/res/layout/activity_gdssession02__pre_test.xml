@@ -20,6 +20,8 @@
         <androidx.cardview.widget.CardView
             style="@style/cardView"
             android:layout_marginStart="10dp"
+            android:layout_marginBottom="24dp"
+            android:elevation="24dp"
             android:layout_marginEnd="10dp">
 
             <RelativeLayout
@@ -33,6 +35,7 @@
                     android:background="@color/colorPrimaryDark"
                     android:gravity="center"
                     android:text="PRETEST"
+                    android:minHeight="52dp"
                     android:textColor="@android:color/white"
                     android:textSize="25sp" />
 
@@ -67,10 +70,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:background="@color/colorPrimary"
                             android:text="@string/gds02_01"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp" />
+                            />
 
                         <RadioGroup
                             android:id="@+id/gdsb01"
@@ -117,10 +118,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:background="@color/colorPrimary"
                             android:text="@string/gds02_02"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp" />
+                            />
 
                         <RadioGroup
                             android:id="@+id/gdsb02"
@@ -183,10 +182,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:background="@color/colorPrimary"
                             android:text="@string/gds02_03"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp" />
+                            />
 
                         <RadioGroup
                             android:id="@+id/gdsb03"
@@ -249,10 +246,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:background="@color/colorPrimary"
                             android:text="@string/gds02_04"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp" />
+                            />
 
                         <RadioGroup
                             android:id="@+id/gdsb04"
@@ -315,10 +310,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:background="@color/colorPrimary"
                             android:text="@string/gds02_05"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp" />
+                            />
 
                         <RadioGroup
                             android:id="@+id/gdsb05"

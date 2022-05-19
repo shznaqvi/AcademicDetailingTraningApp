@@ -38,10 +38,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:background="@color/colorPrimaryDark"
-                        android:text="@string/status"
-                        android:textColor="@android:color/white"
-                        android:textSize="25sp" />
+                        android:text="@string/status" />
 
                     <RadioGroup
                         android:id="@+id/status"

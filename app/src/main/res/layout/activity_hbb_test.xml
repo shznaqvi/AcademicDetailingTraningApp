@@ -18,8 +18,10 @@
 
         <androidx.cardview.widget.CardView
             style="@style/cardView"
-            android:layout_marginEnd="10dp"
-            android:layout_marginStart="10dp">
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="24dp"
+            android:elevation="24dp"
+            android:layout_marginEnd="10dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -32,6 +34,7 @@
                     android:background="@color/colorPrimaryDark"
                     android:gravity="center"
                     android:text="PRETEST"
+                    android:minHeight="52dp"
                     android:textColor="@android:color/white"
                     android:textSize="25sp" />
 
@@ -64,10 +67,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:background="@color/colorPrimary"
                             android:text="@string/HbbTest01"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp" />
+                            />
 
                         <RadioGroup
                             android:id="@+id/rgHbbTest01"
@@ -127,10 +128,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:background="@color/colorPrimary"
                             android:text="@string/HbbTest02"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp" />
+                            />
 
                         <RadioGroup
                             android:id="@+id/rgHbbTest02"
@@ -190,10 +189,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:background="@color/colorPrimary"
                             android:text="@string/HbbTest03"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp" />
+                            />
 
                         <RadioGroup
                             android:id="@+id/rgHbbTest03"
@@ -253,10 +250,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:background="@color/colorPrimary"
                             android:text="@string/HbbTest04"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp" />
+                            />
 
                         <RadioGroup
                             android:id="@+id/rgHbbTest04"
@@ -316,10 +311,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:background="@color/colorPrimary"
                             android:text="@string/HbbTest05"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp" />
+                            />
 
                         <RadioGroup
                             android:id="@+id/rgHbbTest05"
@@ -379,10 +372,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:background="@color/colorPrimary"
                             android:text="@string/HbbTest06"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp" />
+                            />
 
                         <RadioGroup
                             android:id="@+id/rgHbbTest06"
@@ -442,10 +433,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:background="@color/colorPrimary"
                             android:text="@string/HbbTest07"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp" />
+                            />
 
                         <RadioGroup
                             android:id="@+id/rgHbbTest07"
@@ -505,10 +494,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:background="@color/colorPrimary"
                             android:text="@string/HbbTest08"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp" />
+                            />
 
                         <RadioGroup
                             android:id="@+id/rgHbbTest08"
@@ -568,10 +555,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:background="@color/colorPrimary"
                             android:text="@string/HbbTest09"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp" />
+                            />
 
                         <RadioGroup
                             android:id="@+id/rgHbbTest09"
@@ -631,10 +616,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:background="@color/colorPrimary"
                             android:text="@string/HbbTest10"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp" />
+                            />
 
                         <RadioGroup
                             android:id="@+id/rgHbbTest10"
@@ -694,10 +677,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:background="@color/colorPrimary"
                             android:text="@string/HbbTest11"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp" />
+                            />
 
                         <RadioGroup
                             android:id="@+id/rgHbbTest11"
@@ -757,10 +738,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:background="@color/colorPrimary"
                             android:text="@string/HbbTest12"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp" />
+                            />
 
                         <RadioGroup
                             android:id="@+id/rgHbbTest12"
@@ -820,10 +799,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:background="@color/colorPrimary"
                             android:text="@string/HbbTest13"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp" />
+                            />
 
                         <RadioGroup
                             android:id="@+id/rgHbbTest13"
@@ -883,10 +860,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:background="@color/colorPrimary"
                             android:text="@string/HbbTest14"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp" />
+                            />
 
                         <RadioGroup
                             android:id="@+id/rgHbbTest14"
@@ -946,10 +921,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:background="@color/colorPrimary"
                             android:text="@string/HbbTest15"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp" />
+                            />
 
                         <RadioGroup
                             android:id="@+id/rgHbbTest15"
@@ -1009,10 +982,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:background="@color/colorPrimary"
                             android:text="@string/HbbTest16"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp" />
+                            />
 
                         <RadioGroup
                             android:id="@+id/rgHbbTest16"
@@ -1072,10 +1043,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:background="@color/colorPrimary"
                             android:text="@string/HbbTest17"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp" />
+                            />
 
                         <RadioGroup
                             android:id="@+id/rgHbbTest17"

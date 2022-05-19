@@ -44,10 +44,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:background="@color/colorPrimaryDark"
                             android:text="@string/district_name"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp" />
+                            />
 
 
                         <TextView
@@ -76,10 +74,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:background="@color/colorPrimaryDark"
                             android:text="@string/hfac_name"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp" />
+                            />
 
 <!--                        <Spinner-->
 <!--                            android:id="@+id/healthFacSpinner"-->
@@ -112,10 +108,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:background="@color/colorPrimaryDark"
                             android:text="@string/doc_name"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp" />
+                            />
 
 
                         <!--<Spinner-->
@@ -150,10 +144,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:background="@color/colorPrimaryDark"
                             android:text="@string/provider_id"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp" />
+                            />
 
 
                         <EditText

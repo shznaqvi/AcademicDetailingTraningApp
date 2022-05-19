@@ -54,10 +54,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:background="@color/colorPrimaryDark"
                             android:text="Provider's Name"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp" />
+                            />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -110,10 +108,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
-                                android:background="@color/colorPrimaryDark"
                                 android:text="@string/book_date"
-                                android:textColor="@android:color/white"
-                                android:textSize="20sp" />
+                                />
 
                             <io.blackbox_vision.datetimepickeredittext.view.DatePickerInputEditText
                                 android:id="@+id/book_date"
@@ -144,10 +140,8 @@
 
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
-                                android:background="@color/colorPrimaryDark"
                                 android:text="@string/book_time"
-                                android:textColor="@android:color/white"
-                                android:textSize="20sp" />
+                                />
 
                             <io.blackbox_vision.datetimepickeredittext.view.TimePickerInputEditText
                                 android:id="@+id/book_time"
@@ -178,10 +172,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:background="@color/colorPrimaryDark"
                             android:text="Select Module"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp" />
+                            />
 
                         <Spinner
                             android:id="@+id/modules"
@@ -238,10 +230,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:background="@color/colorPrimaryDark"
                             android:text="Session"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp" />
+                            />
 
                         <Spinner
                             android:id="@+id/sessions"
@@ -266,10 +256,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:background="@color/colorPrimaryDark"
                             android:text="Booking Type"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp" />
+                            />
 
                         <Spinner
                             android:id="@+id/bookingType"

@@ -8,22 +8,33 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkCapabilities;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.Settings;
-import android.support.v4.app.ActivityCompat;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.core.app.ActivityCompat;
+
+import net.sqlcipher.database.SQLiteDatabase;
+
+import org.json.JSONArray;
 
 import java.io.File;
 import java.math.BigDecimal;
@@ -36,10 +47,11 @@ import java.util.Date;
 import java.util.List;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.DistrictsContract;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.FormsContract;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.NextMeetingContract;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.District;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.Forms;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.NextMeeting;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.Result;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.Users;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.EndingActivity;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.ViewPagerActivity;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
@@ -48,21 +60,21 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
 
 public class MainApp extends Application {
 
+    public static final String _IP = "https://vcoe1.aku.edu";// .LIVE server
+    // public static final String _IP = "https://cls-pae-fp51764";// .TEST server
+    // public static final String _IP = "http://f49461:8080/prosystem";// .TEST server
+    //public static final String _IP = "http://43.245.131.159:8080";// .TEST server
+    public static final String _HOST_URL = MainApp._IP + "/uen_ad/api/";// .TEST server;
+    public static final String _SERVER_URL = "syncenc.php";
+    public static final String _USER_URL = "resetpassword.php";
+    public static final String _SERVER_GET_URL = "getDataEnc.php";
+    public static final String _PHOTO_UPLOAD_URL = _HOST_URL + "uploads.php";
+    public static final String _UPDATE_URL = MainApp._IP + "/uen_ad/app/";
+    public static final String _APP_FOLDER = "app/";
+    public static final String _EMPTY_ = "";
+    private static final String TAG = "MainApp";
+    public static String IBAHC = "";
 
-    //    http://f38158/phpwebapi/uenad/api/
-//    public static final String _IP = "43.245.131.159"; // Test PHP server
-    public static final String _IP = "vcoe1.aku.edu/"; // Test PHP server
-    //    public static final String _IP = "f38158/"; // Test PHP server
-    public static final Integer _PORT = 8080; // Port - with colon (:)
-    //    public static final String _HOST_URL = "https://" + MainApp._IP + "uen_ad/api/";
-    public static final String _HOST_URL = "https://" + MainApp._IP + "uen_ad/api/";
-    // public static final String TEST_URL = "http://" + MainApp._IP + ":" + MainApp._PORT + "/leapsup/api/";
-
-    //    public static final String _UPDATE_URL = "http://" + MainApp._IP + ":" + MainApp._PORT + "/wfp_recruit_form/app/app-debug.apk";
-    public static final String _UPDATE_URL = "https://" + MainApp._IP + "/uen_ad/app/";
-
-    public static final Integer MONTHS_LIMIT = 11;
-    public static final Integer DAYS_LIMIT = 29;
     //public static final long MILLISECONDS_IN_5YEAR = (MILLISECONDS_IN_YEAR + MILLISECONDS_IN_YEAR + MILLISECONDS_IN_YEAR + MILLISECONDS_IN_YEAR + MILLISECONDS_IN_YEAR);
     private static final long MINIMUM_DISTANCE_CHANGE_FOR_UPDATES = 1; // in Meters
     private static final long MINIMUM_TIME_BETWEEN_UPDATES = 1000; // in Milliseconds
@@ -99,25 +111,32 @@ public class MainApp extends Application {
     public static int districtCode = 0;
     public static Boolean admin = false;
     public static String userName = "0000";
-    public static FormsContract fc;
+    public static Forms forms;
     public static Result post_result = new Result();
     public static Result pre_result = new Result();
     public static String IMEI;
     public static String logginTime;
-    public static NextMeetingContract nmc;
+    public static NextMeeting nmc;
     public static boolean isComplete = false;
     public static String type = "";
     public static int[] slides;
     public static String formsUID = "";
-    public static DistrictsContract dContract;
+    public static District dContract;
+    public static DatabaseHelper DbHelper;
+    public static File sdDir;
+    public static List<JSONArray> uploadData;
+    public static String[] downloadData;
+    public static boolean permissionCheck;
+    public static AppInfo appInfo;
+    public static Users user;
+    public static SharedPreferences sharedPref;
+    public static SharedPreferences.Editor editor;
+    public static boolean superuser;
+    public static String selectedDistrict;
 
 
     protected static LocationManager locationManager;
 
-    public static String getTagName(Context mContext) {
-        SharedPreferences sharedPref = mContext.getSharedPreferences("tagName", MODE_PRIVATE);
-        return sharedPref.getString("tagName", null);
-    }
 
     public static Calendar getCalendarDate(String value) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
@@ -208,15 +227,31 @@ public class MainApp extends Application {
         }
     }
 
+    public static Boolean isNetworkAvailable(Context c) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) c.getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            Network nw = connectivityManager.getActiveNetwork();
+            if (nw == null) return false;
+            NetworkCapabilities actNw = connectivityManager.getNetworkCapabilities(nw);
+            return actNw != null && (actNw.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) || actNw.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) || actNw.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) || actNw.hasTransport(NetworkCapabilities.TRANSPORT_BLUETOOTH));
+        } else {
+            NetworkInfo nwInfo = connectivityManager.getActiveNetworkInfo();
+            return nwInfo != null && nwInfo.isConnected();
+        }
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
+        appInfo = new AppInfo(this);
+
 //        TypefaceUtil.overrideFont(getApplicationContext(), "SERIF", "fonts/JameelNooriNastaleeq.ttf"); // font from assets: "assets/fonts/Roboto-Regular.ttf
 //        TypefaceUtil.overrideFont(getApplicationContext(), "SERIF", "fonts/MBLateefi.ttf"); // font from assets: "assets/fonts/Roboto-Regular.ttf
-
+        DbHelper = new DatabaseHelper(this);
         deviceId = Settings.Secure.getString(getApplicationContext().getContentResolver(),
                 Settings.Secure.ANDROID_ID);
-
+        sharedPref = getSharedPreferences(DatabaseHelper.PROJECT_NAME, MODE_PRIVATE);
+        editor = sharedPref.edit();
 
 //         Requires Permission for GPS -- android.permission.ACCESS_FINE_LOCATION
 //         Requires Additional permission for 5.0 -- android.hardware.location.gps
@@ -231,7 +266,7 @@ public class MainApp extends Application {
         } else {
             requestLocationUpdate();
         }
-
+        initSecure();
     }
 
     public void requestLocationUpdate() {
@@ -251,6 +286,8 @@ public class MainApp extends Application {
                 MINIMUM_DISTANCE_CHANGE_FOR_UPDATES,
                 new GPSLocationListener() // Implement this class from code
         );
+        sdDir = new File(Environment.getExternalStorageDirectory() + File.separator + "DMU-ACADDETAIL");
+
     }
 
 
@@ -402,9 +439,9 @@ public class MainApp extends Application {
         Button no = view.findViewById(R.id.no);
         TextView text = view.findViewById(R.id.text);
         text.setText(message);
-        android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context);
+        androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(context);
         builder.setView(view);
-        final android.support.v7.app.AlertDialog dialog = builder.create();
+        final androidx.appcompat.app.AlertDialog dialog = builder.create();
         dialog.show();
         yes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -439,9 +476,9 @@ public class MainApp extends Application {
         Button no = view.findViewById(R.id.no);
         TextView text = view.findViewById(R.id.text);
         text.setText(message);
-        android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context);
+        androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(context);
         builder.setView(view);
-        final android.support.v7.app.AlertDialog dialog = builder.create();
+        final androidx.appcompat.app.AlertDialog dialog = builder.create();
         dialog.show();
         yes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -478,7 +515,7 @@ public class MainApp extends Application {
         TextView finalText = view.findViewById(R.id.finalText);
         TextView wrong = view.findViewById(R.id.wrong);
 
-        percentage.setText(String.valueOf(MainApp.roundOffFigure(result.getPercentage(), 2) + "%"));
+        percentage.setText(MainApp.roundOffFigure(result.getPercentage(), 2) + "%");
         correct.setText(String.valueOf(correct_number));
         wrong.setText(String.valueOf(wrong_number));
         ImageView icon = view.findViewById(R.id.resultImage);
@@ -495,9 +532,9 @@ public class MainApp extends Application {
             finalText.setText("Awesome!");
             finalText.setTextColor(context.getResources().getColor(R.color.colorPrimary));
         }
-        android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context);
+        androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(context);
         builder.setView(view);
-        final android.support.v7.app.AlertDialog dialog = builder.create();
+        final androidx.appcompat.app.AlertDialog dialog = builder.create();
         dialog.show();
         okay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -523,4 +560,20 @@ public class MainApp extends Application {
     }
 
 
+    private void initSecure() {
+        // Initialize SQLCipher library
+        SQLiteDatabase.loadLibs(this);
+
+        // Prepare encryption KEY
+        ApplicationInfo ai = null;
+        try {
+            ai = getPackageManager().getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA);
+            Bundle bundle = ai.metaData;
+            int TRATS = bundle.getInt("YEK_TRATS");
+            IBAHC = bundle.getString("YEK_REVRES").substring(TRATS, TRATS + 16);
+            Log.d(TAG, "onCreate: YEK_REVRES = " + IBAHC);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 }

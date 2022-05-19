@@ -31,7 +31,7 @@ public interface API {
     @GET("api/providers.php")
     Call<ResponseBody> synHPData();
 
-    @GET("api/users.php")
+    @GET("api/user.php")
     Call<ResponseBody> getUsers();
 
     @GET("app/output.json")

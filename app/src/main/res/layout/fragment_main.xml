@@ -230,7 +230,7 @@
                                android:orientation="horizontal">
 
 
-                               <android.support.v7.widget.CardView
+                               <androidx.cardview.widget.CardView
                                    android:id="@+id/startTraining"
                                    android:layout_width="0dp"
                                    android:layout_height="match_parent"
@@ -265,9 +265,9 @@
 
                                    </RelativeLayout>
 
-                               </android.support.v7.widget.CardView>
+                               </androidx.cardview.widget.CardView>
 
-                               <android.support.v7.widget.CardView
+                               <androidx.cardview.widget.CardView
                                    android:visibility="gone"
                                    android:id="@+id/openDB"
                                    android:layout_width="0dp"
@@ -302,7 +302,7 @@
 
                                    </RelativeLayout>
 
-                               </android.support.v7.widget.CardView>
+                               </androidx.cardview.widget.CardView>
                            </LinearLayout>
 
                        </LinearLayout>
@@ -313,7 +313,7 @@
                            android:orientation="horizontal">
 
 
-                           <android.support.v7.widget.CardView
+                           <androidx.cardview.widget.CardView
                                android:id="@+id/scheduleAppointment"
                                android:layout_width="0dp"
                                android:layout_height="match_parent"
@@ -348,9 +348,9 @@
 
                                </RelativeLayout>
 
-                           </android.support.v7.widget.CardView>
+                           </androidx.cardview.widget.CardView>
 
-                           <android.support.v7.widget.CardView
+                           <androidx.cardview.widget.CardView
                                android:id="@+id/syncAppoint"
                                android:layout_width="0dp"
                                android:layout_height="match_parent"
@@ -385,7 +385,7 @@
 
                                </RelativeLayout>
 
-                           </android.support.v7.widget.CardView>
+                           </androidx.cardview.widget.CardView>
 
 
 
@@ -405,7 +405,7 @@
                                android:orientation="horizontal">
 
 
-                               <android.support.v7.widget.CardView
+                               <androidx.cardview.widget.CardView
                                    android:id="@+id/uploadData"
                                    android:layout_width="0dp"
                                    android:layout_height="match_parent"
@@ -440,11 +440,11 @@
 
                                    </RelativeLayout>
 
-                               </android.support.v7.widget.CardView>
+                               </androidx.cardview.widget.CardView>
 
 
 
-                               <android.support.v7.widget.CardView
+                               <androidx.cardview.widget.CardView
                                    android:id="@+id/downloadVideo"
                                    android:visibility="gone"
                                    android:layout_width="0dp"
@@ -480,7 +480,7 @@
 
                                    </RelativeLayout>
 
-                               </android.support.v7.widget.CardView>
+                               </androidx.cardview.widget.CardView>
 
                            </LinearLayout>
 

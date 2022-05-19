@@ -1,28 +1,29 @@
 package detail.acad.hassannaqvi.edu.aku.academicdetailing.ui;
 
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.isComplete;
+
 import android.content.SharedPreferences;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.viewpager.widget.ViewPager;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.adapters.Adapter;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.SessionContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.CONSTANTS;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityViewPagerBinding;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.Session;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Utils;
-
-import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.isComplete;
 
 //import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.slides;
 
@@ -150,7 +151,7 @@ public class ViewPagerActivity extends AppCompatActivity {
     private void saveDB() {
 
         SharedPreferences sharedPref = getSharedPreferences("tagName", MODE_PRIVATE);
-        SessionContract sC = new SessionContract();
+        Session sC = new Session();
         sC.setModule(subMenuDT.getModuleCode());
         sC.setSession(subMenuDT.getSessionCode());
         sC.setSlideNumber(lastItemPosition);

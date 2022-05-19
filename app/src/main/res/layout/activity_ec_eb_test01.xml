@@ -18,9 +18,11 @@
         android:orientation="vertical">
 
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             style="@style/cardView"
             android:layout_marginStart="10dp"
+            android:layout_marginBottom="24dp"
+            android:elevation="24dp"
             android:layout_marginEnd="10dp">
 
             <RelativeLayout
@@ -34,13 +36,14 @@
                     android:background="@color/colorPrimaryDark"
                     android:gravity="center"
                     android:text="PRETEST"
+                    android:minHeight="52dp"
                     android:textColor="@android:color/white"
                     android:textSize="25sp" />
 
             </RelativeLayout>
 
 
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
         <ScrollView
             android:layout_width="match_parent"
@@ -54,7 +57,7 @@
                 android:orientation="vertical">
 
                 <!--QA01-->
-                <android.support.v7.widget.CardView style="@style/cardView">
+                <androidx.cardview.widget.CardView style="@style/cardView">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -66,10 +69,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:background="@color/colorPrimary"
                             android:text="@string/ecebA01"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp" />
+                    />
 
                         <RadioGroup
                             android:id="@+id/rgEcebA01"
@@ -114,10 +115,10 @@
                     </LinearLayout>
 
 
-                </android.support.v7.widget.CardView>
+                </androidx.cardview.widget.CardView>
 
                 <!--QA02-->
-                <android.support.v7.widget.CardView style="@style/cardView">
+                <androidx.cardview.widget.CardView style="@style/cardView">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -129,10 +130,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:background="@color/colorPrimary"
                             android:text="@string/ecebA02"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp" />
+                           />
 
                         <RadioGroup
                             android:id="@+id/rgEcebA02"
@@ -177,10 +176,10 @@
                     </LinearLayout>
 
 
-                </android.support.v7.widget.CardView>
+                </androidx.cardview.widget.CardView>
 
                 <!--QA03-->
-                <android.support.v7.widget.CardView style="@style/cardView">
+                <androidx.cardview.widget.CardView style="@style/cardView">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -192,10 +191,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:background="@color/colorPrimary"
                             android:text="@string/ecebA03"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp" />
+                />
 
                         <RadioGroup
                             android:id="@+id/rgEcebA03"
@@ -240,10 +237,10 @@
                     </LinearLayout>
 
 
-                </android.support.v7.widget.CardView>
+                </androidx.cardview.widget.CardView>
 
                 <!--QA04-->
-                <android.support.v7.widget.CardView style="@style/cardView">
+                <androidx.cardview.widget.CardView style="@style/cardView">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -255,10 +252,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:background="@color/colorPrimary"
                             android:text="@string/ecebA04"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp" />
+                  />
 
                         <RadioGroup
                             android:id="@+id/rgEcebA04"
@@ -303,10 +298,10 @@
                     </LinearLayout>
 
 
-                </android.support.v7.widget.CardView>
+                </androidx.cardview.widget.CardView>
 
                 <!--QA05-->
-                <android.support.v7.widget.CardView style="@style/cardView">
+                <androidx.cardview.widget.CardView style="@style/cardView">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -318,10 +313,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:background="@color/colorPrimary"
                             android:text="@string/ecebA05"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp" />
+                            />
 
                         <RadioGroup
                             android:id="@+id/rgEcebA05"
@@ -366,10 +359,10 @@
                     </LinearLayout>
 
 
-                </android.support.v7.widget.CardView>
+                </androidx.cardview.widget.CardView>
 
                 <!--QA06-->
-                <android.support.v7.widget.CardView style="@style/cardView">
+                <androidx.cardview.widget.CardView style="@style/cardView">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -381,10 +374,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:background="@color/colorPrimary"
                             android:text="@string/ecebA06"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp" />
+                           />
 
                         <RadioGroup
                             android:id="@+id/rgEcebA06"
@@ -429,10 +420,10 @@
                     </LinearLayout>
 
 
-                </android.support.v7.widget.CardView>
+                </androidx.cardview.widget.CardView>
 
                 <!--QA07-->
-                <android.support.v7.widget.CardView style="@style/cardView">
+                <androidx.cardview.widget.CardView style="@style/cardView">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -444,10 +435,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:background="@color/colorPrimary"
                             android:text="@string/ecebA07"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp" />
+                            />
 
                         <RadioGroup
                             android:id="@+id/rgEcebA07"
@@ -492,10 +481,10 @@
                     </LinearLayout>
 
 
-                </android.support.v7.widget.CardView>
+                </androidx.cardview.widget.CardView>
 
                 <!--QA08-->
-                <android.support.v7.widget.CardView style="@style/cardView">
+                <androidx.cardview.widget.CardView style="@style/cardView">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -507,10 +496,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:background="@color/colorPrimary"
                             android:text="@string/ecebA08"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp" />
+                       />
 
                         <RadioGroup
                             android:id="@+id/rgEcebA08"
@@ -555,10 +542,10 @@
                     </LinearLayout>
 
 
-                </android.support.v7.widget.CardView>
+                </androidx.cardview.widget.CardView>
 
                 <!--QA09-->
-                <android.support.v7.widget.CardView style="@style/cardView">
+                <androidx.cardview.widget.CardView style="@style/cardView">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -570,10 +557,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:background="@color/colorPrimary"
                             android:text="@string/ecebA09"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp" />
+                            />
 
                         <RadioGroup
                             android:id="@+id/rgEcebA09"
@@ -618,10 +603,10 @@
                     </LinearLayout>
 
 
-                </android.support.v7.widget.CardView>
+                </androidx.cardview.widget.CardView>
 
                 <!--QA10-->
-                <android.support.v7.widget.CardView style="@style/cardView">
+                <androidx.cardview.widget.CardView style="@style/cardView">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -633,10 +618,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:background="@color/colorPrimary"
                             android:text="@string/ecebA10"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp" />
+                             />
 
                         <RadioGroup
                             android:id="@+id/rgEcebA10"
@@ -681,10 +664,10 @@
                     </LinearLayout>
 
 
-                </android.support.v7.widget.CardView>
+                </androidx.cardview.widget.CardView>
 
                 <!--QA11-->
-                <android.support.v7.widget.CardView style="@style/cardView">
+                <androidx.cardview.widget.CardView style="@style/cardView">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -696,10 +679,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:background="@color/colorPrimary"
                             android:text="@string/ecebA11"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp" />
+                            />
 
                         <RadioGroup
                             android:id="@+id/rgEcebA11"
@@ -744,10 +725,10 @@
                     </LinearLayout>
 
 
-                </android.support.v7.widget.CardView>
+                </androidx.cardview.widget.CardView>
 
                 <!--QA12-->
-                <android.support.v7.widget.CardView style="@style/cardView">
+                <androidx.cardview.widget.CardView style="@style/cardView">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -759,10 +740,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:background="@color/colorPrimary"
                             android:text="@string/ecebA12"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp" />
+                             />
 
                         <RadioGroup
                             android:id="@+id/rgEcebA12"
@@ -807,10 +786,10 @@
                     </LinearLayout>
 
 
-                </android.support.v7.widget.CardView>
+                </androidx.cardview.widget.CardView>
 
 
-                <!--  = = = = =  END OF FORM FIELDS  = = = = = -->
+            <!--    &lt;!&ndash;  = = = = =  END OF FORM FIELDS  = = = = = &ndash;&gt;
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -829,15 +808,52 @@
                     <Button
                         android:id="@+id/btnOk"
                         style="@style/button1"
-                        android:onClick="@{() -> callback.BtnOk()}"
+                        android:onClick="@{() -> callback.btnOk()}"
                         android:text="Start Training"
                         android:textSize="16sp"
                         android:visibility="gone" />
 
 
-                    <!--'onClick' for btn_End will NOT change and always call 'endInterview'-->
-                </LinearLayout>
+                    &lt;!&ndash;'onClick' for btn_End will NOT change and always call 'endInterview'&ndash;&gt;
+                </LinearLayout>-->
+                <!--EndButton LinearLayout-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="24dp"
+                    android:orientation="horizontal"
+                    android:padding="24dp">
 
+                    <Button
+                        android:id="@+id/btnOk"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:onClick="btnOk"
+                        android:text="Start Training"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="18sp"
+                        android:visibility="invisible"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/btn_Continue"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/capsule"
+                        android:backgroundTint="@color/colorAccent"
+                        android:backgroundTintMode="src_atop"
+                        android:onClick="BtnContinue"
+                        android:text="Proceed"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+                <!--EndButton LinearLayout-->
 
             </LinearLayout>
 

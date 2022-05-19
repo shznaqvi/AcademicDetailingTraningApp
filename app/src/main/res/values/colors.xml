@@ -4,10 +4,9 @@
     <color name="black">#000</color>
     <color name="white">#fff</color>
 
-    <color name="colorPrimary">#43a047</color>
-    <color name="colorPrimaryDark">#2e7d32</color>
-    <color name="colorPrimaryAlpha">#64dd17</color>
-    <color name="colorPrimaryBeta">#00e676</color>
+    <color name="colorPrimary">#206a85</color>
+    <color name="colorPrimaryDark">#05354c</color>
+    <color name="colorPrimaryAlpha">#7f206a85</color>
     <color name="gray">#e6e6e6</color>
 
     <color name="ticker_red">#64dd17</color>
@@ -25,6 +24,8 @@
 
     <color name="darkRed">#D50000</color>
     <color name="lightOrange">#FFE0B2</color>
+    <color name="redLight">#d6ef0000</color>
+    <color name="blackOverlay">#7f000000</color>
 
 
 </resources>

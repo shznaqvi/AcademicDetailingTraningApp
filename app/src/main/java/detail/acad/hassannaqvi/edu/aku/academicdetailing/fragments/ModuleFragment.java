@@ -1,5 +1,7 @@
 package detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments;
 
+import static android.content.Context.ACTIVITY_SERVICE;
+
 import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.app.DownloadManager;
@@ -8,15 +10,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
-import android.databinding.DataBindingUtil;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +24,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
+
 import java.io.File;
 import java.util.List;
 import java.util.Timer;
@@ -32,16 +35,15 @@ import java.util.TimerTask;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.adapters.SlidingImageAdapter;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.FormsContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.CONSTANTS;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.FragmentModuleBinding;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.Forms;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.MainActivity;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Utils;
 
-import static android.content.Context.ACTIVITY_SERVICE;
 
 
 public class ModuleFragment extends Fragment {
@@ -57,7 +59,7 @@ public class ModuleFragment extends Fragment {
     String districtName;
     boolean isAdmin;
     SlidingImageAdapter imageAdapter;
-    FormsContract fc;
+    Forms fc;
     DownloadManager downloadManager;
     Long refID;
     String[] videos;
@@ -82,7 +84,7 @@ public class ModuleFragment extends Fragment {
         view = bi.getRoot();
         districtName = getArguments().getString("district_name");
         isAdmin = getArguments().getBoolean("isAdmin");
-        fc = getArguments().getParcelable("fc");
+        fc = getArguments().getParcelable("forms");
         setupModules();
         initSlider();
 
@@ -252,7 +254,7 @@ public class ModuleFragment extends Fragment {
                 downloadManager = (DownloadManager) getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
                 Cursor cursor = downloadManager.query(query);
                 if (cursor.moveToFirst()) {
-                    int colIndex = cursor.getColumnIndex(DownloadManager.COLUMN_STATUS);
+                    int colIndex = cursor.getColumnIndexOrThrow(DownloadManager.COLUMN_STATUS);
                     if (DownloadManager.STATUS_SUCCESSFUL == cursor.getInt(colIndex)) {
 
                         finalProgress++;

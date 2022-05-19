@@ -1,18 +1,19 @@
-package detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts;
+package detail.acad.hassannaqvi.edu.aku.academicdetailing.model;
 
 import android.database.Cursor;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.provider.BaseColumns;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.TableContracts.FormsTable;
 
 /**
  * Created by hassan.naqvi on 11/30/2016.
  */
 
-public class FormsContract implements Parcelable {
+public class Forms implements Parcelable {
 
     private String projectName = "Academic Detailing Training";
     private String surveyType = "BL";
@@ -57,7 +58,7 @@ public class FormsContract implements Parcelable {
     private String sessionCode = "";
     private String moduleCode = "";
 
-    protected FormsContract(Parcel in) {
+    protected Forms(Parcel in) {
         projectName = in.readString();
         surveyType = in.readString();
         _id = in.readString();
@@ -119,15 +120,15 @@ public class FormsContract implements Parcelable {
         return moduleCode;
     }
 
-    public static final Creator<FormsContract> CREATOR = new Creator<FormsContract>() {
+    public static final Creator<Forms> CREATOR = new Creator<Forms>() {
         @Override
-        public FormsContract createFromParcel(Parcel in) {
-            return new FormsContract(in);
+        public Forms createFromParcel(Parcel in) {
+            return new Forms(in);
         }
 
         @Override
-        public FormsContract[] newArray(int size) {
-            return new FormsContract[size];
+        public Forms[] newArray(int size) {
+            return new Forms[size];
         }
     };
 
@@ -358,7 +359,7 @@ public class FormsContract implements Parcelable {
     private String providerID = "";
 
 
-    public FormsContract() {
+    public Forms() {
     }
 
 
@@ -367,7 +368,7 @@ public class FormsContract implements Parcelable {
         return syncstatus.toString();
     }
 
-    public FormsContract Sync(JSONObject jsonObject) throws JSONException {
+    public Forms Sync(JSONObject jsonObject) throws JSONException {
         this.projectName = jsonObject.getString(FormsTable.COLUMN_PROJECTNAME);
         this.surveyType = jsonObject.getString(FormsTable.COLUMN_SURVEYTYPE);
         this._id = jsonObject.getString(FormsTable.COLUMN_ID);
@@ -396,47 +397,47 @@ public class FormsContract implements Parcelable {
 
     }
 
-    public FormsContract Hydrate(Cursor cursor) {
+    public Forms Hydrate(Cursor cursor) {
 
-        this.projectName = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_PROJECTNAME));
-        this._id = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_ID));
-        this._UID = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_UID));
-        this.username = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_USER));
-        this.devicetagID = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_DEVICETAGID));
-        this.moduleCode = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MODULE_CODE));
-        this.sessionCode = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SESSION_CODE));
-        this.istatus = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_ISTATUS));
-        this.istatus88x = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_ISTATUS88X));
-        this.endingdatetime = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_ENDINGDATETIME));
-        this.gpsLat = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_GPSLAT));
-        this.gpsLng = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_GPSLNG));
-        this.gpsAcc = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_GPSACC));
-        this.gpsTime = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_GPSTIME));
-        this.deviceID = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_DEVICEID));
-        this.appversion = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_APPVERSION));
-        this.districtID = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_DIST_ID));
-        this.healthFacilityCode = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_HFACILITY_NAME));
-        this.providerName = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_PROVIDER_NAME));
-        this.providerID = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_PROVIDER_ID));
-        this.preTestStartTime = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_PRETEST_START_TIME));
-        this.preTestEndTime = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_PRETEST_END_TIME));
-        this.postTestStartTime = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_POSTTEST_START_TIME));
-        this.postTestEndTime = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_POSTTEST_END_TIME));
-        this.sessionStartTime = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SESSION_START_TIME));
-        this.sessionEndTime = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SESSION_END_TIME));
-        this.pre_test = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_PRE_TEST));
-        this.post_test = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_POST_TEST));
-        this.synced = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SYNCED));
-        this.synced_date = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SYNCED_DATE));
-        this.logginTime = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_loggin_TIME));
-        this.formDate = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_FORMDATE));
-        this.total = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_TOTAL));
-        this.score_pre = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SCORE_PRE));
-        this.score_post = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SCORE_POST));
-        this.wrong_pre = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_WRONG_PRE));
-        this.wrong_post = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_WRONG_POST));
-        this.percentage_pre = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_PER_PRE));
-        this.percentage_post = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_PER_POST));
+        this.projectName = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_PROJECTNAME));
+        this._id = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_ID));
+        this._UID = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_UID));
+        this.username = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_USER));
+        this.devicetagID = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_DEVICETAGID));
+        this.moduleCode = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_MODULE_CODE));
+        this.sessionCode = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_SESSION_CODE));
+        this.istatus = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_ISTATUS));
+        this.istatus88x = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_ISTATUS88X));
+        this.endingdatetime = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_ENDINGDATETIME));
+        this.gpsLat = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_GPSLAT));
+        this.gpsLng = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_GPSLNG));
+        this.gpsAcc = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_GPSACC));
+        this.gpsTime = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_GPSTIME));
+        this.deviceID = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_DEVICEID));
+        this.appversion = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_APPVERSION));
+        this.districtID = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_DIST_ID));
+        this.healthFacilityCode = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_HFACILITY_NAME));
+        this.providerName = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_PROVIDER_NAME));
+        this.providerID = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_PROVIDER_ID));
+        this.preTestStartTime = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_PRETEST_START_TIME));
+        this.preTestEndTime = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_PRETEST_END_TIME));
+        this.postTestStartTime = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_POSTTEST_START_TIME));
+        this.postTestEndTime = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_POSTTEST_END_TIME));
+        this.sessionStartTime = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_SESSION_START_TIME));
+        this.sessionEndTime = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_SESSION_END_TIME));
+        this.pre_test = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_PRE_TEST));
+        this.post_test = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_POST_TEST));
+        this.synced = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_SYNCED));
+        this.synced_date = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_SYNCED_DATE));
+        this.logginTime = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_loggin_TIME));
+        this.formDate = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_FORMDATE));
+        this.total = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_TOTAL));
+        this.score_pre = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_SCORE_PRE));
+        this.score_post = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_SCORE_POST));
+        this.wrong_pre = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_WRONG_PRE));
+        this.wrong_post = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_WRONG_POST));
+        this.percentage_pre = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_PER_PRE));
+        this.percentage_post = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_PER_POST));
 
         return this;
 
@@ -714,54 +715,5 @@ public class FormsContract implements Parcelable {
         dest.writeString(sessionCode);
     }
 
-    public static abstract class FormsTable implements BaseColumns {
 
-        public static final String TABLE_NAME = "forms";
-        public static final String COLUMN_NAME_NULLABLE = "NULLHACK";
-        public static final String COLUMN_PROJECTNAME = "projectname";
-        public static final String COLUMN_SURVEYTYPE = "surveytype";
-        public static final String COLUMN_ID = "_id";
-        public static final String COLUMN_UID = "_uid";
-        public static final String COLUMN_FORMDATE = "formDate";
-        public static final String COLUMN_USER = "username";
-        public static final String COLUMN_ISTATUS = "istatus";
-        public static final String COLUMN_ISTATUS88X = "istatus88x";
-        public static final String COLUMN_ENDINGDATETIME = "endingdatetime";
-        public static final String COLUMN_GPSLAT = "gpslat";
-        public static final String COLUMN_GPSLNG = "gpslng";
-        public static final String COLUMN_GPSDT = "gpsdt";
-        public static final String COLUMN_GPSACC = "gpsacc";
-        public static final String COLUMN_GPSTIME = "gps_time";
-        public static final String COLUMN_GPSELEV = "gpselev";
-        public static final String COLUMN_DEVICEID = "deviceID";
-        public static final String COLUMN_DEVICETAGID = "devicetagid";
-        public static final String COLUMN_SYNCED = "synced";
-        public static final String COLUMN_SYNCED_DATE = "synced_date";
-        public static final String COLUMN_APPVERSION = "appversion";
-        public static final String COLUMN_DIST_ID = "dictrict_id";
-        public static final String COLUMN_PROVIDER_NAME = "provider_name";
-        public static final String COLUMN_PROVIDER_ID = "provider_id";
-        public static final String COLUMN_HFACILITY_NAME = "health_fac_name";
-        public static final String COLUMN_PRETEST_START_TIME = "pre_test_start_time";
-        public static final String COLUMN_PRETEST_END_TIME = "pre_test_end_time";
-        public static final String COLUMN_POSTTEST_END_TIME = "post_test_end_time";
-        public static final String COLUMN_POSTTEST_START_TIME = "post_test_start_time";
-        public static final String COLUMN_SESSION_START_TIME = "session_start_time";
-        public static final String COLUMN_SESSION_END_TIME = "session_end_time";
-        public static final String COLUMN_loggin_TIME = "login_time";
-        public static final String COLUMN_PRE_TEST = "pre_test";
-        public static final String COLUMN_POST_TEST = "post_test";
-        public static final String COLUMN_MODULE_CODE = "module_code";
-        public static final String COLUMN_SESSION_CODE = "session_code";
-        public static final String COLUMN_TOTAL = "total";
-        public static final String COLUMN_SCORE_PRE = "pre_correct";
-        public static final String COLUMN_SCORE_POST = "post_correct";
-        public static final String COLUMN_PER_PRE = "pre_percentage";
-        public static final String COLUMN_PER_POST = "post_percentage";
-        public static final String COLUMN_WRONG_PRE = "pre_wrong";
-        public static final String COLUMN_WRONG_POST = "post_wrong";
-        public static final String Form_Url = "forms.php";
-
-
-    }
 }

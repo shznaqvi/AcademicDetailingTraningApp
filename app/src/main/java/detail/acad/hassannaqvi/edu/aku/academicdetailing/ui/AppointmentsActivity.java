@@ -1,30 +1,30 @@
 package detail.acad.hassannaqvi.edu.aku.academicdetailing.ui;
 
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
 import java.util.List;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.adapters.AppointmentListAdapter;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.NextMeetingContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityAppointmentsBinding;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.NextMeeting;
 
 public class AppointmentsActivity extends AppCompatActivity {
 
     ActivityAppointmentsBinding bi;
     AppointmentListAdapter adapter;
     DatabaseHelper db;
-    List<NextMeetingContract> list;
+    List<NextMeeting> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

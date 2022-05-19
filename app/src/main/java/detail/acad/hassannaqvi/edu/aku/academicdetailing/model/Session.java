@@ -1,12 +1,13 @@
-package detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts;
+package detail.acad.hassannaqvi.edu.aku.academicdetailing.model;
 
 import android.database.Cursor;
-import android.provider.BaseColumns;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class SessionContract {
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.TableContracts.SessionTable;
+
+public class Session {
 
     private String session = "";
     private String module = "";
@@ -99,21 +100,21 @@ public class SessionContract {
         return json;
     }
 
-    public SessionContract Hydrate(Cursor cursor) {
+    public Session Hydrate(Cursor cursor) {
 
-        this.session = cursor.getString(cursor.getColumnIndex(SessionTable.COLUMN_SESSION_CODE));
-        this.module = cursor.getString(cursor.getColumnIndex(SessionTable.COLUMN_MODULE_CODE));
-        this.sessionTime = cursor.getString(cursor.getColumnIndex(SessionTable.COLUMN_SESSION_TIME));
-        this.slidenumber = cursor.getInt(cursor.getColumnIndex(SessionTable.COLUMN_SLIDE_NUMBER));
-        this.synced = cursor.getString(cursor.getColumnIndex(SessionTable.COLUMN_SYNCED));
-        this.synced_date = cursor.getString(cursor.getColumnIndex(SessionTable.COLUMN_SYNCED_DATE));
-        this._id = cursor.getString(cursor.getColumnIndex(SessionTable._ID));
-        this.formdate = cursor.getString(cursor.getColumnIndex(SessionTable.COLUMN_FORMDATE));
-        this.deviceid = cursor.getString(cursor.getColumnIndex(SessionTable.COLUMN_DEVICEID));
-        this.username = cursor.getString(cursor.getColumnIndex(SessionTable.COLUMN_USER));
-        this._UID = cursor.getString(cursor.getColumnIndex(SessionTable.COLUMN_UID));
-        this._UUID = cursor.getString(cursor.getColumnIndex(SessionTable.COLUMN_UUID));
-        this.devicetagID = cursor.getString(cursor.getColumnIndex(SessionTable.COLUMN_DEVICETAGID));
+        this.session = cursor.getString(cursor.getColumnIndexOrThrow(SessionTable.COLUMN_SESSION_CODE));
+        this.module = cursor.getString(cursor.getColumnIndexOrThrow(SessionTable.COLUMN_MODULE_CODE));
+        this.sessionTime = cursor.getString(cursor.getColumnIndexOrThrow(SessionTable.COLUMN_SESSION_TIME));
+        this.slidenumber = cursor.getInt(cursor.getColumnIndexOrThrow(SessionTable.COLUMN_SLIDE_NUMBER));
+        this.synced = cursor.getString(cursor.getColumnIndexOrThrow(SessionTable.COLUMN_SYNCED));
+        this.synced_date = cursor.getString(cursor.getColumnIndexOrThrow(SessionTable.COLUMN_SYNCED_DATE));
+        this._id = cursor.getString(cursor.getColumnIndexOrThrow(SessionTable._ID));
+        this.formdate = cursor.getString(cursor.getColumnIndexOrThrow(SessionTable.COLUMN_FORMDATE));
+        this.deviceid = cursor.getString(cursor.getColumnIndexOrThrow(SessionTable.COLUMN_DEVICEID));
+        this.username = cursor.getString(cursor.getColumnIndexOrThrow(SessionTable.COLUMN_USER));
+        this._UID = cursor.getString(cursor.getColumnIndexOrThrow(SessionTable.COLUMN_UID));
+        this._UUID = cursor.getString(cursor.getColumnIndexOrThrow(SessionTable.COLUMN_UUID));
+        this.devicetagID = cursor.getString(cursor.getColumnIndexOrThrow(SessionTable.COLUMN_DEVICETAGID));
 
 
         return this;
@@ -152,23 +153,5 @@ public class SessionContract {
         this.slidenumber = slideNumber;
     }
 
-    public abstract class SessionTable implements BaseColumns{
 
-        public static final String TABLE_NAME = "sessions_table";
-        public static final String _ID = "_id";
-        public static final String COLUMN_UID = "_uid";
-        public static final String COLUMN_UUID = "_uuid";
-        public static final String COLUMN_USER = "username";
-        public static final String COLUMN_DEVICETAGID = "devicetagid";
-        public static final String COLUMN_SESSION_CODE = "session_code";
-        public static final String COLUMN_MODULE_CODE = "module_code";
-        public static final String COLUMN_SESSION_TIME = "session_time";
-        public static final String COLUMN_SLIDE_NUMBER = "slide_number";
-        public static final String COLUMN_SYNCED= "synced";
-        public static final String COLUMN_SYNCED_DATE= "synced_date";
-        public static final String COLUMN_FORMDATE = "formdate";
-        public static final String COLUMN_DEVICEID = "deviceid";
-        public static final String SESSION_URL = "sessions.php";
-
-    }
 }

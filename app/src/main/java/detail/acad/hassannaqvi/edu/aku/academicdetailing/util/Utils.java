@@ -1,5 +1,10 @@
 package detail.acad.hassannaqvi.edu.aku.academicdetailing.util;
 
+import static android.content.Context.MODE_PRIVATE;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.CONSTANTS.URI_DIRECT_VIEWPAGER;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.CONSTANTS.URI_FORM_TYPE;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.CONSTANTS.URI_SUBMENU_DT;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -13,21 +18,16 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.FormsContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.CONSTANTS;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.Forms;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.EndingActivity;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.PlayerActivity;
 
-import static android.content.Context.MODE_PRIVATE;
-import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.CONSTANTS.URI_DIRECT_VIEWPAGER;
-import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.CONSTANTS.URI_FORM_TYPE;
-import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.CONSTANTS.URI_SUBMENU_DT;
-
 public class Utils {
 
-    public static void showPreDialogue(final Context context, final Data.SubMenu subMenu, final FormsContract fc) {
+    public static void showPreDialogue(final Context context, final Data.SubMenu subMenu, final Forms fc) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setCancelable(false);
         View view = LayoutInflater.from(context).inflate(R.layout.dialoge_layout, null);
@@ -37,7 +37,7 @@ public class Utils {
         slide.setImageResource(subMenu.getPreImage());
         builder.setView(view);
         final AlertDialog dialog = builder.create();
-        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        //dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
         dialog.show();
         proceed.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,7 +48,7 @@ public class Utils {
                         .putExtra(URI_FORM_TYPE, "pre")
                         .putExtra(URI_DIRECT_VIEWPAGER, true)
                         .putExtra(URI_SUBMENU_DT, subMenu));
-                MainApp.fc.setSessionStartTime(MainApp.getCurrentTime());
+                MainApp.forms.setSessionStartTime(MainApp.getCurrentTime());
 
                 savingDataIntoDB(context, fc);
                 dialog.dismiss();
@@ -65,10 +65,10 @@ public class Utils {
         });
     }
 
-    public static void savingDataIntoDB(Context context, FormsContract fc) {
+    public static void savingDataIntoDB(Context context, Forms fc) {
         SharedPreferences sharedPref = context.getSharedPreferences("tagName", MODE_PRIVATE);
-        MainApp.fc.setDevicetagID(sharedPref.getString("tagName", null));
-        MainApp.fc.setUsername(MainApp.userName);
+        MainApp.forms.setDevicetagID(sharedPref.getString("tagName", null));
+        MainApp.forms.setUsername(MainApp.userName);
         DatabaseHelper db = new DatabaseHelper(context);
         long rowId = db.addForm(fc);
         if (rowId > 0) {
@@ -96,7 +96,7 @@ public class Utils {
         slide.setImageResource(R.drawable.eclam1051);
         builder.setView(view);
         final AlertDialog dialog = builder.create();
-        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        //dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
         dialog.show();
         proceed.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -157,7 +157,7 @@ public class Utils {
         slide.setImageResource(R.drawable.eclam1051);
         builder.setView(view);
         final AlertDialog dialog = builder.create();
-        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        //dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
         dialog.show();
         proceed.setOnClickListener(new View.OnClickListener() {
             @Override

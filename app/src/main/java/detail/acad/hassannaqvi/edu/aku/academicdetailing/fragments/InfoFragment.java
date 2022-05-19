@@ -3,9 +3,7 @@ package detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +12,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -21,14 +22,14 @@ import java.util.Date;
 import java.util.HashMap;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.DistrictsContract;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.FormsContract;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.HealthFacContract;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.ProviderContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.FragmentInfoBinding;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.interfaces.Callbacks;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.District;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.Forms;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.HealthFacility;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.HealthProvider;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.HideKeyboard;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.validation.validatorClass;
 
@@ -39,15 +40,15 @@ public class InfoFragment extends Fragment {
     FragmentInfoBinding bi;
     View view;
     Callbacks callbacks;
-    Collection<DistrictsContract> distrcitList;
+    Collection<District> distrcitList;
     ArrayList<String> districtNames;
     HashMap<String, Long> districtMap;
 
-    Collection<HealthFacContract> hfList;
+    Collection<HealthFacility> hfList;
     ArrayList<String> hfNames;
     HashMap<String, Long> hfMap;
 
-    Collection<ProviderContract> providerList;
+    Collection<HealthProvider> healthProviderList;
     ArrayList<String> providerNames;
     HashMap<String, Long> providerMap;
 
@@ -88,7 +89,7 @@ public class InfoFragment extends Fragment {
         districtMap = new HashMap<>();
         districtNames.add("-Select District-");
 
-        for (DistrictsContract dc : distrcitList) {
+        for (District dc : distrcitList) {
 
             districtNames.add(dc.getDistrict_name());
             districtMap.put(dc.getDistrict_name(), dc.getDICTRICT_CODE());
@@ -120,7 +121,7 @@ public class InfoFragment extends Fragment {
         hfNames = new ArrayList<>();
         hfNames.add("Select Health Facility Name-");
 
-        for (HealthFacContract hf : hfList) {
+        for (HealthFacility hf : hfList) {
             hfNames.add(hf.getHf_name());
             hfMap.put(hf.getHf_name(), hf.getHf_uen_code());
         }
@@ -134,13 +135,13 @@ public class InfoFragment extends Fragment {
 //                if (bi.healthFacSpinner.getSelectedItemPosition() != 0) {
 //
 //                    hf_uen_code = hfMap.get(bi.healthFacSpinner.getSelectedItem().toString());
-//                    providerList = db.getHPData(hf_uen_code);
+//                    healthProviderList = db.getHPData(hf_uen_code);
 //
 //                    providerNames = new ArrayList<>();
 //                    providerMap = new HashMap<>();
-//                    providerNames.add("-Select Provider Name-");
+//                    providerNames.add("-Select HealthProvider Name-");
 //
-//                    for (ProviderContract pC : providerList) {
+//                    for (HealthProvider pC : healthProviderList) {
 //
 //                        providerNames.add(pC.getHp_name());
 //                        providerMap.put(pC.getHp_name(), pC.getHf_code());
@@ -188,7 +189,7 @@ public class InfoFragment extends Fragment {
                             callbacks.loadScheduleFragment();
                         } else {
                             HideKeyboard.hideKeyboardFragment(getActivity(), getView());
-                            callbacks.loadModuleFragment(MainApp.fc);
+                            callbacks.loadModuleFragment(MainApp.forms);
                         }
 
 
@@ -206,15 +207,15 @@ public class InfoFragment extends Fragment {
 
     private void saveDraft() {
 
-        MainApp.fc = new FormsContract();
-        MainApp.fc.setAppversion(MainApp.versionName + "." + MainApp.versionCode);
-        MainApp.fc.setLogginTime(MainApp.logginTime);
-        MainApp.fc.setDeviceID(MainApp.deviceId);
-        MainApp.fc.setFormDate(new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime()));
-        MainApp.fc.setProviderID(bi.providerId.getText().toString());
-        MainApp.fc.setProviderName(bi.hpName.getText().toString());
-        MainApp.fc.setHealthFacilityCode(String.valueOf(hfMap.get(bi.hfName.getText().toString())));
-        MainApp.fc.setDistrictID(String.valueOf(MainApp.dContract.getDICTRICT_CODE()));
+        MainApp.forms = new Forms();
+        MainApp.forms.setAppversion(MainApp.versionName + "." + MainApp.versionCode);
+        MainApp.forms.setLogginTime(MainApp.logginTime);
+        MainApp.forms.setDeviceID(MainApp.deviceId);
+        MainApp.forms.setFormDate(new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime()));
+        MainApp.forms.setProviderID(bi.providerId.getText().toString());
+        MainApp.forms.setProviderName(bi.hpName.getText().toString());
+        MainApp.forms.setHealthFacilityCode(String.valueOf(hfMap.get(bi.hfName.getText().toString())));
+        MainApp.forms.setDistrictID(String.valueOf(MainApp.dContract.getDICTRICT_CODE()));
         MainApp.providerName = bi.hpName.getText().toString();
 
         setGPS();
@@ -239,10 +240,10 @@ public class InfoFragment extends Fragment {
 
             String date = DateFormat.format("dd-MM-yyyy HH:mm", Long.parseLong(dt)).toString();
 
-            MainApp.fc.setGpsLat(lat);
-            MainApp.fc.setGpsLng(lang);
-            MainApp.fc.setGpsAcc(acc);
-            MainApp.fc.setGpsTime(date); // Timestamp is converted to book_date above
+            MainApp.forms.setGpsLat(lat);
+            MainApp.forms.setGpsLng(lang);
+            MainApp.forms.setGpsAcc(acc);
+            MainApp.forms.setGpsTime(date); // Timestamp is converted to book_date above
 
             Toast.makeText(getActivity(), "GPS set", Toast.LENGTH_SHORT).show();
 

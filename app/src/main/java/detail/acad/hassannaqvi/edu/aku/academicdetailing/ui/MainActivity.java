@@ -1,32 +1,25 @@
 package detail.acad.hassannaqvi.edu.aku.academicdetailing.ui;
 
-import android.app.ActivityManager;
 import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.DialogFragment;
 import android.app.DownloadManager;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.databinding.DataBindingUtil;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.kaopiz.kprogresshud.KProgressHUD;
 
@@ -38,16 +31,9 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.RetrofitClient.RetrofitClient;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.DistrictsContract;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.FormsContract;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.NextMeetingContract;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.SessionContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.AndroidDatabaseManager;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.CONSTANTS;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityMainBinding;
@@ -56,7 +42,7 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments.MainFragment;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments.ModuleFragment;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments.ScheduleFragment;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.interfaces.Callbacks;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.sync.SyncAllData;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.Forms;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -69,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ActivityMainBinding bi;
     boolean exit = false;
     DatabaseHelper db;
-    Collection<FormsContract> dbData;
+    Collection<Forms> dbData;
     KProgressHUD hud;
     Call<ResponseBody> call = null;
     SharedPreferences sharedPref;
@@ -94,7 +80,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         MainApp.logginTime = MainApp.getCurrentTime();
         hud = KProgressHUD.create(this).setCancellable(false).setStyle(KProgressHUD.Style.SPIN_INDETERMINATE);
         db = new DatabaseHelper(this);
-
+        setSupportActionBar(bi.toolbar);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
         loadHomeFragment();
 
         loadTagDialog();
@@ -199,7 +186,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    public void loadModuleFragment(FormsContract fc) {
+    public void loadModuleFragment(Forms fc) {
         loadFragment(fc, new ModuleFragment());
     }
 
@@ -209,18 +196,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
+
     @Override
     public void uploadDataToServer() {
 
-        DatabaseHelper db = new DatabaseHelper(this);
+       /* DatabaseHelper db = new DatabaseHelper(this);
 
         Toast.makeText(getApplicationContext(), "Syncing Forms", Toast.LENGTH_SHORT).show();
         new SyncAllData(
                 this,
                 "Forms",
                 "updateSyncedForms",
-                FormsContract.class,
-                MainApp._HOST_URL + FormsContract.FormsTable.Form_Url,
+                Forms.class,
+                MainApp._HOST_URL + FormsTable.Form_Url,
                 db.getUnsyncedForms()
         ).execute();
 
@@ -228,8 +216,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 this,
                 "Sessions ",
                 "updateSyncedSessionForms",
-                SessionContract.class,
-                MainApp._HOST_URL + SessionContract.SessionTable.SESSION_URL,
+                Session.class,
+                MainApp._HOST_URL + SessionTable.SESSION_URL,
                 db.getUnsyncedSessions()
         ).execute();
 
@@ -237,8 +225,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 this,
                 "Next Meeting Schedule",
                 "updateSyncedNMSForms",
-                NextMeetingContract.class,
-                MainApp._HOST_URL + NextMeetingContract.NMCTable.nms_Url,
+                NextMeeting.class,
+                MainApp._HOST_URL + NextMeetingTable.nms_Url,
                 db.getUnsyncedNextMeetingForm()
         ).execute();
 
@@ -248,7 +236,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         editor.putString("LastUpSyncServer", dtToday);
 
         editor.apply();
-
+*/
 
     }
 
@@ -258,7 +246,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         getHfDataFromServer();
 
     }
-
     @Override
     public void loadInfo() {
 
@@ -278,15 +265,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void uploadAppointment() {
+/*
 
         new SyncAllData(
                 this,
                 "Appointment",
                 "updateSyncedNMSForms",
-                NextMeetingContract.class,
+                NextMeeting.class,
                 MainApp._HOST_URL + CONSTANTS.appointmentURL,
                 db.getUnsyncedNextMeetingForm()
         ).execute();
+*/
 
 
     }
@@ -333,7 +322,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         transaction.commit();
     }
 
-    private void loadFragment(FormsContract fc, Fragment fragment) {
+    private void loadFragment(Forms fc, Fragment fragment) {
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         if (fragment.getClass().getName().equals(MainFragment.class.getName())) {
@@ -346,7 +335,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Bundle bundle = new Bundle();
         bundle.putString("district_name", MainApp.districtName);
         bundle.putBoolean("isAdmin", MainApp.admin);
-        bundle.putParcelable("fc", fc);
+        bundle.putParcelable("forms", fc);
         fragment.setArguments(bundle);
         transaction.addToBackStack(null);
         transaction.commit();
@@ -381,9 +370,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         final JSONArray array = new JSONArray(data);
 
                         if (dataType.equals("hf")) {
-                            db.syncHF(array);
+                     //       db.syncHF(array);
                         } else {
-                            db.syncHP(array);
+                        //    db.syncHP(array);
                         }
                         Toast.makeText(MainActivity.this, "Successfully Downloaded", Toast.LENGTH_SHORT).show();
                         hud.dismiss();
@@ -408,4 +397,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent = null;
+        switch (item.getItemId()) {
+            case R.id.action_database:
+                intent = new Intent(MainActivity.this, AndroidDatabaseManager.class);
+                startActivity(intent);
+                break;
+
+            case R.id.onSync:
+                intent = new Intent(MainActivity.this, SyncActivity.class);
+                startActivity(intent);
+                break;
+
+            case R.id.changePassword:
+                intent = new Intent(MainActivity.this, ChangePasswordActivity.class);
+                startActivity(intent);
+                break;
+
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.item_menu, menu);
+        MenuItem action_database = menu.findItem(R.id.action_database);
+
+        action_database.setVisible(MainApp.admin);
+        return true;
+
+    }
 }

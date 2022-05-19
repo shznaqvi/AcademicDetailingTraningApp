@@ -1,5 +1,6 @@
 package detail.acad.hassannaqvi.edu.aku.academicdetailing.ui;
 
+
 import android.app.AlertDialog;
 import android.app.DownloadManager;
 import android.app.ProgressDialog;
@@ -7,8 +8,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ActivityInfo;
 import android.database.Cursor;
-import android.databinding.DataBindingUtil;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -17,10 +18,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -32,10 +29,22 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.exoplayer2.ExoPlayer;
+import com.google.android.exoplayer2.MediaItem;
+import com.google.android.exoplayer2.Player;
+import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
+import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
+import com.google.android.exoplayer2.upstream.RawResourceDataSource;
+import com.google.android.exoplayer2.util.EventLogger;
+
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
@@ -49,6 +58,8 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
 public class DownloadVideoActivity extends AppCompatActivity {
 
     ActivityDownloadVideoBinding bi;
+    ExoPlayer player;
+
     VideoItemsAdapter mAdapter;
     List<String> existVideos;
     DownloadManager downloadManager;
@@ -67,7 +78,7 @@ public class DownloadVideoActivity extends AppCompatActivity {
                 downloadManager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
                 Cursor cursor = downloadManager.query(query);
                 if (cursor.moveToFirst()) {
-                    int colIndex = cursor.getColumnIndex(DownloadManager.COLUMN_STATUS);
+                    int colIndex = cursor.getColumnIndexOrThrow(DownloadManager.COLUMN_STATUS);
                     if (DownloadManager.STATUS_SUCCESSFUL == cursor.getInt(colIndex)) {
                         dialog.dismiss();
 
@@ -84,7 +95,6 @@ public class DownloadVideoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         bi = DataBindingUtil.setContentView(this, R.layout.activity_download_video);
-        bi.setCallback(this);
 
         modules = new ArrayList<>();
 
@@ -146,7 +156,7 @@ public class DownloadVideoActivity extends AppCompatActivity {
                 // populate recycler_view
                 if (i != 0)
                     modulePosition = i;
-                    new populateRecyclerView(DownloadVideoActivity.this, i).execute();
+                new populateRecyclerView(DownloadVideoActivity.this, i).execute();
             }
 
             @Override
@@ -266,10 +276,21 @@ public class DownloadVideoActivity extends AppCompatActivity {
         }
     }
 
+    private String[] getStringArray(int position) {
+        switch (position) {
+            case 1:
+                return Data.childVideos;
+            case 2:
+                return Data.newBornVideos;
+            default:
+                return new String[]{};
+        }
+    }
+
     //    Recycler classes
     private static class RecyclerItemClickListener implements RecyclerView.OnItemTouchListener {
         GestureDetector mGestureDetector;
-        private OnItemClickListener mListener;
+        private final OnItemClickListener mListener;
         private RecyclerView viewRecycle;
 
         public RecyclerItemClickListener(Context context, OnItemClickListener listener) {
@@ -320,21 +341,10 @@ public class DownloadVideoActivity extends AppCompatActivity {
 
     }
 
-    private String[] getStringArray(int position) {
-        switch (position) {
-            case 1:
-                return Data.childVideos;
-            case 2:
-                return Data.newBornVideos;
-            default:
-                return new String[]{};
-        }
-    }
-
     private class VideoItemsAdapter extends RecyclerView.Adapter<VideoItemsAdapter.MyViewHolder> {
 
         MyViewHolder holder;
-        private String[] videosList;
+        private final String[] videosList;
 
         public VideoItemsAdapter(String[] videosList) {
             this.videosList = videosList;
@@ -371,7 +381,8 @@ public class DownloadVideoActivity extends AppCompatActivity {
             public void bindUser(String mname) {
                 videoItemBinding.movieName.setText(getVideoItemName(mname));
                 if (MainApp.checkVideoExist(bi.modNSpinner.getSelectedIndex(), mname)) {
-                    videoItemBinding.downloadImage.setImageResource(R.drawable.ic_check_circle);
+                    videoItemBinding.downloadImage.setImageResource(R.drawable.ic_check);
+                    videoItemBinding.vdoStatus.setVisibility(View.VISIBLE);
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
                         videoItemBinding.movieName.setTextColor(getColor(R.color.colorPrimary));
                     else
@@ -384,10 +395,10 @@ public class DownloadVideoActivity extends AppCompatActivity {
     }
 
     private class populateRecyclerView extends AsyncTask<String, String, String> {
-        private Context mContext;
-        private int position;
+        private final Context mContext;
+        private final int position;
         private String moduleName;
-        private ProgressDialog pd;
+        private final ProgressDialog pd;
 
         public populateRecyclerView(Context mContext, int position) {
             this.mContext = mContext;
@@ -407,7 +418,7 @@ public class DownloadVideoActivity extends AppCompatActivity {
                 public void run() {
 //              Set Recycler View
                     mAdapter = new VideoItemsAdapter(getStringArray(modules.get(position).equals("CHILD MODULE") ? 1 : modules.get(position).equals("NEWBORN MODULE") ? 2 : 0));
-                    RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(mContext, 2);
+                    RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(mContext, 1);
                     bi.modVidRecycler.setLayoutManager(mLayoutManager);
                     bi.modVidRecycler.setItemAnimator(new DefaultItemAnimator());
                 }
@@ -429,4 +440,52 @@ public class DownloadVideoActivity extends AppCompatActivity {
         }
     }
 
+    private void showVideo() {
+        player = new ExoPlayer.Builder(this).build();
+
+        // Bind the player to the view.
+        bi.playerView.setPlayer(player);
+        DefaultTrackSelector trackSelector = new DefaultTrackSelector(this);
+
+        player.addAnalyticsListener(new EventLogger(trackSelector));
+        // Build the media item.
+        Uri videoUri = RawResourceDataSource.buildRawResourceUri(R.raw.gds01);
+
+
+        MediaItem mediaItem = MediaItem.fromUri(videoUri);
+// Set the media item to be played.
+        player.setMediaItem(mediaItem);
+// Prepare the player.
+        player.prepare();
+// Start the playback.
+        player.play();
+
+        player.addListener(new Player.Listener() {
+
+            @Override
+            public void onPlaybackStateChanged(@Player.State int state) {
+                if (state == Player.STATE_ENDED) {
+
+                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                    bi.playerView.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_FIT);
+
+                } else {
+                    bi.playerView.hideController();
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onStop(){
+        super.onStop();
+        player.release();
+    }
+
+
+    public void openFullScreen(View view) {
+
+        bi.playerView.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_FILL);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+    }
 }

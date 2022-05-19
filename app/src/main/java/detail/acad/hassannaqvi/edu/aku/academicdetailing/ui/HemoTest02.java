@@ -1,11 +1,17 @@
 package detail.acad.hassannaqvi.edu.aku.academicdetailing.ui;
 
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.isComplete;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.post_result;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.pre_result;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.type;
+
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 import org.json.JSONObject;
 
@@ -17,11 +23,6 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityHemoTest02Binding;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.validation.validatorClass;
-
-import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.isComplete;
-import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.post_result;
-import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.pre_result;
-import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.type;
 
 public class HemoTest02 extends AppCompatActivity {
 
@@ -48,7 +49,7 @@ public class HemoTest02 extends AppCompatActivity {
             bi.heading.setText("PRETEST");
 //            slides = getIntent().getIntArrayExtra("slides");
 //            Data.correctAnswers = getIntent().getStringArrayListExtra("ans");
-            MainApp.fc.setPreTestStartTime(MainApp.getCurrentTime());
+            MainApp.forms.setPreTestStartTime(MainApp.getCurrentTime());
             bi.btnOk.setVisibility(View.GONE);
             bi.btnContinue.setVisibility(View.VISIBLE);
         } else if (type.equals("pre") && isComplete) {
@@ -60,7 +61,7 @@ public class HemoTest02 extends AppCompatActivity {
             bi.btnContinue.setVisibility(View.GONE);
         } else if (type.equals("post") && !isComplete) {
             bi.heading.setText("POST TEST");
-            MainApp.fc.setPostTestStartTime(MainApp.getCurrentTime());
+            MainApp.forms.setPostTestStartTime(MainApp.getCurrentTime());
             bi.btnOk.setVisibility(View.GONE);
             bi.btnContinue.setVisibility(View.VISIBLE);
         } else if (type.equals("post") && isComplete) {
@@ -75,7 +76,7 @@ public class HemoTest02 extends AppCompatActivity {
 
     }
 
-    public void BtnOk() {
+    public void btnOk() {
         if (type.equals("pre")) {
             MainApp.showDialog(this, getString(R.string.readyForTrain), "pre", null, subMenuDT);
         } else {
@@ -140,15 +141,15 @@ public class HemoTest02 extends AppCompatActivity {
     private void SaveDraft() {
 
         if (type.equals("pre")) {
-            MainApp.fc.setPreTestEndTime(MainApp.getCurrentTime());
+            MainApp.forms.setPreTestEndTime(MainApp.getCurrentTime());
             JSONObject json = GeneratorClass.getContainerJSON(bi.llHemoTestB, true, type);
-            MainApp.fc.setPre_test(String.valueOf(json));
+            MainApp.forms.setPre_test(String.valueOf(json));
             Data.pretestAnswers = GeneratorClass.getAnswers(bi.llHemoTestB, true);
         } else {
 
-            MainApp.fc.setPostTestEndTime(MainApp.getCurrentTime());
+            MainApp.forms.setPostTestEndTime(MainApp.getCurrentTime());
             JSONObject json = GeneratorClass.getContainerJSON(bi.llHemoTestB, true, type);
-            MainApp.fc.setPost_test(String.valueOf(json));
+            MainApp.forms.setPost_test(String.valueOf(json));
             Data.posttestAnswers = GeneratorClass.getAnswers(bi.llHemoTestB, true);
         }
 

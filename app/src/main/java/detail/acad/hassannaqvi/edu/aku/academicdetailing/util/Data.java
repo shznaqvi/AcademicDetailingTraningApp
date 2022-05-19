@@ -429,7 +429,10 @@ public final class Data {
         String sessionCode;
         String name;
         Class routeClass;
-
+        int[] session;
+        int preImage;
+        ArrayList<String> answers;
+        String[] videosName;
         public SubMenu(String moduleName, String moduleCode, String sessionCode, String name, Class routeClass, int preImage, int[] session, ArrayList<String> answers, String[] videosName) {
             this.moduleName = moduleName;
             this.name = name;
@@ -445,11 +448,6 @@ public final class Data {
         public String getModuleCode() {
             return moduleCode;
         }
-
-        int[] session;
-        int preImage;
-        ArrayList<String> answers;
-        String[] videosName;
 
         public String getSessionCode() {
             return sessionCode;

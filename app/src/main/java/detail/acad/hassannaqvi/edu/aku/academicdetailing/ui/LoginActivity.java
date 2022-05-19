@@ -1,791 +1,246 @@
 package detail.acad.hassannaqvi.edu.aku.academicdetailing.ui;
 
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper.DATABASE_COPY;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper.DATABASE_NAME;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper.PROJECT_NAME;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.sharedPref;
+
 import android.Manifest;
-import android.app.AlertDialog;
-import android.app.LoaderManager;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.Loader;
-import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.database.Cursor;
-import android.databinding.DataBindingUtil;
-import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.telephony.TelephonyManager;
 import android.text.TextUtils;
-import android.text.format.DateFormat;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Base64;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.TextView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.github.amlcurran.showcaseview.ShowcaseView;
-import com.github.amlcurran.showcaseview.targets.Target;
-import com.github.amlcurran.showcaseview.targets.ViewTarget;
-import com.google.gson.Gson;
-import com.kaopiz.kprogresshud.KProgressHUD;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
+
+import net.sqlcipher.database.SQLiteException;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.nio.channels.FileChannel;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.Locale;
+import java.util.Objects;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.RetrofitClient.RetrofitClient;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.DistrictsContract;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.VersionAppContract;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.TableContracts;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityLoginBinding;
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.EntryLog;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.Users;
 
-public class LoginActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>, DatabaseHelper.DataDownload {
+public class LoginActivity extends AppCompatActivity {
 
-    /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "test1234:test1234", "testS12345:testS12345", "bar@example.com:world"
-    };
-    // District Spinner
-    public ArrayList<String> lables;
-    public ArrayList<String> values;
-    public Map<String, String> valuesnlabels;
-    // UI references.
-    private UserLoginTask mAuthTask = null;
-
-    SharedPreferences sharedPref;
-    SharedPreferences.Editor editor;
-
-    String DirectoryName;
-    KProgressHUD hud;
-
-    private int clicks;
-    String dtToday = new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime());
-    //
-    private StringBuffer jsonString_output;
-    private JSONArray json;
-    ActivityLoginBinding bi;
-    private static final int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 0;
-    private static final int MY_PERMISSIONS_REQUEST_READ_PHONE_STATE = 2;
+    private static final String TAG = "LoginActivity";
     protected static LocationManager locationManager;
-    private static final int TWO_MINUTES = 1000 * 60 * 2;
-    private static final long MINIMUM_DISTANCE_CHANGE_FOR_UPDATES = 1; // in Meters
-    private static final long MINIMUM_TIME_BETWEEN_UPDATES = 1000; // in Milliseconds
 
-    public static DatabaseHelper db;
-    Call<ResponseBody> call = null;
+    // UI references.
+    private final int pos = 0;
+    ActivityLoginBinding bi;
+    Spinner spinnerDistrict;
+    String DirectoryName;
+    DatabaseHelper db;
+    ArrayAdapter<String> provinceAdapter;
+    int attemptCounter = 0;
+    String username = "";
+    String password = "";
+    private int countryCode;
+    private ArrayList<String> countryNameList;
+    private ArrayList<String> countryCodeList;
+    private int clicks;
+   /* private int PhotoSerial = 0;
+    private String photolist;
+    ActivityResultLauncher<Intent> takePhotoLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+                        // There are no request codes
+                        //Intent data = result.getData();
+                        Intent data = result.getData();
 
-    List<DistrictsContract> distrcitList;
-    ArrayList<String> districtNames;
-    HashMap<String, DistrictsContract> districtMap;
-    private ProgressDialog pd;
+                        Toast.makeText(LoginActivity.this, "Photo Taken", Toast.LENGTH_SHORT).show();
+
+                        String fileName = data.getStringExtra("FileName");
+                        //   photolist = photolist + fileName + ";";
+                        PhotoSerial++;
+
+                        bi.b117.setText(bi.b117.getText().toString() + PhotoSerial + " - " + fileName + ";\r\n");
+                    } else {
+                        Toast.makeText(LoginActivity.this, "Photo Cancelled", Toast.LENGTH_SHORT).show();
+
+                        //TODO: Implement functionality below when photo was not taken
+                        // ...
+                        bi.b117.setText("Photo not taken.");
+                    }
+
+                    if (result.getResultCode() == Activity.RESULT_CANCELED) {
+                        Toast.makeText(LoginActivity.this, "No family member added.", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+            });*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_login);
-        bi = DataBindingUtil.setContentView(this, R.layout.activity_login);
-        bi.setCallback(this);
-
-        db = new DatabaseHelper(this);
-
-        pd = new ProgressDialog(this);
-
-        hud = KProgressHUD.create(this).setCancellable(false).setStyle(KProgressHUD.Style.SPIN_INDETERMINATE);
-        MainApp.loginMem = new String[3];
-        MainApp.loginMem[0] = "...";    //default value
-
-        try {
-            long installedOn = this
-                    .getPackageManager()
-                    .getPackageInfo("detail.acad.hassannaqvi.edu.aku.academicdetailing", 0)
-                    .lastUpdateTime;
-            Integer versionCode = this
-                    .getPackageManager()
-                    .getPackageInfo("detail.acad.hassannaqvi.edu.aku.academicdetailing", 0)
-                    .versionCode;
-            String versionName = this
-                    .getPackageManager()
-                    .getPackageInfo("detail.acad.hassannaqvi.edu.aku.academicdetailing", 0)
-                    .versionName;
-            bi.txtinstalldate.setText("Ver. " + versionName + "." + String.valueOf(versionCode) + " \r\n( Last Updated: " + new SimpleDateFormat("dd MMM. yyyy").format(new Date(installedOn)) + " )");
-
-            MainApp.versionCode = versionCode;
-            MainApp.versionName = versionName;
-
-
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
-//
-//        // Set up the login form.
-//
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (checkAndRequestPermissions()) {
-                populateAutoComplete();
-                loadIMEI();
-            }
-        } else {
-            populateAutoComplete();
-            loadIMEI();
-
-        }
-
-
-        bi.password.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        Dexter.withContext(this)
+                .withPermissions(
+                        Manifest.permission.ACCESS_NETWORK_STATE,
+                        Manifest.permission.WAKE_LOCK,
+                        Manifest.permission.INTERNET,
+                        Manifest.permission.READ_PHONE_STATE,
+                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.READ_PHONE_STATE,
+                        Manifest.permission.CAMERA
+                ).withListener(new MultiplePermissionsListener() {
             @Override
-            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                if (id == EditorInfo.IME_ACTION_DONE || id == EditorInfo.IME_NULL) {
-                    attemptLogin();
-                    MainApp.loginMem[1] = bi.email.getText().toString();
-
-
-                    return true;
-
+            public void onPermissionsChecked(MultiplePermissionsReport report) {
+                if (report.areAllPermissionsGranted()) {
+                    MainApp.permissionCheck = true;
                 }
-                return false;
             }
-        });
 
-
-        Target viewTarget = new ViewTarget(R.id.syncData, this);
-
-        new ShowcaseView.Builder(this)
-                .setTarget(viewTarget)
-                .setStyle(R.style.CustomShowcaseTheme)
-                .setContentText("\n\nPlease Sync Data before login...")
-                .singleShot(42)
-                .build();
-//
-        bi.emailSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                attemptLogin();
+            public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
+                token.continuePermissionRequest();
             }
-        });
-//
-//        // District Spinner
-//        // Populate from District Table
-//       /* ArrayList<UCContract> ucList = new ArrayList<UCContract>();
-//        ucList = db.getAllUC();*/
-//
-//
-//        DB backup
+        }).check();
+
+        bi = DataBindingUtil.setContentView(this, R.layout.activity_login);
+        setSupportActionBar(bi.toolbar);
+
+        db = MainApp.DbHelper;
+
+
+        MainApp.user = new Users();
+        bi.txtinstalldate.setText(MainApp.appInfo.getAppInfo());
+
         dbBackup();
-//
-////        Room DB instantiate
-//        db = AppDatabase.getDatabase(getApplicationContext());
-//
-//        Testing visibility
-        if (Integer.valueOf(MainApp.versionName.split("\\.")[0]) > 0) {
-            bi.testing.setVisibility(View.GONE);
-        } else {
-            bi.testing.setVisibility(View.VISIBLE);
-        }
-
-        //Populating district
-        if (db.getDistrictList().size() > 0)
-            populatingSpinner();
-
     }
 
-    public void loadIMEI() {
-        // Check if the READ_PHONE_STATE permission is already available.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE)
-                    != PackageManager.PERMISSION_GRANTED) {
-                // READ_PHONE_STATE permission has not been granted.
-                requestReadPhoneStatePermission();
-            } else {
-                doPermissionGrantedStuffs();
-            }
-        } else {
-            doPermissionGrantedStuffs();
-        }
-    }
+    @Override
+    protected void onResume() {
+        super.onResume();
 
-    private void requestReadPhoneStatePermission() {
-        if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                Manifest.permission.READ_PHONE_STATE)) {
-            // Provide an additional rationale to the user if the permission was not granted
-            // and the user would benefit from additional context for the use of the permission.
-            // For example if the user has previously denied the permission.
-            new AlertDialog.Builder(LoginActivity.this)
-                    .setTitle("Permission Request")
-                    .setMessage("permission read phone state rationale")
-                    .setCancelable(false)
-                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+        String latestVersionName = sharedPref.getString("versionName", "");
+        int latestVersionCode = Integer.parseInt(sharedPref.getString("versionCode", "0"));
+
+        bi.txtinstalldate.setText(bi.txtinstalldate.getText().toString().replace("\n Available on Server: " + latestVersionName + latestVersionCode, "") + "\n Available on Server: " + latestVersionName + latestVersionCode);
+
+        if (MainApp.appInfo.getVersionCode() < latestVersionCode) {
+            new AlertDialog.Builder(this)
+                    .setTitle("New Update Available")
+                    .setMessage("There is a newer version of this app available (" + latestVersionName + latestVersionCode + "). \nPlease download and update the app now.")
+
+                    // Specifying a listener allows you to take an action before dismissing the dialog.
+                    // The dialog is automatically dismissed when a dialog button is clicked.
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
-                            //re-request
-                            ActivityCompat.requestPermissions(LoginActivity.this,
-                                    new String[]{Manifest.permission.READ_PHONE_STATE},
-                                    MY_PERMISSIONS_REQUEST_READ_PHONE_STATE);
+                            // Continue with delete operation
+                            //     addMoreMWRA();
                         }
                     })
+
+                    // A null listener allows the button to dismiss the dialog and take no further action.
+                    .setIcon(R.drawable.ic_alert_24)
                     .show();
-        } else {
-            // READ_PHONE_STATE permission has not been granted yet. Request it directly.
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE},
-                    MY_PERMISSIONS_REQUEST_READ_PHONE_STATE);
         }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-        for (int i = 0; i < permissions.length; i++) {
-            if (permissions[i].equals(Manifest.permission.READ_CONTACTS)) {
-                if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
-                    populateAutoComplete();
-                }
-            } else if (permissions[i].equals(Manifest.permission.GET_ACCOUNTS)) {
-                if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
-
-
-                }
-            } else if (permissions[i].equals(Manifest.permission.READ_PHONE_STATE)) {
-                if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
-                    doPermissionGrantedStuffs();
-                    //loadIMEI();
-                }
-            } else if (permissions[i].equals(Manifest.permission.ACCESS_COARSE_LOCATION)) {
-                if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
-
-
-                }
-            } else if (permissions[i].equals(Manifest.permission.ACCESS_FINE_LOCATION)) {
-                if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
-                    locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-                    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                        // TODO: Consider calling
-                        //    ActivityCompat#requestPermissions
-                        // here to request the missing permissions, and then overriding
-                        //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                        //                                          int[] grantResults)
-                        // to handle the case where the user grants the permission. See the documentation
-                        // for ActivityCompat#requestPermissions for more details.
-                        return;
-                    }
-                    locationManager.requestLocationUpdates(
-                            LocationManager.GPS_PROVIDER,
-                            MINIMUM_TIME_BETWEEN_UPDATES,
-                            MINIMUM_DISTANCE_CHANGE_FOR_UPDATES,
-                            new GPSLocationListener() // Implement this class from code
-
-                    );
-                }
-            } else if (permissions[i].equals(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
-
-                }
-            } else if (permissions[i].equals(Manifest.permission.CAMERA)) {
-                if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
-
-                }
-            }
-        }
-    }
-
-    protected void showCurrentLocation() {
-        if (ActivityCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
-                        != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-
-        if (location != null) {
-            String message = String.format(
-                    "Current Location \n Longitude: %1$s \n Latitude: %2$s",
-                    location.getLongitude(), location.getLatitude()
-            );
-            //Toast.makeText(getApplicationContext(), message,
-            //Toast.LENGTH_SHORT).show();
-        }
-
-    }
-
-    protected boolean isBetterLocation(Location location, Location currentBestLocation) {
-        if (currentBestLocation == null) {
-            // A new location is always better than no location
-            return true;
-        }
-
-        // Check whether the new location fix is newer or older
-        long timeDelta = location.getTime() - currentBestLocation.getTime();
-        boolean isSignificantlyNewer = timeDelta > TWO_MINUTES;
-        boolean isSignificantlyOlder = timeDelta < -TWO_MINUTES;
-        boolean isNewer = timeDelta > 0;
-
-        // If it's been more than two minutes since the current location, use the new location
-        // because the user has likely moved
-        if (isSignificantlyNewer) {
-            return true;
-
-            // If the new location is more than two minutes older, it must be worse
-        } else if (isSignificantlyOlder) {
-            return false;
-        }
-
-        // Check whether the new location fix is more or less accurate
-        int accuracyDelta = (int) (location.getAccuracy() - currentBestLocation.getAccuracy());
-        boolean isLessAccurate = accuracyDelta > 0;
-        boolean isMoreAccurate = accuracyDelta < 0;
-        boolean isSignificantlyLessAccurate = accuracyDelta > 200;
-
-        // Check if the old and new location are from the same provider
-        boolean isFromSameProvider = isSameProvider(location.getProvider(),
-                currentBestLocation.getProvider());
-
-        // Determine location quality using a combination of timeliness and accuracy
-        if (isMoreAccurate) {
-            return true;
-        } else if (isNewer && !isLessAccurate) {
-            return true;
-        } else return isNewer && !isSignificantlyLessAccurate && isFromSameProvider;
-    }
-
-    private boolean isSameProvider(String provider1, String provider2) {
-        if (provider1 == null) {
-            return provider2 == null;
-        }
-        return provider1.equals(provider2);
-    }
-
-    @Override
-    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return null;
-    }
-
-    @Override
-    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-
-    }
-
-    @Override
-    public void onLoaderReset(Loader<Cursor> loader) {
-
-    }
-
-    @Override
-    public void downloded(boolean flag) {
-        if (false) return;
-
-        populatingSpinner();
-    }
-
-    private void populatingSpinner() {
-        distrcitList = db.getDistrictList();
-        districtNames = new ArrayList<>();
-        districtMap = new HashMap<>();
-        districtNames.add("-Select District-");
-
-        for (DistrictsContract dc : distrcitList) {
-            districtNames.add(dc.getDistrict_name());
-            districtMap.put(dc.getDistrict_name(), dc);
-        }
-
-        bi.districtNameSpinner.setAdapter(new ArrayAdapter<>(LoginActivity.this,
-                android.R.layout.simple_spinner_dropdown_item, districtNames));
-
-        bi.districtNameSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                if (bi.districtNameSpinner.getSelectedItemPosition() != 0) {
-                    MainApp.dContract = districtMap.get(bi.districtNameSpinner.getSelectedItem().toString());
-                    MainApp.districtName = MainApp.dContract.getDistrict_name();
-                }
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-    }
-
-    public void onSyncDataClick() {
-        //TODO implement
-
-        // Require permissions INTERNET & ACCESS_NETWORK_STATE
-        ConnectivityManager connMgr = (ConnectivityManager)
-                getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-        if (networkInfo != null && networkInfo.isConnected()) {
-
-            call = RetrofitClient.service.getUsers(); //users
-            gettingDataFromService("Syncing Users", "Users");
-
-            call = RetrofitClient.service.getDistricts(); //districts
-            gettingDataFromService("Syncing Districts", "Districts");
-
-            call = RetrofitClient.service.synHfData(); //hfs
-            gettingDataFromService("Syncing HF", "hf");
-
-            call = RetrofitClient.service.getAppVersion(); //districts
-            gettingDataFromService("Checking App", "appversion");
-
-
-        } else {
-            Toast.makeText(this, "No network connection available.", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void doPermissionGrantedStuffs() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        MainApp.IMEI = ((TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE)).getDeviceId();
-
     }
 
     public void dbBackup() {
 
-        sharedPref = getSharedPreferences("academicDetailing", MODE_PRIVATE);
-        editor = sharedPref.edit();
 
-//        if (sharedPref.getBoolean("flag", true)) {
+        if (sharedPref.getBoolean("flag", false)) {
 
-        String dt = sharedPref.getString("dt", new SimpleDateFormat("dd-MM-yy").format(new Date()));
+            String dt = sharedPref.getString("dt", new SimpleDateFormat("dd-MM-yy").format(new Date()));
 
-        if (dt != new SimpleDateFormat("dd-MM-yy").format(new Date())) {
-            editor.putString("dt", new SimpleDateFormat("dd-MM-yy").format(new Date()));
+            if (!dt.equals(new SimpleDateFormat("dd-MM-yy").format(new Date()))) {
+                MainApp.editor.putString("dt", new SimpleDateFormat("dd-MM-yy").format(new Date()));
+                MainApp.editor.apply();
+            }
 
-            editor.commit();
-        }
-
-        File folder = new File(Environment.getExternalStorageDirectory() + File.separator + "DMU-ACADDETAIL");
-        boolean success = true;
-        if (!folder.exists()) {
-            success = folder.mkdirs();
-        }
-        if (success) {
-
-            DirectoryName = folder.getPath() + File.separator + sharedPref.getString("dt", "");
-            folder = new File(DirectoryName);
+            // File folder = new File(Environment.getExternalStorageDirectory() + File.separator + PROJECT_NAME);
+            File folder = new File(this.getExternalFilesDir("Backups"), File.separator);
+            boolean success = true;
             if (!folder.exists()) {
                 success = folder.mkdirs();
             }
             if (success) {
 
-                try {
-                    File dbFile = new File(this.getDatabasePath(DatabaseHelper.DBConnection.DB_NAME).getAbsolutePath());
-                    FileInputStream fis = new FileInputStream(dbFile);
-
-                    String outFileName = DirectoryName + File.separator +
-                            DatabaseHelper.DBConnection.DB_NAME + ".db";
-
-                    // Open the empty db as the output stream
-                    OutputStream output = new FileOutputStream(outFileName);
-
-                    // Transfer bytes from the inputfile to the outputfile
-                    byte[] buffer = new byte[1024];
-                    int length;
-                    while ((length = fis.read(buffer)) > 0) {
-                        output.write(buffer, 0, length);
-                    }
-                    // Close the streams
-                    output.flush();
-                    output.close();
-                    fis.close();
-
-                    String dbFileName = this.getDatabasePath(DatabaseHelper.DBConnection.DB_NAME).getAbsolutePath();
-                    outFileName = DirectoryName + File.separator + DatabaseHelper.DBConnection.DB_NAME + ".db";
-
-                    File currentDB = new File(dbFileName);
-                    File backupDB = new File(outFileName);
-
-                    FileChannel src = new FileInputStream(currentDB).getChannel();
-                    FileChannel dst = new FileOutputStream(backupDB).getChannel();
-                    dst.transferFrom(src, 0, src.size());
-                    src.close();
-                    dst.close();
-
-
-                } catch (IOException e) {
-                    Log.e("dbBackup:", e.getMessage());
+                DirectoryName = folder.getPath() + File.separator + sharedPref.getString("dt", "");
+                folder = new File(DirectoryName);
+                if (!folder.exists()) {
+                    success = folder.mkdirs();
                 }
+                if (success) {
 
-            }
-
-        } else {
-            Toast.makeText(this, "Not create folder", Toast.LENGTH_SHORT).show();
-        }
-//        }
-
-    }
-
-    private void gettingDataFromService(String label, final String type) {
-
-        hud.setLabel(label);
-        hud.setDetailsLabel("Please Wait");
-        hud.show();
-        call.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                hud.dismiss();
-                if (response.isSuccessful()) {
                     try {
-                        String data = response.body().string();
-                        JSONArray array = new JSONArray(data);
-                        switch (type) {
-                            case "Users":
-                                db.syncUsers(array);
-                                break;
-                            case "Districts":
-                                db.syncDistricts(array);
-                                break;
-                            case "hf":
-                                db.syncHF(array);
-                                break;
-                            case "appversion":
-                                savingAppVersion(array);
-                                break;
+                        File dbFile = new File(this.getDatabasePath(DATABASE_NAME).getPath());
+                        FileInputStream fis = new FileInputStream(dbFile);
+                        String outFileName = DirectoryName + File.separator + DATABASE_COPY;
+                        // Open the empty db as the output stream
+                        OutputStream output = new FileOutputStream(outFileName);
 
-
+                        // Transfer bytes from the inputfile to the outputfile
+                        byte[] buffer = new byte[1024];
+                        int length;
+                        while ((length = fis.read(buffer)) > 0) {
+                            output.write(buffer, 0, length);
                         }
-
+                        // Close the streams
+                        output.flush();
+                        output.close();
+                        fis.close();
                     } catch (IOException e) {
-                        e.printStackTrace();
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                        Log.e("dbBackup:", Objects.requireNonNull(e.getMessage()));
                     }
 
-//                    Toast.makeText(LoginActivity.this, "Successfully Synced " + type + " Data ", Toast.LENGTH_SHORT).show();
-                    SharedPreferences syncPref = getSharedPreferences("SyncInfo", Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = syncPref.edit();
-                    editor.putString("LastDownSyncServer", dtToday).apply();
-
-
                 }
-            }
 
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-                hud.dismiss();
-                Toast.makeText(LoginActivity.this, "Server Connectivity Error", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
-    }
-
-    private void savingAppVersion(JSONArray array) throws JSONException {
-
-        JSONObject object = array.getJSONObject(0);
-        VersionAppContract contract = new VersionAppContract();
-        contract.Sync(object);
-        String json = new Gson().toJson(contract);
-        getSharedPreferences("main", MODE_PRIVATE).edit().putString("appVersion", json).apply();
-
-
-    }
-
-    /**
-     * Attempts to sign in or register the account specified by the login form.
-     * If there are form errors (invalid email, missing fields, etc.), the
-     * errors are presented and no actual login attempt is made.
-     */
-    private void attemptLogin() {
-        if (mAuthTask != null) {
-            return;
-        }
-
-        // Reset errors.
-        bi.email.setError(null);
-        bi.password.setError(null);
-
-        // Store values at the book_time of the login attempt.
-        String email = bi.email.getText().toString();
-        String password = bi.password.getText().toString();
-
-        boolean cancel = false;
-        View focusView = null;
-
-        // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
-            bi.password.setError(getString(R.string.error_invalid_password));
-            focusView = bi.password;
-            cancel = true;
-        }
-
-        // Check for a valid email address.
-        if (TextUtils.isEmpty(email)) {
-            bi.email.setError(getString(R.string.error_field_required));
-            focusView = bi.email;
-            cancel = true;
-        }
-
-
-        if (cancel) {
-            // There was an error; don't attempt login and focus the first
-            // form field with an error.
-            focusView.requestFocus();
-        } else {
-            // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
-            hud.setLabel("Logging in");
-            hud.show();
-            mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute((Void) null);
-
-
-        }
-    }
-
-    private void populateAutoComplete() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS)
-                    != PackageManager.PERMISSION_GRANTED) {
-                checkAndRequestPermissions();
             } else {
-                // READ_Contacts permission is already been granted.
-                getLoaderManager().initLoader(0, null, this);
-
-            }
-        } else {
-            getLoaderManager().initLoader(0, null, this);
-
-        }
-    }
-
-    private boolean checkAndRequestPermissions() {
-        String[] permissions = new String[]{
-                Manifest.permission.READ_CONTACTS,
-                Manifest.permission.GET_ACCOUNTS,
-                Manifest.permission.READ_PHONE_STATE,
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_COARSE_LOCATION,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.CAMERA};
-
-        List<String> listPermissionsNeeded = new ArrayList<>();
-        for (String perm : permissions) {
-            if (ContextCompat.checkSelfPermission(this, perm) != PackageManager.PERMISSION_GRANTED) {
-                listPermissionsNeeded.add(perm);
-            }
-        }
-        if (!listPermissionsNeeded.isEmpty()) {
-            ActivityCompat.requestPermissions(this, listPermissionsNeeded.toArray(new String[listPermissionsNeeded.size()]), MY_PERMISSIONS_REQUEST_READ_CONTACTS);
-            return false;
-        }
-
-        return true;
-    }
-
-    public class GPSLocationListener implements LocationListener {
-        public void onLocationChanged(Location location) {
-
-            SharedPreferences sharedPref = getSharedPreferences("GPSCoordinates", Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPref.edit();
-
-            String dt = DateFormat.format("dd-MM-yyyy HH:mm", Long.parseLong(sharedPref.getString("Time", "0"))).toString();
-
-            Location bestLocation = new Location("storedProvider");
-            bestLocation.setAccuracy(Float.parseFloat(sharedPref.getString("Accuracy", "0")));
-            bestLocation.setTime(Long.parseLong(sharedPref.getString(dt, "0")));
-            bestLocation.setLatitude(Float.parseFloat(sharedPref.getString("Latitude", "0")));
-            bestLocation.setLongitude(Float.parseFloat(sharedPref.getString("Longitude", "0")));
-
-            if (isBetterLocation(location, bestLocation)) {
-                editor.putString("Longitude", String.valueOf(location.getLongitude()));
-                editor.putString("Latitude", String.valueOf(location.getLatitude()));
-                editor.putString("Accuracy", String.valueOf(location.getAccuracy()));
-                editor.putString("Time", String.valueOf(location.getTime()));
-                editor.putString("Elevation", String.valueOf(location.getAltitude()));
-                String date = DateFormat.format("dd-MM-yyyy HH:mm", Long.parseLong(String.valueOf(location.getTime()))).toString();
-//                Toast.makeText(getApplicationContext(),
-//                        "GPS Commit! LAT: " + String.valueOf(location.getLongitude()) +
-//                                " LNG: " + String.valueOf(location.getLatitude()) +
-//                                " Accuracy: " + String.valueOf(location.getAccuracy()) +
-//                                " Time: " + book_date,
-//                        Toast.LENGTH_SHORT).show();
-
-                editor.apply();
+                Toast.makeText(this, "Folder not created: "+ folder, Toast.LENGTH_SHORT).show();
             }
         }
 
-
-        public void onStatusChanged(String s, int i, Bundle b) {
-            showCurrentLocation();
-        }
-
-        public void onProviderDisabled(String s) {
-
-        }
-
-        public void onProviderEnabled(String s) {
-
-        }
     }
 
-    private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
-        return email.contains("@");
-    }
-
-    private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
-        return password.length() >= 7;
-    }
-
-    public void onShowPasswordClick() {
+    public void onShowPasswordClick(View view) {
         //TODO implement
         if (bi.password.getTransformationMethod() == null) {
             bi.password.setTransformationMethod(new PasswordTransformationMethod());
@@ -796,121 +251,342 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
         }
     }
 
-    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
+    public void onSyncDataClick(View view) {
+        //callUsersWorker();
 
-        private final String mEmail;
-        private final String mPassword;
-
-        UserLoginTask(String email, String password) {
-            mEmail = email;
-            mPassword = password;
-        }
-
-
-        @Override
-        protected Boolean doInBackground(Void... params) {
-            // TODO: attempt authentication against a network service.
-
-            try {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                return false;
-            }
-
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
-                }
-            }
-
-            // TODO: register the new account here.
-            return true;
-        }
-
-        @Override
-        protected void onPostExecute(final Boolean success) {
-            mAuthTask = null;
-//            showProgress(false);
-            hud.dismiss();
-
-            LocationManager mlocManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
-//            if(db.getUsersCount() != 0){
-            if (mlocManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-                if ((mEmail.equals("dmu@aku") && mPassword.equals("aku?dmu")) ||
-                        (db.Login(mEmail, mPassword)) ||
-                        (mEmail.equals("test1234") && mPassword.equals("test1234"))
-                        || (mEmail.equals("test12345") && mPassword.equals("test12345"))) {
-                    MainApp.userName = mEmail;
-                    MainApp.admin = mEmail.equals("dmu@aku");
-                    if (db.getDistrictList().size() == 0) {
-                        Toast.makeText(LoginActivity.this, "Please Sync Districts", Toast.LENGTH_SHORT).show();
-                    } else if (bi.districtNameSpinner.getSelectedItemPosition() == 0) {
-                        Toast.makeText(LoginActivity.this, "Please Select District", Toast.LENGTH_SHORT).show();
-                    } else if (MainApp.admin || MainApp.userName.equals("test1234") || MainApp.userName.equals("test12345")) {
-                        Intent iLogin = new Intent(LoginActivity.this, MainActivity.class);
-                        startActivity(iLogin);
-                        finish();
-                    } else if (db.getUser(mEmail, mPassword).getDICTRICT_CODE() == 0) {
-                        Intent iLogin = new Intent(LoginActivity.this, MainActivity.class);
-                        startActivity(iLogin);
-                        finish();
-                        MainApp.admin = true;
-                    } else {
-                        if (!db.checkingUser(mEmail, MainApp.dContract.getDICTRICT_CODE())) {
-                            Toast.makeText(LoginActivity.this, "This user is not assigned to Selected District", Toast.LENGTH_LONG).show();
-                        } else {
-                            Intent iLogin = new Intent(LoginActivity.this, MainActivity.class);
-                            startActivity(iLogin);
-                            finish();
-                            MainApp.admin = false;
-                        }
-
-                    }
-
-
-                } else {
-                    bi.password.setError(getString(R.string.error_incorrect_password));
-                    bi.password.requestFocus();
-//                    Toast.makeText(LoginActivity.this, mEmail + " " + mPassword, Toast.LENGTH_SHORT).show();
-                }
-            } else {
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                        LoginActivity.this);
-                alertDialogBuilder
-                        .setMessage("GPS is disabled in your device. Enable it?")
-                        .setCancelable(false)
-                        .setPositiveButton("Enable GPS",
-                                (dialog, id) -> {
-                                    Intent callGPSSettingIntent = new Intent(
-                                            android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                                    startActivity(callGPSSettingIntent);
-                                });
-                alertDialogBuilder.setNegativeButton("Cancel",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        });
-                AlertDialog alert = alertDialogBuilder.create();
-                alert.show();
-
-            }
-
-
-        }
-
-        @Override
-        protected void onCancelled() {
-            mAuthTask = null;
-            hud.dismiss();
-//            showProgress(false);
+        ConnectivityManager connMgr = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected()) {
+            startActivity(new Intent(this, SyncActivity.class).putExtra("login", true));
+        } else {
+            Toast.makeText(this, "Network Error", Toast.LENGTH_SHORT).show();
         }
     }
 
+    public void attemptLogin(View view) {
+
+        if (!username.equals(bi.username.getText().toString())) {
+            attemptCounter = 0;
+        }
+        attemptCounter++;
+        // Reset errors.
+        bi.username.setError(null);
+        bi.password.setError(null);
+        //bi.as1q01.setError(null);
+        // Toast.makeText(this, String.valueOf(attemptCounter), Toast.LENGTH_SHORT).show();
+        if (attemptCounter > 5) {
+            bi.username.setError("This user has been blocked.");
+            Toast.makeText(this, "This user has been blocked.", Toast.LENGTH_LONG).show();
+
+        } else {
+            // Store values at the time of the login attempt.
+            username = bi.username.getText().toString();
+            password = bi.password.getText().toString();
+
+            boolean cancel = false;
+            View focusView = null;
+
+            // Check for a valid password, if the user entered one.
+            if (password.length() < 8) {
+                bi.password.setError("Invalid Password");
+                focusView = bi.password;
+                return;
+            }
+
+            // Check for a valid username address.
+            if (TextUtils.isEmpty(username)) {
+                bi.username.setError("Username Required");
+                focusView = bi.username;
+                return;
+            }
+
+            //if(!Validator.emptySpinner(this, bi.countrySwitch)) return;
+            /*if (bi.countrySwitch.getSelectedItemPosition() == 0) {
+                bi.as1q01.setError(getString(R.string.as1q01));
+                return;
+            }*/
+
+            try {
+                if ((username.equals("dmu@aku") && password.equals("aku?dmu"))
+                        || (username.equals("test1234") && password.equals("test1234"))
+                        || db.doLogin(username, password)
+                ) {
+
+                    MainApp.user.setUserName(username);
+                    MainApp.admin = username.contains("@") || username.contains("test1234");
+                    MainApp.superuser = MainApp.user.getDesignation().equals("Supervisor");
+                    Intent iLogin = null;
+                    if (MainApp.admin) {
+                        recordEntry("Successful Login (Admin)");
+                        iLogin = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(iLogin);
+                    } else if (MainApp.user.getEnabled().equals("1")) {
+                        if (!MainApp.user.getNewUser().equals("1")) {
+                            recordEntry("Successful Login");
+                            iLogin = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(iLogin);
+                        } else if (MainApp.user.getNewUser().equals("1")) {
+                            recordEntry("First Login");
+                            iLogin = new Intent(LoginActivity.this, ChangePasswordActivity.class);
+                            startActivity(iLogin);
+                        }
+                    } else {
+                        recordEntry("Inactive User (Disabled)");
+                        Toast.makeText(this, "This user is inactive.", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    recordEntry("Failed Login: Incorrect username or password");
+                    bi.password.setError("Incorrect Password");
+                    bi.password.requestFocus();
+                    //  Toast.makeText(LoginActivity.this, username + " " + password, Toast.LENGTH_SHORT).show();
+                }
+            } catch (InvalidKeySpecException e) {
+                e.printStackTrace();
+                Toast.makeText(this, "InvalidKeySpecException(UserAuth):" + e.getMessage(), Toast.LENGTH_SHORT).show();
+            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+                Toast.makeText(this, "NoSuchAlgorithmException(UserAuth):" + e.getMessage(), Toast.LENGTH_SHORT).show();
+
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+                Toast.makeText(this, "IllegalArgumentException(UserAuth):" + e.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+
+
+        }
+    }
+
+
+    private void recordEntry(String entryType) {
+
+        EntryLog entryLog = new EntryLog();
+        entryLog.setProjectName(PROJECT_NAME);
+        entryLog.setUserName(username);
+        entryLog.setEntryDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH).format(new Date().getTime()));
+        entryLog.setAppver(MainApp.appInfo.getAppVersion());
+        entryLog.setEntryType(entryType);
+        entryLog.setDeviceId(MainApp.deviceId);
+        Long rowId = null;
+        try {
+            rowId = db.addEntryLog(entryLog);
+            if (rowId != -1) {
+                entryLog.setId(String.valueOf(rowId));
+                entryLog.setUid(entryLog.getDeviceId() + entryLog.getId());
+                db.updatesEntryLogColumn(TableContracts.EntryLogTable.COLUMN_UID, entryLog.getUid(), entryLog.getId());
+            } else {
+                Toast.makeText(this, "Database Error...", Toast.LENGTH_SHORT).show();
+
+            }
+        } catch (SQLiteException e) {
+            Toast.makeText(this, "SQLiteException(EntryLog)" + e.getMessage(), Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "recordEntry: " + e.getMessage());
+        }
+
+
+    }
+
+    public void resetPassword(View view) {
+        finish();
+    }
+
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            hideSystemUI();
+        }
+    }
+
+    private void hideSystemUI() {
+        // Enables regular immersive mode.
+        // For "lean back" mode, remove SYSTEM_UI_FLAG_IMMERSIVE.
+        // Or for "sticky immersive," replace it with SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+        View decorView = getWindow().getDecorView();
+        decorView.setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_IMMERSIVE
+                        // Set the content to appear under the system bars so that the
+                        // content doesn't resize when the system bars hide and show.
+                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        // Hide the nav bar and status bar
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN);
+    }
+
+/*    private void settingCountryCode() {
+
+
+        List<Villages> countries = db.getAllCountries();
+
+        countryNameList = new ArrayList<>();
+        countryCodeList = new ArrayList<>();
+
+        countryNameList.add("...");
+        countryCodeList.add("...");
+
+        for (Villages c : countries) {
+            countryNameList.add(c.getCountry());
+            countryCodeList.add(c.getCcode());
+        }
+
+
+        bi.countrySwitch.setAdapter(new ArrayAdapter<>(LoginActivity.this, R.layout.custom_spinner, countryNameList));
+
+
+        bi.countrySwitch.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if (position != 0 && position != pos) {
+                    //   MainApp.selectedDistrict = Integer.parseInt(countryCodeList.get(position));
+                    // changeLanguage(MainApp.selectedDistrict);
+
+                    //  startActivity(new Intent(LoginActivity.this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).putExtra("pos", position));
+                    //   overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+    }*/
+
+    // Shows the system bars by removing all the flags
+// except for the ones that make the content appear under the system bars.
+    private void showSystemUI() {
+        View decorView = getWindow().getDecorView();
+        decorView.setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+    }
+
+/*    public void TakePhoto(View view) {
+
+        Intent intent = new Intent(this, TakePhoto.class);
+        intent.putExtra("picID", "picid");
+        intent.putExtra("id", "id");
+        if (PhotoSerial == 0) {
+            intent.putExtra("picView", "Brand/logo");} else {
+            intent.putExtra("picView", "Ingredients");
+        }
+        takePhotoLauncher.launch(intent);
+
+    }*/
+
+    /*
+     * Toggle Language
+     * */
+  /*  private void changeLanguage(int countryCode) {
+        String lang;
+        String country;
+
+        switch (countryCode) {
+            case 1:
+                lang = "ur";
+                country = "PK";
+                MainApp.editor
+                        .putString("lang", "1")
+                        .apply();
+                MainApp.langRTL = true;
+
+                break;
+
+
+            default:
+                lang = "en";
+                country = "US";
+                MainApp.editor
+                        .putString("lang", "0")
+                        .apply();
+                MainApp.langRTL = false;
+
+        }
+
+        Locale locale = new Locale(lang, country);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.setLocale(locale);
+        config.setLayoutDirection(new Locale(lang, country));
+        this.getResources().updateConfiguration(config, this.getResources().getDisplayMetrics());
+
+    }*/
+
+    /*
+     * Setting clusterNo code in Shared Preference
+     * */
+ /*   private void initializingCountry() {
+        countryCode = Integer.parseInt(sharedPref.getString("lang", "0"));
+        if (countryCode == 0) {
+            MainApp.editor.putString("lang", "0").apply();
+        }
+
+        changeLanguage(Integer.parseInt(sharedPref.getString("lang", "0")));
+    }
+*/
+   /* @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.language_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.NO:
+                return true;
+
+            case R.id.UR:
+                MainApp.selectedLanguage = 1;
+                MainApp.langRTL = true;
+                break;
+
+
+
+            default:
+                MainApp.selectedLanguage = 0;
+                MainApp.langRTL = false;
+
+        }
+        changeLanguage(MainApp.selectedLanguage);
+        startActivity(new Intent(LoginActivity.this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+
+        return true;
+    }*/
+
+    public String validatePassword2(String password, String encodedPassword) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+
+
+        byte[] cipherPassword = Base64.decode(encodedPassword, Base64.NO_WRAP);
+        byte[] salt = Arrays.copyOfRange(cipherPassword, 0, 16);
+        byte[] hash = Arrays.copyOfRange(cipherPassword, 16, cipherPassword.length);
+
+        MessageDigest digest = MessageDigest.getInstance("SHA-256");
+        digest.reset();
+        digest.update(salt);
+        byte[] byteData = digest.digest(password.getBytes(StandardCharsets.UTF_8));
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < byteData.length; i++) {
+            sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
+        }
+        Log.d("TAG", "computeHash: " + sb);
+        if (sb.toString().equals("encodedPassword")) {
+            return "True";
+        } else {
+            return "false";
+        }
+    }
     public void showCredits(View view) {
         if (clicks < 7) {
             clicks++;
@@ -919,12 +595,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
             clicks = 0;
             Toast.makeText(this, "TEAM CREDITS: " +
                             "\r\nHassan Naqvi, " +
-                            "Sajid Latif, " +
                             "Ali Azaz, " +
-                            "Mustufa Ansari ",
+                            "Gul Sanober, " +
+                            "Ramsha Ahmed, " +
+                            "Javed Khan",
                     Toast.LENGTH_LONG)
                     .show();
         }
     }
-
 }
+

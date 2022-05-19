@@ -2,7 +2,7 @@ package detail.acad.hassannaqvi.edu.aku.academicdetailing.core;
 
 public interface CONSTANTS {
 
-    String URL_USERS = "users.php";
+    String URL_USERS = "user.php";
     String URL_HF = "healthfacilities.php";
     String URL_DEVICES = "devices.php";
     String URL_FORMS = "forms.php";

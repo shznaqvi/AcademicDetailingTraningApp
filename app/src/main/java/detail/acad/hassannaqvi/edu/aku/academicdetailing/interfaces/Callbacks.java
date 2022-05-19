@@ -1,12 +1,12 @@
 package detail.acad.hassannaqvi.edu.aku.academicdetailing.interfaces;
 
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.FormsContract;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.Forms;
 
 public interface Callbacks {
 
 
     void loadInfoFragment();
-    void loadModuleFragment(FormsContract fc);
+    void loadModuleFragment(Forms fc);
     void loadDatabaseManager();
     void uploadDataToServer();
     void downloadData();

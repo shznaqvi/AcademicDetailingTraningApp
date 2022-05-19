@@ -110,14 +110,32 @@
         android:textColor="@color/red"
         android:textSize="30sp" />
 
-
-
     <Button
         android:id="@+id/okay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/finalText"
+        android:background="@drawable/capsule"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:backgroundTintMode="src_atop"
+        android:onClick="btnContinue"
+        android:text="Okay"
+        android:textColor="@color/colorAccent"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+
+
+<!--   <Button
         style="@style/button1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/finalText"
         android:layout_marginTop="10dp"
-        android:text="Okay"/>
+        />-->
+
+
+
+
+
 </RelativeLayout>

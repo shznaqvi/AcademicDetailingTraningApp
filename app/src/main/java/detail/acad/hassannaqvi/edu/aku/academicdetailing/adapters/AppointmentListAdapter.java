@@ -1,25 +1,26 @@
 package detail.acad.hassannaqvi.edu.aku.academicdetailing.adapters;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.List;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.NextMeetingContract;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.NextMeeting;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
 
 public class AppointmentListAdapter extends RecyclerView.Adapter<AppointmentListAdapter.ViewHolder> {
 
     Context context;
-    List<NextMeetingContract> collection;
+    List<NextMeeting> collection;
 
-    public AppointmentListAdapter(Context context, List<NextMeetingContract> contracts) {
+    public AppointmentListAdapter(Context context, List<NextMeeting> contracts) {
 
         this.collection = contracts;
         this.context = context;

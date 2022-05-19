@@ -1,18 +1,22 @@
 package detail.acad.hassannaqvi.edu.aku.academicdetailing.ui;
 
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.isComplete;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.post_result;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.pre_result;
+
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.FormsContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.CONSTANTS;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
@@ -20,12 +24,9 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityEnd
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.DialogEndBinding;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments.ScheduleFragment;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.interfaces.Callbacks;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.Forms;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.validation.validatorClass;
-
-import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.isComplete;
-import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.post_result;
-import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.pre_result;
 
 public class EndingActivity extends AppCompatActivity implements Callbacks {
 
@@ -125,24 +126,24 @@ public class EndingActivity extends AppCompatActivity implements Callbacks {
 
     private void SaveDraft() {
 
-        MainApp.fc.setIstatus(bi.statusa.isChecked() ? "1" : bi.statusb.isChecked() ? "2"
+        MainApp.forms.setIstatus(bi.statusa.isChecked() ? "1" : bi.statusb.isChecked() ? "2"
                 : bi.statusc.isChecked() ? "3" : bi.statusd.isChecked() ? "4" : bi.status96.isChecked() ? "96" : "0");
-        MainApp.fc.setIstatus88x(bi.status96x.getText().toString());
-        MainApp.fc.setEndingdatetime(MainApp.getCurrentTime());
-        MainApp.fc.setSessionEndTime(MainApp.getCurrentTime());
-        MainApp.fc.setSessionCode(subMenuDT.getSessionCode());
+        MainApp.forms.setIstatus88x(bi.status96x.getText().toString());
+        MainApp.forms.setEndingdatetime(MainApp.getCurrentTime());
+        MainApp.forms.setSessionEndTime(MainApp.getCurrentTime());
+        MainApp.forms.setSessionCode(subMenuDT.getSessionCode());
         if (pre_result != null) {
-            MainApp.fc.setScore_pre(String.valueOf(pre_result.getCorrect()));
-            MainApp.fc.setWrong_pre(String.valueOf(pre_result.getWrong()));
-            MainApp.fc.setPercentage_pre(String.valueOf(MainApp.roundOffFigure(pre_result.getPercentage(), 2)));
-            MainApp.fc.setTotal(String.valueOf(pre_result.getTotal()));
+            MainApp.forms.setScore_pre(String.valueOf(pre_result.getCorrect()));
+            MainApp.forms.setWrong_pre(String.valueOf(pre_result.getWrong()));
+            MainApp.forms.setPercentage_pre(String.valueOf(MainApp.roundOffFigure(pre_result.getPercentage(), 2)));
+            MainApp.forms.setTotal(String.valueOf(pre_result.getTotal()));
         }
 
-        MainApp.fc.setModuleCode(subMenuDT.getModuleCode());
+        MainApp.forms.setModuleCode(subMenuDT.getModuleCode());
         if (post_result != null) {
-            MainApp.fc.setScore_post(String.valueOf(post_result.getCorrect()));
-            MainApp.fc.setPercentage_post(String.valueOf(MainApp.roundOffFigure(post_result.getPercentage(), 2)));
-            MainApp.fc.setWrong_post(String.valueOf(post_result.getWrong()));
+            MainApp.forms.setScore_post(String.valueOf(post_result.getCorrect()));
+            MainApp.forms.setPercentage_post(String.valueOf(MainApp.roundOffFigure(post_result.getPercentage(), 2)));
+            MainApp.forms.setWrong_post(String.valueOf(post_result.getWrong()));
         }
     }
 
@@ -164,7 +165,7 @@ public class EndingActivity extends AppCompatActivity implements Callbacks {
     }
 
     @Override
-    public void loadModuleFragment(FormsContract fc) {
+    public void loadModuleFragment(Forms fc) {
 
     }
 

@@ -2,7 +2,6 @@ package detail.acad.hassannaqvi.edu.aku.academicdetailing.validation;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.support.v7.widget.CardView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -17,6 +16,9 @@ import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.cardview.widget.CardView;
+
 import com.edittextpicker.aliazaz.textpicker.TextPicker;
 
 import java.lang.reflect.Field;

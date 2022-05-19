@@ -1,35 +1,6 @@
 package detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments;
 
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.databinding.DataBindingUtil;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.text.format.DateFormat;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Toast;
-
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.NextMeetingContract;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.FragmentScheduleBinding;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.interfaces.Callbacks;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.MainActivity;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.validation.validatorClass;
-
 import static android.content.Context.MODE_PRIVATE;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.CDB;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.CDBMap;
@@ -49,6 +20,36 @@ import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.matern
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.maternalModule;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.modulesCode;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data.newBornModule;
+
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.text.format.DateFormat;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Toast;
+
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.FragmentScheduleBinding;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.interfaces.Callbacks;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.NextMeeting;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.MainActivity;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.validation.validatorClass;
 
 public class ScheduleFragment extends Fragment {
 
@@ -76,7 +77,7 @@ public class ScheduleFragment extends Fragment {
 
         db = new DatabaseHelper(getContext());
         view = bi.getRoot();
-        MainApp.nmc = new NextMeetingContract();
+        MainApp.nmc = new NextMeeting();
         bi.doctorName.setText(MainApp.providerName);
         modules = new ArrayList<>();
         subModules = new ArrayList<>();
@@ -151,10 +152,10 @@ public class ScheduleFragment extends Fragment {
         MainApp.nmc.setFormdate(new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime()));
         MainApp.nmc.setDeviceid(MainApp.deviceId);
 
-        MainApp.nmc.setDist_id(Long.parseLong(MainApp.fc.getDistrictID()));
-        MainApp.nmc.setHf_name(MainApp.fc.getHealthFacilityCode());
-        MainApp.nmc.setHp_name(MainApp.fc.getProviderName());
-        MainApp.nmc.setHp_code(Long.parseLong(MainApp.fc.getProviderID()));
+        MainApp.nmc.setDist_id(Long.parseLong(MainApp.forms.getDistrictID()));
+        MainApp.nmc.setHf_name(MainApp.forms.getHealthFacilityCode());
+        MainApp.nmc.setHp_name(MainApp.forms.getProviderName());
+        MainApp.nmc.setHp_code(Long.parseLong(MainApp.forms.getProviderID()));
         MainApp.nmc.setDevicetagID(sharedPref.getString("tagName", null));
         MainApp.nmc.setUsername(MainApp.userName);
 

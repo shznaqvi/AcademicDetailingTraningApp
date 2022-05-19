@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Academic Detailing Training App</string>
+    <string name="app_name">Academic Detailing</string>
 
 
     <string name="True">True</string>
@@ -55,7 +55,7 @@
     <string name="gds01_03b">Two</string>
     <string name="gds01_03c">Three</string>
     <string name="gds01_03d">None</string>
-    <string name="gds01_04">For assessing a general danger sign, a healthcare provider needs to ASK _____ questions and LOOK for ______ observations to observe the child\'s actions.</string>
+    <string name="gds01_04">For assessing a general danger sign, a healthcare healthProvider needs to ASK _____ questions and LOOK for ______ observations to observe the child\'s actions.</string>
     <string name="gds01_04a">One, Two</string>
     <string name="gds01_04b">Two, Two</string>
     <string name="gds01_04c">Three, Two</string>
@@ -530,7 +530,7 @@
     <string name="ecebB08a">After transfer for advanced care</string>
     <string name="ecebB08b">As soon as possible after a Danger Sign has been identified</string>
     <string name="ecebB08c">After all family members have been contacted</string>
-    <string name="ecebB08d">At a book_time that is convenient for the health care provider</string>
+    <string name="ecebB08d">At a book_time that is convenient for the health care healthProvider</string>
     <string name="ecebB09">After the first day following birth, jaundice is severe when it appears on what body area?</string>
     <string name="ecebB09a">Back and abdomen</string>
     <string name="ecebB09b">White part of the eye</string>

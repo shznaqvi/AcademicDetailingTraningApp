@@ -1,6 +1,8 @@
 package detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments;
 
 
+import static android.content.Context.ACTIVITY_SERVICE;
+
 import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -12,20 +14,21 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.databinding.DataBindingUtil;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.annotation.Nullable;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.gson.Gson;
 import com.kaopiz.kprogresshud.KProgressHUD;
@@ -52,8 +55,6 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static android.content.Context.ACTIVITY_SERVICE;
 
 
 /**
@@ -109,11 +110,11 @@ public class MainFragment extends Fragment {
 
 
         onClickListener();
-        setupViews();
+      //  setupViews();
         return view;
     }
 
-    private void setupViews() {
+  /*  private void setupViews() {
         SharedPreferences syncPref = getContext().getSharedPreferences("SyncInfo", Context.MODE_PRIVATE);
         bi.userName.setText("Hello! " + MainApp.userName);
         bi.lastDownload.setText(syncPref.getString("LastDownSyncServer", "Never Downloaded"));
@@ -127,7 +128,7 @@ public class MainFragment extends Fragment {
 
 
     }
-
+*/
     private void onClickListener() {
 
         bi.startTraining.setOnClickListener(v -> callbacks.loadInfoFragment());
@@ -169,7 +170,7 @@ public class MainFragment extends Fragment {
                     downloadManager = (DownloadManager) getContext().getSystemService(Context.DOWNLOAD_SERVICE);
                     Cursor cursor = downloadManager.query(query);
                     if (cursor.moveToFirst()) {
-                        int colIndex = cursor.getColumnIndex(DownloadManager.COLUMN_STATUS);
+                        int colIndex = cursor.getColumnIndexOrThrow(DownloadManager.COLUMN_STATUS);
                         if (DownloadManager.STATUS_SUCCESSFUL == cursor.getInt(colIndex)) {
 
                             editorDownload.putBoolean("flag", true);

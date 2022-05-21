@@ -17,6 +17,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import com.validatorcrawler.aliazaz.Validator;
+
 import org.json.JSONObject;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.JSON.GeneratorClass;
@@ -26,7 +28,6 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityGdssession02PreTestBinding;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.validation.validatorClass;
 
 public class GDSSession02_Pre_test extends AppCompatActivity implements RadioButton.OnCheckedChangeListener {
 
@@ -80,7 +81,7 @@ public class GDSSession02_Pre_test extends AppCompatActivity implements RadioBut
 
     }
 
-    public void btnOk() {
+    public void btnOk(View view) {
         if (type.equals("pre")) {
             MainApp.showDialog(this, getString(R.string.readyForTrain), "pre", null, subMenuDT);
         } else {
@@ -89,7 +90,7 @@ public class GDSSession02_Pre_test extends AppCompatActivity implements RadioBut
         }
     }
 
-    public void BtnContinue() {
+    public void BtnContinue(View view) {
         if (formValidation()) {
             try {
                 SaveDraft();
@@ -158,19 +159,8 @@ public class GDSSession02_Pre_test extends AppCompatActivity implements RadioBut
 
     private boolean formValidation() {
 
-        if (!validatorClass.EmptyRadioButton(this, bi.gdsb01, bi.gdsb01a, getString(R.string.gds02_01))) {
-            return false;
-        }
-        if (!validatorClass.EmptyRadioButton(this, bi.gdsb02, bi.gdsb02a, getString(R.string.gds02_02))) {
-            return false;
-        }
-        if (!validatorClass.EmptyRadioButton(this, bi.gdsb03, bi.gdsb03a, getString(R.string.gds02_03))) {
-            return false;
-        }
-        if (!validatorClass.EmptyRadioButton(this, bi.gdsb04, bi.gdsb04a, getString(R.string.gds02_04))) {
-            return false;
-        }
-        return validatorClass.EmptyRadioButton(this, bi.gdsb05, bi.gdsb05a, getString(R.string.gds02_05));
+        return Validator.emptyCheckingContainer(this, bi.fldGrpPreGds02);
+
     }
 
 
@@ -185,19 +175,19 @@ public class GDSSession02_Pre_test extends AppCompatActivity implements RadioBut
 
             if (bi.gdsb03a.isChecked()) {
                 bi.tvgdsb03.clearComposingText();
-                String styledText = "A child who is not able to hold anything down at all has the sign <font color='yellow'><b><i>Not able to drink or breastfeed</i></b></font>.";
+                String styledText = "A child who is not able to hold anything down at all has the sign <font color='#cc297a'><b><i>Not able to drink or breastfeed</i></b></font>.";
                 bi.tvgdsb03.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.gdsb03b.isChecked()) {
                 bi.tvgdsb03.clearComposingText();
-                String styledText = "A child who is not able to hold anything down at all has the sign <font color='yellow'><b><i>Vomits everything</i></b></font>.";
+                String styledText = "A child who is not able to hold anything down at all has the sign <font color='#cc297a'><b><i>Vomits everything</i></b></font>.";
                 bi.tvgdsb03.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.gdsb03c.isChecked()) {
                 bi.tvgdsb03.clearComposingText();
-                String styledText = "A child who is not able to hold anything down at all has the sign <font color='yellow'><b><i>Lethargic</i></b></font>.";
+                String styledText = "A child who is not able to hold anything down at all has the sign <font color='#cc297a'><b><i>Lethargic</i></b></font>.";
                 bi.tvgdsb03.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.gdsb03d.isChecked()) {
                 bi.tvgdsb03.clearComposingText();
-                String styledText = "A child who is not able to hold anything down at all has the sign <font color='yellow'><b><i>Unconscious</i></b></font>.";
+                String styledText = "A child who is not able to hold anything down at all has the sign <font color='#cc297a'><b><i>Unconscious</i></b></font>.";
                 bi.tvgdsb03.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             }
         }
@@ -211,19 +201,19 @@ public class GDSSession02_Pre_test extends AppCompatActivity implements RadioBut
 
             if (bi.gdsb05a.isChecked()) {
                 bi.tvgdsb05.clearComposingText();
-                String styledText = "To make sugar water: Dissolve 4 level teaspoons of sugar (20 grams) in a <font color='yellow'><b><i>100-ml</i></b></font> cup of clean water.";
+                String styledText = "To make sugar water: Dissolve 4 level teaspoons of sugar (20 grams) in a <font color='#cc297a'><b><i>100-ml</i></b></font> cup of clean water.";
                 bi.tvgdsb05.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.gdsb05b.isChecked()) {
                 bi.tvgdsb05.clearComposingText();
-                String styledText = "To make sugar water: Dissolve 4 level teaspoons of sugar (20 grams) in a <font color='yellow'><b><i>150-ml</i></b></font> cup of clean water.";
+                String styledText = "To make sugar water: Dissolve 4 level teaspoons of sugar (20 grams) in a <font color='#cc297a'><b><i>150-ml</i></b></font> cup of clean water.";
                 bi.tvgdsb05.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.gdsb05c.isChecked()) {
                 bi.tvgdsb05.clearComposingText();
-                String styledText = "To make sugar water: Dissolve 4 level teaspoons of sugar (20 grams) in a <font color='yellow'><b><i>200-ml</i></b></font> cup of clean water.";
+                String styledText = "To make sugar water: Dissolve 4 level teaspoons of sugar (20 grams) in a <font color='#cc297a'><b><i>200-ml</i></b></font> cup of clean water.";
                 bi.tvgdsb05.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.gdsb05d.isChecked()) {
                 bi.tvgdsb05.clearComposingText();
-                String styledText = "To make sugar water: Dissolve 4 level teaspoons of sugar (20 grams) in a <font color='yellow'><b><i>250-ml</i></b></font> cup of clean water.";
+                String styledText = "To make sugar water: Dissolve 4 level teaspoons of sugar (20 grams) in a <font color='#cc297a'><b><i>250-ml</i></b></font> cup of clean water.";
                 bi.tvgdsb05.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             }
         }

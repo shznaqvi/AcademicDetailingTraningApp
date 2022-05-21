@@ -23,13 +23,14 @@ import java.io.File;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityPlayerBinding;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityPlayerNewBinding;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Utils;
 
-public class PlayerActivity extends AppCompatActivity {
+public class PlayerActivityNew extends AppCompatActivity {
 
-    ActivityPlayerBinding bi;
+
+    ActivityPlayerNewBinding bi;
     ExoPlayer player;
     Data.SubMenu subMenu;
     Long playbackPosition = new Long(0);
@@ -38,7 +39,7 @@ public class PlayerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        bi = DataBindingUtil.setContentView(this, R.layout.activity_player);
+        bi = DataBindingUtil.setContentView(this, R.layout.activity_player_new);
        // bi.setCallback(this);
 
         initializingComponents();

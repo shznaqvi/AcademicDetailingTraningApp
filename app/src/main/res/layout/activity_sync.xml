@@ -72,7 +72,7 @@
                     android:elevation="1dp"
                     android:gravity="center_horizontal"
                     android:paddingBottom="1dp"
-                    android:shadowColor="@color/light_gray"
+                    android:shadowColor="@color/grayOverlay"
                     android:shadowDx="1"
                     android:shadowDy="1"
                     android:shadowRadius="1"

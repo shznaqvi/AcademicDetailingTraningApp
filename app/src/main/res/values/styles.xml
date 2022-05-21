@@ -40,7 +40,7 @@
         <item name="cardViewStyle">@style/CardView.Light</item>
         <item name="toolbarStyle">@style/ToolbarTheme</item>
         <item name="android:buttonStyle">@style/button</item>
-        <item name="android:textColorHint">@color/light_gray</item>
+        <item name="android:textColorHint">@color/grayOverlay</item>
         <item name="android:typeface">sans</item>
         <item name="android:fillAfter">true</item>
         <item name="android:enterFadeDuration">600</item>
@@ -156,6 +156,7 @@
         <item name="android:paddingStart">8dp</item>
         <item name="android:textColor">@color/colorPrimary</item>
         <item name="android:textSize">14sp</item>
+        <item name="android:buttonTint">@drawable/radio_button_selector</item>
 
         <item name="android:paddingEnd">8dp</item>
         <item name="android:paddingTop">4dp</item>
@@ -173,6 +174,8 @@
         <item name="android:minHeight">36dp</item>
         <item name="android:clickable">true</item>
         <item name="android:textSize">14sp</item>
+        <item name="android:buttonTint">@drawable/radio_button_selector</item>
+
     </style>
 
     <style name="button" parent="Widget.AppCompat.Button">
@@ -435,7 +438,7 @@
 
         <item name="colorAccent">@color/colorAccent
         </item>                   <!--header background-->
-        <item name="android:windowBackground">@color/light_gray</item>     <!--calendar background-->
+        <item name="android:windowBackground">@color/grayOverlay</item>     <!--calendar background-->
         <item name="android:textColorPrimary">@color/colorPrimary</item> <!--days of the month-->
         <item name="android:textColorSecondary">@color/colorAccent</item>    <!--days of the week-->
         <item name="android:selectableItemBackgroundBorderless">@color/colorPrimaryDark</item>
@@ -459,7 +462,7 @@
 
         <item name="colorAccent">@color/colorAccent
         </item>                   <!--header background-->
-        <item name="android:windowBackground">@color/light_gray</item>     <!--calendar background-->
+        <item name="android:windowBackground">@color/grayOverlay</item>     <!--calendar background-->
         <item name="android:textColorPrimary">@color/colorPrimary</item> <!--days of the month-->
         <item name="android:textColorSecondary">@color/colorAccent</item>    <!--days of the week-->
         <item name="android:selectableItemBackgroundBorderless">@color/colorPrimaryDark</item>

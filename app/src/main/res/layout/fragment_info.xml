@@ -4,6 +4,9 @@
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
+        android:theme="@style/AppThemeEnglish1"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:background="@color/grayOverlay"
         android:layout_height="match_parent">
 
 
@@ -18,19 +21,22 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/testing"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/ticker_red"
-                    android:elevation="6dp"
-                    android:gravity="center_horizontal"
-                    android:keepScreenOn="true"
-                    android:padding="4dp"
-                    android:text="Information"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                <androidx.cardview.widget.CardView
+                    style="@style/cardView"
+                    android:elevation="24dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/heading"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorPrimaryDark"
+                        android:gravity="center"
+                        android:text="INFORMATION"
+                        android:minHeight="52dp"
+                        android:textColor="@android:color/white"
+                        android:textSize="25sp" />
+                </androidx.cardview.widget.CardView>
 
                 <!--Q01-->
                 <androidx.cardview.widget.CardView style="@style/cardView">
@@ -49,10 +55,10 @@
 
 
                         <TextView
+                            style="@style/textInput"
                             android:id="@+id/districtSpinner"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
                             android:enabled="false"
                             android:textColor="@color/black" />
 
@@ -196,7 +202,7 @@
                         android:backgroundTintMode="src_atop"
                         android:onClick="btnContinue"
                         android:text="Proceed"
-                        android:textColor="@color/colorPrimaryDark"
+                        android:textColor="@color/white"
                         android:textSize="24sp"
                         android:textStyle="bold" />
 

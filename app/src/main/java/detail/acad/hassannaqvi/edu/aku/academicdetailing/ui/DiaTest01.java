@@ -17,6 +17,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import com.validatorcrawler.aliazaz.Validator;
+
 import org.json.JSONObject;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.JSON.GeneratorClass;
@@ -26,7 +28,6 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityDiaTest01Binding;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.validation.validatorClass;
 
 
 public class DiaTest01 extends AppCompatActivity implements RadioButton.OnCheckedChangeListener {
@@ -83,7 +84,7 @@ public class DiaTest01 extends AppCompatActivity implements RadioButton.OnChecke
 
     }
 
-    public void btnOk() {
+    public void btnOk(View view) {
         if (type.equals("pre")) {
             MainApp.showDialog(this, getString(R.string.readyForTrain), "pre", null, subMenuDT);
         } else {
@@ -93,7 +94,7 @@ public class DiaTest01 extends AppCompatActivity implements RadioButton.OnChecke
     }
 
 
-    public void BtnContinue() {
+    public void BtnContinue(View view) {
         if (formValidation()) {
             try {
                 SaveDraft();
@@ -138,19 +139,19 @@ public class DiaTest01 extends AppCompatActivity implements RadioButton.OnChecke
 
             if (bi.DiaTestA01a.isChecked()) {
                 bi.tvDiaTestA01.clearComposingText();
-                String styledText = "The death of a child with acute diarrhea is usually due to <font color='yellow'><b><i>Dehydration</i></b></font>.";
+                String styledText = "The death of a child with acute diarrhea is usually due to <font color='#cc297a'><b><i>Dehydration</i></b></font>.";
                 bi.tvDiaTestA01.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.DiaTestA01b.isChecked()) {
                 bi.tvDiaTestA01.clearComposingText();
-                String styledText = "The death of a child with acute diarrhea is usually due to <font color='yellow'><b><i>Dysentery</i></b></font>.";
+                String styledText = "The death of a child with acute diarrhea is usually due to <font color='#cc297a'><b><i>Dysentery</i></b></font>.";
                 bi.tvDiaTestA01.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.DiaTestA01c.isChecked()) {
                 bi.tvDiaTestA01.clearComposingText();
-                String styledText = "The death of a child with acute diarrhea is usually due to <font color='yellow'><b><i>Hydration</i></b></font>.";
+                String styledText = "The death of a child with acute diarrhea is usually due to <font color='#cc297a'><b><i>Hydration</i></b></font>.";
                 bi.tvDiaTestA01.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.DiaTestA01d.isChecked()) {
                 bi.tvDiaTestA01.clearComposingText();
-                String styledText = "The death of a child with acute diarrhea is usually due to <font color='yellow'><b><i>Malnutrition</i></b></font>.";
+                String styledText = "The death of a child with acute diarrhea is usually due to <font color='#cc297a'><b><i>Malnutrition</i></b></font>.";
                 bi.tvDiaTestA01.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             }
         }
@@ -164,19 +165,19 @@ public class DiaTest01 extends AppCompatActivity implements RadioButton.OnChecke
 
             if (bi.DiaTestA02a.isChecked()) {
                 bi.tvDiaTestA02.clearComposingText();
-                String styledText = "The common cause of dysentery is <font color='yellow'><b><i>Brucella</i></b></font> bacteria.";
+                String styledText = "The common cause of dysentery is <font color='#cc297a'><b><i>Brucella</i></b></font> bacteria.";
                 bi.tvDiaTestA02.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.DiaTestA02b.isChecked()) {
                 bi.tvDiaTestA02.clearComposingText();
-                String styledText = "The common cause of dysentery is <font color='yellow'><b><i>Shigella</i></b></font> bacteria.";
+                String styledText = "The common cause of dysentery is <font color='#cc297a'><b><i>Shigella</i></b></font> bacteria.";
                 bi.tvDiaTestA02.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.DiaTestA02c.isChecked()) {
                 bi.tvDiaTestA02.clearComposingText();
-                String styledText = "The common cause of dysentery is <font color='yellow'><b><i>Bacillus</i></b></font> bacteria.";
+                String styledText = "The common cause of dysentery is <font color='#cc297a'><b><i>Bacillus</i></b></font> bacteria.";
                 bi.tvDiaTestA02.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.DiaTestA02d.isChecked()) {
                 bi.tvDiaTestA02.clearComposingText();
-                String styledText = "The common cause of dysentery is <font color='yellow'><b><i>Salmonella </i></b></font> bacteria.";
+                String styledText = "The common cause of dysentery is <font color='#cc297a'><b><i>Salmonella </i></b></font> bacteria.";
                 bi.tvDiaTestA02.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             }
         }
@@ -190,19 +191,19 @@ public class DiaTest01 extends AppCompatActivity implements RadioButton.OnChecke
 
             if (bi.DiaTestA05a.isChecked()) {
                 bi.tvDiaTestA05.clearComposingText();
-                String styledText = "<font color='yellow'><b><i>PCV</i></b></font> vaccination is recommended for diarrhea by WHO for children less than 5 years.";
+                String styledText = "<font color='#cc297a'><b><i>PCV</i></b></font> vaccination is recommended for diarrhea by WHO for children less than 5 years.";
                 bi.tvDiaTestA05.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.DiaTestA05b.isChecked()) {
                 bi.tvDiaTestA05.clearComposingText();
-                String styledText = "<font color='yellow'><b><i>Hib</i></b></font> vaccination is recommended for diarrhea by WHO for children less than 5 years.";
+                String styledText = "<font color='#cc297a'><b><i>Hib</i></b></font> vaccination is recommended for diarrhea by WHO for children less than 5 years.";
                 bi.tvDiaTestA05.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.DiaTestA05c.isChecked()) {
                 bi.tvDiaTestA05.clearComposingText();
-                String styledText = "<font color='yellow'><b><i>Pertussis</i></b></font> vaccination is recommended for diarrhea by WHO for children less than 5 years.";
+                String styledText = "<font color='#cc297a'><b><i>Pertussis</i></b></font> vaccination is recommended for diarrhea by WHO for children less than 5 years.";
                 bi.tvDiaTestA05.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.DiaTestA05d.isChecked()) {
                 bi.tvDiaTestA05.clearComposingText();
-                String styledText = "<font color='yellow'><b><i>Rotavirus</i></b></font> vaccination is recommended for diarrhea by WHO for children less than 5 years.";
+                String styledText = "<font color='#cc297a'><b><i>Rotavirus</i></b></font> vaccination is recommended for diarrhea by WHO for children less than 5 years.";
                 bi.tvDiaTestA05.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             }
         }
@@ -266,7 +267,7 @@ public class DiaTest01 extends AppCompatActivity implements RadioButton.OnChecke
 
     private boolean formValidation() {
 
-        return validatorClass.EmptyCheckingContainer(this, bi.llDiaTestA);
+        return Validator.emptyCheckingContainer(this, bi.llDiaTestA);
     }
 
     @Override

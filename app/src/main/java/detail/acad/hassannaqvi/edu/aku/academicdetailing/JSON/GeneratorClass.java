@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.Result;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.validation.validatorClass;
 import io.blackbox_vision.datetimepickeredittext.view.DatePickerInputEditText;
 
 public abstract class GeneratorClass {
@@ -77,7 +76,7 @@ public abstract class GeneratorClass {
 
                                 RadioButton rdb = rdp.findViewById(((RadioGroup) view).getChildAt(j).getId());
 
-                                formJSON.put(assig_id, getValues(validatorClass.getIDComponent(rdb)));
+                                formJSON.put(assig_id, getValues(String.valueOf(rdb.getId())));
 
                                 break;
                             }
@@ -157,6 +156,7 @@ public abstract class GeneratorClass {
                         if (String.valueOf(rdg.getChildAt(j).getTag()).equals(tag2)) {
                             RadioButton rdb = rdg.findViewById(((RadioGroup) view).getChildAt(j).getId());
                             rdb.setButtonDrawable(R.drawable.cancel);
+
                             rdb.setCompoundDrawablesWithIntrinsicBounds(null, null, ContextCompat.getDrawable(rdg.getContext(), R.drawable.pretest), null);
                             rdb.setChecked(true);
                         }

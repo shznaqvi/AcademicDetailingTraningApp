@@ -26,7 +26,6 @@ import android.widget.Toast;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
 
 import java.io.File;
 import java.util.List;
@@ -100,7 +99,7 @@ public class ModuleFragment extends Fragment {
 
         imageAdapter = new SlidingImageAdapter(getContext(), Data.mainSlides);
         bi.pager.setAdapter(imageAdapter);
-        bi.indicator.setViewPager(bi.pager);
+    //    bi.indicator.setViewPager(bi.pager);
 
 
         NUM_PAGES = Data.mainSlides.length;
@@ -123,7 +122,7 @@ public class ModuleFragment extends Fragment {
             }
         }, 2000, 2000);
 
-        // Pager listener over indicator
+/*        // Pager listener over indicator
         bi.indicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
             @Override
@@ -141,7 +140,7 @@ public class ModuleFragment extends Fragment {
             public void onPageScrollStateChanged(int pos) {
 
             }
-        });
+        });*/
     }
 
     private void setupModules() {

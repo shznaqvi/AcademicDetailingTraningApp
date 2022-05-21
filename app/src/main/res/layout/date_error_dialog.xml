@@ -65,7 +65,7 @@
             android:layout_margin="10dp"
             android:gravity="center_vertical|center_horizontal"
             android:text="Your device date &amp; time is:"
-            android:textColor="@color/light_gray"
+            android:textColor="@color/grayOverlay"
             android:textSize="13sp"
             android:textStyle="bold" />
 

@@ -15,6 +15,8 @@ import android.widget.Toast;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
+import com.validatorcrawler.aliazaz.Validator;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -31,7 +33,6 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.Forms;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.HealthFacility;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.HealthProvider;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.HideKeyboard;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.validation.validatorClass;
 
 
 public class InfoFragment extends Fragment {
@@ -222,7 +223,7 @@ public class InfoFragment extends Fragment {
     }
 
     private boolean formValidation() {
-        return validatorClass.EmptyCheckingContainer(getActivity(), bi.fldGrpInfo);
+        return Validator.emptyCheckingContainer(getActivity(), bi.fldGrpInfo);
     }
 
     public void setGPS() {

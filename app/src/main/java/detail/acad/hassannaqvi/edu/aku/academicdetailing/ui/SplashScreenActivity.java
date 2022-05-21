@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.kaopiz.kprogresshud.KProgressHUD;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.RetrofitClient.RetrofitClient;
 
 
 public class SplashScreenActivity extends AppCompatActivity {
@@ -19,7 +18,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
-        RetrofitClient.createRetrofitInstance();
+   //     RetrofitClient.createRetrofitInstance();
 
 // Clear Old Data Irfan
 

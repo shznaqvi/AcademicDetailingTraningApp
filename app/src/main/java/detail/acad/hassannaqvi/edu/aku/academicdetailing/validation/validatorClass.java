@@ -1,36 +1,12 @@
 package detail.acad.hassannaqvi.edu.aku.academicdetailing.validation;
 
-import android.content.Context;
-import android.graphics.Color;
-import android.text.TextUtils;
-import android.util.Log;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.ScrollView;
-import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.cardview.widget.CardView;
-
-import com.edittextpicker.aliazaz.textpicker.TextPicker;
-
-import java.lang.reflect.Field;
-
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
-
 /**
  * Created by ali.azaz on 12/04/17.
  * modified by ramsha.seed on 7/8/2018
  */
 
 public abstract class validatorClass {
+/*
 
     public static boolean EmptyTextBox(Context context, EditText txt, String msg) {
         if (TextUtils.isEmpty(txt.getText().toString())) {
@@ -300,8 +276,10 @@ public abstract class validatorClass {
         for (int i = 0; i < lv.getChildCount(); i++) {
             View view = lv.getChildAt(i);
 
-          /*  if (view.getVisibility() == View.GONE || !view.isEnabled())
-                continue;*/
+          */
+/*  if (view.getVisibility() == View.GONE || !view.isEnabled())
+                continue;*//*
+
             if (view.getVisibility() == View.GONE )
                 continue;
 
@@ -349,5 +327,6 @@ public abstract class validatorClass {
         }
         return "";
     }
+*/
 
 }

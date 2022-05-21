@@ -17,6 +17,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import com.validatorcrawler.aliazaz.Validator;
+
 import org.json.JSONObject;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.JSON.GeneratorClass;
@@ -26,7 +28,6 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityPsbiTest02Binding;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.validation.validatorClass;
 
 public class PsbiTest02 extends AppCompatActivity implements RadioButton.OnCheckedChangeListener {
 
@@ -81,7 +82,7 @@ public class PsbiTest02 extends AppCompatActivity implements RadioButton.OnCheck
 
     }
 
-    public void btnOk() {
+    public void btnOk(View view) {
         if (type.equals("pre")) {
             MainApp.showDialog(this, getString(R.string.readyForTrain), "pre", null, subMenuDT);
         } else {
@@ -91,7 +92,7 @@ public class PsbiTest02 extends AppCompatActivity implements RadioButton.OnCheck
     }
 
 
-    public void BtnContinue() {
+    public void BtnContinue(View view) {
         if (formValidation()) {
             try {
                 SaveDraft();
@@ -136,19 +137,19 @@ public class PsbiTest02 extends AppCompatActivity implements RadioButton.OnCheck
 
             if (bi.PsbiTestB01a.isChecked()) {
                 bi.tvPsbiTestB01.clearComposingText();
-                String styledText = "The follow-up book_time for sick young infants with diarrhea and pneumonia is <font color='yellow'><b><i>2nd day</i></b></font> .";
+                String styledText = "The follow-up book_time for sick young infants with diarrhea and pneumonia is <font color='#cc297a'><b><i>2nd day</i></b></font> .";
                 bi.tvPsbiTestB01.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.PsbiTestB01b.isChecked()) {
                 bi.tvPsbiTestB01.clearComposingText();
-                String styledText = "The follow-up book_time for sick young infants with diarrhea and pneumonia is <font color='yellow'><b><i>3rd day</i></b></font> .";
+                String styledText = "The follow-up book_time for sick young infants with diarrhea and pneumonia is <font color='#cc297a'><b><i>3rd day</i></b></font> .";
                 bi.tvPsbiTestB01.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.PsbiTestB01c.isChecked()) {
                 bi.tvPsbiTestB01.clearComposingText();
-                String styledText = "The follow-up book_time for sick young infants with diarrhea and pneumonia is <font color='yellow'><b><i>4th day</i></b></font> .";
+                String styledText = "The follow-up book_time for sick young infants with diarrhea and pneumonia is <font color='#cc297a'><b><i>4th day</i></b></font> .";
                 bi.tvPsbiTestB01.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.PsbiTestB01d.isChecked()) {
                 bi.tvPsbiTestB01.clearComposingText();
-                String styledText = "The follow-up book_time for sick young infants with diarrhea and pneumonia is <font color='yellow'><b><i>5th day</i></b></font> .";
+                String styledText = "The follow-up book_time for sick young infants with diarrhea and pneumonia is <font color='#cc297a'><b><i>5th day</i></b></font> .";
                 bi.tvPsbiTestB01.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             }
         }
@@ -162,19 +163,19 @@ public class PsbiTest02 extends AppCompatActivity implements RadioButton.OnCheck
 
             if (bi.PsbiTestB02a.isChecked()) {
                 bi.tvPsbiTestB02.clearComposingText();
-                String styledText = "Persistent vomiting is defined as vomiting following three attempts to feed the infant within <font color='yellow'><b><i>10</i></b></font> minutes, and the infant vomits after each attempt.";
+                String styledText = "Persistent vomiting is defined as vomiting following three attempts to feed the infant within <font color='#cc297a'><b><i>10</i></b></font> minutes, and the infant vomits after each attempt.";
                 bi.tvPsbiTestB02.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.PsbiTestB02b.isChecked()) {
                 bi.tvPsbiTestB02.clearComposingText();
-                String styledText = "Persistent vomiting is defined as vomiting following three attempts to feed the infant within <font color='yellow'><b><i>20</i></b></font> minutes, and the infant vomits after each attempt.";
+                String styledText = "Persistent vomiting is defined as vomiting following three attempts to feed the infant within <font color='#cc297a'><b><i>20</i></b></font> minutes, and the infant vomits after each attempt.";
                 bi.tvPsbiTestB02.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.PsbiTestB02c.isChecked()) {
                 bi.tvPsbiTestB02.clearComposingText();
-                String styledText = "Persistent vomiting is defined as vomiting following three attempts to feed the infant within <font color='yellow'><b><i>30</i></b></font> minutes, and the infant vomits after each attempt.";
+                String styledText = "Persistent vomiting is defined as vomiting following three attempts to feed the infant within <font color='#cc297a'><b><i>30</i></b></font> minutes, and the infant vomits after each attempt.";
                 bi.tvPsbiTestB02.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.PsbiTestB02d.isChecked()) {
                 bi.tvPsbiTestB02.clearComposingText();
-                String styledText = "Persistent vomiting is defined as vomiting following three attempts to feed the infant within <font color='yellow'><b><i>40</i></b></font> minutes, and the infant vomits after each attempt.";
+                String styledText = "Persistent vomiting is defined as vomiting following three attempts to feed the infant within <font color='#cc297a'><b><i>40</i></b></font> minutes, and the infant vomits after each attempt.";
                 bi.tvPsbiTestB02.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             }
         }
@@ -188,19 +189,19 @@ public class PsbiTest02 extends AppCompatActivity implements RadioButton.OnCheck
 
             if (bi.PsbiTestB03a.isChecked()) {
                 bi.tvPsbiTestB03.clearComposingText();
-                String styledText = "Pre referral treatment for severe Pneumonia or very severe disease in young infant up to 2 months require first dose of an appropriate <font color='yellow'><b><i>Oral</i></b></font> antibiotic .";
+                String styledText = "Pre referral treatment for severe Pneumonia or very severe disease in young infant up to 2 months require first dose of an appropriate <font color='#cc297a'><b><i>Oral</i></b></font> antibiotic .";
                 bi.tvPsbiTestB03.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.PsbiTestB03b.isChecked()) {
                 bi.tvPsbiTestB03.clearComposingText();
-                String styledText = "Pre referral treatment for severe Pneumonia or very severe disease in young infant up to 2 months require first dose of an appropriate <font color='yellow'><b><i>Intravenous</i></b></font> antibiotic .";
+                String styledText = "Pre referral treatment for severe Pneumonia or very severe disease in young infant up to 2 months require first dose of an appropriate <font color='#cc297a'><b><i>Intravenous</i></b></font> antibiotic .";
                 bi.tvPsbiTestB03.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.PsbiTestB03c.isChecked()) {
                 bi.tvPsbiTestB03.clearComposingText();
-                String styledText = "Pre referral treatment for severe Pneumonia or very severe disease in young infant up to 2 months require first dose of an appropriate <font color='yellow'><b><i>Intramuscular</i></b></font> antibiotic .";
+                String styledText = "Pre referral treatment for severe Pneumonia or very severe disease in young infant up to 2 months require first dose of an appropriate <font color='#cc297a'><b><i>Intramuscular</i></b></font> antibiotic .";
                 bi.tvPsbiTestB03.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.PsbiTestB03d.isChecked()) {
                 bi.tvPsbiTestB03.clearComposingText();
-                String styledText = "Pre referral treatment for severe Pneumonia or very severe disease in young infant up to 2 months require first dose of an appropriate <font color='yellow'><b><i>None of the above</i></b></font> antibiotic .";
+                String styledText = "Pre referral treatment for severe Pneumonia or very severe disease in young infant up to 2 months require first dose of an appropriate <font color='#cc297a'><b><i>None of the above</i></b></font> antibiotic .";
                 bi.tvPsbiTestB03.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             }
         }
@@ -263,7 +264,7 @@ public class PsbiTest02 extends AppCompatActivity implements RadioButton.OnCheck
 
     private boolean formValidation() {
 
-        return validatorClass.EmptyCheckingContainer(this, bi.llPsbiTestB);
+        return Validator.emptyCheckingContainer(this, bi.llPsbiTestB);
     }
 
     @Override

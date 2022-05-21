@@ -13,6 +13,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import com.validatorcrawler.aliazaz.Validator;
+
 import org.json.JSONObject;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.JSON.GeneratorClass;
@@ -22,7 +24,6 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityEcSbTest01Binding;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.validation.validatorClass;
 
 
 public class EcSbTest01 extends AppCompatActivity {
@@ -77,7 +78,7 @@ public class EcSbTest01 extends AppCompatActivity {
 
     }
 
-    public void btnOk() {
+    public void btnOk(View view) {
         if (type.equals("pre")) {
             MainApp.showDialog(this, getString(R.string.readyForTrain), "pre", null, subMenuDT);
         } else {
@@ -87,7 +88,7 @@ public class EcSbTest01 extends AppCompatActivity {
     }
 
 
-    public void BtnContinue() {
+    public void BtnContinue(View view) {
         if (formValidation()) {
             try {
                 SaveDraft();
@@ -159,8 +160,8 @@ public class EcSbTest01 extends AppCompatActivity {
 
 
     private boolean formValidation() {
+        return Validator.emptyCheckingContainer(this, bi.llecsbA);
 
-        return validatorClass.EmptyCheckingContainer(this, bi.llecsbA);
     }
 
     @Override

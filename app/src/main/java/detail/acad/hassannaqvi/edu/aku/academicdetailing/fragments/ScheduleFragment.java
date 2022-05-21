@@ -49,7 +49,6 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.interfaces.Callbacks;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.NextMeeting;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.MainActivity;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.validation.validatorClass;
 
 public class ScheduleFragment extends Fragment {
 
@@ -196,7 +195,7 @@ public class ScheduleFragment extends Fragment {
 
     private boolean formValidate() {
 
-        if (!validatorClass.EmptyTextBox(getContext(), bi.bookDate, getString(R.string.book_date))) {
+/*        if (!validatorClass.EmptyTextBox(getContext(), bi.bookDate, getString(R.string.book_date))) {
             return false;
         }
 
@@ -214,7 +213,8 @@ public class ScheduleFragment extends Fragment {
         if (!validatorClass.EmptySpinner(getContext(), bi.sessions, "Sessions")) {
             return false;
         }
-        return validatorClass.EmptySpinner(getContext(), bi.bookingType, "Booking Type");
+        return validatorClass.EmptySpinner(getContext(), bi.bookingType, "Booking Type");*/
+        return true;
     }
 
     private void populateSpinner() {

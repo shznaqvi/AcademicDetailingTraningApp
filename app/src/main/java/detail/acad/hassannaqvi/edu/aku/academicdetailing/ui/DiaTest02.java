@@ -17,6 +17,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import com.validatorcrawler.aliazaz.Validator;
+
 import org.json.JSONObject;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.JSON.GeneratorClass;
@@ -26,7 +28,6 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityDiaTest02Binding;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.validation.validatorClass;
 
 public class DiaTest02 extends AppCompatActivity implements RadioButton.OnCheckedChangeListener {
 
@@ -82,7 +83,7 @@ public class DiaTest02 extends AppCompatActivity implements RadioButton.OnChecke
 
     }
 
-    public void btnOk() {
+    public void btnOk(View view) {
         if (type.equals("pre")) {
             MainApp.showDialog(this, getString(R.string.readyForTrain), "pre", null, subMenuDT);
         } else {
@@ -92,7 +93,7 @@ public class DiaTest02 extends AppCompatActivity implements RadioButton.OnChecke
     }
 
 
-    public void BtnContinue() {
+    public void BtnContinue(View view) {
         if (formValidation()) {
             try {
                 SaveDraft();
@@ -137,19 +138,19 @@ public class DiaTest02 extends AppCompatActivity implements RadioButton.OnChecke
 
             if (bi.DiaTestB01a.isChecked()) {
                 bi.tvDiaTestB01.clearComposingText();
-                String styledText = "A child with persistent diarrhea needs Zinc DT for <font color='yellow'><b><i>10</i></b></font> days";
+                String styledText = "A child with persistent diarrhea needs Zinc DT for <font color='#cc297a'><b><i>10</i></b></font> days";
                 bi.tvDiaTestB01.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.DiaTestB01b.isChecked()) {
                 bi.tvDiaTestB01.clearComposingText();
-                String styledText = "A child with persistent diarrhea needs Zinc DT for <font color='yellow'><b><i>12</i></b></font> days";
+                String styledText = "A child with persistent diarrhea needs Zinc DT for <font color='#cc297a'><b><i>12</i></b></font> days";
                 bi.tvDiaTestB01.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.DiaTestB01c.isChecked()) {
                 bi.tvDiaTestB01.clearComposingText();
-                String styledText = "A child with persistent diarrhea needs Zinc DT for <font color='yellow'><b><i>14</i></b></font> days";
+                String styledText = "A child with persistent diarrhea needs Zinc DT for <font color='#cc297a'><b><i>14</i></b></font> days";
                 bi.tvDiaTestB01.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.DiaTestB01d.isChecked()) {
                 bi.tvDiaTestB01.clearComposingText();
-                String styledText = "A child with persistent diarrhea needs Zinc DT for <font color='yellow'><b><i>16</i></b></font> days";
+                String styledText = "A child with persistent diarrhea needs Zinc DT for <font color='#cc297a'><b><i>16</i></b></font> days";
                 bi.tvDiaTestB01.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             }
         }
@@ -163,19 +164,19 @@ public class DiaTest02 extends AppCompatActivity implements RadioButton.OnChecke
 
             if (bi.DiaTestB02a.isChecked()) {
                 bi.tvDiaTestB02.clearComposingText();
-                String styledText = "The antibiotic prescribed for dysentery is <font color='yellow'><b><i>Ciprofloxacin</i></b></font> for 3 days.";
+                String styledText = "The antibiotic prescribed for dysentery is <font color='#cc297a'><b><i>Ciprofloxacin</i></b></font> for 3 days.";
                 bi.tvDiaTestB02.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.DiaTestB02b.isChecked()) {
                 bi.tvDiaTestB02.clearComposingText();
-                String styledText = "The antibiotic prescribed for dysentery is <font color='yellow'><b><i>Amoxicillin</i></b></font> for 3 days.";
+                String styledText = "The antibiotic prescribed for dysentery is <font color='#cc297a'><b><i>Amoxicillin</i></b></font> for 3 days.";
                 bi.tvDiaTestB02.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.DiaTestB02c.isChecked()) {
                 bi.tvDiaTestB02.clearComposingText();
-                String styledText = "The antibiotic prescribed for dysentery is  <font color='yellow'><b><i>Ampicillin</i></b></font> for 3 days.";
+                String styledText = "The antibiotic prescribed for dysentery is  <font color='#cc297a'><b><i>Ampicillin</i></b></font> for 3 days.";
                 bi.tvDiaTestB02.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.DiaTestB02d.isChecked()) {
                 bi.tvDiaTestB02.clearComposingText();
-                String styledText = "The antibiotic prescribed for dysentery is <font color='yellow'><b><i>Diazepam</i></b></font> for 3 days.";
+                String styledText = "The antibiotic prescribed for dysentery is <font color='#cc297a'><b><i>Diazepam</i></b></font> for 3 days.";
                 bi.tvDiaTestB02.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             }
         }
@@ -189,19 +190,19 @@ public class DiaTest02 extends AppCompatActivity implements RadioButton.OnChecke
 
             if (bi.DiaTestB03a.isChecked()) {
                 bi.tvDiaTestB03.clearComposingText();
-                String styledText = "Children with diarrhea who come to a health worker with NO <font color='yellow'><b><i>Dehydration</i></b></font> are put on plan A.";
+                String styledText = "Children with diarrhea who come to a health worker with NO <font color='#cc297a'><b><i>Dehydration</i></b></font> are put on plan A.";
                 bi.tvDiaTestB03.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.DiaTestB03b.isChecked()) {
                 bi.tvDiaTestB03.clearComposingText();
-                String styledText = "Children with diarrhea who come to a health worker with NO <font color='yellow'><b><i>Dysentery</i></b></font> are put on plan A.";
+                String styledText = "Children with diarrhea who come to a health worker with NO <font color='#cc297a'><b><i>Dysentery</i></b></font> are put on plan A.";
                 bi.tvDiaTestB03.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.DiaTestB03c.isChecked()) {
                 bi.tvDiaTestB03.clearComposingText();
-                String styledText = "Children with diarrhea who come to a health worker with NO <font color='yellow'><b><i>Hydration</i></b></font> are put on plan A.";
+                String styledText = "Children with diarrhea who come to a health worker with NO <font color='#cc297a'><b><i>Hydration</i></b></font> are put on plan A.";
                 bi.tvDiaTestB03.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.DiaTestB03d.isChecked()) {
                 bi.tvDiaTestB03.clearComposingText();
-                String styledText = "Children with diarrhea who come to a health worker with NO <font color='yellow'><b><i>Pneumonia</i></b></font> are put on plan A.";
+                String styledText = "Children with diarrhea who come to a health worker with NO <font color='#cc297a'><b><i>Pneumonia</i></b></font> are put on plan A.";
                 bi.tvDiaTestB03.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             }
         }
@@ -215,19 +216,19 @@ public class DiaTest02 extends AppCompatActivity implements RadioButton.OnChecke
 
             if (bi.DiaTestB05a.isChecked()) {
                 bi.tvDiaTestB05.clearComposingText();
-                String styledText = "What is the dose of Zinc DT for home treatment for a child 6 months or older <font color='yellow'><b><i>½ tablet per day for 12 days</i></b></font> .";
+                String styledText = "What is the dose of Zinc DT for home treatment for a child 6 months or older <font color='#cc297a'><b><i>½ tablet per day for 12 days</i></b></font> .";
                 bi.tvDiaTestB05.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.DiaTestB05b.isChecked()) {
                 bi.tvDiaTestB05.clearComposingText();
-                String styledText = "What is the dose of Zinc DT for home treatment for a child 6 months or older <font color='yellow'><b><i>1 tablet per day for 10 days</i></b></font> .";
+                String styledText = "What is the dose of Zinc DT for home treatment for a child 6 months or older <font color='#cc297a'><b><i>1 tablet per day for 10 days</i></b></font> .";
                 bi.tvDiaTestB05.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.DiaTestB05c.isChecked()) {
                 bi.tvDiaTestB05.clearComposingText();
-                String styledText = "What is the dose of Zinc DT for home treatment for a child 6 months or older <font color='yellow'><b><i>1.5 tablets per day for 11 days</i></b></font> .";
+                String styledText = "What is the dose of Zinc DT for home treatment for a child 6 months or older <font color='#cc297a'><b><i>1.5 tablets per day for 11 days</i></b></font> .";
                 bi.tvDiaTestB05.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.DiaTestB05d.isChecked()) {
                 bi.tvDiaTestB05.clearComposingText();
-                String styledText = "What is the dose of Zinc DT for home treatment for a child 6 months or older <font color='yellow'><b><i>2 tablets per day for 10 days</i></b></font> .";
+                String styledText = "What is the dose of Zinc DT for home treatment for a child 6 months or older <font color='#cc297a'><b><i>2 tablets per day for 10 days</i></b></font> .";
                 bi.tvDiaTestB05.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             }
         }
@@ -295,8 +296,8 @@ public class DiaTest02 extends AppCompatActivity implements RadioButton.OnChecke
 
 
     private boolean formValidation() {
+        return Validator.emptyCheckingContainer(this, bi.llDiaTestB);
 
-        return validatorClass.EmptyCheckingContainer(this, bi.llDiaTestB);
     }
 
     @Override

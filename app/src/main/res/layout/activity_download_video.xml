@@ -36,7 +36,7 @@
                     android:text="[  Full-Screen  ]"
                     android:visibility="gone"
                     android:onClick="openFullScreen"/>
-                <org.angmarch.views.NiceSpinner
+                <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/modNSpinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -44,6 +44,7 @@
                     android:layout_marginTop="32dp"
                     android:layout_marginEnd="8dp"
                     android:text="MODULE NAMES"
+
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"

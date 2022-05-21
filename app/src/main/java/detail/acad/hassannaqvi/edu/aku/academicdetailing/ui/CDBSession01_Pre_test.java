@@ -17,6 +17,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import com.validatorcrawler.aliazaz.Validator;
+
 import org.json.JSONObject;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.JSON.GeneratorClass;
@@ -26,7 +28,6 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityCdbsession01PreTestBinding;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.validation.validatorClass;
 
 public class CDBSession01_Pre_test extends AppCompatActivity implements RadioButton.OnCheckedChangeListener {
 
@@ -82,7 +83,7 @@ public class CDBSession01_Pre_test extends AppCompatActivity implements RadioBut
 
     }
 
-    public void btnOk() {
+    public void btnOk(View view) {
         if (type.equals("pre")) {
             MainApp.showDialog(this, getString(R.string.readyForTrain), "pre", null, subMenuDT);
         } else {
@@ -92,7 +93,7 @@ public class CDBSession01_Pre_test extends AppCompatActivity implements RadioBut
     }
 
 
-    public void BtnContinue() {
+    public void BtnContinue(View view) {
         if (formValidation()) {
             try {
                 SaveDraft();
@@ -162,6 +163,9 @@ public class CDBSession01_Pre_test extends AppCompatActivity implements RadioBut
 
     private boolean formValidation() {
 
+        return Validator.emptyCheckingContainer(this, bi.fldGrpPreCdb01);
+
+/*
         if (!validatorClass.EmptyRadioButton(this, bi.cdba01, bi.cdba01a, getString(R.string.cdb01_01))) {
             return false;
         }
@@ -171,7 +175,8 @@ public class CDBSession01_Pre_test extends AppCompatActivity implements RadioBut
         if (!validatorClass.EmptyRadioButton(this, bi.cdba03, bi.cdba03a, getString(R.string.cdb01_03))) {
             return false;
         }
-        return validatorClass.EmptyRadioButton(this, bi.cdba04, bi.cdba04a, getString(R.string.cdb01_04));
+        return validatorClass.EmptyRadioButton(this, bi.cdba04, bi.cdba04a, getString(R.string.cdb01_04));*/
+
     }
 
 
@@ -187,19 +192,19 @@ public class CDBSession01_Pre_test extends AppCompatActivity implements RadioBut
 
             if (bi.cdba01a.isChecked()) {
                 bi.tvcdba01.clearComposingText();
-                String styledText = "Cough or difficult breathing that lasts for more than 14 days may indicate <font color='yellow'><b><i>Tuberculosis</i></b></font>.";
+                String styledText = "Cough or difficult breathing that lasts for more than 14 days may indicate <font color='#cc297a'><b><i>Tuberculosis</i></b></font>.";
                 bi.tvcdba01.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.cdba01b.isChecked()) {
                 bi.tvcdba01.clearComposingText();
-                String styledText = "Cough or difficult breathing that lasts for more than 14 days may indicate <font color='yellow'><b><i>Asthma</i></b></font>.";
+                String styledText = "Cough or difficult breathing that lasts for more than 14 days may indicate <font color='#cc297a'><b><i>Asthma</i></b></font>.";
                 bi.tvcdba01.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.cdba01c.isChecked()) {
                 bi.tvcdba01.clearComposingText();
-                String styledText = "Cough or difficult breathing that lasts for more than 14 days may indicate <font color='yellow'><b><i>Whooping cough</i></b></font>.";
+                String styledText = "Cough or difficult breathing that lasts for more than 14 days may indicate <font color='#cc297a'><b><i>Whooping cough</i></b></font>.";
                 bi.tvcdba01.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.cdba01d.isChecked()) {
                 bi.tvcdba01.clearComposingText();
-                String styledText = "Cough or difficult breathing that lasts for more than 14 days may indicate <font color='yellow'><b><i>All of the below</i></b></font>.";
+                String styledText = "Cough or difficult breathing that lasts for more than 14 days may indicate <font color='#cc297a'><b><i>All of the below</i></b></font>.";
                 bi.tvcdba01.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             }
         }
@@ -213,19 +218,19 @@ public class CDBSession01_Pre_test extends AppCompatActivity implements RadioBut
 
             if (bi.cdba03a.isChecked()) {
                 bi.tvcdba03.clearComposingText();
-                String styledText = "Fast breathing or <font color='yellow'><b><i>Wheeze</i></b></font> if post sent in a child between 2 months to 5 years of age are the clinical signs for Pneumonia.";
+                String styledText = "Fast breathing or <font color='#cc297a'><b><i>Wheeze</i></b></font> if post sent in a child between 2 months to 5 years of age are the clinical signs for Pneumonia.";
                 bi.tvcdba03.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.cdba03b.isChecked()) {
                 bi.tvcdba03.clearComposingText();
-                String styledText = "Fast breathing or <font color='yellow'><b><i>Chest in-drawing</i></b></font> if post sent in a child between 2 months to 5 years of age are the clinical signs for Pneumonia.";
+                String styledText = "Fast breathing or <font color='#cc297a'><b><i>Chest in-drawing</i></b></font> if post sent in a child between 2 months to 5 years of age are the clinical signs for Pneumonia.";
                 bi.tvcdba03.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.cdba03c.isChecked()) {
                 bi.tvcdba03.clearComposingText();
-                String styledText = "Fast breathing or <font color='yellow'><b><i>Cough</i></b></font> if post sent in a child between 2 months to 5 years of age are the clinical signs for Pneumonia.";
+                String styledText = "Fast breathing or <font color='#cc297a'><b><i>Cough</i></b></font> if post sent in a child between 2 months to 5 years of age are the clinical signs for Pneumonia.";
                 bi.tvcdba03.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.cdba03d.isChecked()) {
                 bi.tvcdba03.clearComposingText();
-                String styledText = "Fast breathing or <font color='yellow'><b><i>Fever</i></b></font> if post sent in a child between 2 months to 5 years of age are the clinical signs for Pneumonia.";
+                String styledText = "Fast breathing or <font color='#cc297a'><b><i>Fever</i></b></font> if post sent in a child between 2 months to 5 years of age are the clinical signs for Pneumonia.";
                 bi.tvcdba03.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             }
         }
@@ -237,11 +242,11 @@ public class CDBSession01_Pre_test extends AppCompatActivity implements RadioBut
 
             if (bi.cdba04a.isChecked()) {
                 bi.tvcdba04.clearComposingText();
-                String styledText = "The child has chest in drawing if the lower chest wall (lower ribs) goes <font color='yellow'><b><i>IN</i></b></font> when the child breathes IN.";
+                String styledText = "The child has chest in drawing if the lower chest wall (lower ribs) goes <font color='#cc297a'><b><i>IN</i></b></font> when the child breathes IN.";
                 bi.tvcdba04.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.cdba04b.isChecked()) {
                 bi.tvcdba04.clearComposingText();
-                String styledText = "The child has chest in drawing if the lower chest wall (lower ribs) goes <font color='yellow'><b><i>OUT</i></b></font> when the child breathes IN.";
+                String styledText = "The child has chest in drawing if the lower chest wall (lower ribs) goes <font color='#cc297a'><b><i>OUT</i></b></font> when the child breathes IN.";
                 bi.tvcdba04.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             }
         }

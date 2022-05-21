@@ -16,6 +16,8 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.validatorcrawler.aliazaz.Validator;
+
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.CONSTANTS;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
@@ -26,7 +28,6 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments.ScheduleFragm
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.interfaces.Callbacks;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.Forms;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.validation.validatorClass;
 
 public class EndingActivity extends AppCompatActivity implements Callbacks {
 
@@ -148,15 +149,8 @@ public class EndingActivity extends AppCompatActivity implements Callbacks {
     }
 
     private boolean formValidation() {
+        return Validator.emptyCheckingContainer(this, bi.fldGrp);
 
-        if (!validatorClass.EmptyRadioButton(this, bi.status, bi.statusa, getString(R.string.status))) {
-            return false;
-        }
-        if (bi.status96.isChecked()) {
-            return validatorClass.EmptyTextBox(this, bi.status96x, getString(R.string.status));
-        }
-
-        return true;
     }
 
     @Override

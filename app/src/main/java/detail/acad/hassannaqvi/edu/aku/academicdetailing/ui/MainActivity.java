@@ -23,11 +23,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.kaopiz.kprogresshud.KProgressHUD;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-
 import java.io.File;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
@@ -43,10 +39,10 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments.ModuleFragmen
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments.ScheduleFragment;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.interfaces.Callbacks;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.Forms;
-import okhttp3.ResponseBody;
+/*import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
-import retrofit2.Response;
+import retrofit2.Response;*/
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, Callbacks {
 
@@ -57,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     DatabaseHelper db;
     Collection<Forms> dbData;
     KProgressHUD hud;
-    Call<ResponseBody> call = null;
+    //Call<ResponseBody> call = null;
     SharedPreferences sharedPref;
     SharedPreferences.Editor editor;
     AlertDialog.Builder builder;
@@ -243,7 +239,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void downloadData() {
 
-        getHfDataFromServer();
+    //    getHfDataFromServer();
 
     }
     @Override
@@ -346,7 +342,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             getSupportFragmentManager().beginTransaction().remove(fragment).commit();
         }
     }
-
+/*
     private void getHfDataFromServer() {
 //
 //        hud.setLabel("Getting Health Facility Data");
@@ -358,7 +354,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    private void syncingData(final String dataType) {
+  *//*  private void syncingData(final String dataType) {
         hud.show();
         call.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -394,7 +390,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-    }
+    }*/
 
 
 
@@ -430,5 +426,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         action_database.setVisible(MainApp.admin);
         return true;
 
+    }
+    public void openVideo(View view) {
+        Intent intent = new Intent(MainActivity.this, VideoTestingActivity.class);
+        startActivity(intent);
     }
 }

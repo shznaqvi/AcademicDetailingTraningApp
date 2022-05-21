@@ -13,6 +13,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import com.validatorcrawler.aliazaz.Validator;
+
 import org.json.JSONObject;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.JSON.GeneratorClass;
@@ -22,7 +24,6 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityFancPreTestBinding;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.validation.validatorClass;
 
 public class FANC_Pre_test extends AppCompatActivity {
 
@@ -76,7 +77,7 @@ public class FANC_Pre_test extends AppCompatActivity {
 
     }
 
-    public void btnOk() {
+    public void btnOk(View view) {
         if (type.equals("pre")) {
             MainApp.showDialog(this, getString(R.string.readyForTrain), "pre", null, subMenuDT);
         } else {
@@ -85,7 +86,7 @@ public class FANC_Pre_test extends AppCompatActivity {
         }
     }
 
-    public void BtnContinue() {
+    public void BtnContinue(View view) {
         if (formValidation()) {
             try {
                 SaveDraft();
@@ -158,23 +159,8 @@ public class FANC_Pre_test extends AppCompatActivity {
     }
 
     private boolean formValidation() {
+        return Validator.emptyCheckingContainer(this, bi.fldGrpPreFanc);
 
-        if (!validatorClass.EmptyRadioButton(this, bi.fanc01, bi.fanc01a, getString(R.string.fanc_01))) {
-            return false;
-        }
-        if (!validatorClass.EmptyRadioButton(this, bi.fanc02, bi.fanc02a, getString(R.string.fanc_02))) {
-            return false;
-        }
-        if (!validatorClass.EmptyRadioButton(this, bi.fanc03, bi.fanc03a, getString(R.string.fanc_03))) {
-            return false;
-        }
-        if (!validatorClass.EmptyRadioButton(this, bi.fanc04, bi.fanc04a, getString(R.string.fanc_04))) {
-            return false;
-        }
-        if (!validatorClass.EmptyRadioButton(this, bi.fanc05, bi.fanc05a, getString(R.string.fanc_05))) {
-            return false;
-        }
-        return validatorClass.EmptyCardCheckBox(this, bi.fanc06, bi.fanc06a, getString(R.string.fanc_06));
     }
 
     @Override

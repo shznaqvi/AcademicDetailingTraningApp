@@ -23,7 +23,7 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.Forms;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.EndingActivity;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.PlayerActivity;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.PlayerActivityNew;
 
 public class Utils {
 
@@ -105,7 +105,7 @@ public class Utils {
                 dialog.dismiss();
 
                 if (type == 1) {
-                    Intent intent = new Intent(context, PlayerActivity.class).putExtra("submenu", subMenu);
+                    Intent intent = new Intent(context, PlayerActivityNew.class).putExtra("submenu", subMenu);
                     context.startActivity(intent);
                     ((Activity)context).finish();
                 } else

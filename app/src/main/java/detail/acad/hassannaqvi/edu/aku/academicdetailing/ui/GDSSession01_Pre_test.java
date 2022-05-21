@@ -17,6 +17,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import com.validatorcrawler.aliazaz.Validator;
+
 import org.json.JSONObject;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.JSON.GeneratorClass;
@@ -26,7 +28,6 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityGdssession01PreTestBinding;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.validation.validatorClass;
 
 public class GDSSession01_Pre_test extends AppCompatActivity implements RadioButton.OnCheckedChangeListener {
 
@@ -80,7 +81,7 @@ public class GDSSession01_Pre_test extends AppCompatActivity implements RadioBut
 
     }
 
-    public void btnOk() {
+    public void btnOk(View view) {
         if (type.equals("pre")) {
             MainApp.showDialog(this, getString(R.string.readyForTrain), "pre", null, subMenuDT);
         } else {
@@ -90,7 +91,7 @@ public class GDSSession01_Pre_test extends AppCompatActivity implements RadioBut
     }
 
 
-    public void BtnContinue() {
+    public void BtnContinue(View view) {
         if (formValidation()) {
             try {
                 SaveDraft();
@@ -157,20 +158,9 @@ public class GDSSession01_Pre_test extends AppCompatActivity implements RadioBut
     }
 
     private boolean formValidation() {
+        return Validator.emptyCheckingContainer(this, bi.fldGrpPreGds01);
 
-        if (!validatorClass.EmptyRadioButton(this, bi.gdsa01, bi.gdsa01a, getString(R.string.gds01_01))) {
-            return false;
-        }
-        if (!validatorClass.EmptyRadioButton(this, bi.gdsa02, bi.gdsa02a, getString(R.string.gds01_02))) {
-            return false;
-        }
-        if (!validatorClass.EmptyRadioButton(this, bi.gdsa03, bi.gdsa03a, getString(R.string.gds01_03))) {
-            return false;
-        }
-        if (!validatorClass.EmptyRadioButton(this, bi.gdsa04, bi.gdsa04a, getString(R.string.gds01_04))) {
-            return false;
-        }
-        return validatorClass.EmptyRadioButton(this, bi.gdsa05, bi.gdsa05a, getString(R.string.gds01_05));
+
     }
 
     @Override
@@ -184,7 +174,7 @@ public class GDSSession01_Pre_test extends AppCompatActivity implements RadioBut
 
             if (bi.gdsa01a.isChecked()) {
                 bi.tvgdsa01.clearComposingText();
-                String styledText = "Children with <font color='yellow'><b><i>Mild illness</i></b></font> on the IMNCI chart usually need urgent referral to hospital.";
+                String styledText = "Children with <font color='#cc297a'><b><i>Mild illness</i></b></font> on the IMNCI chart usually need urgent referral to hospital.";
                 bi.tvgdsa01.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
 
 
@@ -196,15 +186,15 @@ public class GDSSession01_Pre_test extends AppCompatActivity implements RadioBut
 
             } else if (bi.gdsa01b.isChecked()) {
                 bi.tvgdsa01.clearComposingText();
-                String styledText = "Children with <font color='yellow'><b><i>Pneumonia</i></b></font> on the IMNCI chart usually need urgent referral to hospital.";
+                String styledText = "Children with <font color='#cc297a'><b><i>Pneumonia</i></b></font> on the IMNCI chart usually need urgent referral to hospital.";
                 bi.tvgdsa01.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.gdsa01c.isChecked()) {
                 bi.tvgdsa01.clearComposingText();
-                String styledText = "Children with <font color='yellow'><b><i>Dehydration</i></b></font> on the IMNCI chart usually need urgent referral to hospital.";
+                String styledText = "Children with <font color='#cc297a'><b><i>Dehydration</i></b></font> on the IMNCI chart usually need urgent referral to hospital.";
                 bi.tvgdsa01.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.gdsa01d.isChecked()) {
                 bi.tvgdsa01.clearComposingText();
-                String styledText = "Children with <font color='yellow'><b><i>Severe disease/classification</i></b></font> on the IMNCI chart usually need urgent referral to hospital.";
+                String styledText = "Children with <font color='#cc297a'><b><i>Severe disease/classification</i></b></font> on the IMNCI chart usually need urgent referral to hospital.";
                 bi.tvgdsa01.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             }
         }
@@ -218,19 +208,19 @@ public class GDSSession01_Pre_test extends AppCompatActivity implements RadioBut
 
             if (bi.gdsa02a.isChecked()) {
                 bi.tvgdsa02.clearComposingText();
-                String styledText = "<font color='yellow'><b><i>Persistent diarrhea</i></b></font> is the exception for severe classification or severe disease where referral to the hospital is needed but not urgent.";
+                String styledText = "<font color='#cc297a'><b><i>Persistent diarrhea</i></b></font> is the exception for severe classification or severe disease where referral to the hospital is needed but not urgent.";
                 bi.tvgdsa02.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.gdsa02b.isChecked()) {
                 bi.tvgdsa02.clearComposingText();
-                String styledText = "<font color='yellow'><b><i>Severe dehydration</i></b></font> is the exception for severe classification or severe disease where referral to the hospital is needed but not urgent.";
+                String styledText = "<font color='#cc297a'><b><i>Severe dehydration</i></b></font> is the exception for severe classification or severe disease where referral to the hospital is needed but not urgent.";
                 bi.tvgdsa02.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.gdsa02c.isChecked()) {
                 bi.tvgdsa02.clearComposingText();
-                String styledText = "<font color='yellow'><b><i>Severe persistent diarrhea</i></b></font> is the exception for severe classification or severe disease where referral to the hospital is needed but not urgent.";
+                String styledText = "<font color='#cc297a'><b><i>Severe persistent diarrhea</i></b></font> is the exception for severe classification or severe disease where referral to the hospital is needed but not urgent.";
                 bi.tvgdsa02.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.gdsa02d.isChecked()) {
                 bi.tvgdsa02.clearComposingText();
-                String styledText = "<font color='yellow'><b><i>Severe pneumonia</i></b></font> is the exception for severe classification or severe disease where referral to the hospital is needed but not urgent.";
+                String styledText = "<font color='#cc297a'><b><i>Severe pneumonia</i></b></font> is the exception for severe classification or severe disease where referral to the hospital is needed but not urgent.";
                 bi.tvgdsa02.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             }
         }
@@ -244,19 +234,19 @@ public class GDSSession01_Pre_test extends AppCompatActivity implements RadioBut
 
             if (bi.gdsa03a.isChecked()) {
                 bi.tvgdsa03.clearComposingText();
-                String styledText = "Presence of even <font color='yellow'><b><i>One</i></b></font> danger sign indicates that underlying disease is severe.";
+                String styledText = "Presence of even <font color='#cc297a'><b><i>One</i></b></font> danger sign indicates that underlying disease is severe.";
                 bi.tvgdsa03.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.gdsa03b.isChecked()) {
                 bi.tvgdsa03.clearComposingText();
-                String styledText = "Presence of even <font color='yellow'><b><i>Two</i></b></font> danger sign indicates that underlying disease is severe.";
+                String styledText = "Presence of even <font color='#cc297a'><b><i>Two</i></b></font> danger sign indicates that underlying disease is severe.";
                 bi.tvgdsa03.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.gdsa03c.isChecked()) {
                 bi.tvgdsa03.clearComposingText();
-                String styledText = "Presence of even <font color='yellow'><b><i>Three</i></b></font> danger sign indicates that underlying disease is severe.";
+                String styledText = "Presence of even <font color='#cc297a'><b><i>Three</i></b></font> danger sign indicates that underlying disease is severe.";
                 bi.tvgdsa03.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.gdsa03d.isChecked()) {
                 bi.tvgdsa03.clearComposingText();
-                String styledText = "Presence of even <font color='yellow'><b><i>None</i></b></font> danger sign indicates that underlying disease is severe.";
+                String styledText = "Presence of even <font color='#cc297a'><b><i>None</i></b></font> danger sign indicates that underlying disease is severe.";
                 bi.tvgdsa03.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             }
         }
@@ -270,19 +260,19 @@ public class GDSSession01_Pre_test extends AppCompatActivity implements RadioBut
 
             if (bi.gdsa04a.isChecked()) {
                 bi.tvgdsa04.clearComposingText();
-                String styledText = "For assessing a general danger sign, a healthcare provider needs to ASK <font color='yellow'><b><i>One</i></b></font> questions and LOOK for <font color='yellow'><b><i>Two</i></b></font> observations to observe the child's actions.";
+                String styledText = "For assessing a general danger sign, a healthcare provider needs to ASK <font color='#cc297a'><b><i>One</i></b></font> questions and LOOK for <font color='#cc297a'><b><i>Two</i></b></font> observations to observe the child's actions.";
                 bi.tvgdsa04.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.gdsa04b.isChecked()) {
                 bi.tvgdsa04.clearComposingText();
-                String styledText = "For assessing a general danger sign, a healthcare provider needs to ASK <font color='yellow'><b><i>Two</i></b></font> questions and LOOK for <font color='yellow'><b><i>Two</i></b></font> observations to observe the child's actions.";
+                String styledText = "For assessing a general danger sign, a healthcare provider needs to ASK <font color='#cc297a'><b><i>Two</i></b></font> questions and LOOK for <font color='#cc297a'><b><i>Two</i></b></font> observations to observe the child's actions.";
                 bi.tvgdsa04.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.gdsa04c.isChecked()) {
                 bi.tvgdsa04.clearComposingText();
-                String styledText = "For assessing a general danger sign, a healthcare provider needs to ASK <font color='yellow'><b><i>Three</i></b></font> questions and LOOK for <font color='yellow'><b><i>Two</i></b></font> observations to observe the child's actions.";
+                String styledText = "For assessing a general danger sign, a healthcare provider needs to ASK <font color='#cc297a'><b><i>Three</i></b></font> questions and LOOK for <font color='#cc297a'><b><i>Two</i></b></font> observations to observe the child's actions.";
                 bi.tvgdsa04.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.gdsa04d.isChecked()) {
                 bi.tvgdsa04.clearComposingText();
-                String styledText = "For assessing a general danger sign, a healthcare provider needs to ASK <font color='yellow'><b><i>Three</i></b></font> questions and LOOK for <font color='yellow'><b><i>One</i></b></font> observations to observe the child's actions.";
+                String styledText = "For assessing a general danger sign, a healthcare provider needs to ASK <font color='#cc297a'><b><i>Three</i></b></font> questions and LOOK for <font color='#cc297a'><b><i>One</i></b></font> observations to observe the child's actions.";
                 bi.tvgdsa04.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             }
         }

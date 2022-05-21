@@ -1,13 +1,14 @@
 package detail.acad.hassannaqvi.edu.aku.academicdetailing.RetrofitClient;
 
-import java.util.concurrent.TimeUnit;
+/*
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+*/
 
 public class RetrofitClient {
-
+/*
     public static Retrofit retrofit;
     public static API service;
     private static String baseURL = "https://vcoe1.aku.edu/uen_ad/";
@@ -32,5 +33,5 @@ public class RetrofitClient {
         service = retrofit.create(API.class);
 
 
-    }
+    }*/
 }

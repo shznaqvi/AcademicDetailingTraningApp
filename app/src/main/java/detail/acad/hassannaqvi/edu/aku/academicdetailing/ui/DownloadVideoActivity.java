@@ -24,6 +24,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -108,7 +109,14 @@ public class DownloadVideoActivity extends AppCompatActivity {
         modules.add("CHILD MODULE");
         modules.add("MATERNAL MODULE");
         modules.add("NEWBORN MODULE");
-        bi.modNSpinner.attachDataSource(modules);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(DownloadVideoActivity.this,
+                android.R.layout.simple_spinner_item, modules);
+
+        bi.modNSpinner.setAdapter(adapter);
+
+
+       // bi.modNSpinner.attachDataSource(modules);
      /*   if (!MainApp.admin && !MainApp.userName.equals("test1234")) {
             switch (MainApp.districtCode) {
                 case 113:
@@ -435,7 +443,7 @@ public class DownloadVideoActivity extends AppCompatActivity {
 
             public void bindUser(String mname) {
                 videoItemBinding.movieName.setText(getVideoItemName(mname));
-                if (MainApp.checkVideoExist(bi.modNSpinner.getSelectedIndex(), mname)) {
+                if (MainApp.checkVideoExist(bi.modNSpinner.getSelectedItemPosition(), mname)) {
                     videoItemBinding.downloadImage.setImageResource(R.drawable.ic_check);
                     videoItemBinding.vdoStatus.setVisibility(View.VISIBLE);
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)

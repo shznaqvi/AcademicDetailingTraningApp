@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        android:background="@drawable/main_bg"
+        android:orientation="vertical">
+
+        <com.google.android.exoplayer2.ui.StyledPlayerView
+            android:id="@+id/videoPlayer"
+            android:background="@color/blackOverlay"
+            android:layout_width="match_parent"
+            android:minHeight="360dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:background="@color/blackOverlay"
+            android:textColor="@color/dullWhile"
+            android:gravity="end|center_vertical"
+            android:paddingEnd="24dp"
+            android:layout_height="wrap_content"
+            android:text="[  FullScreen  ]"
+            android:onClick="openFullScreen"/>
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:fillViewport="true"
+            android:layout_height="0dp">
+
+
+            <LinearLayout
+                android:id="@+id/GrpName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="bottom|center_horizontal"
+                android:padding="24dp"
+                android:orientation="vertical">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_upload_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="12dp"
+                    android:visibility="gone"
+                    tools:itemCount="10"
+
+                    tools:listitem="@layout/video_list_adapter">
+
+                </androidx.recyclerview.widget.RecyclerView>
+                <Button
+                    android:id="@+id/btnPost"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="32dp"
+                    android:onClick="btnOk"
+                    android:text="MOVE TO POST TEST"
+                    android:textSize="20sp"
+                   />
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+</layout>

@@ -17,6 +17,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import com.validatorcrawler.aliazaz.Validator;
+
 import org.json.JSONObject;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.JSON.GeneratorClass;
@@ -26,7 +28,6 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityPsbiTest01Binding;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.validation.validatorClass;
 
 public class PsbiTest01 extends AppCompatActivity implements RadioButton.OnCheckedChangeListener {
 
@@ -81,7 +82,7 @@ public class PsbiTest01 extends AppCompatActivity implements RadioButton.OnCheck
 
     }
 
-    public void btnOk() {
+    public void btnOk(View view) {
         if (type.equals("pre")) {
             MainApp.showDialog(this, getString(R.string.readyForTrain), "pre", null, subMenuDT);
         } else {
@@ -91,7 +92,7 @@ public class PsbiTest01 extends AppCompatActivity implements RadioButton.OnCheck
     }
 
 
-    public void BtnContinue() {
+    public void BtnContinue(View view) {
         if (formValidation()) {
             try {
                 SaveDraft();
@@ -136,19 +137,19 @@ public class PsbiTest01 extends AppCompatActivity implements RadioButton.OnCheck
 
             if (bi.PsbiTestA01a.isChecked()) {
                 bi.tvPsbiTestA01.clearComposingText();
-                String styledText = "Skin pustules among young infants are the sign of <font color='yellow'><b><i>Jaundice</i></b></font> .";
+                String styledText = "Skin pustules among young infants are the sign of <font color='#cc297a'><b><i>Jaundice</i></b></font> .";
                 bi.tvPsbiTestA01.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.PsbiTestA01b.isChecked()) {
                 bi.tvPsbiTestA01.clearComposingText();
-                String styledText = "Skin pustules among young infants are the sign of <font color='yellow'><b><i>Local Bacterial Infection</i></b></font> .";
+                String styledText = "Skin pustules among young infants are the sign of <font color='#cc297a'><b><i>Local Bacterial Infection</i></b></font> .";
                 bi.tvPsbiTestA01.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.PsbiTestA01c.isChecked()) {
                 bi.tvPsbiTestA01.clearComposingText();
-                String styledText = "Skin pustules among young infants are the sign of <font color='yellow'><b><i>Thrush</i></b></font> .";
+                String styledText = "Skin pustules among young infants are the sign of <font color='#cc297a'><b><i>Thrush</i></b></font> .";
                 bi.tvPsbiTestA01.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.PsbiTestA01d.isChecked()) {
                 bi.tvPsbiTestA01.clearComposingText();
-                String styledText = "Skin pustules among young infants are the sign of <font color='yellow'><b><i>Diarrhea</i></b></font> .";
+                String styledText = "Skin pustules among young infants are the sign of <font color='#cc297a'><b><i>Diarrhea</i></b></font> .";
                 bi.tvPsbiTestA01.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             }
         }
@@ -202,7 +203,7 @@ public class PsbiTest01 extends AppCompatActivity implements RadioButton.OnCheck
 
     private boolean formValidation() {
 
-        return validatorClass.EmptyCheckingContainer(this, bi.llPsbiTestA);
+        return Validator.emptyCheckingContainer(this, bi.llPsbiTestA);
     }
 
     @Override

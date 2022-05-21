@@ -24,11 +24,11 @@
                     android:layout_height="match_parent"
                     android:layout_alignParentTop="true" />
 
-                <me.relex.circleindicator.CircleIndicator
+<!--                <me.relex.circleindicator.CircleIndicator
                     android:id="@+id/indicator"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:layout_alignParentBottom="true" />
+                    android:layout_alignParentBottom="true" />-->
             </RelativeLayout>
             <TextView
                 android:id="@+id/testing"

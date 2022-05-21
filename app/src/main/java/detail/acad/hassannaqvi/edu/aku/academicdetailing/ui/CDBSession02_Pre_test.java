@@ -17,6 +17,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import com.validatorcrawler.aliazaz.Validator;
+
 import org.json.JSONObject;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.JSON.GeneratorClass;
@@ -26,7 +28,6 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityCdbsession02PreTestBinding;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.validation.validatorClass;
 
 public class CDBSession02_Pre_test extends AppCompatActivity implements RadioButton.OnCheckedChangeListener {
 
@@ -81,7 +82,7 @@ public class CDBSession02_Pre_test extends AppCompatActivity implements RadioBut
 
     }
 
-    public void btnOk() {
+    public void btnOk(View view) {
         if (type.equals("pre")) {
             MainApp.showDialog(this, getString(R.string.readyForTrain), "pre", null, subMenuDT);
         } else {
@@ -90,7 +91,7 @@ public class CDBSession02_Pre_test extends AppCompatActivity implements RadioBut
         }
     }
 
-    public void BtnContinue() {
+    public void BtnContinue(View view) {
         if (formValidation()) {
             try {
                 SaveDraft();
@@ -160,6 +161,9 @@ public class CDBSession02_Pre_test extends AppCompatActivity implements RadioBut
 
     private boolean formValidation() {
 
+        return Validator.emptyCheckingContainer(this, bi.fldGrpPreCdb02);
+
+        /*
         if (!validatorClass.EmptyRadioButton(this, bi.cdbb01, bi.cdbb01a, getString(R.string.cdb02_01))) {
             return false;
         }
@@ -175,7 +179,7 @@ public class CDBSession02_Pre_test extends AppCompatActivity implements RadioBut
         if (!validatorClass.EmptyRadioButton(this, bi.cdbb05, bi.cdbb05a, getString(R.string.cdb02_05))) {
             return false;
         }
-        return validatorClass.EmptyRadioButton(this, bi.cdbb06, bi.cdbb06a, getString(R.string.cdb02_06));
+        return validatorClass.EmptyRadioButton(this, bi.cdbb06, bi.cdbb06a, getString(R.string.cdb02_06));*/
     }
 
     @Override
@@ -189,19 +193,19 @@ public class CDBSession02_Pre_test extends AppCompatActivity implements RadioBut
 
             if (bi.cdbb02a.isChecked()) {
                 bi.tvcdbb02.clearComposingText();
-                String styledText = "The dose for intramuscular antibiotics (urgent referral); Ampicillin <font color='yellow'><b><i>40</i></b></font>mg/kg and Gentamicin <font color='yellow'><b><i>7</i></b></font>mg/kg.";
+                String styledText = "The dose for intramuscular antibiotics (urgent referral); Ampicillin <font color='#cc297a'><b><i>40</i></b></font>mg/kg and Gentamicin <font color='#cc297a'><b><i>7</i></b></font>mg/kg.";
                 bi.tvcdbb02.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.cdbb02b.isChecked()) {
                 bi.tvcdbb02.clearComposingText();
-                String styledText = "The dose for intramuscular antibiotics (urgent referral); Ampicillin <font color='yellow'><b><i>45</i></b></font>mg/kg and Gentamicin <font color='yellow'><b><i>7.5</i></b></font>mg/kg.";
+                String styledText = "The dose for intramuscular antibiotics (urgent referral); Ampicillin <font color='#cc297a'><b><i>45</i></b></font>mg/kg and Gentamicin <font color='#cc297a'><b><i>7.5</i></b></font>mg/kg.";
                 bi.tvcdbb02.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.cdbb02c.isChecked()) {
                 bi.tvcdbb02.clearComposingText();
-                String styledText = "The dose for intramuscular antibiotics (urgent referral); Ampicillin <font color='yellow'><b><i>50</i></b></font>mg/kg and Gentamicin <font color='yellow'><b><i>7.5</i></b></font>mg/kg.";
+                String styledText = "The dose for intramuscular antibiotics (urgent referral); Ampicillin <font color='#cc297a'><b><i>50</i></b></font>mg/kg and Gentamicin <font color='#cc297a'><b><i>7.5</i></b></font>mg/kg.";
                 bi.tvcdbb02.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.cdbb02d.isChecked()) {
                 bi.tvcdbb02.clearComposingText();
-                String styledText = "The dose for intramuscular antibiotics (urgent referral); Ampicillin <font color='yellow'><b><i>55</i></b></font>mg/kg and Gentamicin <font color='yellow'><b><i>8</i></b></font>mg/kg.";
+                String styledText = "The dose for intramuscular antibiotics (urgent referral); Ampicillin <font color='#cc297a'><b><i>55</i></b></font>mg/kg and Gentamicin <font color='#cc297a'><b><i>8</i></b></font>mg/kg.";
                 bi.tvcdbb02.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             }
         }
@@ -215,19 +219,19 @@ public class CDBSession02_Pre_test extends AppCompatActivity implements RadioBut
 
             if (bi.cdbb04a.isChecked()) {
                 bi.tvcdbb04.clearComposingText();
-                String styledText = "Standard flow rates for oxygen through nasal prongs or nasal catheters are up to <font color='yellow'><b><i>2</i></b></font> L/min for infants, up to <font color='yellow'><b><i>4</i></b></font> L/min for older children.";
+                String styledText = "Standard flow rates for oxygen through nasal prongs or nasal catheters are up to <font color='#cc297a'><b><i>2</i></b></font> L/min for infants, up to <font color='#cc297a'><b><i>4</i></b></font> L/min for older children.";
                 bi.tvcdbb04.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.cdbb04b.isChecked()) {
                 bi.tvcdbb04.clearComposingText();
-                String styledText = "Standard flow rates for oxygen through nasal prongs or nasal catheters are up to <font color='yellow'><b><i>3</i></b></font> L/min for infants, up to <font color='yellow'><b><i>4</i></b></font> L/min for older children.";
+                String styledText = "Standard flow rates for oxygen through nasal prongs or nasal catheters are up to <font color='#cc297a'><b><i>3</i></b></font> L/min for infants, up to <font color='#cc297a'><b><i>4</i></b></font> L/min for older children.";
                 bi.tvcdbb04.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.cdbb04c.isChecked()) {
                 bi.tvcdbb04.clearComposingText();
-                String styledText = "Standard flow rates for oxygen through nasal prongs or nasal catheters are up to <font color='yellow'><b><i>3.5</i></b></font> L/min for infants, up to <font color='yellow'><b><i>4.5</i></b></font> L/min for older children.";
+                String styledText = "Standard flow rates for oxygen through nasal prongs or nasal catheters are up to <font color='#cc297a'><b><i>3.5</i></b></font> L/min for infants, up to <font color='#cc297a'><b><i>4.5</i></b></font> L/min for older children.";
                 bi.tvcdbb04.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             } else if (bi.cdbb04d.isChecked()) {
                 bi.tvcdbb04.clearComposingText();
-                String styledText = "Standard flow rates for oxygen through nasal prongs or nasal catheters are up to <font color='yellow'><b><i>4</i></b></font> L/min for infants, up to <font color='yellow'><b><i>4.5</i></b></font> L/min for older children.";
+                String styledText = "Standard flow rates for oxygen through nasal prongs or nasal catheters are up to <font color='#cc297a'><b><i>4</i></b></font> L/min for infants, up to <font color='#cc297a'><b><i>4.5</i></b></font> L/min for older children.";
                 bi.tvcdbb04.setText(Html.fromHtml(styledText), TextView.BufferType.SPANNABLE);
             }
         }

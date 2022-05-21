@@ -51,47 +51,47 @@
         <activity
             android:name=".ui.GDSSession01_Pre_test"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppThemeEnglish1" />
         <activity
             android:name=".ui.CDBSession01_Pre_test"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppThemeEnglish1" />
         <activity
             android:name=".ui.CDBSession02_Pre_test"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppThemeEnglish1" />
         <activity
             android:name=".ui.FANC_Pre_test"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppThemeEnglish1" />
         <activity
             android:name=".ui.VB_Pre_test"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppThemeEnglish1" />
         <activity
             android:name=".ui.PartoTest"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppThemeEnglish1" />
         <activity
             android:name=".ui.EclamTest"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppThemeEnglish1" />
         <activity
             android:name=".ui.HemoTest01"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppThemeEnglish1" />
         <activity
             android:name=".ui.HemoTest02"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppThemeEnglish1" />
         <activity
             android:name=".ui.ShockTest"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppThemeEnglish1" />
         <activity
             android:name=".ui.PerpuralSepsisTest"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppThemeEnglish1" />
         <activity
             android:name=".ui.LoginActivity"
             android:screenOrientation="portrait"
@@ -106,48 +106,53 @@
         <activity
             android:name=".ui.HbbTest"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppThemeEnglish1" />
         <activity
             android:name=".ui.DiaTest01"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppThemeEnglish1" />
         <activity
             android:name=".ui.DiaTest02"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppThemeEnglish1" />
         <activity
             android:name=".ui.PsbiTest01"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppThemeEnglish1" />
         <activity
             android:name=".ui.PsbiTest02"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppThemeEnglish1" />
         <activity
             android:name=".ui.EcEbTest01"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppThemeEnglish1" />
         <activity
             android:name=".ui.EcEbTest02"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppThemeEnglish1" />
         <activity
             android:name=".ui.EcSbTest01"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppThemeEnglish1" />
         <activity
             android:name=".ui.EcSbTest02"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppThemeEnglish1" />
         <activity
             android:name=".ui.PlayerActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.PlayerActivityNew"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".ui.DownloadVideoActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-        <activity android:name=".ui.AppointmentsActivity"
+        <activity
+            android:name=".ui.AppointmentsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
 
@@ -163,6 +168,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity
+            android:name=".ui.VideoTestingActivity"
+            android:exported="false"
+            android:hardwareAccelerated="true" />
 
         <meta-data
             android:name="YEK_REVRES"

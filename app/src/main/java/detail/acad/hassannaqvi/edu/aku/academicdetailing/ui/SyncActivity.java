@@ -250,6 +250,7 @@ public class SyncActivity extends AppCompatActivity {
                 //    filter = " (colflag != '1' or colflag is null) AND hf_district_code = '404' ";
                 filter = " district_code = '432' ";
                 downloadTables.add(new SyncModel(HealthProviderTable.TABLE_NAME, select, filter));
+                downloadTables.add(new SyncModel(NextMeetingTable.TABLE_NAME, select, filter));
                 // downloadTables.add(new SyncModel(HealthFacilityTable.TABLE_NAME));
                 //downloadTables.add(new SyncModel(DistrictsTable.TABLE_NAME));
                     downloadTables.add(new SyncModel("versionApp"));

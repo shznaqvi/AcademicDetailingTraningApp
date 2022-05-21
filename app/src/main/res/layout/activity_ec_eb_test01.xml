@@ -830,12 +830,14 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:background="@android:color/transparent"
+                        android:background="@drawable/capsule"
+                        android:backgroundTint="@color/colorAccent"
+                        android:backgroundTintMode="src_atop"
                         android:onClick="btnOk"
                         android:text="Start Training"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="18sp"
+                        android:textColor="@color/colorPrimaryDark"
                         android:visibility="invisible"
+                        android:textSize="24sp"
                         android:textStyle="bold" />
 
                     <Button

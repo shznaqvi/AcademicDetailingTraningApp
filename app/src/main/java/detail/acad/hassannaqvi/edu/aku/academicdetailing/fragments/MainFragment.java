@@ -33,28 +33,17 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.gson.Gson;
 import com.kaopiz.kprogresshud.KProgressHUD;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.RetrofitClient.RetrofitClient;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.VersionAppContract;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.FragmentMainBinding;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.interfaces.Callbacks;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.MainActivity;
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+
 
 
 /**
@@ -149,13 +138,13 @@ public class MainFragment extends Fragment {
             callbacks.loadInfo();
         });
 
-        bi.syncAppoint.setOnClickListener(new View.OnClickListener() {
+/*        bi.syncAppoint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                syncingAppointment();
+                //syncingAppointment();
             }
-        });
+        });*/
 
         //update App feature Code---------------------------------------
 
@@ -244,7 +233,7 @@ public class MainFragment extends Fragment {
 
     }
 
-    private void syncingAppointment() {
+   /* private void syncingAppointment() {
         try {
             hud.show();
 
@@ -284,7 +273,7 @@ public class MainFragment extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
 
     void showDialog(String newVer, String preVer) {

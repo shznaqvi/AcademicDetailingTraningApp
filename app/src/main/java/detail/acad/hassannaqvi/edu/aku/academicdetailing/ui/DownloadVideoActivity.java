@@ -341,7 +341,7 @@ public class DownloadVideoActivity extends AppCompatActivity {
     @Override
     public void onStop() {
         super.onStop();
-        player.release();
+        //player.release();
     }
 
     public void openFullScreen(View view) {

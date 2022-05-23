@@ -36,6 +36,7 @@
                     android:text="[  Full-Screen  ]"
                     android:visibility="gone"
                     android:onClick="openFullScreen"/>
+
                 <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/modNSpinner"
                     android:layout_width="match_parent"

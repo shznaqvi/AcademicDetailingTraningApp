@@ -215,7 +215,7 @@ public class MainFragment extends Fragment {
                             editorDownload.commit();
 
                         } else {
-                            bi.lblAppVersion.setText("Academic Detailing Training App New Version " + newVer + "  Available..\n(Can't download.. Internet connectivity issue!!)");
+                            bi.lblAppVersion.setText("Academic Detailing Training App New Version " + newVer + "  Available..\n(No Internet Connection)");
                         }
                     }
 

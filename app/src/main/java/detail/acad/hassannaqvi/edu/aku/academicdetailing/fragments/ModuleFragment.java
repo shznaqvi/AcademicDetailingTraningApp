@@ -349,7 +349,7 @@ public class ModuleFragment extends Fragment {
                     fileExist = false;
 
                 } else {
-                    Toast.makeText(getContext(), "Internet connectivity issue", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
                 }
             }
 

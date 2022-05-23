@@ -41,7 +41,6 @@ import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
-import com.google.android.exoplayer2.upstream.RawResourceDataSource;
 import com.google.android.exoplayer2.util.EventLogger;
 
 import java.io.File;
@@ -71,7 +70,6 @@ public class DownloadVideoActivity extends AppCompatActivity {
     Button cancelButton;
     int modulePosition;
     List<String> modules;
-
     BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -190,7 +188,11 @@ public class DownloadVideoActivity extends AppCompatActivity {
                             if (item.equals(getStringArray(modules.get(modulePosition).equals("CHILD MODULE") ? 1
                                     : modules.get(modulePosition).equals("NEWBORN MODULE") ? 2 : 0)[position])) {
                                 Toast.makeText(DownloadVideoActivity.this, "Video Already Downloaded!!", Toast.LENGTH_SHORT).show();
-                                return;
+                                //   return;
+
+                                String videoFile = Environment.getExternalStorageDirectory() + File.separator + DatabaseHelper.PROJECT_NAME + File.separator + modules.get(modulePosition) + File.separator + item;
+
+                                showVideo(videoFile);
                             }
                         }
 
@@ -240,7 +242,7 @@ public class DownloadVideoActivity extends AppCompatActivity {
             showVideodownloadDialoge(mContext, getVideoItemName(videosName));
 
         } else {
-            Toast.makeText(mContext, "Internet connectivity issue", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext, "No Internet Connection", Toast.LENGTH_SHORT).show();
         }
 
         registerReceiver(broadcastReceiver, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
@@ -307,7 +309,7 @@ public class DownloadVideoActivity extends AppCompatActivity {
         }
     }
 
-    private void showVideo() {
+    private void showVideo(String videoFile) {
         player = new ExoPlayer.Builder(this).build();
 
         // Bind the player to the view.
@@ -316,10 +318,10 @@ public class DownloadVideoActivity extends AppCompatActivity {
 
         player.addAnalyticsListener(new EventLogger(trackSelector));
         // Build the media item.
-        Uri videoUri = RawResourceDataSource.buildRawResourceUri(R.raw.gds01);
+        // Uri videoUri = RawResourceDataSource.buildRawResourceUri(R.raw.gds01);
 
 
-        MediaItem mediaItem = MediaItem.fromUri(videoUri);
+        MediaItem mediaItem = MediaItem.fromUri(videoFile);
 // Set the media item to be played.
         player.setMediaItem(mediaItem);
 // Prepare the player.
@@ -346,9 +348,7 @@ public class DownloadVideoActivity extends AppCompatActivity {
     @Override
     public void onStop() {
         super.onStop();
-        if(player != null) {
-            player.release();
-        }
+        player.release();
     }
 
     public void openFullScreen(View view) {

@@ -54,7 +54,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:animateLayoutChanges="true"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                >
 
                 <!--Q01-->
                 <androidx.cardview.widget.CardView style="@style/cardView">
@@ -375,7 +376,8 @@
                         android:layout_height="match_parent"
                         android:layoutDirection="ltr"
                         android:orientation="vertical"
-                        android:textDirection="ltr">
+                        android:textDirection="ltr"
+                        android:tag="0">
 
                         <TextView
                             android:id="@+id/tvfanc06"

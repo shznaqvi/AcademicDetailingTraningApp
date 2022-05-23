@@ -109,6 +109,8 @@ public class DownloadVideoActivity extends AppCompatActivity {
         modules.add("MATERNAL MODULE");
         modules.add("NEWBORN MODULE");
 
+        modules.remove(2);
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(DownloadVideoActivity.this,
                 android.R.layout.simple_spinner_item, modules);
 
@@ -185,8 +187,7 @@ public class DownloadVideoActivity extends AppCompatActivity {
                     public void onItemClick(View view, final int position) {
 
                         for (String item : existVideos) {
-                            if (item.equals(getStringArray(modules.get(modulePosition).equals("CHILD MODULE") ? 1
-                                    : modules.get(modulePosition).equals("NEWBORN MODULE") ? 2 : 0)[position])) {
+                            if (item.equals(getStringArray(modulePosition)[position])) {
                                 Toast.makeText(DownloadVideoActivity.this, "Video Already Downloaded!!", Toast.LENGTH_SHORT).show();
                                 //   return;
 
@@ -198,11 +199,8 @@ public class DownloadVideoActivity extends AppCompatActivity {
 
                         // Downloading video
                         startDownloadingVideo(DownloadVideoActivity.this,
-                                MainApp.getModuleName(modules.get(modulePosition).equals("CHILD MODULE") ? 1
-                                        : modules.get(modulePosition).equals("MATERNAL MODULE") ? 2
-                                        : modules.get(modulePosition).equals("NEWBORN MODULE") ? 3 : 4),
-                                getStringArray(modules.get(modulePosition).equals("CHILD MODULE") ? 1
-                                        : modules.get(modulePosition).equals("NEWBORN MODULE") ? 2 : 0)[position]);
+                                MainApp.getModuleName(modulePosition),
+                                getStringArray(modulePosition)[position]);
 
                     }
 
@@ -303,7 +301,9 @@ public class DownloadVideoActivity extends AppCompatActivity {
             case 1:
                 return Data.childVideos;
             case 2:
+            case 3:
                 return Data.newBornVideos;
+
             default:
                 return new String[]{};
         }
@@ -348,7 +348,9 @@ public class DownloadVideoActivity extends AppCompatActivity {
     @Override
     public void onStop() {
         super.onStop();
-        player.release();
+        if (player != null) {
+            player.release();
+        }
     }
 
     public void openFullScreen(View view) {
@@ -487,7 +489,7 @@ public class DownloadVideoActivity extends AppCompatActivity {
                 @Override
                 public void run() {
 //              Set Recycler View
-                    mAdapter = new VideoItemsAdapter(getStringArray(modules.get(position).equals("CHILD MODULE") ? 1 : modules.get(position).equals("NEWBORN MODULE") ? 2 : 0));
+                    mAdapter = new VideoItemsAdapter(getStringArray(position));
                     RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(mContext, 1);
                     bi.modVidRecycler.setLayoutManager(mLayoutManager);
                     bi.modVidRecycler.setItemAnimator(new DefaultItemAnimator());

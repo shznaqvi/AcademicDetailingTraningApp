@@ -205,10 +205,12 @@ public class MainApp extends Application {
         switch (position) {
             case 1:
                 return "CHILDHEALTH";
+
             case 2:
-                return "MATERNALHEALTH";
-            case 3:
                 return "NBORNHEALTH";
+
+            case 3:
+                return "MATERNALHEALTH";
             default:
                 return "";
         }
@@ -218,9 +220,9 @@ public class MainApp extends Application {
         switch (module) {
             case "CHILDHEALTH":
                 return 1;
-            case "MATERNALHEALTH":
-                return 2;
             case "NBORNHEALTH":
+                return 2;
+            case "MATERNALHEALTH":
                 return 3;
             default:
                 return -1;

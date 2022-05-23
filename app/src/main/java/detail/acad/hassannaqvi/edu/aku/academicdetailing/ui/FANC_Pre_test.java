@@ -159,6 +159,8 @@ public class FANC_Pre_test extends AppCompatActivity {
     }
 
     private boolean formValidation() {
+
+
         return Validator.emptyCheckingContainer(this, bi.fldGrpPreFanc);
 
     }

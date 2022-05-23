@@ -85,6 +85,7 @@ public class InfoFragment extends Fragment {
 
         bi.districtSpinner.setText(MainApp.dContract.getDistrict_name());
 
+
 /*      distrcitList = db.getDistrictList();
         districtNames = new ArrayList<>();
         districtMap = new HashMap<>();

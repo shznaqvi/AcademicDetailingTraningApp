@@ -14,7 +14,7 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.TableContract
 public class District {
 
 
-    private static final String TAG = "Users_CONTRACT";
+    private static final String TAG = "DISTRICT_CONTRACT";
     Long _ID;
 
     Long DICTRICT_CODE;

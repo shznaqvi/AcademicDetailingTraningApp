@@ -71,6 +71,7 @@ public class DownloadVideoActivity extends AppCompatActivity {
     Button cancelButton;
     int modulePosition;
     List<String> modules;
+
     BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -186,7 +187,8 @@ public class DownloadVideoActivity extends AppCompatActivity {
                     public void onItemClick(View view, final int position) {
 
                         for (String item : existVideos) {
-                            if (item.equals(getStringArray(modules.get(modulePosition).equals("CHILD MODULE") ? 1 : modules.get(modulePosition).equals("NEWBORN MODULE") ? 2 : 0)[position])) {
+                            if (item.equals(getStringArray(modules.get(modulePosition).equals("CHILD MODULE") ? 1
+                                    : modules.get(modulePosition).equals("NEWBORN MODULE") ? 2 : 0)[position])) {
                                 Toast.makeText(DownloadVideoActivity.this, "Video Already Downloaded!!", Toast.LENGTH_SHORT).show();
                                 return;
                             }
@@ -194,8 +196,11 @@ public class DownloadVideoActivity extends AppCompatActivity {
 
                         // Downloading video
                         startDownloadingVideo(DownloadVideoActivity.this,
-                                MainApp.getModuleName(modules.get(modulePosition).equals("CHILD MODULE") ? 1 : modules.get(modulePosition).equals("MATERNAL MODULE") ? 2 : modules.get(modulePosition).equals("NEWBORN MODULE") ? 3 : 4),
-                                getStringArray(modules.get(modulePosition).equals("CHILD MODULE") ? 1 : modules.get(modulePosition).equals("NEWBORN MODULE") ? 2 : 0)[position]);
+                                MainApp.getModuleName(modules.get(modulePosition).equals("CHILD MODULE") ? 1
+                                        : modules.get(modulePosition).equals("MATERNAL MODULE") ? 2
+                                        : modules.get(modulePosition).equals("NEWBORN MODULE") ? 3 : 4),
+                                getStringArray(modules.get(modulePosition).equals("CHILD MODULE") ? 1
+                                        : modules.get(modulePosition).equals("NEWBORN MODULE") ? 2 : 0)[position]);
 
                     }
 
@@ -341,7 +346,9 @@ public class DownloadVideoActivity extends AppCompatActivity {
     @Override
     public void onStop() {
         super.onStop();
-        player.release();
+        if(player != null) {
+            player.release();
+        }
     }
 
     public void openFullScreen(View view) {

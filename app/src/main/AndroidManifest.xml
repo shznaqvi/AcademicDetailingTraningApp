@@ -142,15 +142,15 @@
         <activity
             android:name=".ui.PlayerActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppThemeEnglish1" />
         <activity
             android:name=".ui.PlayerActivityNew"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppThemeEnglish1" />
         <activity
             android:name=".ui.DownloadVideoActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppThemeEnglish1" />
         <activity
             android:name=".ui.AppointmentsActivity"
             android:screenOrientation="portrait"
@@ -160,13 +160,13 @@
         <activity
             android:name=".ui.SyncActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
+            android:theme="@style/AppThemeEnglish1"
             android:windowSoftInputMode="adjustResize|stateHidden" />
 
         <activity
             android:name=".ui.ChangePasswordActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
+            android:theme="@style/AppThemeEnglish1"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
             android:name=".ui.VideoTestingActivity"

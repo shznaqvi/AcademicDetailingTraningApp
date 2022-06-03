@@ -24,6 +24,7 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.Forms;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.EndingActivity;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.PlayerActivity;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.PlayerActivityNew;
 
 public class Utils {
 

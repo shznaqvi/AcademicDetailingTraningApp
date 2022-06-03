@@ -119,7 +119,7 @@ public class PlayerActivity extends AppCompatActivity {
         player.play();
     }
 
-    public void BtnOK() {
+    public void btnOk(View view) {
         Utils.showPostDialoge(this, subMenu, 0);
     }
 

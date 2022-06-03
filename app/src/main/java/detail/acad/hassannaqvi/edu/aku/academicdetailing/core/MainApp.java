@@ -207,10 +207,12 @@ public class MainApp extends Application {
                 return "CHILDHEALTH";
 
             case 2:
-                return "NBORNHEALTH";
+                return "MATERNALHEALTH";
 
             case 3:
-                return "MATERNALHEALTH";
+                return "NBORNHEALTH";
+
+
             default:
                 return "";
         }
@@ -220,9 +222,11 @@ public class MainApp extends Application {
         switch (module) {
             case "CHILDHEALTH":
                 return 1;
-            case "NBORNHEALTH":
-                return 2;
+
             case "MATERNALHEALTH":
+                return 2;
+
+            case "NBORNHEALTH":
                 return 3;
             default:
                 return -1;

@@ -35,6 +35,7 @@
         <entry key="..\:/Users/hassan.naqvi/StudioProjects/AcademicDetailingTraningApp/app/src/main/res/layout/activity_psbi_test01.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/hassan.naqvi/StudioProjects/AcademicDetailingTraningApp/app/src/main/res/layout/activity_psbi_test02.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/hassan.naqvi/StudioProjects/AcademicDetailingTraningApp/app/src/main/res/layout/activity_shock_test.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/hassan.naqvi/StudioProjects/AcademicDetailingTraningApp/app/src/main/res/layout/activity_splash_screen.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/hassan.naqvi/StudioProjects/AcademicDetailingTraningApp/app/src/main/res/layout/activity_sync.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/hassan.naqvi/StudioProjects/AcademicDetailingTraningApp/app/src/main/res/layout/activity_vb__pre_test.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/hassan.naqvi/StudioProjects/AcademicDetailingTraningApp/app/src/main/res/layout/activity_view_pager.xml" value="0.36666666666666664" />
@@ -119,7 +120,7 @@
       </value>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_X" default="true" project-jdk-name="16" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_15" project-jdk-name="16" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

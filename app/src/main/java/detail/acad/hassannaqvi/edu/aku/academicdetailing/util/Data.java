@@ -30,7 +30,7 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.ViewPagerActivity;
 
 
 public final class Data {
-    public static final String[] modules = new String[]{"Child Health", "New Born Health", "Maternal Health"};
+    public static final String[] modules = new String[]{"Child Health", "Maternal Health", "New Born Health",};
     public static final String[] modulesCode = new String[]{"0", "1", "2", "3"};
     public static final String[] childModule = new String[]{"General Danger Sign", "Cough & Difficult Breathing", "Diarrhoea", "PSBI"};
     public static final String[] GDS = new String[]{"General Danger Sign"};

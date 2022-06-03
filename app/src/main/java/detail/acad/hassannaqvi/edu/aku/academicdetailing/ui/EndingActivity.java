@@ -184,13 +184,15 @@ public class EndingActivity extends AppCompatActivity implements Callbacks {
     }
 
     public void loadScheduleFragment() {
-        ScheduleFragment fragment = new ScheduleFragment();
+        /*ScheduleFragment fragment = new ScheduleFragment();
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.setCustomAnimations(R.anim.slide_in, R.anim.slide_out);
         transaction.replace(bi.fragmentLayout.getId(), fragment);
         transaction.addToBackStack(null);
-        transaction.commit();
+        transaction.commit();*/
+
+        startActivity(new Intent(this, ScheduleActivity.class));
 
     }
 

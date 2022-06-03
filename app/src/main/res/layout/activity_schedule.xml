@@ -114,7 +114,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="8dp"
-                                android:hint="@string/book_date" />
+                                android:hint="@string/book_date"
+                                app:minDate="CR_DATE"/>
 
 
                             <!--      <io.blackbox_vision.datetimepickeredittext.view.DatePickerEditText

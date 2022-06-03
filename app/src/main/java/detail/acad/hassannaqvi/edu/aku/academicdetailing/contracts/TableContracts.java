@@ -221,4 +221,6 @@ public class TableContracts {
         public static final String COLUMN_HF_NAME_GOVT = "hf_name_govt";
         public static final String COLUMN_HF_DIST_CODE = "hf_district_code";
     }
+
+
 }

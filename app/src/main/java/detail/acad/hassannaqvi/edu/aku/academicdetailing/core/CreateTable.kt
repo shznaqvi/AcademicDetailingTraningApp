@@ -139,4 +139,25 @@ object CreateTable {
             + NextMeetingTable.COLUMN_SYNCED + " TEXT, "
             + NextMeetingTable.COLUMN_SYNCED_DATE + " TEXT " + ");")
 
+    const val SQL_CREATE_ENTRYLOGS = ("CREATE TABLE "
+            + EntryLogTable.TABLE_NAME + "("
+            + EntryLogTable.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + EntryLogTable.COLUMN_PROJECT_NAME + " TEXT,"
+            + EntryLogTable.COLUMN_UID + " TEXT,"
+            + EntryLogTable.COLUMN_UUID + " TEXT,"
+            + EntryLogTable.COLUMN_EB_CODE + " TEXT,"
+            + EntryLogTable.COLUMN_HHID + " TEXT,"
+            + EntryLogTable.COLUMN_USERNAME + " TEXT,"
+            + EntryLogTable.COLUMN_SYSDATE + " TEXT,"
+            + EntryLogTable.COLUMN_DEVICEID + " TEXT,"
+            + EntryLogTable.COLUMN_ENTRY_DATE + " TEXT,"
+            + EntryLogTable.COLUMN_ISTATUS + " TEXT,"
+            + EntryLogTable.COLUMN_ISTATUS96x + " TEXT,"
+            + EntryLogTable.COLUMN_ENTRY_TYPE + " TEXT,"
+            + EntryLogTable.COLUMN_SYNCED + " TEXT,"
+            + EntryLogTable.COLUMN_SYNC_DATE + " TEXT,"
+            + EntryLogTable.COLUMN_APPVERSION + " TEXT"
+            + " );"
+            )
+
 }

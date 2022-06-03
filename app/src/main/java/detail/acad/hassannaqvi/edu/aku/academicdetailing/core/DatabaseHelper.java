@@ -61,6 +61,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             "DROP TABLE IF EXISTS " + UsersTable.TABLE_NAME;
     private static final String SQL_DELETE_FORMS =
             "DROP TABLE IF EXISTS " + FormsTable.TABLE_NAME;
+    private static final String SQL_DELETE_ENTRYLOGS =
+            "DROP TABLE IF EXISTS " + EntryLogTable.TABLE_NAME;
 
 
     private final String TAG = "DatabaseHelper";
@@ -91,6 +93,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CreateTable.SQL_CREATE_DISTRICT_TABLE);
         db.execSQL(CreateTable.SQL_CREATE_HF_TABLE);
         db.execSQL(CreateTable.SQL_CREATE_HP_TABLE);
+        db.execSQL(CreateTable.SQL_CREATE_ENTRYLOGS);
 //        db.execSQL(SQL_CREATE_TEHSIL);
         /*db.execSQL(SQL_CREATE_TEHSILS);
         db.execSQL(SQL_CREATE_UCS);
@@ -107,6 +110,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_DELETE_NMS);
         db.execSQL(SQL_DELETE_HF);
         db.execSQL(SQL_DELETE_HP);
+        db.execSQL(SQL_DELETE_ENTRYLOGS);
+
 //        db.execSQL(SQL_DELETE_TEHSIL);
 
     }
@@ -177,6 +182,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Log.d(TAG, "getUnsyncedForm: " + allForms);
         return allForms;
     }
+
+
 
 
     public JSONArray getUnsyncedSessions() throws JSONException {
@@ -899,6 +906,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         int count = db.update(
                 NextMeetingTable.TABLE_NAME,
+                values,
+                where,
+                whereArgs);
+    }
+
+    public void updateSyncedEntryLog(String id) {
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
+
+// New value for one column
+        ContentValues values = new ContentValues();
+        values.put(EntryLogTable.COLUMN_SYNCED, true);
+        values.put(EntryLogTable.COLUMN_SYNC_DATE, new Date().toString());
+
+// Which row to update, based on the title
+        String where = EntryLogTable._ID + " = ?";
+        String[] whereArgs = {id};
+
+        int count = db.update(
+                EntryLogTable.TABLE_NAME,
                 values,
                 where,
                 whereArgs);

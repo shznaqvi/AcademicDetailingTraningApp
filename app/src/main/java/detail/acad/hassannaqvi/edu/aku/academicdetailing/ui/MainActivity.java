@@ -219,7 +219,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         new SyncAllData(
                 this,
-                "Next Meeting Schedule",
+                "Next Meeting ScheduleActivity",
                 "updateSyncedNMSForms",
                 NextMeeting.class,
                 MainApp._HOST_URL + NextMeetingTable.nms_Url,
@@ -311,7 +311,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             transaction.replace(bi.mainLayout.getId(), fragment);
         }
         Bundle bundle = new Bundle();
-        bundle.putString("district_name", MainApp.districtName);
+        bundle.putString("district_name", MainApp.district.getDistrict_name());
         bundle.putBoolean("isAdmin", MainApp.admin);
         fragment.setArguments(bundle);
         transaction.addToBackStack(null);
@@ -329,7 +329,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             transaction.replace(bi.mainLayout.getId(), fragment);
         }
         Bundle bundle = new Bundle();
-        bundle.putString("district_name", MainApp.districtName);
+        bundle.putString("district_name", MainApp.district.getDistrict_name());
         bundle.putBoolean("isAdmin", MainApp.admin);
         bundle.putParcelable("forms", fc);
         fragment.setArguments(bundle);

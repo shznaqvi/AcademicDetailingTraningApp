@@ -23,13 +23,13 @@ import java.io.File;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityPlayerBinding;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityPlayerNewBinding;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Utils;
 
 public class PlayerActivity extends AppCompatActivity {
 
-    ActivityPlayerBinding bi;
+    ActivityPlayerNewBinding bi;
     ExoPlayer player;
     Data.SubMenu subMenu;
     Long playbackPosition = new Long(0);
@@ -38,8 +38,8 @@ public class PlayerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        bi = DataBindingUtil.setContentView(this, R.layout.activity_player);
-       // bi.setCallback(this);
+        bi = DataBindingUtil.setContentView(this, R.layout.activity_player_new);
+        //   bi.setCallback(this);
 
         initializingComponents();
     }
@@ -60,16 +60,15 @@ public class PlayerActivity extends AppCompatActivity {
     }
 
 
-/*    void playingVideo(SimpleExoPlayer videoPlayer, DataSource.Factory dataSourceFactory, Data.SubMenu data) {
-        String Directory = Environment.getExternalStorageDirectory() + File.separator
-                + DatabaseHelper.PROJECT_NAME + File.separator + data.getModuleName().toUpperCase()
-                + File.separator;*/
+
     //   void playingVideo(SimpleExoPlayer videoPlayer, DataSource.Factory dataSourceFactory, Data.SubMenu data) {
     private void playingVideo(ExoPlayer videoPlayer, DataSource.Factory dataSourceFactory, Data.SubMenu data) {
-            String Directory = Environment.getExternalStorageDirectory() + File.separator
-                    + DatabaseHelper.PROJECT_NAME + File.separator + data.getModuleName().toUpperCase()
-                    + File.separator;
-
+      /*  String Directory = sdDir + File.separator + data.getModuleName().toUpperCase()
+                + File.separator;
+*/
+        String Directory = Environment.getExternalStorageDirectory() + File.separator
+                + DatabaseHelper.PROJECT_NAME + File.separator + data.getModuleName().toUpperCase()
+                + File.separator;
         // This is the MediaSource representing the media to be played.
         MediaSource[] mediaSources = new MediaSource[data.getVideosName().length];
         String[] videos = data.getVideosName();
@@ -108,7 +107,7 @@ public class PlayerActivity extends AppCompatActivity {
         MediaItem mediaItem = null;
         for (byte i = 0; i < videos.length; i++) {
             // videoUri = RawResourceDataSource.buildRawResourceUri(R.raw.gds01);
-            mediaItem = MediaItem.fromUri(Uri.parse(Directory + videos[i]));
+            mediaItem = MediaItem.fromUri(Uri.parse(Directory + videos[i] + ".mp4"));
         }
 
         //MediaItem mediaItem = MediaItem.fromUri(videoUri);
@@ -120,7 +119,7 @@ public class PlayerActivity extends AppCompatActivity {
         player.play();
     }
 
-    public void btnOk(View view) {
+    public void BtnOK() {
         Utils.showPostDialoge(this, subMenu, 0);
     }
 

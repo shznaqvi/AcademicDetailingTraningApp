@@ -496,7 +496,7 @@ public class SyncActivity extends AppCompatActivity {
 
     private void showDateError(String serverTime, String deviceTime) {
 
-        View alertCustomdialog = LayoutInflater.from(SyncActivity.this).inflate(R.layout.date_error_dialog, null);
+        View alertCustomdialog = LayoutInflater.from(SyncActivity.this).inflate(R.layout.delete_video_dialog, null);
 
         AlertDialog.Builder dateErrorAlert = new AlertDialog.Builder(this);
         dateErrorAlert.setView(alertCustomdialog);

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <FrameLayout
         android:layout_width="match_parent"
         android:theme="@style/AppThemeEnglish1"
         android:layout_marginTop="?attr/actionBarSize"
@@ -185,7 +185,6 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@android:color/transparent"
-                        android:onClick="btnEnd"
                         android:text="Cancel"
                         android:textColor="@color/colorPrimary"
                         android:textSize="18sp"
@@ -198,9 +197,6 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@drawable/capsule"
-                        android:backgroundTint="@color/colorAccent"
-                        android:backgroundTintMode="src_atop"
-                        android:onClick="btnContinue"
                         android:text="Proceed"
                         android:textColor="@color/white"
                         android:textSize="24sp"

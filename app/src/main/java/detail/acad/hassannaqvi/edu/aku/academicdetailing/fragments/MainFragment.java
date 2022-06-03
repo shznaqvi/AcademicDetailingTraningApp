@@ -33,6 +33,8 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.gson.Gson;
 import com.kaopiz.kprogresshud.KProgressHUD;
 
+import org.json.JSONException;
+
 import java.io.File;
 import java.util.List;
 
@@ -92,45 +94,50 @@ public class MainFragment extends Fragment {
 
         isAdmin = getArguments().getBoolean("isAdmin");
         if (MainApp.userName.equals("dmu@aku")) {
-            bi.openDB.setVisibility(View.VISIBLE);
+            //  bi.openDB.setVisibility(View.VISIBLE);
         }
 
         db = new DatabaseHelper(getContext());
 
 
         onClickListener();
-      //  setupViews();
+        setupViews();
         return view;
     }
 
-  /*  private void setupViews() {
+    private void setupViews() {
         SharedPreferences syncPref = getContext().getSharedPreferences("SyncInfo", Context.MODE_PRIVATE);
         bi.userName.setText("Hello! " + MainApp.userName);
         bi.lastDownload.setText(syncPref.getString("LastDownSyncServer", "Never Downloaded"));
         bi.lastUpdated.setText(syncPref.getString("LastUpSyncServer", "Never Synced"));
-        bi.syncedForm.setText(String.valueOf(db.getUnsyncedForms().size()));
+        try {
+            bi.unsyncedForms.setText(String.valueOf(db.getUnsyncedForms().getJSONObject(0).length()));
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Toast.makeText(getActivity(), "JSONException(Forms)" + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
         bi.formsToday.setText(String.valueOf(db.getTodayForms().size()));
-        bi.districtName.setText(MainApp.districtName);
+        bi.districtName.setText(MainApp.district.getDistrict_name());
 
         hud = KProgressHUD.create(getContext()).setLabel("Syncing Appointments").setDetailsLabel("Syncing..")
                 .setCancellable(false).setStyle(KProgressHUD.Style.SPIN_INDETERMINATE);
 
 
     }
-*/
+
     private void onClickListener() {
 
         bi.startTraining.setOnClickListener(v -> callbacks.loadInfoFragment());
 
-        bi.openDB.setOnClickListener(v -> callbacks.loadDatabaseManager());
+        // bi.openDB.setOnClickListener(v -> callbacks.loadDatabaseManager());
 
-        bi.uploadData.setOnClickListener(v -> {
+     /*   bi.uploadData.setOnClickListener(v -> {
 
             callbacks.uploadDataToServer();
 
         });
-
-        bi.downloadVideo.setOnClickListener(v -> callbacks.downloadData());
+*/
+        //   bi.downloadVideo.setOnClickListener(v -> callbacks.downloadData());
 
         bi.scheduleAppointment.setOnClickListener(v -> {
 
@@ -237,7 +244,7 @@ public class MainFragment extends Fragment {
         try {
             hud.show();
 
-            Long dist_code = MainApp.dContract.getDICTRICT_CODE();
+            Long dist_code = MainApp.district.getDICTRICT_CODE();
             JSONObject object = new JSONObject();
             object.put("dist_code", dist_code);
             RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), object.toString());

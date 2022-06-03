@@ -10,6 +10,9 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.media.MediaPlayer;
+import android.media.ThumbnailUtils;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -18,6 +21,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.provider.MediaStore;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -46,6 +50,7 @@ import com.google.android.exoplayer2.util.EventLogger;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.CONSTANTS;
@@ -57,6 +62,7 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
 
 public class DownloadVideoActivity extends AppCompatActivity {
 
+    private static final String TAG = "DownloadVideoActivity";
     ActivityDownloadVideoBinding bi;
     ExoPlayer player;
 
@@ -70,20 +76,35 @@ public class DownloadVideoActivity extends AppCompatActivity {
     Button cancelButton;
     int modulePosition;
     List<String> modules;
+    private boolean downloading = false;
     BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
+
+
             if (DownloadManager.ACTION_DOWNLOAD_COMPLETE.equals(intent.getAction())) {
+                //    downloadManager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
                 DownloadManager.Query query = new DownloadManager.Query();
-                downloadManager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
+                query.setFilterById(refID);
                 Cursor cursor = downloadManager.query(query);
+            /*    int totalSize = 0, downloadedSize = 0;
+                if(cursor.moveToFirst()) {
+
+                    totalSize = cursor.getInt(cursor.getColumnIndexOrThrow(DownloadManager.COLUMN_TOTAL_SIZE_BYTES));
+                    downloadedSize = cursor.getInt(cursor.getColumnIndexOrThrow(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR));
+                }
+                Log.d(TAG, "onReceive: " + downloadedSize * 100 / totalSize);
+                progressBar.setProgress(downloadedSize * 100 / totalSize);*/
                 if (cursor.moveToFirst()) {
                     int colIndex = cursor.getColumnIndexOrThrow(DownloadManager.COLUMN_STATUS);
-                    if (DownloadManager.STATUS_SUCCESSFUL == cursor.getInt(colIndex)) {
-                        dialog.dismiss();
 
+                    if (DownloadManager.STATUS_SUCCESSFUL == cursor.getInt(colIndex)) {
+                        downloading = false;
+                        dialog.dismiss();
+                        mAdapter.notifyDataSetChanged();
+                        cursor.close();
                         // Populate recycler_view
-                        new populateRecyclerView(DownloadVideoActivity.this, modulePosition).execute();
+                        //new populateRecyclerView(DownloadVideoActivity.this, modulePosition).execute();
 
                     }
                 }
@@ -103,21 +124,43 @@ public class DownloadVideoActivity extends AppCompatActivity {
 
     }
 
+    public static String getDuration(Context context, String path) {
+        MediaPlayer mMediaPlayer = null;
+        long duration = 0;
+        try {
+            mMediaPlayer = new MediaPlayer();
+            mMediaPlayer.setDataSource(context, Uri.parse(path));
+            mMediaPlayer.prepare();
+            duration = mMediaPlayer.getDuration();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (mMediaPlayer != null) {
+                mMediaPlayer.reset();
+                mMediaPlayer.release();
+                mMediaPlayer = null;
+            }
+        }
+
+        long minutes = TimeUnit.MILLISECONDS.toMinutes(duration);
+        long seconds = TimeUnit.MILLISECONDS.toSeconds(duration - TimeUnit.MINUTES.toMillis(minutes));
+        return minutes + ":" + String.format("%02d", seconds);
+    }
+
     private void setupModules() {
         modules.add("-Select Module-");
-        modules.add("CHILD MODULE");
-        modules.add("MATERNAL MODULE");
-        modules.add("NEWBORN MODULE");
-
-        modules.remove(2);
-
+        modules.add("CHILD HEALTH");
+        modules.add("MATERNAL HEALTH");
+        modules.add("NEWBORN HEALTH");
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(DownloadVideoActivity.this,
                 android.R.layout.simple_spinner_item, modules);
 
         bi.modNSpinner.setAdapter(adapter);
 
 
-       // bi.modNSpinner.attachDataSource(modules);
+        // bi.modNSpinner.attachDataSource(modules);
      /*   if (!MainApp.admin && !MainApp.userName.equals("test1234")) {
             switch (MainApp.districtCode) {
                 case 113:
@@ -157,11 +200,11 @@ public class DownloadVideoActivity extends AppCompatActivity {
         existVideos = new ArrayList<>();
 
 
-        // Populate recycler_view
+/*        // Populate recycler_view
         if (modules.size() > 0) {
 
             new populateRecyclerView(DownloadVideoActivity.this, 0).execute();
-        }
+        }*/
     }
 
     private void setListeners() {
@@ -170,7 +213,7 @@ public class DownloadVideoActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 // populate recycler_view
-                if (i != 0)
+                if (i > 0)
                     modulePosition = i;
                 new populateRecyclerView(DownloadVideoActivity.this, i).execute();
             }
@@ -181,6 +224,7 @@ public class DownloadVideoActivity extends AppCompatActivity {
         });
 
         // Click listener recycler_view
+
         bi.modVidRecycler.addOnItemTouchListener(new RecyclerItemClickListener(this, new RecyclerItemClickListener.OnItemClickListener() {
 
                     @Override
@@ -189,11 +233,14 @@ public class DownloadVideoActivity extends AppCompatActivity {
                         for (String item : existVideos) {
                             if (item.equals(getStringArray(modulePosition)[position])) {
                                 Toast.makeText(DownloadVideoActivity.this, "Video Already Downloaded!!", Toast.LENGTH_SHORT).show();
-                                //   return;
+                                //
+                                String videoFile = Environment.getExternalStorageDirectory() + File.separator + DatabaseHelper.PROJECT_NAME + File.separator + MainApp.getModuleName(modulePosition) + File.separator + item + ".mp4";
 
-                                String videoFile = Environment.getExternalStorageDirectory() + File.separator + DatabaseHelper.PROJECT_NAME + File.separator + modules.get(modulePosition) + File.separator + item;
-
+                                if (player != null) {
+                                    player.release();
+                                }
                                 showVideo(videoFile);
+                                return;
                             }
                         }
 
@@ -206,10 +253,67 @@ public class DownloadVideoActivity extends AppCompatActivity {
 
                     @Override
                     public void onItemLongClick(final View view, final int position) {
+                        for (String item : existVideos) {
+                            if (item.equals(getStringArray(modulePosition)[position])) {
+                                // Toast.makeText(DownloadVideoActivity.this, "Video Already Downloaded!!", Toast.LENGTH_SHORT).show();
+                                //
+                                File videoFile = new File(Environment.getExternalStorageDirectory() + File.separator + DatabaseHelper.PROJECT_NAME + File.separator + MainApp.getModuleName(modulePosition) + File.separator + item + ".mp4");
+                                if (videoFile.exists()) {
+                                    deleteVideo(videoFile, position);
+                                    existVideos.remove(item);
 
+
+                                }
+
+                                return;
+                            }
+                        }
                     }
                 })
         );
+
+    }
+
+    private void deleteVideo(File videoFile, int position) {
+
+        View alertCustomdialog = LayoutInflater.from(this).inflate(R.layout.delete_video_dialog, null);
+
+        androidx.appcompat.app.AlertDialog.Builder dateErrorAlert = new androidx.appcompat.app.AlertDialog.Builder(this);
+        dateErrorAlert.setView(alertCustomdialog);
+        TextView txtDia = alertCustomdialog.findViewById(R.id.txtDia);
+        Button btnYes = alertCustomdialog.findViewById(R.id.btnYes);
+        Button btnNo = alertCustomdialog.findViewById(R.id.btnNo);
+        txtDia.setText("Do you want to delete this video file?");
+
+        androidx.appcompat.app.AlertDialog dateErrorDialog = dateErrorAlert.create();
+
+        dateErrorDialog.show();
+        dateErrorDialog.setCanceledOnTouchOutside(false);
+
+        btnYes.setOnClickListener(new View.OnClickListener(
+
+        ) {
+            @Override
+            public void onClick(View view) {
+                dateErrorDialog.dismiss();
+                if (videoFile.delete()) {
+
+//                    new populateRecyclerView(DownloadVideoActivity.this,position).execute() ;
+                    mAdapter.notifyItemChanged(position);
+
+                    //bi.modNSpinner.setSelection(modulePosition);
+                }
+            }
+        });
+        btnNo.setOnClickListener(new View.OnClickListener(
+
+        ) {
+            @Override
+            public void onClick(View view) {
+                dateErrorDialog.dismiss();
+
+            }
+        });
 
     }
 
@@ -233,7 +337,7 @@ public class DownloadVideoActivity extends AppCompatActivity {
             downloadManager = (DownloadManager) mContext.getSystemService(Context.DOWNLOAD_SERVICE);
             Uri uri = Uri.parse(CONSTANTS.Video_URL + videosName + ".mp4");
             DownloadManager.Request request = new DownloadManager.Request(uri);
-            request.setDestinationInExternalPublicDir(DatabaseHelper.PROJECT_NAME + File.separator + moduleName, videosName)
+            request.setDestinationInExternalPublicDir(DatabaseHelper.PROJECT_NAME + File.separator + moduleName, videosName + ".mp4")
                     .setTitle("Downloading " + videosName);
             refID = downloadManager.enqueue(request);
 
@@ -245,24 +349,6 @@ public class DownloadVideoActivity extends AppCompatActivity {
 
         registerReceiver(broadcastReceiver, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
 
-    }
-
-    private void showVideodownloadDialoge(Context mContext, String videosName) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-        builder.setCancelable(false);
-        View view = LayoutInflater.from(mContext).inflate(R.layout.downloading_dialog_layout, null);
-        progressText = view.findViewById(R.id.progressTextView);
-        progressText.setText("Downloading: " + videosName);
-        progressBar = view.findViewById(R.id.progressBar);
-
-        cancelButton = view.findViewById(R.id.cancelButton);
-        builder.setView(view);
-        progressBar.setMax(100);
-        dialog = builder.create();
-        dialog.show();
-
-
-        cancelButton.setOnClickListener(v -> cancelAllVideos());
     }
 
     private void cancelAllVideos() {
@@ -300,10 +386,8 @@ public class DownloadVideoActivity extends AppCompatActivity {
         switch (position) {
             case 1:
                 return Data.childVideos;
-            case 2:
             case 3:
                 return Data.newBornVideos;
-
             default:
                 return new String[]{};
         }
@@ -345,12 +429,65 @@ public class DownloadVideoActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public void onStop() {
-        super.onStop();
-        if (player != null) {
-            player.release();
-        }
+    private void showVideodownloadDialoge(Context mContext, String videosName) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        builder.setCancelable(false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.downloading_dialog_layout, null);
+        progressText = view.findViewById(R.id.progressTextView);
+        progressBar = view.findViewById(R.id.progressBar);
+        progressBar.setMax(100);
+        cancelButton = view.findViewById(R.id.cancelButton);
+        builder.setView(view);
+        dialog = builder.create();
+        dialog.show();
+
+
+        cancelButton.setOnClickListener(v -> cancelAllVideos());
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+
+                downloading = true;
+
+                while (downloading) {
+
+                    DownloadManager.Query q = new DownloadManager.Query();
+                    q.setFilterById(refID);
+
+                    Cursor cursor = downloadManager.query(q);
+                    int totalSize = 0, downloadedSize = 0;
+
+                    if (cursor != null && cursor.moveToFirst()) {
+
+                        totalSize = cursor.getInt(cursor.getColumnIndexOrThrow(DownloadManager.COLUMN_TOTAL_SIZE_BYTES));
+                        downloadedSize = cursor.getInt(cursor.getColumnIndexOrThrow(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR));
+
+                        //    Log.d(TAG, "onReceive: " + downloadedSize * 100 / totalSize);
+
+
+                        int finalDownloadedSize = downloadedSize;
+                        int finalTotalSize = totalSize;
+                        if (totalSize > 0) {
+                            runOnUiThread(new Runnable() {
+
+                                @Override
+                                public void run() {
+                                    int progressPercent = finalDownloadedSize * 100 / finalTotalSize;
+                                    progressBar.setProgress(progressPercent);
+                                    progressText.setText("Downloading: " + videosName + "(" + progressPercent + "%)");
+
+                                }
+                            });
+                        }
+                    }
+                    //  Log.d(Constants.MAIN_VIEW_ACTIVITY, statusMessage(cursor));
+                    cursor.close();
+                }
+
+            }
+        }).start();
+
     }
 
     public void openFullScreen(View view) {
@@ -413,10 +550,18 @@ public class DownloadVideoActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (player != null)
+            player.release();
+    }
+
     private class VideoItemsAdapter extends RecyclerView.Adapter<VideoItemsAdapter.MyViewHolder> {
 
         private final String[] videosList;
         MyViewHolder holder;
+        private int pos;
 
         public VideoItemsAdapter(String[] videosList) {
             this.videosList = videosList;
@@ -432,6 +577,7 @@ public class DownloadVideoActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(MyViewHolder holder, int position) {
+            pos = holder.getAbsoluteAdapterPosition();
             this.holder = holder;
             this.holder.bindUser(this.videosList[position]);
         }
@@ -452,9 +598,23 @@ public class DownloadVideoActivity extends AppCompatActivity {
 
             public void bindUser(String mname) {
                 videoItemBinding.movieName.setText(getVideoItemName(mname));
+                String moduleName = String.format("%02d", modulePosition);
+                String sessionNum = String.format("%02d", pos + 1);
+                videoItemBinding.vdoTitle.setText("Module " + moduleName + ": Session " + sessionNum);
                 if (MainApp.checkVideoExist(bi.modNSpinner.getSelectedItemPosition(), mname)) {
+
                     videoItemBinding.downloadImage.setImageResource(R.drawable.ic_check);
                     videoItemBinding.vdoStatus.setVisibility(View.VISIBLE);
+
+                    String videoFile = Environment.getExternalStorageDirectory() + File.separator + DatabaseHelper.PROJECT_NAME + File.separator + MainApp.getModuleName(modulePosition) + File.separator + mname + ".mp4";
+                    videoItemBinding.vdoDuration.setText("Duration: " + getDuration(DownloadVideoActivity.this, videoFile));
+                    Bitmap thumbnailBMP = ThumbnailUtils.createVideoThumbnail(videoFile, MediaStore.Video.Thumbnails.FULL_SCREEN_KIND);
+
+                    //BitmapDrawable bmpDrawable = new BitmapDrawable(getResources(), thumbnailBMP);
+
+                    videoItemBinding.vdoThumbnail.setImageBitmap(thumbnailBMP);
+
+
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
                         videoItemBinding.movieName.setTextColor(getColor(R.color.colorPrimary));
                     else
@@ -489,6 +649,7 @@ public class DownloadVideoActivity extends AppCompatActivity {
                 @Override
                 public void run() {
 //              Set Recycler View
+                    existVideos = new ArrayList<>();
                     mAdapter = new VideoItemsAdapter(getStringArray(position));
                     RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(mContext, 1);
                     bi.modVidRecycler.setLayoutManager(mLayoutManager);
@@ -512,6 +673,4 @@ public class DownloadVideoActivity extends AppCompatActivity {
             }, 2000);
         }
     }
-
-
 }

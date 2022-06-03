@@ -105,7 +105,7 @@ public class MainApp extends Application {
     public static boolean isChild = false;
     public static String[] loginMem;
     public static String versionName;
-    public static String districtName = "";
+    //public static String districtName = "";
     public static String providerName = "";
     public static int versionCode;
     public static int districtCode = 0;
@@ -121,7 +121,7 @@ public class MainApp extends Application {
     public static String type = "";
     public static int[] slides;
     public static String formsUID = "";
-    public static District dContract;
+    public static District district;
     public static DatabaseHelper DbHelper;
     public static File sdDir;
     public static List<JSONArray> uploadData;
@@ -132,7 +132,7 @@ public class MainApp extends Application {
     public static SharedPreferences sharedPref;
     public static SharedPreferences.Editor editor;
     public static boolean superuser;
-    public static String selectedDistrict;
+    //public static String selectedDistrict;
 
 
     protected static LocationManager locationManager;
@@ -197,7 +197,7 @@ public class MainApp extends Application {
         if (!folder.exists()) return false;
         folder = new File(Directrory + File.separator + getModuleName(position));
         if (!folder.exists()) return false;
-        File file = new File(folder.getPath(), fName);
+        File file = new File(folder.getPath(), fName + ".mp4");
         return file.exists();
     }
 

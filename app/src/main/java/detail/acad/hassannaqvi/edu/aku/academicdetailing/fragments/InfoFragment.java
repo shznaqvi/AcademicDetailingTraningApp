@@ -2,6 +2,7 @@ package detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.format.DateFormat;
@@ -32,6 +33,7 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.District;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.Forms;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.HealthFacility;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.HealthProvider;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.ScheduleActivity;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.HideKeyboard;
 
 
@@ -83,7 +85,7 @@ public class InfoFragment extends Fragment {
 
     private void setupViews() {
 
-        bi.districtSpinner.setText(MainApp.dContract.getDistrict_name());
+        bi.districtSpinner.setText(MainApp.district.getDistrict_name());
 
 
 /*      distrcitList = db.getDistrictList();
@@ -118,7 +120,7 @@ public class InfoFragment extends Fragment {
             }
         });*/
 
-        hfList = db.getHealthFacilityData(MainApp.dContract.getDICTRICT_CODE());
+        hfList = db.getHealthFacilityData(MainApp.district.getDICTRICT_CODE());
         hfMap = new HashMap<>();
         hfNames = new ArrayList<>();
         hfNames.add("Select Health Facility Name-");
@@ -188,7 +190,8 @@ public class InfoFragment extends Fragment {
                     try {
                         saveDraft();
                         if (MainApp.isScheduleAppointment) {
-                            callbacks.loadScheduleFragment();
+                            //  callbacks.loadScheduleFragment();
+                            startActivity(new Intent(getActivity(), ScheduleActivity.class));
                         } else {
                             HideKeyboard.hideKeyboardFragment(getActivity(), getView());
                             callbacks.loadModuleFragment(MainApp.forms);
@@ -217,7 +220,7 @@ public class InfoFragment extends Fragment {
         MainApp.forms.setProviderID(bi.providerId.getText().toString());
         MainApp.forms.setProviderName(bi.hpName.getText().toString());
         MainApp.forms.setHealthFacilityCode(String.valueOf(hfMap.get(bi.hfName.getText().toString())));
-        MainApp.forms.setDistrictID(String.valueOf(MainApp.dContract.getDICTRICT_CODE()));
+        MainApp.forms.setDistrictID(String.valueOf(MainApp.district.getDICTRICT_CODE()));
         MainApp.providerName = bi.hpName.getText().toString();
 
         setGPS();

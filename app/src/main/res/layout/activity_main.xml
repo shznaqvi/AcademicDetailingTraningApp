@@ -18,29 +18,37 @@
             android:layout_centerInParent="true"
             android:src="@drawable/uncolor" />
 
-        <RelativeLayout
+        <LinearLayout
             android:id="@+id/bottom_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:elevation="24dp"
+            android:orientation="vertical"
             android:layout_alignParentBottom="true">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_above="@+id/navigation"
+                android:background="#d6d6d6" />
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/navigation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
-                app:itemIconTint="@color/white"
-                app:itemTextColor="@color/white"
+                android:background="#e0f2f1"
+                app:itemIconTint="@color/colorPrimary"
+                app:itemTextColor="@color/black"
                 app:menu="@menu/bottom_navigation_item">
 
             </com.google.android.material.bottomnavigation.BottomNavigationView>
 
             <!--<include-->
-                <!--android:id="@+id/bottom_nav"-->
-                <!--layout="@layout/bottom_nav" />-->
+            <!--android:id="@+id/bottom_nav"-->
+            <!--layout="@layout/bottom_nav" />-->
 
 
-        </RelativeLayout>
+        </LinearLayout>
 
         <FrameLayout
             android:id="@+id/mainLayout"
@@ -64,7 +72,7 @@
             app:popupTheme="@style/AppTheme.PopupOverlay"
             app:subtitleTextColor="@color/colorPrimary"
             app:title="@string/app_name"
-            app:titleTextColor="@color/colorPrimary" />
+            app:titleTextColor="@color/white" />
 
     </RelativeLayout>
 

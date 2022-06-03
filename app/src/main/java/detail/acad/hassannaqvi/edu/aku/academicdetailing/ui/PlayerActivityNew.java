@@ -5,6 +5,7 @@ import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +16,7 @@ import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
+import com.google.android.exoplayer2.ui.DefaultTimeBar;
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
@@ -30,6 +32,7 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Utils;
 public class PlayerActivityNew extends AppCompatActivity {
 
 
+    private static final String TAG = "PlayerActivityNew";
     ActivityPlayerNewBinding bi;
     ExoPlayer player;
     Data.SubMenu subMenu;
@@ -57,6 +60,12 @@ public class PlayerActivityNew extends AppCompatActivity {
         // Produces DataSource instances through which media data is loaded.
         DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(this, Util.getUserAgent(this, DatabaseHelper.PROJECT_NAME));
         playingVideo(player, dataSourceFactory, subMenu);
+     /*   setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        bi.videoPlayer.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_FIT);
+        //bi.videoPlayer.hideController();
+        bi.videoPlayer.setUseController(false);
+
+        bi.videoPlayer.setKeepScreenOn(true);*/
 
     }
 
@@ -83,19 +92,40 @@ public class PlayerActivityNew extends AppCompatActivity {
             }
         });*/
         player.addListener(new Player.Listener() {
-
             @Override
-            public void onPlaybackStateChanged(@Player.State int state) {
-                if (state == Player.STATE_ENDED) {
+            public void onPlaybackStateChanged(int playbackState) {
+                Log.d(TAG, "onPlaybackStateChanged1: " + playbackState);
 
-                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-                    bi.videoPlayer.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_FIT);
-
-                } else {
-                    bi.videoPlayer.hideController();
-                }
             }
         });
+
+        player.addListener(new Player.Listener() {
+
+            @Override
+            public void onPlaybackStateChanged(int state) {
+                Log.d(TAG, "onPlaybackStateChanged2: " + state);
+                if (state == Player.STATE_ENDED) {
+
+                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                    bi.videoPlayer.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_FIT);
+                    bi.videoPlayer.setUseController(true);
+                    bi.videoPlayer.setKeepScreenOn(false);
+                    //bi.videoPlayer.showController();
+                    player.pause();
+                } /*else {
+                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                    bi.videoPlayer.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_FIT);
+                    //bi.videoPlayer.hideController();
+                    bi.videoPlayer.setUseController(false);
+
+                    bi.videoPlayer.setKeepScreenOn(true);
+                }*/
+
+
+            }
+
+        });
+
 
         // Select and play video
 /*        for (byte i = 0; i < videos.length; i++) {
@@ -109,22 +139,37 @@ public class PlayerActivityNew extends AppCompatActivity {
         MediaItem mediaItem = null;
         for (byte i = 0; i < videos.length; i++) {
             // videoUri = RawResourceDataSource.buildRawResourceUri(R.raw.gds01);
-            mediaItem = MediaItem.fromUri(Uri.parse(Directory + videos[i]));
+            mediaItem = MediaItem.fromUri(Uri.parse(Directory + videos[i] + ".mp4"));
         }
 
         //MediaItem mediaItem = MediaItem.fromUri(videoUri);
 // Set the media item to be played.
         player.setMediaItem(mediaItem);
+        //player.setRepeatMode(Player.REPEAT_MODE_OFF);
+
+
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        bi.videoPlayer.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_FIT);
+        //bi.videoPlayer.hideController();
+        bi.videoPlayer.setUseController(false);
+
+        bi.videoPlayer.setKeepScreenOn(true);
 // Prepare the player.
         player.prepare();
+
 // Start the playback.
         player.play();
+
+        bi.videoPlayer.setKeepScreenOn(true);
+        DefaultTimeBar dtBar = new DefaultTimeBar(this);
+        // dtBar.setEnabled(false);
+
     }
 
     public void btnOk(View view) {
         Utils.showPostDialoge(this, subMenu, 0);
     }
-
+/*
     @Override
     protected void onStart() {
         super.onStart();
@@ -146,7 +191,7 @@ public class PlayerActivityNew extends AppCompatActivity {
     private void releasePlayer() {
         if (player != null) {
             playbackPosition = player.getCurrentPosition();
-            currentWindow = player.getCurrentWindowIndex();
+          //  currentWindow = player.getCurrentMediaItemIndex();
             player.setPlayWhenReady(false);
             bi.videoPlayer.onResume();
         }
@@ -154,14 +199,14 @@ public class PlayerActivityNew extends AppCompatActivity {
 
     private void restartPlayer() {
         bi.videoPlayer.setPlayer(player);
-        player.seekTo(currentWindow, playbackPosition);
+        player.seekTo(playbackPosition);
     }
 
     @Override
     public void onStop(){
         super.onStop();
         player.release();
-    }
+    }*/
 
 
     public void openFullScreen(View view) {

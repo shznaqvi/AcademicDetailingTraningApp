@@ -23,6 +23,7 @@
             android:minHeight="360dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
+            android:theme="@style/Theme.main"
 
             />
 

@@ -1,22 +1,7 @@
 package detail.acad.hassannaqvi.edu.aku.academicdetailing.adapters;
 
-import android.os.Build;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import androidx.databinding.DataBindingUtil;
-import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.List;
-
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.VideoItemLayoutBinding;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.DownloadVideoActivity;
-
-public class VideoItemsAdapter extends RecyclerView.Adapter<VideoItemsAdapter.VideoItemsViewHolder> {
+public class VideoItemsAdapter2 {
+/*
 
     private static final String TAG = "VideoItemsAdapter";
     private final DownloadVideoActivity downloadVideoActivity;
@@ -101,4 +86,5 @@ public class VideoItemsAdapter extends RecyclerView.Adapter<VideoItemsAdapter.Vi
                 return startChar;
         }
     }
+*/
 }

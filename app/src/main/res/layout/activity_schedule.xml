@@ -6,16 +6,12 @@
 
         <import type="android.view.View" />
 
-        <variable
-            name="callback"
-            type="detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments.ScheduleFragment" />
+
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="?attr/actionBarSize"
-        android:theme="@style/AppThemeEnglish1"
         android:orientation="vertical">
 
 
@@ -33,10 +29,10 @@
                 <TextView
                     android:id="@+id/testing"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="?attr/actionBarSize"
                     android:background="@color/ticker_red"
                     android:elevation="6dp"
-                    android:gravity="center_horizontal"
+                    android:gravity="center_horizontal|center_vertical"
                     android:keepScreenOn="true"
                     android:padding="4dp"
                     android:text="@string/schedule"
@@ -56,8 +52,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:text="Provider's Name"
-                            />
+                            android:text="Provider's Name" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -72,14 +67,15 @@
                                 android:textColor="@android:color/black"
                                 android:textSize="20sp" />
 
-                            <TextView
+                            <EditText
                                 android:id="@+id/doctorName"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
                                 android:layout_gravity="center_horizontal"
+                                android:enabled="false"
+                                android:importantForAutofill="no"
                                 android:text="Doctor Name: "
-                                android:textColor="@android:color/black"
-                                android:textSize="16sp" />
+                                android:textColor="@android:color/black" />
 
 
                         </LinearLayout>
@@ -90,20 +86,21 @@
 
                 </androidx.cardview.widget.CardView>
 
-
-                <LinearLayout
+                <androidx.cardview.widget.CardView
+                    style="@style/cardView"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_height="wrap_content">
 
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="0dp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1">
+                        android:orientation="horizontal">
+
 
                         <LinearLayout
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
+                            android:layout_weight="1"
                             android:orientation="vertical">
 
                             <TextView
@@ -133,16 +130,10 @@
                         </LinearLayout>
 
 
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
-
                         <LinearLayout
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
+                            android:layout_weight="1"
                             android:orientation="vertical">
 
                             <TextView
@@ -169,12 +160,8 @@
                         </LinearLayout>
 
 
-                    </androidx.cardview.widget.CardView>
-
-
-
-
-                </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView style="@style/cardView">
 
@@ -187,8 +174,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:text="Select Module"
-                            />
+                            android:text="Select Module" />
 
                         <Spinner
                             android:id="@+id/modules"
@@ -217,10 +203,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:background="@color/colorPrimaryDark"
-                            android:text=" Sub Module"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp" />
+                            android:text="Sub Module" />
 
                         <Spinner
                             android:id="@+id/subModules"
@@ -245,8 +228,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:text="Session"
-                            />
+                            android:text="Session" />
 
                         <Spinner
                             android:id="@+id/sessions"
@@ -271,8 +253,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:text="Booking Type"
-                            />
+                            android:text="Booking Type" />
 
                         <Spinner
                             android:id="@+id/bookingType"

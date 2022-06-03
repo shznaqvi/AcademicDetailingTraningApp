@@ -729,7 +729,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         if (checkPassword(password, loggedInUser.getPassword())) {
             MainApp.user = loggedInUser;
-            MainApp.selectedDistrict = loggedInUser.getDist_id();
+            MainApp.district = getDistrict(Integer.parseInt(loggedInUser.getDist_id()));
             return c.getCount() > 0;
         } else {
             return false;

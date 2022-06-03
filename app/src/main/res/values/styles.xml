@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.main" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Theme.main" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryVariant">@color/colorPrimary</item>
         <item name="colorOnPrimary">@color/white</item>
@@ -13,15 +13,17 @@
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
 
-
+        <item name="android:actionBarStyle">@style/topBarStyle</item>
+        <item name="fontFamily">@font/roboto_condensed_regular</item>
+        <item name="android:layoutDirection">ltr</item>
+        <item name="android:toolbarStyle">@style/topBarStyle</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
 
 
-    <style name="AppThemeEnglish1" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="android:windowFullscreen">true</item>
+    <style name="AppThemeEnglish1" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:textSize">20dp</item>
 
         <item name="fontFamily">@font/roboto_condensed_regular</item>
@@ -53,19 +55,19 @@
 
     </style>
 
-    <style name="AppTheme.PopupOverlay" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="AppTheme.PopupOverlay" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:textColorSecondary">@android:color/white</item>
     </style>
 
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="android:windowFullscreen">true</item>
-        <item name="android:actionBarStyle">@style/topBarStyle</item>
-        <item name="fontFamily">@font/roboto_condensed_regular</item>
-        <item name="android:layoutDirection">ltr</item>
-        <item name="android:toolbarStyle">@style/topBarStyle</item>
-    </style>
+    <!--    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+            <item name="android:windowFullscreen">true</item>
+            <item name="android:actionBarStyle">@style/topBarStyle</item>
+            <item name="fontFamily">@font/roboto_condensed_regular</item>
+            <item name="android:layoutDirection">ltr</item>
+            <item name="android:toolbarStyle">@style/topBarStyle</item>
+        </style>-->
 
     <style name="BackgroundStyle" parent="android:Widget.ScrollView">
         <item name="android:background">@drawable/main_bg</item>
@@ -73,7 +75,7 @@
     </style>
 
 
-    <style name="labels" parent="Widget.MaterialComponents.TextView">
+    <style name="labels" parent="Widget.AppCompat.TextView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">8dp</item>
@@ -231,7 +233,22 @@
         <item name="android:background">@color/dullWhile</item>
         <!-- <item name="android:layout_marginRight">15dp</item>
          <item name="android:layout_marginLeft">15dp</item>-->
-        <item name="cardCornerRadius">28dp</item>
+        <item name="cardCornerRadius">12dp</item>
+        <item name="cardElevation">2dp</item>
+    </style>
+
+    <style name="cardViewDashboard">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:layout_marginEnd">24dp</item>
+        <item name="android:layout_marginStart">24dp</item>
+        <item name="android:padding">160dp</item>
+        <item name="android:background">@color/dullWhile</item>
+        <!-- <item name="android:layout_marginRight">15dp</item>
+         <item name="android:layout_marginLeft">15dp</item>-->
+        <item name="cardCornerRadius">12dp</item>
         <item name="cardElevation">2dp</item>
     </style>
 
@@ -291,11 +308,11 @@
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
+    <!--
+        <style name="Theme.main.NoActionBar">
+            <item name="windowActionBar">false</item>
+            <item name="windowNoTitle">true</item>
+        </style>-->
 
     <style name="ProgressBarStyle">
         <item name="colorAccent">@color/colorPrimary</item>
@@ -303,9 +320,6 @@
 
 
     <style name="Summary_Layout" parent="Theme.AppCompat.Light.DarkActionBar" />
-
-
-
 
 
     <style name="topBarStyle" parent="Theme.AppCompat.Light.NoActionBar">
@@ -433,11 +447,12 @@
     </style>
 
 
-    <style name="DatePickerDialog" parent="Theme.MaterialComponents.Light.Dialog">
+    <style name="DatePickerDialog" parent="Theme.AppCompat.Dialog">
 
         <item name="colorAccent">@color/colorAccent
         </item>                   <!--header background-->
-        <item name="android:windowBackground">@color/grayOverlay</item>     <!--calendar background-->
+        <item name="android:windowBackground">@color/grayOverlay
+        </item>     <!--calendar background-->
         <item name="android:textColorPrimary">@color/colorPrimary</item> <!--days of the month-->
         <item name="android:textColorSecondary">@color/colorAccent</item>    <!--days of the week-->
         <item name="android:selectableItemBackgroundBorderless">@color/colorPrimaryDark</item>
@@ -445,11 +460,11 @@
 
 
         <item name="android:colorControlActivated">@color/colorPrimaryDark</item>
-        <item name="android:buttonBarPositiveButtonStyle">@style/AppTheme.Alert.Button.Positive
-        </item>
-        <item name="android:buttonBarNegativeButtonStyle">@style/AppTheme.Alert.Button.Negative
-        </item>
-        <item name="android:buttonBarNeutralButtonStyle">@style/AppTheme.Alert.Button.Neutral</item>
+        <!--        <item name="android:buttonBarPositiveButtonStyle">@style/AppTheme.Alert.Button.Positive
+                </item>
+                <item name="android:buttonBarNegativeButtonStyle">@style/AppTheme.Alert.Button.Negative
+                </item>
+                <item name="android:buttonBarNeutralButtonStyle">@style/AppTheme.Alert.Button.Neutral</item>-->
     </style>
 
 
@@ -457,34 +472,35 @@
         <item name="android:layout_gravity">center_horizontal|center_vertical</item>
         <item name="android:textColor">@color/colorPrimaryDark</item>
         <item name="colorControlHighlight">@color/colorAccent </item>
-        <item name="colorControlActivated">@color/colorPrimary </item>
+        <item name="colorControlActivated">@color/colorPrimary</item>
 
         <item name="colorAccent">@color/colorAccent
         </item>                   <!--header background-->
-        <item name="android:windowBackground">@color/grayOverlay</item>     <!--calendar background-->
+        <item name="android:windowBackground">@color/grayOverlay
+        </item>     <!--calendar background-->
         <item name="android:textColorPrimary">@color/colorPrimary</item> <!--days of the month-->
         <item name="android:textColorSecondary">@color/colorAccent</item>    <!--days of the week-->
         <item name="android:selectableItemBackgroundBorderless">@color/colorPrimaryDark</item>
 
         <item name="android:colorControlActivated">@color/colorPrimaryDark</item>
-        <item name="android:buttonBarPositiveButtonStyle">@style/AppTheme.Alert.Button.Positive
-        </item>
-        <item name="android:buttonBarNegativeButtonStyle">@style/AppTheme.Alert.Button.Negative
-        </item>
-        <item name="android:buttonBarNeutralButtonStyle">@style/AppTheme.Alert.Button.Neutral</item>
+        <!--      <item name="android:buttonBarPositiveButtonStyle">@style/AppTheme.Alert.Button.Positive
+              </item>
+              <item name="android:buttonBarNegativeButtonStyle">@style/AppTheme.Alert.Button.Negative
+              </item>
+              <item name="android:buttonBarNeutralButtonStyle">@style/AppTheme.Alert.Button.Neutral</item>-->
     </style>
 
-    <style name="AppTheme.Alert.Button.Positive" parent="Widget.AppCompat.Button.Borderless.Colored">
-        <item name="android:textColor">@color/colorAccent</item>
-    </style>
+    <!--    <style name="AppTheme.Alert.Button.Positive" parent="Button">
+            <item name="android:textColor">@color/colorAccent</item>
+        </style>
 
-    <style name="AppTheme.Alert.Button.Negative" parent="Widget.AppCompat.Button.Borderless.Colored">
-        <item name="android:textColor">@color/gray</item>
-    </style>
+        <style name="AppTheme.Alert.Button.Negative" parent="Widget.AppCompat.Button.Borderless.Colored">
+            <item name="android:textColor">@color/gray</item>
+        </style>
 
-    <style name="AppTheme.Alert.Button.Neutral" parent="Widget.AppCompat.Button.Borderless.Colored">
-        <item name="android:textColor">@color/gray</item>
-    </style>
+        <style name="AppTheme.Alert.Button.Neutral" parent="Widget.AppCompat.Button.Borderless.Colored">
+            <item name="android:textColor">@color/gray</item>
+        </style>-->
 
 
 </resources>

@@ -141,8 +141,10 @@ dependencies {
     debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
 
     // ExoPlayer
-    implementation 'com.google.android.exoplayer:exoplayer:2.17.1'
-
+    //implementation 'com.google.android.exoplayer:exoplayer:2.17.1'
+    implementation 'com.google.android.exoplayer:exoplayer-core:2.17.1'
+    implementation 'com.google.android.exoplayer:exoplayer-dash:2.17.1'
+    implementation 'com.google.android.exoplayer:exoplayer-ui:2.17.1'
 // WorkManager
     def work_version = '2.5.0'
     implementation "androidx.work:work-runtime:$work_version"// WorkManager (Java only)
@@ -150,6 +152,9 @@ dependencies {
 
     implementation 'com.google.code.gson:gson:2.9.0'
     implementation 'com.kaopiz:kprogresshud:1.2.0'
+
+    implementation 'com.github.BlackBoxVision:datetimepicker-edittext:0.4.0'
+
 
     /*
   //  implementation fileTree(dir: 'libs', include: ['*.jar'])

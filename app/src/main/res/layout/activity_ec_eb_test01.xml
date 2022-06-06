@@ -826,16 +826,29 @@
                     android:padding="24dp">
 
                     <Button
+                        android:id="@+id/btn_End"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:backgroundTintMode="src_atop"
+                        android:onClick="BtnEnd"
+                        android:text="Cancel"
+                        android:textColor="@color/red"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+
+                    <Button
                         android:id="@+id/btnOk"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@drawable/capsule"
-                        android:backgroundTint="@color/colorAccent"
                         android:backgroundTintMode="src_atop"
                         android:onClick="btnOk"
                         android:text="Start Training"
-                        android:textColor="@color/colorPrimaryDark"
+                        android:textColor="@color/dullWhile"
                         android:visibility="invisible"
                         android:textSize="24sp"
                         android:textStyle="bold" />
@@ -846,11 +859,10 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="@drawable/capsule"
-                        android:backgroundTint="@color/colorAccent"
                         android:backgroundTintMode="src_atop"
                         android:onClick="BtnContinue"
                         android:text="Proceed"
-                        android:textColor="@color/colorPrimaryDark"
+                        android:textColor="@color/dullWhile"
                         android:textSize="24sp"
                         android:textStyle="bold" />
 

@@ -57,6 +57,7 @@ public class GDSSession01_Pre_test extends AppCompatActivity implements RadioBut
             MainApp.forms.setPreTestStartTime(MainApp.getCurrentTime());
             bi.btnOk.setVisibility(View.GONE);
             bi.btnContinue.setVisibility(View.VISIBLE);
+            bi.btnEnd.setVisibility(View.VISIBLE);
         } else if (type.equals("pre") && isComplete) {
             bi.heading.setText("PRETEST RESULT");
             GeneratorClass.comparingResult(bi.fldGrpPreGds01, true, subMenuDT.getAnswers());
@@ -64,11 +65,13 @@ public class GDSSession01_Pre_test extends AppCompatActivity implements RadioBut
             bi.btnOk.setVisibility(View.VISIBLE);
             bi.btnOk.setText("Start Training");
             bi.btnContinue.setVisibility(View.GONE);
+            bi.btnEnd.setVisibility(View.VISIBLE);
         } else if (type.equals("post") && !isComplete) {
             bi.heading.setText("POST TEST");
             MainApp.forms.setPostTestStartTime(MainApp.getCurrentTime());
             bi.btnOk.setVisibility(View.GONE);
             bi.btnContinue.setVisibility(View.VISIBLE);
+            bi.btnEnd.setVisibility(View.GONE);
         } else if (type.equals("post") && isComplete) {
             bi.heading.setText(" POST TEST & PRETEST RESULT");
             GeneratorClass.comparingPostTestAndPretestResult(bi.fldGrpPreGds01, true, subMenuDT.getAnswers());
@@ -76,6 +79,7 @@ public class GDSSession01_Pre_test extends AppCompatActivity implements RadioBut
             bi.btnOk.setVisibility(View.VISIBLE);
             bi.btnOk.setText("Finish Training");
             bi.btnContinue.setVisibility(View.GONE);
+            bi.btnEnd.setVisibility(View.GONE);
         }
 
 
@@ -89,6 +93,13 @@ public class GDSSession01_Pre_test extends AppCompatActivity implements RadioBut
 //            MainApp.showDialog(this, getString(R.string.areYouSure), "end", true, subMenuDT);
         }
     }
+
+    public void BtnEnd(View view) {
+
+            MainApp.showDialog(GDSSession01_Pre_test.this, "Do You Want To Exit?", "end", false, subMenuDT);
+
+    }
+
 
 
     public void BtnContinue(View view) {

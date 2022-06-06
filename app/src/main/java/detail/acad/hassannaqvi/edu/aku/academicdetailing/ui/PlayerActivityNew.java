@@ -1,12 +1,15 @@
 package detail.acad.hassannaqvi.edu.aku.academicdetailing.ui;
 
 
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.type;
+
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -25,6 +28,7 @@ import java.io.File;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityPlayerNewBinding;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Utils;
@@ -208,10 +212,22 @@ public class PlayerActivityNew extends AppCompatActivity {
         player.release();
     }*/
 
+    public void BtnEnd(View view) {
+            MainApp.showDialog(PlayerActivityNew.this, "Do You Want To Exit?", "end", false, subMenu);
+
+    }
+
+
 
     public void openFullScreen(View view) {
 
         bi.videoPlayer.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_FILL);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(this, "You can't go back", Toast.LENGTH_SHORT).show();
+        //MainApp.showDialog(PlayerActivityNew.this, "Do You Want To Exit?", "end", false, subMenu);
     }
 }

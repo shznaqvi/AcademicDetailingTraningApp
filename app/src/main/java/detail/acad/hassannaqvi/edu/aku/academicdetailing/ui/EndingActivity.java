@@ -1,5 +1,6 @@
 package detail.acad.hassannaqvi.edu.aku.academicdetailing.ui;
 
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.forms;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.isComplete;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.post_result;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.pre_result;
@@ -39,6 +40,7 @@ public class EndingActivity extends AppCompatActivity implements Callbacks {
         super.onCreate(savedInstanceState);
 
         bi = DataBindingUtil.setContentView(this, R.layout.activity_ending);
+
         bi.setCallback(this);
 
         subMenuDT = (Data.SubMenu) getIntent().getSerializableExtra(CONSTANTS.URI_SUBMENU_DT);
@@ -59,6 +61,8 @@ public class EndingActivity extends AppCompatActivity implements Callbacks {
             bi.statusa.setEnabled(false);
 
         }
+
+
 
         bi.finishButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,8 +86,8 @@ public class EndingActivity extends AppCompatActivity implements Callbacks {
         builder.setView(view);
         AlertDialog dialog = builder.create();
         dialog.show();
-        DialogEndBinding bi = DataBindingUtil.bind(view);
-        bi.completed.setOnClickListener(new View.OnClickListener() {
+        DialogEndBinding bi2= DataBindingUtil.bind(view);
+        bi2.completed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -94,7 +98,7 @@ public class EndingActivity extends AppCompatActivity implements Callbacks {
             }
         });
 
-        bi.makeAppointment.setOnClickListener(new View.OnClickListener() {
+        bi2.makeAppointment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 loadScheduleFragment();

@@ -63,10 +63,35 @@
                     tools:listitem="@layout/video_list_adapter">
 
                 </androidx.recyclerview.widget.RecyclerView>
+
+            <!--EndButton LinearLayout-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="24dp"
+                android:orientation="horizontal"
+                android:padding="24dp">
+
+
+                <Button
+                    android:id="@+id/btn_End"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:backgroundTintMode="src_atop"
+                    android:onClick="BtnEnd"
+                    android:text="Cancel"
+                    android:textColor="@color/red"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
                 <Button
                     android:id="@+id/btnPost"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:layout_marginStart="32dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="32dp"
@@ -74,6 +99,10 @@
                     android:text="MOVE TO POST TEST"
                     android:textSize="20sp"
                    />
+
+            </LinearLayout>
+
+
             </LinearLayout>
         </ScrollView>
 

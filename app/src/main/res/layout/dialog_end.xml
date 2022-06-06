@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="form"
+            type="detail.acad.hassannaqvi.edu.aku.academicdetailing.model.Forms"
+            />
+    </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -67,7 +76,8 @@
                 android:backgroundTint="@color/colorPrimaryDark"
                 android:text="Completed"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:visibility="@{form.istatus.equals(`2`) ? View.GONE : View.VISIBLE}"/>
 
             <Button
                 android:id="@+id/makeAppointment"

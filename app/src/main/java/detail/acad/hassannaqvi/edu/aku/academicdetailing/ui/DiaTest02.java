@@ -59,6 +59,7 @@ public class DiaTest02 extends AppCompatActivity implements RadioButton.OnChecke
             MainApp.forms.setPreTestStartTime(MainApp.getCurrentTime());
             bi.btnOk.setVisibility(View.GONE);
             bi.btnContinue.setVisibility(View.VISIBLE);
+            bi.btnEnd.setVisibility(View.VISIBLE);
         } else if (type.equals("pre") && isComplete) {
             bi.heading.setText("PRETEST RESULT");
             GeneratorClass.comparingResult(bi.llDiaTestB, true, subMenuDT.getAnswers());
@@ -66,11 +67,13 @@ public class DiaTest02 extends AppCompatActivity implements RadioButton.OnChecke
             bi.btnOk.setVisibility(View.VISIBLE);
             bi.btnOk.setText("Start Training");
             bi.btnContinue.setVisibility(View.GONE);
+            bi.btnEnd.setVisibility(View.VISIBLE);
         } else if (type.equals("post") && !isComplete) {
             bi.heading.setText("POST TEST");
             MainApp.forms.setPostTestStartTime(MainApp.getCurrentTime());
             bi.btnOk.setVisibility(View.GONE);
             bi.btnContinue.setVisibility(View.VISIBLE);
+            bi.btnEnd.setVisibility(View.GONE);
         } else if (type.equals("post") && isComplete) {
             bi.heading.setText(" POST TEST & PRETEST RESULT");
             GeneratorClass.comparingPostTestAndPretestResult(bi.llDiaTestB, true, subMenuDT.getAnswers());
@@ -78,6 +81,7 @@ public class DiaTest02 extends AppCompatActivity implements RadioButton.OnChecke
             bi.btnOk.setVisibility(View.VISIBLE);
             bi.btnOk.setText("Finish Training");
             bi.btnContinue.setVisibility(View.GONE);
+            bi.btnEnd.setVisibility(View.GONE);
         }
 
 
@@ -91,6 +95,13 @@ public class DiaTest02 extends AppCompatActivity implements RadioButton.OnChecke
 //            MainApp.showDialog(this, getString(R.string.areYouSure), "end", true, subMenuDT);
         }
     }
+
+    public void BtnEnd(View view) {
+
+            MainApp.showDialog(DiaTest02.this, "Do You Want To Exit?", "end", false, subMenuDT);
+
+    }
+
 
 
     public void BtnContinue(View view) {

@@ -256,7 +256,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void loadScheduleFragment() {
 
-        loadFragment(new ScheduleFragment());
+        //loadFragment(new ScheduleFragment());
     }
 
     @Override

@@ -25,6 +25,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.TableContracts;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.TableContracts.DistrictTable;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.TableContracts.EntryLogTable;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.TableContracts.FormsTable;
@@ -40,6 +41,7 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.HealthFacility;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.HealthProvider;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.NextMeeting;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.Session;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.Tehsils;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.Users;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.LoginActivity;
 
@@ -53,6 +55,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String SQL_DELETE_SESSION = "DROP TABLE IF EXISTS " + SessionTable.TABLE_NAME;
     private static final String SQL_DELETE_DISTRICTS = "DROP TABLE IF EXISTS " + DistrictTable.TABLE_NAME;
+    private static final String SQL_DELETE_TEHSILS = "DROP TABLE IF EXISTS " + TableContracts.TehsilTable.TABLE_NAME;
     private static final String SQL_DELETE_NMS = "DROP TABLE IF EXISTS " + NextMeetingTable.TABLE_NAME;
     private static final String SQL_DELETE_HF = "DROP TABLE IF EXISTS " + HealthFacilityTable.TABLE_NAME;
     private static final String SQL_DELETE_HP = "DROP TABLE IF EXISTS " + HealthProviderTable.TABLE_NAME;
@@ -91,6 +94,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CreateTable.SQL_CREATE_SESSION_TABLE);
         db.execSQL(CreateTable.SQL_CREATE_NMS);
         db.execSQL(CreateTable.SQL_CREATE_DISTRICT_TABLE);
+        db.execSQL(CreateTable.SQL_CREATE_TEHSIL_TABLE);
         db.execSQL(CreateTable.SQL_CREATE_HF_TABLE);
         db.execSQL(CreateTable.SQL_CREATE_HP_TABLE);
         db.execSQL(CreateTable.SQL_CREATE_ENTRYLOGS);
@@ -106,6 +110,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_DELETE_USERS);
         db.execSQL(SQL_DELETE_FORMS);
         db.execSQL(SQL_DELETE_DISTRICTS);
+        db.execSQL(SQL_DELETE_TEHSILS);
         db.execSQL(SQL_DELETE_SESSION);
         db.execSQL(SQL_DELETE_NMS);
         db.execSQL(SQL_DELETE_HF);
@@ -500,6 +505,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    public int synctehsils(JSONArray tehsilList) throws JSONException {
+        SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
+        db.execSQL(" DELETE FROM " + TableContracts.TehsilTable.TABLE_NAME);
+        db.execSQL(" DELETE FROM sqlite_sequence where name = 'tehsils'");
+
+
+        JSONArray jsonArray = tehsilList;
+        int insertCount = 0;
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+            Tehsils dc = new Tehsils();
+            dc.Sync(jsonObject);
+            ContentValues values = new ContentValues();
+            values.put(TableContracts.TehsilTable.TEHSIL_CODE, dc.getTEHSIL_CODE());
+            values.put(TableContracts.TehsilTable.TEHSIL_NAME, dc.getTehsil_name());
+            long rowID = db.insert(TableContracts.TehsilTable.TABLE_NAME, null, values);
+            if (rowID != -1) insertCount++;
+
+        }
+        db.close();
+
+        return insertCount;
+
+    }
+
     public boolean Login(String username, String password) throws SQLException {
 
         SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
@@ -572,6 +603,49 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return district;
     }
+
+
+    public Tehsils getTehsils(int tehsilCode) {
+
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
+        // New value for one column
+        String[] columns = {
+                TableContracts.TehsilTable.TEHSIL_NAME,
+                TableContracts.TehsilTable.TEHSIL_CODE,
+        };
+
+        // Which row to update, based on the ID
+        String selection = null;
+        String[] selectionArgs = null;
+        Cursor cursor = null;
+        Tehsils tehsils = null;
+
+        if (tehsilCode > 0) {
+            selection = TableContracts.TehsilTable.TEHSIL_CODE + " = ?";
+            selectionArgs = new String[]{String.valueOf(tehsilCode)};
+            cursor = db.query(TableContracts.TehsilTable.TABLE_NAME, //Table to query
+                    columns,                    //columns to return
+                    selection,                  //columns for the WHERE clause
+                    selectionArgs,              //The values for the WHERE clause
+                    null,                       //group the rows
+                    null,                       //filter by row groups
+                    null);                      //The sort order
+
+
+            if (cursor.moveToFirst()) {
+                tehsils = new Tehsils().Hydrate(cursor);
+                cursor.moveToNext();
+            }
+
+            cursor.close();
+        }
+
+
+        db.close();
+        return tehsils;
+    }
+
+
 
     public Users getUser(String username, String password) {
 

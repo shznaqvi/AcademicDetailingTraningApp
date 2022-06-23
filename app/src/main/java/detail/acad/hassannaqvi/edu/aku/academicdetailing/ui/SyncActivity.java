@@ -50,6 +50,7 @@ import java.util.concurrent.TimeUnit;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.adapters.SyncListAdapter;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.TableContracts;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.TableContracts.DistrictTable;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.TableContracts.EntryLogTable;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.TableContracts.FormsTable;
@@ -240,6 +241,7 @@ public class SyncActivity extends AppCompatActivity {
 
                 //    if (sync_flag) {
                 downloadTables.add(new SyncModel(DistrictTable.TABLE_NAME));
+                //downloadTables.add(new SyncModel(TableContracts.TehsilTable.TABLE_NAME));
                 select = " * ";
                 filter = " enabled = '1' ";
                 downloadTables.add(new SyncModel(UsersTable.TABLE_NAME));
@@ -251,6 +253,7 @@ public class SyncActivity extends AppCompatActivity {
                 filter = " district_code = '432' ";
                 downloadTables.add(new SyncModel(HealthProviderTable.TABLE_NAME, select, filter));
                 downloadTables.add(new SyncModel(NextMeetingTable.TABLE_NAME, select, filter));
+
                 // downloadTables.add(new SyncModel(HealthFacilityTable.TABLE_NAME));
                 //downloadTables.add(new SyncModel(DistrictsTable.TABLE_NAME));
                     downloadTables.add(new SyncModel("versionApp"));

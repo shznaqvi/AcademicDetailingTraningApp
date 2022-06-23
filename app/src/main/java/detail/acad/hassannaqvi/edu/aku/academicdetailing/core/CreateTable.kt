@@ -84,6 +84,10 @@ object CreateTable {
             + " ( " + DistrictTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + DistrictTable.COLUMN_DIST_ID + " Long," +
             DistrictTable.DISTRICT_NAME + " TEXT" + ");")
 
+    const val SQL_CREATE_TEHSIL_TABLE = (" CREATE TABLE " + TehsilTable.TABLE_NAME
+            + " ( " + TehsilTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + TehsilTable.TEHSIL_CODE + " Long," +
+            TehsilTable.TEHSIL_NAME + " TEXT" + ");")
+
     const val SQL_CREATE_HF_TABLE = (" CREATE TABLE " + HealthFacilityTable.TABLE_NAME
             + " ( " + HealthFacilityTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + HealthFacilityTable.COLUMN_HF_DHIS + " LONG, "

@@ -92,6 +92,10 @@ public class ModuleFragment extends Fragment {
 
         setOnClickListener();
 
+
+
+
+
         return view;
     }
 

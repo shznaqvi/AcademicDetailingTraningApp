@@ -46,7 +46,7 @@ public class TableContracts {
 
     public static abstract class DistrictTable implements BaseColumns {
 
-        public static final String TABLE_NAME = "districts";
+        public static final String TABLE_NAME = "district";
         public static final String _ID = "id";
         public static final String COLUMN_DIST_ID = "district_code";
         public static final String DISTRICT_NAME = "district_name";
@@ -165,19 +165,21 @@ public class TableContracts {
         public static final String SESSION_URL = "sessions.php";
 
     }
+
     public static abstract class HealthProviderTable implements BaseColumns {
 
-        public static final String TABLE_NAME = "providers";
+        public static final String TABLE_NAME = "healthcare_providers";
         public static final String COLUMN_ID = "_id";
-        public static final String COLUMN_HP_NAME = "hp_name";
+        public static final String COLUMN_HP_NAME = "provider_name";
         public static final String COLUMN_HP_TEHSIL = "tehsil";
-        public static final String COLUMN_HP_UC_NAME = "uc";
-        public static final String COLUMN_HP_UEN_CODE = "hp_uen_code";
-        public static final String COLUMN_HF_CODE = "hf_code";
-        public static final String COLUMN_HP_DESIGNATION = "hp_designation";
-        public static final String COLUMN_HP_DIST_CODE = "district_code";
+        // public static final String COLUMN_HP_UC_NAME = "uc";
+        public static final String COLUMN_HP_UEN_CODE = "provider_code";
+        public static final String COLUMN_HF_CODE = "hfcode";
+        //public static final String COLUMN_HP_DESIGNATION = "hp_designation";
+        public static final String COLUMN_HP_DIST_CODE = "dist_id";
 
     }
+
     public static abstract class NextMeetingTable implements BaseColumns {
 
         public static final String TABLE_NAME = "next_meeting";
@@ -185,7 +187,7 @@ public class TableContracts {
         public static final String COLUMN_HF_NAME = "hf_name";
         public static final String COLUMN_HP_NAME = "hp_name";
         public static final String COLUMN_HP_CODE = "hp_code";
-        public static final String COLUMN_DIST_CODE = "dist_code";
+        public static final String COLUMN_DIST_CODE = "dist_id";
         public static final String COLUMN_DATE = "book_date";
         public static final String COLUMN_TIME = "book_time";
         public static final String COLUMN_MODULE_CODE = "module_code";
@@ -210,16 +212,16 @@ public class TableContracts {
 
     public static abstract class HealthFacilityTable implements BaseColumns {
 
-        public static final String TABLE_NAME = "health_facilities";
+        public static final String TABLE_NAME = "HealthFacility";
         public static final String COLUMN_ID = "_id";
         public static final String COLUMN_HF_NAME = "hf_name";
         //        public static final String COLUMN_HF_DISTRICT_NAME = "hf_district";
-        public static final String COLUMN_HF_TEHSIL_NAME = "hf_tehsil";
-        public static final String COLUMN_HF_UC_NAME = "hf_uc";
-        public static final String COLUMN_HF_UEN_CODE = "hf_uen_code";
-        public static final String COLUMN_HF_DHIS = "hf_dhis";
-        public static final String COLUMN_HF_NAME_GOVT = "hf_name_govt";
-        public static final String COLUMN_HF_DIST_CODE = "hf_district_code";
+        public static final String COLUMN_HF_TEHSIL_NAME = "tehsil";
+        public static final String COLUMN_HF_UC_NAME = "uc_name";
+        public static final String COLUMN_HF_CODE = "hfcode";
+        // public static final String COLUMN_HF_DHIS = "hf_dhis";
+        //public static final String COLUMN_HF_NAME_GOVT = "hf_name_govt";
+        public static final String COLUMN_HF_DIST_CODE = "dist_id";
     }
 
 

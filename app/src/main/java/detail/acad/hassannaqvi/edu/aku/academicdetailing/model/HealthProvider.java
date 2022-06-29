@@ -85,11 +85,11 @@ public class HealthProvider {
 
         this.COLUMN_DIST_ID = jsonObject.getLong(HealthProviderTable.COLUMN_HP_DIST_CODE);
         this.tehsil = jsonObject.getString(HealthProviderTable.COLUMN_HP_TEHSIL);
-        this.uc = jsonObject.getString(HealthProviderTable.COLUMN_HP_UC_NAME);
+        // this.uc = jsonObject.getString(HealthProviderTable.COLUMN_HP_UC_NAME);
         this.hp_uen_code = jsonObject.getLong(HealthProviderTable.COLUMN_HP_UEN_CODE);
         this.hf_code = jsonObject.getLong(HealthProviderTable.COLUMN_HF_CODE);
         this.hp_name = jsonObject.getString(HealthProviderTable.COLUMN_HP_NAME);
-        this.hp_designation = jsonObject.getString(HealthProviderTable.COLUMN_HP_DESIGNATION);
+        //   this.hp_designation = jsonObject.getString(HealthProviderTable.COLUMN_HP_DESIGNATION);
 
         return this;
 

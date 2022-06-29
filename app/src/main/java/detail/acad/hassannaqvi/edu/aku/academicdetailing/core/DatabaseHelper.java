@@ -409,11 +409,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return insertCount;
     }
 
-    public int synchealth_facilities(JSONArray hfList) {
+    public int syncHealthFacility(JSONArray hfList) {
         SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
         db.execSQL(" DELETE FROM " + HealthFacilityTable.TABLE_NAME);
         db.execSQL(" DELETE FROM sqlite_sequence where name = 'health_fc'");    //TODO you have to add table name manually in order to reset primary key
-        int insertCount =0;
+        int insertCount = 0;
         try {
             JSONArray jsonArray = hfList;
             for (int i = 0; i < jsonArray.length(); i++) {
@@ -424,13 +424,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
                 ContentValues values = new ContentValues();
 
-                values.put(HealthFacilityTable.COLUMN_HF_DHIS, healthFacility.getHf_dhis());
+                //   values.put(HealthFacilityTable.COLUMN_HF_DHIS, healthFacility.getHf_dhis());
                 values.put(HealthFacilityTable.COLUMN_HF_DIST_CODE, healthFacility.getHf_COLUMN_DIST_ID());
                 values.put(HealthFacilityTable.COLUMN_HF_TEHSIL_NAME, healthFacility.getHf_tehsil());
                 values.put(HealthFacilityTable.COLUMN_HF_UC_NAME, healthFacility.getHf_uc());
                 values.put(HealthFacilityTable.COLUMN_HF_NAME, healthFacility.getHf_name());
-                values.put(HealthFacilityTable.COLUMN_HF_NAME_GOVT, healthFacility.getHf_name_govt());
-                values.put(HealthFacilityTable.COLUMN_HF_UEN_CODE, healthFacility.getHf_uen_code());
+                //   values.put(HealthFacilityTable.COLUMN_HF_NAME_GOVT, healthFacility.getHf_name_govt());
+                values.put(HealthFacilityTable.COLUMN_HF_CODE, healthFacility.getHf_uen_code());
                 long rowID = db.insert(HealthFacilityTable.TABLE_NAME, null, values);
                 if (rowID != -1) insertCount++;
 
@@ -446,7 +446,41 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public int syncproviders(JSONArray hpList) {
+    public int syncversionApp(JSONArray VersionList) throws JSONException {
+        SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
+        long count = 0;
+
+        JSONObject jsonObjectVersion = ((JSONArray) VersionList.getJSONObject(0).get("elements")).getJSONObject(0);
+
+        String appPath = jsonObjectVersion.getString("outputFile");
+        String versionCode = jsonObjectVersion.getString("versionCode");
+
+        MainApp.editor.putString("outputFile", jsonObjectVersion.getString("outputFile"));
+        MainApp.editor.putString("versionCode", jsonObjectVersion.getString("versionCode"));
+        MainApp.editor.putString("versionName", jsonObjectVersion.getString("versionName") + ".");
+        MainApp.editor.apply();
+        count++;
+          /*  VersionApp Vc = new VersionApp();
+            Vc.sync(jsonObjectVersion);
+
+            ContentValues values = new ContentValues();
+
+            values.put(VersionTable.COLUMN_PATH_NAME, Vc.getPathname());
+            values.put(VersionTable.COLUMN_VERSION_CODE, Vc.getVersioncode());
+            values.put(VersionTable.COLUMN_VERSION_NAME, Vc.getVersionname());
+
+            count = db.insert(VersionTable.TABLE_NAME, null, values);
+            if (count > 0) count = 1;
+
+        } catch (Exception ignored) {
+        } finally {
+            db.close();
+        }*/
+
+        return (int) count;
+    }
+
+    public int synchealthcare_providers(JSONArray hpList) {
         SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
         db.execSQL(" DELETE FROM " + HealthProviderTable.TABLE_NAME);
         db.execSQL(" DELETE FROM sqlite_sequence where name = 'providers'");    //TODO you have to add table name manually in order to reset primary key
@@ -461,11 +495,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 ContentValues values = new ContentValues();
                 values.put(HealthProviderTable.COLUMN_HP_DIST_CODE, healthProvider.getCOLUMN_DIST_ID());
                 values.put(HealthProviderTable.COLUMN_HP_TEHSIL, healthProvider.getTehsil());
-                values.put(HealthProviderTable.COLUMN_HP_UC_NAME, healthProvider.getUc());
+                //   values.put(HealthProviderTable.COLUMN_HP_UC_NAME, healthProvider.getUc());
                 values.put(HealthProviderTable.COLUMN_HP_UEN_CODE, healthProvider.getHp_uen_code());
                 values.put(HealthProviderTable.COLUMN_HF_CODE, healthProvider.getHf_code());
                 values.put(HealthProviderTable.COLUMN_HP_NAME, healthProvider.getHp_name());
-                values.put(HealthProviderTable.COLUMN_HP_DESIGNATION, healthProvider.getHp_designation());
+                //   values.put(HealthProviderTable.COLUMN_HP_DESIGNATION, healthProvider.getHp_designation());
                 long rowID = db.insert(HealthProviderTable.TABLE_NAME, null, values);
                 if (rowID != -1) insertCount++;
 
@@ -479,7 +513,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return insertCount;
     }
 
-    public int syncdistricts(JSONArray districList) throws JSONException {
+    public int syncdistrict(JSONArray districList) throws JSONException {
         SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
         db.execSQL(" DELETE FROM " + DistrictTable.TABLE_NAME);
         db.execSQL(" DELETE FROM sqlite_sequence where name = 'districts'");
@@ -689,7 +723,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         String[] columns = {
                 HealthFacilityTable.COLUMN_HF_NAME,
-                HealthFacilityTable.COLUMN_HF_UEN_CODE
+                HealthFacilityTable.COLUMN_HF_CODE
         };
         String selection = HealthFacilityTable.COLUMN_HF_DIST_CODE + " = ?";
         String[] selectionArgs = new String[]{String.valueOf(id)};
@@ -711,7 +745,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             do {
                 HealthFacility fc = new HealthFacility();
 //                forms.setHf_name(c.getString(c.getColumnIndexOrThrow(HealthFacilityTable.COLUMN_HF_NAME)));
-//                forms.setHf_uen_code(c.getLong(c.getColumnIndexOrThrow(HealthFacilityTable.COLUMN_HF_UEN_CODE)));
+//                forms.setHf_uen_code(c.getLong(c.getColumnIndexOrThrow(HealthFacilityTable.COLUMN_HF_CODE)));
                 formList.add(fc.HydrateHF(c));
             } while (c.moveToNext());
         }
@@ -724,8 +758,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<HealthProvider> formList = new ArrayList<>();
 
         String[] columns = {
-                HealthProviderTable.COLUMN_HP_NAME,
-                HealthProviderTable.COLUMN_HP_UEN_CODE
+                HealthProviderTable.COLUMN_HP_NAME
+                //HealthProviderTable.COLUMN_HP_CODE
         };
         String selection = HealthProviderTable.COLUMN_HF_CODE + " = ?";
         String[] selectionArgs = new String[]{String.valueOf(id)};
@@ -747,7 +781,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             do {
                 HealthProvider fc = new HealthProvider();
 //                forms.setHf_name(c.getString(c.getColumnIndexOrThrow(HealthFacilityTable.COLUMN_HF_NAME)));
-//                forms.setHf_uen_code(c.getLong(c.getColumnIndexOrThrow(HealthFacilityTable.COLUMN_HF_UEN_CODE)));
+//                forms.setHf_uen_code(c.getLong(c.getColumnIndexOrThrow(HealthFacilityTable.COLUMN_HF_CODE)));
                 formList.add(fc.Hydrate(c));
             } while (c.moveToNext());
         }
@@ -1296,7 +1330,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public void syncAppointments(JSONArray appList) {
+    public void syncnext_meeting(JSONArray appList) {
         SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
 //        db.execSQL(" DELETE FROM " + UsersTable.TABLE_NAME);
 //        db.execSQL(" DELETE FROM sqlite_sequence where name = 'user'");

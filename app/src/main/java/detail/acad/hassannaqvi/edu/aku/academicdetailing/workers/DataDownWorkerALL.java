@@ -142,7 +142,6 @@ public class DataDownWorkerALL extends Worker {
         String nTitle = uploadTable + " : Data Upload";
 
         StringBuilder result = new StringBuilder();
-        CipherSecure cipherSecure = new CipherSecure();
 
         URL url;
         Data data;

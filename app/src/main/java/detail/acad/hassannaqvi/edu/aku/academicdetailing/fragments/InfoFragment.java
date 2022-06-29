@@ -49,7 +49,7 @@ public class InfoFragment extends Fragment {
 
     Collection<HealthFacility> hfList;
     ArrayList<String> hfNames;
-    HashMap<String, Long> hfMap;
+    HashMap<String, String> hfMap;
 
     Collection<HealthProvider> healthProviderList;
     ArrayList<String> providerNames;

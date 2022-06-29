@@ -18,11 +18,8 @@ public class HealthFacility {
     String hf_uc;
     String hf_name_govt;
     String hf_dist_name;
-    long hf_COLUMN_DIST_ID;
-    long hf_uen_code;
-
-
-
+    String hf_COLUMN_DIST_ID;
+    String hf_uen_code;
 
 
     public HealthFacility() {
@@ -36,9 +33,8 @@ public class HealthFacility {
 //        this.hf_uc = jsonObject.getString(HealthFacilityTable.COLUMN_HF_UC_NAME);
 //        this.hf_name_govt = jsonObject.getString(HealthFacilityTable.COLUMN_HF_NAME_GOVT);
 //        this.hf_dist_name = jsonObject.getString(HealthFacilityTable.COLUMN_HF_DISTRICT_NAME);
-        this.hf_COLUMN_DIST_ID = jsonObject.getLong(HealthFacilityTable.COLUMN_HF_DIST_CODE);
-        this.hf_uen_code = jsonObject.getLong(HealthFacilityTable.COLUMN_HF_UEN_CODE);
-
+        this.hf_COLUMN_DIST_ID = jsonObject.getString(HealthFacilityTable.COLUMN_HF_DIST_CODE);
+        this.hf_uen_code = jsonObject.getString(HealthFacilityTable.COLUMN_HF_CODE);
 
 
         return this;
@@ -48,7 +44,7 @@ public class HealthFacility {
 
 //        this.hf_dist_name = cursor.getString(cursor.getColumnIndexOrThrow(HealthFacilityTable.COLUMN_HF_DISTRICT_NAME));
         this.hf_name = cursor.getString(cursor.getColumnIndexOrThrow(HealthFacilityTable.COLUMN_HF_NAME));
-        this.hf_uen_code = cursor.getLong(cursor.getColumnIndexOrThrow(HealthFacilityTable.COLUMN_HF_UEN_CODE));
+        this.hf_uen_code = cursor.getString(cursor.getColumnIndexOrThrow(HealthFacilityTable.COLUMN_HF_CODE));
 
         return this;
     }
@@ -60,10 +56,10 @@ public class HealthFacility {
 //        json.put(HealthFacilityTable.COLUMN_HF_DHIS, this.hf_dhis == null ? JSONObject.NULL : this.hf_dhis);
         json.put(HealthFacilityTable.COLUMN_HF_TEHSIL_NAME, this.hf_tehsil == null ? JSONObject.NULL : this.hf_tehsil);
         json.put(HealthFacilityTable.COLUMN_HF_UC_NAME, this.hf_uc == null ? JSONObject.NULL : this.hf_uc);
-        json.put(HealthFacilityTable.COLUMN_HF_NAME_GOVT, this.hf_name_govt == null ? JSONObject.NULL : this.hf_name_govt);
+        //  json.put(HealthFacilityTable.COLUMN_HF_NAME_GOVT, this.hf_name_govt == null ? JSONObject.NULL : this.hf_name_govt);
 //        json.put(HealthFacilityTable.COLUMN_HF_DISTRICT_NAME, this.hf_dist_name == null ? JSONObject.NULL : this.hf_dist_name);
-//        json.put(HealthFacilityTable.COLUMN_HF_DIST_CODE, this.hf_COLUMN_DIST_ID == null ? JSONObject.NULL : this.hf_COLUMN_DIST_ID);
-//        json.put(HealthFacilityTable.COLUMN_HF_UEN_CODE, this.hf_uen_code == null ? JSONObject.NULL : this.hf_uen_code);
+        json.put(HealthFacilityTable.COLUMN_HF_DIST_CODE, this.hf_COLUMN_DIST_ID == null ? JSONObject.NULL : this.hf_COLUMN_DIST_ID);
+//        json.put(HealthFacilityTable.COLUMN_HF_CODE, this.hf_uen_code == null ? JSONObject.NULL : this.hf_uen_code);
 
         return json;
     }
@@ -75,11 +71,11 @@ public class HealthFacility {
         return this;
     }
 
-    public long getHf_COLUMN_DIST_ID() {
+    public String getHf_COLUMN_DIST_ID() {
         return hf_COLUMN_DIST_ID;
     }
 
-    public void setHf_COLUMN_DIST_ID(long hf_COLUMN_DIST_ID) {
+    public void setHf_COLUMN_DIST_ID(String hf_COLUMN_DIST_ID) {
         this.hf_COLUMN_DIST_ID = hf_COLUMN_DIST_ID;
     }
 
@@ -141,11 +137,11 @@ public class HealthFacility {
     }
 
 
-    public long getHf_uen_code() {
+    public String getHf_uen_code() {
         return hf_uen_code;
     }
 
-    public void setHf_uen_code(long hf_uen_code) {
+    public void setHf_uen_code(String hf_uen_code) {
         this.hf_uen_code = hf_uen_code;
     }
 

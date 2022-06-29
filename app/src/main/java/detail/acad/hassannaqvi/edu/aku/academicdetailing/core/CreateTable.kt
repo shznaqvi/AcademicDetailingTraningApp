@@ -90,23 +90,24 @@ object CreateTable {
 
     const val SQL_CREATE_HF_TABLE = (" CREATE TABLE " + HealthFacilityTable.TABLE_NAME
             + " ( " + HealthFacilityTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + HealthFacilityTable.COLUMN_HF_DHIS + " LONG, "
+            //   + HealthFacilityTable.COLUMN_HF_DHIS + " LONG, "
             + HealthFacilityTable.COLUMN_HF_DIST_CODE + " LONG, "
             + HealthFacilityTable.COLUMN_HF_TEHSIL_NAME + " TEXT, "
             + HealthFacilityTable.COLUMN_HF_UC_NAME + " TEXT, "
             + HealthFacilityTable.COLUMN_HF_NAME + " TEXT, "
-            + HealthFacilityTable.COLUMN_HF_NAME_GOVT + " TEXT, "
-            + HealthFacilityTable.COLUMN_HF_UEN_CODE + " LONG " + ");")
+            // + HealthFacilityTable.COLUMN_HF_NAME_GOVT + " TEXT, "
+            + HealthFacilityTable.COLUMN_HF_CODE + " LONG " + ");")
 
     const val SQL_CREATE_HP_TABLE = (" CREATE TABLE " + HealthProviderTable.TABLE_NAME
             + " ( " + HealthProviderTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + HealthProviderTable.COLUMN_HP_DIST_CODE + " LONG, "
             + HealthProviderTable.COLUMN_HP_TEHSIL + " TEXT, "
-            + HealthProviderTable.COLUMN_HP_UC_NAME + " TEXT, "
+            //   + HealthProviderTable.COLUMN_HP_UC_NAME + " TEXT, "
             + HealthProviderTable.COLUMN_HP_UEN_CODE + " LONG, "
             + HealthProviderTable.COLUMN_HF_CODE + " LONG, "
-            + HealthProviderTable.COLUMN_HP_NAME + " TEXT, "
-            + HealthProviderTable.COLUMN_HP_DESIGNATION + " TEXT " + ");")
+            + HealthProviderTable.COLUMN_HP_NAME + " TEXT "
+            // + HealthProviderTable.COLUMN_HP_DESIGNATION + " TEXT "
+            + ");")
 //    private static final String SQL_CREATE_TEHSIL = " CREATE TABLE " + TehsilTable.TABLE_NAME
 //            + " ( " + TehsilTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
 //            + TehsilTable.TEHSIL_CODE + " LONG, "

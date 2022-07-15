@@ -48,7 +48,7 @@ public class TableContracts {
 
         public static final String TABLE_NAME = "district";
         public static final String _ID = "id";
-        public static final String COLUMN_DIST_ID = "district_code";
+        public static final String COLUMN_DIST_ID = "dist_code";
         public static final String DISTRICT_NAME = "district_name";
 
     }
@@ -57,8 +57,8 @@ public class TableContracts {
 
         public static final String TABLE_NAME = "tehsils";
         public static final String _ID = "id";
-        public static final String TEHSIL_CODE = "tehsil_code";
-        public static final String TEHSIL_NAME = "tehsil_name";
+        public static final String TEHSIL_CODE = "tehsil";
+        public static final String TEHSIL_NAME = "tehsil_id";
         public static final String DIST_CODE = "COLUMN_DIST_ID";
 
     }

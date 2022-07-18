@@ -75,7 +75,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     String dtToday1 = new SimpleDateFormat("MM-dd-yy").format(new Date().getTime());
 
     DataDownload delegate;
-    private static final String DATABASE_PASSWORD = MainApp.IBAHC;
+    public static final String DATABASE_PASSWORD = MainApp.IBAHC;
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

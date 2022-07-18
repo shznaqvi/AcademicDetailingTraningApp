@@ -1,5 +1,8 @@
 package detail.acad.hassannaqvi.edu.aku.academicdetailing.core;
 
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper.DATABASE_NAME;
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper.DATABASE_PASSWORD;
+
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -570,14 +573,18 @@ public class MainApp extends Application {
     private void initSecure() {
         // Initialize SQLCipher library
         SQLiteDatabase.loadLibs(this);
-
+        File databaseFile = getDatabasePath(DATABASE_NAME);
+       /* databaseFile.mkdirs();
+        databaseFile.delete();*/
+        SQLiteDatabase database = SQLiteDatabase.openOrCreateDatabase(databaseFile, DATABASE_PASSWORD, null);
         // Prepare encryption KEY
         ApplicationInfo ai = null;
         try {
             ai = getPackageManager().getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA);
             Bundle bundle = ai.metaData;
-            int TRATS = bundle.getInt("YEK_TRATS");
-            IBAHC = bundle.getString("YEK_REVRES").substring(TRATS, TRATS + 32);
+            TRATS = bundle.getInt("YEK_TRATS");
+            //IBAHC = bundle.getString("YEK_REVRES").substring(TRATS, TRATS + 16);
+            IBAHC = bundle.getString("YEK_REVRES");
             Log.d(TAG, "onCreate: YEK_REVRES = " + IBAHC);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();

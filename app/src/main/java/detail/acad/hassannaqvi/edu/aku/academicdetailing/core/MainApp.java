@@ -67,7 +67,7 @@ public class MainApp extends Application {
     public static final String _HOST_URL = MainApp._IP + "/uen_ph2/api/";// .TEST server;
     public static final String _SERVER_URL = "syncgcm.php";
     public static final String _USER_URL = "resetpassword.php";
-    public static final String _SERVER_GET_URL = "getDataEnc.php";
+    public static final String _SERVER_GET_URL = "getDataGcm.php";
     public static final String _PHOTO_UPLOAD_URL = _HOST_URL + "uploads.php";
     public static final String _UPDATE_URL = MainApp._IP + "/uen_ph2/app/uen_ad/";
     public static final String _APP_FOLDER = "app/";

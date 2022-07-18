@@ -73,6 +73,7 @@ public class MainApp extends Application {
     public static final String _APP_FOLDER = "app/";
     public static final String _EMPTY_ = "";
     private static final String TAG = "MainApp";
+    public static int TRATS = 8;
     public static String IBAHC = "";
 
     //public static final long MILLISECONDS_IN_5YEAR = (MILLISECONDS_IN_YEAR + MILLISECONDS_IN_YEAR + MILLISECONDS_IN_YEAR + MILLISECONDS_IN_YEAR + MILLISECONDS_IN_YEAR);
@@ -576,7 +577,7 @@ public class MainApp extends Application {
             ai = getPackageManager().getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA);
             Bundle bundle = ai.metaData;
             int TRATS = bundle.getInt("YEK_TRATS");
-            IBAHC = bundle.getString("YEK_REVRES").substring(TRATS, TRATS + 16);
+            IBAHC = bundle.getString("YEK_REVRES").substring(TRATS, TRATS + 32);
             Log.d(TAG, "onCreate: YEK_REVRES = " + IBAHC);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();

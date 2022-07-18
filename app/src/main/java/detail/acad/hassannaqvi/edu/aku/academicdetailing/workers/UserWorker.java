@@ -1,5 +1,8 @@
 package detail.acad.hassannaqvi.edu.aku.academicdetailing.workers;
 
+
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.CipherSecure.certIsValid;
+
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.ProgressDialog;
@@ -29,10 +32,7 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
-import java.security.cert.CertificateExpiredException;
 import java.security.cert.CertificateFactory;
-import java.security.cert.CertificateNotYetValidException;
-import java.security.cert.X509Certificate;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
@@ -83,7 +83,7 @@ public class UserWorker extends Worker {
 
             CertificateFactory cf = CertificateFactory.getInstance("X.509");
             AssetManager assetManager = context.getAssets();
-            InputStream caInput = assetManager.open("star_aku_edu.crt");
+            InputStream caInput = assetManager.open("vcoe1_aku_edu.cer");
             Certificate ca;
             try {
                 ca = cf.generateCertificate(caInput);
@@ -156,7 +156,7 @@ public class UserWorker extends Worker {
         NotificationCompat.Builder notification = new NotificationCompat.Builder(getApplicationContext(), "scrlog")
                 .setContentTitle(title)
                 .setContentText(task)
-                .setSmallIcon(R.mipmap.ic_launcher);
+                .setSmallIcon(R.drawable.app_icon);
 
         final int maxProgress = 100;
         int curProgress = 0;
@@ -165,7 +165,7 @@ public class UserWorker extends Worker {
         notificationManager.notify(1, notification.build());
     }
 
-    private boolean certIsValid(Certificate[] certs, Certificate ca) {
+   /* private boolean certIsValid(Certificate[] certs, Certificate ca) {
         for (Certificate cert : certs) {
             System.out.println("Certificate is: " + cert);
             if (cert instanceof X509Certificate) {
@@ -187,7 +187,7 @@ public class UserWorker extends Worker {
 
         }
         return false;
-    }
+    }*/
 
     @NonNull
     @Override
@@ -208,7 +208,7 @@ public class UserWorker extends Worker {
 
 
             ca = cf.generateCertificate(caInput);
-            System.out.println("ca=" + ((X509Certificate) ca).getSubjectDN());
+            //    System.out.println("ca=" + ((X509Certificate) ca).getSubjectDN());
         } catch (CertificateException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -278,9 +278,9 @@ public class UserWorker extends Worker {
 
 
                 //wr.writeBytes(URLEncoder.encode(jsonParam.toString(), "utf-8"));
-                wr.writeBytes(CipherSecure.encrypt(jsonParam.toString()));
+                wr.writeBytes(CipherSecure.encryptGCM(jsonParam.toString()));
 
-                String writeEnc = CipherSecure.encrypt(jsonParam.toString());
+                String writeEnc = CipherSecure.encryptGCM(jsonParam.toString());
 
                 longInfo("Encrypted: " + writeEnc);
 
@@ -339,7 +339,7 @@ public class UserWorker extends Worker {
             Log.d(TAG, "doWork (IO Error): " + e.getMessage());
             displayNotification(nTitle, "IO Error: " + e.getMessage());
             data = new Data.Builder()
-                    .putString("error", "IO Error: " + e.getMessage())
+                    .putString("error", e.getClass().getSimpleName() + ": " + e.getMessage())
                     .build();
 
             return Result.failure(data);
@@ -348,16 +348,14 @@ public class UserWorker extends Worker {
 //            urlConnection.disconnect();
         }
         try {
-            result = new StringBuilder(CipherSecure.decrypt(result.toString()));
-        } catch (NoSuchPaddingException | NoSuchAlgorithmException | BadPaddingException | IllegalBlockSizeException | InvalidAlgorithmParameterException | InvalidKeyException e) {
-            Log.d(TAG, "doWork (Encryption Error): " + e.getMessage());
-            displayNotification(nTitle, "Encryption Error: " + e.getMessage());
+            result = new StringBuilder(CipherSecure.decryptGCM(result.toString()));
+        } catch (Exception e) {
+            e.printStackTrace();
             data = new Data.Builder()
-                    .putString("error", "Encryption Error: " + e.getMessage())
+                    .putString("error", e.getClass().getSimpleName() + ": " + e.getMessage())
                     .build();
 
             return Result.failure(data);
-
         }
         longInfo("result-server(Decrypted): " + result);
 

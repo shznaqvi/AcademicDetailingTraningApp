@@ -48,7 +48,7 @@ public class TableContracts {
 
         public static final String TABLE_NAME = "district";
         public static final String _ID = "id";
-        public static final String COLUMN_DIST_ID = "dist_code";
+        public static final String COLUMN_DIST_ID = "district_code";
         public static final String DISTRICT_NAME = "district_name";
 
     }

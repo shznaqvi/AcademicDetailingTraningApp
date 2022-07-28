@@ -754,14 +754,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return formList;
     }
 
-    public List<HealthProvider> getHPData(long id) {
+    public List<HealthProvider> getHPData(String  id) {
         List<HealthProvider> formList = new ArrayList<>();
 
         String[] columns = {
                 HealthProviderTable.COLUMN_HP_NAME
                 //HealthProviderTable.COLUMN_HP_CODE
         };
-        String selection = HealthProviderTable.COLUMN_HF_CODE + " = ?";
+        String selection = HealthProviderTable.COLUMN_HP_UEN_CODE + " = ?";
         String[] selectionArgs = new String[]{String.valueOf(id)};
 
         String orderBy =
@@ -780,8 +780,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (c.moveToFirst()) {
             do {
                 HealthProvider fc = new HealthProvider();
-//                forms.setHf_name(c.getString(c.getColumnIndexOrThrow(HealthFacilityTable.COLUMN_HF_NAME)));
-//                forms.setHf_uen_code(c.getLong(c.getColumnIndexOrThrow(HealthFacilityTable.COLUMN_HF_CODE)));
+                fc.setHp_name(c.getString(c.getColumnIndexOrThrow(HealthProviderTable.COLUMN_HP_NAME)));
+                fc.setHp_uen_code(c.getLong(c.getColumnIndexOrThrow(HealthProviderTable.COLUMN_HP_UEN_CODE)));
                 formList.add(fc.Hydrate(c));
             } while (c.moveToNext());
         }

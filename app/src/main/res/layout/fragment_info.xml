@@ -54,7 +54,7 @@
                             />
 
 
-                        <TextView
+                        <androidx.appcompat.widget.AppCompatSpinner
                             style="@style/textInput"
                             android:id="@+id/districtSpinner"
                             android:layout_width="match_parent"
@@ -90,7 +90,7 @@
 <!--                            android:layout_height="wrap_content"-->
 <!--                            android:layout_margin="10dp" />-->
 
-                        <AutoCompleteTextView
+                        <androidx.appcompat.widget.AppCompatSpinner
                             android:id="@+id/hfName"
                             style="@style/textInput"
                             android:layout_width="match_parent"
@@ -126,7 +126,7 @@
                         <!--android:layout_margin="10dp"-->
                         <!--/>-->
 
-                        <EditText
+                        <androidx.appcompat.widget.AppCompatSpinner
                             android:id="@+id/hpName"
                             style="@style/textInput"
                             android:layout_width="match_parent"

@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
@@ -45,6 +46,7 @@ public class InfoFragment extends Fragment {
     Callbacks callbacks;
     Collection<District> distrcitList;
     ArrayList<String> districtNames;
+    Long districtCode;
     HashMap<String, Long> districtMap;
 
     Collection<HealthFacility> hfList;
@@ -55,7 +57,7 @@ public class InfoFragment extends Fragment {
     ArrayList<String> providerNames;
     HashMap<String, Long> providerMap;
 
-    long hf_uen_code = 0;
+    String hf_uen_code ="";
     long hp_code = 0;
 
     private static final String TAG = "InfoFragment";
@@ -85,11 +87,12 @@ public class InfoFragment extends Fragment {
 
     private void setupViews() {
 
-        bi.districtSpinner.setText(MainApp.district.getDistrict_name());
+        //bi.districtSpinner.setT(MainApp.district.getDistrict_name());
 
 
-/*      distrcitList = db.getDistrictList();
+        distrcitList = db.getDistrictList();
         districtNames = new ArrayList<>();
+        districtCode = 0L;
         districtMap = new HashMap<>();
         districtNames.add("-Select District-");
 
@@ -108,7 +111,6 @@ public class InfoFragment extends Fragment {
                 if (bi.districtSpinner.getSelectedItemPosition() != 0) {
 
                     districtCode = districtMap.get(bi.districtSpinner.getSelectedItem().toString());
-//
 
                 }
 
@@ -118,7 +120,7 @@ public class InfoFragment extends Fragment {
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
-        });*/
+        });
 
         hfList = db.getHealthFacilityData(MainApp.district.getDICTRICT_CODE());
         hfMap = new HashMap<>();
@@ -132,51 +134,52 @@ public class InfoFragment extends Fragment {
 
         bi.hfName.setAdapter(new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, hfNames));
 
-//        bi.healthFacSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//
-//                if (bi.healthFacSpinner.getSelectedItemPosition() != 0) {
-//
-//                    hf_uen_code = hfMap.get(bi.healthFacSpinner.getSelectedItem().toString());
-//                    healthProviderList = db.getHPData(hf_uen_code);
-//
-//                    providerNames = new ArrayList<>();
-//                    providerMap = new HashMap<>();
-//                    providerNames.add("-Select HealthProvider Name-");
-//
-//                    for (HealthProvider pC : healthProviderList) {
-//
-//                        providerNames.add(pC.getHp_name());
-//                        providerMap.put(pC.getHp_name(), pC.getHf_code());
-//                        bi.providerSpinner.setAdapter(new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, providerNames));
-//                    }
-//
-//                }
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
+        bi.hfName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-//        bi.providerSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//
-//                if (bi.providerSpinner.getSelectedItemPosition() != 0) {
-//
-//                    hp_code = providerMap.get(bi.providerSpinner.getSelectedItem().toString());
-//                    MainApp.providerName = bi.providerSpinner.getSelectedItem().toString();
-//                }
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
+                if (bi.hfName.getSelectedItemPosition() != 0) {
+
+                    hf_uen_code = hfMap.get(bi.hfName.getSelectedItem().toString());
+
+
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        healthProviderList = db.getHPData(hf_uen_code);
+        providerNames = new ArrayList<>();
+        providerMap = new HashMap<>();
+        providerNames.add("-Select HealthProvider Name-");
+
+        for (HealthProvider pC : healthProviderList) {
+
+            providerNames.add(pC.getHp_name());
+            providerMap.put(pC.getHp_name(), pC.getHf_code());
+            bi.hpName.setAdapter(new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, providerNames));
+        }
+
+        bi.hpName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if (bi.hpName.getSelectedItemPosition() != 0) {
+
+                    hp_code = providerMap.get(bi.hpName.getSelectedItem().toString());
+                    MainApp.providerName = bi.hpName.getSelectedItem().toString();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
     }
 
@@ -218,10 +221,10 @@ public class InfoFragment extends Fragment {
         MainApp.forms.setDeviceID(MainApp.deviceId);
         MainApp.forms.setFormDate(new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime()));
         MainApp.forms.setProviderID(bi.providerId.getText().toString());
-        MainApp.forms.setProviderName(bi.hpName.getText().toString());
-        MainApp.forms.setHealthFacilityCode(String.valueOf(hfMap.get(bi.hfName.getText().toString())));
+        MainApp.forms.setProviderName(bi.hpName.getSelectedItem().toString());
+        MainApp.forms.setHealthFacilityCode(String.valueOf(hfMap.get(bi.hfName.getSelectedItem().toString())));
         MainApp.forms.setDistrictID(String.valueOf(MainApp.district.getDICTRICT_CODE()));
-        MainApp.providerName = bi.hpName.getText().toString();
+        MainApp.providerName = bi.hpName.getSelectedItem().toString();
 
         setGPS();
     }

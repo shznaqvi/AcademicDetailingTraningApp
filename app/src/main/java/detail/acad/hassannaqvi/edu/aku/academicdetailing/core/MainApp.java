@@ -111,6 +111,7 @@ public class MainApp extends Application {
     public static String versionName;
     //public static String districtName = "";
     public static String providerName = "";
+    public static String facilityName = "";
     public static int versionCode;
     public static int districtCode = 0;
     public static Boolean admin = false;

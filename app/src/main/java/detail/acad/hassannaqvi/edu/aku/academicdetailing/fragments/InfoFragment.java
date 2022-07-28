@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
@@ -46,16 +47,19 @@ public class InfoFragment extends Fragment {
     Callbacks callbacks;
     Collection<District> distrcitList;
     ArrayList<String> districtNames;
-    Long districtCode;
-    HashMap<String, Long> districtMap;
+    ArrayList<String> districtCode;
+    //Long districtCode;
+    HashMap<String, String> districtMap;
 
     Collection<HealthFacility> hfList;
     ArrayList<String> hfNames;
+    ArrayList<String> hfCodes;
     HashMap<String, String> hfMap;
 
     Collection<HealthProvider> healthProviderList;
     ArrayList<String> providerNames;
-    HashMap<String, Long> providerMap;
+    ArrayList<String> providerCodes;
+    HashMap<String, String> providerMap;
 
     String hf_uen_code ="";
     long hp_code = 0;
@@ -92,14 +96,16 @@ public class InfoFragment extends Fragment {
 
         distrcitList = db.getDistrictList();
         districtNames = new ArrayList<>();
-        districtCode = 0L;
+        districtCode = new ArrayList<>();
+        //districtCode = 0L;
         districtMap = new HashMap<>();
         districtNames.add("-Select District-");
 
         for (District dc : distrcitList) {
 
             districtNames.add(dc.getDistrict_name());
-            districtMap.put(dc.getDistrict_name(), dc.getDICTRICT_CODE());
+            districtCode.add(dc.getDICTRICT_CODE());
+            //districtMap.put(dc.getDistrict_name(), dc.getDICTRICT_CODE());
         }
 
         bi.districtSpinner.setAdapter(new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, districtNames));
@@ -110,7 +116,20 @@ public class InfoFragment extends Fragment {
 
                 if (bi.districtSpinner.getSelectedItemPosition() != 0) {
 
-                    districtCode = districtMap.get(bi.districtSpinner.getSelectedItem().toString());
+                    //districtCode = districtMap.get(bi.districtSpinner.getSelectedItem().toString());
+                    hfList = db.getHealthFacilityData(MainApp.user.getDist_id());
+                    hfNames = new ArrayList<>();
+                    hfCodes = new ArrayList<>();
+                    hfNames.add("...");
+                    hfCodes.add("...");
+
+                    for (HealthFacility hf : hfList) {
+                        hfNames.add(hf.getHf_name());
+                        hfCodes.add(hf.getHf_uen_code());
+                    }
+
+                    bi.hfName.setAdapter(new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, hfNames));
+
 
                 }
 
@@ -122,27 +141,40 @@ public class InfoFragment extends Fragment {
             }
         });
 
-        hfList = db.getHealthFacilityData(MainApp.district.getDICTRICT_CODE());
+        /*hfList = db.getHealthFacilityData(MainApp.district.getDICTRICT_CODE());
         hfMap = new HashMap<>();
         hfNames = new ArrayList<>();
-        hfNames.add("Select Health Facility Name-");
-
+        hfNames.add("...");
+        hfCodes.add("...");
         for (HealthFacility hf : hfList) {
             hfNames.add(hf.getHf_name());
             hfMap.put(hf.getHf_name(), hf.getHf_uen_code());
         }
 
         bi.hfName.setAdapter(new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, hfNames));
-
+*/
         bi.hfName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 if (bi.hfName.getSelectedItemPosition() != 0) {
 
-                    hf_uen_code = hfMap.get(bi.hfName.getSelectedItem().toString());
+                    if (position < hfNames.size() && position < hfCodes.size()) {
+                        String selectedCode = hfCodes.get(position);
+                        healthProviderList = db.getHPData(selectedCode);
+                        providerNames = new ArrayList<>();
+                        providerCodes = new ArrayList<>();
+                        providerNames.add("...");
+                        providerCodes.add("...");
 
+                        for (HealthProvider hp : healthProviderList) {
+                            providerNames.add(hp.getHp_name());
+                            providerCodes.add(hp.getHp_uen_code());
+                        }
 
+                        bi.hpName.setAdapter(new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, providerNames));
+
+                    }
                 }
             }
 
@@ -152,7 +184,8 @@ public class InfoFragment extends Fragment {
             }
         });
 
-        healthProviderList = db.getHPData(hf_uen_code);
+
+        /*healthProviderList = db.getHPData(MainApp.facilityName);
         providerNames = new ArrayList<>();
         providerMap = new HashMap<>();
         providerNames.add("-Select HealthProvider Name-");
@@ -161,8 +194,8 @@ public class InfoFragment extends Fragment {
 
             providerNames.add(pC.getHp_name());
             providerMap.put(pC.getHp_name(), pC.getHf_code());
-            bi.hpName.setAdapter(new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, providerNames));
-        }
+
+        }*/
 
         bi.hpName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -170,8 +203,8 @@ public class InfoFragment extends Fragment {
 
                 if (bi.hpName.getSelectedItemPosition() != 0) {
 
-                    hp_code = providerMap.get(bi.hpName.getSelectedItem().toString());
-                    MainApp.providerName = bi.hpName.getSelectedItem().toString();
+                    hp_code = bi.hpName.getSelectedItemPosition();
+                    //MainApp.providerName = bi.hpName.getSelectedItem().toString();
                 }
             }
 

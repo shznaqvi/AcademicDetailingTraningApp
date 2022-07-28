@@ -17,7 +17,7 @@ public class District {
     private static final String TAG = "DISTRICT_CONTRACT";
     Long _ID;
 
-    Long DICTRICT_CODE;
+    String DICTRICT_CODE;
     String District_name;
 
     public District() {
@@ -37,11 +37,11 @@ public class District {
         District_name = district_name;
     }
 
-    public Long getDICTRICT_CODE() {
+    public String getDICTRICT_CODE() {
         return DICTRICT_CODE;
     }
 
-    public void setDICTRICT_CODE(Long DICTRICT_CODE) {
+    public void setDICTRICT_CODE(String DICTRICT_CODE) {
         this.DICTRICT_CODE = DICTRICT_CODE;
     }
 
@@ -57,7 +57,7 @@ public class District {
     public District Sync(JSONObject jsonObject) throws JSONException {
         //this._ID= jsonObject.getLong(UsersTable._ID);
 
-        this.DICTRICT_CODE = jsonObject.getLong(DistrictTable.COLUMN_DIST_ID);
+        this.DICTRICT_CODE = jsonObject.getString(DistrictTable.COLUMN_DIST_ID);
         this.District_name = jsonObject.getString(DistrictTable.DISTRICT_NAME);
 
         return this;
@@ -65,7 +65,7 @@ public class District {
     }
 
     public District Hydrate(Cursor cursor) {
-        this.DICTRICT_CODE = cursor.getLong(cursor.getColumnIndexOrThrow(DistrictTable.COLUMN_DIST_ID));
+        this.DICTRICT_CODE = cursor.getString(cursor.getColumnIndexOrThrow(DistrictTable.COLUMN_DIST_ID));
         this.District_name = cursor.getString(cursor.getColumnIndexOrThrow(DistrictTable.DISTRICT_NAME));
         return this;
 

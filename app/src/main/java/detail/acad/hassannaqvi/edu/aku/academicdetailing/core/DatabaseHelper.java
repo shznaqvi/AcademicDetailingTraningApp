@@ -718,7 +718,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return user;
     }
 
-    public List<HealthFacility> getHealthFacilityData(long id) {
+    public List<HealthFacility> getHealthFacilityData(String id) {
         List<HealthFacility> formList = new ArrayList<>();
 
         String[] columns = {
@@ -744,8 +744,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (c.moveToFirst()) {
             do {
                 HealthFacility fc = new HealthFacility();
-//                forms.setHf_name(c.getString(c.getColumnIndexOrThrow(HealthFacilityTable.COLUMN_HF_NAME)));
-//                forms.setHf_uen_code(c.getLong(c.getColumnIndexOrThrow(HealthFacilityTable.COLUMN_HF_CODE)));
+                fc.setHf_name(c.getString(c.getColumnIndexOrThrow(HealthFacilityTable.COLUMN_HF_NAME)));
+                fc.setHf_uen_code(c.getString(c.getColumnIndexOrThrow(HealthFacilityTable.COLUMN_HF_CODE)));
                 formList.add(fc.HydrateHF(c));
             } while (c.moveToNext());
         }
@@ -758,8 +758,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<HealthProvider> formList = new ArrayList<>();
 
         String[] columns = {
-                HealthProviderTable.COLUMN_HP_NAME
-                //HealthProviderTable.COLUMN_HP_CODE
+                HealthProviderTable.COLUMN_HP_NAME,
+                HealthProviderTable.COLUMN_HP_UEN_CODE
         };
         String selection = HealthProviderTable.COLUMN_HP_UEN_CODE + " = ?";
         String[] selectionArgs = new String[]{String.valueOf(id)};
@@ -781,7 +781,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             do {
                 HealthProvider fc = new HealthProvider();
                 fc.setHp_name(c.getString(c.getColumnIndexOrThrow(HealthProviderTable.COLUMN_HP_NAME)));
-                fc.setHp_uen_code(c.getLong(c.getColumnIndexOrThrow(HealthProviderTable.COLUMN_HP_UEN_CODE)));
+                fc.setHp_uen_code(c.getString(c.getColumnIndexOrThrow(HealthProviderTable.COLUMN_HP_UEN_CODE)));
                 formList.add(fc.Hydrate(c));
             } while (c.moveToNext());
         }
@@ -802,7 +802,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (c.moveToFirst()) {
             do {
                 District fc = new District();
-                fc.setDICTRICT_CODE(c.getLong(c.getColumnIndexOrThrow(DistrictTable.COLUMN_DIST_ID)));
+                fc.setDICTRICT_CODE(c.getString(c.getColumnIndexOrThrow(DistrictTable.COLUMN_DIST_ID)));
                 fc.setDistrict_name(c.getString(c.getColumnIndexOrThrow(DistrictTable.DISTRICT_NAME)));
                 formList.add(fc.Hydrate(c));
             } while (c.moveToNext());

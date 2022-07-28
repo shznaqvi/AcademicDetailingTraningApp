@@ -313,12 +313,14 @@ public class LoginActivity extends AppCompatActivity {
                 ) {
 
                     MainApp.user.setUserName(username);
-                    //  MainApp.district = db.getDistrict(Integer.parseInt(MainApp.user.getDist_id()));
                     MainApp.district = db.getDistrict(Integer.parseInt("999"));
+                    //MainApp.district = db.getDistrict(Integer.parseInt(MainApp.user.getDist_id()));
+
                     MainApp.admin = username.contains("@") || username.contains("test1234");
                     MainApp.superuser = MainApp.user.getDesignation().equals("Supervisor");
                     Intent iLogin = null;
                     if (MainApp.admin) {
+
                         recordEntry("Successful Login (Admin)");
                         iLogin = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(iLogin);

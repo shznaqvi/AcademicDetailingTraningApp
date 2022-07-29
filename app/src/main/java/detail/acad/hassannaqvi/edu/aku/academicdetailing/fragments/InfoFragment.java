@@ -24,7 +24,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Locale;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
@@ -161,7 +160,7 @@ public class InfoFragment extends Fragment {
 
                     if (position < hfNames.size() && position < hfCodes.size()) {
                         String selectedCode = hfCodes.get(position);
-                        healthProviderList = db.getHPData(selectedCode);
+                        healthProviderList = db.getHealthProviderByFacility(selectedCode);
                         providerNames = new ArrayList<>();
                         providerCodes = new ArrayList<>();
                         providerNames.add("...");

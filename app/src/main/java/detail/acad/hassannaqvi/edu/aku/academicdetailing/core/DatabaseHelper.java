@@ -790,6 +790,35 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return formList;
     }
 
+
+    public ArrayList<HealthProvider> getHealthProviderByFacility(String fcCode) {
+
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
+        Cursor c = null;
+        String[] columns = null;
+        String whereClause = HealthProviderTable.COLUMN_HF_CODE + " = ? ";
+        String[] whereArgs = {fcCode};
+        String groupBy = null;
+        String having = null;
+
+        String orderBy = HealthProviderTable.COLUMN_HP_UEN_CODE + " ASC";
+        ArrayList<HealthProvider> hp = new ArrayList<>();
+
+        c = db.query(
+                HealthProviderTable.TABLE_NAME,  // The table to query
+                columns,                   // The columns to return8
+                whereClause,               // The columns for the WHERE clause
+                whereArgs,                 // The values for the WHERE clause
+                groupBy,                   // don't group the rows
+                having,                    // don't filter by row groups
+                orderBy                    // The sort order
+        );
+        while (c.moveToNext()) {
+            hp.add(new HealthProvider().Hydrate(c));
+        }
+        return hp;
+    }
+
     public List<District> getDistrictList() {
         List<District> formList = new ArrayList<>();
         // Select All Query

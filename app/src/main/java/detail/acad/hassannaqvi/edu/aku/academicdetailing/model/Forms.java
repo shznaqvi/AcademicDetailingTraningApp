@@ -42,7 +42,9 @@ public class Forms implements Parcelable {
     private String synced_date = "";
     private String appversion;
     private String districtID = "";
+    private String districtName = "";
     private String healthFacilityCode = "";
+    private String healthFacilityName = "";
     private String providerName = "";
     private String sessionStartTime = "";
     private String sessionEndTime = "";
@@ -330,6 +332,23 @@ public class Forms implements Parcelable {
 
     public void setDistrictID(String districtID) {
         this.districtID = districtID;
+    }
+
+    public String getDistrictName() {
+        return districtName;
+    }
+
+    public void setDistrictName(String districtName) {
+        this.districtName = districtName;
+    }
+
+
+    public String getHealthFacilityName() {
+        return healthFacilityName;
+    }
+
+    public void setHealthFacilityName(String healthFacilityName) {
+        this.healthFacilityName = healthFacilityName;
     }
 
     public String getHealthFacilityCode() {

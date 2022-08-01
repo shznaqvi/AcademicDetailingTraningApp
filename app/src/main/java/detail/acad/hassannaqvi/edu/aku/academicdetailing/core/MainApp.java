@@ -114,6 +114,7 @@ public class MainApp extends Application {
     public static String facilityName = "";
     public static int versionCode;
     public static int districtCode = 0;
+    //public static
     public static Boolean admin = false;
     public static String userName = "0000";
     public static Forms forms;

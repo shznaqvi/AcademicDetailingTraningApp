@@ -115,7 +115,7 @@ public class InfoFragment extends Fragment {
 
                 if (bi.districtSpinner.getSelectedItemPosition() != 0) {
 
-                    //districtCode = districtMap.get(bi.districtSpinner.getSelectedItem().toString());
+                    MainApp.districtCode = bi.districtSpinner.getSelectedItemPosition();
                     hfList = db.getHealthFacilityData(MainApp.user.getDist_id());
                     hfNames = new ArrayList<>();
                     hfCodes = new ArrayList<>();
@@ -254,8 +254,8 @@ public class InfoFragment extends Fragment {
         MainApp.forms.setFormDate(new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime()));
         MainApp.forms.setProviderID(bi.providerId.getText().toString());
         MainApp.forms.setProviderName(bi.hpName.getSelectedItem().toString());
-        MainApp.forms.setHealthFacilityCode(String.valueOf(hfMap.get(bi.hfName.getSelectedItem().toString())));
-        MainApp.forms.setDistrictID(String.valueOf(MainApp.district.getDICTRICT_CODE()));
+        MainApp.forms.setHealthFacilityCode(hfCodes.get(bi.hfName.getSelectedItemPosition()));
+        MainApp.forms.setDistrictID(String.valueOf(MainApp.districtCode));
         MainApp.providerName = bi.hpName.getSelectedItem().toString();
 
         setGPS();

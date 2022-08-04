@@ -121,10 +121,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public ArrayList<Users> getAllUsers() {
+    public ArrayList<Users> getAllUsers() throws JSONException {
         SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
         ArrayList<Users> userList = null;
-        try {
             userList = new ArrayList<Users>();
             String QUERY = "SELECT * FROM " + UsersTable.TABLE_NAME;
             Cursor cursor = db.rawQuery(QUERY, null);
@@ -135,9 +134,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     userList.add(user);
                 }
             }
-            db.close();
-        } catch (Exception e) {
-        }
         return userList;
     }
 
@@ -181,7 +177,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
         c.close();
-        db.close();
 
         Log.d(TAG, "getUnsyncedForm: " + allForms.toString().length());
         Log.d(TAG, "getUnsyncedForm: " + allForms);
@@ -229,7 +224,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
         c.close();
-        db.close();
 
 
         return allSession;
@@ -272,7 +266,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
         c.close();
-        db.close();
         
         return allNextMeeting;
     }
@@ -314,13 +307,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
         c.close();
-        db.close();
 
 
         return allEntryLog;
     }
 
-    public void syncUsers(JSONArray userlist) {
+    /*public void syncUsers(JSONArray userlist) {
         SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
         db.execSQL(" DELETE FROM " + UsersTable.TABLE_NAME);
         db.execSQL(" DELETE FROM sqlite_sequence where name = 'user'");
@@ -338,12 +330,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
                     values.put(UsersTable.COLUMN_USERNAME, users.getUserName());
                     values.put(UsersTable.COLUMN_PASSWORD, users.getPassword());
+                    values.put(UsersTable.COLUMN_FULLNAME, users.getFullname());
+                    values.put(UsersTable.COLUMN_ENABLED, users.getEnabled());
+                    values.put(UsersTable.COLUMN_ISNEW_USER, users.getNewUser());
+                    values.put(UsersTable.COLUMN_PWD_EXPIRY, users.getPwdExpiry());
+                    values.put(UsersTable.COLUMN_DESIGNATION, users.getDesignation());
                     values.put(UsersTable.COLUMN_DIST_ID, users.getDist_id());
                     db.insert(UsersTable.TABLE_NAME, null, values);
                 }
 
             }
-            db.close();
 
         } catch (Exception e) {
 
@@ -351,7 +347,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-
+*/
     public boolean checkingUser(String username, long distCode) {
         SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
 // New value for one column
@@ -376,7 +372,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         int count = cursor.getCount();
         cursor.close();
-        db.close();
         return count > 0;
 
     }
@@ -401,11 +396,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             values.put(UsersTable.COLUMN_PWD_EXPIRY, user.getPwdExpiry());
             values.put(UsersTable.COLUMN_DESIGNATION, user.getDesignation());
             values.put(UsersTable.COLUMN_DIST_ID, user.getDist_id());
-            long rowID = db.insertOrThrow(UsersTable.TABLE_NAME, null, values);
+            //values.put(UsersTable.COLUMN_UC_CODE, user.getUccode());
+            long rowID = db.insert(UsersTable.TABLE_NAME, null, values);
             if (rowID != -1) insertCount++;
         }
-
-        db.close();
         return insertCount;
     }
 
@@ -436,7 +430,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
                 //    Log.d(TAG, "syncHF: count " + count);
             }
-            db.close();
 
         } catch (Exception e) {
 
@@ -474,18 +467,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         } catch (Exception ignored) {
         } finally {
-            db.close();
         }*/
 
         return (int) count;
     }
 
-    public int synchealthcare_providers(JSONArray hpList) {
+    public int synchealthcare_providers(JSONArray hpList) throws JSONException {
         SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
         db.execSQL(" DELETE FROM " + HealthProviderTable.TABLE_NAME);
         db.execSQL(" DELETE FROM sqlite_sequence where name = 'providers'");    //TODO you have to add table name manually in order to reset primary key
         int insertCount = 0;
-        try {
             JSONArray jsonArray = hpList;
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObjectUser = jsonArray.getJSONObject(i);
@@ -504,12 +495,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 if (rowID != -1) insertCount++;
 
             }
-            db.close();
-
-        } catch (Exception e) {
-
-            e.printStackTrace();
-        }
         return insertCount;
     }
 
@@ -533,7 +518,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             if (rowID != -1) insertCount++;
 
         }
-        db.close();
 
         return insertCount;
 
@@ -559,7 +543,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             if (rowID != -1) insertCount++;
 
         }
-        db.close();
 
         return insertCount;
 
@@ -593,7 +576,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         int count = cursor.getCount();
 
         cursor.close();
-        db.close();
         return count > 0;
     }
 
@@ -632,9 +614,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
             cursor.close();
         }
-
-
-        db.close();
         return district;
     }
 
@@ -673,9 +652,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
             cursor.close();
         }
-
-
-        db.close();
         return tehsils;
     }
 
@@ -712,9 +688,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         do {
             user = new Users().hydrate(cursor);
         } while (cursor.moveToNext());
-
-
-        db.close();
         return user;
     }
 
@@ -868,8 +841,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
         c.close();
-
-        db.close();
 
         if (checkPassword(password, loggedInUser.getPassword())) {
             MainApp.user = loggedInUser;
@@ -1143,7 +1114,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 FormsTable._ID + " ASC";
 
         Collection<Forms> allFC = new ArrayList<>();
-        try {
             c = db.query(
                     FormsTable.TABLE_NAME,  // The table to query
                     columns,                   // The columns to return
@@ -1161,14 +1131,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 fc.setSynced(c.getString(c.getColumnIndexOrThrow(FormsTable.COLUMN_SYNCED)));
                 allFC.add(fc);
             }
-        } finally {
-            if (c != null) {
-                c.close();
-            }
-            if (db != null) {
-                db.close();
-            }
-        }
         return allFC;
     }
 
@@ -1395,7 +1357,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 }
 
             }
-            db.close();
 
         } catch (Exception e) {
 
@@ -1445,7 +1406,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 null,                       //filter by row groups
                 null);                      //The sort order
         distCount = cursor.getCount();
-        db.close();
         return distCount;
     }
 
@@ -1499,9 +1459,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             if (c != null) {
                 c.close();
             }
-            if (db != null) {
-                db.close();
-            }
         }
         return allSc;
     }
@@ -1551,9 +1508,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         } finally {
             if (c != null) {
                 c.close();
-            }
-            if (db != null) {
-                db.close();
             }
         }
         return allFC;

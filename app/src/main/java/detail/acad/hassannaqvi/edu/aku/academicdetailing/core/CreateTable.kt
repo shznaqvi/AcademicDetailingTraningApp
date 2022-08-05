@@ -150,7 +150,6 @@ object CreateTable {
             + EntryLogTable.COLUMN_PROJECT_NAME + " TEXT,"
             + EntryLogTable.COLUMN_UID + " TEXT,"
             + EntryLogTable.COLUMN_UUID + " TEXT,"
-            + EntryLogTable.COLUMN_EB_CODE + " TEXT,"
             + EntryLogTable.COLUMN_HHID + " TEXT,"
             + EntryLogTable.COLUMN_USERNAME + " TEXT,"
             + EntryLogTable.COLUMN_SYSDATE + " TEXT,"

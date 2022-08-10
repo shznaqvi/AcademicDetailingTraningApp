@@ -122,7 +122,7 @@ object CreateTable {
     //            + TehsilTable.DIST_CODE + " LONG " + ");";
     //
     const val SQL_CREATE_NMS = ("CREATE TABLE " + NextMeetingTable.TABLE_NAME + "("
-            + NextMeetingTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + NextMeetingTable.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + NextMeetingTable.COLUMN_DEVICEID + " TEXT, "
             + NextMeetingTable.COLUMN_USER + " TEXT, "
             + NextMeetingTable.COLUMN_UID + " TEXT, "

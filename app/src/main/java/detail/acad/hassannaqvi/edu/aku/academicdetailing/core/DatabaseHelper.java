@@ -229,14 +229,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return allSession;
     }
 
+
     public JSONArray getUnsyncedNextMeetings() throws JSONException {
         SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
         Cursor c = null;
         String[] columns = null;
 
-        String whereClause;
-        //whereClause = null;
-        whereClause = NextMeetingTable.COLUMN_SYNCED + " = ''";
+        String whereClause = NextMeetingTable.COLUMN_SYNCED + " = ''";
 
         String[] whereArgs = null;
 
@@ -269,6 +268,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         
         return allNextMeeting;
     }
+
     public JSONArray getUnsyncedEntryLogs() throws JSONException {
         SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
         Cursor c = null;
@@ -1008,7 +1008,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(NextMeetingTable.COLUMN_SYNCED_DATE, new Date().toString());
 
 // Which row to update, based on the title
-        String where = NextMeetingTable._ID + " = ?";
+        String where = NextMeetingTable.COLUMN_ID + " = ?";
         String[] whereArgs = {id};
 
         int count = db.update(
@@ -1063,7 +1063,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(NextMeetingTable.COLUMN_UID, nmc.get_UID());
 
 // Which row to update, based on the ID
-        String selection = NextMeetingTable._ID + " =?";
+        String selection = NextMeetingTable.COLUMN_ID + " =?";
         String[] selectionArgs = {String.valueOf(nmc.get_id())};
 
         int count = db.update(NextMeetingTable.TABLE_NAME,
@@ -1267,6 +1267,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(SessionTable.COLUMN_DEVICETAGID, sc.getDevicetagID());
         values.put(SessionTable.COLUMN_USER, sc.getUsername());
         values.put(SessionTable.COLUMN_UUID, sc.get_UUID());
+        values.put(SessionTable.COLUMN_SYNCED, sc.getSynced());
+        values.put(SessionTable.COLUMN_SYNCED_DATE, sc.getSyncDate());
 
         return db.insert(SessionTable.TABLE_NAME, null, values);
 
@@ -1300,6 +1302,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(NextMeetingTable.COLUMN_DATE, MainApp.nmc.getBook_date());
         values.put(NextMeetingTable.COLUMN_TIME, MainApp.nmc.getBook_time());
+        values.put(NextMeetingTable.COLUMN_UID, MainApp.nmc.get_UID());
         values.put(NextMeetingTable.COLUMN_MODULE_CODE, MainApp.nmc.getModule());
         values.put(NextMeetingTable.COLUMN_SESSION_CODE, MainApp.nmc.getSession());
         values.put(NextMeetingTable.COLUMN_BOOKBY, MainApp.nmc.getBookBy());
@@ -1308,6 +1311,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(NextMeetingTable.COLUMN_LAT, MainApp.nmc.getGpsLat());
         values.put(NextMeetingTable.COLUMN_LNG, MainApp.nmc.getGpsLng());
         values.put(NextMeetingTable.COLUMN_BTYPE, MainApp.nmc.getBookingtype());
+        values.put(NextMeetingTable.COLUMN_SYNCED, MainApp.nmc.getSynced());
+        values.put(NextMeetingTable.COLUMN_SYNCED_DATE, MainApp.nmc.getSyncDate());
         values.put(NextMeetingTable.COLUMN_GPSTIME, MainApp.nmc.getGps_time());
         values.put(NextMeetingTable.COLUMN_FORMDATE, MainApp.nmc.getFormdate());
         values.put(NextMeetingTable.COLUMN_HF_NAME, MainApp.nmc.getHf_name());
@@ -1418,7 +1423,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 NextMeetingTable.COLUMN_SESSION_CODE,
                 NextMeetingTable.COLUMN_BOOKBY,
                 NextMeetingTable.COLUMN_BTYPE,
-                NextMeetingTable._ID,
+                NextMeetingTable.COLUMN_ID,
                 NextMeetingTable.COLUMN_HP_CODE,
                 NextMeetingTable.COLUMN_HF_NAME,
                 NextMeetingTable.COLUMN_DIST_CODE,
@@ -1433,7 +1438,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String having = null;
 
         String orderBy =
-                NextMeetingTable._ID + " DESC";
+                NextMeetingTable.COLUMN_ID + " DESC";
 
         List<NextMeeting> allSc = new ArrayList<NextMeeting>();
         try {
@@ -1472,7 +1477,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 NextMeetingTable.COLUMN_SESSION_CODE,
                 NextMeetingTable.COLUMN_BOOKBY,
                 NextMeetingTable.COLUMN_BTYPE,
-                NextMeetingTable._ID,
+                NextMeetingTable.COLUMN_ID,
                 NextMeetingTable.COLUMN_HP_CODE,
                 NextMeetingTable.COLUMN_HF_NAME,
                 NextMeetingTable.COLUMN_DIST_CODE,
@@ -1487,7 +1492,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String having = null;
 
         String orderBy =
-                NextMeetingTable._ID + " ASC";
+                NextMeetingTable.COLUMN_ID + " ASC";
 
         List<NextMeeting> allFC = new ArrayList<>();
         try {

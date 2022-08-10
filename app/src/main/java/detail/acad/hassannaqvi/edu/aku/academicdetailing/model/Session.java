@@ -79,6 +79,22 @@ public class Session {
         this.deviceid = deviceid;
     }
 
+    public String getSynced() {
+        return synced;
+    }
+
+    public void setSynced(String synced) {
+        this.synced = synced;
+    }
+
+    public String getSyncDate() {
+        return synced_date;
+    }
+
+    public void setSyncDate(String syncDate) {
+        this.synced_date = syncDate;
+    }
+
     public JSONObject toJSONObject() throws JSONException {
 
         JSONObject json = new JSONObject();

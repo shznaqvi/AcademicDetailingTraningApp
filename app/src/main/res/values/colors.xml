@@ -3,6 +3,9 @@
     <color name="colorAccent">#69f0ae</color>
     <color name="black">#000</color>
     <color name="white">#fff</color>
+    <color name="colorAccentLight">#7df5d7</color>
+    <color name="whiteOverlay">#7fffffff</color>
+    <color name="grayLight">#EEEEEE</color>
 
     <color name="colorPrimary">#206a85</color>
     <color name="colorPrimaryDark">#05354c</color>

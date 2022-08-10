@@ -32,6 +32,14 @@ public class NextMeeting {
         this.synced = synced;
     }
 
+    public String getSyncDate() {
+        return synced_date;
+    }
+
+    public void setSyncDate(String synced_date) {
+        this.synced_date = synced_date;
+    }
+
     public String synced_date;
 
 
@@ -83,7 +91,7 @@ public class NextMeeting {
 
         JSONObject json = new JSONObject();
 
-        json.put(NextMeetingTable._ID, this._id == null ? JSONObject.NULL : this._id);
+        json.put(NextMeetingTable.COLUMN_ID, this._id == null ? JSONObject.NULL : this._id);
         json.put(NextMeetingTable.COLUMN_FORMDATE, this.formdate == null ? JSONObject.NULL : this.formdate);
         json.put(NextMeetingTable.COLUMN_DEVICEID, this.deviceid == null ? JSONObject.NULL : this.deviceid);
         json.put(NextMeetingTable.COLUMN_DATE, this.book_date == null ? JSONObject.NULL : this.book_date);
@@ -104,7 +112,6 @@ public class NextMeeting {
         json.put(NextMeetingTable.COLUMN_USER, this.username == null ? JSONObject.NULL : this.username);
         json.put(NextMeetingTable.COLUMN_DEVICETAGID, this.devicetagID == null ? JSONObject.NULL : this.devicetagID);
         json.put(NextMeetingTable.COLUMN_UID, this._UID == null ? JSONObject.NULL : this._UID);
-
         return json;
     }
 
@@ -117,10 +124,9 @@ public class NextMeeting {
         this.gpsLat = cursor.getString(cursor.getColumnIndexOrThrow(NextMeetingTable.COLUMN_LAT));
         this.gpsLng = cursor.getString(cursor.getColumnIndexOrThrow(NextMeetingTable.COLUMN_LNG));
         this.bookBy = cursor.getString(cursor.getColumnIndexOrThrow(NextMeetingTable.COLUMN_BOOKBY));
-        this.gps_time = cursor.getString(cursor.getColumnIndexOrThrow(NextMeetingTable.COLUMN_GPSTIME));
         this.bookingtype = cursor.getString(cursor.getColumnIndexOrThrow(NextMeetingTable.COLUMN_BTYPE));
         this.gps_time = cursor.getString(cursor.getColumnIndexOrThrow(NextMeetingTable.COLUMN_GPSTIME));
-        this._id = cursor.getString(cursor.getColumnIndexOrThrow(NextMeetingTable._ID));
+        this._id = cursor.getString(cursor.getColumnIndexOrThrow(NextMeetingTable.COLUMN_ID));
         this.synced = cursor.getString(cursor.getColumnIndexOrThrow(NextMeetingTable.COLUMN_SYNCED));
         this.synced_date = cursor.getString(cursor.getColumnIndexOrThrow(NextMeetingTable.COLUMN_SYNCED_DATE));
         this.formdate = cursor.getString(cursor.getColumnIndexOrThrow(NextMeetingTable.COLUMN_FORMDATE));
@@ -145,7 +151,7 @@ public class NextMeeting {
         this.session = cursor.getString(cursor.getColumnIndexOrThrow(NextMeetingTable.COLUMN_SESSION_CODE));
         this.bookBy = cursor.getString(cursor.getColumnIndexOrThrow(NextMeetingTable.COLUMN_BOOKBY));
         this.bookingtype = cursor.getString(cursor.getColumnIndexOrThrow(NextMeetingTable.COLUMN_BTYPE));
-        this._id = cursor.getString(cursor.getColumnIndexOrThrow(NextMeetingTable._ID));
+        this._id = cursor.getString(cursor.getColumnIndexOrThrow(NextMeetingTable.COLUMN_ID));
         this.dist_id = cursor.getLong(cursor.getColumnIndexOrThrow(NextMeetingTable.COLUMN_DIST_CODE));
         this.hf_name = cursor.getString(cursor.getColumnIndexOrThrow(NextMeetingTable.COLUMN_HF_NAME));
         this.hp_name = cursor.getString(cursor.getColumnIndexOrThrow(NextMeetingTable.COLUMN_HP_NAME));
@@ -177,6 +183,11 @@ public class NextMeeting {
         this.bookBy = jsonObject.getString(NextMeetingTable.COLUMN_BOOKBY);
         this.book_date = jsonObject.getString(NextMeetingTable.COLUMN_DATE);
         this.book_time = jsonObject.getString(NextMeetingTable.COLUMN_TIME);
+        this.gps_time = jsonObject.getString(NextMeetingTable.COLUMN_GPSTIME);
+        this.gpsLat = jsonObject.getString(NextMeetingTable.COLUMN_LAT);
+        this.gpsLng = jsonObject.getString(NextMeetingTable.COLUMN_LNG);
+        this.deviceid = jsonObject.getString(NextMeetingTable.COLUMN_DEVICEID);
+        this.devicetagID = jsonObject.getString(NextMeetingTable.COLUMN_DEVICETAGID);
         this.formdate = jsonObject.getString(NextMeetingTable.COLUMN_FORMDATE);
         this.dist_id = jsonObject.getLong(NextMeetingTable.COLUMN_DIST_CODE);
         this.hf_name = jsonObject.getString(NextMeetingTable.COLUMN_HF_NAME);
@@ -185,7 +196,8 @@ public class NextMeeting {
         this.module = jsonObject.getString(NextMeetingTable.COLUMN_MODULE_CODE);
         this.session = jsonObject.getString(NextMeetingTable.COLUMN_SESSION_CODE);
         this.synced = jsonObject.getString(NextMeetingTable.COLUMN_SYNCED);
-        this.formdate = jsonObject.getString(NextMeetingTable.COLUMN_FORMDATE);
+        this.synced_date = jsonObject.getString(NextMeetingTable.COLUMN_SYNCED_DATE);
+        this.username = jsonObject.getString(NextMeetingTable.COLUMN_USER);
 
         return this;
 

@@ -5,6 +5,8 @@
 
     <string name="True">True</string>
     <string name="False">False</string>
+    <string name="btnDownload">Download Data</string>
+    <string name="btnUpload">Upload Data</string>
 
     <string name="action_sign_in_short">Sign in</string>
     <string name="dummy_button">Dummy Button</string>

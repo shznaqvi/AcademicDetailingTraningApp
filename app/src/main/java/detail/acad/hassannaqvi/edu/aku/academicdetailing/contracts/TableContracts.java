@@ -182,7 +182,7 @@ public class TableContracts {
     public static abstract class NextMeetingTable implements BaseColumns {
 
         public static final String TABLE_NAME = "next_meeting";
-        public static final String _ID = "_id";
+        public static final String COLUMN_ID = "_id";
         public static final String COLUMN_HF_NAME = "hf_name";
         public static final String COLUMN_HP_NAME = "hp_name";
         public static final String COLUMN_HP_CODE = "hp_code";

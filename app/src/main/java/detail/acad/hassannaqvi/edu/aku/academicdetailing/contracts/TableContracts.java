@@ -103,7 +103,7 @@ public class TableContracts {
         public static final String COLUMN_SURVEYTYPE = "surveytype";
         public static final String COLUMN_ID = "_id";
         public static final String COLUMN_UID = "_uid";
-        public static final String COLUMN_FORMDATE = "formDate";
+        public static final String COLUMN_FORMDATE = "sysdate";
         public static final String COLUMN_USER = "username";
         public static final String COLUMN_ISTATUS = "istatus";
         public static final String COLUMN_ISTATUS88X = "istatus88x";
@@ -114,7 +114,7 @@ public class TableContracts {
         public static final String COLUMN_GPSACC = "gpsacc";
         public static final String COLUMN_GPSTIME = "gps_time";
         public static final String COLUMN_GPSELEV = "gpselev";
-        public static final String COLUMN_DEVICEID = "deviceID";
+        public static final String COLUMN_DEVICEID = "deviceid";
         public static final String COLUMN_DEVICETAGID = "devicetagid";
         public static final String COLUMN_SYNCED = "synced";
         public static final String COLUMN_SYNCED_DATE = "synced_date";
@@ -145,39 +145,6 @@ public class TableContracts {
 
 
     }
-    public abstract class SessionTable implements BaseColumns{
-
-        public static final String TABLE_NAME = "sessions_table";
-        public static final String _ID = "_id";
-        public static final String COLUMN_UID = "_uid";
-        public static final String COLUMN_UUID = "_uuid";
-        public static final String COLUMN_USER = "username";
-        public static final String COLUMN_DEVICETAGID = "devicetagid";
-        public static final String COLUMN_SESSION_CODE = "session_code";
-        public static final String COLUMN_MODULE_CODE = "module_code";
-        public static final String COLUMN_SESSION_TIME = "session_time";
-        public static final String COLUMN_SLIDE_NUMBER = "slide_number";
-        public static final String COLUMN_SYNCED= "synced";
-        public static final String COLUMN_SYNCED_DATE= "synced_date";
-        public static final String COLUMN_FORMDATE = "formdate";
-        public static final String COLUMN_DEVICEID = "deviceid";
-        public static final String SESSION_URL = "sessions.php";
-
-    }
-
-    public static abstract class HealthProviderTable implements BaseColumns {
-
-        public static final String TABLE_NAME = "healthcare_providers";
-        public static final String COLUMN_ID = "_id";
-        public static final String COLUMN_HP_NAME = "provider_name";
-        public static final String COLUMN_HP_TEHSIL = "tehsil";
-        // public static final String COLUMN_HP_UC_NAME = "uc";
-        public static final String COLUMN_HP_UEN_CODE = "provider_code";
-        public static final String COLUMN_HF_CODE = "hfcode";
-        //public static final String COLUMN_HP_DESIGNATION = "hp_designation";
-        public static final String COLUMN_HP_DIST_CODE = "dist_id";
-
-    }
 
     public static abstract class NextMeetingTable implements BaseColumns {
 
@@ -199,13 +166,47 @@ public class TableContracts {
         public static final String COLUMN_GPSTIME = "gps_time";
         public static final String COLUMN_SYNCED = "synced";
         public static final String COLUMN_SYNCED_DATE = "synced_date";
-        public static final String COLUMN_FORMDATE = "formdate";
+        public static final String COLUMN_FORMDATE = "sysdate";
         public static final String COLUMN_UID = "_uid";
         public static final String COLUMN_USER = "username";
         public static final String COLUMN_DEVICETAGID = "devicetagid";
 
         public static final String nms_Url = "next_meeting.php";
         public static final String app_Url = "appointments.php";
+
+    }
+
+    public static abstract class HealthProviderTable implements BaseColumns {
+
+        public static final String TABLE_NAME = "healthcare_providers";
+        public static final String COLUMN_ID = "_id";
+        public static final String COLUMN_HP_NAME = "provider_name";
+        public static final String COLUMN_HP_TEHSIL = "tehsil";
+        // public static final String COLUMN_HP_UC_NAME = "uc";
+        public static final String COLUMN_HP_UEN_CODE = "provider_code";
+        public static final String COLUMN_HF_CODE = "hfcode";
+        //public static final String COLUMN_HP_DESIGNATION = "hp_designation";
+        public static final String COLUMN_HP_DIST_CODE = "dist_id";
+
+    }
+
+    public abstract class SessionTable implements BaseColumns {
+
+        public static final String TABLE_NAME = "sessions_table";
+        public static final String _ID = "_id";
+        public static final String COLUMN_UID = "_uid";
+        public static final String COLUMN_UUID = "_uuid";
+        public static final String COLUMN_USER = "username";
+        public static final String COLUMN_DEVICETAGID = "devicetagid";
+        public static final String COLUMN_SESSION_CODE = "session_code";
+        public static final String COLUMN_MODULE_CODE = "module_code";
+        public static final String COLUMN_SESSION_TIME = "session_time";
+        public static final String COLUMN_SLIDE_NUMBER = "slide_number";
+        public static final String COLUMN_SYNCED = "synced";
+        public static final String COLUMN_SYNCED_DATE = "synced_date";
+        public static final String COLUMN_FORMDATE = "sysdate";
+        public static final String COLUMN_DEVICEID = "deviceid";
+        public static final String SESSION_URL = "sessions.php";
 
     }
 

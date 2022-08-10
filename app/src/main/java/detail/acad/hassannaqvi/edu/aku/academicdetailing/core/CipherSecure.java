@@ -44,7 +44,7 @@ public class CipherSecure {
     private static final int IV_LENGTH = 12;
     private static final int TAG_LENGTH = 16;
 
-    public static String encryptGCM(String plainText) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException, UnsupportedEncodingException, BadPaddingException, IllegalBlockSizeException {
+    public static String encryptGCM(String plainText) throws NoSuchPaddingException, IllegalArgumentException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException, UnsupportedEncodingException, BadPaddingException, IllegalBlockSizeException {
         byte[] iv = new byte[IV_LENGTH];
         (new SecureRandom()).nextBytes(iv);
         //  Log.d(TAG, "encryptGCM (encrypted IV): "+ new String(Base64.encode(iv, Base64.NO_WRAP)));
@@ -65,7 +65,7 @@ public class CipherSecure {
         return encoded;
     }
 
-    public static String decryptGCM(String encrypted) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, UnsupportedEncodingException {
+    public static String decryptGCM(String encrypted) throws NoSuchPaddingException, IllegalArgumentException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, UnsupportedEncodingException {
 
         byte[] decoded = Base64.decode(encrypted, Base64.NO_WRAP);
         // Log.d(TAG, "decryptGCM: (to Decrypt):"+new String(decoded));
@@ -86,7 +86,8 @@ public class CipherSecure {
         return newString;
     }
 
-    /*public static String encrypt(String plain) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
+
+/*    public static String encryptCBC(String plain) throws NoSuchPaddingException, IllegalArgumentException, NoSuchAlgorithmException, InvalidAlgorithmParameterException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
         Log.d(TAG, "encrypt: " + IBAHC);
         byte[] iv = new byte[16];
         new SecureRandom().nextBytes(iv);
@@ -100,8 +101,7 @@ public class CipherSecure {
 
     }*/
 
-    /*public static String decrypt(String encoded) throws NoSuchPaddingException, NoSuchAlgorithmException, BadPaddingException, IllegalBlockSizeException, InvalidAlgorithmParameterException, InvalidKeyException {
-        Log.d(TAG, "decrypt: encoded " + encoded);
+/*    public static String decryptCBC(String encoded) throws NoSuchPaddingException, NoSuchAlgorithmException, BadPaddingException, IllegalBlockSizeException, IllegalArgumentException, InvalidAlgorithmParameterException, InvalidKeyException {
         byte[] ivAndCipherText = Base64.decode(encoded, Base64.NO_WRAP);
         byte[] iv = Arrays.copyOfRange(ivAndCipherText, 0, 16);
         byte[] cipherText = Arrays.copyOfRange(ivAndCipherText, 16, ivAndCipherText.length);
@@ -121,7 +121,7 @@ public class CipherSecure {
             Certificate ca;
             try {
                 ca = cf.generateCertificate(caInput);
-//                System.out.println("ca=" + ((X509Certificate) ca).getSubjectDN());
+                // System.out.println("ca=" + ((X509Certificate) ca).getSubjectDN());
             } finally {
                 caInput.close();
             }
@@ -167,13 +167,13 @@ public class CipherSecure {
 
     public static boolean certIsValid(Certificate[] certs, Certificate ca) {
         for (Certificate cert : certs) {
-//            System.out.println("Certificate is: " + cert);
+            // System.out.println("Certificate is: " + cert);
             if (cert instanceof X509Certificate) {
 
                 try {
                     ((X509Certificate) cert).checkValidity();
 
-//                    System.out.println("Certificate is active for current date");
+                    //   System.out.println("Certificate is active for current date");
                     if (cert.equals(ca)) {
 
                         return true;
@@ -205,5 +205,4 @@ public class CipherSecure {
         //  return Base64.encodeToString(hexStrBuilder.toString().substring(12,12+32).getBytes(StandardCharsets.UTF_8),  Base64.NO_WRAP);
         return Base64.encodeToString(shaByteArr, Base64.NO_WRAP).substring(TRATS, TRATS + 32);
     }
-
 }

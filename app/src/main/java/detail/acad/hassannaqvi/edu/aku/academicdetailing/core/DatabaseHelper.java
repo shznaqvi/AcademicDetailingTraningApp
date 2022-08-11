@@ -961,7 +961,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return newRowId;
     }
 
-    public void updateSyncedForms(String id) {
+    public void updateSyncedforms(String id) {
         SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
 
 // New value for one column
@@ -980,7 +980,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 whereArgs);
     }
 
-    public void updateSyncedSessionForms(String id) {
+    public void updateSyncedsessions_table(String id) {
         SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
 
 // New value for one column
@@ -1320,7 +1320,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(NextMeetingTable.COLUMN_HP_CODE, MainApp.nmc.getHp_code());
         values.put(NextMeetingTable.COLUMN_DIST_CODE, MainApp.nmc.getDist_id());
         values.put(NextMeetingTable.COLUMN_DEVICETAGID, MainApp.nmc.getDevicetagID());
-        return db.insert(NextMeetingTable.TABLE_NAME, null, values);
+
+        long newRowId;
+        newRowId = db.insert(
+                NextMeetingTable.TABLE_NAME,
+                NextMeetingTable.COLUMN_NAME_NULLABLE,
+                values);
+        return newRowId;
+        //return db.insert(NextMeetingTable.TABLE_NAME, null, values);
+
 
 
     }

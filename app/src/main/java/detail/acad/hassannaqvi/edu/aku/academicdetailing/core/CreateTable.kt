@@ -74,8 +74,8 @@ object CreateTable {
             + SessionTable.COLUMN_DEVICETAGID + " TEXT, "
             + SessionTable.COLUMN_UUID + " TEXT, "
             + SessionTable.COLUMN_SLIDE_NUMBER + " INTEGER,"
-            + SessionTable.COLUMN_MODULE_CODE + " TEXT," + SessionTable.COLUMN_SESSION_CODE
-            + " TEXT,"
+            + SessionTable.COLUMN_MODULE_CODE + " TEXT,"
+            + SessionTable.COLUMN_SESSION_CODE + " TEXT,"
             + SessionTable.COLUMN_SESSION_TIME + " TEXT,"
             + SessionTable.COLUMN_SYNCED + " TEXT,"
             + SessionTable.COLUMN_SYNCED_DATE + " TEXT" + ");")

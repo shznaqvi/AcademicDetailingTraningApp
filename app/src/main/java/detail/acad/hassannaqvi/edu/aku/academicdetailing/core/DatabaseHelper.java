@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.TableContracts;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.TableContracts.DistrictTable;
@@ -232,10 +233,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public JSONArray getUnsyncedNextMeetings() throws JSONException {
         SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
+
         Cursor c = null;
         String[] columns = null;
 
-        String whereClause = NextMeetingTable.COLUMN_SYNCED + " = ''";
+        String whereClause;
+        //whereClause = null;
+       whereClause = NextMeetingTable.COLUMN_SYNCED + " = NULL";
 
         String[] whereArgs = null;
 
@@ -261,8 +265,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Log.d(TAG, "getUnsyncedNextMeeting: " + c.getCount());
             NextMeeting nextMeeting = new NextMeeting();
             allNextMeeting.put(nextMeeting.Hydrate(c).toJSONObject());
-
-        }
+           /*String syncedValue = c.getString(c.getColumnIndexOrThrow(NextMeetingTable.COLUMN_SYNCED));
+            if (syncedValue == null || syncedValue.equals("")) {
+                NextMeeting nextMeeting = new NextMeeting();
+                allNextMeeting.put(nextMeeting.Hydrate(c).toJSONObject());
+            }*/
+       }
 
         c.close();
         
@@ -999,7 +1007,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 whereArgs);
     }
 
-    public void updateSyncedNMSForms(String id) {
+    public void updateSyncednext_meeting(String id) {
         SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
 
 // New value for one column

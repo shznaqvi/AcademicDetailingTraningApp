@@ -2,6 +2,7 @@ package detail.acad.hassannaqvi.edu.aku.academicdetailing.model;
 
 import android.database.Cursor;
 
+import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -9,20 +10,20 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.TableContract
 
 public class NextMeeting {
 
-    public String doctorname;
-    public String book_date;
-    public String book_time;
-    public String module;
-    public String subModule;
-    public String session;
-    public String gpsLat;
-    public String gpsLng;
-    public String doBooking;
-    public String bookBy;
-    public String gps_time;
-    public String bookingtype;
-    public String _id;
-    public String synced;
+    public String doctorname =  StringUtils.EMPTY;
+    public String book_date =  StringUtils.EMPTY;
+    public String book_time =  StringUtils.EMPTY;
+    public String module =  StringUtils.EMPTY;
+    public String subModule =  StringUtils.EMPTY;
+    public String session =  StringUtils.EMPTY;
+    public String gpsLat =  StringUtils.EMPTY;
+    public String gpsLng =  StringUtils.EMPTY;
+    public String doBooking =  StringUtils.EMPTY;
+    public String bookBy =  StringUtils.EMPTY;
+    public String gps_time =  StringUtils.EMPTY;
+    public String bookingtype =  StringUtils.EMPTY;
+    public String _id =  StringUtils.EMPTY;
+    public String synced =  StringUtils.EMPTY;
 
     public String getSynced() {
         return synced;
@@ -40,20 +41,20 @@ public class NextMeeting {
         this.synced_date = synced_date;
     }
 
-    public String synced_date;
+    public String synced_date =  StringUtils.EMPTY;
 
 
-    private String _UID = "";
-    private String username = "";
+    private String _UID =  StringUtils.EMPTY;
+    private String username =  StringUtils.EMPTY;
 
-    private String formdate = ""; // Date
-    private String deviceid = "";
+    private String formdate  =  StringUtils.EMPTY; // Date
+    private String deviceid  =  StringUtils.EMPTY;
 
     private long dist_id = 0;
-    private String hf_name = "";
-    private String hp_name = "";
+    private String hf_name =  StringUtils.EMPTY;;
+    private String hp_name  =  StringUtils.EMPTY;;
     private long hp_code = 0;
-    private String devicetagID = "";
+    private String devicetagID =  StringUtils.EMPTY;;
 
     public String get_id() {
         return _id;

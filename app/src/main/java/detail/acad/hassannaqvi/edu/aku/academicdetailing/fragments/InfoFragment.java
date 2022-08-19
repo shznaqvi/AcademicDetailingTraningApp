@@ -140,18 +140,7 @@ public class InfoFragment extends Fragment {
             }
         });
 
-        /*hfList = db.getHealthFacilityData(MainApp.district.getDICTRICT_CODE());
-        hfMap = new HashMap<>();
-        hfNames = new ArrayList<>();
-        hfNames.add("...");
-        hfCodes.add("...");
-        for (HealthFacility hf : hfList) {
-            hfNames.add(hf.getHf_name());
-            hfMap.put(hf.getHf_name(), hf.getHf_uen_code());
-        }
 
-        bi.hfName.setAdapter(new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, hfNames));
-*/
         bi.hfName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -183,26 +172,17 @@ public class InfoFragment extends Fragment {
             }
         });
 
-
-        /*healthProviderList = db.getHPData(MainApp.facilityName);
-        providerNames = new ArrayList<>();
-        providerMap = new HashMap<>();
-        providerNames.add("-Select HealthProvider Name-");
-
-        for (HealthProvider pC : healthProviderList) {
-
-            providerNames.add(pC.getHp_name());
-            providerMap.put(pC.getHp_name(), pC.getHf_code());
-
-        }*/
-
         bi.hpName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 if (bi.hpName.getSelectedItemPosition() != 0) {
 
-                    hp_code = bi.hpName.getSelectedItemPosition();
+                    if(position < providerNames.size() && position < providerCodes.size()) {
+
+                        hp_code = Long.parseLong(providerCodes.get(bi.hpName.getSelectedItemPosition()));
+
+                    }
                     //MainApp.providerName = bi.hpName.getSelectedItem().toString();
                 }
             }
@@ -252,7 +232,7 @@ public class InfoFragment extends Fragment {
         MainApp.forms.setLogginTime(MainApp.logginTime);
         MainApp.forms.setDeviceID(MainApp.deviceId);
         MainApp.forms.setFormDate(new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime()));
-        MainApp.forms.setProviderID(bi.providerId.getText().toString());
+        MainApp.forms.setProviderID(String.valueOf(hp_code));
         MainApp.forms.setProviderName(bi.hpName.getSelectedItem().toString());
         MainApp.forms.setHealthFacilityCode(hfCodes.get(bi.hfName.getSelectedItemPosition()));
         MainApp.forms.setDistrictID(String.valueOf(MainApp.districtCode));

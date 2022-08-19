@@ -238,8 +238,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String[] columns = null;
 
         String whereClause;
-        //whereClause = null;
-       whereClause = NextMeetingTable.COLUMN_SYNCED + " = NULL";
+        whereClause = null;
+       //whereClause = NextMeetingTable.COLUMN_SYNCED + " is null ";
 
         String[] whereArgs = null;
 
@@ -263,13 +263,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
              /*Form fc = new Form();
              allFC.add(fc.Hydrate(c));*/
             Log.d(TAG, "getUnsyncedNextMeeting: " + c.getCount());
-            NextMeeting nextMeeting = new NextMeeting();
+            /*NextMeeting nextMeeting = new NextMeeting();
             allNextMeeting.put(nextMeeting.Hydrate(c).toJSONObject());
-           /*String syncedValue = c.getString(c.getColumnIndexOrThrow(NextMeetingTable.COLUMN_SYNCED));
+*/
+
+            String syncedValue = c.getString(c.getColumnIndexOrThrow(NextMeetingTable.COLUMN_SYNCED));
             if (syncedValue == null || syncedValue.equals("")) {
                 NextMeeting nextMeeting = new NextMeeting();
                 allNextMeeting.put(nextMeeting.Hydrate(c).toJSONObject());
-            }*/
+            }
        }
 
         c.close();
@@ -969,7 +971,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return newRowId;
     }
 
-    public void updateSyncedforms(String id) {
+    public void updateSyncedformsAD(String id) {
         SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
 
 // New value for one column
@@ -988,7 +990,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 whereArgs);
     }
 
-    public void updateSyncedsessions_table(String id) {
+    public void updateSyncedsessions(String id) {
         SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
 
 // New value for one column

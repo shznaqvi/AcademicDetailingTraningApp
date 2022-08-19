@@ -97,7 +97,7 @@ public class TableContracts {
 
     public static abstract class FormsTable implements BaseColumns {
 
-        public static final String TABLE_NAME = "forms";
+        public static final String TABLE_NAME = "formsAD";
         public static final String COLUMN_NAME_NULLABLE = "NULLHACK";
         public static final String COLUMN_PROJECTNAME = "projectname";
         public static final String COLUMN_SURVEYTYPE = "surveytype";
@@ -193,7 +193,7 @@ public class TableContracts {
 
     public abstract class SessionTable implements BaseColumns {
 
-        public static final String TABLE_NAME = "sessions_table";
+        public static final String TABLE_NAME = "sessions";
         public static final String _ID = "_id";
         public static final String COLUMN_UID = "_uid";
         public static final String COLUMN_UUID = "_uuid";

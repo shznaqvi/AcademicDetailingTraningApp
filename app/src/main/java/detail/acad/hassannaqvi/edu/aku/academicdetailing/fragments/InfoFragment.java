@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
@@ -93,7 +94,7 @@ public class InfoFragment extends Fragment {
         //bi.districtSpinner.setT(MainApp.district.getDistrict_name());
 
 
-        distrcitList = db.getDistrictList();
+        distrcitList = db.getDistrictList(Integer.parseInt(MainApp.user.getDist_id()));
         districtNames = new ArrayList<>();
         districtCode = new ArrayList<>();
         //districtCode = 0L;
@@ -228,15 +229,17 @@ public class InfoFragment extends Fragment {
     private void saveDraft() {
 
         MainApp.forms = new Forms();
-        MainApp.forms.setAppversion(MainApp.versionName + "." + MainApp.versionCode);
+        MainApp.forms.setAppversion(MainApp.appInfo.getAppVersion());
         MainApp.forms.setLogginTime(MainApp.logginTime);
         MainApp.forms.setDeviceID(MainApp.deviceId);
-        MainApp.forms.setFormDate(new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime()));
+        MainApp.forms.setFormDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH).format(new Date().getTime()));
         MainApp.forms.setProviderID(String.valueOf(hp_code));
         MainApp.forms.setProviderName(bi.hpName.getSelectedItem().toString());
         MainApp.forms.setHealthFacilityCode(hfCodes.get(bi.hfName.getSelectedItemPosition()));
-        MainApp.forms.setDistrictID(String.valueOf(MainApp.districtCode));
+        MainApp.forms.setDistrictID(MainApp.user.getDist_id());
         MainApp.providerName = bi.hpName.getSelectedItem().toString();
+        MainApp.forms.setUsername(MainApp.user.getUserName());
+
 
         setGPS();
     }

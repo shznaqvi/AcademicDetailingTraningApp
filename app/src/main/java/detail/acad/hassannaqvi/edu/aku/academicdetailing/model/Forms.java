@@ -7,6 +7,10 @@ import android.os.Parcelable;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.TableContracts.FormsTable;
 
 /**
@@ -380,6 +384,7 @@ public class Forms implements Parcelable {
 
     public Forms() {
     }
+
 
 
     public String setAndGetSyncedDate() {

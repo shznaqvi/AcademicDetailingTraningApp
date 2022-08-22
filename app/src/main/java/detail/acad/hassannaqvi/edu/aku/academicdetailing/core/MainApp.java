@@ -109,6 +109,7 @@ public class MainApp extends Application {
     public static boolean isChild = false;
     public static String[] loginMem;
     public static String versionName;
+    public static AppInfo appInfo;
     //public static String districtName = "";
     public static String providerName = "";
     public static String facilityName = "";
@@ -133,7 +134,7 @@ public class MainApp extends Application {
     public static List<JSONArray> uploadData;
     public static String[] downloadData;
     public static boolean permissionCheck;
-    public static AppInfo appInfo;
+
     public static Users user;
     public static SharedPreferences sharedPref;
     public static SharedPreferences.Editor editor;

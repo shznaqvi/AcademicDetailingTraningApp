@@ -802,7 +802,44 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return hp;
     }
 
-    public List<District> getDistrictList() {
+
+    public List<District> getDistrictList(int id) {
+        List<District> formList = new ArrayList<>();
+
+        String[] columns = {
+                DistrictTable.DISTRICT_NAME,
+                DistrictTable.COLUMN_DIST_ID
+        };
+        String selection = DistrictTable.COLUMN_DIST_ID + " = ?";
+        String[] selectionArgs = new String[]{String.valueOf(id)};
+
+        String orderBy =
+                DistrictTable.COLUMN_DIST_ID + " COLLATE NOCASE ASC;";
+
+        SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
+        Cursor c = db.query(
+                DistrictTable.TABLE_NAME,
+                columns,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                orderBy);
+
+        if (c.moveToFirst()) {
+            do {
+                District fc = new District();
+                fc.setDistrict_name(c.getString(c.getColumnIndexOrThrow(DistrictTable.DISTRICT_NAME)));
+                fc.setDICTRICT_CODE(c.getString(c.getColumnIndexOrThrow(DistrictTable.COLUMN_DIST_ID)));
+                formList.add(fc.Hydrate(c));
+            } while (c.moveToNext());
+        }
+
+        // return contact list
+        return formList;
+    }
+
+    /*public List<District> getDistrictList(int id) {
         List<District> formList = new ArrayList<>();
         // Select All Query
         String selectQuery = "SELECT  * FROM " + DistrictTable.TABLE_NAME;
@@ -823,7 +860,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // return contact list
         return formList;
     }
-
+*/
     //Functions that dealing with table data
     public boolean doLogin(String username, String password) throws InvalidKeySpecException, NoSuchAlgorithmException, IllegalArgumentException {
         SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
@@ -960,6 +997,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(FormsTable.COLUMN_PRETEST_START_TIME, fc.getPreTestStartTime());
         values.put(FormsTable.COLUMN_PRETEST_END_TIME, fc.getPreTestEndTime());
         values.put(FormsTable.COLUMN_POSTTEST_START_TIME, fc.getPostTestEndTime());
+        values.put(FormsTable.COLUMN_USER, MainApp.user.getUserName());
+
 
 
         // Insert the new row, returning the primary key value of the new row
@@ -1279,6 +1318,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(SessionTable.COLUMN_UUID, sc.get_UUID());
         values.put(SessionTable.COLUMN_SYNCED, sc.getSynced());
         values.put(SessionTable.COLUMN_SYNCED_DATE, sc.getSyncDate());
+        values.put(SessionTable.COLUMN_USER, MainApp.user.getUserName());
 
         return db.insert(SessionTable.TABLE_NAME, null, values);
 
@@ -1317,7 +1357,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(NextMeetingTable.COLUMN_SESSION_CODE, MainApp.nmc.getSession());
         values.put(NextMeetingTable.COLUMN_BOOKBY, MainApp.nmc.getBookBy());
         values.put(NextMeetingTable.COLUMN_DEVICEID, MainApp.nmc.getDeviceid());
-        values.put(NextMeetingTable.COLUMN_USER, MainApp.nmc.getUsername());
+        values.put(NextMeetingTable.COLUMN_USER, MainApp.user.getUserName());
         values.put(NextMeetingTable.COLUMN_LAT, MainApp.nmc.getGpsLat());
         values.put(NextMeetingTable.COLUMN_LNG, MainApp.nmc.getGpsLng());
         values.put(NextMeetingTable.COLUMN_BTYPE, MainApp.nmc.getBookingtype());

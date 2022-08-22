@@ -36,6 +36,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Locale;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
@@ -130,17 +131,17 @@ public class ScheduleActivity extends AppCompatActivity {
         MainApp.nmc.setModule(moduleCode);
 
         MainApp.nmc.setSession(sessionCode);
-        MainApp.nmc.setBookBy(MainApp.userName);
+        MainApp.nmc.setBookBy(MainApp.user.getUserName());
         MainApp.nmc.setBookingtype(bi.bookingType.getSelectedItemPosition() == 0 ? "0" : "1");
-        MainApp.nmc.setFormdate(new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime()));
+        MainApp.nmc.setFormdate(new SimpleDateFormat("dd-MM-yy HH:mm", Locale.ENGLISH).format(new Date().getTime()));
         MainApp.nmc.setDeviceid(MainApp.deviceId);
 
-        MainApp.nmc.setDist_id(Long.parseLong(MainApp.forms.getDistrictID()));
+        MainApp.nmc.setDist_id(Long.parseLong(MainApp.user.getDist_id()));
         MainApp.nmc.setHf_name(MainApp.forms.getHealthFacilityCode());
         MainApp.nmc.setHp_name(MainApp.forms.getProviderName());
         MainApp.nmc.setHp_code(Long.parseLong(MainApp.forms.getProviderID()));
         MainApp.nmc.setDevicetagID(sharedPref.getString("tagName", null));
-        MainApp.nmc.setUsername(MainApp.userName);
+        MainApp.nmc.setUsername(MainApp.user.getUserName());
 
 
         setGPS();

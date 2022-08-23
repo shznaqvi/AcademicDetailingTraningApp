@@ -156,7 +156,7 @@ public class ViewPagerActivity extends AppCompatActivity {
         sC.setSession(subMenuDT.getSessionCode());
         sC.setSlideNumber(lastItemPosition);
         sC.setDeviceid(MainApp.deviceId);
-        sC.setFormdate(new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime()));
+        sC.setFormdate(new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new Date().getTime()));
         sC.setSessionTime(MainApp.getCurrentTime());
         sC.set_UUID(MainApp.formsUID);
         sC.setDevicetagID(sharedPref.getString("tagName", null));

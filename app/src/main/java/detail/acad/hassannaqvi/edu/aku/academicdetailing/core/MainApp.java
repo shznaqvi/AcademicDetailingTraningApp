@@ -146,7 +146,7 @@ public class MainApp extends Application {
 
 
     public static Calendar getCalendarDate(String value) {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Calendar calendar = Calendar.getInstance();
         try {
             Date date = sdf.parse(value);
@@ -172,7 +172,7 @@ public class MainApp extends Application {
     }
 
     public static String getCurrentTime() {
-        String currentTime = new SimpleDateFormat(" dd-MM-yyyy HH:mm:ss").format(new Date().getTime());
+        String currentTime = new SimpleDateFormat(" yyyy-MM-dd HH:mm:ss").format(new Date().getTime());
         return currentTime;
     }
 
@@ -412,7 +412,7 @@ public class MainApp extends Application {
             SharedPreferences sharedPref = getSharedPreferences("GPSCoordinates", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPref.edit();
 
-            String dt = DateFormat.format("dd-MM-yyyy HH:mm", Long.parseLong(sharedPref.getString("Time", "0"))).toString();
+            String dt = DateFormat.format("yyyy-MM-dd HH:mm", Long.parseLong(sharedPref.getString("Time", "0"))).toString();
 
             Location bestLocation = new Location("storedProvider");
             bestLocation.setAccuracy(Float.parseFloat(sharedPref.getString("Accuracy", "0")));

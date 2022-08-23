@@ -1383,18 +1383,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public void syncnext_meeting(JSONArray appList) {
+    public int syncnext_meeting(JSONArray appList) throws JSONException {
         SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
 //        db.execSQL(" DELETE FROM " + UsersTable.TABLE_NAME);
 //        db.execSQL(" DELETE FROM sqlite_sequence where name = 'user'");
 
         //DELETING Data with synced = 2
         db.delete(NextMeetingTable.TABLE_NAME, NextMeetingTable.COLUMN_SYNCED + "=?", new String[]{"2"});
-
-        try {
-            JSONArray jsonArray = appList;
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject jsonObjectUser = jsonArray.getJSONObject(i);
+        int insertCount = 0;
+            for (int i = 0; i < appList.length(); i++) {
+                JSONObject jsonObjectUser = appList.getJSONObject(i);
                 if (jsonObjectUser != null) {
 
                     NextMeeting nextMeeting = new NextMeeting();
@@ -1415,30 +1413,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     values.put(NextMeetingTable.COLUMN_SESSION_CODE, nextMeeting.getSession());
                     values.put(NextMeetingTable.COLUMN_TIME, nextMeeting.getBook_time());
                     values.put(NextMeetingTable.COLUMN_SYNCED, nextMeeting.getSynced());
-                    db.insert(NextMeetingTable.TABLE_NAME, null, values);
+                    long rowID = db.insert(NextMeetingTable.TABLE_NAME, null, values);
+                    if (rowID != -1) insertCount++;
                 }
 
             }
-
-        } catch (Exception e) {
-
-            e.printStackTrace();
+        return insertCount;
         }
 
-//                         "_uid": "3206860ee5ba1081",
-//                            "book_type": "1",
-//                            "booking_by": "dmu@aku",
-//                            "book_date": "04-12-2019",
-//                            "dist_code": "414",
-//                            "formdate": "12-04-19 10:34",
-//                            "hf_name": "nn",
-//                            "hp_code": "35376",
-//                            "hp_name": "chd",
-//                            "module_code": "1",
-//                            "session_code": "10201",
-//                            "book_time": "10:34:49",
-//                            "synced": 2
-    }
 
 
 /*    public long getUsersCount() {

@@ -261,7 +261,7 @@ public class InfoFragment extends Fragment {
                 Toast.makeText(getActivity(), "Could not obtained GPS points", Toast.LENGTH_SHORT).show();
             }
 
-            String date = DateFormat.format("dd-MM-yyyy HH:mm", Long.parseLong(dt)).toString();
+            String date = DateFormat.format("yyyy-MM-dd HH:mm", Long.parseLong(dt)).toString();
 
             MainApp.forms.setGpsLat(lat);
             MainApp.forms.setGpsLng(lang);

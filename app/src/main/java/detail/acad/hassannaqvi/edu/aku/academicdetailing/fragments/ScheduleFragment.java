@@ -148,7 +148,7 @@ public class ScheduleFragment extends Fragment {
         MainApp.nmc.setSession(sessionCode);
         MainApp.nmc.setBookBy(MainApp.userName);
         MainApp.nmc.setBookingtype(bi.bookingType.getSelectedItemPosition() == 0 ? "0" : "1");
-        MainApp.nmc.setFormdate(new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime()));
+        MainApp.nmc.setFormdate(new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new Date().getTime()));
         MainApp.nmc.setDeviceid(MainApp.deviceId);
 
         MainApp.nmc.setDist_id(Long.parseLong(MainApp.forms.getDistrictID()));

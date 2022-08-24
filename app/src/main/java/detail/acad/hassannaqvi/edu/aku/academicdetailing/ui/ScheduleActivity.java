@@ -125,7 +125,8 @@ public class ScheduleActivity extends AppCompatActivity {
     private void saveDraft() {
         SharedPreferences sharedPref = ScheduleActivity.this.getSharedPreferences("tagName", MODE_PRIVATE);
 
-        MainApp.nmc.setBook_date(new SimpleDateFormat("yyyy-MM-dd").format(bi.bookDate.getText().toString()));
+        //MainApp.getCalendarDate(bi.bookDate.getText().toString());
+        MainApp.nmc.setBook_date(changeDateFormat(bi.bookDate.getText().toString()));
         MainApp.nmc.setBook_time(bi.bookTime.getText().toString());
         MainApp.nmc.setDoctorName(MainApp.providerName);
         MainApp.nmc.setModule(moduleCode);
@@ -392,6 +393,13 @@ public class ScheduleActivity extends AppCompatActivity {
         bi.sessions.setOnItemSelectedListener(listener);
 
 
+    }
+
+    String changeDateFormat(String sourceDate) {
+        String[] parts = sourceDate.split("/");
+        if (parts.length < 2)
+            return "";
+        return parts[2] + "-" + parts[1] + "-" + parts[0];
     }
 
 }

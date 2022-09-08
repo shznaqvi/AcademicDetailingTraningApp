@@ -402,4 +402,10 @@ public class ScheduleActivity extends AppCompatActivity {
         return parts[2] + "-" + parts[1] + "-" + parts[0];
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MainApp.lockScreen(this);
+    }
+
 }

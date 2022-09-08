@@ -96,8 +96,6 @@ public class HemoTest02 extends AppCompatActivity {
 
     }
 
-
-
     public void BtnContinue(View view) {
         if (formValidation()) {
             try {
@@ -175,5 +173,11 @@ public class HemoTest02 extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Toast.makeText(this, "You can't go back", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MainApp.lockScreen(this);
     }
 }

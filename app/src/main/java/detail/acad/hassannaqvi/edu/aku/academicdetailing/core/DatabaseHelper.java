@@ -24,7 +24,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.TableContracts;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.TableContracts.DistrictTable;
@@ -184,9 +183,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return allForms;
     }
 
-
-
-
     public JSONArray getUnsyncedSessions() throws JSONException {
         SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
         Cursor c = null;
@@ -229,7 +225,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return allSession;
     }
-
 
     public JSONArray getUnsyncedNextMeetings() throws JSONException {
         SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);

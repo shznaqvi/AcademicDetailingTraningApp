@@ -16,12 +16,15 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.media.AudioManager;
+import android.media.ToneGenerator;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkCapabilities;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Environment;
 import android.provider.Settings;
 import android.text.format.DateFormat;
@@ -56,6 +59,7 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.NextMeeting;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.Result;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.Users;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.EndingActivity;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.LockActivity;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.ViewPagerActivity;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
 
@@ -140,6 +144,8 @@ public class MainApp extends Application {
     public static SharedPreferences.Editor editor;
     public static boolean superuser;
     //public static String selectedDistrict;
+    public static CountDownTimer timer;
+    static ToneGenerator toneGen1;
 
 
     protected static LocationManager locationManager;
@@ -253,6 +259,44 @@ public class MainApp extends Application {
         }
     }
 
+    public static void lockScreen(Context c) {
+
+        if (timer != null) {
+            timer.cancel();
+        }
+
+        //   Context mContext = c;
+        Activity activity = (Activity) c;
+
+
+        timer = new CountDownTimer(15 * 60 * 1000, 1000) {
+            //timer = new CountDownTimer(30 * 1000, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                //Some code
+                //bi.timeLeft.setText((millisUntilFinished / 1000) + " secs left");
+                if ((millisUntilFinished / 1000) < 14) {
+                    toneGen1.startTone(ToneGenerator.TONE_CDMA_PIP, 150);
+                }
+
+            }
+
+            public void onFinish() {
+                //Logout
+                //
+                //   finish();
+                // lockScreen();
+                Intent intent = new Intent();
+                intent.setClass(c, LockActivity.class);
+                c.startActivity(intent);
+                timer.cancel();
+                //  startActivity(new Intent(((Activity) c).getLocalClassName(), LockActivity.class));
+            }
+        };
+        timer.start();
+
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -280,6 +324,7 @@ public class MainApp extends Application {
             requestLocationUpdate();
         }
         initSecure();
+        toneGen1 = new ToneGenerator(AudioManager.STREAM_MUSIC, 100);
     }
 
     public void requestLocationUpdate() {

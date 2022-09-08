@@ -1,6 +1,5 @@
 package detail.acad.hassannaqvi.edu.aku.academicdetailing.ui;
 
-import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.forms;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.isComplete;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.post_result;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.pre_result;
@@ -14,8 +13,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.validatorcrawler.aliazaz.Validator;
 
@@ -25,7 +22,6 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityEndingBinding;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.DialogEndBinding;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments.ScheduleFragment;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.interfaces.Callbacks;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.Forms;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.Data;
@@ -209,5 +205,11 @@ public class EndingActivity extends AppCompatActivity implements Callbacks {
     public void onBackPressed() {
 
         Toast.makeText(this, "You can't go back", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MainApp.lockScreen(this);
     }
 }

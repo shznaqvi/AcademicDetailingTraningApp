@@ -1,8 +1,6 @@
 package detail.acad.hassannaqvi.edu.aku.academicdetailing.ui;
 
 
-import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.type;
-
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
@@ -180,7 +178,13 @@ public class PlayerActivity extends AppCompatActivity {
 
     public void BtnEnd(View view) {
 
-            MainApp.showDialog(PlayerActivity.this, "Do You Want To Exit?", "end", false, subMenu);
+        MainApp.showDialog(PlayerActivity.this, "Do You Want To Exit?", "end", false, subMenu);
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MainApp.lockScreen(this);
     }
 }

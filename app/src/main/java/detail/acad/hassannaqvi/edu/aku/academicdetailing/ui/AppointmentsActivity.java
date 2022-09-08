@@ -16,6 +16,7 @@ import java.util.List;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.adapters.AppointmentListAdapter;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.DatabaseHelper;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityAppointmentsBinding;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.NextMeeting;
 
@@ -105,5 +106,11 @@ public class AppointmentsActivity extends AppCompatActivity {
         } else {
             bi.noAppointment.setVisibility(View.VISIBLE);
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MainApp.lockScreen(this);
     }
 }

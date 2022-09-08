@@ -221,5 +221,11 @@ public class PsbiTest01 extends AppCompatActivity implements RadioButton.OnCheck
         Toast.makeText(this, "You can't go back", Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MainApp.lockScreen(this);
+    }
+
 
 }

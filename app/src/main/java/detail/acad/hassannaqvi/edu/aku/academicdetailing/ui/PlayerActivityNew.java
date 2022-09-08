@@ -1,8 +1,6 @@
 package detail.acad.hassannaqvi.edu.aku.academicdetailing.ui;
 
 
-import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.MainApp.type;
-
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
@@ -229,5 +227,11 @@ public class PlayerActivityNew extends AppCompatActivity {
     public void onBackPressed() {
         Toast.makeText(this, "You can't go back", Toast.LENGTH_SHORT).show();
         //MainApp.showDialog(PlayerActivityNew.this, "Do You Want To Exit?", "end", false, subMenu);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MainApp.lockScreen(this);
     }
 }

@@ -36,7 +36,6 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.databinding.ActivityMai
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments.InfoFragment;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments.MainFragment;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments.ModuleFragment;
-import detail.acad.hassannaqvi.edu.aku.academicdetailing.fragments.ScheduleFragment;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.interfaces.Callbacks;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.Forms;
 /*import okhttp3.ResponseBody;
@@ -427,8 +426,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return true;
 
     }
+
     public void openVideo(View view) {
         Intent intent = new Intent(MainActivity.this, VideoTestingActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MainApp.lockScreen(this);
     }
 }

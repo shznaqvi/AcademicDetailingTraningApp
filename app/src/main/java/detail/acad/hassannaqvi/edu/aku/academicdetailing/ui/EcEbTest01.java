@@ -178,5 +178,11 @@ public class EcEbTest01 extends AppCompatActivity {
         Toast.makeText(this, "You can't go back", Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MainApp.lockScreen(this);
+    }
+
 
 }

@@ -248,7 +248,7 @@ public class SyncActivity extends AppCompatActivity {
 
                     // downloadTables.add(new SyncModel(HealthFacilityTable.TABLE_NAME));
                     //downloadTables.add(new SyncModel(DistrictsTable.TABLE_NAME));
-                    downloadTables.add(new SyncModel("versionApp"));
+//                    downloadTables.add(new SyncModel("versionApp"));
 
 
                 } else {

@@ -28,6 +28,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.main">
         <activity
+            android:name=".ui.LockActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.ScheduleActivity"
             android:exported="true"
             android:theme="@style/AppThemeEnglish1" />

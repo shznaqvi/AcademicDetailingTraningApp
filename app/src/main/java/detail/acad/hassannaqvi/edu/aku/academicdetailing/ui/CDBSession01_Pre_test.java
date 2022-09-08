@@ -283,4 +283,10 @@ public class CDBSession01_Pre_test extends AppCompatActivity implements RadioBut
     public void onBackPressed() {
         Toast.makeText(this, "You can't go back", Toast.LENGTH_SHORT).show();
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MainApp.lockScreen(this);
+    }
 }

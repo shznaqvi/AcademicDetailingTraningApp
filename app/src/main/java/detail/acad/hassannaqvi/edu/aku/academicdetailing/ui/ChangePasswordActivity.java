@@ -327,4 +327,10 @@ public class ChangePasswordActivity extends AppCompatActivity {
         }*/
         return isValid;
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MainApp.lockScreen(this);
+    }
 }

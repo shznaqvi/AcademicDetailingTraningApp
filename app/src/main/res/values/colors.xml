@@ -30,5 +30,8 @@
     <color name="redLight">#d6ef0000</color>
     <color name="blackOverlay">#7f000000</color>
 
+    <color name="grayDark">#424242</color>
+    <color name="redDark">#990000</color>
+
 
 </resources>

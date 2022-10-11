@@ -80,6 +80,36 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
+                            android:text="Tehsil Name"
+                            />
+
+
+                        <androidx.appcompat.widget.AppCompatSpinner
+                            style="@style/textInput"
+                            android:id="@+id/tehsilSpinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:enabled="false"
+                            android:textColor="@color/black" />
+
+
+                    </LinearLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+                <!--Q01-->
+                <androidx.cardview.widget.CardView style="@style/cardView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
                             android:text="@string/hfac_name"
                             />
 

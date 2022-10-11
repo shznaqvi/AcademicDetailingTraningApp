@@ -15,10 +15,11 @@ public class HealthProvider {
     String tehsil;
     String uc;
     String hp_name;
+    String hf_name;
     String hp_designation;
     long COLUMN_DIST_ID;
     String hp_uen_code;
-    long hf_code;
+    String hf_code;
 
     public HealthProvider() {
         // Default Constructor
@@ -72,12 +73,21 @@ public class HealthProvider {
         this.hp_uen_code = hp_uen_code;
     }
 
-    public long getHf_code() {
+    public String getHf_code() {
         return hf_code;
     }
 
-    public void setHf_code(long hf_code) {
+    public void setHf_code(String hf_code) {
         this.hf_code = hf_code;
+    }
+
+
+    public String getHf_name() {
+        return hf_name;
+    }
+
+    public void setHf_name(String hf_name) {
+        this.hf_name = hf_name;
     }
 
     public HealthProvider Sync(JSONObject jsonObject) throws JSONException {
@@ -87,7 +97,8 @@ public class HealthProvider {
         this.tehsil = jsonObject.getString(HealthProviderTable.COLUMN_HP_TEHSIL);
         // this.uc = jsonObject.getString(HealthProviderTable.COLUMN_HP_UC_NAME);
         this.hp_uen_code = jsonObject.getString(HealthProviderTable.COLUMN_HP_UEN_CODE);
-        this.hf_code = jsonObject.getLong(HealthProviderTable.COLUMN_HF_CODE);
+        this.hf_code = jsonObject.getString(HealthProviderTable.COLUMN_HF_CODE);
+        this.hf_name = jsonObject.getString(HealthProviderTable.COLUMN_HF_NAME);
         this.hp_name = jsonObject.getString(HealthProviderTable.COLUMN_HP_NAME);
         //   this.hp_designation = jsonObject.getString(HealthProviderTable.COLUMN_HP_DESIGNATION);
 
@@ -103,7 +114,8 @@ public class HealthProvider {
         this.hp_uen_code = cursor.getString(cursor.getColumnIndexOrThrow(HealthProviderTable.COLUMN_HP_UEN_CODE));
         this.COLUMN_DIST_ID = cursor.getLong(cursor.getColumnIndexOrThrow(HealthProviderTable.COLUMN_HP_DIST_CODE));
         this.tehsil = cursor.getString(cursor.getColumnIndexOrThrow(HealthProviderTable.COLUMN_HP_TEHSIL));
-        this.hf_code = cursor.getLong(cursor.getColumnIndexOrThrow(HealthProviderTable.COLUMN_HF_CODE));
+        this.hf_code = cursor.getString(cursor.getColumnIndexOrThrow(HealthProviderTable.COLUMN_HF_CODE));
+        this.hf_name = cursor.getString(cursor.getColumnIndexOrThrow(HealthProviderTable.COLUMN_HF_NAME));
         return this;
     }
 

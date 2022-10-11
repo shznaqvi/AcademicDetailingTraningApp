@@ -85,8 +85,12 @@ object CreateTable {
             DistrictTable.DISTRICT_NAME + " TEXT" + ");")
 
     const val SQL_CREATE_TEHSIL_TABLE = (" CREATE TABLE " + TehsilTable.TABLE_NAME
-            + " ( " + TehsilTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + TehsilTable.TEHSIL_CODE + " Long," +
-            TehsilTable.TEHSIL_NAME + " TEXT" + ");")
+            + " ( " + TehsilTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + TehsilTable.DIST_NAME + " TEXT,"
+            + TehsilTable.DIST_CODE + " TEXT,"
+            + TehsilTable.TEHSIL_CODE + " TEXT," +
+            TehsilTable.TEHSIL_NAME + " TEXT"
+            + ");")
 
     const val SQL_CREATE_HF_TABLE = (" CREATE TABLE " + HealthFacilityTable.TABLE_NAME
             + " ( " + HealthFacilityTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -103,6 +107,7 @@ object CreateTable {
             + HealthProviderTable.COLUMN_HP_DIST_CODE + " LONG, "
             + HealthProviderTable.COLUMN_HP_TEHSIL + " TEXT, "
             //   + HealthProviderTable.COLUMN_HP_UC_NAME + " TEXT, "
+            + HealthProviderTable.COLUMN_HF_NAME + " TEXT, "
             + HealthProviderTable.COLUMN_HP_UEN_CODE + " LONG, "
             + HealthProviderTable.COLUMN_HF_CODE + " LONG, "
             + HealthProviderTable.COLUMN_HP_NAME + " TEXT "
@@ -163,5 +168,9 @@ object CreateTable {
             + EntryLogTable.COLUMN_APPVERSION + " TEXT"
             + " );"
             )
+
+    const val SQL_ALTER_ADD_HF_NAME = ("ALTER TABLE "
+            + HealthProviderTable.TABLE_NAME + " ADD COLUMN "
+            + HealthProviderTable.COLUMN_HF_NAME + " TEXT;")
 
 }

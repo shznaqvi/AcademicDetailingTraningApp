@@ -1,5 +1,6 @@
 package detail.acad.hassannaqvi.edu.aku.academicdetailing.core;
 
+import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.CreateTable.SQL_ALTER_ADD_HF_NAME;
 import static detail.acad.hassannaqvi.edu.aku.academicdetailing.core.UserAuth.checkPassword;
 
 import android.content.ContentValues;
@@ -107,7 +108,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVer, int newVer) {
-        db.execSQL(SQL_DELETE_USERS);
+        /*db.execSQL(SQL_DELETE_USERS);
         db.execSQL(SQL_DELETE_FORMS);
         db.execSQL(SQL_DELETE_DISTRICTS);
         db.execSQL(SQL_DELETE_TEHSILS);
@@ -115,7 +116,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_DELETE_NMS);
         db.execSQL(SQL_DELETE_HF);
         db.execSQL(SQL_DELETE_HP);
-        db.execSQL(SQL_DELETE_ENTRYLOGS);
+        db.execSQL(SQL_DELETE_ENTRYLOGS);*/
+
+        try {
+            switch (oldVer) {
+                case 1:
+                    db.execSQL(SQL_ALTER_ADD_HF_NAME);
+
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
 
 //        db.execSQL(SQL_DELETE_TEHSIL);
 
@@ -408,6 +419,38 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return insertCount;
     }
 
+    public int synctehsil(JSONArray tehsilList) {
+        SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
+        db.execSQL(" DELETE FROM " + TableContracts.TehsilTable.TABLE_NAME);
+        //db.execSQL(" DELETE FROM sqlite_sequence where name = 'health_fc'");    //TODO you have to add table name manually in order to reset primary key
+        int insertCount = 0;
+        try {
+            JSONArray jsonArray = tehsilList;
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObjectUser = jsonArray.getJSONObject(i);
+
+                Tehsils tehsils = new Tehsils();
+                tehsils.Sync(jsonObjectUser);
+
+                ContentValues values = new ContentValues();
+
+                values.put(TableContracts.TehsilTable.DIST_CODE, tehsils.getCOLUMN_DIST_ID());
+                values.put(TableContracts.TehsilTable.DIST_NAME, tehsils.getDistrictName());
+                values.put(TableContracts.TehsilTable.TEHSIL_NAME, tehsils.getTehsil_name());
+                values.put(TableContracts.TehsilTable.TEHSIL_CODE, tehsils.getTEHSIL_CODE());
+                long rowID = db.insert(TableContracts.TehsilTable.TABLE_NAME, null, values);
+                if (rowID != -1) insertCount++;
+
+            }
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
+        return insertCount;
+
+    }
+
     public int syncHealthFacility(JSONArray hfList) {
         SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
         db.execSQL(" DELETE FROM " + HealthFacilityTable.TABLE_NAME);
@@ -492,6 +535,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 values.put(HealthProviderTable.COLUMN_HP_DIST_CODE, healthProvider.getCOLUMN_DIST_ID());
                 values.put(HealthProviderTable.COLUMN_HP_TEHSIL, healthProvider.getTehsil());
                 //   values.put(HealthProviderTable.COLUMN_HP_UC_NAME, healthProvider.getUc());
+                values.put(HealthProviderTable.COLUMN_HF_NAME, healthProvider.getHf_name());
                 values.put(HealthProviderTable.COLUMN_HP_UEN_CODE, healthProvider.getHp_uen_code());
                 values.put(HealthProviderTable.COLUMN_HF_CODE, healthProvider.getHf_code());
                 values.put(HealthProviderTable.COLUMN_HP_NAME, healthProvider.getHp_name());
@@ -696,22 +740,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return user;
     }
 
-    public List<HealthFacility> getHealthFacilityData(String id) {
-        List<HealthFacility> formList = new ArrayList<>();
-
+    public List<Tehsils> getTehsilsByDist(String id) {
+        SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
         String[] columns = {
-                HealthFacilityTable.COLUMN_HF_NAME,
-                HealthFacilityTable.COLUMN_HF_CODE
+                TableContracts.TehsilTable.TEHSIL_NAME,
+                TableContracts.TehsilTable.TEHSIL_CODE
         };
-        String selection = HealthFacilityTable.COLUMN_HF_DIST_CODE + " = ?";
+        String selection = TableContracts.TehsilTable.DIST_CODE + " = ?";
         String[] selectionArgs = new String[]{String.valueOf(id)};
 
         String orderBy =
-                HealthFacilityTable.COLUMN_HF_NAME + " COLLATE NOCASE ASC;";
+                TableContracts.TehsilTable.TEHSIL_NAME + " COLLATE NOCASE ASC;";
 
-        SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
+        List<Tehsils> formList = new ArrayList<>();
         Cursor c = db.query(
-                HealthFacilityTable.TABLE_NAME,
+                TableContracts.TehsilTable.TABLE_NAME,
                 columns,
                 selection,
                 selectionArgs,
@@ -719,33 +762,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 null,
                 orderBy);
 
-        if (c.moveToFirst()) {
-            do {
-                HealthFacility fc = new HealthFacility();
-                fc.setHf_name(c.getString(c.getColumnIndexOrThrow(HealthFacilityTable.COLUMN_HF_NAME)));
-                fc.setHf_uen_code(c.getString(c.getColumnIndexOrThrow(HealthFacilityTable.COLUMN_HF_CODE)));
-                formList.add(fc.HydrateHF(c));
-            } while (c.moveToNext());
+        while (c.moveToNext()) {
+            Tehsils fc = new Tehsils();
+            fc.setTehsil_name(c.getString(c.getColumnIndexOrThrow(TableContracts.TehsilTable.TEHSIL_NAME)));
+            fc.setTEHSIL_CODE(c.getString(c.getColumnIndexOrThrow(TableContracts.TehsilTable.TEHSIL_CODE)));
+            formList.add(fc);
         }
 
         // return contact list
         return formList;
     }
 
-    public List<HealthProvider> getHPData(String  id) {
-        List<HealthProvider> formList = new ArrayList<>();
 
+    public List<HealthProvider> getHealthFacilityFromHP(String id) {
+        SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
         String[] columns = {
-                HealthProviderTable.COLUMN_HP_NAME,
-                HealthProviderTable.COLUMN_HP_UEN_CODE
+                HealthProviderTable.COLUMN_HF_NAME,
+                HealthProviderTable.COLUMN_HF_CODE
         };
-        String selection = HealthProviderTable.COLUMN_HP_UEN_CODE + " = ?";
+        String selection = HealthProviderTable.COLUMN_HP_TEHSIL + " = ?";
         String[] selectionArgs = new String[]{String.valueOf(id)};
 
         String orderBy =
-                HealthProviderTable.COLUMN_HP_NAME + " COLLATE NOCASE ASC;";
+                HealthProviderTable.COLUMN_HF_NAME + " COLLATE NOCASE ASC;";
 
-        SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
+        List<HealthProvider> formList = new ArrayList<>();
         Cursor c = db.query(
                 HealthProviderTable.TABLE_NAME,
                 columns,
@@ -755,18 +796,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 null,
                 orderBy);
 
-        if (c.moveToFirst()) {
-            do {
-                HealthProvider fc = new HealthProvider();
-                fc.setHp_name(c.getString(c.getColumnIndexOrThrow(HealthProviderTable.COLUMN_HP_NAME)));
-                fc.setHp_uen_code(c.getString(c.getColumnIndexOrThrow(HealthProviderTable.COLUMN_HP_UEN_CODE)));
-                formList.add(fc.Hydrate(c));
-            } while (c.moveToNext());
+        while (c.moveToNext()) {
+            HealthProvider fc = new HealthProvider();
+            fc.setHf_name(c.getString(c.getColumnIndexOrThrow(HealthProviderTable.COLUMN_HF_NAME)));
+            fc.setHf_code(c.getString(c.getColumnIndexOrThrow(HealthProviderTable.COLUMN_HF_CODE)));
+            formList.add(fc);
         }
 
         // return contact list
         return formList;
     }
+
 
 
     public ArrayList<HealthProvider> getHealthProviderByFacility(String fcCode) {

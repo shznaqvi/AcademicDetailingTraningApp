@@ -35,6 +35,7 @@ import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.District;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.Forms;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.HealthFacility;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.HealthProvider;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.model.Tehsils;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.ui.ScheduleActivity;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.util.HideKeyboard;
 
@@ -51,17 +52,19 @@ public class InfoFragment extends Fragment {
     //Long districtCode;
     HashMap<String, String> districtMap;
 
-    Collection<HealthFacility> hfList;
+    Collection<HealthProvider> hfList;
     ArrayList<String> hfNames;
     ArrayList<String> hfCodes;
-    HashMap<String, String> hfMap;
+
 
     Collection<HealthProvider> healthProviderList;
     ArrayList<String> providerNames;
     ArrayList<String> providerCodes;
-    HashMap<String, String> providerMap;
 
-    String hf_uen_code ="";
+    Collection<Tehsils> tehsilList;
+    ArrayList<String> tehsilNames;
+    ArrayList<String> tehsilCodes;
+
     long hp_code = 0;
 
     private static final String TAG = "InfoFragment";
@@ -117,20 +120,51 @@ public class InfoFragment extends Fragment {
                 if (bi.districtSpinner.getSelectedItemPosition() != 0) {
 
                     MainApp.districtCode = bi.districtSpinner.getSelectedItemPosition();
-                    hfList = db.getHealthFacilityData(MainApp.user.getDist_id());
-                    hfNames = new ArrayList<>();
-                    hfCodes = new ArrayList<>();
-                    hfNames.add("...");
-                    hfCodes.add("...");
+                    tehsilList = db.getTehsilsByDist(MainApp.user.getDist_id());
+                    tehsilNames = new ArrayList<>();
+                    tehsilCodes = new ArrayList<>();
+                    tehsilNames.add("...");
+                    tehsilCodes.add("...");
 
-                    for (HealthFacility hf : hfList) {
-                        hfNames.add(hf.getHf_name());
-                        hfCodes.add(hf.getHf_uen_code());
+                    for (Tehsils hf : tehsilList) {
+                        tehsilNames.add(hf.getTehsil_name());
+                        tehsilCodes.add(hf.getTEHSIL_CODE());
                     }
 
-                    bi.hfName.setAdapter(new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, hfNames));
+                    bi.tehsilSpinner.setAdapter(new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, tehsilNames));
 
 
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        bi.tehsilSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if (bi.tehsilSpinner.getSelectedItemPosition() != 0) {
+
+                    if (position < tehsilNames.size() && position < tehsilCodes.size()) {
+                        String selectedCode = tehsilCodes.get(position);
+                        hfList = db.getHealthFacilityFromHP(selectedCode);
+                        hfNames = new ArrayList<>();
+                        hfCodes = new ArrayList<>();
+                        hfNames.add("...");
+                        hfCodes.add("...");
+
+                        for (HealthProvider hp : hfList) {
+                            hfNames.add(hp.getHf_name());
+                            hfCodes.add(hp.getHf_code());
+                        }
+
+                        bi.hfName.setAdapter(new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, hfNames));
+
+                    }
                 }
 
             }

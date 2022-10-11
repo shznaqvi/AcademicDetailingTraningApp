@@ -55,11 +55,12 @@ public class TableContracts {
 
     public static abstract class TehsilTable implements BaseColumns {
 
-        public static final String TABLE_NAME = "tehsils";
+        public static final String TABLE_NAME = "tehsil";
         public static final String _ID = "id";
-        public static final String TEHSIL_CODE = "tehsil";
-        public static final String TEHSIL_NAME = "tehsil_id";
-        public static final String DIST_CODE = "COLUMN_DIST_ID";
+        public static final String TEHSIL_CODE = "tehsil_id";
+        public static final String TEHSIL_NAME = "tehsil";
+        public static final String DIST_CODE = "dist_id";
+        public static final String DIST_NAME = "district";
 
     }
     public static abstract class VersionTable implements BaseColumns {
@@ -182,10 +183,11 @@ public class TableContracts {
         public static final String TABLE_NAME = "healthcare_providers";
         public static final String COLUMN_ID = "_id";
         public static final String COLUMN_HP_NAME = "provider_name";
-        public static final String COLUMN_HP_TEHSIL = "tehsil";
+        public static final String COLUMN_HP_TEHSIL = "tehsil_id";
         // public static final String COLUMN_HP_UC_NAME = "uc";
         public static final String COLUMN_HP_UEN_CODE = "provider_code";
         public static final String COLUMN_HF_CODE = "hfcode";
+        public static final String COLUMN_HF_NAME = "hf_name";
         //public static final String COLUMN_HP_DESIGNATION = "hp_designation";
         public static final String COLUMN_HP_DIST_CODE = "dist_id";
 

@@ -50,6 +50,7 @@ import java.util.concurrent.TimeUnit;
 
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.R;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.adapters.SyncListAdapter;
+import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.TableContracts;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.TableContracts.DistrictTable;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.TableContracts.EntryLogTable;
 import detail.acad.hassannaqvi.edu.aku.academicdetailing.contracts.TableContracts.FormsTable;
@@ -258,6 +259,7 @@ public class SyncActivity extends AppCompatActivity {
                     filter = " (colflag != '1' or colflag is null) AND dist_id  = '" + MainApp.user.getDist_id() + "' ";
                     downloadTables.add(new SyncModel(HealthProviderTable.TABLE_NAME, select, filter));
                     downloadTables.add(new SyncModel(NextMeetingTable.TABLE_NAME, select, filter));
+                    downloadTables.add(new SyncModel(TableContracts.TehsilTable.TABLE_NAME, select, filter));
 
 
                 }

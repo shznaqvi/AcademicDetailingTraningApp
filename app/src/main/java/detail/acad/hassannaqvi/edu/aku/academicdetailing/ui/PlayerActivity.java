@@ -172,7 +172,8 @@ public class PlayerActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Toast.makeText(this, "You can't go back", Toast.LENGTH_SHORT).show();
+        super.onStop();
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         //MainApp.showDialog(PlayerActivity.this, "Do You Want To Exit?", "end", false, subMenu);
     }
 
